@@ -1,7 +1,7 @@
-import { ReactNode } from 'react'
+import { ReactNode, useEffect } from 'react'
+import { LoadStatus, schemaContext, useSchemaLoader } from 'shared'
 
-import { schemaContext } from '~/contexts'
-import { useSchemaLoader } from '~/hooks'
+import { useLog } from '~/hooks'
 
 interface IProps {
   children: ReactNode
@@ -9,7 +9,14 @@ interface IProps {
 
 function SchemaProvider(props: IProps): JSX.Element {
   const { children } = props
+  const log = useLog()
   const api = useSchemaLoader()
+
+  useEffect(() => {
+    if (api.status === LoadStatus.FAILED) {
+      log(api.error)
+    }
+  }, [api.error, api.status, log])
 
   if (!api.data) {
     return null
