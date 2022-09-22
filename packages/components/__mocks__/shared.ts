@@ -1,13 +1,14 @@
 import { api } from 'shared/src/mocks'
 
-import categorySortingOptions from '~/public/mocks/category_sorting_options.json'
-import docs from '~/public/mocks/docs.json'
-import entrypoint from '~/public/mocks/index.json'
-import graphql from '~/public/mocks/graphql.json'
-import metadata from '~/public/mocks/metadata.json'
-import sourceFieldOptionLabels from '~/public/mocks/source_field_option_labels.json'
+import categorySortingOptions from 'shared/src/mocks/static/category_sorting_options.json'
+import docs from 'shared/src/mocks/static/docs.json'
+import entrypoint from 'shared/src/mocks/static/index.json'
+import graphql from 'shared/src/mocks/static/graphql.json'
+import metadata from 'shared/src/mocks/static/metadata.json'
+import sourceFieldOptionLabels from 'shared/src/mocks/static/source_field_option_labels.json'
 
 export * from 'shared/src/constants'
+export * from 'shared/src/contexts'
 export * from 'shared/src/mocks'
 export * from 'shared/src/services/breadcrumb'
 export * from 'shared/src/services/catalog'
@@ -28,35 +29,32 @@ const body = { hello: 'world' }
 /* api */
 export const getApiUrl = jest.fn((url) => url)
 
-export const fetchApi = jest.fn(
-  (_, resource) => {
-    let data: unknown = { ...body }
-    if (
-      (typeof resource !== 'string' &&
-        resource.title.toLowerCase() === 'metadata') ||
-      (typeof resource === 'string' && resource.endsWith('metadata'))
-    ) {
-      data = { ...metadata }
-    } else if (
-      typeof resource === 'string' &&
-      resource.endsWith('category_sorting_options')
-    ) {
-      data = { ...categorySortingOptions }
-    } else if (
-      (typeof resource !== 'string' &&
-        resource.title.toLowerCase() === 'source_field_option_label') ||
-      (typeof resource === 'string' &&
-        resource.endsWith('source_field_option_labels'))
-    ) {
-      data = { ...sourceFieldOptionLabels }
-    }
-    return Promise.resolve(data)
+export const fetchApi = jest.fn((_, resource) => {
+  let data: unknown = { ...body }
+  if (
+    (typeof resource !== 'string' &&
+      resource.title.toLowerCase() === 'metadata') ||
+    (typeof resource === 'string' && resource.endsWith('metadata'))
+  ) {
+    data = { ...metadata }
+  } else if (
+    typeof resource === 'string' &&
+    resource.endsWith('category_sorting_options')
+  ) {
+    data = { ...categorySortingOptions }
+  } else if (
+    (typeof resource !== 'string' &&
+      resource.title.toLowerCase() === 'source_field_option_label') ||
+    (typeof resource === 'string' &&
+      resource.endsWith('source_field_option_labels'))
+  ) {
+    data = { ...sourceFieldOptionLabels }
   }
-)
+  return Promise.resolve(data)
+})
 
 export const removeEmptyParameters = jest.fn(
-  (searchParameters = {}) =>
-    searchParameters
+  (searchParameters = {}) => searchParameters
 )
 
 export const log = jest.fn((log, error) => log(error.message))
