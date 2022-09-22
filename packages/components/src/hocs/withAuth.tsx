@@ -33,7 +33,7 @@ export function withAuth<P extends Record<string, unknown>>(
     )
   }
 
-  WithAuth.displayName = `WithHoc(${getDisplayName(Cmp)})`
+  WithAuth.displayName = `WithAuth(${getDisplayName(Cmp)})`
   return WithAuth
 }
 
