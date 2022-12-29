@@ -1,4 +1,5 @@
-import React, { appWithTranslation } from 'next-i18next'
+import React from 'react'
+import { appWithTranslation } from 'next-i18next'
 import type { AppProps } from 'next/app'
 // import dynamic from 'next/dynamic'
 import Script from 'next/script'
