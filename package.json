@@ -23,7 +23,11 @@
     "typescript:ci": "yarn --cwd ./packages/shared typescript:ci && yarn --cwd ./packages/components typescript:ci",
     "prepare": "husky install .husky",
     "bump": "lerna version --no-private",
-    "publish": "lerna publish --no-private"
+    "publish": "lerna publish --no-private",
+    "release:major": "yarn --cwd ./packages/shared changelog -- -M && yarn --cwd ./packages/components changelog -- -M && yarn pushlog",
+    "release:minor": "yarn --cwd ./packages/shared changelog -- -m && yarn --cwd ./packages/components changelog -- -m && yarn pushlog",
+    "release:patch": "yarn --cwd ./packages/shared changelog -- -p && yarn --cwd ./packages/components changelog -- -p && yarn pushlog",
+    "pushlog": "yarn prettier && git add . && git commit -m 'doc: update CHANGELOG files' && git push && git push --tags"
   },
   "devDependencies": {
     "concurrently": "7.4.0",
