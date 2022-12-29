@@ -1,0 +1,12 @@
+#!/usr/bin/env sh
+[ -n "$CI" ] && exit 0
+
+. "$(dirname -- "$0")/_/husky.sh"
+
+cd packages/shared
+yarn lint-staged
+cd ../..
+
+cd packages/components
+yarn lint-staged
+cd ../..

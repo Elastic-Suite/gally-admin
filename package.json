@@ -1,0 +1,26 @@
+{
+  "private": true,
+  "workspaces": ["packages/components", "packages/shared"],
+  "scripts": {
+    "start": "concurrently \"yarn start:components\" \"yarn start:shared\"",
+    "start:components": "yarn --cwd ./packages/components start",
+    "start:shared": "yarn --cwd ./packages/shared start",
+    "start:storybook": "yarn --cwd ./packages/components storybook",
+    "build:components": "yarn --cwd ./packages/components build",
+    "build:shared": "yarn --cwd ./packages/shared build",
+    "build:storybook": "yarn --cwd ./packages/components build-storybook",
+    "test": "yarn --cwd ./packages/shared test && yarn --cwd ./packages/components test",
+    "test:ci": "yarn --cwd ./packages/shared test:ci && yarn --cwd ./packages/components test:ci",
+    "eslint": "yarn --cwd ./packages/shared eslint && yarn --cwd ./packages/components eslint",
+    "eslint:ci": "yarn --cwd ./packages/shared eslint:ci && yarn --cwd ./packages/components eslint:ci",
+    "prettier": "yarn --cwd ./packages/shared prettier && yarn --cwd ./packages/components prettier",
+    "prettier:ci": "yarn --cwd ./packages/shared prettier:ci && yarn --cwd ./packages/components prettier:ci",
+    "typescript": "yarn --cwd ./packages/shared typescript && yarn --cwd ./packages/components typescript",
+    "typescript:ci": "yarn --cwd ./packages/shared typescript:ci && yarn --cwd ./packages/components typescript:ci",
+    "prepare": "husky install .husky"
+  },
+  "devDependencies": {
+    "concurrently": "7.4.0",
+    "husky": "8.0.1"
+  }
+}
