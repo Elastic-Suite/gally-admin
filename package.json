@@ -1,6 +1,6 @@
 {
   "name": "gally-admin",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "workspaces": [
     "packages/*"
@@ -22,11 +22,10 @@
     "typescript": "yarn --cwd ./packages/shared typescript && yarn --cwd ./packages/components typescript",
     "typescript:ci": "yarn --cwd ./packages/shared typescript:ci && yarn --cwd ./packages/components typescript:ci",
     "prepare": "husky install .husky",
-    "release:major": "yarn --cwd ./packages/shared changelog -- -M && yarn --cwd ./packages/components changelog -- -M && yarn bump",
-    "release:minor": "yarn --cwd ./packages/shared changelog -- -m && yarn --cwd ./packages/components changelog -- -m && yarn bump",
-    "release:patch": "yarn --cwd ./packages/shared changelog -- -p && yarn --cwd ./packages/components changelog -- -p && yarn bump",
-    "bump": "yarn prettier && git add . && git commit -m 'docs: update CHANGELOG files' && lerna version --no-private",
-    "publish": "lerna publish --no-private"
+    "release:major": "yarn --cwd ./packages/shared changelog -- -M && yarn --cwd ./packages/components changelog -- -M && yarn bumpAndPublish",
+    "release:minor": "yarn --cwd ./packages/shared changelog -- -m && yarn --cwd ./packages/components changelog -- -m && yarn bumpAndPublish",
+    "release:patch": "yarn --cwd ./packages/shared changelog -- -p && yarn --cwd ./packages/components changelog -- -p && yarn bumpAndPublish",
+    "bumpAndPublish": "yarn prettier && git add . && git commit -m 'docs: update CHANGELOG files' && lerna version && lerna publish --no-private"
   },
   "devDependencies": {
     "concurrently": "7.4.0",
