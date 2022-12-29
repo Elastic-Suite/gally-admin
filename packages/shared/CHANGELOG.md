@@ -1,3 +1,10 @@
+#### 0.1.3 (2022-12-29)
+
+##### Bug Fixes
+
+- add install-peers for peerDependencies (f1cef4d9)
+- move dependencies (f8aab01a)
+
 #### 0.1.2 (2022-12-29)
 
 ##### New Features
