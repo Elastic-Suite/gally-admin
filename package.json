@@ -1,6 +1,10 @@
 {
+  "name": "gally-admin",
+  "version": "0.1.0",
   "private": true,
-  "workspaces": ["packages/components", "packages/shared"],
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
     "start": "concurrently \"yarn start:components\" \"yarn start:shared\"",
     "start:components": "yarn --cwd ./packages/components start",
@@ -17,10 +21,13 @@
     "prettier:ci": "yarn --cwd ./packages/shared prettier:ci && yarn --cwd ./packages/components prettier:ci",
     "typescript": "yarn --cwd ./packages/shared typescript && yarn --cwd ./packages/components typescript",
     "typescript:ci": "yarn --cwd ./packages/shared typescript:ci && yarn --cwd ./packages/components typescript:ci",
-    "prepare": "husky install .husky"
+    "prepare": "husky install .husky",
+    "bump": "lerna version --no-private",
+    "publish": "lerna publish --no-private"
   },
   "devDependencies": {
     "concurrently": "7.4.0",
-    "husky": "8.0.1"
+    "husky": "8.0.1",
+    "lerna": "6.3.0"
   }
 }
