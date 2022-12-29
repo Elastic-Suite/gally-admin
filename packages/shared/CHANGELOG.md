@@ -1,3 +1,13 @@
+#### 0.1.2 (2022-12-29)
+
+##### New Features
+
+- move next-i18next config (7c5c69f1)
+
+##### Bug Fixes
+
+- publish script (e60977c9)
+
 #### 0.1.1 (2022-12-29)
 
 ##### Bug Fixes
