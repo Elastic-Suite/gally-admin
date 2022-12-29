@@ -1,7 +1,6 @@
-import { ChangeEvent, FunctionComponent, SyntheticEvent } from 'react'
+import React, { ChangeEvent, FunctionComponent, SyntheticEvent } from 'react'
 import { Box, Checkbox, TableRow } from '@mui/material'
 import { DraggableProvided } from 'react-beautiful-dnd'
-
 import {
   IConfigurations,
   IFieldGuesserProps,
@@ -11,23 +10,23 @@ import {
   ITableRow,
   getFieldState,
   joinUrlPath,
-} from 'shared'
-
-import IonIcon from '~/components/atoms/IonIcon/IonIcon'
-import {
-  BaseTableCell,
-  StickyTableCell,
-} from '~/components/organisms/CustomTable/CustomTable.styled'
-
-import { handleSingleRow, manageStickyHeaders } from '../CustomTable.service'
+} from 'gally-admin-shared'
 
 import {
   draggableColumnStyle,
+  handleSingleRow,
+  manageStickyHeaders,
   nonStickyStyle,
   reorderIconStyle,
   selectionStyle,
   stickyStyle,
-} from './Row.service'
+} from '../../../../services'
+
+import IonIcon from '../../../atoms/IonIcon/IonIcon'
+import {
+  BaseTableCell,
+  StickyTableCell,
+} from '../../CustomTable/CustomTable.styled'
 
 interface IProps {
   Field: FunctionComponent<IFieldGuesserProps>
@@ -158,10 +157,10 @@ function DraggableRow(props: IProps): JSX.Element {
       {nonStickyHeaders.map((header) => {
         const value =
           tableRow[header.name] && header.name === 'image'
-            ? `${joinUrlPath(
+            ? joinUrlPath(
                 configuration['base_url/media'],
                 tableRow[header.name] as string
-              )}`
+              )
             : tableRow[header.name]
 
         return (

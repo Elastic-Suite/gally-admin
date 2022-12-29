@@ -1,7 +1,7 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
 
-import categories from '~/public/mocks/categories.json'
+import categories from '../../../../public/mocks/categories.json'
 
 import TreeSelectorComponent from './TreeSelector'
 

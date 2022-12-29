@@ -1,6 +1,6 @@
-import { ReactNode } from 'react'
+import React, { ReactNode } from 'react'
 
-import OptionsProvider from '~/components/stateful-providers/OptionsProvider/OptionsProvider'
+import OptionsProvider from '../components/stateful-providers/OptionsProvider/OptionsProvider'
 
 interface IProps {
   children: ReactNode

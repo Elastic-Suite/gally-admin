@@ -1,3 +1,4 @@
+import React from 'react'
 import { Switch } from '@mui/material'
 import { styled } from '@mui/system'
 import { useTranslation } from 'next-i18next'
@@ -7,12 +8,12 @@ import {
   IPrice,
   IScore,
   IStock,
-} from 'shared'
+} from 'gally-admin-shared'
 
-import Chip from '~/components/atoms/Chip/Chip'
-import Score from '~/components/atoms/score/Score'
-import Stock from '~/components/atoms/stock/Stock'
-import Price from '~/components/atoms/price/Price'
+import Chip from '../../atoms/Chip/Chip'
+import Score from '../../atoms/score/Score'
+import Stock from '../../atoms/stock/Stock'
+import Price from '../../atoms/price/Price'
 
 const Image = styled('img')({
   height: 80,

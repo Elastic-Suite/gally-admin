@@ -1,6 +1,5 @@
 import { useMemo } from 'react'
 import { useTranslation } from 'next-i18next'
-
 import {
   IFieldConfig,
   IHydraMember,
@@ -8,7 +7,7 @@ import {
   IResource,
   getFilter,
   getMappings,
-} from 'shared'
+} from 'gally-admin-shared'
 
 export function useApiFilters<A extends IHydraMember>(
   apiData: IHydraResponse<A>,

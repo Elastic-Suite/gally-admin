@@ -1,17 +1,17 @@
-import { useMemo } from 'react'
+import React, { useMemo } from 'react'
 
-import { useApiList, useResource } from '~/hooks'
+import { useApiList, useResource } from '../../../hooks'
 import {
   IRuleEngineOperators,
   ISourceField,
   ISourceFieldLabel,
   RuleAttributeType,
-} from 'shared'
+} from 'gally-admin-shared'
 
 import CombinationRules, {
   ICombinationRulesProps,
-} from '~/components/atoms/rules/CombinationRules'
-import RuleOptionsProvider from '~/components/stateful-providers/RuleOptionsProvider/RuleOptionsProvider'
+} from '../../atoms/rules/CombinationRules'
+import RuleOptionsProvider from '../../stateful-providers/RuleOptionsProvider/RuleOptionsProvider'
 
 const sourceFieldFixedFilters = {
   'metadata.entity': 'product',

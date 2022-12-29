@@ -1,10 +1,10 @@
-import { ChangeEvent, ReactNode, Ref, SyntheticEvent } from 'react'
+import React, { ChangeEvent, ReactNode, Ref, SyntheticEvent } from 'react'
 import { FormHelperText, InputLabel } from '@mui/material'
 import { useTranslation } from 'next-i18next'
 
-import { getFormValue } from '~/services'
+import { getFormValue } from '../../../services'
 
-import IonIcon from '~/components/atoms/IonIcon/IonIcon'
+import IonIcon from '../IonIcon/IonIcon'
 
 import InfoTooltip from './InfoTooltip'
 import {

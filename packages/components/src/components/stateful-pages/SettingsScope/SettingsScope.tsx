@@ -1,12 +1,12 @@
-import { useMemo } from 'react'
+import React, { useMemo } from 'react'
 import { useTranslation } from 'next-i18next'
 
-import { useApiList, useResource, useTabs } from '~/hooks'
-import { IHydraCatalog, IRouterTab } from 'shared'
+import { useApiList, useResource, useTabs } from '../../../hooks'
+import { IHydraCatalog, IRouterTab } from 'gally-admin-shared'
 
-import SubTabs from '~/components/atoms/subTabs/SubTabs'
-import Catalogs from '~/components/molecules/layout/scope/Catalogs'
-import ActiveLocales from '~/components/molecules/layout/scope/ActiveLocales'
+import SubTabs from '../../atoms/subTabs/SubTabs'
+import Catalogs from '../../molecules/layout/scope/Catalogs'
+import ActiveLocales from '../../molecules/layout/scope/ActiveLocales'
 
 function SettingsScope(): JSX.Element {
   const { t } = useTranslation('catalog')

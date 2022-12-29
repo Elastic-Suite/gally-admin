@@ -10,9 +10,9 @@ import {
   isRuleValid,
   isVirtualCategoryEnabled,
   serializeRule,
-} from 'shared'
+} from 'gally-admin-shared'
 
-import { selectBundles, useAppSelector } from '~/store'
+import { selectBundles, useAppSelector } from '../store'
 
 import { useApiFetch } from './useApi'
 

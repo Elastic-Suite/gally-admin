@@ -1,16 +1,16 @@
-import { Suspense } from 'react'
+import React, { Suspense } from 'react'
 import { RouterContext } from 'next/dist/shared/lib/router-context'
 
-import { api } from 'shared'
-import { setupStore } from '~/store'
-import TestProvider from '~/utils/TestProvider'
+import { api } from 'gally-admin-shared'
 
-import AppProvider from '~/components/stateful-providers/AppProvider/AppProvider'
+import { setupStore } from '../src/store'
+import TestProvider from '../src/utils/TestProvider'
+import AppProvider from '../src/components/stateful-providers/AppProvider/AppProvider'
 
 import I18nProvider from './I18nProvider'
 import StoryProvider from './StoryProvider'
 
-import '~/assets/scss/style.scss'
+import '../assets/scss/style.scss'
 
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },

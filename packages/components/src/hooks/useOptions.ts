@@ -1,6 +1,5 @@
 import { useTranslation } from 'next-i18next'
 import { useCallback, useMemo } from 'react'
-
 import {
   IApiSchemaOptions,
   IFetchApi,
@@ -16,8 +15,10 @@ import {
   isDropdownStaticOptions,
   isError,
   isReferenceField,
-} from 'shared'
-import { selectApi, useAppSelector } from '~/store'
+} from 'gally-admin-shared'
+
+import { selectApi, useAppSelector } from '../store'
+
 import { useSingletonLoader } from './useSingletonLoader'
 
 export function useOptions(): IOptionsContext {

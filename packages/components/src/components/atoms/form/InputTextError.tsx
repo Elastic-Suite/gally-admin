@@ -1,6 +1,6 @@
-import { ForwardedRef, forwardRef } from 'react'
+import React, { ForwardedRef, forwardRef } from 'react'
 
-import { useFormError } from '~/hooks'
+import { useFormError } from '../../../hooks'
 
 import InputText, { IInputTextProps } from './InputText'
 

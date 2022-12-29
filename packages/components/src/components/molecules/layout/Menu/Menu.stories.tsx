@@ -1,7 +1,7 @@
+import React, { useState } from 'react'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
-import { useState } from 'react'
 
-import menu from '../../../../public/mocks/menu.json'
+import menu from '../../../../../public/mocks/menu.json'
 import Menu from './Menu'
 
 export default {

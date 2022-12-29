@@ -1,6 +1,8 @@
-import { renderWithProviders } from '~/utils/tests'
+import React from 'react'
 
-import catalog from '../../../../public/mocks/catalog.json'
+import { renderWithProviders } from '../../../../utils/tests'
+
+import catalog from '../../../../../public/mocks/catalog.json'
 
 import ActiveLocales from './ActiveLocales'
 

@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
+import { resourceWithRef } from 'gally-admin-shared'
 
-import { resourceWithRef } from 'shared'
-import { renderHookWithProviders } from '~/utils/tests'
+import { renderHookWithProviders } from '../utils/tests'
 
 import {
   useFilterParameters,

@@ -1,5 +1,7 @@
+import React from 'react'
+
 import InfoTooltip from './InfoTooltip'
-import { renderWithProviders } from '~/utils/tests'
+import { renderWithProviders } from '../../../utils/tests'
 
 describe('InfoTooltip match snapshot', () => {
   it('testInfoTitle', () => {

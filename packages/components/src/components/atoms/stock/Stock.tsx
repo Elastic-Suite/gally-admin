@@ -1,6 +1,7 @@
+import React from 'react'
 import { useTranslation } from 'react-i18next'
 
-import Chip from '~/components/atoms/Chip/Chip'
+import Chip from '../Chip/Chip'
 
 interface IProps {
   stockStatus: boolean

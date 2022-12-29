@@ -1,9 +1,11 @@
+import React, { FormEvent } from 'react'
 import { Grid, InputAdornment, Paper } from '@mui/material'
-import InputText, { IInputTextProps } from '~/components/atoms/form/InputText'
 import { useTranslation } from 'next-i18next'
-import IonIcon from '~/components/atoms/IonIcon/IonIcon'
+
+import InputText, { IInputTextProps } from '../../../atoms/form/InputText'
+import IonIcon from '../../../atoms/IonIcon/IonIcon'
+
 import { CustomNoTopProduct, SearchResult, SearchTitle } from './Search.styled'
-import { FormEvent } from 'react'
 
 interface IProps extends Omit<IInputTextProps, 'ref'> {
   nbResults: number

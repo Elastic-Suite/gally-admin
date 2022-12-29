@@ -1,6 +1,6 @@
+import React from 'react'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
-
-import { IRouterTab, ITabContentProps } from 'shared'
+import { IRouterTab, ITabContentProps } from 'gally-admin-shared'
 
 import Button from '../buttons/Button'
 

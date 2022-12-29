@@ -1,7 +1,7 @@
 import { act, waitFor } from '@testing-library/react'
 import { SyntheticEvent } from 'react'
 
-import { renderHookWithProviders } from '~/utils/tests'
+import { renderHookWithProviders } from '../utils/tests'
 
 import { useFormError } from './useFormError'
 

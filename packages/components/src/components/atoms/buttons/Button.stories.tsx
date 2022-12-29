@@ -1,9 +1,9 @@
+import React from 'react'
 import { ComponentMeta } from '@storybook/react'
 import { ButtonProps } from '@mui/material'
 
 import { icons } from '../IonIcon/icons'
-
-import IonIcon from '~/components/atoms/IonIcon/IonIcon'
+import IonIcon from '../IonIcon/IonIcon'
 
 import Button from './Button'
 

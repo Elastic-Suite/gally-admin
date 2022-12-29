@@ -1,7 +1,8 @@
+import React from 'react'
 import { Box } from '@mui/material'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
 
-import RuleOptionsTestProvider from '~/utils/RuleOptionsTestProvider'
+import RuleOptionsTestProvider from '../../../utils/RuleOptionsTestProvider'
 
 import RuleLinkComponent from './RuleLink'
 

@@ -1,6 +1,7 @@
+import React from 'react'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
 
-import Button from '~/components/atoms/buttons/Button'
+import Button from '../buttons/Button'
 
 import PopIn from './PopIn'
 

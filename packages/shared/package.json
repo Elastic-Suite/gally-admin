@@ -1,12 +1,12 @@
 {
-  "name": "shared",
+  "name": "gally-admin-shared",
   "version": "0.1.0",
   "private": true,
   "main": "dist/index.js",
   "types": "index.d.ts",
   "scripts": {
     "start": "chokidar \"src/**/*.ts\" \"src/**/*.tsx\" -i \"src/**/*.test.ts\" -i \"src/**/*.test.tsx\" -i \"src/**/__mocks__/*.ts\" -c \"yarn build\"",
-    "build": "tsup src/index.ts --format cjs --dts --splitting",
+    "build": "tsup src/index.ts --format cjs,esm --dts --splitting --sourcemap --minify",
     "test": "jest",
     "test:ci": "jest",
     "test:debug": "jest --runInBand",
@@ -35,6 +35,7 @@
     "@babel/plugin-syntax-flow": "7.18.6",
     "@babel/plugin-transform-react-jsx": "7.19.0",
     "@babel/preset-react": "7.18.6",
+    "@babel/preset-typescript": "7.18.6",
     "@testing-library/jest-dom": "5.16.5",
     "@testing-library/react": "13.4.0",
     "@types/inflection": "1.13.0",

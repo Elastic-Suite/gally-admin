@@ -1,5 +1,6 @@
-import { resourceWithRef } from 'shared'
-import { renderHookWithProviders } from '~/utils/tests'
+import { resourceWithRef } from 'gally-admin-shared'
+
+import { renderHookWithProviders } from '../utils/tests'
 
 import { useApiEditableFieldOptions, useApiHeaders } from './useApiTable'
 

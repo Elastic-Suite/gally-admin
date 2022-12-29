@@ -1,9 +1,9 @@
-import { ForwardedRef, forwardRef } from 'react'
+import React, { ForwardedRef, forwardRef } from 'react'
 import { IconButton, Alert as MuiAlert } from '@mui/material'
 import { styled } from '@mui/system'
 import { CustomContentProps, SnackbarKey } from 'notistack'
 
-import IonIcon from '~/components/atoms/IonIcon/IonIcon'
+import IonIcon from '../IonIcon/IonIcon'
 
 const StyledAlert = styled(MuiAlert)(({ severity, theme }) => ({
   padding: `6px ${theme.spacing(2)}`,
@@ -47,18 +47,7 @@ interface IProps extends Partial<CustomContentProps> {
 }
 
 function Alert(props: IProps, ref: ForwardedRef<HTMLDivElement>): JSX.Element {
-  const {
-    anchorOrigin,
-    autoHideDuration,
-    hideIconVariant,
-    iconVariant,
-    id,
-    message,
-    onShut,
-    persist,
-    variant = 'info',
-    ...alertProps
-  } = props
+  const { id, message, onShut, variant = 'info', ...alertProps } = props
 
   function handleClick(): void {
     onShut?.(id)

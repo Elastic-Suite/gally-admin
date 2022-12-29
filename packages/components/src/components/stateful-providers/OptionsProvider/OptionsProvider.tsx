@@ -1,7 +1,7 @@
-import { ReactNode } from 'react'
+import React, { ReactNode } from 'react'
 
-import { optionsContext } from '~/contexts'
-import { useOptions } from '~/hooks'
+import { optionsContext } from '../../../contexts'
+import { useOptions } from '../../../hooks'
 
 interface IProps {
   children: ReactNode

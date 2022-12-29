@@ -1,9 +1,9 @@
-import { ReactNode, useState } from 'react'
+import React, { ReactNode, useState } from 'react'
 import { Box, Dialog, DialogActions } from '@mui/material'
 import { styled } from '@mui/system'
 
-import Button from '~/components/atoms/buttons/Button'
-import IonIcon from '~/components/atoms/IonIcon/IonIcon'
+import Button from '../buttons/Button'
+import IonIcon from '../IonIcon/IonIcon'
 
 const CustomClose = styled('div')(({ theme }) => ({
   position: 'absolute',

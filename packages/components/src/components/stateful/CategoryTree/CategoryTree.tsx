@@ -1,7 +1,7 @@
-import { useState } from 'react'
-import { ICategories, ICategory } from 'shared'
+import React, { useState } from 'react'
+import { ICategories, ICategory } from 'gally-admin-shared'
 
-import Tree from '~/components/atoms/tree/Tree'
+import Tree from '../../atoms/tree/Tree'
 
 interface IProps {
   categories: ICategories

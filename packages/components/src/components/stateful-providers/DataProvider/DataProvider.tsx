@@ -1,10 +1,10 @@
-import { useDataLoader, useUser } from '~/hooks'
+import { useDataLoader, useUser } from '../../../hooks'
 import {
   selectApi,
   selectBundles,
   selectConfiguration,
   useAppSelector,
-} from '~/store'
+} from '../../../store'
 
 interface IProps {
   children: JSX.Element

@@ -1,4 +1,4 @@
-import { ChangeEvent, FunctionComponent, SyntheticEvent } from 'react'
+import React, { ChangeEvent, FunctionComponent, SyntheticEvent } from 'react'
 import { Checkbox, TableRow } from '@mui/material'
 
 import {
@@ -10,21 +10,18 @@ import {
   ITableRow,
   getFieldState,
   joinUrlPath,
-} from 'shared'
-
-import {
-  BaseTableCell,
-  StickyTableCell,
-} from '~/components/organisms/CustomTable/CustomTable.styled'
-
-import { handleSingleRow, manageStickyHeaders } from '../CustomTable.service'
+} from 'gally-admin-shared'
 
 import {
   draggableColumnStyle,
+  handleSingleRow,
+  manageStickyHeaders,
   nonStickyStyle,
   selectionStyle,
   stickyStyle,
-} from './Row.service'
+} from '../../../../services'
+
+import { BaseTableCell, StickyTableCell } from '../CustomTable.styled'
 
 interface IProps {
   Field: FunctionComponent<IFieldGuesserProps>
@@ -146,10 +143,10 @@ function NonDraggableRow(props: IProps): JSX.Element {
       {nonStickyHeaders.map((header) => {
         const value =
           tableRow[header.name] && header.name === 'image'
-            ? `${joinUrlPath(
+            ? joinUrlPath(
                 configuration['base_url/media'],
                 tableRow[header.name] as string
-              )}`
+              )
             : tableRow[header.name]
 
         return (

@@ -1,12 +1,12 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { Dialog } from '@mui/material'
 import { styled } from '@mui/system'
+import { ICatalog, getUniqueLocalName } from 'gally-admin-shared'
 
-import IonIcon from '~/components/atoms/IonIcon/IonIcon'
-import TitleScope from '~/components/atoms/scope/TitleScope'
-import NbActiveLocales from '~/components/atoms/scope/NbActiveLocales'
-import Language from '~/components/atoms/scope/Language'
-import { ICatalog, getUniqueLocalName } from 'shared'
+import IonIcon from '../IonIcon/IonIcon'
+import TitleScope from '../scope/TitleScope'
+import NbActiveLocales from '../scope/NbActiveLocales'
+import Language from '../scope/Language'
 
 const CustomClose = styled('div')(({ theme }) => ({
   position: 'absolute',

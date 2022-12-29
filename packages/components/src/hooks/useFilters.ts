@@ -1,6 +1,5 @@
 import { Dispatch, SetStateAction, useEffect, useMemo, useState } from 'react'
 import { useRouter } from 'next/router'
-
 import {
   IResource,
   ISearchParameters,
@@ -11,7 +10,7 @@ import {
   getParametersFromUrl,
   getRouterUrl,
   getSearchParameter,
-} from 'shared'
+} from 'gally-admin-shared'
 
 export function useFiltersRedirect(
   page: number | false = 0,

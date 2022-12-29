@@ -1,15 +1,15 @@
-import { ReactNode, useCallback, useState } from 'react'
+import React, { ReactNode, useCallback, useState } from 'react'
 
-import { useApiFilters } from '~/hooks'
+import { useApiFilters } from '../../../hooks'
 import {
   DataContentType,
   IFieldConfig,
   IHydraMember,
   IHydraResponse,
   IResource,
-} from 'shared'
+} from 'gally-admin-shared'
 
-import Filters from '~/components/molecules/Filters/Filters'
+import Filters from '../../molecules/Filters/Filters'
 
 interface IProps<T extends IHydraMember> {
   activeFilters: Record<string, unknown>

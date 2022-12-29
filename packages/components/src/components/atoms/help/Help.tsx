@@ -1,9 +1,11 @@
-import { useState } from 'react'
-import IonIcon from '~/components/atoms/IonIcon/IonIcon'
-import HelpOver from './HelpOver'
+import React, { useState } from 'react'
 import { styled } from '@mui/system'
 import Collapse from '@mui/material/Collapse'
 import Box from '@mui/material/Box'
+
+import IonIcon from '../IonIcon/IonIcon'
+
+import HelpOver from './HelpOver'
 
 const CustomHelp = styled('div')(({ theme }) => ({
   display: 'flex',

@@ -1,8 +1,8 @@
+import React, { ReactNode, useCallback, useEffect, useMemo } from 'react'
 import { useTranslation } from 'next-i18next'
-import { ReactNode, useCallback, useEffect, useMemo } from 'react'
 
-import { ruleOptionsContext } from '~/contexts'
-import { useResource, useSingletonLoader } from '~/hooks'
+import { ruleOptionsContext } from '../../../contexts'
+import { useResource, useSingletonLoader } from '../../../hooks'
 import {
   ICategories,
   IFetchApi,
@@ -19,7 +19,7 @@ import {
   getOptionsFromEnum,
   getOptionsFromOptionResource,
   isError,
-} from 'shared'
+} from 'gally-admin-shared'
 
 export interface IField {
   id: number | string

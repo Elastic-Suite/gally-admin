@@ -1,6 +1,9 @@
+import React from 'react'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
-import Catalogs from '~/components/molecules/layout/scope/Catalogs'
-import catalog from '../../../../public/mocks/catalog.json'
+
+import catalog from '../../../../../public/mocks/catalog.json'
+
+import Catalogs from './Catalogs'
 
 export default {
   title: 'Molecules/Scopes',

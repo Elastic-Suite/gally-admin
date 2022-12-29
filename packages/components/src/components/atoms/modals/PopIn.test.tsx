@@ -1,6 +1,8 @@
-import { renderWithProviders } from '~/utils/tests'
+import React from 'react'
 
-import Button from '~/components/atoms/buttons/Button'
+import { renderWithProviders } from '../../../utils/tests'
+
+import Button from '../buttons/Button'
 
 import PopIn from './PopIn'
 

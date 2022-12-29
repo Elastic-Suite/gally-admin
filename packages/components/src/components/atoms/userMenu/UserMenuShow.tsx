@@ -1,7 +1,8 @@
+import React from 'react'
 import { styled } from '@mui/system'
-import { useTranslation } from 'next-i18next'
-import { IUser, storageRemove, tokenStorageKey } from 'shared'
-import { setUser, useAppDispatch } from '~/store'
+import { IUser, storageRemove, tokenStorageKey } from 'gally-admin-shared'
+
+import { setUser, useAppDispatch } from '../../../store'
 import FormatText from '../formatText/FormatText'
 
 const CustomTypoTexte = styled('div')(({ theme }) => ({
@@ -39,7 +40,7 @@ interface IProps {
 
 function UserMenuShow({ user }: IProps): JSX.Element {
   const dispatch = useAppDispatch()
-  const { t } = useTranslation('login')
+
   function handleLogOut(): void {
     storageRemove(tokenStorageKey)
     dispatch(setUser({ token: '', user: null }))
@@ -51,9 +52,7 @@ function UserMenuShow({ user }: IProps): JSX.Element {
         <FormatText name={user.username} toolTip firstLetterUpp />
       </CustomTypoEmail>
       <CustomHr />
-      <CustomTypoBasic onClick={handleLogOut}>
-        {t('title.logout')}
-      </CustomTypoBasic>
+      <CustomTypoBasic onClick={handleLogOut}>Log out</CustomTypoBasic>
     </CustomTypoTexte>
   )
 }

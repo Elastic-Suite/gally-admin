@@ -1,4 +1,4 @@
-import {
+import React, {
   ChangeEvent,
   ForwardedRef,
   HTMLAttributes,
@@ -9,9 +9,9 @@ import {
 } from 'react'
 import { FormHelperText, InputLabel } from '@mui/material'
 
-import { getFormValue } from '~/services'
+import { getFormValue } from '../../../services'
 
-import IonIcon from '~/components/atoms/IonIcon/IonIcon'
+import IonIcon from '../IonIcon/IonIcon'
 
 import InfoTooltip from './InfoTooltip'
 import {

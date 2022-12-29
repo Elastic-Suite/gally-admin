@@ -1,5 +1,11 @@
+import React, {
+  MutableRefObject,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react'
 import { Box, styled } from '@mui/system'
-import { MutableRefObject, useEffect, useMemo, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import {
@@ -11,16 +17,17 @@ import {
   IProductPositions,
   LoadStatus,
   getProductPosition,
-} from 'shared'
+} from 'gally-admin-shared'
 
-import Button from '~/components/atoms/buttons/Button'
-import IonIcon from '~/components/atoms/IonIcon/IonIcon'
-import PageTitle from '~/components/atoms/PageTitle/PageTitle'
-import StickyBar from '~/components/molecules/CustomTable/StickyBar/StickyBar'
-import ProductsTopAndBottom from '~/components/stateful/ProductsTopAndBottom/ProductsTopAndBottom'
+import { useApiList, useGraphqlApi, useResource } from '../../../hooks'
+
+import Button from '../../atoms/buttons/Button'
+import IonIcon from '../../atoms/IonIcon/IonIcon'
+import PageTitle from '../../atoms/PageTitle/PageTitle'
+import StickyBar from '../../molecules/CustomTable/StickyBar/StickyBar'
+
+import ProductsTopAndBottom from '../ProductsTopAndBottom/ProductsTopAndBottom'
 import Merchandize from '../Merchandize/Merchandize'
-
-import { useApiList, useGraphqlApi, useResource } from '~/hooks'
 import SearchBar from '../Merchandize/SearchBar/SearchBar'
 
 const Layout = styled('div')(({ theme }) => ({

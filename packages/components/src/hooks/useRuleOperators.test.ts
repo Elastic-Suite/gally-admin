@@ -1,7 +1,7 @@
 import { waitFor } from '@testing-library/react'
-import { fetchApi, isVirtualCategoryEnabled } from 'shared'
+import { fetchApi, isVirtualCategoryEnabled } from 'gally-admin-shared'
 
-import { renderHookWithProviders } from '~/utils/tests'
+import { renderHookWithProviders } from '../utils/tests'
 
 import { useRuleOperators } from './useRuleOperators'
 

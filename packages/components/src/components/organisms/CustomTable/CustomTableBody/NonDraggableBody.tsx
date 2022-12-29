@@ -1,13 +1,13 @@
-import { FunctionComponent, SyntheticEvent } from 'react'
+import React, { FunctionComponent, SyntheticEvent } from 'react'
 import { TableBody } from '@mui/material'
-
 import {
   IConfigurations,
   IFieldGuesserProps,
   ITableConfig,
   ITableHeader,
   ITableRow,
-} from 'shared'
+} from 'gally-admin-shared'
+
 import NonDraggableRow from '../CustomTableRow/NonDraggableRow'
 
 interface IProps {

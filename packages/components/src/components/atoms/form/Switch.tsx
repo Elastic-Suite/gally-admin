@@ -1,3 +1,4 @@
+import React, { ChangeEvent } from 'react'
 import {
   FormHelperText,
   InputLabel,
@@ -6,9 +7,8 @@ import {
 } from '@mui/material'
 import { StyleFormControl } from './Switch.styled'
 
-import IonIcon from '~/components/atoms/IonIcon/IonIcon'
-import InfoTooltip from '~/components/atoms/form/InfoTooltip'
-import { ChangeEvent } from 'react'
+import IonIcon from '../IonIcon/IonIcon'
+import InfoTooltip from './InfoTooltip'
 
 interface IProps extends Omit<SwitchProps, 'onChange'> {
   helperIcon?: string

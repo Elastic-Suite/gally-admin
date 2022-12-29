@@ -3,7 +3,7 @@ import { Paper, styled } from '@mui/material'
 import {
   SecondaryButton,
   TertiaryButton,
-} from '~/components/atoms/buttons/Button.styled'
+} from '../../atoms/buttons/Button.styled'
 
 export const FiltersPaper = styled(Paper)(({ theme }) => ({
   border: `1px solid ${theme.palette.colors.neutral[300]}`,

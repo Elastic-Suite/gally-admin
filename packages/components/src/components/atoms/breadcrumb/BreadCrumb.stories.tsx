@@ -1,6 +1,9 @@
+import React from 'react'
+
 import { ComponentMeta, ComponentStory } from '@storybook/react'
 
-import menu from '../../../public/mocks/menu.json'
+import menu from '../../../../public/mocks/menu.json'
+
 import Breadcrumbs from './Breadcrumbs'
 
 export default {

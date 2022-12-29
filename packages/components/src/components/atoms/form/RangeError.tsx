@@ -1,4 +1,6 @@
-import { useFormError } from '~/hooks'
+import React from 'react'
+
+import { useFormError } from '../../../hooks'
 
 import Range, { IRangeProps } from './Range'
 

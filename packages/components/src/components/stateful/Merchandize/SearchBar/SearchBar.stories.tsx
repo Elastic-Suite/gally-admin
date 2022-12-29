@@ -1,7 +1,7 @@
+import React, { useState } from 'react'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
-import SearchBar from './SearchBar'
 
-import { useState } from 'react'
+import SearchBar from './SearchBar'
 
 export default {
   title: 'Stateful/Merchandize/SearchBar',

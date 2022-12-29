@@ -1,11 +1,11 @@
+import React, { ReactNode } from 'react'
 import { RenderOptions, render, renderHook } from '@testing-library/react'
 import { PreloadedState } from '@reduxjs/toolkit'
-import { ReactNode } from 'react'
-import { Bundle, IUser, api } from 'shared'
+import { Bundle, IUser, api } from 'gally-admin-shared'
 
-import { AppStore, RootState, setupStore } from '~/store'
+import { AppStore, RootState, setupStore } from '../store'
 
-import AppProvider from '~/components/stateful-providers/AppProvider/AppProvider'
+import AppProvider from '../components/stateful-providers/AppProvider/AppProvider'
 
 import TestProvider from './TestProvider'
 

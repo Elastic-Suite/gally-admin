@@ -1,9 +1,8 @@
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
+import { ITableHeader, ITableRow } from 'gally-admin-shared'
 
-import { ITableHeader, ITableRow } from 'shared'
-
-import FieldGuesser from '~/components/stateful/FieldGuesser/FieldGuesser'
+import FieldGuesser from '../../stateful/FieldGuesser/FieldGuesser'
 
 import CustomTableComponent from './CustomTable'
 import { useRef } from '@storybook/addons'

@@ -1,6 +1,8 @@
-import menu from '../../../public/mocks/menu.json'
+import React from 'react'
 
-import { renderWithProviders } from '~/utils/tests'
+import menu from '../../../../public/mocks/menu.json'
+
+import { renderWithProviders } from '../../../utils/tests'
 
 import Breadcrumbs from './Breadcrumbs'
 

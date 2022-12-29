@@ -1,4 +1,4 @@
-import { useContext, useEffect, useMemo, useRef, useState } from 'react'
+import React, { useContext, useEffect, useMemo, useRef, useState } from 'react'
 import { useTranslation } from 'next-i18next'
 import { useRouter } from 'next/router'
 import { Box } from '@mui/system'
@@ -18,10 +18,10 @@ import {
   parseCatConf,
   savePositions,
   serializeCatConf,
-} from 'shared'
+} from 'gally-admin-shared'
 
-import { breadcrumbContext } from '~/contexts'
-import { withAuth, withOptions } from '~/hocs'
+import { breadcrumbContext } from '../../../contexts'
+import { withAuth, withOptions } from '../../../hocs'
 import {
   useApiFetch,
   useApiGraphql,
@@ -31,20 +31,20 @@ import {
   useResourceOperations,
   useRuleEngineGraphqlFilters,
   useRuleOperators,
-} from '~/hooks'
-import { findCategory } from '~/services'
-import { selectBundles, useAppSelector } from '~/store'
+} from '../../../hooks'
+import { findCategory } from '../../../services'
+import { selectBundles, useAppSelector } from '../../../store'
 
-import TitleBlock from '~/components/molecules/layout/TitleBlock/TitleBlock'
-import TwoColsLayout from '~/components/molecules/layout/twoColsLayout/TwoColsLayout'
-import CatalogSwitcher from '~/components/stateful/CatalogSwitcher/CatalogSwitcher'
-import CategoryTree from '~/components/stateful/CategoryTree/CategoryTree'
-import ProductsContainer from '~/components/stateful/ProductsContainer/ProductsContainer'
-import RulesManager from '~/components/stateful/RulesManager/RulesManager'
+import TitleBlock from '../../../components/molecules/layout/TitleBlock/TitleBlock'
+import TwoColsLayout from '../../../components/molecules/layout/twoColsLayout/TwoColsLayout'
+import CatalogSwitcher from '../../../components/stateful/CatalogSwitcher/CatalogSwitcher'
+import CategoryTree from '../../../components/stateful/CategoryTree/CategoryTree'
+import ProductsContainer from '../../../components/stateful/ProductsContainer/ProductsContainer'
+import RulesManager from '../../../components/stateful/RulesManager/RulesManager'
 
 const pagesSlug = ['merchandize', 'categories']
 
-function Categories(): JSX.Element {
+function AdminMerchandizeCategories(): JSX.Element {
   const router = useRouter()
   const fetchApi = useApiFetch()
   const { t } = useTranslation('categories')
@@ -87,7 +87,7 @@ function Categories(): JSX.Element {
       filters.localizedCatalogId = localizedCatalogId
     }
     return filters
-  }, [catalogId, localizedCatalogId, isLoading])
+  }, [catalogId, localizedCatalogId])
   const [categories] = useFetchApi<ICategories>('categoryTree', filters)
   useEffect(() => {
     if (categories.status !== LoadStatus.SUCCEEDED) {
@@ -278,4 +278,4 @@ function Categories(): JSX.Element {
   )
 }
 
-export default withAuth(withOptions(Categories))
+export default withAuth(withOptions(AdminMerchandizeCategories))

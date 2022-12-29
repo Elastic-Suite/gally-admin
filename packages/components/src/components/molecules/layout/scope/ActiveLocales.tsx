@@ -1,10 +1,10 @@
+import React from 'react'
 import { styled } from '@mui/system'
+import { ICatalog, IHydraResponse, ITabContentProps } from 'gally-admin-shared'
 
-import { ICatalog, IHydraResponse, ITabContentProps } from 'shared'
-
-import TitleScope from '~/components/atoms/scope/TitleScope'
-import NbActiveLocales from '~/components/atoms/scope/NbActiveLocales'
-import Language from '~/components/atoms/scope/Language'
+import TitleScope from '../../../atoms/scope/TitleScope'
+import NbActiveLocales from '../../../atoms/scope/NbActiveLocales'
+import Language from '../../../atoms/scope/Language'
 
 const CustomRoot = styled('div')(({ theme }) => ({
   width: '671px',

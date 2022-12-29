@@ -1,6 +1,4 @@
-import { Dispatch, SetStateAction, useMemo } from 'react'
-
-import { useGraphqlApi } from '~/hooks'
+import React, { Dispatch, SetStateAction, useMemo } from 'react'
 import {
   IConfigurations,
   IGraphqlProductPosition,
@@ -12,7 +10,9 @@ import {
   ProductRequestType,
   getSearchProductsQuery,
   productTableheader,
-} from 'shared'
+} from 'gally-admin-shared'
+
+import { useGraphqlApi } from '../../../hooks'
 
 import FieldGuesser from '../FieldGuesser/FieldGuesser'
 import TopProductsTable from '../TopProductsTable/TopProductsTable'
@@ -44,7 +44,7 @@ function TopTable(props: IProps): JSX.Element {
 
   const variables = useMemo(
     () => ({
-      localizedCatalog: localizedCatalogId,
+      catalogId: localizedCatalogId,
       requestType: ProductRequestType.CATALOG,
     }),
     [localizedCatalogId]

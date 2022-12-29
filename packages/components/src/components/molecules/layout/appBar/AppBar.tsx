@@ -1,8 +1,10 @@
+import React from 'react'
 import { styled } from '@mui/system'
-import { IMenu } from 'shared'
+import { IMenu } from 'gally-admin-shared'
 
-import Breadcrumbs from '~/components/atoms/breadcrumb/Breadcrumbs'
-import User from '~/components/molecules/layout/user/User'
+import Breadcrumbs from '../../../atoms/breadcrumb/Breadcrumbs'
+
+import User from '../../layout/user/User'
 
 const CustomRoot = styled('div')(({ theme }) => ({
   display: 'flex',

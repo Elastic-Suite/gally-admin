@@ -1,4 +1,7 @@
-import { renderWithProviders } from '~/utils/tests'
+import React from 'react'
+
+import { renderWithProviders } from '../../../utils/tests'
+
 import Price from './Price'
 
 describe('Price', () => {

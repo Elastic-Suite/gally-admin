@@ -1,8 +1,9 @@
+import React, { ChangeEvent, MouseEvent, useState } from 'react'
 import { Button, Checkbox, Menu, MenuItem } from '@mui/material'
-import { ChangeEvent, MouseEvent, useState } from 'react'
-import IonIcon from '~/components/atoms/IonIcon/IonIcon'
-import { MassiveSelectionType } from 'shared'
+import { MassiveSelectionType } from 'gally-admin-shared'
 import { useTranslation } from 'next-i18next'
+
+import IonIcon from '../../../atoms/IonIcon/IonIcon'
 
 interface IProps {
   onSelection: (selection: MassiveSelectionType) => void

@@ -1,4 +1,6 @@
-import { renderWithProviders } from '~/utils/tests'
+import React from 'react'
+
+import { renderWithProviders } from '../../../../utils/tests'
 
 import Pagination from './Pagination'
 
@@ -11,7 +13,6 @@ describe('Pagination', () => {
         currentPage={1}
         rowsPerPage={5}
         rowsPerPageOptions={[]}
-        onRowsPerPageChange={null}
         onPageChange={jest.fn()}
       />
     )
@@ -26,7 +27,6 @@ describe('Pagination', () => {
         currentPage={1}
         rowsPerPage={5}
         rowsPerPageOptions={[]}
-        onRowsPerPageChange={null}
         onPageChange={jest.fn()}
       />
     )

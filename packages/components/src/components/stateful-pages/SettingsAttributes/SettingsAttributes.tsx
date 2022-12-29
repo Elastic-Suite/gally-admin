@@ -1,9 +1,10 @@
-import { useState } from 'react'
-import { ITabContentProps, ITableConfig, ITableRow } from 'shared'
-import Alert from '~/components/atoms/Alert/Alert'
-import { useFilters, useResource } from '~/hooks'
-
+import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { ITabContentProps, ITableConfig, ITableRow } from 'gally-admin-shared'
+
+import { useFilters, useResource } from '../../../hooks'
+
+import Alert from '../../atoms/Alert/Alert'
 
 import ResourceTable from '../ResourceTable/ResourceTable'
 

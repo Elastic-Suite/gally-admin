@@ -1,5 +1,8 @@
+import React from 'react'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
+
 import IonIcon from '../IonIcon/IonIcon'
+
 import TooltipComponent from './Tooltip'
 
 export default {

@@ -1,3 +1,4 @@
+import React from 'react'
 import { styled } from '@mui/system'
 
 const CustomTitleScope = styled('div')(({ theme }) => ({

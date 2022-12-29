@@ -1,5 +1,8 @@
-import CustomTabs from '~/components/molecules/layout/tabs/CustomTabs'
-import { renderWithProviders } from '~/utils/tests'
+import React from 'react'
+
+import { renderWithProviders } from '../../../../utils/tests'
+
+import CustomTabs from './CustomTabs'
 
 describe('TabsAndSubTabs', () => {
   it('match snapshot', () => {

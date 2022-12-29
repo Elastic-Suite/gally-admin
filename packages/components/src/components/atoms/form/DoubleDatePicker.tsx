@@ -1,4 +1,4 @@
-import { ReactNode } from 'react'
+import React, { ReactNode } from 'react'
 import { Box, FormHelperText, Grid, InputLabel } from '@mui/material'
 import { DateValidationError } from '@mui/x-date-pickers/internals/hooks/validation/useDateValidation'
 import { useTranslation } from 'next-i18next'
@@ -101,6 +101,7 @@ function DoubleDatePicker(props: IDoubleDatePickerProps): JSX.Element {
             {...args}
             error={error}
             fullWidth={fullWidth}
+            inputProps={inputProps}
             value={value?.from}
             onChange={onChangeFrom}
             onError={onErrorFrom}
@@ -115,6 +116,7 @@ function DoubleDatePicker(props: IDoubleDatePickerProps): JSX.Element {
             {...args}
             error={error}
             fullWidth={fullWidth}
+            inputProps={inputProps}
             value={value?.to}
             onChange={onChangeTo}
             onError={onErrorTo}

@@ -1,12 +1,10 @@
-import {
+import React, {
   ChangeEvent,
   FunctionComponent,
   SyntheticEvent,
   useRef,
   useState,
 } from 'react'
-
-import { useApiEditableFieldOptions, useApiHeaders } from '~/hooks'
 import {
   IField,
   IFieldGuesserProps,
@@ -16,10 +14,12 @@ import {
   ITableConfig,
   ITableRow,
   defaultPageSize,
-} from 'shared'
+} from 'gally-admin-shared'
 
-import StickyBar from '~/components/molecules/CustomTable/StickyBar/StickyBar'
-import PagerTable from '~/components/organisms/PagerTable/PagerTable'
+import { useApiEditableFieldOptions, useApiHeaders } from '../../../hooks'
+
+import StickyBar from '../../molecules/CustomTable/StickyBar/StickyBar'
+import PagerTable from '../../organisms/PagerTable/PagerTable'
 
 import FieldGuesser from '../FieldGuesser/FieldGuesser'
 import TableStickyBar from '../TableStickyBar/TableStickyBar'

@@ -1,6 +1,6 @@
-import { resourceWithRef } from 'shared'
-import sourceFields from '~/public/mocks/source_fields.json'
-import { renderHookWithProviders } from '~/utils/tests'
+import { resourceWithRef } from 'gally-admin-shared'
+import sourceFields from '../../public/mocks/source_fields.json'
+import { renderHookWithProviders } from '../utils/tests'
 
 import { useApiFilters } from './useApiFilters'
 

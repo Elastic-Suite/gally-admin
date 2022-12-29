@@ -1,15 +1,15 @@
-import { ReactNode } from 'react'
+import React, { ReactNode } from 'react'
 import { ThemeProvider } from '@mui/material/styles'
 import { StyledEngineProvider } from '@mui/styled-engine'
 import { Provider } from 'react-redux'
 import { SnackbarProvider } from 'notistack'
+import { theme } from 'gally-admin-shared'
 
-import { theme } from 'shared'
-import { AppStore } from '~/store'
+import { AppStore } from '../../../store'
 
-import Alert from '~/components/atoms/Alert/Alert'
-import BreadcrumbProvider from '~/components/stateful-providers/BreadcrumbProvider/BreadcrumbProvider'
+import Alert from '../../atoms/Alert/Alert'
 
+import BreadcrumbProvider from '../BreadcrumbProvider/BreadcrumbProvider'
 import I18nProvider from '../I18nProvider/I18nProvider'
 
 interface IProps {

@@ -1,7 +1,8 @@
+import React from 'react'
 import { styled } from '@mui/system'
 import { ChipProps, IconButton, Chip as MuiChip } from '@mui/material'
 
-import IonIcon from '~/components/atoms/IonIcon/IonIcon'
+import IonIcon from '../IonIcon/IonIcon'
 
 const StyledChip = styled(MuiChip)(({ theme }) => ({
   display: 'inline-flex',

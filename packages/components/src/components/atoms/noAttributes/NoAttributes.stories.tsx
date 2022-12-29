@@ -1,4 +1,6 @@
+import React from 'react'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
+
 import NoAttributes from './NoAttributes'
 
 export default {

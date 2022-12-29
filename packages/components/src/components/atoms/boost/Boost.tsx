@@ -1,5 +1,7 @@
+import React from 'react'
 import { Box } from '@mui/system'
-import IonIcon from '~/components/atoms/IonIcon/IonIcon'
+
+import IonIcon from '../IonIcon/IonIcon'
 
 interface IProps {
   type: 'up' | 'down' | 'no boost'

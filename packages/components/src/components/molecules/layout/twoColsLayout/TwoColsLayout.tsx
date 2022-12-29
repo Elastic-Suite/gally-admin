@@ -1,5 +1,5 @@
+import React, { ReactNode, useEffect, useRef } from 'react'
 import { styled } from '@mui/system'
-import { ReactNode, useEffect, useRef } from 'react'
 
 const Sentinel = styled('div')({
   position: 'absolute',

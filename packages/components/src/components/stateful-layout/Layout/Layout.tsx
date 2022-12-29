@@ -1,9 +1,10 @@
-import { ReactNode, useCallback, useContext, useEffect } from 'react'
+import React, { ReactNode, useCallback, useContext, useEffect } from 'react'
 import { styled } from '@mui/system'
+import { IMenu, LoadStatus, isError, isValidUser } from 'gally-admin-shared'
 
-import { breadcrumbContext } from '~/contexts'
+import { breadcrumbContext } from '../../../contexts'
 
-import { useApiFetch } from '~/hooks'
+import { useApiFetch } from '../../../hooks'
 import {
   selectChildrenState,
   selectMenu,
@@ -18,12 +19,11 @@ import {
   setSidebarStateTimeout,
   useAppDispatch,
   useAppSelector,
-} from '~/store'
+} from '../../../store'
 
-import AppBar from '~/components/molecules/layout/appBar/AppBar'
-import Sidebar from '~/components/molecules/layout/Sidebar/Sidebar'
-import IonIcon from '~/components/atoms/IonIcon/IonIcon'
-import { IMenu, LoadStatus, isError, isValidUser } from 'shared'
+import IonIcon from '../../atoms/IonIcon/IonIcon'
+import AppBar from '../../molecules/layout/appBar/AppBar'
+import Sidebar from '../../molecules/layout/Sidebar/Sidebar'
 
 /*
  * TODO: THIBO: Update AppBar

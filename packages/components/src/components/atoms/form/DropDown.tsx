@@ -1,4 +1,4 @@
-import {
+import React, {
   CSSProperties,
   HTMLAttributes,
   ReactNode,
@@ -13,14 +13,14 @@ import {
 } from '@mui/material'
 import { useTranslation } from 'next-i18next'
 
-import { IOption, IOptions } from 'shared'
+import { IOption, IOptions } from 'gally-admin-shared'
 
 import Checkbox from './Checkbox'
 import { SmallStyledPaper, StyledPaper } from './DropDown.styled'
 import InputText, { IInputTextProps } from './InputText'
 
-import IonIcon from '~/components/atoms/IonIcon/IonIcon'
-import Chip from '~/components/atoms/Chip/Chip'
+import IonIcon from '../IonIcon/IonIcon'
+import Chip from '../Chip/Chip'
 
 export interface IDropDownProps<T>
   extends Omit<IInputTextProps, 'onChange' | 'value'> {

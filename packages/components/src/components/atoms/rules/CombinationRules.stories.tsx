@@ -1,8 +1,8 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
 
-import { complexRule } from 'shared'
-import RuleOptionsTestProvider from '~/utils/RuleOptionsTestProvider'
+import { complexRule } from 'gally-admin-shared'
+import RuleOptionsTestProvider from '../../../utils/RuleOptionsTestProvider'
 
 import CombinationRules from './CombinationRules'
 

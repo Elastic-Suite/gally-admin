@@ -1,9 +1,9 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
 
-import ruleEngineOperators from '~/public/mocks/rule_engine_operators.json'
+import ruleEngineOperators from '../../../../public/mocks/rule_engine_operators.json'
 
-import { complexRule } from 'shared'
+import { complexRule } from 'gally-admin-shared'
 
 import RulesManager from './RulesManager'
 

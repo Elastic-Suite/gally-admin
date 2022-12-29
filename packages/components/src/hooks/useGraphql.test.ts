@@ -1,8 +1,14 @@
 import { act, waitFor } from '@testing-library/react'
-import { AuthError, IError, LoadStatus, fetchGraphql, log } from 'shared'
+import {
+  AuthError,
+  IError,
+  LoadStatus,
+  fetchGraphql,
+  log,
+} from 'gally-admin-shared'
 
-import * as userStore from '~/store/user'
-import { renderHookWithProviders } from '~/utils/tests'
+import * as userStore from '../store/user'
+import { renderHookWithProviders } from '../utils/tests'
 
 import { useApiGraphql, useGraphqlApi } from './useGraphql'
 

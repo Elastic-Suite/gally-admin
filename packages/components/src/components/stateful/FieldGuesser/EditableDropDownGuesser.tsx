@@ -1,9 +1,10 @@
-import { SyntheticEvent, useContext, useEffect } from 'react'
+import React, { SyntheticEvent, useContext, useEffect } from 'react'
 import { useTranslation } from 'next-i18next'
-import { IFieldGuesserProps, LoadStatus } from 'shared'
+import { IFieldGuesserProps, LoadStatus } from 'gally-admin-shared'
 
-import DropDown from '~/components/atoms/form/DropDown'
-import { optionsContext } from '~/contexts'
+import { optionsContext } from '../../../contexts'
+
+import DropDown from '../../atoms/form/DropDown'
 
 interface IProps extends Omit<IFieldGuesserProps, 'onChange'> {
   onChange: (

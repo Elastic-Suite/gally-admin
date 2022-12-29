@@ -1,13 +1,12 @@
 import { useTranslation } from 'next-i18next'
 import { useMemo } from 'react'
-
 import {
   IField,
   IFieldConfig,
   IOptions,
   IResource,
   getFieldHeader,
-} from 'shared'
+} from 'gally-admin-shared'
 
 export function useApiHeaders(resource: IResource): IFieldConfig[] {
   const { t } = useTranslation('api')

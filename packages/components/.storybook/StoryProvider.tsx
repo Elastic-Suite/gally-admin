@@ -1,6 +1,6 @@
 import { useContext, useEffect } from 'react'
 
-import { i18nContext } from '../contexts'
+import { i18nContext } from '../src/contexts'
 
 interface IProps {
   children: JSX.Element
@@ -13,7 +13,7 @@ function StorybookProvider(props: IProps): JSX.Element {
 
   useEffect(() => {
     changeLanguage(locale)
-  }, [locale])
+  }, [changeLanguage, locale])
 
   return children
 }

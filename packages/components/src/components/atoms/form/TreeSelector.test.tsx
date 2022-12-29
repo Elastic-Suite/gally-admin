@@ -1,5 +1,7 @@
-import { renderWithProviders } from '~/utils/tests'
-import categories from '~/public/mocks/categories.json'
+import React from 'react'
+
+import { renderWithProviders } from '../../../utils/tests'
+import categories from '../../../../public/mocks/categories.json'
 
 import TreeSelector from './TreeSelector'
 

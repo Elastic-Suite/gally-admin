@@ -1,6 +1,8 @@
-import { renderWithProviders } from '~/utils/tests'
+import React from 'react'
 
-import menu from '../../../../public/mocks/menu.json'
+import { renderWithProviders } from '../../../../utils/tests'
+
+import menu from '../../../../../public/mocks/menu.json'
 
 import AppBar from './AppBar'
 

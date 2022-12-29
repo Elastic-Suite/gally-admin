@@ -1,10 +1,9 @@
-import { ChangeEvent, MutableRefObject, forwardRef } from 'react'
+import React, { ChangeEvent, MutableRefObject, forwardRef } from 'react'
 import { styled } from '@mui/system'
 
-import Pagination from '~/components/molecules/CustomTable/Pagination/Pagination'
-import CustomTable, {
-  ICustomTableProps,
-} from '~/components/organisms/CustomTable/CustomTable'
+import Pagination from '../../molecules/CustomTable/Pagination/Pagination'
+
+import CustomTable, { ICustomTableProps } from '../CustomTable/CustomTable'
 
 import { useTranslation } from 'next-i18next'
 

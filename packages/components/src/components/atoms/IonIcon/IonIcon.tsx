@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-namespace */
-import { CSSProperties, MouseEvent } from 'react'
+import React, { CSSProperties, MouseEvent } from 'react'
 import { JSX as IonIconJSX } from 'ionicons'
 import { JSXBase } from 'ionicons/dist/types/stencil-public-runtime'
 

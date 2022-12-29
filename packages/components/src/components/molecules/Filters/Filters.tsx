@@ -1,13 +1,13 @@
-import { FormEvent, ReactNode, useState } from 'react'
+import React, { FormEvent, ReactNode, useState } from 'react'
 import { useTranslation } from 'next-i18next'
 import { Collapse, InputAdornment, Stack } from '@mui/material'
-import { IFieldConfig, rangeSeparator } from 'shared'
+import { IFieldConfig, rangeSeparator } from 'gally-admin-shared'
 
-import Button from '~/components/atoms/buttons/Button'
-import Chip from '~/components/atoms/Chip/Chip'
-import InputText from '~/components/atoms/form/InputText'
-import IonIcon from '~/components/atoms/IonIcon/IonIcon'
-import FieldGuesser from '~/components/stateful/FieldGuesser/FieldGuesser'
+import Button from '../../atoms/buttons/Button'
+import Chip from '../../atoms/Chip/Chip'
+import InputText from '../../atoms/form/InputText'
+import IonIcon from '../../atoms/IonIcon/IonIcon'
+import FieldGuesser from '../../stateful/FieldGuesser/FieldGuesser'
 
 import {
   Container,

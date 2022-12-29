@@ -1,12 +1,7 @@
 {
-  "extends": "../tsconfig.json",
+  "extends": "../../tsconfig.json",
   "compilerOptions": {
     "baseUrl": "."
   },
-  "include": [
-    "global.d.ts",
-    "src",
-    "../pwa/hooks/useBundleLoader.ts",
-    "../pwa/hooks/useBundleLoader.ts"
-  ]
+  "include": ["global.d.ts", "src"]
 }

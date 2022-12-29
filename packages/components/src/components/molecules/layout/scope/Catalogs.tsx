@@ -1,16 +1,16 @@
+import React from 'react'
 import { styled } from '@mui/system'
 import { useTranslation } from 'next-i18next'
-
 import {
   ICatalog,
   IHydraResponse,
   ITabContentProps,
   getUniqueLocalName,
-} from 'shared'
+} from 'gally-admin-shared'
 
-import TitleScope from '~/components/atoms/scope/TitleScope'
-import NbActiveLocales from '~/components/atoms/scope/NbActiveLocales'
-import Language from '~/components/atoms/scope/Language'
+import TitleScope from '../../../atoms/scope/TitleScope'
+import NbActiveLocales from '../../../atoms/scope/NbActiveLocales'
+import Language from '../../../atoms/scope/Language'
 
 const CustomFullRoot = styled('div')(({ theme }) => ({
   width: '100%',

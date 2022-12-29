@@ -1,5 +1,7 @@
+import React from 'react'
 import { Box, styled } from '@mui/system'
-import IonIcon from '~/components/atoms/IonIcon/IonIcon'
+
+import IonIcon from '../../../atoms/IonIcon/IonIcon'
 
 const BannerContainer = styled(Box)(({ theme }) => ({
   height: '34px',

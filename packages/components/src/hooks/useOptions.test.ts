@@ -5,8 +5,8 @@ import {
   fieldDropdown,
   fieldDropdownWithApiOptions,
   fieldRef,
-} from 'shared'
-import { renderHookWithProviders } from '~/utils/tests'
+} from 'gally-admin-shared'
+import { renderHookWithProviders } from '../utils/tests'
 
 import { useOptions } from './useOptions'
 

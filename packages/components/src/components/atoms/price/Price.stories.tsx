@@ -1,4 +1,6 @@
+import React from 'react'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
+
 import PriceComponent from './Price'
 
 export default {

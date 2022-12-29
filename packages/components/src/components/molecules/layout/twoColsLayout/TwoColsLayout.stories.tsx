@@ -1,4 +1,6 @@
+import React from 'react'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
+
 import TwoColsLayout from './TwoColsLayout'
 
 export default {

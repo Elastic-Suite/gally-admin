@@ -1,5 +1,7 @@
+import React from 'react'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
-import CustomTabs from '~/components/molecules/layout/tabs/CustomTabs'
+
+import CustomTabs from './CustomTabs'
 
 export default {
   title: 'Molecules/TabsAndSubTabs',

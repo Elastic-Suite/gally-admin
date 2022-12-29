@@ -1,7 +1,9 @@
 import { waitFor } from '@testing-library/react'
-import { LoadStatus, api } from 'shared'
 
 import { renderHookWithProviders } from '../utils/tests'
+
+import { api } from '../mocks'
+import { LoadStatus } from '../types'
 
 import { useSchemaLoader } from './useSchemaLoader'
 

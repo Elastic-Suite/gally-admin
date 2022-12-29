@@ -1,6 +1,7 @@
-import Tooltip from '~/components/atoms/modals/Tooltip'
-import IonIcon from '~/components/atoms/IonIcon/IonIcon'
-import { ReactNode } from 'react'
+import React, { ReactNode } from 'react'
+
+import Tooltip from '../modals/Tooltip'
+import IonIcon from '../IonIcon/IonIcon'
 
 interface IProps {
   title: string

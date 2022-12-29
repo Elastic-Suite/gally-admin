@@ -1,4 +1,4 @@
-import { HTMLAttributes } from 'react'
+import React, { HTMLAttributes } from 'react'
 import { styled } from '@mui/system'
 
 import { InputTextStyled } from './InputText.styled'

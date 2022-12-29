@@ -1,5 +1,7 @@
-import { IRouterTab, ITabContentProps } from 'shared'
-import { renderWithProviders } from '~/utils/tests'
+import React from 'react'
+import { IRouterTab, ITabContentProps } from 'gally-admin-shared'
+
+import { renderWithProviders } from '../../../utils/tests'
 
 import Button from '../buttons/Button'
 

@@ -1,4 +1,5 @@
-import { IFieldGuesserProps } from 'shared'
+import React from 'react'
+import { IFieldGuesserProps } from 'gally-admin-shared'
 
 import EditableFieldGuesser from './EditableFieldGuesser'
 import ReadableFieldGuesser from './ReadableFieldGuesser'

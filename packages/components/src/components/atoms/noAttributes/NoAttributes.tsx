@@ -1,6 +1,8 @@
+import React from 'react'
 import { styled } from '@mui/system'
-import Button from '../buttons/Button'
 import Link from 'next/link'
+
+import Button from '../buttons/Button'
 import IonIcon from '../IonIcon/IonIcon'
 
 const CustomRoot = styled('div')(({ theme }) => ({

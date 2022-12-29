@@ -1,5 +1,6 @@
-import { ChangeEvent, useState } from 'react'
+import React, { ChangeEvent, useState } from 'react'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
+
 import TextareaComponent from './Textarea'
 
 export default {

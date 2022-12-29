@@ -1,5 +1,5 @@
+import React, { ReactNode } from 'react'
 import { RenderOptions, render, renderHook } from '@testing-library/react'
-import { ReactNode } from 'react'
 
 import { schemaContext } from '../contexts'
 import { api } from '../mocks'

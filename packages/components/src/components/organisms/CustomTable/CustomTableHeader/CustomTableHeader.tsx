@@ -1,9 +1,5 @@
-import { ChangeEvent } from 'react'
+import React, { ChangeEvent } from 'react'
 import { Checkbox, TableHead, TableRow } from '@mui/material'
-import {
-  BaseTableCell,
-  StickyTableCell,
-} from '~/components/organisms/CustomTable/CustomTable.styled'
 import {
   DataContentType,
   ITableHeader,
@@ -11,9 +7,12 @@ import {
   reorderingColumnWidth,
   selectionColumnWidth,
   stickyColunWidth,
-} from 'shared'
-import { manageStickyHeaders, stickyBorderStyle } from '../CustomTable.service'
+} from 'gally-admin-shared'
 import { useTranslation } from 'next-i18next'
+
+import { manageStickyHeaders, stickyBorderStyle } from '../../../../services'
+
+import { BaseTableCell, StickyTableCell } from '../CustomTable.styled'
 
 interface IProps {
   cssLeftValues: number[]

@@ -1,7 +1,7 @@
-import { MutableRefObject, ReactNode, useEffect, useRef } from 'react'
+import React, { MutableRefObject, ReactNode, useEffect, useRef } from 'react'
 import { Box, styled } from '@mui/system'
 
-import { selectSidebarState, useAppSelector } from '~/store'
+import { selectSidebarState, useAppSelector } from '../../../../store'
 
 const StickyContainer = styled(Box)({
   display: 'flex',

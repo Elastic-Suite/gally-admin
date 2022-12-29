@@ -1,7 +1,8 @@
+import React from 'react'
 import { useRouter } from 'next/router'
+import { IRouterTab } from 'gally-admin-shared'
 
-import { IRouterTab } from 'shared'
-import { renderHookWithProviders } from '~/utils/tests'
+import { renderHookWithProviders } from '../utils/tests'
 
 import { useTabs } from './useTabs'
 

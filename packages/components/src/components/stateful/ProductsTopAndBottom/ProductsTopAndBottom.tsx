@@ -1,22 +1,23 @@
-import { Paper } from '@mui/material'
-import { Box, styled } from '@mui/system'
-import {
+import React, {
   Dispatch,
   MutableRefObject,
   SetStateAction,
   forwardRef,
   useEffect,
 } from 'react'
+import { Paper } from '@mui/material'
+import { Box, styled } from '@mui/system'
 import { useTranslation } from 'react-i18next'
 import {
   IGraphqlProductPosition,
   IProductFieldFilterInput,
   IProductPositions,
-} from 'shared'
+} from 'gally-admin-shared'
 
-import BottomTable from '~/components/stateful/TopAndBottomTable/BottomTable'
-import TopTable from '~/components/stateful/TopAndBottomTable/TopTable'
-import { selectConfiguration, useAppSelector } from '~/store'
+import { selectConfiguration, useAppSelector } from '../../../store'
+
+import BottomTable from '../TopAndBottomTable/BottomTable'
+import TopTable from '../TopAndBottomTable/TopTable'
 
 const PreviewArea = styled(Box)(({ theme }) => ({
   fontSize: '12px',

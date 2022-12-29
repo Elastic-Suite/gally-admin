@@ -1,12 +1,12 @@
-import { ChangeEvent, FormEvent } from 'react'
+import React, { ChangeEvent, FormEvent } from 'react'
 import { useTranslation } from 'next-i18next'
 import { Box, Checkbox } from '@mui/material'
 import { styled } from '@mui/system'
 
-import { IField, IOptions, getFieldHeader } from 'shared'
+import { IField, IOptions, getFieldHeader } from 'gally-admin-shared'
 
-import Button from '~/components/atoms/buttons/Button'
-import Dropdown from '~/components/atoms/form/DropDown'
+import Button from '../../atoms/buttons/Button'
+import Dropdown from '../../atoms/form/DropDown'
 
 import FieldGuesser from '../FieldGuesser/FieldGuesser'
 

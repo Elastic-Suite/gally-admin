@@ -1,4 +1,4 @@
-import {
+import React, {
   ChangeEvent,
   FunctionComponent,
   MutableRefObject,
@@ -10,7 +10,6 @@ import {
 } from 'react'
 import { DragDropContext, DropResult } from 'react-beautiful-dnd'
 
-import { useIsHorizontalOverflow } from '~/hooks'
 import {
   IConfigurations,
   IFieldGuesserProps,
@@ -20,15 +19,17 @@ import {
   reorderingColumnWidth,
   selectionColumnWidth,
   stickyColunWidth,
-} from 'shared'
+} from 'gally-admin-shared'
+
+import { useIsHorizontalOverflow } from '../../../hooks'
 
 import {
   StyledTable,
   TableContainerWithCustomScrollbar,
-} from '~/components/organisms/CustomTable/CustomTable.styled'
-import DraggableBody from '~/components/organisms/CustomTable/CustomTableBody/DraggableBody'
-import NonDraggableBody from '~/components/organisms/CustomTable/CustomTableBody/NonDraggableBody'
-import CustomTableHeader from '~/components/organisms/CustomTable/CustomTableHeader/CustomTableHeader'
+} from './CustomTable.styled'
+import DraggableBody from './CustomTableBody/DraggableBody'
+import NonDraggableBody from './CustomTableBody/NonDraggableBody'
+import CustomTableHeader from './CustomTableHeader/CustomTableHeader'
 
 export interface ICustomTableProps {
   Field: FunctionComponent<IFieldGuesserProps>

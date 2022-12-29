@@ -1,4 +1,6 @@
+import React from 'react'
 import { render } from '@testing-library/react'
+
 import IonIcon from './IonIcon'
 
 describe('IonIcon', () => {

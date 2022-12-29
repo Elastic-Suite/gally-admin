@@ -1,10 +1,11 @@
+import React from 'react'
 import {
   FormControlLabel,
   Radio,
   RadioGroupProps,
   RadioGroup as RadioGrp,
 } from '@mui/material'
-import { IOption, IOptions } from 'shared'
+import { IOption, IOptions } from 'gally-admin-shared'
 
 interface IProps extends RadioGroupProps {
   options: IOptions<unknown>

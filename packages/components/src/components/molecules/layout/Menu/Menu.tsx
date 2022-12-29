@@ -1,8 +1,9 @@
+import React from 'react'
 import { styled } from '@mui/system'
-import { IMenu, IMenuChild } from 'shared'
+import { IMenu, IMenuChild } from 'gally-admin-shared'
 
-import MenuItemIcon from '~/components/atoms/menu/MenuItemIcon'
-import MenuItem from '~/components/atoms/menu/MenuItem'
+import MenuItemIcon from '../../../atoms/menu/MenuItemIcon'
+import MenuItem from '../../../atoms/menu/MenuItem'
 
 /*
  * Create function to create path from code of the menu item

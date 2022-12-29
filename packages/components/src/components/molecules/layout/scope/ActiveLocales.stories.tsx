@@ -1,6 +1,9 @@
+import React from 'react'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
+
 import ActiveLocales from './ActiveLocales'
-import catalog from '../../../../public/mocks/catalog.json'
+
+import catalog from '../../../../../public/mocks/catalog.json'
 
 export default {
   title: 'Molecules/Scopes',

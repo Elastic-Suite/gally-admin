@@ -1,6 +1,6 @@
 import { act } from '@testing-library/react'
 
-import { renderHookWithProviders } from '~/utils/tests'
+import { renderHookWithProviders } from '../utils/tests'
 
 import { ILoader, useSingletonLoader } from './useSingletonLoader'
 

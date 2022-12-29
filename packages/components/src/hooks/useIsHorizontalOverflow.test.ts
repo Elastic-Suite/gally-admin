@@ -1,6 +1,6 @@
 import { act } from '@testing-library/react'
 
-import { renderHookWithProviders } from '~/utils/tests'
+import { renderHookWithProviders } from '../utils/tests'
 
 import { useIsHorizontalOverflow } from './useIsHorizontalOverflow'
 

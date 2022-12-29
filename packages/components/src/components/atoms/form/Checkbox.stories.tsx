@@ -1,5 +1,5 @@
+import React, { useState } from 'react'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
-import { useState } from 'react'
 
 import CheckboxComponent from './Checkbox'
 

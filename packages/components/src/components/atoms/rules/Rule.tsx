@@ -1,4 +1,4 @@
-import { useContext, useEffect, useMemo } from 'react'
+import React, { useContext, useEffect, useMemo } from 'react'
 import { useTranslation } from 'next-i18next'
 import {
   IOptions,
@@ -15,9 +15,9 @@ import {
   isCombinationRule,
   ruleArrayValueSeparator,
   ruleValueNumberTypes,
-} from 'shared'
+} from 'gally-admin-shared'
 
-import { ruleOptionsContext } from '~/contexts'
+import { ruleOptionsContext } from '../../../contexts'
 
 import IonIcon from '../IonIcon/IonIcon'
 import DropDown from '../form/DropDown'

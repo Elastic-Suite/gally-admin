@@ -1,7 +1,9 @@
-import { DataContentType } from 'shared'
-import { renderWithProviders } from '~/utils/tests'
+import React from 'react'
+import { DataContentType } from 'gally-admin-shared'
 
-import FieldGuesser from '~/components/stateful/FieldGuesser/FieldGuesser'
+import { renderWithProviders } from '../../../utils/tests'
+
+import FieldGuesser from '../../stateful/FieldGuesser/FieldGuesser'
 
 import CustomTable from './CustomTable'
 

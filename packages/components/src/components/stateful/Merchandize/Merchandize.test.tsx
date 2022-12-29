@@ -1,5 +1,8 @@
+import React from 'react'
+
+import { renderWithProviders } from '../../../utils/tests'
+
 import Merchandize from './Merchandize'
-import { renderWithProviders } from '~/utils/tests'
 
 describe('Merchandize match snapshot', () => {
   it('testSelect', () => {

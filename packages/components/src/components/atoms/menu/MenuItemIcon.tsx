@@ -1,6 +1,8 @@
-import IonIcon from '~/components/atoms/IonIcon/IonIcon'
+import React from 'react'
 import Link from 'next/link'
 import { keyframes, styled } from '@mui/system'
+
+import IonIcon from '../IonIcon/IonIcon'
 
 const CustomIndicatorLineActiveTwo = styled('div')(({ theme }) => ({
   width: 3,

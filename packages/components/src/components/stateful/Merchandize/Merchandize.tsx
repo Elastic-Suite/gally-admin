@@ -1,4 +1,4 @@
-import { SyntheticEvent } from 'react'
+import React, { SyntheticEvent } from 'react'
 import { useTranslation } from 'next-i18next'
 import { Grid, Paper } from '@mui/material'
 import {
@@ -8,13 +8,13 @@ import {
   getFieldConfig,
   getFieldState,
   isVirtualCategoryEnabled,
-} from 'shared'
+} from 'gally-admin-shared'
 
-import { useResource } from '~/hooks'
-import { selectBundles, useAppSelector } from '~/store'
+import { useResource } from '../../../hooks'
+import { selectBundles, useAppSelector } from '../../../store'
 
-import DropDown from '~/components/atoms/form/DropDown'
-import Switch from '~/components/atoms/form/Switch'
+import DropDown from '../../atoms/form/DropDown'
+import Switch from '../../atoms/form/Switch'
 
 interface IProps {
   catConf: IParsedCategoryConfiguration

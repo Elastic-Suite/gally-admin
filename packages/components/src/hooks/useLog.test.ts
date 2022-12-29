@@ -1,7 +1,7 @@
 import { act } from '@testing-library/react'
 import { enqueueSnackbar } from 'notistack'
 
-import { renderHookWithProviders } from '~/utils/tests'
+import { renderHookWithProviders } from '../utils/tests'
 
 import { useLog } from './useLog'
 

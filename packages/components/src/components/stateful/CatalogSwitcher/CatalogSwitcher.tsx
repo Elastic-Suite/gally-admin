@@ -1,9 +1,9 @@
+import React from 'react'
 import { styled } from '@mui/system'
-
 import { useTranslation } from 'next-i18next'
-import { ICatalog, IHydraResponse, IOptions } from 'shared'
+import { ICatalog, IHydraResponse, IOptions } from 'gally-admin-shared'
 
-import DropDown from '~/components/atoms/form/DropDown'
+import DropDown from '../../atoms/form/DropDown'
 
 const SwitchersContainer = styled('div')({
   display: 'flex',

@@ -1,12 +1,11 @@
-import {
+import React, {
   MutableRefObject,
   forwardRef,
   useEffect,
   useMemo,
   useState,
 } from 'react'
-
-import { useGraphqlApi } from '~/hooks'
+import { useTranslation } from 'next-i18next'
 import {
   IConfigurations,
   IGraphqlSearchProducts,
@@ -17,14 +16,14 @@ import {
   defaultRowsPerPageOptions,
   getSearchProductsQuery,
   productTableheader,
-} from 'shared'
+} from 'gally-admin-shared'
 
+import { useGraphqlApi } from '../../../hooks'
+
+import NoAttributes from '../../atoms/noAttributes/NoAttributes'
 import PagerTable from '../../organisms/PagerTable/PagerTable'
 
 import FieldGuesser from '../FieldGuesser/FieldGuesser'
-import NoAttributes from '~/components/atoms/noAttributes/NoAttributes'
-
-import { useTranslation } from 'next-i18next'
 
 interface IProps {
   localizedCatalogId: string
@@ -59,7 +58,7 @@ function BottomTable(
   const { t } = useTranslation('categories')
   const variables = useMemo(
     () => ({
-      localizedCatalog: localizedCatalogId,
+      catalogId: localizedCatalogId,
       currentPage,
       pageSize: rowsPerPage,
       requestType: ProductRequestType.CATALOG,

@@ -1,13 +1,13 @@
-import { FunctionComponent, useEffect } from 'react'
+import React, { FunctionComponent, useEffect } from 'react'
 import { useRouter } from 'next/router'
-import { getDisplayName, isValidUser } from 'shared'
+import { getDisplayName, isValidUser } from 'gally-admin-shared'
 
 import {
   selectUser,
   setRequestedPath,
   useAppDispatch,
   useAppSelector,
-} from '~/store'
+} from '../store'
 
 export function withAuth<P extends Record<string, unknown>>(
   Cmp: FunctionComponent<P>

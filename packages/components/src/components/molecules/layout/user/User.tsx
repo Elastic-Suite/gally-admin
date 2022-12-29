@@ -1,6 +1,8 @@
-import Help from '~/components/atoms/help/Help'
-import UserMenu from '~/components/atoms/userMenu/UserMenu'
+import React from 'react'
 import { styled } from '@mui/system'
+
+import Help from '../../../atoms/help/Help'
+import UserMenu from '../../../atoms/userMenu/UserMenu'
 
 const CustomRoot = styled('div')(({ theme }) => ({
   display: 'flex',

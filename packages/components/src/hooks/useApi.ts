@@ -8,7 +8,6 @@ import {
 } from 'react'
 import { useTranslation } from 'next-i18next'
 import debounce from 'lodash.debounce'
-
 import {
   AuthError,
   IFetch,
@@ -24,9 +23,9 @@ import {
   fetchApi,
   getListApiParameters,
   isError,
-} from 'shared'
+} from 'gally-admin-shared'
 
-import { setUser, useAppDispatch } from '~/store'
+import { setUser, useAppDispatch } from '../store'
 
 import { useLog } from './useLog'
 import { useResourceOperations } from './useResource'

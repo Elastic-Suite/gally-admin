@@ -1,6 +1,8 @@
+import React from 'react'
 import { styled } from '@mui/system'
 import { useTranslation } from 'next-i18next'
-import TopProductsBanner from '~/components/molecules/CustomTable/TopProductsBanner/TopProductsBanner'
+
+import TopProductsBanner from '../../molecules/CustomTable/TopProductsBanner/TopProductsBanner'
 import CustomTable, {
   ICustomTableProps,
 } from '../../organisms/CustomTable/CustomTable'

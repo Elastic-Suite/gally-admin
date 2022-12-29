@@ -1,4 +1,4 @@
-import { MouseEvent, useRef, useState } from 'react'
+import React, { MouseEvent, useRef, useState } from 'react'
 import { styled } from '@mui/system'
 import {
   ButtonProps,
@@ -6,7 +6,7 @@ import {
   MenuItem,
   Menu as MuiMenu,
 } from '@mui/material'
-import { IOptions } from 'shared'
+import { IOptions } from 'gally-admin-shared'
 
 import { PrimaryButton, SecondaryButton, TertiaryButton } from './Button.styled'
 

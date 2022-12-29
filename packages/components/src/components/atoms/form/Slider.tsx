@@ -1,9 +1,9 @@
-import { ReactNode } from 'react'
+import React, { ReactNode } from 'react'
 import Box from '@mui/material/Box'
 import { CustomIndicatorsNumber, Slide } from './Slider.styled'
 import { FormHelperText, InputLabel, SliderProps } from '@mui/material'
 
-import IonIcon from '~/components/atoms/IonIcon/IonIcon'
+import IonIcon from '../IonIcon/IonIcon'
 
 import InfoTooltip from './InfoTooltip'
 import { StyledFormControl } from './InputText.styled'

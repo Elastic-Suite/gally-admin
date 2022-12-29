@@ -1,6 +1,8 @@
+import React from 'react'
 import { Box } from '@mui/material'
 import { styled } from '@mui/system'
-import { BoostType } from 'shared'
+import { BoostType } from 'gally-admin-shared'
+
 import Boost from '../boost/Boost'
 
 interface IProps {

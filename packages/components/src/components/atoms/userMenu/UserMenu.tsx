@@ -1,12 +1,15 @@
-import { useState } from 'react'
-import IonIcon from '~/components/atoms/IonIcon/IonIcon'
-import CloseComponent from '../closeComponent/CloseComponent'
-import UserMenuShow from './UserMenuShow'
+import React, { useState } from 'react'
 import { styled } from '@mui/system'
 import Collapse from '@mui/material/Collapse'
 import Box from '@mui/material/Box'
-import { selectUser, useAppSelector } from '~/store'
+
+import { selectUser, useAppSelector } from '../../../store'
+
+import CloseComponent from '../closeComponent/CloseComponent'
+import IonIcon from '../IonIcon/IonIcon'
 import FormatText from '../formatText/FormatText'
+
+import UserMenuShow from './UserMenuShow'
 
 const CustomUser = styled('div')(({ theme }) => ({
   position: 'relative',

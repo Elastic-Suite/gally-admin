@@ -1,14 +1,13 @@
-import { FunctionComponent, SyntheticEvent } from 'react'
+import React, { FunctionComponent, SyntheticEvent } from 'react'
 import { TableBody } from '@mui/material'
 import { Draggable, Droppable } from 'react-beautiful-dnd'
-
 import {
   IConfigurations,
   IFieldGuesserProps,
   ITableConfig,
   ITableHeader,
   ITableRow,
-} from 'shared'
+} from 'gally-admin-shared'
 
 import DraggableRow from '../CustomTableRow/DraggableRow'
 

@@ -1,9 +1,9 @@
 /* eslint-disable react/destructuring-assignment */
-import { HTMLAttributes, MouseEvent } from 'react'
+import React, { HTMLAttributes, MouseEvent } from 'react'
 import parse from 'autosuggest-highlight/parse'
 import match from 'autosuggest-highlight/match'
 
-import { ITreeItem } from 'shared'
+import { ITreeItem } from 'gally-admin-shared'
 
 import Checkbox from '../form/Checkbox'
 import IonIcon from '../IonIcon/IonIcon'

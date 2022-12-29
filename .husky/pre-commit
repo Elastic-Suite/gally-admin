@@ -3,16 +3,10 @@
 
 . "$(dirname -- "$0")/_/husky.sh"
 
-cd front
-
-cd shared
+cd packages/shared
 yarn lint-staged
-cd ..
+cd ../..
 
-cd pwa
+cd packages/components
 yarn lint-staged
-cd ..
-
-cd example-app
-yarn lint-staged
-cd ..
+cd ../..

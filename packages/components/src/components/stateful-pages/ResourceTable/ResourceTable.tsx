@@ -1,4 +1,4 @@
-import {
+import React, {
   Dispatch,
   FunctionComponent,
   SetStateAction,
@@ -17,7 +17,7 @@ import {
   defaultPageSize,
   defaultRowsPerPageOptions,
   getNameFromDefault,
-} from 'shared'
+} from 'gally-admin-shared'
 
 import {
   useApiEditableList,
@@ -26,14 +26,13 @@ import {
   usePage,
   useResource,
   useSearch,
-} from '~/hooks'
+} from '../../../hooks'
 
-import FieldGuesser from '~/components/stateful/FieldGuesser/FieldGuesser'
-import FiltersGuesser from '~/components/stateful/FiltersGuesser/FiltersGuesser'
-import TableGuesser from '~/components/stateful/TableGuesser/TableGuesser'
-
-import NoAttributes from '~/components/atoms/noAttributes/NoAttributes'
-import Button from '~/components/atoms/buttons/Button'
+import NoAttributes from '../../atoms/noAttributes/NoAttributes'
+import Button from '../../atoms/buttons/Button'
+import FieldGuesser from '../../stateful/FieldGuesser/FieldGuesser'
+import FiltersGuesser from '../../stateful/FiltersGuesser/FiltersGuesser'
+import TableGuesser from '../../stateful/TableGuesser/TableGuesser'
 
 const FitlerContent = styled('div')({
   display: 'flex',

@@ -1,7 +1,7 @@
-import { FunctionComponent } from 'react'
-import { getDisplayName } from 'shared'
+import React, { FunctionComponent } from 'react'
+import { getDisplayName } from 'gally-admin-shared'
 
-import OptionsProvider from '~/components/stateful-providers/OptionsProvider/OptionsProvider'
+import OptionsProvider from '../components/stateful-providers/OptionsProvider/OptionsProvider'
 
 export function withOptions<P extends Record<string, unknown>>(
   Cmp: FunctionComponent<P>

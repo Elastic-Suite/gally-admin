@@ -1,4 +1,4 @@
-import { Fragment } from 'react'
+import React, { Fragment } from 'react'
 import { styled } from '@mui/system'
 import { useTranslation } from 'next-i18next'
 
@@ -11,7 +11,7 @@ import {
   emptyCombinationRule,
   isAttributeRule,
   isCombinationRule,
-} from 'shared'
+} from 'gally-admin-shared'
 
 import Button from '../buttons/Button'
 import IonIcon from '../IonIcon/IonIcon'
