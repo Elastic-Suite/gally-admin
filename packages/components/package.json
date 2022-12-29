@@ -1,6 +1,6 @@
 {
   "name": "gally-admin-components",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": false,
   "main": "dist/index.js",
   "types": "index.d.ts",
@@ -35,7 +35,7 @@
     "autosuggest-highlight": "3.3.4",
     "classnames": "2.3.2",
     "dayjs": "1.11.6",
-    "gally-admin-shared": "^0.1.0",
+    "gally-admin-shared": "^0.1.1",
     "generate-changelog": "1.8.0",
     "i18next": "21.10.0",
     "i18next-chained-backend": "3.1.0",
