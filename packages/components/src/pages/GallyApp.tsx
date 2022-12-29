@@ -4,7 +4,7 @@ import type { AppProps } from 'next/app'
 import Script from 'next/script'
 import Head from 'next/head'
 
-import nextI18nConfig from '../../next-i18next.config'
+import { nextI18nConfig } from '../constants'
 
 // import '../../assets/scss/style.scss'
 

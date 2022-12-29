@@ -1,10 +1,10 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
-const HttpBackend = require('i18next-http-backend/cjs')
-const ChainedBackend = require('i18next-chained-backend').default
-const LocalStorageBackend = require('i18next-localstorage-backend').default
+import HttpBackend from 'i18next-http-backend'
+import ChainedBackend from 'i18next-chained-backend'
+import LocalStorageBackend from 'i18next-localstorage-backend'
+import { UserConfig } from 'next-i18next'
 
 // See https://github.com/i18next/i18next-http-backend/tree/master/example/next
-module.exports = {
+export const nextI18nConfig = {
   backend: {
     backendOptions: [{ expirationTime: 60 * 60 * 1000 }],
     backends:
@@ -16,4 +16,4 @@ module.exports = {
   },
   serializeConfig: false,
   use: typeof window !== 'undefined' ? [ChainedBackend] : [],
-}
+} as unknown as UserConfig
