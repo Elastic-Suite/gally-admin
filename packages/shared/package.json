@@ -18,8 +18,7 @@
     "typescript:ci": "tsc --noEmit",
     "prepare": "npm run build",
     "preversion": "npm test && npm run eslint && npm run typescript",
-    "version": "changelog -M && npm run prettier && git add -A src",
-    "postversion": "git push && git push --tags"
+    "changelog": "changelog -M && npm run prettier"
   },
   "dependencies": {
     "@emotion/react": "11.10.4",
