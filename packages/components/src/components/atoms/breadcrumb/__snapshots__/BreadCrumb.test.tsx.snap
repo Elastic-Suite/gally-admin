@@ -4,7 +4,7 @@ exports[`Breadcrumbs match snapshot 1`] = `
 <div>
   <nav
     aria-label="breadcrumb"
-    class="MuiTypography-root MuiTypography-body1 MuiBreadcrumbs-root css-1sglq17-MuiTypography-root-MuiBreadcrumbs-root"
+    class="MuiTypography-root MuiTypography-body1 MuiBreadcrumbs-root css-qno6wy-MuiTypography-root-MuiBreadcrumbs-root"
   >
     <ol
       class="MuiBreadcrumbs-ol css-4pdmu4-MuiBreadcrumbs-ol"
@@ -13,7 +13,7 @@ exports[`Breadcrumbs match snapshot 1`] = `
         class="MuiBreadcrumbs-li"
       >
         <p
-          class="MuiTypography-root MuiTypography-body1 css-zhuy6w-MuiTypography-root"
+          class="MuiTypography-root MuiTypography-body1 css-1lejrg3-MuiTypography-root"
         >
           <span
             class="css-1epdhd3"
@@ -32,7 +32,7 @@ exports[`Breadcrumbs match snapshot 1`] = `
         class="MuiBreadcrumbs-li"
       >
         <p
-          class="MuiTypography-root MuiTypography-body1 css-zhuy6w-MuiTypography-root"
+          class="MuiTypography-root MuiTypography-body1 css-1lejrg3-MuiTypography-root"
         >
           <span
             class="css-1epdhd3"
@@ -51,7 +51,7 @@ exports[`Breadcrumbs match snapshot 1`] = `
         class="MuiBreadcrumbs-li"
       >
         <p
-          class="MuiTypography-root MuiTypography-body1 css-zhuy6w-MuiTypography-root"
+          class="MuiTypography-root MuiTypography-body1 css-1lejrg3-MuiTypography-root"
         >
           <span
             class="css-6nl1o3"

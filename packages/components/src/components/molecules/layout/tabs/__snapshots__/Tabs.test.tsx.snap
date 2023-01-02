@@ -23,7 +23,7 @@ exports[`TabsAndSubTabs match snapshot 1`] = `
             <button
               aria-controls="simple-tabpanel-0"
               aria-selected="true"
-              class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary Mui-selected css-v7gylc-MuiButtonBase-root-MuiTab-root"
+              class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary Mui-selected css-51ixoi-MuiButtonBase-root-MuiTab-root"
               id="simple-tab-0"
               role="tab"
               tabindex="0"
@@ -37,7 +37,7 @@ exports[`TabsAndSubTabs match snapshot 1`] = `
             <button
               aria-controls="simple-tabpanel-1"
               aria-selected="false"
-              class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary css-v7gylc-MuiButtonBase-root-MuiTab-root"
+              class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary css-51ixoi-MuiButtonBase-root-MuiTab-root"
               id="simple-tab-1"
               role="tab"
               tabindex="-1"
@@ -51,7 +51,7 @@ exports[`TabsAndSubTabs match snapshot 1`] = `
             <button
               aria-controls="simple-tabpanel-2"
               aria-selected="false"
-              class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary css-v7gylc-MuiButtonBase-root-MuiTab-root"
+              class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary css-51ixoi-MuiButtonBase-root-MuiTab-root"
               id="simple-tab-2"
               role="tab"
               tabindex="-1"
@@ -65,7 +65,7 @@ exports[`TabsAndSubTabs match snapshot 1`] = `
             <button
               aria-controls="simple-tabpanel-3"
               aria-selected="false"
-              class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary css-v7gylc-MuiButtonBase-root-MuiTab-root"
+              class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary css-51ixoi-MuiButtonBase-root-MuiTab-root"
               id="simple-tab-3"
               role="tab"
               tabindex="-1"
@@ -90,7 +90,7 @@ exports[`TabsAndSubTabs match snapshot 1`] = `
       role="tabpanel"
     >
       <div
-        class="MuiBox-root css-ed63to"
+        class="MuiBox-root css-1gm7my9"
       >
         Hello World 1
       </div>

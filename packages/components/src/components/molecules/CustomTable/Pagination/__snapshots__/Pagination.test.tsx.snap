@@ -15,7 +15,7 @@ exports[`Pagination should match snapshot for bottom pagination 1`] = `
           class="MuiTablePagination-spacer css-1psng7p-MuiTablePagination-spacer"
         />
         <p
-          class="MuiTablePagination-displayedRows css-exf7au-MuiTablePagination-displayedRows"
+          class="MuiTablePagination-displayedRows css-lu9vn1-MuiTablePagination-displayedRows"
         >
           <span
             class="css-vwp1eu"
@@ -90,7 +90,7 @@ exports[`Pagination should match snapshot for top pagination 1`] = `
           class="MuiTablePagination-spacer css-1psng7p-MuiTablePagination-spacer"
         />
         <p
-          class="MuiTablePagination-displayedRows css-exf7au-MuiTablePagination-displayedRows"
+          class="MuiTablePagination-displayedRows css-lu9vn1-MuiTablePagination-displayedRows"
         >
           <span
             class="css-vwp1eu"

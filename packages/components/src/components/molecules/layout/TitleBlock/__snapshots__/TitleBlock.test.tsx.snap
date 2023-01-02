@@ -3,7 +3,7 @@
 exports[`TitleBlock match snapshot PageTitle simple 1`] = `
 <div>
   <div
-    class="css-1vv96bp"
+    class="css-10xkmyr"
   >
     Hello World
   </div>
@@ -22,7 +22,7 @@ exports[`TitleBlock match snapshot PageTitle simple 1`] = `
 exports[`TitleBlock match snapshot PageTitle with Composant on Children 1`] = `
 <div>
   <div
-    class="css-1vv96bp"
+    class="css-10xkmyr"
   >
     Hello World
   </div>
@@ -33,7 +33,7 @@ exports[`TitleBlock match snapshot PageTitle with Composant on Children 1`] = `
       class="css-3muqs4"
     >
       <button
-        class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium css-13u4ebv-MuiButtonBase-root-MuiButton-root"
+        class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium css-vuh189-MuiButtonBase-root-MuiButton-root"
         tabindex="0"
         type="button"
       >

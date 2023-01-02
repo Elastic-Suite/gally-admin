@@ -6,7 +6,7 @@ exports[`PageTitle match snapshot PageTitle simple 1`] = `
     class="css-k008qs"
   >
     <h1
-      class="MuiTypography-root MuiTypography-h1 css-5ukfbz-MuiTypography-root"
+      class="MuiTypography-root MuiTypography-h1 css-ksao82-MuiTypography-root"
     >
       Hello World
     </h1>
@@ -20,7 +20,7 @@ exports[`PageTitle match snapshot PageTitleH2 1`] = `
     class="css-k008qs"
   >
     <h2
-      class="MuiTypography-root MuiTypography-h2 css-179nbwd-MuiTypography-root"
+      class="MuiTypography-root MuiTypography-h2 css-zrn0m8-MuiTypography-root"
     >
       Hello World
     </h2>
@@ -34,13 +34,13 @@ exports[`PageTitle match snapshot PageTitleH3WithChildren 1`] = `
     class="css-k008qs"
   >
     <h3
-      class="MuiTypography-root MuiTypography-h3 css-1v3h5o1-MuiTypography-root"
+      class="MuiTypography-root MuiTypography-h3 css-1j7d11r-MuiTypography-root"
     >
       Hello World
     </h3>
     <div>
       <button
-        class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium css-13u4ebv-MuiButtonBase-root-MuiButton-root"
+        class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium css-vuh189-MuiButtonBase-root-MuiButton-root"
         tabindex="0"
         type="button"
       >

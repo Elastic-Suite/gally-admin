@@ -13,10 +13,10 @@ exports[`Merchandize match snapshot testSelect 1`] = `
         class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6 css-1osj8n2-MuiGrid-root"
       >
         <div
-          class="MuiFormControl-root MuiFormControl-fullWidth css-12mfi9j-MuiFormControl-root"
+          class="MuiFormControl-root MuiFormControl-fullWidth css-2kbu02-MuiFormControl-root"
         >
           <label
-            class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard MuiFormLabel-colorPrimary css-1ghtd4k-MuiFormLabel-root-MuiInputLabel-root"
+            class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard MuiFormLabel-colorPrimary css-1fydvbl-MuiFormLabel-root-MuiInputLabel-root"
             data-shrink="true"
           >
             name
@@ -61,16 +61,16 @@ exports[`Merchandize match snapshot testSelect 1`] = `
         class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6 css-1osj8n2-MuiGrid-root"
       >
         <div
-          class="MuiFormControl-root css-1c9gikl-MuiFormControl-root"
+          class="MuiFormControl-root css-1rzpxn4-MuiFormControl-root"
         >
           <div
             class="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-1qqsdnr-MuiAutocomplete-root"
           >
             <div
-              class="MuiFormControl-root css-1pl6002-MuiFormControl-root"
+              class="MuiFormControl-root css-1bi1rm7-MuiFormControl-root"
             >
               <label
-                class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard MuiFormLabel-colorPrimary MuiFormLabel-filled Mui-required css-ssr94h-MuiFormLabel-root-MuiInputLabel-root"
+                class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard MuiFormLabel-colorPrimary MuiFormLabel-filled Mui-required css-1ubsiac-MuiFormLabel-root-MuiInputLabel-root"
                 data-shrink="true"
                 for=":r1:"
               >
@@ -98,7 +98,7 @@ exports[`Merchandize match snapshot testSelect 1`] = `
                 class="InputText__Wrapper css-newnfq"
               >
                 <div
-                  class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-w8c12a-MuiInputBase-root"
+                  class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-1czrsxs-MuiInputBase-root"
                   required=""
                 >
                   <input
@@ -144,10 +144,10 @@ exports[`Merchandize match snapshot testSelect 1`] = `
         class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6 css-1osj8n2-MuiGrid-root"
       >
         <div
-          class="MuiFormControl-root MuiFormControl-fullWidth css-12mfi9j-MuiFormControl-root"
+          class="MuiFormControl-root MuiFormControl-fullWidth css-2kbu02-MuiFormControl-root"
         >
           <label
-            class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard MuiFormLabel-colorPrimary css-1ghtd4k-MuiFormLabel-root-MuiInputLabel-root"
+            class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard MuiFormLabel-colorPrimary css-1fydvbl-MuiFormLabel-root-MuiInputLabel-root"
             data-shrink="true"
           >
             virtual

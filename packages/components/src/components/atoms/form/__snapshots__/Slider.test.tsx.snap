@@ -3,10 +3,10 @@
 exports[`Slider match snapshot Slider Full 1`] = `
 <div>
   <div
-    class="MuiFormControl-root MuiFormControl-marginDense css-1m41rkg-MuiFormControl-root"
+    class="MuiFormControl-root MuiFormControl-marginDense css-4tn1ls-MuiFormControl-root"
   >
     <label
-      class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard MuiFormLabel-colorPrimary Mui-required css-ssr94h-MuiFormLabel-root-MuiInputLabel-root"
+      class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard MuiFormLabel-colorPrimary Mui-required css-1ubsiac-MuiFormLabel-root-MuiInputLabel-root"
       data-shrink="true"
     >
       Boost value (%)
@@ -76,7 +76,7 @@ exports[`Slider match snapshot Slider Full 1`] = `
           />
           <span
             aria-hidden="true"
-            class="MuiSlider-valueLabelOpen MuiSlider-valueLabel css-thdgn5-MuiSlider-valueLabel"
+            class="MuiSlider-valueLabelOpen MuiSlider-valueLabel css-vbosqr-MuiSlider-valueLabel"
           >
             <span
               class="MuiSlider-valueLabelCircle"
@@ -92,7 +92,7 @@ exports[`Slider match snapshot Slider Full 1`] = `
       </span>
     </div>
     <p
-      class="MuiFormHelperText-root MuiFormHelperText-sizeMedium css-1riwtgr-MuiFormHelperText-root"
+      class="MuiFormHelperText-root MuiFormHelperText-sizeMedium css-1us48wl-MuiFormHelperText-root"
     >
       <ion-icon
         name="close"
@@ -107,7 +107,7 @@ exports[`Slider match snapshot Slider Full 1`] = `
 exports[`Slider match snapshot Slider Min 1`] = `
 <div>
   <div
-    class="MuiFormControl-root css-1pl6002-MuiFormControl-root"
+    class="MuiFormControl-root css-1bi1rm7-MuiFormControl-root"
   >
     <div
       class="MuiBox-root css-plopzj"
@@ -156,7 +156,7 @@ exports[`Slider match snapshot Slider Min 1`] = `
           />
           <span
             aria-hidden="true"
-            class="MuiSlider-valueLabelOpen MuiSlider-valueLabel css-thdgn5-MuiSlider-valueLabel"
+            class="MuiSlider-valueLabelOpen MuiSlider-valueLabel css-vbosqr-MuiSlider-valueLabel"
           >
             <span
               class="MuiSlider-valueLabelCircle"
