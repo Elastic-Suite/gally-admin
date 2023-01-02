@@ -19,7 +19,7 @@ const BannerText = styled(Box)({
   lineHeight: '18px',
   fontSize: '12px',
   fontWeight: '600',
-  fontFamily: 'Inter',
+  fontFamily: 'var(--gally-font)',
   fontStyle: 'normal',
 })
 

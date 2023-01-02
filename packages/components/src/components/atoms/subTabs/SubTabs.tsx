@@ -34,7 +34,7 @@ const CustomSubTabs = styled('button')(({ theme }) => ({
   background: 'transparent',
   border: 0,
   textAlign: 'left',
-  fontFamily: 'Inter',
+  fontFamily: 'var(--gally-font)',
 
   '&:nth-of-type(1)': {
     marginTop: theme.spacing(2),

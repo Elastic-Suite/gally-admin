@@ -3,7 +3,7 @@ import { keyframes, styled } from '@mui/system'
 export const CustomRoot = styled('ul')({
   margin: 0,
   padding: '2px 0',
-  fontFamily: 'Inter',
+  fontFamily: 'var(--gally-font)',
   fontWeight: 500,
 })
 
@@ -30,7 +30,7 @@ export const CustomTitle = styled('button')(({ theme }) => ({
   background: 'none',
   padding: 0,
   cursor: 'pointer',
-  fontFamily: 'Inter',
+  fontFamily: 'var(--gally-font)',
   fontSize: '12px',
   fontWeight: 500,
 }))

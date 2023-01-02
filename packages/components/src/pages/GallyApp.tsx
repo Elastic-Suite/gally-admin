@@ -1,8 +1,6 @@
 import React from 'react'
 import type { AppProps } from 'next/app'
 
-// import '../../assets/scss/style.scss'
-
 import { setupStore } from '../store'
 
 import AppProvider from '../components/stateful-providers/AppProvider/AppProvider'

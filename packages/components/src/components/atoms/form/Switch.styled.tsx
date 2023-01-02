@@ -2,7 +2,7 @@ import { styled } from '@mui/system'
 import { FormControl } from '@mui/material'
 
 export const StyleFormControl = styled(FormControl)(() => ({
-  fontFamily: 'Inter',
+  fontFamily: 'var(--gally-font)',
   fontStyle: 'normal',
   fontWeight: 500,
   fontSize: '14px',

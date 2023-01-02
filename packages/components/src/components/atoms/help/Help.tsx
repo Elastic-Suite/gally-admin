@@ -11,7 +11,7 @@ const CustomHelp = styled('div')(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
   position: 'relative',
-  fontFamily: 'Inter',
+  fontFamily: 'var(--gally-font)',
   border: '1px solid',
   borderRadius: 8,
   padding: theme.spacing(1),

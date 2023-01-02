@@ -8,7 +8,7 @@ const StyledChip = styled(MuiChip)(({ theme }) => ({
   display: 'inline-flex',
   height: '26px',
   color: theme.palette.colors.neutral['900'],
-  fontFamily: 'Inter',
+  fontFamily: 'var(--gally-font)',
   fontWeight: 600,
   fontSize: 12,
   lineHeight: '18px',

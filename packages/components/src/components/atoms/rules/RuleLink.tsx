@@ -9,7 +9,7 @@ const LinkLabel = styled('div')(({ theme }) => ({
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  fontFamily: 'Inter',
+  fontFamily: 'var(--gally-font)',
   width: '32px',
   height: '26px',
   borderRadius: '28px',

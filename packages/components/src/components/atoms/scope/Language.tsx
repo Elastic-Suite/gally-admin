@@ -22,7 +22,7 @@ const CustomLanguage = styled('div')(({ theme }) => ({
   paddingLeft: theme.spacing(1.5),
   fontSize: '12px',
   fontWeight: '600',
-  fontFamily: 'Inter',
+  fontFamily: 'var(--gally-font)',
   background: theme.palette.colors.neutral[300],
   borderRadius: '99px',
 }))

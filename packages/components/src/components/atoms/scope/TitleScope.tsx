@@ -6,7 +6,7 @@ const CustomTitleScope = styled('div')(({ theme }) => ({
   lineHeight: '30px',
   fontSize: '20px',
   fontWeight: '600',
-  fontFamily: 'Inter',
+  fontFamily: 'var(--gally-font)',
 }))
 
 interface IProps {

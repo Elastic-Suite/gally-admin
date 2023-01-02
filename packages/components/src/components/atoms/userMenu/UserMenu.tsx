@@ -35,7 +35,7 @@ const CustomUserName = styled('div')(({ theme }) => ({
   fontWeight: 600,
   fontSize: '12px',
   lineHeight: '18px',
-  fontFamily: 'Inter',
+  fontFamily: 'var(--gally-font)',
 }))
 
 const CustomArrow = styled('div')({

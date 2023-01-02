@@ -14,7 +14,7 @@ const CustomRoot = styled('div')(({ theme }) => ({
   fontStyle: 'normal',
   fontWeight: 400,
   fontSize: '12px',
-  fontFamily: 'Inter',
+  fontFamily: 'Invar(--gally-font)ter',
   lineHeight: '18px',
 }))
 

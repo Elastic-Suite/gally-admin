@@ -14,7 +14,7 @@ const CustomNbActiveLocales = styled('div')(({ theme }) => ({
   lineHeight: '62px',
   fontSize: '48px',
   fontWeight: '700',
-  fontFamily: 'Inter',
+  fontFamily: 'var(--gally-font)',
 }))
 
 const CustomTexteActiveLocales = styled('div')(({ theme }) => ({
@@ -22,7 +22,7 @@ const CustomTexteActiveLocales = styled('div')(({ theme }) => ({
   lineHeight: '24px',
   fontSize: '16px',
   fontWeight: '400',
-  fontFamily: 'Inter',
+  fontFamily: 'var(--gally-font)',
 }))
 
 interface IProps {

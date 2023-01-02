@@ -164,7 +164,7 @@ export const Wrapper = styled('div')(({ theme }) => ({
 }))
 
 export const Suffix = styled('span')(({ theme }) => ({
-  fontFamily: 'Inter',
+  fontFamily: 'var(--gally-font)',
   fontSize: '14px',
   fontWeight: 400,
   lineHeight: '20px',

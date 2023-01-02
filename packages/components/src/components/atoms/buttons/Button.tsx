@@ -35,7 +35,7 @@ const Menu = styled(MuiMenu, {
     padding: 0,
   },
   '& .MuiButtonBase-root': {
-    fontFamily: 'Inter',
+    fontFamily: 'var(--gally-font)',
     padding: '8px 12px',
     fontWeight: 400,
     fontSize: 12,

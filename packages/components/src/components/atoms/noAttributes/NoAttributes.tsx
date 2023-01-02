@@ -23,7 +23,7 @@ const CustomTitle = styled('div')(({ theme }) => ({
   fontSize: '18px',
   lineHeight: '28px',
   fontWeight: '600',
-  fontFamily: 'Inter',
+  fontFamily: 'var(--gally-font)',
   width: '550px',
 }))
 

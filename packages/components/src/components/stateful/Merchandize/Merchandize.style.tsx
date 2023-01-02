@@ -2,7 +2,7 @@ import { styled } from '@mui/system'
 import { Box, Grid } from '@mui/material'
 
 export const Font = styled(Box)(() => ({
-  fontFamily: 'Inter',
+  fontFamily: 'var(--gally-font)',
   fontStyle: 'normal',
   fontWeight: 500,
   fontSize: '14px',
@@ -14,7 +14,7 @@ export const Font = styled(Box)(() => ({
 }))
 
 export const FontRequired = styled(Grid)(() => ({
-  fontFamily: 'Inter',
+  fontFamily: 'var(--gally-font)',
   fontStyle: 'normal',
   fontWeight: 400,
   fontSize: '12px',

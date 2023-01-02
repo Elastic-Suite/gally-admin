@@ -12,7 +12,7 @@ const CustomTypoTexte = styled('div')(({ theme }) => ({
   lineHeight: '18px',
   display: 'flex',
   flexDirection: 'column',
-  fontFamily: 'Inter',
+  fontFamily: 'var(--gally-font)',
   gap: theme.spacing(1),
 }))
 

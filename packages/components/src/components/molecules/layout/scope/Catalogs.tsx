@@ -24,7 +24,7 @@ const CustomNbCatalogs = styled('div')(({ theme }) => ({
   lineHeight: '18px',
   fontSize: '12px',
   fontWeight: '400',
-  fontFamily: 'Inter',
+  fontFamily: 'var(--gally-font)',
 }))
 
 const CustomRoot = styled('div')(({ theme }) => ({
