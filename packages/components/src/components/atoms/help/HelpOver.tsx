@@ -27,18 +27,23 @@ function HelpOver(): JSX.Element {
     <CustomRoot>
       <Link
         href="https://elasticsuite.zendesk.com"
+        legacyBehavior
         passHref
         style={{ textDecoration: 'none!important', color: 'red' }}
       >
         <CustomA>Helpdesk</CustomA>
       </Link>
 
-      <Link href="https://elastic-suite.github.io/documentation/" passHref>
+      <Link
+        href="https://elastic-suite.github.io/documentation/"
+        legacyBehavior
+        passHref
+      >
         <CustomA>User guide</CustomA>
       </Link>
 
       {process.env.NODE_ENV === 'development' && (
-        <Link href="/swagger/docs" passHref>
+        <Link href="/swagger/docs" legacyBehavior passHref>
           <CustomA>API documentation</CustomA>
         </Link>
       )}

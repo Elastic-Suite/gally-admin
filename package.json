@@ -10,6 +10,7 @@
     "start:components": "yarn --cwd ./packages/components start",
     "start:shared": "yarn --cwd ./packages/shared start",
     "start:storybook": "yarn --cwd ./packages/components storybook",
+    "build": "yarn build:shared && yarn build:components",
     "build:components": "yarn --cwd ./packages/components build",
     "build:shared": "yarn --cwd ./packages/shared build",
     "build:storybook": "yarn --cwd ./packages/components build-storybook",

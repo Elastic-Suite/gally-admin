@@ -89,7 +89,7 @@ function Sidebar(props: IProps): JSX.Element {
       timeout={sidebarState ? 0 : 200}
     >
       <CustomRoot style={sidebarState ? {} : { width: 'inherit' }}>
-        <Link href="/" passHref as="/">
+        <Link href="/" as="/">
           <CustomImgContainer>
             <CustomImgExtended
               style={!sidebarStateTimeout ? {} : { opacity: 0 }}

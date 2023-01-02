@@ -43,7 +43,7 @@ function NoAttributes({ title, btnTitle, btnHref }: IProps): JSX.Element {
       <CustomTitle>{title}</CustomTitle>
       {Boolean(btnTitle) && (
         <Button endIcon={null} startIcon={null} size="large">
-          <Link href={`/${btnHref}`}>
+          <Link href={`/${btnHref}`} legacyBehavior passHref>
             <a style={{ textDecoration: 'none' }}>{btnTitle}</a>
           </Link>
         </Button>
