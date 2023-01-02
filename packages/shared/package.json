@@ -6,8 +6,8 @@
   "types": "index.d.ts",
   "scripts": {
     "start": "chokidar \"src/**/*.ts\" \"src/**/*.tsx\" -i \"src/**/*.test.ts\" -i \"src/**/*.test.tsx\" -i \"src/**/__mocks__/*.ts\" -c \"yarn build\"",
-    "build": "tsup src/index.ts --format cjs,esm --dts --splitting --sourcemap --minify",
-    "build:dev": "tsup src/index.ts --format cjs,esm --dts --splitting",
+    "build": "tsup-node src/index.ts --format cjs,esm --dts --splitting --sourcemap --minify",
+    "build:dev": "tsup-node src/index.ts --format cjs,esm --dts --splitting",
     "test": "jest",
     "test:ci": "jest",
     "test:debug": "jest --runInBand",
