@@ -1,3 +1,9 @@
+#### 0.1.10 (2023-01-02)
+
+##### Bug Fixes
+
+- missing Inter font replacement (368603f7)
+
 #### 0.1.9 (2023-01-02)
 
 ##### New Features
