@@ -25,8 +25,8 @@
   },
   "scripts": {
     "start": "npm-watch",
-    "build": "npm run postcss && tsup src/index.ts --format cjs,esm --dts --splitting --sourcemap --minify",
-    "build:dev": "tsup src/index.ts --format cjs,esm --dts --splitting",
+    "build": "npm run postcss && tsup-node src/index.ts --format cjs,esm --dts --splitting --sourcemap --minify",
+    "build:dev": "tsup-node src/index.ts --format cjs,esm --dts --splitting",
     "postcss": "postcss assets/scss/style.scss -o dist/style.css -m",
     "test": "jest",
     "test:ci": "jest",
