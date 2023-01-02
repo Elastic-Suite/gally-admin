@@ -31,7 +31,7 @@ export function normalizeUrl(url = ''): string {
   return url
 }
 
-export async function fetchJson<T>(
+export async function fetchJson<T extends object>(
   url: string,
   options: RequestInit = {}
 ): Promise<{ json: T; response: Response }> {

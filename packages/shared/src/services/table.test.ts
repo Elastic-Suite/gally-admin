@@ -41,7 +41,7 @@ describe('Table service', () => {
 
   describe('getFieldHeader', () => {
     it('should return the field header', () => {
-      expect(getFieldHeader(fieldString, (key: string) => key)).toEqual({
+      expect(getFieldHeader(fieldString, <T>(x: T): T => x)).toEqual({
         depends: undefined,
         id: 'code',
         field: fieldString,
@@ -54,7 +54,7 @@ describe('Table service', () => {
         required: true,
         validation: undefined,
       })
-      expect(getFieldHeader(fieldDropdown, (key: string) => key)).toEqual({
+      expect(getFieldHeader(fieldDropdown, <T>(x: T): T => x)).toEqual({
         depends: undefined,
         id: 'code',
         field: fieldDropdown,
@@ -117,7 +117,7 @@ describe('Table service', () => {
             field: fieldString,
             multiple: false,
           },
-          (key: string) => key
+          <T>(x: T): T => x
         )
       ).toEqual({
         editable: true,

@@ -22,7 +22,9 @@ export class HydraError extends Error {
   }
 }
 
-export function isJSonldType<T>(json: T | IJsonldType): json is IJsonldType {
+export function isJSonldType<T extends object>(
+  json: T | IJsonldType
+): json is IJsonldType {
   return '@type' in json
 }
 
