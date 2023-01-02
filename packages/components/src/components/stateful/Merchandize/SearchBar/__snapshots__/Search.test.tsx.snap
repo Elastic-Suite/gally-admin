@@ -18,12 +18,12 @@ exports[`SearchBar match snapshot SearchBar 1`] = `
             style="display: flex; flex-direction: column;"
           >
             <div
-              class="MuiGrid-root css-iwdcax-MuiGrid-root"
+              class="MuiGrid-root css-1pan2h9-MuiGrid-root"
             >
               searchBar.title
             </div>
             <div
-              class="MuiGrid-root css-36pazz-MuiGrid-root"
+              class="MuiGrid-root css-1bhfatf-MuiGrid-root"
             >
               searchBarResult
                
@@ -32,13 +32,13 @@ exports[`SearchBar match snapshot SearchBar 1`] = `
           </div>
           <form>
             <div
-              class="MuiFormControl-root css-1pl6002-MuiFormControl-root"
+              class="MuiFormControl-root css-1bi1rm7-MuiFormControl-root"
             >
               <div
                 class="InputText__Wrapper css-newnfq"
               >
                 <div
-                  class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedEnd css-w8c12a-MuiInputBase-root"
+                  class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedEnd css-1czrsxs-MuiInputBase-root"
                 >
                   <input
                     aria-invalid="false"

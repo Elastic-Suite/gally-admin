@@ -49,7 +49,7 @@ exports[`Switch match snapshot Radio group defaultChecked False with default tru
         </span>
       </span>
       <span
-        class="MuiTypography-root MuiTypography-body1 MuiFormControlLabel-label Mui-disabled css-zhuy6w-MuiTypography-root"
+        class="MuiTypography-root MuiTypography-body1 MuiFormControlLabel-label Mui-disabled css-1lejrg3-MuiTypography-root"
       >
         Label One
       </span>
@@ -97,7 +97,7 @@ exports[`Switch match snapshot Radio group defaultChecked False with default tru
         />
       </span>
       <span
-        class="MuiTypography-root MuiTypography-body1 MuiFormControlLabel-label css-zhuy6w-MuiTypography-root"
+        class="MuiTypography-root MuiTypography-body1 MuiFormControlLabel-label css-1lejrg3-MuiTypography-root"
       >
         Label Two
       </span>
@@ -155,7 +155,7 @@ exports[`Switch match snapshot Radio group defaultChecked False without default 
         </span>
       </span>
       <span
-        class="MuiTypography-root MuiTypography-body1 MuiFormControlLabel-label Mui-disabled css-zhuy6w-MuiTypography-root"
+        class="MuiTypography-root MuiTypography-body1 MuiFormControlLabel-label Mui-disabled css-1lejrg3-MuiTypography-root"
       >
         Label One
       </span>
@@ -203,7 +203,7 @@ exports[`Switch match snapshot Radio group defaultChecked False without default 
         />
       </span>
       <span
-        class="MuiTypography-root MuiTypography-body1 MuiFormControlLabel-label css-zhuy6w-MuiTypography-root"
+        class="MuiTypography-root MuiTypography-body1 MuiFormControlLabel-label css-1lejrg3-MuiTypography-root"
       >
         Label Two
       </span>
@@ -261,7 +261,7 @@ exports[`Switch match snapshot Radio group defaultChecked true with default 1`] 
         </span>
       </span>
       <span
-        class="MuiTypography-root MuiTypography-body1 MuiFormControlLabel-label Mui-disabled css-zhuy6w-MuiTypography-root"
+        class="MuiTypography-root MuiTypography-body1 MuiFormControlLabel-label Mui-disabled css-1lejrg3-MuiTypography-root"
       >
         Label One
       </span>
@@ -310,7 +310,7 @@ exports[`Switch match snapshot Radio group defaultChecked true with default 1`] 
         />
       </span>
       <span
-        class="MuiTypography-root MuiTypography-body1 MuiFormControlLabel-label css-zhuy6w-MuiTypography-root"
+        class="MuiTypography-root MuiTypography-body1 MuiFormControlLabel-label css-1lejrg3-MuiTypography-root"
       >
         Label Two
       </span>
@@ -368,7 +368,7 @@ exports[`Switch match snapshot Radio group defaultChecked true without default 1
         </span>
       </span>
       <span
-        class="MuiTypography-root MuiTypography-body1 MuiFormControlLabel-label Mui-disabled css-zhuy6w-MuiTypography-root"
+        class="MuiTypography-root MuiTypography-body1 MuiFormControlLabel-label Mui-disabled css-1lejrg3-MuiTypography-root"
       >
         Label One
       </span>
@@ -416,7 +416,7 @@ exports[`Switch match snapshot Radio group defaultChecked true without default 1
         />
       </span>
       <span
-        class="MuiTypography-root MuiTypography-body1 MuiFormControlLabel-label css-zhuy6w-MuiTypography-root"
+        class="MuiTypography-root MuiTypography-body1 MuiFormControlLabel-label css-1lejrg3-MuiTypography-root"
       >
         Label Two
       </span>

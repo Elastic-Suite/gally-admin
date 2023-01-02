@@ -9,12 +9,12 @@ exports[`SubTabs match snapshot SubTabs defaultActive 0 1`] = `
       class="css-jve40n"
     >
       <button
-        class="css-1btl3ot"
+        class="css-1rumzc5"
       >
         Hello One
       </button>
       <button
-        class="css-9univ4"
+        class="css-m2r3sw"
       >
         Hello Two
       </button>
@@ -23,7 +23,7 @@ exports[`SubTabs match snapshot SubTabs defaultActive 0 1`] = `
       style="width: 100%; display: block;"
     >
       <button
-        class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium css-13u4ebv-MuiButtonBase-root-MuiButton-root"
+        class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium css-vuh189-MuiButtonBase-root-MuiButton-root"
         tabindex="0"
         type="button"
       >
@@ -49,12 +49,12 @@ exports[`SubTabs match snapshot SubTabs defaultActive 1 1`] = `
       class="css-jve40n"
     >
       <button
-        class="css-9univ4"
+        class="css-m2r3sw"
       >
         Hello One
       </button>
       <button
-        class="css-1btl3ot"
+        class="css-1rumzc5"
       >
         Hello Two
       </button>
@@ -66,7 +66,7 @@ exports[`SubTabs match snapshot SubTabs defaultActive 1 1`] = `
       style="width: 100%; display: block;"
     >
       <button
-        class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium css-13u4ebv-MuiButtonBase-root-MuiButton-root"
+        class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium css-vuh189-MuiButtonBase-root-MuiButton-root"
         tabindex="0"
         type="button"
       >

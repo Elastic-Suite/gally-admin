@@ -9,7 +9,7 @@ exports[`User match snapshot connected 1`] = `
       class="MuiBox-root css-0"
     >
       <div
-        class="css-l3v3zn"
+        class="css-b5pm8o"
       >
         <ion-icon
           name="help-circle-outline"
@@ -33,7 +33,7 @@ exports[`User match snapshot connected 1`] = `
                 class="css-c7ciki"
               >
                 <div
-                  class="css-ykyq1f"
+                  class="css-r0i2lt"
                 >
                   <a
                     class="css-ytumd6"
@@ -65,7 +65,7 @@ exports[`User match snapshot connected 1`] = `
           style="font-size: 15px; color: rgb(129, 135, 185);"
         />
         <div
-          class="css-1cn3y7o"
+          class="css-14i4ulh"
         >
           Admin@example.com
         </div>
@@ -95,7 +95,7 @@ exports[`User match snapshot connected 1`] = `
                 class="css-1vcaigq"
               >
                 <div
-                  class="css-9inyfk"
+                  class="css-7hkggi"
                 >
                   <div
                     class="css-3lsmy"

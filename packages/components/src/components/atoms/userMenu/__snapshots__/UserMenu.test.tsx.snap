@@ -13,7 +13,7 @@ exports[`UserMenu match snapshot UserMenu 1`] = `
         style="font-size: 15px; color: rgb(129, 135, 185);"
       />
       <div
-        class="css-1cn3y7o"
+        class="css-14i4ulh"
       >
         Admin@example.com
       </div>
@@ -43,7 +43,7 @@ exports[`UserMenu match snapshot UserMenu 1`] = `
               class="css-1vcaigq"
             >
               <div
-                class="css-9inyfk"
+                class="css-7hkggi"
               >
                 <div
                   class="css-3lsmy"

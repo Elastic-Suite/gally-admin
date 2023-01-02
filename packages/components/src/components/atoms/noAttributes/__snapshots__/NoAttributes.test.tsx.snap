@@ -10,12 +10,12 @@ exports[`NoAttributes match snapshot 1`] = `
       style="color: rgb(129, 135, 185); width: 40px; height: 40px;"
     />
     <div
-      class="css-1y7c3cz"
+      class="css-pbnn4f"
     >
       No attributes were specified as searchable in the settings
     </div>
     <button
-      class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge css-vnxxyn-MuiButtonBase-root-MuiButton-root"
+      class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge css-17v59uh-MuiButtonBase-root-MuiButton-root"
       tabindex="0"
       type="button"
     >

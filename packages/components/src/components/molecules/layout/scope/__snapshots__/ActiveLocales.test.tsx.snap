@@ -6,7 +6,7 @@ exports[`ActiveLocales match snapshot ActiveLocales simple 1`] = `
     class="css-18qndi"
   >
     <div
-      class="css-1tdvoqh"
+      class="css-6ho6b6"
     >
       Total
     </div>
@@ -14,12 +14,12 @@ exports[`ActiveLocales match snapshot ActiveLocales simple 1`] = `
       class="css-1un2rp5"
     >
       <div
-        class="css-13ehox3"
+        class="css-akp1oj"
       >
         9
       </div>
       <div
-        class="css-ry2e12"
+        class="css-svua9k"
       >
         catalog.activeLocale
       </div>
@@ -29,63 +29,63 @@ exports[`ActiveLocales match snapshot ActiveLocales simple 1`] = `
     >
       <div>
         <div
-          class="css-1tq682i"
+          class="css-1ahqu2p"
         >
           TestUn (France)
         </div>
       </div>
       <div>
         <div
-          class="css-1tq682i"
+          class="css-1ahqu2p"
         >
           TestUnAA (France)
         </div>
       </div>
       <div>
         <div
-          class="css-1tq682i"
+          class="css-1ahqu2p"
         >
           TestAAUn (France)
         </div>
       </div>
       <div>
         <div
-          class="css-1tq682i"
+          class="css-1ahqu2p"
         >
           TAAestUn (France)
         </div>
       </div>
       <div>
         <div
-          class="css-1tq682i"
+          class="css-1ahqu2p"
         >
           TesAEFtUn (France)
         </div>
       </div>
       <div>
         <div
-          class="css-1tq682i"
+          class="css-1ahqu2p"
         >
           TesRDGFCDeux (France)
         </div>
       </div>
       <div>
         <div
-          class="css-1tq682i"
+          class="css-1ahqu2p"
         >
           DeutGFDsh (États-Unis)
         </div>
       </div>
       <div>
         <div
-          class="css-1tq682i"
+          class="css-1ahqu2p"
         >
           Français (France)
         </div>
       </div>
       <div>
         <div
-          class="css-1tq682i"
+          class="css-1ahqu2p"
         >
           Anglais (États-Unis)
         </div>

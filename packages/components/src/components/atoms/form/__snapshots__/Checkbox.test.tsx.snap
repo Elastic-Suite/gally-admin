@@ -93,7 +93,7 @@ exports[`Checkbox match snapshot CheckboxLabel 1`] = `
       />
     </span>
     <span
-      class="MuiTypography-root MuiTypography-body2 MuiFormControlLabel-label css-vcrj0b-MuiTypography-root"
+      class="MuiTypography-root MuiTypography-body2 MuiFormControlLabel-label css-1b7mp2u-MuiTypography-root"
     >
       Label
     </span>
@@ -130,7 +130,7 @@ exports[`Checkbox match snapshot CheckboxLabelAndList 1`] = `
       />
     </span>
     <span
-      class="MuiTypography-root MuiTypography-caption MuiFormControlLabel-label css-5uu0g2-MuiTypography-root"
+      class="MuiTypography-root MuiTypography-caption MuiFormControlLabel-label css-a7n8va-MuiTypography-root"
     >
       Label
     </span>

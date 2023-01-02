@@ -7,7 +7,7 @@ exports[`AppBar match snapshot AppBar simple 1`] = `
   >
     <nav
       aria-label="breadcrumb"
-      class="MuiTypography-root MuiTypography-body1 MuiBreadcrumbs-root css-1sglq17-MuiTypography-root-MuiBreadcrumbs-root"
+      class="MuiTypography-root MuiTypography-body1 MuiBreadcrumbs-root css-qno6wy-MuiTypography-root-MuiBreadcrumbs-root"
     >
       <ol
         class="MuiBreadcrumbs-ol css-4pdmu4-MuiBreadcrumbs-ol"
@@ -16,7 +16,7 @@ exports[`AppBar match snapshot AppBar simple 1`] = `
           class="MuiBreadcrumbs-li"
         >
           <p
-            class="MuiTypography-root MuiTypography-body1 css-zhuy6w-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body1 css-1lejrg3-MuiTypography-root"
           >
             <span
               class="css-6nl1o3"
@@ -34,7 +34,7 @@ exports[`AppBar match snapshot AppBar simple 1`] = `
         class="MuiBox-root css-0"
       >
         <div
-          class="css-l3v3zn"
+          class="css-b5pm8o"
         >
           <ion-icon
             name="help-circle-outline"
@@ -58,7 +58,7 @@ exports[`AppBar match snapshot AppBar simple 1`] = `
                   class="css-c7ciki"
                 >
                   <div
-                    class="css-ykyq1f"
+                    class="css-r0i2lt"
                   >
                     <a
                       class="css-ytumd6"
@@ -90,7 +90,7 @@ exports[`AppBar match snapshot AppBar simple 1`] = `
             style="font-size: 15px; color: rgb(129, 135, 185);"
           />
           <div
-            class="css-1cn3y7o"
+            class="css-14i4ulh"
           >
             Admin@example.com
           </div>
@@ -120,7 +120,7 @@ exports[`AppBar match snapshot AppBar simple 1`] = `
                   class="css-1vcaigq"
                 >
                   <div
-                    class="css-9inyfk"
+                    class="css-7hkggi"
                   >
                     <div
                       class="css-3lsmy"
@@ -154,7 +154,7 @@ exports[`AppBar match snapshot AppBarThreeSlug 1`] = `
   >
     <nav
       aria-label="breadcrumb"
-      class="MuiTypography-root MuiTypography-body1 MuiBreadcrumbs-root css-1sglq17-MuiTypography-root-MuiBreadcrumbs-root"
+      class="MuiTypography-root MuiTypography-body1 MuiBreadcrumbs-root css-qno6wy-MuiTypography-root-MuiBreadcrumbs-root"
     >
       <ol
         class="MuiBreadcrumbs-ol css-4pdmu4-MuiBreadcrumbs-ol"
@@ -163,7 +163,7 @@ exports[`AppBar match snapshot AppBarThreeSlug 1`] = `
           class="MuiBreadcrumbs-li"
         >
           <p
-            class="MuiTypography-root MuiTypography-body1 css-zhuy6w-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body1 css-1lejrg3-MuiTypography-root"
           >
             <span
               class="css-1epdhd3"
@@ -182,7 +182,7 @@ exports[`AppBar match snapshot AppBarThreeSlug 1`] = `
           class="MuiBreadcrumbs-li"
         >
           <p
-            class="MuiTypography-root MuiTypography-body1 css-zhuy6w-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body1 css-1lejrg3-MuiTypography-root"
           >
             <span
               class="css-1epdhd3"
@@ -201,7 +201,7 @@ exports[`AppBar match snapshot AppBarThreeSlug 1`] = `
           class="MuiBreadcrumbs-li"
         >
           <p
-            class="MuiTypography-root MuiTypography-body1 css-zhuy6w-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body1 css-1lejrg3-MuiTypography-root"
           >
             <span
               class="css-6nl1o3"
@@ -219,7 +219,7 @@ exports[`AppBar match snapshot AppBarThreeSlug 1`] = `
         class="MuiBox-root css-0"
       >
         <div
-          class="css-l3v3zn"
+          class="css-b5pm8o"
         >
           <ion-icon
             name="help-circle-outline"
@@ -243,7 +243,7 @@ exports[`AppBar match snapshot AppBarThreeSlug 1`] = `
                   class="css-c7ciki"
                 >
                   <div
-                    class="css-ykyq1f"
+                    class="css-r0i2lt"
                   >
                     <a
                       class="css-ytumd6"
@@ -275,7 +275,7 @@ exports[`AppBar match snapshot AppBarThreeSlug 1`] = `
             style="font-size: 15px; color: rgb(129, 135, 185);"
           />
           <div
-            class="css-1cn3y7o"
+            class="css-14i4ulh"
           >
             Admin@example.com
           </div>
@@ -305,7 +305,7 @@ exports[`AppBar match snapshot AppBarThreeSlug 1`] = `
                   class="css-1vcaigq"
                 >
                   <div
-                    class="css-9inyfk"
+                    class="css-7hkggi"
                   >
                     <div
                       class="css-3lsmy"
@@ -339,7 +339,7 @@ exports[`AppBar match snapshot AppBarThreeSlug not connected 1`] = `
   >
     <nav
       aria-label="breadcrumb"
-      class="MuiTypography-root MuiTypography-body1 MuiBreadcrumbs-root css-1sglq17-MuiTypography-root-MuiBreadcrumbs-root"
+      class="MuiTypography-root MuiTypography-body1 MuiBreadcrumbs-root css-qno6wy-MuiTypography-root-MuiBreadcrumbs-root"
     >
       <ol
         class="MuiBreadcrumbs-ol css-4pdmu4-MuiBreadcrumbs-ol"
@@ -348,7 +348,7 @@ exports[`AppBar match snapshot AppBarThreeSlug not connected 1`] = `
           class="MuiBreadcrumbs-li"
         >
           <p
-            class="MuiTypography-root MuiTypography-body1 css-zhuy6w-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body1 css-1lejrg3-MuiTypography-root"
           >
             <span
               class="css-1epdhd3"
@@ -367,7 +367,7 @@ exports[`AppBar match snapshot AppBarThreeSlug not connected 1`] = `
           class="MuiBreadcrumbs-li"
         >
           <p
-            class="MuiTypography-root MuiTypography-body1 css-zhuy6w-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body1 css-1lejrg3-MuiTypography-root"
           >
             <span
               class="css-1epdhd3"
@@ -386,7 +386,7 @@ exports[`AppBar match snapshot AppBarThreeSlug not connected 1`] = `
           class="MuiBreadcrumbs-li"
         >
           <p
-            class="MuiTypography-root MuiTypography-body1 css-zhuy6w-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body1 css-1lejrg3-MuiTypography-root"
           >
             <span
               class="css-6nl1o3"
@@ -408,7 +408,7 @@ exports[`AppBar match snapshot AppBarTwoSlug 1`] = `
   >
     <nav
       aria-label="breadcrumb"
-      class="MuiTypography-root MuiTypography-body1 MuiBreadcrumbs-root css-1sglq17-MuiTypography-root-MuiBreadcrumbs-root"
+      class="MuiTypography-root MuiTypography-body1 MuiBreadcrumbs-root css-qno6wy-MuiTypography-root-MuiBreadcrumbs-root"
     >
       <ol
         class="MuiBreadcrumbs-ol css-4pdmu4-MuiBreadcrumbs-ol"
@@ -417,7 +417,7 @@ exports[`AppBar match snapshot AppBarTwoSlug 1`] = `
           class="MuiBreadcrumbs-li"
         >
           <p
-            class="MuiTypography-root MuiTypography-body1 css-zhuy6w-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body1 css-1lejrg3-MuiTypography-root"
           >
             <span
               class="css-1epdhd3"
@@ -436,7 +436,7 @@ exports[`AppBar match snapshot AppBarTwoSlug 1`] = `
           class="MuiBreadcrumbs-li"
         >
           <p
-            class="MuiTypography-root MuiTypography-body1 css-zhuy6w-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body1 css-1lejrg3-MuiTypography-root"
           >
             <span
               class="css-6nl1o3"
@@ -454,7 +454,7 @@ exports[`AppBar match snapshot AppBarTwoSlug 1`] = `
         class="MuiBox-root css-0"
       >
         <div
-          class="css-l3v3zn"
+          class="css-b5pm8o"
         >
           <ion-icon
             name="help-circle-outline"
@@ -478,7 +478,7 @@ exports[`AppBar match snapshot AppBarTwoSlug 1`] = `
                   class="css-c7ciki"
                 >
                   <div
-                    class="css-ykyq1f"
+                    class="css-r0i2lt"
                   >
                     <a
                       class="css-ytumd6"
@@ -510,7 +510,7 @@ exports[`AppBar match snapshot AppBarTwoSlug 1`] = `
             style="font-size: 15px; color: rgb(129, 135, 185);"
           />
           <div
-            class="css-1cn3y7o"
+            class="css-14i4ulh"
           >
             Admin@example.com
           </div>
@@ -540,7 +540,7 @@ exports[`AppBar match snapshot AppBarTwoSlug 1`] = `
                   class="css-1vcaigq"
                 >
                   <div
-                    class="css-9inyfk"
+                    class="css-7hkggi"
                   >
                     <div
                       class="css-3lsmy"
