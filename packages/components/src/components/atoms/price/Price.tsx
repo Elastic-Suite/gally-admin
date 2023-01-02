@@ -11,7 +11,7 @@ interface IProps {
 
 const PriceContainer = styled(Box)(({ theme }) => ({
   color: theme.palette.colors.neutral['900'],
-  fontFamily: 'inter',
+  fontFamily: 'var(--gally-font)',
   fontStyle: 'regular',
   fontSize: '14px',
   lineHeight: '20px',

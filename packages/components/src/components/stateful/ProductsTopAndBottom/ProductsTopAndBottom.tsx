@@ -21,7 +21,7 @@ import TopTable from '../TopAndBottomTable/TopTable'
 
 const PreviewArea = styled(Box)(({ theme }) => ({
   fontSize: '12px',
-  fontFamily: 'inter',
+  fontFamily: 'var(--gally-font)',
   lineHeight: '18px',
   padding: '16px 0  0 16px',
   color: theme.palette.colors.neutral['600'],

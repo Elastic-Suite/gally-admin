@@ -19,7 +19,7 @@ interface IPaginationStyle {
 
 const paginationStyle: IPaginationStyle = {
   color: theme.palette.colors.neutral[600],
-  fontFamily: 'inter',
+  fontFamily: 'var(--gally-font)',
   fontSize: '12px',
   lineHeight: '18px',
 }
