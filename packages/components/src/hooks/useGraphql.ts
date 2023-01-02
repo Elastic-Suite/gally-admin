@@ -26,7 +26,7 @@ export function useApiGraphql(secure = true): IGraphqlApi {
   const log = useLog()
 
   return useCallback(
-    async <T>(
+    async <T extends object>(
       query: string,
       variables?: Record<string, unknown>,
       options?: RequestInit
@@ -52,7 +52,7 @@ export function useApiGraphql(secure = true): IGraphqlApi {
   )
 }
 
-export function useGraphqlApi<T>(
+export function useGraphqlApi<T extends object>(
   query: string,
   variables?: Record<string, unknown>,
   options?: RequestInit

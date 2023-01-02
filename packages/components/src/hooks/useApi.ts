@@ -38,7 +38,7 @@ export function useApiFetch(secure = true): IFetchApi {
   const log = useLog()
 
   return useCallback<IFetchApi>(
-    async <T>(
+    async <T extends object>(
       resource: IResource | string,
       searchParameters?: ISearchParameters,
       options?: RequestInit
@@ -64,7 +64,7 @@ export function useApiFetch(secure = true): IFetchApi {
   )
 }
 
-export function useFetchApi<T>(
+export function useFetchApi<T extends object>(
   resource: IResource | string,
   searchParameters?: ISearchParameters,
   options?: RequestInit,
@@ -103,7 +103,7 @@ export function useFetchApi<T>(
   return [response, updateResponse, load]
 }
 
-export function useApiList<T>(
+export function useApiList<T extends object>(
   resource: IResource | string,
   page: number | false = 0,
   rowsPerPage: number = defaultPageSize,

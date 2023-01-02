@@ -41,7 +41,7 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "prepare": "install-peers && npm run build",
-    "preversion": "npm test && npm run eslint && npm run typescript",
+    "preversion": "npm test && npm run eslint && npm run typescript && npm run build",
     "changelog": "changelog"
   },
   "dependencies": {
