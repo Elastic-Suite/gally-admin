@@ -1,9 +1,31 @@
 {
   "name": "gally-admin-components",
+  "description": "Components package for gally admin BO",
+  "keywords": [
+    "gally",
+    "search",
+    "react",
+    "next"
+  ],
   "version": "0.1.10",
   "private": false,
+  "license": "osl-3.0",
+  "files": [
+    "dist/",
+    "public/",
+    "src/",
+    "CHANGELOG.md",
+    "index.d.ts",
+    "global.d.ts",
+    "README.md"
+  ],
   "main": "dist/index.js",
   "types": "index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Elastic-Suite/gally-admin",
+    "directory": "packages/components"
+  },
   "watch": {
     "build:dev": {
       "patterns": [
