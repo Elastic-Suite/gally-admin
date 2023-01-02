@@ -1,3 +1,9 @@
+#### 0.1.8 (2023-01-02)
+
+##### Chores
+
+- fix next-i18next dependency (a1564e0b)
+
 #### 0.1.7 (2023-01-02)
 
 ##### Bug Fixes
