@@ -16,7 +16,7 @@ import { getUrl } from './url'
 
 export class ApiError extends Error {}
 
-export function isApiError<T>(
+export function isApiError<T extends object>(
   json: T | IResponseError
 ): json is IResponseError {
   return 'code' in json && 'message' in json
@@ -32,7 +32,7 @@ export function getApiUrl(url = ''): string {
   return url
 }
 
-export function fetchApi<T>(
+export function fetchApi<T extends object>(
   language: string,
   resource: IResource | string,
   searchParameters: ISearchParameters = {},

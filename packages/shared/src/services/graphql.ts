@@ -20,7 +20,7 @@ export class GraphqlError extends Error {
   }
 }
 
-export function isGraphqlError<T>(
+export function isGraphqlError<T extends object>(
   json: T | IGraphqlError[]
 ): json is IGraphqlError[] {
   return 'errors' in json

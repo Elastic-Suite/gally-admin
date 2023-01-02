@@ -1,8 +1,8 @@
 import React, { useEffect, useMemo } from 'react'
-import { TFunction, useTranslation } from 'next-i18next'
+import { useTranslation } from 'next-i18next'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
-import { Callback } from 'i18next'
+import { Callback, TFunction } from 'i18next'
 
 import { i18nContext } from '../../../contexts'
 import { setLanguage, useAppDispatch } from '../../../store'
