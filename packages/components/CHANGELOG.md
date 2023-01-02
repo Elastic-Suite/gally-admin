@@ -1,3 +1,9 @@
+#### 0.1.7 (2023-01-02)
+
+##### Bug Fixes
+
+- use tsup-node to exclude all dependencies (33cb874b)
+
 #### 0.1.6 (2023-01-02)
 
 ##### Bug Fixes
