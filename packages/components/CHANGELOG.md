@@ -1,3 +1,9 @@
+### 0.2.0 (2023-01-02)
+
+##### Chores
+
+- remove unused files + update package.json files ([6be55061](https://github.com/Elastic-Suite/gally-admin/commit/6be550615f8f78cab7df74abdfc5970663d358d3))
+
 #### 0.1.10 (2023-01-02)
 
 ##### Bug Fixes
