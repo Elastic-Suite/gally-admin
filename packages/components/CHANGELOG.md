@@ -1,3 +1,13 @@
+#### 0.1.5 (2023-01-02)
+
+##### Chores
+
+- add scss build + fix depedencies (4ad6b2ae)
+
+##### Bug Fixes
+
+- types, links and update snapshots (39bb3d3f)
+
 #### 0.1.4 (2022-12-29)
 
 ##### Bug Fixes
