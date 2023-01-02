@@ -1,3 +1,9 @@
+#### 0.1.6 (2023-01-02)
+
+##### Bug Fixes
+
+- remove i18n configuration (07decaa2)
+
 #### 0.1.5 (2023-01-02)
 
 ##### Chores
