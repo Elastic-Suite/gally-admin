@@ -140,7 +140,7 @@ exports[`TopProductTable Should match snapschot 1`] = `
                 class="MuiBox-root css-0"
               >
                 <div
-                  class="MuiBox-root css-1sm7xfn"
+                  class="MuiBox-root css-1q1dwxg"
                 >
                   100.11
                 </div>
@@ -163,7 +163,7 @@ exports[`TopProductTable Should match snapschot 1`] = `
               class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-cug8wp-MuiTableCell-root"
             >
               <div
-                class="MuiBox-root css-1u92jb9"
+                class="MuiBox-root css-1ci6mhc"
               >
                  
                 10,00 €
@@ -252,7 +252,7 @@ exports[`TopProductTable Should match snapschot 1`] = `
                 class="MuiBox-root css-0"
               >
                 <div
-                  class="MuiBox-root css-1sm7xfn"
+                  class="MuiBox-root css-1q1dwxg"
                 >
                   100.11
                 </div>
@@ -275,7 +275,7 @@ exports[`TopProductTable Should match snapschot 1`] = `
               class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-cug8wp-MuiTableCell-root"
             >
               <div
-                class="MuiBox-root css-1u92jb9"
+                class="MuiBox-root css-1ci6mhc"
               >
                  
                 10,00 €

@@ -18,7 +18,7 @@ exports[`Pagination should match snapshot for bottom pagination 1`] = `
           class="MuiTablePagination-displayedRows css-lu9vn1-MuiTablePagination-displayedRows"
         >
           <span
-            class="css-vwp1eu"
+            class="css-oo4ti7"
           >
             6 - 10 pagination.of 10
           </span>
@@ -93,7 +93,7 @@ exports[`Pagination should match snapshot for top pagination 1`] = `
           class="MuiTablePagination-displayedRows css-lu9vn1-MuiTablePagination-displayedRows"
         >
           <span
-            class="css-vwp1eu"
+            class="css-oo4ti7"
           >
             6 - 10 pagination.of 10
           </span>

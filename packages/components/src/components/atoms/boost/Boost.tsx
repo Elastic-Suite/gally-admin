@@ -76,7 +76,7 @@ function Boost(props: IProps): JSX.Element {
       <Box
         sx={{
           color: boostDetail.boostTextColor,
-          fontFamily: 'inter',
+          fontFamily: 'var(--gally-font)',
           fontWeight: '500',
           fontSize: '12px',
           lineHeight: '18px',

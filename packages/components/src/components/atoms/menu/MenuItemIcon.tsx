@@ -108,7 +108,7 @@ const CustomClassNameStyleRoot = styled('div', {
   shouldForwardProp: (prop: string) =>
     !customClassNameStyleRootProps.includes(prop),
 })<{ lightStyle?: boolean }>(({ theme, lightStyle }) => ({
-  fontFamily: 'inter',
+  fontFamily: 'var(--gally-font)',
   fontWeight: lightStyle ? 600 : 500,
   fontSize: lightStyle ? 13 : 14,
   lineHeight: '20px',
@@ -136,7 +136,7 @@ const CustomClassNameStyle = styled('div', {
   lightStyle?: boolean
 }>(({ theme, lightStyle, isActive }) => ({
   display: 'flex',
-  fontFamily: 'inter',
+  fontFamily: 'var(--gally-font)',
   fontWeight: lightStyle ? 600 : 500,
   fontSize: lightStyle ? 13 : 14,
   lineHeight: '20px',

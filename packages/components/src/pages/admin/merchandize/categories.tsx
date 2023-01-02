@@ -264,7 +264,7 @@ function AdminMerchandizeCategories(): JSX.Element {
           <Box
             sx={{
               fontSize: '12px',
-              fontFamily: 'inter',
+              fontFamily: 'var(--gally-font)',
               lineHeight: '18px',
               padding: '16px 0  0 16px',
               color: 'colors.neutral.600',

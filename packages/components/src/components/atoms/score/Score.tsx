@@ -15,7 +15,7 @@ interface IProps {
 const ScoreContainer = styled(Box)({
   display: 'block',
   fontWeight: '550',
-  fontFamily: 'inter',
+  fontFamily: 'var(--gally-font)',
   fontSize: '16px',
   lineHeight: '24px',
   align: 'left',

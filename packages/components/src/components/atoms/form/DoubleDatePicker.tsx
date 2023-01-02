@@ -13,7 +13,7 @@ import InfoTooltip from './InfoTooltip'
 
 const CustomBox = styled(Box)(() => ({
   fontWeight: 400,
-  fontFamily: 'inter',
+  fontFamily: 'var(--gally-font)',
 }))
 
 export interface IDoubleDatePickerValues {
