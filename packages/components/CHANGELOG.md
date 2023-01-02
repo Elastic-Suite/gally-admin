@@ -1,3 +1,9 @@
+#### 0.1.9 (2023-01-02)
+
+##### New Features
+
+- use --gally-font CSS variable and add back i18n dependencies (c0450284)
+
 #### 0.1.8 (2023-01-02)
 
 ##### Chores
