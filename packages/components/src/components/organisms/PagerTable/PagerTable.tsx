@@ -13,7 +13,7 @@ const Root = styled('div')(({ theme }) => ({
 }))
 
 const CustomNoResult = styled('div')(({ theme }) => ({
-  fontFamily: 'Inter',
+  fontFamily: 'var(--gally-font)',
   fontWeight: 500,
   fontSize: 14,
   lineHeight: '20px',

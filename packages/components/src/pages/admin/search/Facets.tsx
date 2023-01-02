@@ -38,7 +38,7 @@ const IonIconStyle = styled(IonIcon)(() => ({
 
 const DefaultButton = styled('button')(() => ({
   fontWeight: 500,
-  fontFamily: 'Inter',
+  fontFamily: 'var(--gally-font)',
   lineHeight: '18px',
   fontSize: '12px',
   border: 'none',

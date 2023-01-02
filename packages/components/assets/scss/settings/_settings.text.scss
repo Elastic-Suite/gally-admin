@@ -6,7 +6,7 @@
 ========================================================================== */
 
 /* Font families */
-$font-inter: 'Inter';
+$font-inter: var(--gally-font);
 
 /* Define all the headings font-size */
 $font-size-h1: 36px;

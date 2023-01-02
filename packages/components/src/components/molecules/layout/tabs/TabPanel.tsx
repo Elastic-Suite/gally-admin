@@ -32,7 +32,7 @@ function TabPanel(props: IProps): JSX.Element {
             fontSize: '14px',
             lineHeight: '20px',
             fontWeight: 500,
-            fontFamily: 'Inter',
+            fontFamily: 'var(--gally-font)',
           }}
         >
           {children}

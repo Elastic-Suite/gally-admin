@@ -8,7 +8,7 @@ const Title = styled('div')(({ theme }) => ({
   fontWeight: 600,
   fontSize: '14px',
   lineHeight: '20px',
-  fontFamily: 'Inter',
+  fontFamily: 'var(--gally-font)',
   padding: theme.spacing(2),
   paddingBottom: theme.spacing(2),
   borderTop: '1px solid',
@@ -23,7 +23,7 @@ const Subtitle = styled('div')(({ theme }) => ({
   fontWeight: 400,
   fontSize: '12px',
   lineHeight: '18px',
-  fontFamily: 'Inter',
+  fontFamily: 'var(--gally-font)',
   padding: theme.spacing(2),
   paddingBottom: 0,
 }))

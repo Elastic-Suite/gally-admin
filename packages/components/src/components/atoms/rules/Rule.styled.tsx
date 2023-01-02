@@ -29,7 +29,7 @@ export const Close = styled('div')(({ theme }) => ({
 export const CustomCombination = styled('div')(({ theme }) => ({
   paddingLeft: theme.spacing(1),
   paddingRight: theme.spacing(1),
-  fontFamily: 'Inter',
+  fontFamily: 'var(--gally-font)',
   color: theme.palette.colors.neutral['900'],
   fontWeight: 400,
   lineHeight: '18px',
