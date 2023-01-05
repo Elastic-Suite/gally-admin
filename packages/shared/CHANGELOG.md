@@ -1,3 +1,9 @@
+#### 0.1.13 (2023-01-05)
+
+##### Refactors
+
+- rename Catalog Parameter #ESPP-526 ([25cc1dc0](https://github.com/Elastic-Suite/gally-admin/commit/25cc1dc0e512c0e9f6a699d203d9e448ff2b6fcd))
+
 #### 0.1.12 (2023-01-05)
 
 ##### Chores
