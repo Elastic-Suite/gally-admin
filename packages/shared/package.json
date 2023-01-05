@@ -9,7 +9,7 @@
   ],
   "version": "0.1.11",
   "private": false,
-  "license": "osl-3.0",
+  "license": "OSL-3.0",
   "files": [
     "dist/",
     "src/",
@@ -25,7 +25,7 @@
     "directory": "packages/shared"
   },
   "scripts": {
-    "start": "chokidar \"src/**/*.ts\" \"src/**/*.tsx\" -i \"src/**/*.test.ts\" -i \"src/**/*.test.tsx\" -i \"src/**/__mocks__/*.ts\" -c \"yarn build\"",
+    "start": "chokidar \"src/**/*.ts\" \"src/**/*.tsx\" -i \"src/**/*.test.ts\" -i \"src/**/*.test.tsx\" -i \"src/**/__mocks__/*.ts\" -c \"yarn build:dev\"",
     "build": "tsup-node src/index.ts --format cjs,esm --dts --splitting --sourcemap --minify",
     "build:dev": "tsup-node src/index.ts --format cjs,esm --dts --splitting",
     "test": "jest",
