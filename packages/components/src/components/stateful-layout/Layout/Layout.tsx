@@ -38,6 +38,7 @@ const CustomRoot = styled('div')(({ theme }) => ({
   minHeight: '100vh',
   backgroundColor: theme.palette.background.default,
   position: 'relative',
+  fontFamily: 'var(--gally-font)',
 }))
 
 const CustomAppFrame = styled('div')({
