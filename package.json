@@ -29,6 +29,8 @@
     "bumpAndPublish": "yarn prettier && git add . && git commit -m 'docs: update CHANGELOG files' && lerna publish --no-private"
   },
   "devDependencies": {
+    "@commitlint/cli": "17.4.0",
+    "@commitlint/config-conventional": "17.4.0",
     "concurrently": "7.4.0",
     "husky": "8.0.1",
     "lerna": "6.3.0"
