@@ -139,7 +139,7 @@ export interface IGraphqlViewMoreFacetOption {
 
 export interface IGraphqlViewMoreFacetOptionsVariables {
   aggregation: string
-  catalogId: string
+  localizedCatalog: string
   currentCategoryId?: string
   filter?: IProductFieldFilterInput[] | IProductFieldFilterInput
   search?: string
