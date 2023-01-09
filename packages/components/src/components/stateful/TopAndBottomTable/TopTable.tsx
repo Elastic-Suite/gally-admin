@@ -1,4 +1,10 @@
-import React, { Dispatch, SetStateAction, useContext, useMemo } from 'react'
+import React, {
+  Dispatch,
+  SetStateAction,
+  useContext,
+  useEffect,
+  useMemo,
+} from 'react'
 import {
   IConfigurations,
   IGraphqlProductPosition,
@@ -27,6 +33,8 @@ interface IProps {
   topProductsIds: number[]
   sortValue: string
   configuration: IConfigurations
+  searchValue: string
+  setNbTopRows: (value: number) => void
 }
 
 function TopTable(props: IProps): JSX.Element {
@@ -39,6 +47,8 @@ function TopTable(props: IProps): JSX.Element {
     topProductsIds,
     sortValue,
     configuration,
+    searchValue,
+    setNbTopRows,
   } = props
   const { localizedCatalogIdWithDefault } = useContext(catalogContext)
 
@@ -53,6 +63,20 @@ function TopTable(props: IProps): JSX.Element {
   if (topProductsIds.length > 0) {
     filters.push({ id: { in: topProductsIds } })
   }
+
+  if (searchValue) {
+    filters.push({
+      boolFilter: {
+        _should: [
+          {
+            name: { match: searchValue },
+          },
+          { sku: { eq: searchValue } },
+        ],
+      },
+    })
+  }
+
   const [products] = useGraphqlApi<IGraphqlSearchProducts>(
     getSearchProductsQuery(filters),
     variables
@@ -70,6 +94,10 @@ function TopTable(props: IProps): JSX.Element {
       },
     })
   }
+
+  useEffect(() => {
+    setNbTopRows(products?.data?.products.paginationInfo.totalCount || 0)
+  }, [products?.data?.products.paginationInfo.totalCount, setNbTopRows])
 
   const topProductsMap = Object.fromEntries(
     topProducts.map(({ position, productId }) => [productId, position])
@@ -100,27 +128,24 @@ function TopTable(props: IProps): JSX.Element {
   }
 
   return (
-    <>
-      {products.status === LoadStatus.SUCCEEDED &&
-        sortValue === 'category__position' && (
-          <div>
-            <TopProductsTable
-              border
-              draggable
-              Field={FieldGuesser}
-              massiveSelectionIndeterminate={massiveSelectionIndeterminate}
-              massiveSelectionState={massiveSelectionState}
-              onReOrder={handleReorder}
-              onSelection={handleSelection}
-              selectedRows={selectedRows}
-              tableHeaders={productTableheader}
-              tableRows={tableRows}
-              withSelection={withSelection}
-              configuration={configuration}
-            />
-          </div>
-        )}
-    </>
+    products.status === LoadStatus.SUCCEEDED &&
+    sortValue === 'category__position' &&
+    tableRows.length !== 0 && (
+      <TopProductsTable
+        border
+        draggable
+        Field={FieldGuesser}
+        massiveSelectionIndeterminate={massiveSelectionIndeterminate}
+        massiveSelectionState={massiveSelectionState}
+        onReOrder={handleReorder}
+        onSelection={handleSelection}
+        selectedRows={selectedRows}
+        tableHeaders={productTableheader}
+        tableRows={tableRows}
+        withSelection={withSelection}
+        configuration={configuration}
+      />
+    )
   )
 }
 
