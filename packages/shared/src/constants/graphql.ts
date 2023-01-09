@@ -80,14 +80,14 @@ export function getMoreFacetOptionsQuery(
     query: {
       __name: 'viewMoreProductFacetOptions',
       __variables: {
-        catalogId: 'String!',
+        localizedCatalog: 'String!',
         aggregation: 'String!',
         currentCategoryId: 'String',
         search: 'String',
       },
       viewMoreProductFacetOptions: {
         __args: {
-          catalogId: new VariableType('catalogId'),
+          localizedCatalog: new VariableType('localizedCatalog'),
           aggregation: new VariableType('aggregation'),
           currentCategoryId: new VariableType('currentCategoryId'),
           search: new VariableType('search'),
