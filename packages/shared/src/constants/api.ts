@@ -12,7 +12,7 @@ export const gqlUrl = `${url}/graphql`
 export const searchableAttributeUrl = '?isSearchable=true'
 
 export const authHeader = 'Authorization'
-export const languageHeader = 'Elasticsuite-Language'
+export const languageHeader = 'Gally-Language'
 export const contentTypeHeader = 'Content-Type'
 
 export const authErrorCodes = [401, 403]

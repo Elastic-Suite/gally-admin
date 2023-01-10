@@ -15,7 +15,7 @@
   },
   "@id": "/docs.jsonld",
   "@type": "hydra:ApiDocumentation",
-  "hydra:title": "Elasticsuite API",
+  "hydra:title": "Gally API",
   "hydra:entrypoint": "/",
   "hydra:supportedClass": [
     {
@@ -105,7 +105,7 @@
           "hydra:required": true,
           "hydra:readable": true,
           "hydra:writeable": true,
-          "elasticsuite": { "visible": true, "editable": false, "position": 10 }
+          "gally": { "visible": true, "editable": false, "position": 10 }
         },
         {
           "@type": "hydra:SupportedProperty",
@@ -120,7 +120,7 @@
           "hydra:required": false,
           "hydra:readable": true,
           "hydra:writeable": true,
-          "elasticsuite": { "visible": true, "editable": false, "position": 20 }
+          "gally": { "visible": true, "editable": false, "position": 20 }
         },
         {
           "@type": "hydra:SupportedProperty",
@@ -135,7 +135,7 @@
           "hydra:required": false,
           "hydra:readable": true,
           "hydra:writeable": true,
-          "elasticsuite": {
+          "gally": {
             "visible": true,
             "editable": false,
             "position": 30,
@@ -175,7 +175,7 @@
           "hydra:required": false,
           "hydra:readable": true,
           "hydra:writeable": true,
-          "elasticsuite": {
+          "gally": {
             "visible": true,
             "editable": true,
             "position": 40,
@@ -197,7 +197,7 @@
           "hydra:required": false,
           "hydra:readable": true,
           "hydra:writeable": true,
-          "elasticsuite": {
+          "gally": {
             "visible": true,
             "editable": true,
             "position": 50,
@@ -219,7 +219,7 @@
           "hydra:required": false,
           "hydra:readable": true,
           "hydra:writeable": true,
-          "elasticsuite": {
+          "gally": {
             "visible": true,
             "editable": true,
             "position": 60,
@@ -241,7 +241,7 @@
           "hydra:required": false,
           "hydra:readable": true,
           "hydra:writeable": true,
-          "elasticsuite": {
+          "gally": {
             "visible": true,
             "editable": true,
             "position": 70,
@@ -263,7 +263,7 @@
           "hydra:required": false,
           "hydra:readable": true,
           "hydra:writeable": true,
-          "elasticsuite": {
+          "gally": {
             "visible": false,
             "editable": true,
             "position": 80,
@@ -300,7 +300,7 @@
           "hydra:required": false,
           "hydra:readable": true,
           "hydra:writeable": true,
-          "elasticsuite": {
+          "gally": {
             "visible": false,
             "editable": true,
             "position": 90,
@@ -1354,7 +1354,7 @@
           "hydra:required": false,
           "hydra:readable": true,
           "hydra:writeable": true,
-          "elasticsuite": {
+          "gally": {
             "visible": true,
             "editable": true,
             "position": 20,
@@ -1381,7 +1381,7 @@
           "hydra:required": false,
           "hydra:readable": true,
           "hydra:writeable": true,
-          "elasticsuite": {
+          "gally": {
             "visible": true,
             "editable": true,
             "position": 30,
@@ -1402,7 +1402,7 @@
           "hydra:required": false,
           "hydra:readable": true,
           "hydra:writeable": true,
-          "elasticsuite": {
+          "gally": {
             "visible": true,
             "editable": true,
             "position": 40,
@@ -1422,7 +1422,7 @@
           "hydra:required": false,
           "hydra:readable": true,
           "hydra:writeable": true,
-          "elasticsuite": {
+          "gally": {
             "visible": true,
             "editable": true,
             "position": 50,
@@ -1450,7 +1450,7 @@
           "hydra:required": false,
           "hydra:readable": true,
           "hydra:writeable": true,
-          "elasticsuite": { "visible": true, "editable": true, "position": 60 }
+          "gally": { "visible": true, "editable": true, "position": 60 }
         },
         {
           "@type": "hydra:SupportedProperty",
@@ -1465,7 +1465,7 @@
           "hydra:required": false,
           "hydra:readable": true,
           "hydra:writeable": true,
-          "elasticsuite": { "visible": true, "editable": true, "position": 70 }
+          "gally": { "visible": true, "editable": true, "position": 70 }
         },
         {
           "@type": "hydra:SupportedProperty",
@@ -1564,7 +1564,7 @@
           "hydra:required": false,
           "hydra:readable": true,
           "hydra:writeable": false,
-          "elasticsuite": { "visible": true, "editable": false, "position": 10 }
+          "gally": { "visible": true, "editable": false, "position": 10 }
         }
       ],
       "hydra:supportedOperation": [
@@ -1789,7 +1789,7 @@
           "hydra:required": false,
           "hydra:readable": true,
           "hydra:writeable": true,
-          "elasticsuite": {
+          "gally": {
             "input": "select",
             "options": {
               "api_rest": "/category_sorting_options",

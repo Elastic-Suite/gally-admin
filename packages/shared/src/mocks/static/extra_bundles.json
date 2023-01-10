@@ -4,8 +4,8 @@
   "@type": "hydra:Collection",
   "hydra:member": [
     {
-      "id": "ElasticsuiteVirtualCategoryBundle",
-      "name": "ElasticsuiteVirtualCategoryBundle"
+      "id": "GallyVirtualCategoryBundle",
+      "name": "GallyVirtualCategoryBundle"
     }
   ],
   "hydra:totalItems": 1

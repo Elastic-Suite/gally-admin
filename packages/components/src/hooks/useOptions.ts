@@ -33,16 +33,16 @@ export function useOptions(): IOptionsContext {
       return fetch(id, async (fetchApi: IFetchApi) => {
         if (hasFieldOptions(field)) {
           // get options from the schema
-          if (isDropdownStaticOptions(field.elasticsuite?.options)) {
+          if (isDropdownStaticOptions(field.gally?.options)) {
             // static options
-            const options = field.elasticsuite.options.values.map((option) => ({
+            const options = field.gally.options.values.map((option) => ({
               ...option,
               label: t(String(option.label)),
             }))
             return options
           }
           // options from api
-          const response = await fetchApi(field.elasticsuite.options.api_rest)
+          const response = await fetchApi(field.gally.options.api_rest)
           if (!isError(response)) {
             return getOptionsFromApiSchema(
               response as IHydraResponse<IApiSchemaOptions>

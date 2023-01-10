@@ -14,8 +14,8 @@ jest.mock('./useApi', () => ({
       data: {
         'hydra:member': [
           {
-            id: 'ElasticsuiteVirtualCategoryBundle',
-            name: 'ElasticsuiteVirtualCategoryBundle',
+            id: 'GallyVirtualCategoryBundle',
+            name: 'GallyVirtualCategoryBundle',
           },
         ],
       },
@@ -41,7 +41,7 @@ describe('useDataLoader', () => {
       api: 'api',
       bundles: [Bundle.VIRTUAL_CATEGORY],
       configurations: {
-        ElasticsuiteVirtualCategoryBundle: undefined,
+        GallyVirtualCategoryBundle: undefined,
       },
     })
   })

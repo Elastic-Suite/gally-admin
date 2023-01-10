@@ -41,10 +41,10 @@ export function getFieldInput(
   fallback: DataContentType
 ): DataContentType {
   if (
-    field.elasticsuite?.input &&
-    isDataContentType(field.elasticsuite.input)
+    field.gally?.input &&
+    isDataContentType(field.gally.input)
   ) {
-    return field.elasticsuite.input
+    return field.gally.input
   }
   return fallback
 }
@@ -53,10 +53,10 @@ export function getFieldConfig(
   field: IField
 ): Pick<IFieldConfig, 'depends' | 'field' | 'suffix' | 'validation'> {
   return {
-    depends: field.elasticsuite?.depends,
+    depends: field.gally?.depends,
     field,
-    suffix: field.elasticsuite?.input === 'percentage' ? '%' : '',
-    validation: field.elasticsuite?.validation,
+    suffix: field.gally?.input === 'percentage' ? '%' : '',
+    validation: field.gally?.validation,
   }
 }
 
@@ -67,13 +67,13 @@ export function getFieldHeader(field: IField, t: TFunction): IFieldConfig {
   const input = getFieldInput(field, type)
   return {
     ...fieldConfig,
-    editable: field.elasticsuite?.editable && field.writeable,
+    editable: field.gally?.editable && field.writeable,
     id,
     input,
     label:
       field.property.label ?? t(...getFieldLabelTranslationArgs(field.title)),
     name: id,
-    required: field.elasticsuite?.required ?? field.required,
+    required: field.gally?.required ?? field.required,
     type,
   }
 }
@@ -132,12 +132,12 @@ export function getMappings<T extends IHydraMember>(
     .map((mapping) => mapping.property)
 
   return mappings
-    ?.filter((mapping) => mapping.field.elasticsuite?.visible)
+    ?.filter((mapping) => mapping.field.gally?.visible)
     .filter(
       (mapping) =>
         !arrayProperties.includes(mapping.property) || mapping.multiple
     )
     .sort(
-      (a, b) => a.field.elasticsuite?.position - b.field.elasticsuite?.position
+      (a, b) => a.field.gally?.position - b.field.gally?.position
     )
 }
