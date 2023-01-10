@@ -1,4 +1,4 @@
-import { IElasticSuiteProperty } from './hydra'
+import { IGallyProperty } from './hydra'
 import { IJsonldBase, IJsonldId, IJsonldType } from './jsonld'
 import { IError, Method } from './network'
 
@@ -15,7 +15,7 @@ export interface IField extends IJsonldType {
   required: boolean
   title: string
   writeable: boolean
-  elasticsuite?: IElasticSuiteProperty
+  gally?: IGallyProperty
 }
 
 export interface IOperation extends IJsonldType {

@@ -22,8 +22,8 @@ describe('Field service', () => {
         )
       ).toEqual({
         ...fieldDropdownWithContext,
-        elasticsuite: {
-          ...fieldDropdownWithContext.elasticsuite,
+        gally: {
+          ...fieldDropdownWithContext.gally,
           editable: false,
           position: 20,
           visible: true,
@@ -36,8 +36,8 @@ describe('Field service', () => {
         )
       ).toEqual({
         ...fieldDropdownWithContext,
-        elasticsuite: {
-          ...fieldDropdownWithContext.elasticsuite,
+        gally: {
+          ...fieldDropdownWithContext.gally,
           editable: false,
           position: 30,
           visible: false,
@@ -53,8 +53,8 @@ describe('Field service', () => {
         )
       ).toEqual({
         ...fieldDropdown,
-        elasticsuite: {
-          ...fieldDropdown.elasticsuite,
+        gally: {
+          ...fieldDropdown.gally,
           editable: false,
           position: 10,
           visible: true,
@@ -70,8 +70,8 @@ describe('Field service', () => {
         )
       ).toEqual({
         ...fieldDropdownWithContext,
-        elasticsuite: {
-          ...fieldDropdownWithContext.elasticsuite,
+        gally: {
+          ...fieldDropdownWithContext.gally,
           editable: false,
           position: 10,
           visible: true,
@@ -90,11 +90,11 @@ describe('Field service', () => {
   describe('isDropdownStaticOptions', () => {
     it('should check if field schema options are static or not', () => {
       expect(
-        isDropdownStaticOptions(fieldDropdown.elasticsuite.options)
+        isDropdownStaticOptions(fieldDropdown.gally.options)
       ).toEqual(true)
       expect(
         isDropdownStaticOptions(
-          fieldDropdownWithApiOptions.elasticsuite.options
+          fieldDropdownWithApiOptions.gally.options
         )
       ).toEqual(false)
     })

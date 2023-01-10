@@ -1,1 +1,1 @@
-export const tokenStorageKey = 'elasticSuiteToken'
+export const tokenStorageKey = 'gallyToken'

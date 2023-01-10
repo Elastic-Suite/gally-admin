@@ -43,7 +43,7 @@ describe('Api service', () => {
       expect(fetchJson).toHaveBeenCalledWith('http://localhost/test', {
         headers: {
           'Content-Type': 'application/ld+json',
-          'Elasticsuite-Language': 'en',
+          'Gally-Language': 'en',
         },
       })
     })
@@ -55,7 +55,7 @@ describe('Api service', () => {
       expect(fetchJson).toHaveBeenCalledWith('https://localhost/metadata', {
         headers: {
           'Content-Type': 'application/ld+json',
-          'Elasticsuite-Language': 'en',
+          'Gally-Language': 'en',
         },
       })
     })
@@ -71,7 +71,7 @@ describe('Api service', () => {
         headers: {
           Authorization: 'Bearer token',
           'Content-Type': 'application/ld+json',
-          'Elasticsuite-Language': 'en',
+          'Gally-Language': 'en',
         },
       })
     })
@@ -86,7 +86,7 @@ describe('Api service', () => {
       expect(fetchJson).toHaveBeenCalledWith('http://localhost/restricted', {
         headers: {
           'Content-Type': 'application/ld+json',
-          'Elasticsuite-Language': 'en',
+          'Gally-Language': 'en',
         },
       })
     })
@@ -102,10 +102,10 @@ describe('Api service', () => {
       expect(fetchJson).toHaveBeenCalledWith('http://localhost/restricted', {
         headers: {
           'Content-Type': 'application/ld+json',
-          'Elasticsuite-Language': 'en',
+          'Gally-Language': 'en',
         },
       })
-      expect(storageRemove).toHaveBeenCalledWith('elasticSuiteToken')
+      expect(storageRemove).toHaveBeenCalledWith('gallyToken')
     })
 
     it('should throw an error (HydraError)', async () => {
@@ -118,7 +118,7 @@ describe('Api service', () => {
       expect(fetchJson).toHaveBeenCalledWith('http://localhost/restricted', {
         headers: {
           'Content-Type': 'application/ld+json',
-          'Elasticsuite-Language': 'en',
+          'Gally-Language': 'en',
         },
       })
     })
@@ -134,10 +134,10 @@ describe('Api service', () => {
       expect(fetchJson).toHaveBeenCalledWith('http://localhost/restricted', {
         headers: {
           'Content-Type': 'application/ld+json',
-          'Elasticsuite-Language': 'en',
+          'Gally-Language': 'en',
         },
       })
-      expect(storageRemove).toHaveBeenCalledWith('elasticSuiteToken')
+      expect(storageRemove).toHaveBeenCalledWith('gallyToken')
     })
   })
 

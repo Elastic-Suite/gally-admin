@@ -1,17 +1,17 @@
 import {
   IDropdownApiOptions,
   IDropdownStaticOptions,
-  IElasticSuiteProperty,
+  IGallyProperty,
   IField,
   IFieldCondition,
   IFieldState,
 } from '../types'
 
 function updateProperties(
-  properties: IElasticSuiteProperty,
+  properties: IGallyProperty,
   key: string,
   value: number | boolean
-): IElasticSuiteProperty {
+): IGallyProperty {
   if (key === 'visible') {
     return {
       ...properties,
@@ -40,12 +40,12 @@ export function updatePropertiesAccordingToPath(
   } else {
     path = path?.replaceAll('/', '_').replace('_admin_', '')
   }
-  if (field.elasticsuite?.context) {
-    const [, newPropertiesvalues] = Object.entries(field.elasticsuite?.context)
+  if (field.gally?.context) {
+    const [, newPropertiesvalues] = Object.entries(field.gally?.context)
       .filter(([key, _]) => key === path)
       .flat()
     if (newPropertiesvalues) {
-      let newProperties = field.elasticsuite
+      let newProperties = field.gally
       // eslint-disable-next-line no-return-assign
       Object.entries(newPropertiesvalues).forEach(
         ([property, propertyValue]) =>
@@ -57,7 +57,7 @@ export function updatePropertiesAccordingToPath(
       )
       return {
         ...field,
-        elasticsuite: newProperties,
+        gally: newProperties,
       }
     }
   }
@@ -65,7 +65,7 @@ export function updatePropertiesAccordingToPath(
 }
 
 export function hasFieldOptions(field: IField): boolean {
-  return Boolean(field.elasticsuite?.options)
+  return Boolean(field.gally?.options)
 }
 
 export function isDropdownStaticOptions(

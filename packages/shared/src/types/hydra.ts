@@ -89,8 +89,8 @@ export interface IHydraProperty extends IJsonldBase {
   'rdfs:range'?: (IJsonldId | IRdfsRange)[]
 }
 
-export interface IElasticSuiteProperty {
-  context?: Record<string, IElasticSuiteProperty>
+export interface IGallyProperty {
+  context?: Record<string, IGallyProperty>
   depends?: IFieldCondition
   editable?: boolean
   input?: string
@@ -118,7 +118,7 @@ export interface IHydraSupportedProperty extends IJsonldType {
   'hydra:required'?: boolean
   'hydra:title': string
   'hydra:writeable': boolean
-  elasticsuite?: IElasticSuiteProperty
+  gally?: IGallyProperty
 }
 
 export interface IHydraSupportedClass extends IJsonldBase {
@@ -199,12 +199,12 @@ export interface IExpandedHydraProperty extends IJsonldBase {
   'http://www.w3.org/ns/hydra/core#supportedOperation'?: IExpandedHydraSupportedOperation[]
 }
 
-export interface IExpandedElasticSuiteProperty {
+export interface IExpandedGallyProperty {
   'https://localhost/docs.jsonld#editable'?: [IJsonldBoolean]
   'https://localhost/docs.jsonld#position'?: [IJsonldNumber]
   'https://localhost/docs.jsonld#visible'?: [IJsonldBoolean]
   'https://localhost/docs.jsonld#context'?: [
-    Record<string, [IExpandedElasticSuiteProperty]>
+    Record<string, [IExpandedGallyProperty]>
   ]
 }
 
@@ -214,7 +214,7 @@ export interface IExpandedHydraSupportedProperty extends IJsonldType {
   'http://www.w3.org/ns/hydra/core#required'?: [IJsonldBoolean]
   'http://www.w3.org/ns/hydra/core#title': [IJsonldString]
   'http://www.w3.org/ns/hydra/core#writeable': [IJsonldBoolean]
-  'https://localhost/docs.jsonld#elasticsuite'?: IExpandedElasticSuiteProperty
+  'https://localhost/docs.jsonld#gally'?: IExpandedGallyProperty
 }
 
 export interface IExpandedHydraSupportedClass extends IJsonldBase {

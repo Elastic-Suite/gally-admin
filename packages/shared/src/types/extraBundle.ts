@@ -1,5 +1,5 @@
 export enum Bundle {
-  VIRTUAL_CATEGORY = 'ElasticsuiteVirtualCategoryBundle',
+  VIRTUAL_CATEGORY = 'GallyVirtualCategoryBundle',
 }
 
 export interface IExtraBundle {

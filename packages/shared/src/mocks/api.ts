@@ -2,7 +2,7 @@ import { DataContentType, IApi, IField, IResource } from '../types'
 
 export const fieldDropdown = {
   '@type': 'http://www.w3.org/ns/hydra/core#SupportedProperty',
-  elasticsuite: {
+  gally: {
     input: 'select',
     options: {
       values: [
@@ -29,7 +29,7 @@ export const fieldDropdown = {
 
 export const fieldDropdownWithContext = {
   '@type': 'http://www.w3.org/ns/hydra/core#SupportedProperty',
-  elasticsuite: {
+  gally: {
     input: 'select' as DataContentType,
     options: {
       values: [
@@ -66,7 +66,7 @@ export const fieldDropdownWithContext = {
 
 export const fieldDropdownWithApiOptions = {
   '@type': 'http://www.w3.org/ns/hydra/core#SupportedProperty',
-  elasticsuite: {
+  gally: {
     input: 'select',
     options: {
       api_rest: '/category_sorting_options',
@@ -526,7 +526,7 @@ export const resources = [
     supportedProperty: [
       {
         '@type': 'http://www.w3.org/ns/hydra/core#SupportedProperty',
-        elasticsuite: { editable: false, position: 10, visible: true },
+        gally: { editable: false, position: 10, visible: true },
         property: {
           '@id': 'https://localhost/docs.jsonld#SourceField/code',
           '@type': 'http://www.w3.org/1999/02/22-rdf-syntax-ns#Property',
@@ -541,7 +541,7 @@ export const resources = [
       },
       {
         '@type': 'http://www.w3.org/ns/hydra/core#SupportedProperty',
-        elasticsuite: { editable: false, position: 20, visible: true },
+        gally: { editable: false, position: 20, visible: true },
         property: {
           '@id': 'https://localhost/docs.jsonld#SourceField/defaultLabel',
           '@type': 'http://www.w3.org/1999/02/22-rdf-syntax-ns#Property',
@@ -556,7 +556,7 @@ export const resources = [
       },
       {
         '@type': 'http://www.w3.org/ns/hydra/core#SupportedProperty',
-        elasticsuite: {
+        gally: {
           context: { grid_2: { visible: false } },
           editable: false,
           position: 30,
@@ -576,7 +576,7 @@ export const resources = [
       },
       {
         '@type': 'http://www.w3.org/ns/hydra/core#SupportedProperty',
-        elasticsuite: {
+        gally: {
           context: { grid_2: { visible: false } },
           editable: true,
           position: 40,
@@ -596,7 +596,7 @@ export const resources = [
       },
       {
         '@type': 'http://www.w3.org/ns/hydra/core#SupportedProperty',
-        elasticsuite: {
+        gally: {
           context: { grid_2: { visible: false } },
           editable: true,
           position: 50,
@@ -616,7 +616,7 @@ export const resources = [
       },
       {
         '@type': 'http://www.w3.org/ns/hydra/core#SupportedProperty',
-        elasticsuite: {
+        gally: {
           context: { grid_2: { visible: false } },
           editable: true,
           position: 60,
@@ -636,7 +636,7 @@ export const resources = [
       },
       {
         '@type': 'http://www.w3.org/ns/hydra/core#SupportedProperty',
-        elasticsuite: {
+        gally: {
           context: { grid_2: { visible: false } },
           editable: true,
           position: 70,
@@ -656,7 +656,7 @@ export const resources = [
       },
       {
         '@type': 'http://www.w3.org/ns/hydra/core#SupportedProperty',
-        elasticsuite: {
+        gally: {
           context: { grid_2: { visible: true } },
           editable: true,
           position: 80,
@@ -676,7 +676,7 @@ export const resources = [
       },
       {
         '@type': 'http://www.w3.org/ns/hydra/core#SupportedProperty',
-        elasticsuite: {
+        gally: {
           context: { grid_2: { visible: true } },
           editable: true,
           position: 90,

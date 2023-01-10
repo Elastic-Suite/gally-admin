@@ -637,7 +637,7 @@ export const expandedDocs = {
       'http://www.w3.org/ns/hydra/core#supportedProperty': [
         {
           '@type': ['http://www.w3.org/ns/hydra/core#SupportedProperty'],
-          'https://localhost/docs.jsonld#elasticsuite': [
+          'https://localhost/docs.jsonld#gally': [
             {
               'https://localhost/docs.jsonld#editable': [{ '@value': false }],
               'https://localhost/docs.jsonld#position': [{ '@value': 10 }],
@@ -666,7 +666,7 @@ export const expandedDocs = {
         },
         {
           '@type': ['http://www.w3.org/ns/hydra/core#SupportedProperty'],
-          'https://localhost/docs.jsonld#elasticsuite': [
+          'https://localhost/docs.jsonld#gally': [
             {
               'https://localhost/docs.jsonld#editable': [{ '@value': false }],
               'https://localhost/docs.jsonld#position': [{ '@value': 20 }],
@@ -697,7 +697,7 @@ export const expandedDocs = {
         },
         {
           '@type': ['http://www.w3.org/ns/hydra/core#SupportedProperty'],
-          'https://localhost/docs.jsonld#elasticsuite': [
+          'https://localhost/docs.jsonld#gally': [
             {
               'https://localhost/docs.jsonld#context': [
                 {
@@ -737,7 +737,7 @@ export const expandedDocs = {
         },
         {
           '@type': ['http://www.w3.org/ns/hydra/core#SupportedProperty'],
-          'https://localhost/docs.jsonld#elasticsuite': [
+          'https://localhost/docs.jsonld#gally': [
             {
               'https://localhost/docs.jsonld#context': [
                 {
@@ -779,7 +779,7 @@ export const expandedDocs = {
         },
         {
           '@type': ['http://www.w3.org/ns/hydra/core#SupportedProperty'],
-          'https://localhost/docs.jsonld#elasticsuite': [
+          'https://localhost/docs.jsonld#gally': [
             {
               'https://localhost/docs.jsonld#context': [
                 {
@@ -821,7 +821,7 @@ export const expandedDocs = {
         },
         {
           '@type': ['http://www.w3.org/ns/hydra/core#SupportedProperty'],
-          'https://localhost/docs.jsonld#elasticsuite': [
+          'https://localhost/docs.jsonld#gally': [
             {
               'https://localhost/docs.jsonld#context': [
                 {
@@ -861,7 +861,7 @@ export const expandedDocs = {
         },
         {
           '@type': ['http://www.w3.org/ns/hydra/core#SupportedProperty'],
-          'https://localhost/docs.jsonld#elasticsuite': [
+          'https://localhost/docs.jsonld#gally': [
             {
               'https://localhost/docs.jsonld#context': [
                 {
@@ -903,7 +903,7 @@ export const expandedDocs = {
         },
         {
           '@type': ['http://www.w3.org/ns/hydra/core#SupportedProperty'],
-          'https://localhost/docs.jsonld#elasticsuite': [
+          'https://localhost/docs.jsonld#gally': [
             {
               'https://localhost/docs.jsonld#context': [
                 {
@@ -943,7 +943,7 @@ export const expandedDocs = {
         },
         {
           '@type': ['http://www.w3.org/ns/hydra/core#SupportedProperty'],
-          'https://localhost/docs.jsonld#elasticsuite': [
+          'https://localhost/docs.jsonld#gally': [
             {
               'https://localhost/docs.jsonld#context': [
                 {
@@ -5149,7 +5149,7 @@ export const expandedDocs = {
       ],
     },
   ],
-  'http://www.w3.org/ns/hydra/core#title': [{ '@value': 'Elasticsuite API' }],
+  'http://www.w3.org/ns/hydra/core#title': [{ '@value': 'Gally API' }],
 } as IExpandedDocsJsonld
 
 export const expandedDocsEntrypoint =

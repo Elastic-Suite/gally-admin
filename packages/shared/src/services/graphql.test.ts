@@ -32,7 +32,7 @@ describe('Graphql service', () => {
       expect(fetchJson).toHaveBeenCalledWith('http://localhost/graphql', {
         headers: {
           'Content-Type': 'application/json',
-          'Elasticsuite-Language': 'en',
+          'Gally-Language': 'en',
         },
         body: JSON.stringify({
           query: testQuery,
@@ -51,7 +51,7 @@ describe('Graphql service', () => {
         headers: {
           Authorization: 'Bearer token',
           'Content-Type': 'application/json',
-          'Elasticsuite-Language': 'en',
+          'Gally-Language': 'en',
         },
         body: JSON.stringify({
           query: testQuery,
@@ -69,7 +69,7 @@ describe('Graphql service', () => {
       expect(fetchJson).toHaveBeenCalledWith('http://localhost/graphql', {
         headers: {
           'Content-Type': 'application/json',
-          'Elasticsuite-Language': 'en',
+          'Gally-Language': 'en',
         },
         body: JSON.stringify({
           query: testQuery,
@@ -87,7 +87,7 @@ describe('Graphql service', () => {
       expect(fetchJson).toHaveBeenCalledWith('http://localhost/graphql', {
         headers: {
           'Content-Type': 'application/json',
-          'Elasticsuite-Language': 'en',
+          'Gally-Language': 'en',
         },
         body: JSON.stringify({
           query: testQuery,
