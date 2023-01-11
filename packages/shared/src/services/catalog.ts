@@ -1,4 +1,4 @@
-import { ICatalog } from '../types'
+import { ICatalog, ILocalizedCatalog } from '../types'
 
 export function getDefaultCatalog(catalogsData: ICatalog[]): ICatalog | null {
   const defaultCatalog = catalogsData
@@ -18,24 +18,25 @@ export function getDefaultCatalog(catalogsData: ICatalog[]): ICatalog | null {
   return null
 }
 
-export function getDefaultLocalizedCatalog(catalogsData: ICatalog[]): string {
+export function getDefaultLocalizedCatalog(
+  catalogsData: ICatalog[]
+): ILocalizedCatalog {
   const defaultCatalog = getDefaultCatalog(catalogsData)
-  return defaultCatalog ? defaultCatalog.localizedCatalogs[0].id.toString() : ''
+  return defaultCatalog?.localizedCatalogs?.[0]
 }
 
 export function getLocalizedCatalog(
-  catalog: number,
-  localizedCatalog: number,
+  catalog: ICatalog,
+  localizedCatalog: ILocalizedCatalog,
   catalogsData: ICatalog[]
-): string {
-  if (catalog === -1) {
+): ILocalizedCatalog {
+  if (!catalog) {
     return getDefaultLocalizedCatalog(catalogsData)
-  } else if (catalog !== -1 && localizedCatalog === -1) {
+  } else if (catalog && !localizedCatalog) {
     return catalogsData
-      .filter((ctl) => ctl.id === catalog)
-      .map((ctl) => ctl.localizedCatalogs[0].id)
+      .filter((ctl) => ctl.id === catalog.id)
+      .map((ctl) => ctl.localizedCatalogs[0])
       .flat()[0]
-      .toString()
   }
-  return localizedCatalog.toString()
+  return localizedCatalog
 }

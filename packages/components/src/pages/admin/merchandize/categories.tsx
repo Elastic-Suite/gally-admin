@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useMemo, useRef, useState } from 'react'
 import { useTranslation } from 'next-i18next'
 import { useRouter } from 'next/router'
-import { Box } from '@mui/system'
 import { closeSnackbar, enqueueSnackbar } from 'notistack'
 import {
   ICategories,
@@ -11,7 +10,6 @@ import {
   IParsedCategoryConfiguration,
   IRuleCombination,
   LoadStatus,
-  getLocalizedCatalog,
   isError,
   isRuleValid,
   isVirtualCategoryEnabled,
@@ -35,12 +33,14 @@ import {
 import { findCategory } from '../../../services'
 import { selectBundles, useAppSelector } from '../../../store'
 
+import Placeholder from '../../../components/atoms/Placeholder/Placeholder'
 import TitleBlock from '../../../components/molecules/layout/TitleBlock/TitleBlock'
 import TwoColsLayout from '../../../components/molecules/layout/twoColsLayout/TwoColsLayout'
 import CatalogSwitcher from '../../../components/stateful/CatalogSwitcher/CatalogSwitcher'
 import CategoryTree from '../../../components/stateful/CategoryTree/CategoryTree'
 import ProductsContainer from '../../../components/stateful/ProductsContainer/ProductsContainer'
 import RulesManager from '../../../components/stateful/RulesManager/RulesManager'
+import CatalogProvider from '../../../components/stateful-providers/CatalogProvider/CatalogProvider'
 
 const pagesSlug = ['merchandize', 'categories']
 
@@ -65,13 +65,6 @@ function AdminMerchandizeCategories(): JSX.Element {
   const catalogs = data?.['hydra:member']
   const [catalogId, setCatalogId] = useState<number>(-1)
   const [localizedCatalogId, setLocalizedCatalogId] = useState<number>(-1)
-  const localizedCatalogIdWithDefault = useMemo(
-    () =>
-      catalogs
-        ? getLocalizedCatalog(catalogId, localizedCatalogId, catalogs)
-        : null,
-    [catalogId, catalogs, localizedCatalogId]
-  )
 
   // Rule engine operators
   const ruleOperators = useRuleOperators()
@@ -247,32 +240,27 @@ function AdminMerchandizeCategories(): JSX.Element {
           ),
         ]}
       >
-        {selectedCategoryItem?.id && localizedCatalogIdWithDefault ? (
-          <ProductsContainer
-            catConf={catConf}
-            category={selectedCategoryItem}
-            isValid={isValid}
-            localizedCatalogId={localizedCatalogIdWithDefault}
-            onChange={handleUpdateCat}
-            onSave={onSave}
-            prevCatConf={prevCatConf}
-            prevProductPositions={prevProductPositions}
-            productGraphqlFilters={productGraphqlFilters}
-            isLoading={isLoading}
-          />
-        ) : (
-          <Box
-            sx={{
-              fontSize: '12px',
-              fontFamily: 'var(--gally-font)',
-              lineHeight: '18px',
-              padding: '16px 0  0 16px',
-              color: 'colors.neutral.600',
-            }}
-          >
-            {t('placeholder')}
-          </Box>
-        )}
+        <CatalogProvider
+          catalogId={catalogId}
+          catalogs={catalogs}
+          localizedCatalogId={localizedCatalogId}
+        >
+          {Boolean(selectedCategoryItem?.id) && (
+            <Placeholder placeholder={t('placeholder')}>
+              <ProductsContainer
+                catConf={catConf}
+                category={selectedCategoryItem}
+                isValid={isValid}
+                onChange={handleUpdateCat}
+                onSave={onSave}
+                prevCatConf={prevCatConf}
+                prevProductPositions={prevProductPositions}
+                productGraphqlFilters={productGraphqlFilters}
+                isLoading={isLoading}
+              />
+            </Placeholder>
+          )}
+        </CatalogProvider>
       </TwoColsLayout>
     </>
   )

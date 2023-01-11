@@ -28,13 +28,17 @@ export const parameters = {
 
 export const decorators = [
   (Story, context) => {
-    const store = setupStore()
+    const store = setupStore({
+      data: {
+        api,
+      },
+    })
     return (
       <Suspense fallback="">
         <I18nProvider>
           <AppProvider store={store}>
             <StoryProvider locale={context.globals.locale}>
-              <TestProvider api={api}>
+              <TestProvider>
                 <Story />
               </TestProvider>
             </StoryProvider>

@@ -83,7 +83,7 @@ const tableRows = [
       status: true,
       qty: 10,
     },
-    price: 10,
+    price: [{ price: 10 }],
     visible: true,
   },
   {
@@ -96,13 +96,16 @@ const tableRows = [
       status: false,
       qty: 10,
     },
-    price: 10,
+    price: [{ price: 10 }],
     visible: true,
   },
 ]
 
 export const TopProductTable = Template.bind({})
 TopProductTable.args = {
+  configuration: {
+    'base_url/media': 'https://localhost/media/catalog/product/',
+  },
   Field: FieldGuesser,
   tableHeaders,
   tableRows,

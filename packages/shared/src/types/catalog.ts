@@ -6,6 +6,7 @@ export interface ILocalizedCatalog extends IJsonldBase {
   id: number | string
   name: string
   code: string
+  currency: string
   locale: string
   isDefault: boolean
   localName: string

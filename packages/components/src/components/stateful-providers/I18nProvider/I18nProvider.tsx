@@ -38,7 +38,7 @@ function I18nProvider(props: IProps): JSX.Element {
         return translation.i18n.changeLanguage(language, callback)
       },
     }),
-    [translation]
+    [translation.i18n]
   )
 
   return (
