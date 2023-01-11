@@ -8,7 +8,7 @@ import { Dayjs } from 'dayjs'
 import IonIcon from '../IonIcon/IonIcon'
 
 import DatePicker, { IDatePickerProps } from './DatePicker'
-import { StyledFormControl } from './InputText.styled'
+import FormControl from './FormControl'
 import InfoTooltip from './InfoTooltip'
 
 const CustomBox = styled(Box)(() => ({
@@ -77,12 +77,7 @@ function DoubleDatePicker(props: IDoubleDatePickerProps): JSX.Element {
   }
 
   return (
-    <StyledFormControl
-      error={error}
-      fullWidth={fullWidth}
-      margin={margin}
-      variant="standard"
-    >
+    <FormControl error={error} fullWidth={fullWidth} margin={margin}>
       {Boolean(label || infoTooltip) && (
         <InputLabel shrink htmlFor={id} required={required}>
           {label}
@@ -134,7 +129,7 @@ function DoubleDatePicker(props: IDoubleDatePickerProps): JSX.Element {
           {helperText}
         </FormHelperText>
       )}
-    </StyledFormControl>
+    </FormControl>
   )
 }
 
