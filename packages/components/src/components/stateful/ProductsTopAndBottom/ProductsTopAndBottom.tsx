@@ -29,7 +29,6 @@ const PreviewArea = styled(Box)(({ theme }) => ({
 
 interface IProps {
   bottomSelectedRows: (string | number)[]
-  localizedCatalogId: string
   onBottomSelectedRows: (rowIds: string[]) => void
   onTopSelectedRows: (rowIds: string[]) => void
   productGraphqlFilters: IProductFieldFilterInput
@@ -47,7 +46,6 @@ function ProductsTopAndBottom(
 ): JSX.Element {
   const {
     bottomSelectedRows,
-    localizedCatalogId,
     onBottomSelectedRows,
     onTopSelectedRows,
     productGraphqlFilters,
@@ -82,7 +80,6 @@ function ProductsTopAndBottom(
             <TopTable
               selectedRows={topSelectedRows}
               onSelectedRows={onTopSelectedRows}
-              localizedCatalogId={localizedCatalogId}
               productGraphqlFilters={productGraphqlFilters}
               setProductPositions={setProductPositions}
               topProducts={topProducts}
@@ -102,7 +99,6 @@ function ProductsTopAndBottom(
               ref={ref}
               selectedRows={bottomSelectedRows}
               onSelectedRows={onBottomSelectedRows}
-              localizedCatalogId={localizedCatalogId}
               productGraphqlFilters={productGraphqlFilters}
               topProductsIds={topProductsIds}
               setNbBottomRows={setNbBottomRows}

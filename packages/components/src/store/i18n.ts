@@ -1,5 +1,7 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 
+import { RootState } from './store'
+
 export interface II18nState {
   language: string
 }
@@ -20,3 +22,5 @@ const i18nSlice = createSlice({
 
 export const { setLanguage } = i18nSlice.actions
 export const i18nReducer = i18nSlice.reducer
+
+export const selectLanguage = (state: RootState): string => state.i18n.language

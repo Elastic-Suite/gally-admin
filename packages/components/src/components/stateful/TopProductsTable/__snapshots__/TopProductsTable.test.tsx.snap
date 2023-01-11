@@ -166,7 +166,7 @@ exports[`TopProductTable Should match snapschot 1`] = `
                 class="MuiBox-root css-1ci6mhc"
               >
                  
-                10,00 €
+                €10.00
               </div>
             </td>
             <td
@@ -278,7 +278,7 @@ exports[`TopProductTable Should match snapschot 1`] = `
                 class="MuiBox-root css-1ci6mhc"
               >
                  
-                10,00 €
+                €10.00
               </div>
             </td>
             <td

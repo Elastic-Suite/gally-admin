@@ -1,6 +1,7 @@
 import React, {
   MutableRefObject,
   forwardRef,
+  useContext,
   useEffect,
   useMemo,
   useState,
@@ -18,6 +19,7 @@ import {
   productTableheader,
 } from 'gally-admin-shared'
 
+import { catalogContext } from '../../../contexts'
 import { useGraphqlApi } from '../../../hooks'
 
 import NoAttributes from '../../atoms/noAttributes/NoAttributes'
@@ -26,7 +28,6 @@ import PagerTable from '../../organisms/PagerTable/PagerTable'
 import FieldGuesser from '../FieldGuesser/FieldGuesser'
 
 interface IProps {
-  localizedCatalogId: string
   onSelectedRows: (rowIds: string[]) => void
   productGraphqlFilters: IProductFieldFilterInput
   selectedRows: (string | number)[]
@@ -42,7 +43,6 @@ function BottomTable(
   ref: MutableRefObject<HTMLDivElement>
 ): JSX.Element {
   const {
-    localizedCatalogId,
     onSelectedRows,
     productGraphqlFilters,
     selectedRows,
@@ -52,13 +52,14 @@ function BottomTable(
     searchValue,
     configuration,
   } = props
+  const { localizedCatalogIdWithDefault } = useContext(catalogContext)
 
   const [currentPage, setCurrentPage] = useState<number>(1)
   const [rowsPerPage, setRowsPerPage] = useState<number>(defaultPageSize)
   const { t } = useTranslation('categories')
   const variables = useMemo(
     () => ({
-      localizedCatalog: localizedCatalogId,
+      localizedCatalog: localizedCatalogIdWithDefault,
       currentPage,
       pageSize: rowsPerPage,
       requestType: ProductRequestType.CATALOG,
@@ -67,7 +68,7 @@ function BottomTable(
           ? { [sortValue]: 'asc' }
           : {},
     }),
-    [currentPage, localizedCatalogId, rowsPerPage, sortValue]
+    [currentPage, localizedCatalogIdWithDefault, rowsPerPage, sortValue]
   )
   const filters = [productGraphqlFilters]
   if (topProductsIds.length > 0 && sortValue === 'category__position') {

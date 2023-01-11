@@ -8,6 +8,7 @@ const defaultCatalog = {
   id: 11,
   name: 'test11',
   code: 'test11',
+  currency: 'EUR',
   locale: 'test',
   isDefault: true,
   localName: 'test11',
@@ -19,6 +20,7 @@ const defaultCatalog2 = {
   id: 12,
   name: 'test12',
   code: 'test12',
+  currency: 'EUR',
   locale: 'test2',
   isDefault: true,
   localName: 'test12',
@@ -39,6 +41,7 @@ const mockCatalogs: IHydraCatalog[] = [
         id: 11,
         name: 'test11',
         code: 'test11',
+        currency: 'EUR',
         locale: 'test',
         isDefault: false,
         localName: 'test11',
@@ -58,6 +61,7 @@ const mockCatalogs: IHydraCatalog[] = [
         id: 14,
         name: 'test11',
         code: 'test11',
+        currency: 'EUR',
         locale: 'test',
         isDefault: false,
         localName: 'test11',
@@ -68,6 +72,7 @@ const mockCatalogs: IHydraCatalog[] = [
         id: 15,
         name: 'test11',
         code: 'test11',
+        currency: 'EUR',
         locale: 'test',
         isDefault: false,
         localName: 'test11',
@@ -91,6 +96,7 @@ const mockCatalogsWithTwoDefault: IHydraCatalog[] = [
         id: 11,
         name: 'test11',
         code: 'test11',
+        currency: 'EUR',
         locale: 'test',
         isDefault: false,
         localName: 'test11',
@@ -111,6 +117,7 @@ const mockCatalogsWithTwoDefault: IHydraCatalog[] = [
         id: 11,
         name: 'test11',
         code: 'test11',
+        currency: 'EUR',
         locale: 'test',
         isDefault: false,
         localName: 'test11',
@@ -145,12 +152,22 @@ describe('Catalog service', () => {
 
   describe('getLocalizedCatalog', () => {
     it('should find default catalog if All catalogs selected', () => {
-      expect(getLocalizedCatalog(-1, -1, mockCatalogs)).toEqual(
-        defaultCatalog.id.toString()
+      expect(getLocalizedCatalog(null, null, mockCatalogs)).toEqual(
+        defaultCatalog
       )
     })
     it('should find first localized catalog if no loacl selected', () => {
-      expect(getLocalizedCatalog(2, -1, mockCatalogs)).toEqual('14')
+      expect(getLocalizedCatalog(mockCatalogs[1], null, mockCatalogs)).toEqual({
+        '@type': 'test',
+        '@id': 'test',
+        id: 14,
+        name: 'test11',
+        code: 'test11',
+        currency: 'EUR',
+        locale: 'test',
+        isDefault: false,
+        localName: 'test11',
+      })
     })
   })
 })

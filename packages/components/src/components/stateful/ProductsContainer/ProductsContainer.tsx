@@ -1,5 +1,6 @@
 import React, {
   MutableRefObject,
+  useContext,
   useEffect,
   useMemo,
   useRef,
@@ -19,6 +20,7 @@ import {
   getProductPosition,
 } from 'gally-admin-shared'
 
+import { catalogContext } from '../../../contexts'
 import { useApiList, useGraphqlApi, useResource } from '../../../hooks'
 
 import Button from '../../atoms/buttons/Button'
@@ -48,7 +50,6 @@ interface IProps {
   category: ICategory
   isLoading?: boolean
   isValid?: boolean
-  localizedCatalogId: string
   onChange: (name: string, val: boolean | string) => void
   onSave: (result: string) => void
   prevCatConf: MutableRefObject<IParsedCategoryConfiguration>
@@ -62,13 +63,13 @@ function ProductsContainer(props: IProps): JSX.Element {
     category,
     isLoading,
     isValid,
-    localizedCatalogId,
     onChange,
     onSave,
     prevCatConf,
     prevProductPositions,
     productGraphqlFilters,
   } = props
+  const { localizedCatalogIdWithDefault } = useContext(catalogContext)
 
   const tableRef = useRef<HTMLDivElement>()
   const [topSelectedRows, setTopSelectedRows] = useState<string[]>([])
@@ -79,10 +80,10 @@ function ProductsContainer(props: IProps): JSX.Element {
 
   const variables = useMemo(
     () => ({
-      localizedCatalogId: Number(localizedCatalogId),
+      localizedCatalogId: Number(localizedCatalogIdWithDefault),
       categoryId: category?.id,
     }),
-    [localizedCatalogId, category?.id]
+    [localizedCatalogIdWithDefault, category?.id]
   )
   const [productPositions, setProductPositions] =
     useGraphqlApi<IGraphqlProductPosition>(getProductPosition, variables)
@@ -228,7 +229,6 @@ function ProductsContainer(props: IProps): JSX.Element {
           <ProductsTopAndBottom
             ref={tableRef}
             bottomSelectedRows={bottomSelectedRows}
-            localizedCatalogId={localizedCatalogId}
             productGraphqlFilters={productGraphqlFilters}
             onBottomSelectedRows={setBottomSelectedRows}
             onTopSelectedRows={setTopSelectedRows}

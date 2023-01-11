@@ -16,7 +16,7 @@ exports[`ActiveLocales match snapshot ActiveLocales simple 1`] = `
       <div
         class="css-akp1oj"
       >
-        9
+        2
       </div>
       <div
         class="css-svua9k"
@@ -31,63 +31,14 @@ exports[`ActiveLocales match snapshot ActiveLocales simple 1`] = `
         <div
           class="css-1ahqu2p"
         >
-          TestUn (France)
+          French (France)
         </div>
       </div>
       <div>
         <div
           class="css-1ahqu2p"
         >
-          TestUnAA (France)
-        </div>
-      </div>
-      <div>
-        <div
-          class="css-1ahqu2p"
-        >
-          TestAAUn (France)
-        </div>
-      </div>
-      <div>
-        <div
-          class="css-1ahqu2p"
-        >
-          TAAestUn (France)
-        </div>
-      </div>
-      <div>
-        <div
-          class="css-1ahqu2p"
-        >
-          TesAEFtUn (France)
-        </div>
-      </div>
-      <div>
-        <div
-          class="css-1ahqu2p"
-        >
-          TesRDGFCDeux (France)
-        </div>
-      </div>
-      <div>
-        <div
-          class="css-1ahqu2p"
-        >
-          DeutGFDsh (États-Unis)
-        </div>
-      </div>
-      <div>
-        <div
-          class="css-1ahqu2p"
-        >
-          Français (France)
-        </div>
-      </div>
-      <div>
-        <div
-          class="css-1ahqu2p"
-        >
-          Anglais (États-Unis)
+          English (United States)
         </div>
       </div>
     </div>

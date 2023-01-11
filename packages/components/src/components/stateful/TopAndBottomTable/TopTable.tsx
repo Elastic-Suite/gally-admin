@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useMemo } from 'react'
+import React, { Dispatch, SetStateAction, useContext, useMemo } from 'react'
 import {
   IConfigurations,
   IGraphqlProductPosition,
@@ -12,13 +12,13 @@ import {
   productTableheader,
 } from 'gally-admin-shared'
 
+import { catalogContext } from '../../../contexts'
 import { useGraphqlApi } from '../../../hooks'
 
 import FieldGuesser from '../FieldGuesser/FieldGuesser'
 import TopProductsTable from '../TopProductsTable/TopProductsTable'
 
 interface IProps {
-  localizedCatalogId: string
   onSelectedRows: (rowIds: string[]) => void
   productGraphqlFilters: IProductFieldFilterInput
   selectedRows: (string | number)[]
@@ -34,20 +34,20 @@ function TopTable(props: IProps): JSX.Element {
     selectedRows,
     onSelectedRows,
     productGraphqlFilters,
-    localizedCatalogId,
     setProductPositions,
     topProducts,
     topProductsIds,
     sortValue,
     configuration,
   } = props
+  const { localizedCatalogIdWithDefault } = useContext(catalogContext)
 
   const variables = useMemo(
     () => ({
-      localizedCatalog: localizedCatalogId,
+      localizedCatalog: localizedCatalogIdWithDefault,
       requestType: ProductRequestType.CATALOG,
     }),
-    [localizedCatalogId]
+    [localizedCatalogIdWithDefault]
   )
   const filters = [productGraphqlFilters]
   if (topProductsIds.length > 0) {

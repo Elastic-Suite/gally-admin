@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Switch } from '@mui/material'
 import { styled } from '@mui/system'
 import { useTranslation } from 'next-i18next'
@@ -9,6 +9,9 @@ import {
   IScore,
   IStock,
 } from 'gally-admin-shared'
+
+import { catalogContext } from '../../../contexts'
+import { selectLanguage, useAppSelector } from '../../../store'
 
 import Chip from '../../atoms/Chip/Chip'
 import Score from '../../atoms/score/Score'
@@ -32,6 +35,8 @@ const Box = styled('div')({
 function ReadableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
   const { input, value } = props
   const { t } = useTranslation('common')
+  const language = useAppSelector(selectLanguage)
+  const { localizedCatalogWithDefault } = useContext(catalogContext)
 
   if (value === undefined || value === null) {
     return null
@@ -64,8 +69,13 @@ function ReadableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
         return null
       }
       const [{ price }] = value as IPrice[]
-      // todo : how backend will handle currency ?
-      return <Price price={price} countryCode="fr-FR" currency="EUR" />
+      return (
+        <Price
+          price={price}
+          countryCode={language}
+          currency={localizedCatalogWithDefault.currency}
+        />
+      )
     }
 
     default: {
