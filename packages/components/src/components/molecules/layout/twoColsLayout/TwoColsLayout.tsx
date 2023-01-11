@@ -60,9 +60,9 @@ function TwoColsLayout({ left, children }: IProps): JSX.Element {
   useEffect(() => {
     function handler(entries: IntersectionObserverEntry[]): void {
       if (!entries[0].isIntersecting) {
-        colRef.current.classList.add('fixed')
+        colRef.current?.classList.add('fixed')
       } else {
-        colRef.current.classList.remove('fixed')
+        colRef.current?.classList.remove('fixed')
       }
     }
 
