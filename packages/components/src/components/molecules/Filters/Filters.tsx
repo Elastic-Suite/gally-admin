@@ -1,7 +1,9 @@
-import React, { FormEvent, ReactNode, useState } from 'react'
+import React, { FormEvent, ReactNode, useContext, useState } from 'react'
 import { useTranslation } from 'next-i18next'
 import { Collapse, InputAdornment, Stack } from '@mui/material'
-import { IFieldConfig, rangeSeparator } from 'gally-admin-shared'
+import { IFieldConfig, IFieldOptions, rangeSeparator } from 'gally-admin-shared'
+
+import { optionsContext } from '../../../contexts'
 
 import Button from '../../atoms/buttons/Button'
 import Chip from '../../atoms/Chip/Chip'
@@ -42,23 +44,34 @@ interface IProps {
   showSearch?: boolean
 }
 
-function getActiveFilterLabel(filter: IFieldConfig, value: unknown): string {
+function getActiveFilterLabel(
+  filter: IFieldConfig,
+  value: unknown,
+  fieldOptions: IFieldOptions
+): string {
+  const options =
+    filter?.options ?? fieldOptions.get(filter?.field.property['@id']) ?? []
   if (filter.id.endsWith('[between]')) {
     value = (value as (string | number)[]).join('-')
   }
   let label = `${filter?.label}: ${value}`
-  if (filter?.options) {
-    const option = filter?.options.find((option) => option.value === value)
-    label = `${filter?.label}: ${option?.label}`
+  const option = options.find((option) => option.value === value)
+  if (option) {
+    label = `${filter?.label}: ${option.label}`
   }
   return label
 }
 
 function getActiveFilter(
   filter: IFieldConfig,
-  value: unknown
+  value: unknown,
+  fieldOptions: IFieldOptions
 ): { filter: IFieldConfig; label: string; value: unknown } {
-  return { filter, label: getActiveFilterLabel(filter, value), value }
+  return {
+    filter,
+    label: getActiveFilterLabel(filter, value, fieldOptions),
+    value,
+  }
 }
 
 function Filters(props: IProps): JSX.Element {
@@ -77,6 +90,7 @@ function Filters(props: IProps): JSX.Element {
   } = props
   const [open, setOpen] = useState(false)
   const { t } = useTranslation('common')
+  const { fieldOptions } = useContext(optionsContext)
 
   const filterMap = new Map<string, IFieldConfig>(
     filters.map((filter) => [filter.id, filter])
@@ -89,14 +103,16 @@ function Filters(props: IProps): JSX.Element {
         if (filter.id.endsWith('[between]')) {
           const val = value as (string | number)[]
           if (val[0] || val[1]) {
-            acc.push(getActiveFilter(filter, val))
+            acc.push(getActiveFilter(filter, val, fieldOptions))
           }
         } else if (filter.multiple) {
           return acc.concat(
-            (value as unknown[]).map((v) => getActiveFilter(filter, v))
+            (value as unknown[]).map((v) =>
+              getActiveFilter(filter, v, fieldOptions)
+            )
           )
         } else {
-          acc.push(getActiveFilter(filter, value))
+          acc.push(getActiveFilter(filter, value, fieldOptions))
         }
       }
       return acc
