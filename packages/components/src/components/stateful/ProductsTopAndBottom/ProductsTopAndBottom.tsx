@@ -7,7 +7,7 @@ import React, {
 } from 'react'
 import { Paper } from '@mui/material'
 import { Box, styled } from '@mui/system'
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from 'next-i18next'
 import {
   IGraphqlProductPosition,
   IProductFieldFilterInput,

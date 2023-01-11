@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from 'next-i18next'
 import { ITabContentProps, ITableConfig, ITableRow } from 'gally-admin-shared'
 
 import { useFilters, useResource } from '../../../hooks'
