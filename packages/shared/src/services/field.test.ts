@@ -89,13 +89,9 @@ describe('Field service', () => {
 
   describe('isDropdownStaticOptions', () => {
     it('should check if field schema options are static or not', () => {
+      expect(isDropdownStaticOptions(fieldDropdown.gally.options)).toEqual(true)
       expect(
-        isDropdownStaticOptions(fieldDropdown.gally.options)
-      ).toEqual(true)
-      expect(
-        isDropdownStaticOptions(
-          fieldDropdownWithApiOptions.gally.options
-        )
+        isDropdownStaticOptions(fieldDropdownWithApiOptions.gally.options)
       ).toEqual(false)
     })
   })

@@ -25,9 +25,7 @@ export function useApiEditableFieldOptions(
     return resource.supportedProperty
       .filter(
         (field) =>
-          field.gally?.visible &&
-          field.gally?.editable &&
-          field.writeable
+          field.gally?.visible && field.gally?.editable && field.writeable
       )
       .map((field) => ({
         id: field.title,
