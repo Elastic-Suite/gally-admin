@@ -1,10 +1,10 @@
 import {
   IDropdownApiOptions,
   IDropdownStaticOptions,
-  IGallyProperty,
   IField,
   IFieldCondition,
   IFieldState,
+  IGallyProperty,
 } from '../types'
 
 function updateProperties(
