@@ -22,7 +22,7 @@
     "prettier:ci": "yarn --cwd ./packages/shared prettier:ci && yarn --cwd ./packages/components prettier:ci",
     "typescript": "yarn --cwd ./packages/shared typescript && yarn --cwd ./packages/components typescript",
     "typescript:ci": "yarn --cwd ./packages/shared typescript:ci && yarn --cwd ./packages/components typescript:ci",
-    "prepare": "husky install .husky",
+    "prepare": "yarn --cwd ./packages/shared prepare && yarn --cwd ./packages/components prepare && husky install .husky",
     "release:major": "yarn --cwd ./packages/shared changelog -- -M && yarn --cwd ./packages/components changelog -- -M && yarn bumpAndPublish",
     "release:minor": "yarn --cwd ./packages/shared changelog -- -m && yarn --cwd ./packages/components changelog -- -m && yarn bumpAndPublish",
     "release:patch": "yarn --cwd ./packages/shared changelog -- -p && yarn --cwd ./packages/components changelog -- -p && yarn bumpAndPublish",
