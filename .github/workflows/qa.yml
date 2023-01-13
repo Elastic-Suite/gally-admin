@@ -1,0 +1,32 @@
+name: QA
+
+on:
+  push:
+    branches:
+      - main
+  pull_request: ~
+
+jobs:
+  qa:
+    name: Code-Quality-Checks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+      - name: Cache Yarn dependencies
+        uses: actions/cache@v3
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+      - name: Yarn Install dependencies
+        run: yarn --frozen-lockfile
+      - name: Typescript
+        run: yarn typescript:ci
+      - name: EsLint
+        run: yarn eslint:ci
+      - name: Prettier
+        run: yarn prettier:ci
