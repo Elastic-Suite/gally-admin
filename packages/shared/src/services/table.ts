@@ -40,10 +40,7 @@ export function getFieldInput(
   field: IField,
   fallback: DataContentType
 ): DataContentType {
-  if (
-    field.gally?.input &&
-    isDataContentType(field.gally.input)
-  ) {
+  if (field.gally?.input && isDataContentType(field.gally.input)) {
     return field.gally.input
   }
   return fallback
@@ -137,7 +134,5 @@ export function getMappings<T extends IHydraMember>(
       (mapping) =>
         !arrayProperties.includes(mapping.property) || mapping.multiple
     )
-    .sort(
-      (a, b) => a.field.gally?.position - b.field.gally?.position
-    )
+    .sort((a, b) => a.field.gally?.position - b.field.gally?.position)
 }
