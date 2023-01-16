@@ -1,6 +1,6 @@
 import React, { FunctionComponent, useEffect } from 'react'
 import { useRouter } from 'next/router'
-import { getDisplayName, isValidUser } from 'gally-admin-shared'
+import { getDisplayName, isValidUser } from '@elastic-suite/gally-admin-shared'
 
 import {
   selectUser,

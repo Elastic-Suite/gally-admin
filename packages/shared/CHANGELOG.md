@@ -1,3 +1,10 @@
+#### 0.1.15 (2023-01-16)
+
+##### Chores
+
+- add organization to packages names ([ffa61c1b](https://github.com/Elastic-Suite/gally-admin/commit/ffa61c1bfe234afbab7a18974ccca49928b0db58))
+- add .idea to .gitignore ([b0522a09](https://github.com/Elastic-Suite/gally-admin/commit/b0522a09c5d7757212ab547a632409f1f2b72a31))
+
 #### 0.1.14 (2023-01-16)
 
 ##### Chores

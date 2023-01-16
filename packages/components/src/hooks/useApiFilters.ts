@@ -7,7 +7,7 @@ import {
   IResource,
   getFilter,
   getMappings,
-} from 'gally-admin-shared'
+} from '@elastic-suite/gally-admin-shared'
 
 export function useApiFilters<A extends IHydraMember>(
   apiData: IHydraResponse<A>,

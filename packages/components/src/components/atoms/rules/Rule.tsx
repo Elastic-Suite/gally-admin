@@ -15,7 +15,7 @@ import {
   isCombinationRule,
   ruleArrayValueSeparator,
   ruleValueNumberTypes,
-} from 'gally-admin-shared'
+} from '@elastic-suite/gally-admin-shared'
 
 import { ruleOptionsContext } from '../../../contexts'
 

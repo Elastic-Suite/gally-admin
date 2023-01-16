@@ -6,7 +6,10 @@ import { breadcrumbContext } from '../../../contexts'
 import { withAuth, withOptions } from '../../../hocs'
 import { useTabs } from '../../../hooks'
 import { selectMenu, useAppSelector } from '../../../store'
-import { IRouterTab, findBreadcrumbLabel } from 'gally-admin-shared'
+import {
+  IRouterTab,
+  findBreadcrumbLabel,
+} from '@elastic-suite/gally-admin-shared'
 
 import PageTitle from '../../../components/atoms/PageTitle/PageTitle'
 import CustomTabs from '../../../components/molecules/layout/tabs/CustomTabs'

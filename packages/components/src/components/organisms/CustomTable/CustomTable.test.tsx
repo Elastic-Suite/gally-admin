@@ -1,5 +1,5 @@
 import React from 'react'
-import { DataContentType } from 'gally-admin-shared'
+import { DataContentType } from '@elastic-suite/gally-admin-shared'
 
 import { renderWithProviders } from '../../../utils/tests'
 

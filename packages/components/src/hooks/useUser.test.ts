@@ -1,4 +1,4 @@
-import { Role, storageGet } from 'gally-admin-shared'
+import { Role, storageGet } from '@elastic-suite/gally-admin-shared'
 
 import { renderHookWithProviders } from '../utils/tests'
 

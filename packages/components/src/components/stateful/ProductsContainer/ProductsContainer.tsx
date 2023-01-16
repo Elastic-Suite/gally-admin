@@ -17,7 +17,7 @@ import {
   IProductPositions,
   LoadStatus,
   getProductPosition,
-} from 'gally-admin-shared'
+} from '@elastic-suite/gally-admin-shared'
 
 import { useApiList, useGraphqlApi, useResource } from '../../../hooks'
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import { firstLetterUppercase } from 'gally-admin-shared'
+import { firstLetterUppercase } from '@elastic-suite/gally-admin-shared'
 import InfoTooltip from '../form/InfoTooltip'
 
 interface IProps {

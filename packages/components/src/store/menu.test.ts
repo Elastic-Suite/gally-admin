@@ -1,4 +1,4 @@
-import { IFetch, IMenu, LoadStatus } from 'gally-admin-shared'
+import { IFetch, IMenu, LoadStatus } from '@elastic-suite/gally-admin-shared'
 import {
   IMenuState,
   RootState,

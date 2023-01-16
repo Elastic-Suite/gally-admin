@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
-import { searchableAttributeUrl } from 'gally-admin-shared'
+import { searchableAttributeUrl } from '@elastic-suite/gally-admin-shared'
 
 import { breadcrumbContext } from '../../../../contexts'
 import { withAuth, withOptions } from '../../../../hocs'

@@ -16,7 +16,7 @@ import {
   defaultRowsPerPageOptions,
   getSearchProductsQuery,
   productTableheader,
-} from 'gally-admin-shared'
+} from '@elastic-suite/gally-admin-shared'
 
 import { useGraphqlApi } from '../../../hooks'
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Box } from '@mui/material'
 import { styled } from '@mui/system'
-import { formatPrice } from 'gally-admin-shared'
+import { formatPrice } from '@elastic-suite/gally-admin-shared'
 
 interface IProps {
   price: number

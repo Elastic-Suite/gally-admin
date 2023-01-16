@@ -1,7 +1,11 @@
 import React from 'react'
 import { styled } from '@mui/system'
 import { useTranslation } from 'next-i18next'
-import { ICatalog, IHydraResponse, IOptions } from 'gally-admin-shared'
+import {
+  ICatalog,
+  IHydraResponse,
+  IOptions,
+} from '@elastic-suite/gally-admin-shared'
 
 import DropDown from '../../atoms/form/DropDown'
 

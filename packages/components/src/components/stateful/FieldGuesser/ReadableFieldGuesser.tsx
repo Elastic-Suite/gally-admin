@@ -8,7 +8,7 @@ import {
   IPrice,
   IScore,
   IStock,
-} from 'gally-admin-shared'
+} from '@elastic-suite/gally-admin-shared'
 
 import Chip from '../../atoms/Chip/Chip'
 import Score from '../../atoms/score/Score'

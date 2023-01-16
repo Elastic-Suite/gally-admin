@@ -1,5 +1,5 @@
 import React from 'react'
-import { IRouterTab, ITabContentProps } from 'gally-admin-shared'
+import { IRouterTab, ITabContentProps } from '@elastic-suite/gally-admin-shared'
 
 import { renderWithProviders } from '../../../utils/tests'
 

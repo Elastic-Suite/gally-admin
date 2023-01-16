@@ -12,7 +12,7 @@ import {
   IGraphqlProductPosition,
   IProductFieldFilterInput,
   IProductPositions,
-} from 'gally-admin-shared'
+} from '@elastic-suite/gally-admin-shared'
 
 import { selectConfiguration, useAppSelector } from '../../../store'
 

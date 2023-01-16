@@ -6,7 +6,7 @@ import {
   IStickyStyle,
   reorderingColumnWidth,
   stickyColunWidth,
-} from 'gally-admin-shared'
+} from '@elastic-suite/gally-admin-shared'
 
 import { stickyBorderStyle } from './customTable'
 

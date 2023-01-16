@@ -1,7 +1,7 @@
 import React, { FormEvent, ReactNode, useState } from 'react'
 import { useTranslation } from 'next-i18next'
 import { Collapse, InputAdornment, Stack } from '@mui/material'
-import { IFieldConfig, rangeSeparator } from 'gally-admin-shared'
+import { IFieldConfig, rangeSeparator } from '@elastic-suite/gally-admin-shared'
 
 import Button from '../../atoms/buttons/Button'
 import Chip from '../../atoms/Chip/Chip'

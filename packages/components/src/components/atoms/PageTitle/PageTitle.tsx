@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react'
 import { Typography, TypographyProps } from '@mui/material'
 import { styled } from '@mui/system'
 import Head from 'next/head'
-import { getHeadTitle } from 'gally-admin-shared'
+import { getHeadTitle } from '@elastic-suite/gally-admin-shared'
 
 const Root = styled('div')(() => ({
   display: 'flex',

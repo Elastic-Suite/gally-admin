@@ -2,7 +2,7 @@ import React from 'react'
 import { Collapse } from '@mui/material'
 import Link from 'next/link'
 import { keyframes, styled } from '@mui/system'
-import { IMenuChild } from 'gally-admin-shared'
+import { IMenuChild } from '@elastic-suite/gally-admin-shared'
 
 import IonIcon from '../IonIcon/IonIcon'
 

@@ -1,6 +1,6 @@
 import React from 'react'
 import { useRouter } from 'next/router'
-import { IRouterTab } from 'gally-admin-shared'
+import { IRouterTab } from '@elastic-suite/gally-admin-shared'
 
 import { renderHookWithProviders } from '../utils/tests'
 

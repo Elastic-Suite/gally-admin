@@ -1,5 +1,8 @@
 import { waitFor } from '@testing-library/react'
-import { fetchApi, isVirtualCategoryEnabled } from 'gally-admin-shared'
+import {
+  fetchApi,
+  isVirtualCategoryEnabled,
+} from '@elastic-suite/gally-admin-shared'
 
 import { renderHookWithProviders } from '../utils/tests'
 

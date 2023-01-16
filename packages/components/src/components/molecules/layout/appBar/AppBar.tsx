@@ -1,6 +1,6 @@
 import React from 'react'
 import { styled } from '@mui/system'
-import { IMenu } from 'gally-admin-shared'
+import { IMenu } from '@elastic-suite/gally-admin-shared'
 
 import Breadcrumbs from '../../../atoms/breadcrumb/Breadcrumbs'
 

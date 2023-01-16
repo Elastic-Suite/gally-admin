@@ -1,5 +1,9 @@
 import React from 'react'
-import { DataContentType, ITableHeader, ITableRow } from 'gally-admin-shared'
+import {
+  DataContentType,
+  ITableHeader,
+  ITableRow,
+} from '@elastic-suite/gally-admin-shared'
 
 import { renderWithProviders } from '../../../utils/tests'
 

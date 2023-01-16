@@ -1,3 +1,3 @@
 import { createContext } from 'react'
-import { IOptionsContext } from 'gally-admin-shared'
+import { IOptionsContext } from '@elastic-suite/gally-admin-shared'
 export const optionsContext = createContext<IOptionsContext>(null)

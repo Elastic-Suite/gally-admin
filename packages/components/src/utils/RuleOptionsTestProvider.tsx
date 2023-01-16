@@ -1,5 +1,8 @@
 import React, { ReactNode } from 'react'
-import { IRuleEngineOperators, RuleAttributeType } from 'gally-admin-shared'
+import {
+  IRuleEngineOperators,
+  RuleAttributeType,
+} from '@elastic-suite/gally-admin-shared'
 
 import ruleEngineOperator from '../../public/mocks/rule_engine_operators.json'
 import sourceFields from '../../public/mocks/source_fields.json'

@@ -6,7 +6,11 @@ import {
   useRef,
   useState,
 } from 'react'
-import { IFetchApi, ILoadStatuses, LoadStatus } from 'gally-admin-shared'
+import {
+  IFetchApi,
+  ILoadStatuses,
+  LoadStatus,
+} from '@elastic-suite/gally-admin-shared'
 
 import { useApiFetch } from './useApi'
 

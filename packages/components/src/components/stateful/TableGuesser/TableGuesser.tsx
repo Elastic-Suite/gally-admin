@@ -14,7 +14,7 @@ import {
   ITableConfig,
   ITableRow,
   defaultPageSize,
-} from 'gally-admin-shared'
+} from '@elastic-suite/gally-admin-shared'
 
 import { useApiEditableFieldOptions, useApiHeaders } from '../../../hooks'
 

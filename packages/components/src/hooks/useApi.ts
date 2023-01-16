@@ -23,7 +23,7 @@ import {
   fetchApi,
   getListApiParameters,
   isError,
-} from 'gally-admin-shared'
+} from '@elastic-suite/gally-admin-shared'
 
 import { setUser, useAppDispatch } from '../store'
 

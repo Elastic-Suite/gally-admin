@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react'
 import { RenderOptions, render, renderHook } from '@testing-library/react'
 import { PreloadedState } from '@reduxjs/toolkit'
-import { Bundle, IUser, api } from 'gally-admin-shared'
+import { Bundle, IUser, api } from '@elastic-suite/gally-admin-shared'
 
 import { AppStore, RootState, setupStore } from '../store'
 
