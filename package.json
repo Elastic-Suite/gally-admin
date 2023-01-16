@@ -1,5 +1,5 @@
 {
-  "name": "gally-admin",
+  "name": "@elastic-suite/gally-admin",
   "version": "0.1.1",
   "private": true,
   "workspaces": [

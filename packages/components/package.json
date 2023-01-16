@@ -1,5 +1,5 @@
 {
-  "name": "gally-admin-components",
+  "name": "@elastic-suite/gally-admin-components",
   "description": "Components package for gally admin BO",
   "keywords": [
     "gally",
