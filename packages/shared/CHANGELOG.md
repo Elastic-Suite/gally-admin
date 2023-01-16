@@ -1,3 +1,29 @@
+#### 0.1.14 (2023-01-16)
+
+##### Chores
+
+- fix coverage path ([ddb27071](https://github.com/Elastic-Suite/gally-admin/commit/ddb27071f3a7fb546d2290868be100ffd179a47f))
+- add commit-lint ([1d6cea1d](https://github.com/Elastic-Suite/gally-admin/commit/1d6cea1ded7db44f197966428dd4611b22ff3bfa))
+
+##### Bug Fixes
+
+- run prettier ([4d8cdb93](https://github.com/Elastic-Suite/gally-admin/commit/4d8cdb93d2d9944daad4ab2b30a593162bde39b0))
+- eslint error ([20a76620](https://github.com/Elastic-Suite/gally-admin/commit/20a7662058e7c531fdb66486cdad8fc0ec1102ec))
+- run prepare for packages ([06c44fcc](https://github.com/Elastic-Suite/gally-admin/commit/06c44fcce1ca79f788f1d20b8357b7ae1f61e593))
+
+#### 0.1.14 (2023-01-16)
+
+##### Chores
+
+- fix coverage path ([ddb27071](https://github.com/Elastic-Suite/gally-admin/commit/ddb27071f3a7fb546d2290868be100ffd179a47f))
+- add commit-lint ([1d6cea1d](https://github.com/Elastic-Suite/gally-admin/commit/1d6cea1ded7db44f197966428dd4611b22ff3bfa))
+
+##### Bug Fixes
+
+- run prettier ([4d8cdb93](https://github.com/Elastic-Suite/gally-admin/commit/4d8cdb93d2d9944daad4ab2b30a593162bde39b0))
+- eslint error ([20a76620](https://github.com/Elastic-Suite/gally-admin/commit/20a7662058e7c531fdb66486cdad8fc0ec1102ec))
+- run prepare for packages ([06c44fcc](https://github.com/Elastic-Suite/gally-admin/commit/06c44fcce1ca79f788f1d20b8357b7ae1f61e593))
+
 #### 0.1.13 (2023-01-05)
 
 ##### Refactors
