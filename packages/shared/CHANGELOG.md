@@ -1,3 +1,23 @@
+### 0.2.0 (2023-01-17)
+
+##### Chores
+
+- add org in packages name + fix unit tests ([3c9ed611](https://github.com/Elastic-Suite/gally-admin/commit/3c9ed611827a09fd2ca8d95eb603227f3d511c0b))
+- add .idea to .gitignore ([b0522a09](https://github.com/Elastic-Suite/gally-admin/commit/b0522a09c5d7757212ab547a632409f1f2b72a31))
+
+##### New Features
+
+- **ESPP-394:** manage price currencyand locale ([4b06b6ce](https://github.com/Elastic-Suite/gally-admin/commit/4b06b6ce869f7308d37bfaf1b8fd85e7f10e22ce))
+
+##### Bug Fixes
+
+- catalogs Provider ([a67b349c](https://github.com/Elastic-Suite/gally-admin/commit/a67b349cb519dd04356b0f3c5d6842a6ce423a52))
+- error with colRef.current being null ([6aea76df](https://github.com/Elastic-Suite/gally-admin/commit/6aea76df8afe22a8556ddd359e4ebfbecfd12977))
+- wrong import of react-i18next ([3dff5ef7](https://github.com/Elastic-Suite/gally-admin/commit/3dff5ef746a34058cf5f6bb5850bf731d2135710))
+- error with FormControl when they are multiple InputBase components ([d2a1365e](https://github.com/Elastic-Suite/gally-admin/commit/d2a1365ea16f02ab4e5082f0f26c32a81ccb5db6))
+- **ESPP-629:** add current category ([e169e34f](https://github.com/Elastic-Suite/gally-admin/commit/e169e34f1243996f03511cfcd1a1954e1c1419bc))
+- **ESPP-293:** use option context for filter labels ([88064fda](https://github.com/Elastic-Suite/gally-admin/commit/88064fdaa3d003707cbfc21cb015259b6e3186c1))
+
 #### 0.1.14 (2023-01-16)
 
 ##### Chores
