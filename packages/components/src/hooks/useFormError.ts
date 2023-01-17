@@ -7,7 +7,7 @@ import {
   useState,
 } from 'react'
 import { useTranslation } from 'next-i18next'
-import { getFormValidityError } from 'gally-admin-shared'
+import { getFormValidityError } from '@elastic-suite/gally-admin-shared'
 
 export type IOnChange = (value: unknown, event?: SyntheticEvent) => void
 export type IValidator = (

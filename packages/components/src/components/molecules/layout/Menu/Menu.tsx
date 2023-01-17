@@ -1,6 +1,6 @@
 import React from 'react'
 import { styled } from '@mui/system'
-import { IMenu, IMenuChild } from 'gally-admin-shared'
+import { IMenu, IMenuChild } from '@elastic-suite/gally-admin-shared'
 
 import MenuItemIcon from '../../../atoms/menu/MenuItemIcon'
 import MenuItem from '../../../atoms/menu/MenuItem'

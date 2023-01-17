@@ -10,7 +10,7 @@ import {
   isRuleValid,
   isVirtualCategoryEnabled,
   serializeRule,
-} from 'gally-admin-shared'
+} from '@elastic-suite/gally-admin-shared'
 
 import { selectBundles, useAppSelector } from '../store'
 

@@ -1,1 +1,1 @@
-# gally-admin-components
+# @elastic-suite/gally-admin-components

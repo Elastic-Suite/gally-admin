@@ -3,7 +3,7 @@ import {
   IStickyBorderStyle,
   ITableHeader,
   ITableHeaderSticky,
-} from 'gally-admin-shared'
+} from '@elastic-suite/gally-admin-shared'
 
 export function manageStickyHeaders(
   tableHeaders: ITableHeader[]

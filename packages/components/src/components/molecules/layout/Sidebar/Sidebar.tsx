@@ -3,7 +3,7 @@ import { Collapse } from '@mui/material'
 import { styled } from '@mui/system'
 import Link from 'next/link'
 import Image from 'next/image'
-import { IMenu } from 'gally-admin-shared'
+import { IMenu } from '@elastic-suite/gally-admin-shared'
 
 import Menu from '../Menu/Menu'
 

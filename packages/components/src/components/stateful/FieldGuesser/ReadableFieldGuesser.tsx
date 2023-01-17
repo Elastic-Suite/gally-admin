@@ -8,7 +8,7 @@ import {
   IPrice,
   IScore,
   IStock,
-} from 'gally-admin-shared'
+} from '@elastic-suite/gally-admin-shared'
 
 import { catalogContext } from '../../../contexts'
 import { selectLanguage, useAppSelector } from '../../../store'

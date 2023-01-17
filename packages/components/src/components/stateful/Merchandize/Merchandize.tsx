@@ -8,7 +8,7 @@ import {
   getFieldConfig,
   getFieldState,
   isVirtualCategoryEnabled,
-} from 'gally-admin-shared'
+} from '@elastic-suite/gally-admin-shared'
 
 import { useResource } from '../../../hooks'
 import { selectBundles, useAppSelector } from '../../../store'

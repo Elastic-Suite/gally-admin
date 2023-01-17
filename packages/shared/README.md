@@ -1,1 +1,1 @@
-# gally-admin-shared
+# @elastic-suite/gally-admin-shared

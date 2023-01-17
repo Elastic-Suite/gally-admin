@@ -15,7 +15,7 @@ import {
   isDropdownStaticOptions,
   isError,
   isReferenceField,
-} from 'gally-admin-shared'
+} from '@elastic-suite/gally-admin-shared'
 
 import { selectApi, useAppSelector } from '../store'
 

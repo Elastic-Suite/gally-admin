@@ -5,7 +5,7 @@ import match from 'autosuggest-highlight/match'
 
 import { useTranslation } from 'next-i18next'
 
-import { ITreeItem } from 'gally-admin-shared'
+import { ITreeItem } from '@elastic-suite/gally-admin-shared'
 
 import Checkbox from '../form/Checkbox'
 import IonIcon from '../IonIcon/IonIcon'

@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react'
 import { RouterContext } from 'next/dist/shared/lib/router-context'
 
-import { api } from 'gally-admin-shared'
+import { api } from '@elastic-suite/gally-admin-shared'
 
 import { setupStore } from '../src/store'
 import TestProvider from '../src/utils/TestProvider'

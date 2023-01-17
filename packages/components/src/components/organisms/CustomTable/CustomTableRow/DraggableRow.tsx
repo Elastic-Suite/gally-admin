@@ -10,7 +10,7 @@ import {
   ITableRow,
   getFieldState,
   joinUrlPath,
-} from 'gally-admin-shared'
+} from '@elastic-suite/gally-admin-shared'
 
 import {
   draggableColumnStyle,

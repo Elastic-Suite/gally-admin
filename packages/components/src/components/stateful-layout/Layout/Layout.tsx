@@ -1,6 +1,11 @@
 import React, { ReactNode, useCallback, useContext, useEffect } from 'react'
 import { styled } from '@mui/system'
-import { IMenu, LoadStatus, isError, isValidUser } from 'gally-admin-shared'
+import {
+  IMenu,
+  LoadStatus,
+  isError,
+  isValidUser,
+} from '@elastic-suite/gally-admin-shared'
 
 import { breadcrumbContext } from '../../../contexts'
 

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
-import { ITreeItem } from 'gally-admin-shared'
+import { ITreeItem } from '@elastic-suite/gally-admin-shared'
 
 import categories from '../../../../public/mocks/categories.json'
 

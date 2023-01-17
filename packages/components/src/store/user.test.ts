@@ -1,4 +1,4 @@
-import { Role } from 'gally-admin-shared'
+import { Role } from '@elastic-suite/gally-admin-shared'
 
 import { RootState } from './store'
 import {

@@ -10,7 +10,7 @@ import {
   getParametersFromUrl,
   getRouterUrl,
   getSearchParameter,
-} from 'gally-admin-shared'
+} from '@elastic-suite/gally-admin-shared'
 
 export function useFiltersRedirect(
   page: number | false = 0,

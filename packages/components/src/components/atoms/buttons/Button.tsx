@@ -6,7 +6,7 @@ import {
   MenuItem,
   Menu as MuiMenu,
 } from '@mui/material'
-import { IOptions } from 'gally-admin-shared'
+import { IOptions } from '@elastic-suite/gally-admin-shared'
 
 import { PrimaryButton, SecondaryButton, TertiaryButton } from './Button.styled'
 

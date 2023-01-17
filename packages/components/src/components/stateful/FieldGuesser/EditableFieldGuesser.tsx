@@ -1,6 +1,9 @@
 import React, { SyntheticEvent } from 'react'
 import { useTranslation } from 'next-i18next'
-import { DataContentType, IFieldGuesserProps } from 'gally-admin-shared'
+import {
+  DataContentType,
+  IFieldGuesserProps,
+} from '@elastic-suite/gally-admin-shared'
 
 import DropDown from '../../atoms/form/DropDown'
 import InputTextError from '../../atoms/form/InputTextError'

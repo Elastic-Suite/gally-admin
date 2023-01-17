@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { styled } from '@mui/system'
 import { useTranslation } from 'next-i18next'
-import { IOptions } from 'gally-admin-shared'
+import { IOptions } from '@elastic-suite/gally-admin-shared'
 
 import { catalogContext } from '../../../contexts'
 

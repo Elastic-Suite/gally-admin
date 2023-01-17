@@ -1,7 +1,7 @@
 import React, { SyntheticEvent, useState } from 'react'
 import { Box, Tab, Tabs } from '@mui/material'
 
-import { ITab } from 'gally-admin-shared'
+import { ITab } from '@elastic-suite/gally-admin-shared'
 
 import TabPanel from './TabPanel'
 import { a11yProps } from './a11yProps'

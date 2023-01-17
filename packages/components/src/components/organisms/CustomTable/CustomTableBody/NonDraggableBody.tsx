@@ -6,7 +6,7 @@ import {
   ITableConfig,
   ITableHeader,
   ITableRow,
-} from 'gally-admin-shared'
+} from '@elastic-suite/gally-admin-shared'
 
 import NonDraggableRow from '../CustomTableRow/NonDraggableRow'
 

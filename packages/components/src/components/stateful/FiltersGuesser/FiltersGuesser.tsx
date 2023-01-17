@@ -7,7 +7,7 @@ import {
   IHydraMember,
   IHydraResponse,
   IResource,
-} from 'gally-admin-shared'
+} from '@elastic-suite/gally-admin-shared'
 
 import Filters from '../../molecules/Filters/Filters'
 

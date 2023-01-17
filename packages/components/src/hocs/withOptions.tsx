@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react'
-import { getDisplayName } from 'gally-admin-shared'
+import { getDisplayName } from '@elastic-suite/gally-admin-shared'
 
 import OptionsProvider from '../components/stateful-providers/OptionsProvider/OptionsProvider'
 

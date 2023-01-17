@@ -1,7 +1,10 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
 
-import { DataContentType, IFieldConfig } from 'gally-admin-shared'
+import {
+  DataContentType,
+  IFieldConfig,
+} from '@elastic-suite/gally-admin-shared'
 
 import Filters from './Filters'
 

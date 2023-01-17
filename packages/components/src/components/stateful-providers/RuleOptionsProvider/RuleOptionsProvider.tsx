@@ -19,7 +19,7 @@ import {
   getOptionsFromEnum,
   getOptionsFromOptionResource,
   isError,
-} from 'gally-admin-shared'
+} from '@elastic-suite/gally-admin-shared'
 
 export interface IField {
   id: number | string

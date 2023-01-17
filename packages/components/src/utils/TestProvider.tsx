@@ -2,7 +2,8 @@ import React, { ReactNode } from 'react'
 
 import catalogs from '../../public/mocks/catalog.json'
 
-import CatalogProvider from '../components/stateful-providers/CatalogProvider/CatalogProvider'
+import { catalogContext } from '../contexts'
+import { useCatalogs } from '../hooks'
 
 import OptionsProvider from '../components/stateful-providers/OptionsProvider/OptionsProvider'
 
@@ -12,15 +13,13 @@ interface IProps {
 
 function TestProvider(props: IProps): JSX.Element {
   const { children } = props
+  const contextValue = useCatalogs(catalogs['hydra:member'])
+
   return (
     <OptionsProvider>
-      <CatalogProvider
-        catalogId={-1}
-        catalogs={catalogs['hydra:member']}
-        localizedCatalogId={-1}
-      >
+      <catalogContext.Provider value={contextValue}>
         {children}
-      </CatalogProvider>
+      </catalogContext.Provider>
     </OptionsProvider>
   )
 }

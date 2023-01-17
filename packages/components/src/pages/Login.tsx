@@ -9,7 +9,7 @@ import {
   isValidUser,
   storageSet,
   tokenStorageKey,
-} from 'gally-admin-shared'
+} from '@elastic-suite/gally-admin-shared'
 
 import { useApiFetch } from '../hooks'
 import { selectRequestedPath, selectUser, useAppSelector } from '../store'

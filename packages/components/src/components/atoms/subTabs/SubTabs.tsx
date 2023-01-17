@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { keyframes, styled } from '@mui/system'
 
-import { ITab } from 'gally-admin-shared'
+import { ITab } from '@elastic-suite/gally-admin-shared'
 
 import SubTabPanel from './SubTabPanel'
 

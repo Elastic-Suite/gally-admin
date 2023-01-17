@@ -3,7 +3,11 @@ import { useTranslation } from 'next-i18next'
 import { Box, Checkbox } from '@mui/material'
 import { styled } from '@mui/system'
 
-import { IField, IOptions, getFieldHeader } from 'gally-admin-shared'
+import {
+  IField,
+  IOptions,
+  getFieldHeader,
+} from '@elastic-suite/gally-admin-shared'
 
 import Button from '../../atoms/buttons/Button'
 import Dropdown from '../../atoms/form/DropDown'

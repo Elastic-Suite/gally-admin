@@ -11,7 +11,7 @@ import {
   emptyCombinationRule,
   isAttributeRule,
   isCombinationRule,
-} from 'gally-admin-shared'
+} from '@elastic-suite/gally-admin-shared'
 
 import Button from '../buttons/Button'
 import IonIcon from '../IonIcon/IonIcon'
