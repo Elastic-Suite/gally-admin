@@ -1,6 +1,9 @@
 import React, { SyntheticEvent, useContext, useEffect } from 'react'
 import { useTranslation } from 'next-i18next'
-import { IFieldGuesserProps, LoadStatus } from 'gally-admin-shared'
+import {
+  IFieldGuesserProps,
+  LoadStatus,
+} from '@elastic-suite/gally-admin-shared'
 
 import { optionsContext } from '../../../contexts'
 

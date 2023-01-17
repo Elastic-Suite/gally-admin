@@ -2,7 +2,7 @@ import {
   DataContentType,
   ITableHeader,
   ITableHeaderSticky,
-} from 'gally-admin-shared'
+} from '@elastic-suite/gally-admin-shared'
 
 import { manageStickyHeaders, stickyBorderStyle } from './customTable'
 

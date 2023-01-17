@@ -10,7 +10,7 @@ import {
   ProductRequestType,
   getSearchProductsQuery,
   productTableheader,
-} from 'gally-admin-shared'
+} from '@elastic-suite/gally-admin-shared'
 
 import { catalogContext } from '../../../contexts'
 import { useGraphqlApi } from '../../../hooks'

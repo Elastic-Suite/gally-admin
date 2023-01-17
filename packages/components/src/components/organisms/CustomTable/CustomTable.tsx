@@ -19,7 +19,7 @@ import {
   reorderingColumnWidth,
   selectionColumnWidth,
   stickyColunWidth,
-} from 'gally-admin-shared'
+} from '@elastic-suite/gally-admin-shared'
 
 import { useIsHorizontalOverflow } from '../../../hooks'
 

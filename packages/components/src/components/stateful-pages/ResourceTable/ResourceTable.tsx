@@ -17,7 +17,7 @@ import {
   defaultPageSize,
   defaultRowsPerPageOptions,
   getNameFromDefault,
-} from 'gally-admin-shared'
+} from '@elastic-suite/gally-admin-shared'
 
 import {
   useApiEditableList,

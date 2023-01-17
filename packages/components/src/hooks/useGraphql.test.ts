@@ -5,7 +5,7 @@ import {
   LoadStatus,
   fetchGraphql,
   log,
-} from 'gally-admin-shared'
+} from '@elastic-suite/gally-admin-shared'
 
 import * as userStore from '../store/user'
 import { renderHookWithProviders } from '../utils/tests'

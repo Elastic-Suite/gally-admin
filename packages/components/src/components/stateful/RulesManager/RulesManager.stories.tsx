@@ -3,7 +3,7 @@ import { ComponentMeta, ComponentStory } from '@storybook/react'
 
 import ruleEngineOperators from '../../../../public/mocks/rule_engine_operators.json'
 
-import { complexRule } from 'gally-admin-shared'
+import { complexRule } from '@elastic-suite/gally-admin-shared'
 
 import RulesManager from './RulesManager'
 

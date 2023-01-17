@@ -1,7 +1,7 @@
 import React from 'react'
 import { Box } from '@mui/material'
 import { styled } from '@mui/system'
-import { BoostType } from 'gally-admin-shared'
+import { BoostType } from '@elastic-suite/gally-admin-shared'
 
 import Boost from '../boost/Boost'
 

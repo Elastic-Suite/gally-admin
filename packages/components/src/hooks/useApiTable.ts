@@ -6,7 +6,7 @@ import {
   IOptions,
   IResource,
   getFieldHeader,
-} from 'gally-admin-shared'
+} from '@elastic-suite/gally-admin-shared'
 
 export function useApiHeaders(resource: IResource): IFieldConfig[] {
   const { t } = useTranslation('api')

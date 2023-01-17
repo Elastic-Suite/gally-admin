@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { ICategories, ICategory } from 'gally-admin-shared'
+import { ICategories, ICategory } from '@elastic-suite/gally-admin-shared'
 
 import Tree from '../../atoms/tree/Tree'
 

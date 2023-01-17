@@ -6,7 +6,7 @@ import {
   IHydraResponse,
   ITabContentProps,
   getUniqueLocalName,
-} from 'gally-admin-shared'
+} from '@elastic-suite/gally-admin-shared'
 
 import TitleScope from '../../../atoms/scope/TitleScope'
 import NbActiveLocales from '../../../atoms/scope/NbActiveLocales'

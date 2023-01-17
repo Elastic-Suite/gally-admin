@@ -1,5 +1,5 @@
 {
-  "name": "gally-admin-shared",
+  "name": "@elastic-suite/gally-admin-shared",
   "description": "Shared package for gally admin BO",
   "keywords": [
     "gally",

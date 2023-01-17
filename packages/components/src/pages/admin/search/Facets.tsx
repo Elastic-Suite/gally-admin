@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useMemo, useState } from 'react'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
-import { ICategories, ICategory } from 'gally-admin-shared'
+import { ICategories, ICategory } from '@elastic-suite/gally-admin-shared'
 import { styled } from '@mui/system'
 import classNames from 'classnames'
 

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Dialog } from '@mui/material'
 import { styled } from '@mui/system'
-import { ICatalog, getUniqueLocalName } from 'gally-admin-shared'
+import { ICatalog, getUniqueLocalName } from '@elastic-suite/gally-admin-shared'
 
 import IonIcon from '../IonIcon/IonIcon'
 import TitleScope from '../scope/TitleScope'

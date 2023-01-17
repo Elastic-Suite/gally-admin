@@ -3,7 +3,7 @@ import { ThemeProvider } from '@mui/material/styles'
 import { StyledEngineProvider } from '@mui/styled-engine'
 import { Provider } from 'react-redux'
 import { SnackbarProvider } from 'notistack'
-import { theme } from 'gally-admin-shared'
+import { theme } from '@elastic-suite/gally-admin-shared'
 
 import { AppStore } from '../../../store'
 

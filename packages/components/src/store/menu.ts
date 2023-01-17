@@ -1,6 +1,6 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 
-import { IFetch, IMenu, LoadStatus } from 'gally-admin-shared'
+import { IFetch, IMenu, LoadStatus } from '@elastic-suite/gally-admin-shared'
 
 import { RootState } from './store'
 

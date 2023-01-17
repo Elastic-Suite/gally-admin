@@ -7,7 +7,7 @@ import {
   reorderingColumnWidth,
   selectionColumnWidth,
   stickyColunWidth,
-} from 'gally-admin-shared'
+} from '@elastic-suite/gally-admin-shared'
 import { useTranslation } from 'next-i18next'
 
 import { manageStickyHeaders, stickyBorderStyle } from '../../../../services'

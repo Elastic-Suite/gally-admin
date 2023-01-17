@@ -152,12 +152,10 @@ describe('Catalog service', () => {
 
   describe('getLocalizedCatalog', () => {
     it('should find default catalog if All catalogs selected', () => {
-      expect(getLocalizedCatalog(null, null, mockCatalogs)).toEqual(
-        defaultCatalog
-      )
+      expect(getLocalizedCatalog(mockCatalogs)).toEqual(defaultCatalog)
     })
     it('should find first localized catalog if no loacl selected', () => {
-      expect(getLocalizedCatalog(mockCatalogs[1], null, mockCatalogs)).toEqual({
+      expect(getLocalizedCatalog(mockCatalogs, mockCatalogs[1], null)).toEqual({
         '@type': 'test',
         '@id': 'test',
         id: 14,

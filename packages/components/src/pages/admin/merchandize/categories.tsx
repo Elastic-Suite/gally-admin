@@ -15,7 +15,7 @@ import {
   parseCatConf,
   savePositions,
   serializeCatConf,
-} from 'gally-admin-shared'
+} from '@elastic-suite/gally-admin-shared'
 
 import { breadcrumbContext, catalogContext } from '../../../contexts'
 import { withAuth, withOptions } from '../../../hocs'

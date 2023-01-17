@@ -1,6 +1,10 @@
 import React from 'react'
 import { styled } from '@mui/system'
-import { IUser, storageRemove, tokenStorageKey } from 'gally-admin-shared'
+import {
+  IUser,
+  storageRemove,
+  tokenStorageKey,
+} from '@elastic-suite/gally-admin-shared'
 
 import { setUser, useAppDispatch } from '../../../store'
 import FormatText from '../formatText/FormatText'

@@ -1,5 +1,9 @@
 import { useEffect } from 'react'
-import { getUser, storageGet, tokenStorageKey } from 'gally-admin-shared'
+import {
+  getUser,
+  storageGet,
+  tokenStorageKey,
+} from '@elastic-suite/gally-admin-shared'
 
 import { selectToken, setUser, useAppDispatch, useAppSelector } from '../store'
 

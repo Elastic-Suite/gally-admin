@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
-import { ITableHeader, ITableRow } from 'gally-admin-shared'
+import { ITableHeader, ITableRow } from '@elastic-suite/gally-admin-shared'
 
 import FieldGuesser from '../../stateful/FieldGuesser/FieldGuesser'
 

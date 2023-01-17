@@ -1,7 +1,11 @@
 import React, { FormEvent, ReactNode, useContext, useState } from 'react'
 import { useTranslation } from 'next-i18next'
 import { Collapse, InputAdornment, Stack } from '@mui/material'
-import { IFieldConfig, IFieldOptions, rangeSeparator } from 'gally-admin-shared'
+import {
+  IFieldConfig,
+  IFieldOptions,
+  rangeSeparator,
+} from '@elastic-suite/gally-admin-shared'
 
 import { optionsContext } from '../../../contexts'
 

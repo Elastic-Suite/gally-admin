@@ -3,7 +3,7 @@ import {
   IRuleEngineOperators,
   isError,
   isVirtualCategoryEnabled,
-} from 'gally-admin-shared'
+} from '@elastic-suite/gally-admin-shared'
 
 import { selectBundles, useAppSelector } from '../store'
 

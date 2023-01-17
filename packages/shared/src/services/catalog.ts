@@ -26,9 +26,9 @@ export function getDefaultLocalizedCatalog(
 }
 
 export function getLocalizedCatalog(
-  catalog: ICatalog,
-  localizedCatalog: ILocalizedCatalog,
-  catalogsData: ICatalog[]
+  catalogsData: ICatalog[],
+  catalog?: ICatalog,
+  localizedCatalog?: ILocalizedCatalog
 ): ILocalizedCatalog {
   if (!catalog) {
     return getDefaultLocalizedCatalog(catalogsData)

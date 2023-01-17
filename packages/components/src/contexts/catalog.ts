@@ -1,13 +1,17 @@
-import { ICatalog, IHydraCatalog, ILocalizedCatalog } from 'gally-admin-shared'
+import {
+  ICatalog,
+  IHydraCatalog,
+  ILocalizedCatalog,
+} from '@elastic-suite/gally-admin-shared'
 import { Dispatch, SetStateAction, createContext } from 'react'
 
-interface ICatalogContext {
-  catalog: ICatalog
+export interface ICatalogContext {
+  catalog?: ICatalog
   catalogId: number
   catalogs: IHydraCatalog[]
-  localizedCatalog: ILocalizedCatalog
+  localizedCatalog?: ILocalizedCatalog
   localizedCatalogId: number
-  localizedCatalogWithDefault: ILocalizedCatalog
+  localizedCatalogWithDefault: ILocalizedCatalog | null
   localizedCatalogIdWithDefault: string
   setCatalogId: Dispatch<SetStateAction<number>>
   setLocalizedCatalogId: Dispatch<SetStateAction<number>>

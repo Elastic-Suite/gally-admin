@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
 
-import { complexRule } from 'gally-admin-shared'
+import { complexRule } from '@elastic-suite/gally-admin-shared'
 import RuleOptionsTestProvider from '../../../utils/RuleOptionsTestProvider'
 
 import CombinationRules from './CombinationRules'

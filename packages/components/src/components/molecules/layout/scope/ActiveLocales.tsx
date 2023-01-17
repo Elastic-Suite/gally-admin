@@ -1,6 +1,10 @@
 import React from 'react'
 import { styled } from '@mui/system'
-import { ICatalog, IHydraResponse, ITabContentProps } from 'gally-admin-shared'
+import {
+  ICatalog,
+  IHydraResponse,
+  ITabContentProps,
+} from '@elastic-suite/gally-admin-shared'
 
 import TitleScope from '../../../atoms/scope/TitleScope'
 import NbActiveLocales from '../../../atoms/scope/NbActiveLocales'

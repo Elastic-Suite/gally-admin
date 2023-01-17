@@ -11,7 +11,7 @@ import {
   getApiUrl,
   getResource,
   updatePropertiesAccordingToPath,
-} from 'gally-admin-shared'
+} from '@elastic-suite/gally-admin-shared'
 
 import { selectApi, useAppSelector } from '../store'
 
