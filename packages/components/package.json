@@ -26,6 +26,9 @@
     "url": "https://github.com/Elastic-Suite/gally-admin",
     "directory": "packages/components"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "watch": {
     "build:dev": {
       "patterns": [
@@ -160,5 +163,6 @@
     "*": "prettier --write --ignore-unknown --ignore-path .gitignore",
     "*.{ts,tsx}": "tsc-files --noEmit global.d.ts",
     "*.{js,jsx,ts,tsx}": "eslint --fix --ignore-path .gitignore"
-  }
+  },
+  "gitHead": "c10f7e790fe17fdfb087135c74c0e82a8911c493"
 }

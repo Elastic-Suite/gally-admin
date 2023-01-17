@@ -24,6 +24,9 @@
     "url": "https://github.com/Elastic-Suite/gally-admin",
     "directory": "packages/shared"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "start": "chokidar \"src/**/*.ts\" \"src/**/*.tsx\" -i \"src/**/*.test.ts\" -i \"src/**/*.test.tsx\" -i \"src/**/__mocks__/*.ts\" -c \"yarn build:dev\"",
     "build": "tsup-node src/index.ts --format cjs,esm --dts --splitting --sourcemap --minify",
@@ -92,5 +95,6 @@
     "*": "prettier --write --ignore-unknown --ignore-path .gitignore",
     "*.{ts,tsx}": "tsc-files --noEmit src/global.d.ts",
     "*.{js,jsx,ts,tsx}": "eslint --fix --ignore-path .gitignore"
-  }
+  },
+  "gitHead": "c10f7e790fe17fdfb087135c74c0e82a8911c493"
 }
