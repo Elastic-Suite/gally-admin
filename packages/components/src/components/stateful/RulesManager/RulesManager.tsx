@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import React, { useContext, useMemo } from 'react'
 
 import { useApiList, useResource } from '../../../hooks'
 import {
@@ -7,6 +7,8 @@ import {
   ISourceFieldLabel,
   RuleAttributeType,
 } from 'gally-admin-shared'
+
+import { catalogContext } from '../../../contexts'
 
 import CombinationRules, {
   ICombinationRulesProps,
@@ -18,14 +20,15 @@ const sourceFieldFixedFilters = {
   isUsedForRules: true,
 }
 
-interface IProps extends ICombinationRulesProps {
+interface IProps
+  extends Omit<ICombinationRulesProps, 'catalogId' | 'localizedCatalogId'> {
   active?: boolean
   ruleOperators: IRuleEngineOperators
 }
 
 function RulesManager(props: IProps): JSX.Element {
-  const { active, catalogId, localizedCatalogId, ruleOperators, ...ruleProps } =
-    props
+  const { active, ruleOperators, ...ruleProps } = props
+  const { catalogId, localizedCatalogId } = useContext(catalogContext)
 
   // Source fields
   const sourceFieldResource = useResource('SourceField')

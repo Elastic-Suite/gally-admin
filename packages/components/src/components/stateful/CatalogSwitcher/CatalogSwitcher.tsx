@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { styled } from '@mui/system'
 import { useTranslation } from 'next-i18next'
-import { ICatalog, IHydraResponse, IOptions } from 'gally-admin-shared'
+import { IOptions } from 'gally-admin-shared'
+
+import { catalogContext } from '../../../contexts'
 
 import DropDown from '../../atoms/form/DropDown'
 
@@ -11,28 +13,19 @@ const SwitchersContainer = styled('div')({
   marginBottom: '8px',
 })
 
-interface IProps {
-  catalog: number
-  onCatalog: (ctl: number) => void
-  localizedCatalog: number
-  onLocalizedCatalog: (locCtl: number) => void
-  catalogsData: IHydraResponse<ICatalog>
-}
-
-function CatalogSwitcher(props: IProps): JSX.Element {
-  const {
-    catalog,
-    onCatalog,
-    localizedCatalog,
-    onLocalizedCatalog,
-    catalogsData,
-  } = props
-
+function CatalogSwitcher(): JSX.Element {
   const { t } = useTranslation('categories')
+  const {
+    catalogId,
+    catalogs: catalogsData,
+    localizedCatalogId,
+    setCatalogId,
+    setLocalizedCatalogId,
+  } = useContext(catalogContext)
 
   const catalogs: IOptions<number> = catalogsData
     ? [{ label: t('allCatalogs'), value: -1 }].concat(
-        catalogsData['hydra:member'].map((hydraMember) => ({
+        catalogsData.map((hydraMember) => ({
           label: hydraMember.name,
           value: hydraMember.id as number,
         }))
@@ -46,13 +39,14 @@ function CatalogSwitcher(props: IProps): JSX.Element {
         value: -1,
       },
     ].concat(
-      catalogsData['hydra:member']
-        .filter((hydraMembers) => hydraMembers.id === catalogId)
-        .map((hydraMember) =>
-          hydraMember.localizedCatalogs.map((locCtl) => ({
+      catalogsData
+        .filter((catalog) => catalog.id === catalogId)
+        .map((catalog) =>
+          catalog.localizedCatalogs.map((localizedCatalog) => ({
             label:
-              locCtl.localName[0].toUpperCase() + locCtl.localName.substring(1),
-            value: locCtl.id as number,
+              localizedCatalog.localName[0].toUpperCase() +
+              localizedCatalog.localName.substring(1),
+            value: localizedCatalog.id as number,
           }))
         )
         .flat()
@@ -60,12 +54,12 @@ function CatalogSwitcher(props: IProps): JSX.Element {
   }
 
   function onCatalogChange(catalogId: number): void {
-    onCatalog(catalogId)
-    onLocalizedCatalog(-1)
+    setCatalogId(catalogId)
+    setLocalizedCatalogId(-1)
   }
 
   function onLocalizedCatalogChange(localizedCatalogId: number): void {
-    onLocalizedCatalog(localizedCatalogId)
+    setLocalizedCatalogId(localizedCatalogId)
   }
 
   return (
@@ -73,16 +67,16 @@ function CatalogSwitcher(props: IProps): JSX.Element {
       <DropDown
         style={{ fontSize: '12px' }}
         onChange={onCatalogChange}
-        value={catalog}
+        value={catalogId}
         options={catalogs}
         label={t('catalog.dropdown.label')}
       />
-      {Boolean(catalog) && catalog !== -1 ? (
+      {Boolean(catalogId) && catalogId !== -1 ? (
         <DropDown
           style={{ fontSize: '12px' }}
           onChange={onLocalizedCatalogChange}
-          value={localizedCatalog}
-          options={localizedCatalogs(catalog)}
+          value={localizedCatalogId}
+          options={localizedCatalogs(catalogId)}
           label={t('localizedCatalog.dropdown.label')}
         />
       ) : (

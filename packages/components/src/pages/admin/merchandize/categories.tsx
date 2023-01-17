@@ -6,7 +6,6 @@ import {
   ICategories,
   ICategory,
   ICategoryConfiguration,
-  IHydraCatalog,
   IParsedCategoryConfiguration,
   IRuleCombination,
   LoadStatus,
@@ -18,12 +17,11 @@ import {
   serializeCatConf,
 } from 'gally-admin-shared'
 
-import { breadcrumbContext } from '../../../contexts'
+import { breadcrumbContext, catalogContext } from '../../../contexts'
 import { withAuth, withOptions } from '../../../hocs'
 import {
   useApiFetch,
   useApiGraphql,
-  useApiList,
   useFetchApi,
   useResource,
   useResourceOperations,
@@ -40,7 +38,6 @@ import CatalogSwitcher from '../../../components/stateful/CatalogSwitcher/Catalo
 import CategoryTree from '../../../components/stateful/CategoryTree/CategoryTree'
 import ProductsContainer from '../../../components/stateful/ProductsContainer/ProductsContainer'
 import RulesManager from '../../../components/stateful/RulesManager/RulesManager'
-import CatalogProvider from '../../../components/stateful-providers/CatalogProvider/CatalogProvider'
 
 const pagesSlug = ['merchandize', 'categories']
 
@@ -50,21 +47,13 @@ function AdminMerchandizeCategories(): JSX.Element {
   const { t } = useTranslation('categories')
   const [isLoading, setIsLoading] = useState(false)
   const bundles = useAppSelector(selectBundles)
+  const { catalogId, localizedCatalogId } = useContext(catalogContext)
 
   // Breadcrumb
   const [, setBreadcrumb] = useContext(breadcrumbContext)
   useEffect(() => {
     setBreadcrumb(pagesSlug)
   }, [router.query, setBreadcrumb])
-
-  // Catalogs
-  const resourceName = 'Catalog'
-  const resource = useResource(resourceName)
-  const [catalogsFields] = useApiList<IHydraCatalog>(resource, false)
-  const { data, error } = catalogsFields
-  const catalogs = data?.['hydra:member']
-  const [catalogId, setCatalogId] = useState<number>(-1)
-  const [localizedCatalogId, setLocalizedCatalogId] = useState<number>(-1)
 
   // Rule engine operators
   const ruleOperators = useRuleOperators()
@@ -199,23 +188,13 @@ function AdminMerchandizeCategories(): JSX.Element {
     }
   }
 
-  if (error || !data) {
-    return null
-  }
-
   return (
     <>
       <TwoColsLayout
         left={[
           <TitleBlock key="categories" title={t(pagesSlug.at(-1))}>
             <>
-              <CatalogSwitcher
-                catalog={catalogId}
-                onCatalog={setCatalogId}
-                localizedCatalog={localizedCatalogId}
-                onLocalizedCatalog={setLocalizedCatalogId}
-                catalogsData={data}
-              />
+              <CatalogSwitcher />
               <CategoryTree
                 categories={categories.data}
                 selectedItem={selectedCategoryItem}
@@ -230,8 +209,6 @@ function AdminMerchandizeCategories(): JSX.Element {
             >
               <RulesManager
                 active={catConf?.isVirtual}
-                catalogId={catalogId}
-                localizedCatalogId={localizedCatalogId}
                 onChange={handleUpdateRule}
                 rule={catConf?.virtualRule}
                 ruleOperators={ruleOperators}
@@ -240,27 +217,21 @@ function AdminMerchandizeCategories(): JSX.Element {
           ),
         ]}
       >
-        <CatalogProvider
-          catalogId={catalogId}
-          catalogs={catalogs}
-          localizedCatalogId={localizedCatalogId}
-        >
-          {Boolean(selectedCategoryItem?.id) && (
-            <Placeholder placeholder={t('placeholder')}>
-              <ProductsContainer
-                catConf={catConf}
-                category={selectedCategoryItem}
-                isValid={isValid}
-                onChange={handleUpdateCat}
-                onSave={onSave}
-                prevCatConf={prevCatConf}
-                prevProductPositions={prevProductPositions}
-                productGraphqlFilters={productGraphqlFilters}
-                isLoading={isLoading}
-              />
-            </Placeholder>
-          )}
-        </CatalogProvider>
+        {Boolean(selectedCategoryItem?.id) && (
+          <Placeholder placeholder={t('placeholder')}>
+            <ProductsContainer
+              catConf={catConf}
+              category={selectedCategoryItem}
+              isValid={isValid}
+              onChange={handleUpdateCat}
+              onSave={onSave}
+              prevCatConf={prevCatConf}
+              prevProductPositions={prevProductPositions}
+              productGraphqlFilters={productGraphqlFilters}
+              isLoading={isLoading}
+            />
+          </Placeholder>
+        )}
       </TwoColsLayout>
     </>
   )
