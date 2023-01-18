@@ -8,7 +8,7 @@
   "rows.selected_one": "{{count}} selected row.",
   "rows.selected_other": "{{count}} selected rows.",
   "allCatalogs": "All catalog",
-  "allLocales": "All locals",
+  "allLocales": "All locales",
   "catalog.dropdown.label": "Choose a catalog",
   "localizedCatalog.dropdown.label": "Choose a locale",
   "searchBar.title": "Products in category",
