@@ -44,6 +44,7 @@ function AdminSearchFacetsConfigurationAttributes(): JSX.Element {
         resourceName="SourceField"
         setActiveFilters={setActiveFilters}
         urlParams={searchableAttributeUrl}
+        showSearch
       />
     </>
   )
