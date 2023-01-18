@@ -38,10 +38,6 @@ function CatalogProvider(props: IProps): JSX.Element {
 
   const contextValue = useCatalogs(catalogs)
 
-  if (catalogs.length === 0) {
-    return null
-  }
-
   return (
     <catalogContext.Provider value={contextValue}>
       {children}
