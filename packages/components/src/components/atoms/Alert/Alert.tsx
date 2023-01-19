@@ -47,7 +47,7 @@ interface IProps extends Partial<CustomContentProps> {
 }
 
 function Alert(props: IProps, ref: ForwardedRef<HTMLDivElement>): JSX.Element {
-  const { id, message, onShut, variant = 'info', ...alertProps } = props
+  const { id, message, onShut, variant = 'info' } = props
 
   function handleClick(): void {
     onShut?.(id)
@@ -55,7 +55,6 @@ function Alert(props: IProps, ref: ForwardedRef<HTMLDivElement>): JSX.Element {
 
   return (
     <StyledAlert
-      {...alertProps}
       action={
         <IconButton
           aria-label="close"

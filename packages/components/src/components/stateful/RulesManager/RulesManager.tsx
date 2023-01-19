@@ -49,9 +49,9 @@ function RulesManager(props: IProps): JSX.Element {
   // Source field labels
   const sourceFieldLabelResource = useResource('SourceFieldLabel')
   const sourceFieldLabelFilters = useMemo(() => {
-    const filters: { catalog?: string } = {}
+    const filters: { localizedCatalog?: string } = {}
     if (localizedCatalogId !== -1) {
-      filters.catalog = `/localized_catalogs/${localizedCatalogId}`
+      filters.localizedCatalog = `/localized_catalogs/${localizedCatalogId}`
     }
     return filters
   }, [localizedCatalogId])
