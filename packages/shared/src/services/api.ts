@@ -57,7 +57,7 @@ export function fetchApi<T extends object>(
     if (isApiError(json)) {
       if (authErrorCodes.includes(json.code)) {
         storageRemove(tokenStorageKey)
-        throw new AuthError('Unauthorized/Forbidden')
+        throw new AuthError(json.message)
       }
       throw new ApiError(json.message)
     } else if (isJSonldType(json) && isHydraError(json)) {
