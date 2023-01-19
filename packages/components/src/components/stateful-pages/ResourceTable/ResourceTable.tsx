@@ -101,13 +101,14 @@ function ResourceTable(props: IProps): JSX.Element {
   const tableRows = data?.['hydra:member'] as unknown as ITableRow[]
   const diffRows: ITableRow[] = useMemo(() => {
     if (diffDefaultValues && tableRows) {
-      return tableRows.map((row) =>
-        Object.fromEntries(
-          Object.entries(row)
+      return tableRows.map((row) => {
+        return Object.fromEntries([
+          ...Object.entries(row)
             .filter(([key]) => key.startsWith('default'))
-            .map(([key, value]) => [getNameFromDefault(key), value])
-        )
-      ) as ITableRow[]
+            .map(([key, value]) => [getNameFromDefault(key), value]),
+          ['position', row.defaultPosition],
+        ])
+      }) as ITableRow[]
     }
     return []
   }, [diffDefaultValues, tableRows])
@@ -116,11 +117,9 @@ function ResourceTable(props: IProps): JSX.Element {
       diffRows.reduce(
         (acc, row, index) =>
           acc +
-          Object.entries(row).reduce(
-            (acc, [key, value]) =>
-              acc + Number(value !== tableRows?.[index][key]),
-            0
-          ),
+          Object.entries(row).reduce((acc, [key, value]) => {
+            return acc + Number(value !== tableRows?.[index][key])
+          }, 0),
         0
       ),
     [diffRows, tableRows]
@@ -169,7 +168,16 @@ function ResourceTable(props: IProps): JSX.Element {
       if (entries.length > 0) {
         replace({
           ...tableRows?.[index],
-          ...Object.fromEntries(entries),
+          ...Object.fromEntries(
+            entries?.[0]?.[0] === 'position'
+              ? [
+                  [
+                    'position',
+                    entries?.[0]?.[1] === undefined ? null : entries?.[0]?.[1],
+                  ],
+                ]
+              : entries
+          ),
         } as unknown as ISourceField)
       }
     }, [])
@@ -193,6 +201,7 @@ function ResourceTable(props: IProps): JSX.Element {
       </>
     )
   }
+
   return (
     <>
       <FiltersGuesser

@@ -32,14 +32,15 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
     validation,
   } = props
   const { t } = useTranslation('common')
-  const dirty = diffValue !== undefined && diffValue !== value
+  const dirty =
+    (name === 'position' || diffValue !== undefined) && diffValue !== value
 
   function handleChange(
     value: boolean | number | string | (boolean | number | string)[],
     event: SyntheticEvent
   ): void {
     if (onChange) {
-      onChange(name, value, event)
+      onChange(name, value === '' && name === 'position' ? null : value, event)
     }
   }
 
@@ -47,21 +48,26 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
     case DataContentType.NUMBER:
     case DataContentType.STRING: {
       return (
-        <InputTextError
-          dirty={dirty}
-          disabled={disabled}
-          helperText={
-            Boolean(dirty) && t('form.defaultValue', { value: diffValue })
-          }
-          inputProps={validation}
-          label={label}
-          onChange={handleChange}
-          required={required}
-          showError={showError}
-          suffix={suffix}
-          type={input === DataContentType.NUMBER ? 'number' : 'text'}
-          value={String(value)}
-        />
+        <>
+          <InputTextError
+            dirty={dirty}
+            disabled={disabled}
+            helperText={
+              Boolean(dirty) &&
+              t('form.defaultValue', {
+                value: diffValue ? diffValue : t('default.position.undefined'),
+              })
+            }
+            inputProps={validation}
+            label={label}
+            onChange={handleChange}
+            required={required}
+            showError={showError}
+            suffix={suffix}
+            type={input === DataContentType.NUMBER ? 'number' : 'text'}
+            value={String(value)}
+          />
+        </>
       )
     }
 
