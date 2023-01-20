@@ -1,4 +1,17 @@
 {
   "Price": "Prix",
-  "Name": "Nom"
+  "Name": "Nom",
+  "Attribute code": "Code attribut",
+  "Attribute label": "Libellé attribut",
+  "Attribute type": "Type d'attribut",
+  "Filterable": "Filtrable",
+  "Searchable": "Recherchable",
+  "Used in spellcheck": "Utilisé dans le correcteur",
+  "Search weight": "Poids dans la recherche",
+  "Sortable": "Triable",
+  "Use in rule engine": "Utilisable dans les conditions",
+  "Display": "Affichage",
+  "Coverage": "Taux de couverture",
+  "Max size": "Taille max",
+  "Sort order": "Tri de la facette"
 }
