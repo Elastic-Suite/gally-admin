@@ -54,5 +54,5 @@
   "formError.minDate": "The date is not available",
   "formError.maxDate": "The date is not available",
   "field.productImage": "Product image",
-  "default.position.undefined": "empty"
+  "default.undefined": "empty"
 }

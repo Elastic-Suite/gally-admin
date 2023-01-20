@@ -32,15 +32,14 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
     validation,
   } = props
   const { t } = useTranslation('common')
-  const dirty =
-    (name === 'position' || diffValue !== undefined) && diffValue !== value
+  const dirty = diffValue !== value
 
   function handleChange(
     value: boolean | number | string | (boolean | number | string)[],
     event: SyntheticEvent
   ): void {
     if (onChange) {
-      onChange(name, value === '' && name === 'position' ? null : value, event)
+      onChange(name, value === '' ? null : value, event)
     }
   }
 
@@ -55,7 +54,7 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
             helperText={
               Boolean(dirty) &&
               t('form.defaultValue', {
-                value: diffValue ? diffValue : t('default.position.undefined'),
+                value: diffValue ? diffValue : t('default.undefined'),
               })
             }
             inputProps={validation}
