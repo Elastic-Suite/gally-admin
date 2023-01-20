@@ -4,9 +4,11 @@ on:
   push:
     branches:
       - main
+      - 1.0.x
   pull_request:
     branches:
       - main
+      - 1.0.x
     types: [review_requested, ready_for_review, synchronize]
   workflow_dispatch: ~
 
