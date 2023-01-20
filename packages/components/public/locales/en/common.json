@@ -53,5 +53,6 @@
   "formError.disablePast": "The date is not available",
   "formError.minDate": "The date is not available",
   "formError.maxDate": "The date is not available",
-  "field.productImage": "Product image"
+  "field.productImage": "Product image",
+  "default.undefined": "empty"
 }

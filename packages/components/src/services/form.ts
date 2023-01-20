@@ -6,7 +6,7 @@ export function getFormValue(value: string, props: IProps): string | number {
   const { required, type } = props
   if (type === 'number') {
     if (value === '' && !required) {
-      return value
+      return null
     }
     return Number(value)
   }

@@ -27,7 +27,7 @@ export interface IRangeProps
   placeholder?: string[]
   onChange?: (value: (string | number)[], event: SyntheticEvent) => void
   suffix?: ReactNode
-  value: (string | number)[]
+  value: (string | number | null)[]
 }
 
 function Range(props: IRangeProps): JSX.Element {
@@ -88,7 +88,7 @@ function Range(props: IRangeProps): JSX.Element {
           {...InputProps}
           inputProps={{ ...inputProps, max: valueTo }}
           placeholder={placeholderFrom}
-          value={String(valueFrom)}
+          value={valueFrom ? String(valueFrom) : ''}
         />
         {t('form.to')}
         <SecondInput
@@ -98,7 +98,7 @@ function Range(props: IRangeProps): JSX.Element {
           {...InputProps}
           inputProps={{ ...inputProps, min: valueFrom }}
           placeholder={placeholderTo}
-          value={String(valueTo)}
+          value={valueTo ? String(valueTo) : ''}
         />
         {Boolean(suffix) && <Suffix>{suffix}</Suffix>}
       </Wrapper>

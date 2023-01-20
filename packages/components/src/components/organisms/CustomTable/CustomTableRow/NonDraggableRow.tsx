@@ -125,7 +125,9 @@ function NonDraggableRow(props: IProps): JSX.Element {
           >
             <Field
               {...stickyHeader}
-              diffValue={diffRow?.[stickyHeader.name]}
+              diffValue={
+                diffRow ? diffRow[stickyHeader.name] ?? null : undefined
+              }
               label=""
               onChange={handleChange}
               row={tableRow}
@@ -153,7 +155,7 @@ function NonDraggableRow(props: IProps): JSX.Element {
           <BaseTableCell sx={nonStickyStyle(header.type)} key={header.name}>
             <Field
               {...header}
-              diffValue={diffRow?.[header.name]}
+              diffValue={diffRow ? diffRow[header.name] ?? null : undefined}
               label=""
               onChange={handleChange}
               row={tableRow}

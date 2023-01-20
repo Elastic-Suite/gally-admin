@@ -32,7 +32,11 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
     validation,
   } = props
   const { t } = useTranslation('common')
-  const dirty = diffValue !== undefined && diffValue !== value
+  const dirty = Boolean(
+    diffValue !== undefined &&
+      ((diffValue !== null && diffValue !== value) ||
+        (diffValue === null && value))
+  )
 
   function handleChange(
     value: boolean | number | string | (boolean | number | string)[],
@@ -51,7 +55,10 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
           dirty={dirty}
           disabled={disabled}
           helperText={
-            Boolean(dirty) && t('form.defaultValue', { value: diffValue })
+            Boolean(dirty) &&
+            t('form.defaultValue', {
+              value: diffValue ? diffValue : t('default.undefined'),
+            })
           }
           inputProps={validation}
           label={label}
@@ -60,7 +67,7 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
           showError={showError}
           suffix={suffix}
           type={input === DataContentType.NUMBER ? 'number' : 'text'}
-          value={String(value)}
+          value={value as string | number | null}
         />
       )
     }
@@ -79,7 +86,7 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
           required={required}
           showError={showError}
           suffix={suffix}
-          value={value as (string | number)[]}
+          value={value as (string | number | null)[]}
         />
       )
     }

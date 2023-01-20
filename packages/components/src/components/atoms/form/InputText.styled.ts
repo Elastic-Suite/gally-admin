@@ -6,7 +6,7 @@ export interface IUnstyledInputTextProps extends InputBaseProps {
   dirty?: boolean
   small?: boolean
   transparent?: boolean
-  value?: string
+  value?: string | number | null
 }
 
 export const StyledFormControl = styled(FormControl)(

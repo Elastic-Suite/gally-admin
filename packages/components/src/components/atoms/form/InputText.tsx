@@ -59,6 +59,7 @@ function InputText(
     onChange,
     required,
     suffix,
+    value,
     ...InputProps
   } = props
 
@@ -90,6 +91,7 @@ function InputText(
           onChange={handleChange}
           required={required}
           ref={ref}
+          value={value ? String(value) : ''}
           {...InputProps}
         />
         {Boolean(suffix) && <Suffix>{suffix}</Suffix>}
