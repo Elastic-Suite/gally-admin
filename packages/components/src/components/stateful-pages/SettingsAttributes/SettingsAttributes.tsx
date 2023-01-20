@@ -42,7 +42,6 @@ function SettingsAttributes(props: ITabContentProps): JSX.Element {
         <Alert
           message={t('settingsAttributes.alert')}
           onShut={(): void => setIsVisibleAlertSettingsAttributes(false)}
-          style={{ marginBottom: '16px' }}
         />
       )}
       <ResourceTable

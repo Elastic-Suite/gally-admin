@@ -545,5 +545,12 @@ export const theme = createTheme({
         },
       },
     },
+    MuiTablePagination: {
+      styleOverrides: {
+        selectLabel: { display: 'flex' },
+        displayedRows: { display: 'flex' },
+        select: { paddingTop: '5px' },
+      },
+    },
   },
 })

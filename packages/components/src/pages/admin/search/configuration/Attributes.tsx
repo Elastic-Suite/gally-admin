@@ -35,7 +35,6 @@ function AdminSearchFacetsConfigurationAttributes(): JSX.Element {
         <Alert
           message={t('attributes.alert')}
           onShut={(): void => setIsVisibleAlertAttributes(false)}
-          style={{ marginBottom: '16px' }}
         />
       )}
       <ResourceTable

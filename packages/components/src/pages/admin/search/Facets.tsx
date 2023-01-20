@@ -114,7 +114,6 @@ function AdminSearchFacets(): JSX.Element {
           <Alert
             message={t('facet.alert')}
             onShut={(): void => setIsVisibleAlertFacets(false)}
-            style={{ marginBottom: '16px' }}
           />
         )}
         <ResourceTable
