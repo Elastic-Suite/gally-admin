@@ -62,6 +62,16 @@ interface IProps {
   showSearch?: boolean
 }
 
+const listOfDefaultFacets = [
+  'defaultCoverageRate',
+  'defaultDisplayMode',
+  'defaultIsRecommendable',
+  'defaultIsVirtual',
+  'defaultMaxSize',
+  'defaultSortOrder',
+  'defaultPosition',
+]
+
 function ResourceTable(props: IProps): JSX.Element {
   const { t } = useTranslation('resourceTable')
   const {
@@ -99,14 +109,21 @@ function ResourceTable(props: IProps): JSX.Element {
   const { data, error } = resourceData
 
   const tableRows = data?.['hydra:member'] as unknown as ITableRow[]
+
   const diffRows: ITableRow[] = useMemo(() => {
     if (diffDefaultValues && tableRows) {
-      return tableRows.map((row) =>
+      const newTableRows = tableRows.map((itemTableRow) => {
+        const newDefault = listOfDefaultFacets.map((itemDefaultFacets) => {
+          return { [itemDefaultFacets]: itemTableRow[itemDefaultFacets] }
+        })
+        return Object.assign({}, itemTableRow, ...newDefault)
+      })
+
+      return newTableRows.map((row) =>
         Object.fromEntries([
           ...Object.entries(row)
             .filter(([key]) => key.startsWith('default'))
             .map(([key, value]) => [getNameFromDefault(key), value]),
-          ['position', row.defaultPosition],
         ])
       ) as ITableRow[]
     }
@@ -167,14 +184,15 @@ function ResourceTable(props: IProps): JSX.Element {
       const entries = Object.entries(row).filter(
         ([key, value]) => value !== tableRows?.[index][key]
       )
+
       if (entries.length > 0) {
         replace({
           ...tableRows?.[index],
           ...Object.fromEntries(
-            entries?.[0]?.[0] === 'position'
+            entries?.[0]?.[0]
               ? [
                   [
-                    'position',
+                    entries?.[0]?.[0],
                     entries?.[0]?.[1] === undefined ? null : entries?.[0]?.[1],
                   ],
                 ]
