@@ -3,7 +3,6 @@ import React, {
   MutableRefObject,
   SetStateAction,
   forwardRef,
-  useEffect,
 } from 'react'
 import { Paper } from '@mui/material'
 import { Box, styled } from '@mui/system'
@@ -67,12 +66,6 @@ function ProductsTopAndBottom(
     .sort()
 
   const configuration = useAppSelector(selectConfiguration)
-
-  useEffect(() => {
-    if (topProducts.length === 0) {
-      setNbTopRows(0)
-    }
-  }, [topProducts, setNbTopRows])
 
   return (
     configuration && (
