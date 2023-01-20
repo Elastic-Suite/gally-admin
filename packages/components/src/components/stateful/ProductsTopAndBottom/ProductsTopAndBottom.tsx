@@ -3,7 +3,6 @@ import React, {
   MutableRefObject,
   SetStateAction,
   forwardRef,
-  useEffect,
 } from 'react'
 import { Paper } from '@mui/material'
 import { Box, styled } from '@mui/system'
@@ -36,8 +35,10 @@ interface IProps {
   topSelectedRows: (string | number)[]
   topProducts: IProductPositions
   setNbBottomRows: (value: number) => void
+  setNbTopRows: (value: number) => void
   sortValue: string
   searchValue: string
+  nbTopProducts: number
 }
 
 function ProductsTopAndBottom(
@@ -53,8 +54,10 @@ function ProductsTopAndBottom(
     topSelectedRows,
     topProducts,
     setNbBottomRows,
+    setNbTopRows,
     sortValue,
     searchValue,
+    nbTopProducts,
   } = props
   const { t } = useTranslation('categories')
 
@@ -62,20 +65,13 @@ function ProductsTopAndBottom(
     .map((topProduct) => topProduct.productId)
     .sort()
 
-  const { current } = ref
-  useEffect(() => {
-    if (current && searchValue) {
-      current.scrollIntoView({ behavior: 'smooth' })
-    }
-  }, [current, searchValue])
-
   const configuration = useAppSelector(selectConfiguration)
 
   return (
     configuration && (
       <Paper variant="outlined" sx={{ backgroundColor: 'colors.neutral.300' }}>
         <PreviewArea>{t('previewArea')}</PreviewArea>
-        <Box sx={{ padding: '42px 16px 17px 16px' }}>
+        <Box sx={{ padding: '28px 16px 17px 16px' }}>
           {topProducts.length !== 0 && (
             <TopTable
               selectedRows={topSelectedRows}
@@ -85,28 +81,23 @@ function ProductsTopAndBottom(
               topProducts={topProducts}
               topProductsIds={topProductsIds}
               sortValue={sortValue}
-              configuration={configuration}
-            />
-          )}
-          <Box
-            sx={
-              topProducts.length !== 0 && sortValue === 'category__position'
-                ? { marginTop: '24px' }
-                : {}
-            }
-          >
-            <BottomTable
-              ref={ref}
-              selectedRows={bottomSelectedRows}
-              onSelectedRows={onBottomSelectedRows}
-              productGraphqlFilters={productGraphqlFilters}
-              topProductsIds={topProductsIds}
-              setNbBottomRows={setNbBottomRows}
-              sortValue={sortValue}
               searchValue={searchValue}
               configuration={configuration}
+              setNbTopRows={setNbTopRows}
             />
-          </Box>
+          )}
+          <BottomTable
+            ref={ref}
+            selectedRows={bottomSelectedRows}
+            onSelectedRows={onBottomSelectedRows}
+            productGraphqlFilters={productGraphqlFilters}
+            topProductsIds={topProductsIds}
+            setNbBottomRows={setNbBottomRows}
+            sortValue={sortValue}
+            searchValue={searchValue}
+            configuration={configuration}
+            nbTopProducts={nbTopProducts}
+          />
         </Box>
       </Paper>
     )

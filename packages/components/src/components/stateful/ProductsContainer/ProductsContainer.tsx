@@ -75,6 +75,7 @@ function ProductsContainer(props: IProps): JSX.Element {
   const [topSelectedRows, setTopSelectedRows] = useState<string[]>([])
   const [bottomSelectedRows, setBottomSelectedRows] = useState<string[]>([])
   const [nbBottomRows, setNbBottomRows] = useState(0)
+  const [nbTopRows, setNbTopRows] = useState(0)
 
   const defaultSorting = catConf?.defaultSorting ?? ''
 
@@ -216,7 +217,7 @@ function ProductsContainer(props: IProps): JSX.Element {
 
         <SearchBar
           nbResults={nbBottomRows}
-          nbTopProducts={topProducts.length}
+          nbTopProducts={nbTopRows}
           onSearch={onSearch}
           sortValue={defaultSorting}
           searchValue={valSearchOnChange}
@@ -233,11 +234,13 @@ function ProductsContainer(props: IProps): JSX.Element {
             onBottomSelectedRows={setBottomSelectedRows}
             onTopSelectedRows={setTopSelectedRows}
             setNbBottomRows={setNbBottomRows}
+            setNbTopRows={setNbTopRows}
             setProductPositions={setProductPositions}
             topSelectedRows={topSelectedRows}
             topProducts={topProducts}
             sortValue={defaultSorting}
             searchValue={search}
+            nbTopProducts={nbTopRows}
           />
         )}
       </Layout>
