@@ -101,14 +101,14 @@ function ResourceTable(props: IProps): JSX.Element {
   const tableRows = data?.['hydra:member'] as unknown as ITableRow[]
   const diffRows: ITableRow[] = useMemo(() => {
     if (diffDefaultValues && tableRows) {
-      return tableRows.map((row) => {
-        return Object.fromEntries([
+      return tableRows.map((row) =>
+        Object.fromEntries([
           ...Object.entries(row)
             .filter(([key]) => key.startsWith('default'))
             .map(([key, value]) => [getNameFromDefault(key), value]),
           ['position', row.defaultPosition],
         ])
-      }) as ITableRow[]
+      ) as ITableRow[]
     }
     return []
   }, [diffDefaultValues, tableRows])
@@ -117,9 +117,11 @@ function ResourceTable(props: IProps): JSX.Element {
       diffRows.reduce(
         (acc, row, index) =>
           acc +
-          Object.entries(row).reduce((acc, [key, value]) => {
-            return acc + Number(value !== tableRows?.[index][key])
-          }, 0),
+          Object.entries(row).reduce(
+            (acc, [key, value]) =>
+              acc + Number(value !== tableRows?.[index][key]),
+            0
+          ),
         0
       ),
     [diffRows, tableRows]
