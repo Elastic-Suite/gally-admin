@@ -1,3 +1,28 @@
+## 1.0.0 (2023-01-20)
+
+##### Chores
+
+- update CI for new 1.0.x branch ([2c76d8bc](https://github.com/Elastic-Suite/gally-admin/commit/2c76d8bc9f126117dd373fdd8d27a9d5b3474ff7))
+
+##### Bug Fixes
+
+- **ESPP_608:** manage missing values ([d7ee7e77](https://github.com/Elastic-Suite/gally-admin/commit/d7ee7e775b29736dfad5636e485d89aea79186fe))
+- fix-margin-alert-and-table-pagination ([5fda7904](https://github.com/Elastic-Suite/gally-admin/commit/5fda7904164884fc56b4e2232e6b17bbac14311f))
+- remove useless useEffect - ESPP_353 ([794666a8](https://github.com/Elastic-Suite/gally-admin/commit/794666a8c9711a75ccd667088c10cc6c4e1aa5bb))
+- messages errors - ESPP_658 ([6cb7cd97](https://github.com/Elastic-Suite/gally-admin/commit/6cb7cd97d37b260982d4125e8e120405ce316b26))
+- unknown props pass to mui alert component with notistack ([29df3711](https://github.com/Elastic-Suite/gally-admin/commit/29df37113f6c229d60716f01a870a1611085cd39))
+- parameter name ([65624d80](https://github.com/Elastic-Suite/gally-admin/commit/65624d804f0a2787e194368ec689fb10a5d4223d))
+- searchBar - ESPP_353 ([23d291f3](https://github.com/Elastic-Suite/gally-admin/commit/23d291f3aaab4b53951e7aed63f7346d0a9aa6f9))
+- update style auto complete input - ESPP_590 ([214df12a](https://github.com/Elastic-Suite/gally-admin/commit/214df12aad5c492de61b7a5457a9e7653c032760))
+- trads - ESPP_596 ([bd8422c5](https://github.com/Elastic-Suite/gally-admin/commit/bd8422c59cbc830abde546a8c1421743e626a0ba))
+- change name for locales - ESPP_632 ([fbd48ca6](https://github.com/Elastic-Suite/gally-admin/commit/fbd48ca68c5c50c13ab2bafd6267444dbd051397))
+- when user is not connected ([f775f3f4](https://github.com/Elastic-Suite/gally-admin/commit/f775f3f4165d73d3a24c7b6a714eafd7f3a7f561))
+- add public config for scoped packages ([eaceec2a](https://github.com/Elastic-Suite/gally-admin/commit/eaceec2a053a1ed513d446ee8ec3e63682b038f1))
+
+##### Reverts
+
+- add searchBar in attributes page - ESPP_630 ([81d6eca9](https://github.com/Elastic-Suite/gally-admin/commit/81d6eca94e7288e0dfdec2d11df9bcd9cbf79a22))
+
 ### 0.2.0 (2023-01-17)
 
 ##### Chores
