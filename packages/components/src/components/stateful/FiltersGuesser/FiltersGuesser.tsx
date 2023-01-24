@@ -34,6 +34,9 @@ function FiltersGuesser<T extends IHydraMember>(props: IProps<T>): JSX.Element {
     showSearch,
   } = props
   const filters: IFieldConfig[] = useApiFilters(apiData, resource)
+  // console.log('resource', resource)
+  // console.log('apiData', apiData)
+  // console.log('filtersA', filters)
 
   const initValues = useCallback(
     (

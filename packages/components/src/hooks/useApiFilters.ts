@@ -18,7 +18,7 @@ export function useApiFilters<A extends IHydraMember>(
     () => getMappings(apiData, resource),
     [apiData, resource]
   )
-
+  console.log('mappings', mappings)
   return useMemo(
     () => mappings.map((mapping) => getFilter(mapping, t)),
     [mappings, t]

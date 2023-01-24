@@ -88,6 +88,25 @@ export function getFilter(mapping: IMapping, t: TFunction): IFieldConfig {
   const type = getFilterType(mapping)
   const id = mapping.variable
   const input = getFieldInput(mapping.field, type)
+
+  const a = {
+    ...fieldConfig,
+    editable: true,
+    id,
+    input: mapping.variable.endsWith('[between]')
+      ? DataContentType.RANGE
+      : input,
+    label: mapping.field
+      ? mapping.field.property.label ??
+        t(...getFieldLabelTranslationArgs(mapping.field.title))
+      : t(...getFieldLabelTranslationArgs(mapping.property)),
+    multiple: mapping.multiple,
+    name: id,
+    required: false, // Always false for filter
+    type,
+  }
+
+  console.log('a', a)
   return {
     ...fieldConfig,
     editable: true,
@@ -110,23 +129,27 @@ export function getMappings<T extends IHydraMember>(
   apiData: IHydraResponse<T>,
   resource: IResource
 ): IMapping[] {
+  console.log('mappingA', apiData?.['hydra:search']['hydra:mapping'])
   const mappings: IMapping[] = apiData?.['hydra:search']['hydra:mapping']
-    .filter(
-      (mapping) =>
-        !mapping.variable.endsWith('[lt]') &&
-        !mapping.variable.endsWith('[gt]') &&
-        !mapping.variable.endsWith('[lte]') &&
-        !mapping.variable.endsWith('[gte]')
-    )
-    .map((mapping) => ({
-      ...mapping,
-      field: getField(resource, mapping.property),
-      multiple: mapping.variable.endsWith('[]'),
-    }))
+    .map((mapping) => {
+      console.log(
+        'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+        getField(resource, mapping.property)
+      )
+      return {
+        ...mapping,
+        field: getField(resource, mapping.property),
+        multiple: mapping.variable.endsWith('[]'),
+      }
+    })
     .filter((mapping) => mapping.field)
+
+  console.log('mapping', mappings)
+
   const arrayProperties = mappings
     .filter((mapping) => mapping.multiple)
     .map((mapping) => mapping.property)
+  console.log('arrayProperties', arrayProperties)
 
   return mappings
     ?.filter((mapping) => mapping.field.gally?.visible)

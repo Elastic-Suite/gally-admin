@@ -42,6 +42,7 @@ export function getResource(api: IApi, resourceName: string): IResource {
 }
 
 export function getFieldName(property: string): string {
+  console.log('property', property)
   if (property.endsWith('[]')) {
     return property.slice(0, -2)
   }
@@ -53,6 +54,7 @@ export function getFieldName(property: string): string {
 
 export function getField(resource: IResource, name: string): IField {
   name = getFieldName(name)
+  console.log('name', name)
   return resource.supportedProperty.find((field) => {
     return field.title === name
   })
