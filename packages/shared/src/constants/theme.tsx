@@ -121,7 +121,6 @@ export const theme = createTheme({
     borderRadius: 8,
   },
   typography: {
-    fontFamily: 'var(--gally-font)',
     h1: {
       fontSize: 36,
       lineHeight: '44px',
@@ -435,7 +434,6 @@ export const theme = createTheme({
       styleOverrides: {
         root: {
           textarea: {
-            fontFamily: 'var(--gally-font)',
             borderColor: '#E2E6F3',
             borderStyle: 'solid',
             borderWidth: '1px',
@@ -469,7 +467,6 @@ export const theme = createTheme({
               outline: 'none',
             },
             '&::placeholder': {
-              fontFamily: 'var(--gally-font)',
               color: '#424880',
               opacity: 1,
             },
@@ -533,7 +530,6 @@ export const theme = createTheme({
           backgroundColor: '#FFF',
           color: '#151A47',
           fontSize: '12px',
-          fontFamily: 'var(--gally-font)',
           fontWeight: '400',
           lineHeight: '18px',
           padding: '16px',
