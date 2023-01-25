@@ -2,6 +2,10 @@ import React, { FormEvent, useCallback, useEffect, useState } from 'react'
 import { useTranslation } from 'next-i18next'
 import { useRouter } from 'next/router'
 import Head from 'next/head'
+<<<<<<< HEAD
+=======
+import { Paper } from '@mui/material'
+>>>>>>> fix: page login - ESPP_665
 import { styled } from '@mui/system'
 import {
   ILogin,
@@ -26,7 +30,11 @@ const CustomRoot = styled('div')({
   alignItems: 'center',
   justifyContent: 'center',
   flexDirection: 'column',
+<<<<<<< HEAD
   background: 'rgb(250, 251, 254)',
+=======
+  background: 'gray',
+>>>>>>> fix: page login - ESPP_665
 })
 
 const CustomImg = styled('div')({
@@ -35,6 +43,7 @@ const CustomImg = styled('div')({
   justifyContent: 'center',
   marginBottom: '32px',
 })
+<<<<<<< HEAD
 
 const CustomBloc = styled('div')({
   padding: '32px',
@@ -43,6 +52,8 @@ const CustomBloc = styled('div')({
   borderRadius: '8px',
   background: 'rgb(255, 255, 255)',
 })
+=======
+>>>>>>> fix: page login - ESPP_665
 
 function Login(): JSX.Element {
   const { t } = useTranslation('login')
@@ -86,7 +97,11 @@ function Login(): JSX.Element {
       <Head>
         <title>{title}</title>
       </Head>
+<<<<<<< HEAD
       <CustomBloc>
+=======
+      <Paper sx={{ padding: 4, marginBottom: '6%' }}>
+>>>>>>> fix: page login - ESPP_665
         <CustomImg>
           <Image
             src="/images/LogoBlinkExtended.svg"
@@ -118,7 +133,11 @@ function Login(): JSX.Element {
             {t('action.login')}
           </Button>
         </form>
+<<<<<<< HEAD
       </CustomBloc>
+=======
+      </Paper>
+>>>>>>> fix: page login - ESPP_665
     </CustomRoot>
   )
 }
