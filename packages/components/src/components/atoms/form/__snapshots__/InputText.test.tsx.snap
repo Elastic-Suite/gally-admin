@@ -3,10 +3,10 @@
 exports[`InputText match snapshot BadgeDisabledFalse 1`] = `
 <div>
   <div
-    class="MuiFormControl-root css-1bi1rm7-MuiFormControl-root"
+    class="MuiFormControl-root css-x8sez7-MuiFormControl-root"
   >
     <label
-      class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard MuiFormLabel-colorPrimary MuiFormLabel-filled css-1ubsiac-MuiFormLabel-root-MuiInputLabel-root"
+      class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard MuiFormLabel-colorPrimary MuiFormLabel-filled css-8f1bkl-MuiFormLabel-root-MuiInputLabel-root"
       data-shrink="true"
       for="input-text"
     >
@@ -16,7 +16,7 @@ exports[`InputText match snapshot BadgeDisabledFalse 1`] = `
       class="InputText__Wrapper css-newnfq"
     >
       <div
-        class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-uxlq1u-MuiInputBase-root"
+        class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-1wru4jl-MuiInputBase-root"
       >
         <input
           aria-invalid="false"
@@ -35,10 +35,10 @@ exports[`InputText match snapshot BadgeDisabledFalse 1`] = `
 exports[`InputText match snapshot BadgeDisabledFalseRequired 1`] = `
 <div>
   <div
-    class="MuiFormControl-root css-1bi1rm7-MuiFormControl-root"
+    class="MuiFormControl-root css-x8sez7-MuiFormControl-root"
   >
     <label
-      class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard MuiFormLabel-colorPrimary MuiFormLabel-filled Mui-required css-1ubsiac-MuiFormLabel-root-MuiInputLabel-root"
+      class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard MuiFormLabel-colorPrimary MuiFormLabel-filled Mui-required css-8f1bkl-MuiFormLabel-root-MuiInputLabel-root"
       data-shrink="true"
       for="input-text"
     >
@@ -55,7 +55,7 @@ exports[`InputText match snapshot BadgeDisabledFalseRequired 1`] = `
       class="InputText__Wrapper css-newnfq"
     >
       <div
-        class="MuiInputBase-root MuiInputBase-colorPrimary Mui-disabled MuiInputBase-formControl css-uxlq1u-MuiInputBase-root"
+        class="MuiInputBase-root MuiInputBase-colorPrimary Mui-disabled MuiInputBase-formControl css-1wru4jl-MuiInputBase-root"
         required=""
       >
         <input
