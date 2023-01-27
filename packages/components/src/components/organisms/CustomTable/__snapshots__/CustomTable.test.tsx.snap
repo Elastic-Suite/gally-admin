@@ -6,7 +6,7 @@ exports[`CustomTable match snapshot with editable content 1`] = `
     class="MuiTableContainer-root css-vj1no2-MuiTableContainer-root"
   >
     <table
-      class="MuiTable-root MuiTable-stickyHeader css-12i1rvg-MuiTable-root"
+      class="MuiTable-root MuiTable-stickyHeader css-oiusu9-MuiTable-root"
     >
       <thead
         class="MuiTableHead-root css-15wwp11-MuiTableHead-root"
@@ -15,19 +15,19 @@ exports[`CustomTable match snapshot with editable content 1`] = `
           class="MuiTableRow-root MuiTableRow-head css-1u1grnd-MuiTableRow-root"
         >
           <th
-            class="MuiTableCell-root MuiTableCell-head MuiTableCell-stickyHeader MuiTableCell-sizeMedium css-19w04qo-MuiTableCell-root"
+            class="MuiTableCell-root MuiTableCell-head MuiTableCell-stickyHeader MuiTableCell-sizeMedium css-kuopqj-MuiTableCell-root"
             scope="col"
           >
              
           </th>
           <th
-            class="MuiTableCell-root MuiTableCell-head MuiTableCell-stickyHeader MuiTableCell-sizeMedium css-wes8wu-MuiTableCell-root"
+            class="MuiTableCell-root MuiTableCell-head MuiTableCell-stickyHeader MuiTableCell-sizeMedium css-1ajbdxv-MuiTableCell-root"
             scope="col"
           >
             Test header switch
           </th>
           <th
-            class="MuiTableCell-root MuiTableCell-head MuiTableCell-stickyHeader MuiTableCell-sizeMedium css-wes8wu-MuiTableCell-root"
+            class="MuiTableCell-root MuiTableCell-head MuiTableCell-stickyHeader MuiTableCell-sizeMedium css-1ajbdxv-MuiTableCell-root"
             scope="col"
           >
             Test header dropdown
@@ -46,7 +46,7 @@ exports[`CustomTable match snapshot with editable content 1`] = `
         >
           <td
             aria-describedby="rbd-hidden-text-6-hidden-text-10"
-            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1g6vd0w-MuiTableCell-root"
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-fsbcfk-MuiTableCell-root"
             data-rbd-drag-handle-context-id="6"
             data-rbd-drag-handle-draggable-id="1"
             draggable="false"
@@ -62,10 +62,10 @@ exports[`CustomTable match snapshot with editable content 1`] = `
             </div>
           </td>
           <td
-            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-cug8wp-MuiTableCell-root"
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-toz5yf-MuiTableCell-root"
           >
             <div
-              class="MuiFormControl-root MuiFormControl-fullWidth css-2kbu02-MuiFormControl-root"
+              class="MuiFormControl-root MuiFormControl-fullWidth css-e8gwa4-MuiFormControl-root"
             >
               <span
                 class="MuiSwitch-root MuiSwitch-sizeMedium css-tnsvld-MuiSwitch-root"
@@ -92,22 +92,22 @@ exports[`CustomTable match snapshot with editable content 1`] = `
             </div>
           </td>
           <td
-            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-icch0d-MuiTableCell-root"
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-pcpyuk-MuiTableCell-root"
           >
             <div
-              class="MuiFormControl-root css-1rzpxn4-MuiFormControl-root"
+              class="MuiFormControl-root css-1girsym-MuiFormControl-root"
             >
               <div
                 class="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-1qqsdnr-MuiAutocomplete-root"
               >
                 <div
-                  class="MuiFormControl-root css-1bi1rm7-MuiFormControl-root"
+                  class="MuiFormControl-root css-x8sez7-MuiFormControl-root"
                 >
                   <div
                     class="InputText__Wrapper css-newnfq"
                   >
                     <div
-                      class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-1czrsxs-MuiInputBase-root"
+                      class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-18xqfrp-MuiInputBase-root"
                     >
                       <input
                         aria-autocomplete="list"
@@ -159,7 +159,7 @@ exports[`CustomTable match snapshot with selection, with draggable, with sticky 
     class="MuiTableContainer-root css-vj1no2-MuiTableContainer-root"
   >
     <table
-      class="MuiTable-root MuiTable-stickyHeader css-12i1rvg-MuiTable-root"
+      class="MuiTable-root MuiTable-stickyHeader css-oiusu9-MuiTable-root"
     >
       <thead
         class="MuiTableHead-root css-15wwp11-MuiTableHead-root"
@@ -168,19 +168,19 @@ exports[`CustomTable match snapshot with selection, with draggable, with sticky 
           class="MuiTableRow-root MuiTableRow-head css-1u1grnd-MuiTableRow-root"
         >
           <th
-            class="MuiTableCell-root MuiTableCell-head MuiTableCell-stickyHeader MuiTableCell-sizeMedium css-19w04qo-MuiTableCell-root"
+            class="MuiTableCell-root MuiTableCell-head MuiTableCell-stickyHeader MuiTableCell-sizeMedium css-kuopqj-MuiTableCell-root"
             scope="col"
           >
              
           </th>
           <th
-            class="MuiTableCell-root MuiTableCell-head MuiTableCell-stickyHeader MuiTableCell-sizeMedium css-wes8wu-MuiTableCell-root"
+            class="MuiTableCell-root MuiTableCell-head MuiTableCell-stickyHeader MuiTableCell-sizeMedium css-1ajbdxv-MuiTableCell-root"
             scope="col"
           >
             Test header switch
           </th>
           <th
-            class="MuiTableCell-root MuiTableCell-head MuiTableCell-stickyHeader MuiTableCell-sizeMedium css-wes8wu-MuiTableCell-root"
+            class="MuiTableCell-root MuiTableCell-head MuiTableCell-stickyHeader MuiTableCell-sizeMedium css-1ajbdxv-MuiTableCell-root"
             scope="col"
           >
             Test header switch
@@ -199,7 +199,7 @@ exports[`CustomTable match snapshot with selection, with draggable, with sticky 
         >
           <td
             aria-describedby="rbd-hidden-text-5-hidden-text-7"
-            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1g6vd0w-MuiTableCell-root"
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-fsbcfk-MuiTableCell-root"
             data-rbd-drag-handle-context-id="5"
             data-rbd-drag-handle-draggable-id="1"
             draggable="false"
@@ -215,7 +215,7 @@ exports[`CustomTable match snapshot with selection, with draggable, with sticky 
             </div>
           </td>
           <td
-            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-cug8wp-MuiTableCell-root"
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-toz5yf-MuiTableCell-root"
           >
             <span
               class="MuiSwitch-root MuiSwitch-sizeMedium css-tnsvld-MuiSwitch-root"
@@ -241,7 +241,7 @@ exports[`CustomTable match snapshot with selection, with draggable, with sticky 
             </span>
           </td>
           <td
-            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-cug8wp-MuiTableCell-root"
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-toz5yf-MuiTableCell-root"
           />
         </tr>
       </tbody>
@@ -256,7 +256,7 @@ exports[`CustomTable match snapshot with selection, with draggable, without stic
     class="MuiTableContainer-root css-vj1no2-MuiTableContainer-root"
   >
     <table
-      class="MuiTable-root MuiTable-stickyHeader css-12i1rvg-MuiTable-root"
+      class="MuiTable-root MuiTable-stickyHeader css-oiusu9-MuiTable-root"
     >
       <thead
         class="MuiTableHead-root css-15wwp11-MuiTableHead-root"
@@ -265,19 +265,19 @@ exports[`CustomTable match snapshot with selection, with draggable, without stic
           class="MuiTableRow-root MuiTableRow-head css-1u1grnd-MuiTableRow-root"
         >
           <th
-            class="MuiTableCell-root MuiTableCell-head MuiTableCell-stickyHeader MuiTableCell-sizeMedium css-19w04qo-MuiTableCell-root"
+            class="MuiTableCell-root MuiTableCell-head MuiTableCell-stickyHeader MuiTableCell-sizeMedium css-kuopqj-MuiTableCell-root"
             scope="col"
           >
              
           </th>
           <th
-            class="MuiTableCell-root MuiTableCell-head MuiTableCell-stickyHeader MuiTableCell-sizeMedium css-wes8wu-MuiTableCell-root"
+            class="MuiTableCell-root MuiTableCell-head MuiTableCell-stickyHeader MuiTableCell-sizeMedium css-1ajbdxv-MuiTableCell-root"
             scope="col"
           >
             Test header switch
           </th>
           <th
-            class="MuiTableCell-root MuiTableCell-head MuiTableCell-stickyHeader MuiTableCell-sizeMedium css-wes8wu-MuiTableCell-root"
+            class="MuiTableCell-root MuiTableCell-head MuiTableCell-stickyHeader MuiTableCell-sizeMedium css-1ajbdxv-MuiTableCell-root"
             scope="col"
           >
             Test header switch
@@ -296,7 +296,7 @@ exports[`CustomTable match snapshot with selection, with draggable, without stic
         >
           <td
             aria-describedby="rbd-hidden-text-4-hidden-text-4"
-            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1g6vd0w-MuiTableCell-root"
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-fsbcfk-MuiTableCell-root"
             data-rbd-drag-handle-context-id="4"
             data-rbd-drag-handle-draggable-id="1"
             draggable="false"
@@ -312,7 +312,7 @@ exports[`CustomTable match snapshot with selection, with draggable, without stic
             </div>
           </td>
           <td
-            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-cug8wp-MuiTableCell-root"
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-toz5yf-MuiTableCell-root"
           >
             <span
               class="MuiSwitch-root MuiSwitch-sizeMedium css-tnsvld-MuiSwitch-root"
@@ -338,7 +338,7 @@ exports[`CustomTable match snapshot with selection, with draggable, without stic
             </span>
           </td>
           <td
-            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-cug8wp-MuiTableCell-root"
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-toz5yf-MuiTableCell-root"
           />
         </tr>
       </tbody>
@@ -353,7 +353,7 @@ exports[`CustomTable match snapshot with selection, without draggable, with stic
     class="MuiTableContainer-root css-vj1no2-MuiTableContainer-root"
   >
     <table
-      class="MuiTable-root MuiTable-stickyHeader css-12i1rvg-MuiTable-root"
+      class="MuiTable-root MuiTable-stickyHeader css-oiusu9-MuiTable-root"
     >
       <thead
         class="MuiTableHead-root css-15wwp11-MuiTableHead-root"
@@ -362,19 +362,19 @@ exports[`CustomTable match snapshot with selection, without draggable, with stic
           class="MuiTableRow-root MuiTableRow-head css-1u1grnd-MuiTableRow-root"
         >
           <th
-            class="MuiTableCell-root MuiTableCell-head MuiTableCell-stickyHeader MuiTableCell-sizeMedium css-19w04qo-MuiTableCell-root"
+            class="MuiTableCell-root MuiTableCell-head MuiTableCell-stickyHeader MuiTableCell-sizeMedium css-kuopqj-MuiTableCell-root"
             scope="col"
           >
              
           </th>
           <th
-            class="MuiTableCell-root MuiTableCell-head MuiTableCell-stickyHeader MuiTableCell-sizeMedium css-wes8wu-MuiTableCell-root"
+            class="MuiTableCell-root MuiTableCell-head MuiTableCell-stickyHeader MuiTableCell-sizeMedium css-1ajbdxv-MuiTableCell-root"
             scope="col"
           >
             Test header switch
           </th>
           <th
-            class="MuiTableCell-root MuiTableCell-head MuiTableCell-stickyHeader MuiTableCell-sizeMedium css-wes8wu-MuiTableCell-root"
+            class="MuiTableCell-root MuiTableCell-head MuiTableCell-stickyHeader MuiTableCell-sizeMedium css-1ajbdxv-MuiTableCell-root"
             scope="col"
           >
             Test header switch
@@ -388,10 +388,10 @@ exports[`CustomTable match snapshot with selection, without draggable, with stic
           class="MuiTableRow-root css-9mllys-MuiTableRow-root"
         >
           <td
-            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1g6vd0w-MuiTableCell-root"
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-fsbcfk-MuiTableCell-root"
           />
           <td
-            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-cug8wp-MuiTableCell-root"
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-toz5yf-MuiTableCell-root"
           >
             <span
               class="MuiSwitch-root MuiSwitch-sizeMedium css-tnsvld-MuiSwitch-root"
@@ -417,7 +417,7 @@ exports[`CustomTable match snapshot with selection, without draggable, with stic
             </span>
           </td>
           <td
-            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-cug8wp-MuiTableCell-root"
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-toz5yf-MuiTableCell-root"
           />
         </tr>
       </tbody>
@@ -432,7 +432,7 @@ exports[`CustomTable match snapshot with selection, without draggable, without s
     class="MuiTableContainer-root css-vj1no2-MuiTableContainer-root"
   >
     <table
-      class="MuiTable-root MuiTable-stickyHeader css-12i1rvg-MuiTable-root"
+      class="MuiTable-root MuiTable-stickyHeader css-oiusu9-MuiTable-root"
     >
       <thead
         class="MuiTableHead-root css-15wwp11-MuiTableHead-root"
@@ -441,19 +441,19 @@ exports[`CustomTable match snapshot with selection, without draggable, without s
           class="MuiTableRow-root MuiTableRow-head css-1u1grnd-MuiTableRow-root"
         >
           <th
-            class="MuiTableCell-root MuiTableCell-head MuiTableCell-stickyHeader MuiTableCell-sizeMedium css-19w04qo-MuiTableCell-root"
+            class="MuiTableCell-root MuiTableCell-head MuiTableCell-stickyHeader MuiTableCell-sizeMedium css-kuopqj-MuiTableCell-root"
             scope="col"
           >
              
           </th>
           <th
-            class="MuiTableCell-root MuiTableCell-head MuiTableCell-stickyHeader MuiTableCell-sizeMedium css-wes8wu-MuiTableCell-root"
+            class="MuiTableCell-root MuiTableCell-head MuiTableCell-stickyHeader MuiTableCell-sizeMedium css-1ajbdxv-MuiTableCell-root"
             scope="col"
           >
             Test header switch
           </th>
           <th
-            class="MuiTableCell-root MuiTableCell-head MuiTableCell-stickyHeader MuiTableCell-sizeMedium css-wes8wu-MuiTableCell-root"
+            class="MuiTableCell-root MuiTableCell-head MuiTableCell-stickyHeader MuiTableCell-sizeMedium css-1ajbdxv-MuiTableCell-root"
             scope="col"
           >
             Test header switch
@@ -467,10 +467,10 @@ exports[`CustomTable match snapshot with selection, without draggable, without s
           class="MuiTableRow-root css-9mllys-MuiTableRow-root"
         >
           <td
-            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1g6vd0w-MuiTableCell-root"
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-fsbcfk-MuiTableCell-root"
           />
           <td
-            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-cug8wp-MuiTableCell-root"
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-toz5yf-MuiTableCell-root"
           >
             <span
               class="MuiSwitch-root MuiSwitch-sizeMedium css-tnsvld-MuiSwitch-root"
@@ -496,7 +496,7 @@ exports[`CustomTable match snapshot with selection, without draggable, without s
             </span>
           </td>
           <td
-            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-cug8wp-MuiTableCell-root"
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-toz5yf-MuiTableCell-root"
           />
         </tr>
       </tbody>
@@ -511,7 +511,7 @@ exports[`CustomTable match snapshot without selection, without draggable, with s
     class="MuiTableContainer-root css-vj1no2-MuiTableContainer-root"
   >
     <table
-      class="MuiTable-root MuiTable-stickyHeader css-12i1rvg-MuiTable-root"
+      class="MuiTable-root MuiTable-stickyHeader css-oiusu9-MuiTable-root"
     >
       <thead
         class="MuiTableHead-root css-15wwp11-MuiTableHead-root"
@@ -520,19 +520,19 @@ exports[`CustomTable match snapshot without selection, without draggable, with s
           class="MuiTableRow-root MuiTableRow-head css-1u1grnd-MuiTableRow-root"
         >
           <th
-            class="MuiTableCell-root MuiTableCell-head MuiTableCell-stickyHeader MuiTableCell-sizeMedium css-19w04qo-MuiTableCell-root"
+            class="MuiTableCell-root MuiTableCell-head MuiTableCell-stickyHeader MuiTableCell-sizeMedium css-kuopqj-MuiTableCell-root"
             scope="col"
           >
              
           </th>
           <th
-            class="MuiTableCell-root MuiTableCell-head MuiTableCell-stickyHeader MuiTableCell-sizeMedium css-wes8wu-MuiTableCell-root"
+            class="MuiTableCell-root MuiTableCell-head MuiTableCell-stickyHeader MuiTableCell-sizeMedium css-1ajbdxv-MuiTableCell-root"
             scope="col"
           >
             Test header switch
           </th>
           <th
-            class="MuiTableCell-root MuiTableCell-head MuiTableCell-stickyHeader MuiTableCell-sizeMedium css-wes8wu-MuiTableCell-root"
+            class="MuiTableCell-root MuiTableCell-head MuiTableCell-stickyHeader MuiTableCell-sizeMedium css-1ajbdxv-MuiTableCell-root"
             scope="col"
           >
             Test header switch
@@ -546,10 +546,10 @@ exports[`CustomTable match snapshot without selection, without draggable, with s
           class="MuiTableRow-root css-9mllys-MuiTableRow-root"
         >
           <td
-            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1g6vd0w-MuiTableCell-root"
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-fsbcfk-MuiTableCell-root"
           />
           <td
-            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-cug8wp-MuiTableCell-root"
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-toz5yf-MuiTableCell-root"
           >
             <span
               class="MuiSwitch-root MuiSwitch-sizeMedium css-tnsvld-MuiSwitch-root"
@@ -575,7 +575,7 @@ exports[`CustomTable match snapshot without selection, without draggable, with s
             </span>
           </td>
           <td
-            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-cug8wp-MuiTableCell-root"
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-toz5yf-MuiTableCell-root"
           />
         </tr>
       </tbody>
@@ -590,7 +590,7 @@ exports[`CustomTable match snapshot without selection, without draggable, withou
     class="MuiTableContainer-root css-vj1no2-MuiTableContainer-root"
   >
     <table
-      class="MuiTable-root MuiTable-stickyHeader css-12i1rvg-MuiTable-root"
+      class="MuiTable-root MuiTable-stickyHeader css-oiusu9-MuiTable-root"
     >
       <thead
         class="MuiTableHead-root css-15wwp11-MuiTableHead-root"
@@ -599,19 +599,19 @@ exports[`CustomTable match snapshot without selection, without draggable, withou
           class="MuiTableRow-root MuiTableRow-head css-1u1grnd-MuiTableRow-root"
         >
           <th
-            class="MuiTableCell-root MuiTableCell-head MuiTableCell-stickyHeader MuiTableCell-sizeMedium css-19w04qo-MuiTableCell-root"
+            class="MuiTableCell-root MuiTableCell-head MuiTableCell-stickyHeader MuiTableCell-sizeMedium css-kuopqj-MuiTableCell-root"
             scope="col"
           >
              
           </th>
           <th
-            class="MuiTableCell-root MuiTableCell-head MuiTableCell-stickyHeader MuiTableCell-sizeMedium css-wes8wu-MuiTableCell-root"
+            class="MuiTableCell-root MuiTableCell-head MuiTableCell-stickyHeader MuiTableCell-sizeMedium css-1ajbdxv-MuiTableCell-root"
             scope="col"
           >
             Test header switch
           </th>
           <th
-            class="MuiTableCell-root MuiTableCell-head MuiTableCell-stickyHeader MuiTableCell-sizeMedium css-wes8wu-MuiTableCell-root"
+            class="MuiTableCell-root MuiTableCell-head MuiTableCell-stickyHeader MuiTableCell-sizeMedium css-1ajbdxv-MuiTableCell-root"
             scope="col"
           >
             Test header switch
@@ -625,10 +625,10 @@ exports[`CustomTable match snapshot without selection, without draggable, withou
           class="MuiTableRow-root css-9mllys-MuiTableRow-root"
         >
           <td
-            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1g6vd0w-MuiTableCell-root"
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-fsbcfk-MuiTableCell-root"
           />
           <td
-            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-cug8wp-MuiTableCell-root"
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-toz5yf-MuiTableCell-root"
           >
             <span
               class="MuiSwitch-root MuiSwitch-sizeMedium css-tnsvld-MuiSwitch-root"
@@ -654,7 +654,7 @@ exports[`CustomTable match snapshot without selection, without draggable, withou
             </span>
           </td>
           <td
-            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-cug8wp-MuiTableCell-root"
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-toz5yf-MuiTableCell-root"
           />
         </tr>
       </tbody>
