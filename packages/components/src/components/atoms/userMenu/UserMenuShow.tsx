@@ -9,6 +9,8 @@ import {
 import { setUser, useAppDispatch } from '../../../store'
 import FormatText from '../formatText/FormatText'
 
+import { useTranslation } from 'next-i18next'
+
 const CustomTypoTexte = styled('div')(({ theme }) => ({
   fontStyle: 'normal',
   fontWeight: 600,
@@ -45,6 +47,8 @@ interface IProps {
 function UserMenuShow({ user }: IProps): JSX.Element {
   const dispatch = useAppDispatch()
 
+  const { t } = useTranslation('common')
+
   function handleLogOut(): void {
     storageRemove(tokenStorageKey)
     dispatch(setUser({ token: '', user: null }))
@@ -56,7 +60,7 @@ function UserMenuShow({ user }: IProps): JSX.Element {
         <FormatText name={user.username} toolTip firstLetterUpp />
       </CustomTypoEmail>
       <CustomHr />
-      <CustomTypoBasic onClick={handleLogOut}>Log out</CustomTypoBasic>
+      <CustomTypoBasic onClick={handleLogOut}>{t('log.out')}</CustomTypoBasic>
     </CustomTypoTexte>
   )
 }

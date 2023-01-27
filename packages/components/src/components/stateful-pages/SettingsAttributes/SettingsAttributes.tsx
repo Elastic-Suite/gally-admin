@@ -16,6 +16,7 @@ const fixedFilters = { 'metadata.entity': 'product' }
 
 function SettingsAttributes(props: ITabContentProps): JSX.Element {
   const { active } = props
+
   const [
     isVisibleAlertSettingsAttributes,
     setIsVisibleAlertSettingsAttributes,
@@ -51,6 +52,7 @@ function SettingsAttributes(props: ITabContentProps): JSX.Element {
         getTableConfigs={getTableConfigs}
         resourceName="SourceField"
         setActiveFilters={setActiveFilters}
+        showSearch
       />
     </>
   )
