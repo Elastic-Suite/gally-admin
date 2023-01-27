@@ -101,24 +101,22 @@ function AdminMerchandizeCategories(): JSX.Element {
       selectedCategoryItem?.id &&
       categories.status === LoadStatus.SUCCEEDED
     ) {
-      return null
-    }
-
-    if (
-      categories?.data?.categories.find(
-        (item) => item.id === selectedCategoryItem?.id
-      )
-    ) {
-      fetchApi<ICategoryConfiguration>(
-        `${catConfResource.url}/category/${selectedCategoryItem.id}`,
-        filters
-      ).then((catConf) => {
-        if (!isError(catConf)) {
-          const parsedCatConf = parseCatConf(catConf)
-          prevCatConf.current = parsedCatConf
-          setCatConf(parsedCatConf)
-        }
-      })
+      if (
+        categories?.data?.categories.find(
+          (item) => item.id === selectedCategoryItem?.id
+        )
+      ) {
+        fetchApi<ICategoryConfiguration>(
+          `${catConfResource.url}/category/${selectedCategoryItem.id}`,
+          filters
+        ).then((catConf) => {
+          if (!isError(catConf)) {
+            const parsedCatConf = parseCatConf(catConf)
+            prevCatConf.current = parsedCatConf
+            setCatConf(parsedCatConf)
+          }
+        })
+      }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [fetchApi, selectedCategoryItem?.id, catConfResource.url, categories])
