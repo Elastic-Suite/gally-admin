@@ -14,5 +14,5 @@ textarea:-webkit-autofill:active,
 select:-webkit-autofill,
 select:-webkit-autofill:hover,
 select:-webkit-autofill:focus {
-  background-color: transparent;
+  background-color: transparent !important;
 }
