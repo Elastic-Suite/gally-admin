@@ -1,4 +1,4 @@
-import { useDataLoader, useUser } from '../../../hooks'
+import { useDataLoader } from '../../../hooks'
 import {
   selectApi,
   selectBundles,
@@ -15,9 +15,6 @@ function DataProvider(props: IProps): JSX.Element {
   const api = useAppSelector(selectApi)
   const bundles = useAppSelector(selectBundles)
   const configurations = useAppSelector(selectConfiguration)
-
-  // Load user in the store
-  useUser()
 
   // Load data in the store
   useDataLoader()

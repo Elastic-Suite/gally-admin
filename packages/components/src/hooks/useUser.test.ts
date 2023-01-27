@@ -14,37 +14,19 @@ const user = {
 }
 
 describe('useUser', () => {
-  it('should update the store with the user when connected', () => {
+  it('should return the user if valid', () => {
     const mock = storageGet as jest.Mock
     mock.mockClear()
     mock.mockImplementationOnce(() => token)
-    const { store } = renderHookWithProviders(() => useUser(), {
-      preloadedState: {
-        user: {
-          requestedPath: '',
-          token: '',
-          user: null,
-        },
-      },
-    })
-    const state = store.getState()
-    expect(state.user.user).toEqual(user)
+    const { result } = renderHookWithProviders(() => useUser())
+    expect(result.current).toEqual(user)
   })
 
-  it('should clear the user state if token is corrupted', () => {
+  it('should return null if not valid', () => {
     const mock = storageGet as jest.Mock
     mock.mockClear()
     mock.mockImplementationOnce(() => '123')
-    const { store } = renderHookWithProviders(() => useUser(), {
-      preloadedState: {
-        user: {
-          requestedPath: '',
-          token,
-          user,
-        },
-      },
-    })
-    const state = store.getState()
-    expect(state.user.user).toEqual(null)
+    const { result } = renderHookWithProviders(() => useUser())
+    expect(result.current).toEqual(null)
   })
 })

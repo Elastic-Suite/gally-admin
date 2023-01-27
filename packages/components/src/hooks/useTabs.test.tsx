@@ -1,5 +1,5 @@
 import React from 'react'
-import { useRouter } from 'next/router'
+import Router, { useRouter } from 'next/router'
 import { IRouterTab } from '@elastic-suite/gally-admin-shared'
 
 import { renderHookWithProviders } from '../utils/tests'
@@ -38,8 +38,7 @@ describe('useTabs', () => {
   })
 
   it('should redirect', () => {
-    const router = useRouter()
-    const pushSpy = router.push as jest.Mock
+    const pushSpy = Router.push as jest.Mock
     pushSpy.mockClear()
     const { result } = renderHookWithProviders(() => useTabs(routerTabs))
     result.current[1](1)
@@ -47,8 +46,7 @@ describe('useTabs', () => {
   })
 
   it('should not redirect for unknown id', () => {
-    const router = useRouter()
-    const pushSpy = router.push as jest.Mock
+    const pushSpy = Router.push as jest.Mock
     pushSpy.mockClear()
     const { result } = renderHookWithProviders(() => useTabs(routerTabs))
     result.current[1](2)
