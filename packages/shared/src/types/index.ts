@@ -1,4 +1,5 @@
 export * from './api'
+export * from './boost'
 export * from './catalog'
 export * from './categories'
 export * from './categoryConfiguration'
