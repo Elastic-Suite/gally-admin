@@ -9,20 +9,27 @@ import AppProvider from '../components/stateful-providers/AppProvider/AppProvide
 import CatalogProvider from '../components/stateful-providers/CatalogProvider/CatalogProvider'
 import DataProvider from '../components/stateful-providers/DataProvider/DataProvider'
 import Layout from '../components/stateful-layout/Layout/Layout'
+import { useRouter } from 'next/router'
 
 const store = setupStore()
 
 function GallyApp(props: AppProps): JSX.Element {
   const { Component, pageProps } = props
   const Cmp = Component
+  const router = useRouter()
+  const isLoginPage = router.route === '/login'
 
   return (
     <AppProvider store={store}>
       <DataProvider>
         <CatalogProvider>
-          <Layout>
+          {isLoginPage ? (
             <Cmp {...pageProps} />
-          </Layout>
+          ) : (
+            <Layout>
+              <Cmp {...pageProps} />
+            </Layout>
+          )}
         </CatalogProvider>
       </DataProvider>
     </AppProvider>
