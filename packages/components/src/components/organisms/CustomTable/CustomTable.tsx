@@ -78,10 +78,15 @@ function CustomTable(
 
   const [scrollLength, setScrollLength] = useState<number>(0)
   const tableRef = useRef<HTMLDivElement>()
-  const { isOverflow, shadow } = useIsHorizontalOverflow(
-    // eslint-disable-next-line react/destructuring-assignment
-    ref?.current ?? tableRef.current
-  )
+  const { current: refCurrent } = ref ?? tableRef
+  const { isOverflow, shadow } = useIsHorizontalOverflow(refCurrent)
+
+  useEffect(() => {
+    if (refCurrent?.scrollTo) {
+      refCurrent.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [tableRows.length, tableRows[0].id, refCurrent])
 
   /**
    * Compute the length of the sticky part.
