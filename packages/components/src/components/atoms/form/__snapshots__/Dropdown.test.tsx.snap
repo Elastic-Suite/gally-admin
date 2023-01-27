@@ -3,19 +3,19 @@
 exports[`DropDown match snapshot BadgeDisabledFalse 1`] = `
 <div>
   <div
-    class="MuiFormControl-root css-1rzpxn4-MuiFormControl-root"
+    class="MuiFormControl-root css-1girsym-MuiFormControl-root"
   >
     <div
       class="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-1qqsdnr-MuiAutocomplete-root"
     >
       <div
-        class="MuiFormControl-root css-1bi1rm7-MuiFormControl-root"
+        class="MuiFormControl-root css-x8sez7-MuiFormControl-root"
       >
         <div
           class="InputText__Wrapper css-newnfq"
         >
           <div
-            class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-1czrsxs-MuiInputBase-root"
+            class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-18xqfrp-MuiInputBase-root"
           >
             <input
               aria-autocomplete="list"
@@ -59,19 +59,19 @@ exports[`DropDown match snapshot BadgeDisabledFalse 1`] = `
 exports[`DropDown match snapshot BadgeDisabledTrue 1`] = `
 <div>
   <div
-    class="MuiFormControl-root css-1rzpxn4-MuiFormControl-root"
+    class="MuiFormControl-root css-1girsym-MuiFormControl-root"
   >
     <div
       class="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-1qqsdnr-MuiAutocomplete-root"
     >
       <div
-        class="MuiFormControl-root css-1bi1rm7-MuiFormControl-root"
+        class="MuiFormControl-root css-x8sez7-MuiFormControl-root"
       >
         <div
           class="InputText__Wrapper css-newnfq"
         >
           <div
-            class="MuiInputBase-root MuiInputBase-colorPrimary Mui-disabled MuiInputBase-formControl MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-1czrsxs-MuiInputBase-root"
+            class="MuiInputBase-root MuiInputBase-colorPrimary Mui-disabled MuiInputBase-formControl MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-18xqfrp-MuiInputBase-root"
           >
             <input
               aria-autocomplete="list"
@@ -114,16 +114,16 @@ exports[`DropDown match snapshot BadgeDisabledTrue 1`] = `
 exports[`DropDown match snapshot BadgeLabel 1`] = `
 <div>
   <div
-    class="MuiFormControl-root css-1rzpxn4-MuiFormControl-root"
+    class="MuiFormControl-root css-1girsym-MuiFormControl-root"
   >
     <div
       class="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-1qqsdnr-MuiAutocomplete-root"
     >
       <div
-        class="MuiFormControl-root css-1bi1rm7-MuiFormControl-root"
+        class="MuiFormControl-root css-x8sez7-MuiFormControl-root"
       >
         <label
-          class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard MuiFormLabel-colorPrimary css-1ubsiac-MuiFormLabel-root-MuiInputLabel-root"
+          class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard MuiFormLabel-colorPrimary css-8f1bkl-MuiFormLabel-root-MuiInputLabel-root"
           data-shrink="true"
           for=":r2:"
         >
@@ -133,7 +133,7 @@ exports[`DropDown match snapshot BadgeLabel 1`] = `
           class="InputText__Wrapper css-newnfq"
         >
           <div
-            class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-1czrsxs-MuiInputBase-root"
+            class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-18xqfrp-MuiInputBase-root"
           >
             <input
               aria-autocomplete="list"
@@ -177,16 +177,16 @@ exports[`DropDown match snapshot BadgeLabel 1`] = `
 exports[`DropDown match snapshot BadgeMultiple 1`] = `
 <div>
   <div
-    class="MuiFormControl-root css-1rzpxn4-MuiFormControl-root"
+    class="MuiFormControl-root css-1girsym-MuiFormControl-root"
   >
     <div
       class="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-1qqsdnr-MuiAutocomplete-root"
     >
       <div
-        class="MuiFormControl-root css-1bi1rm7-MuiFormControl-root"
+        class="MuiFormControl-root css-x8sez7-MuiFormControl-root"
       >
         <label
-          class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard MuiFormLabel-colorPrimary css-1ubsiac-MuiFormLabel-root-MuiInputLabel-root"
+          class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard MuiFormLabel-colorPrimary css-8f1bkl-MuiFormLabel-root-MuiInputLabel-root"
           data-shrink="true"
           for=":r5:"
         >
@@ -196,7 +196,7 @@ exports[`DropDown match snapshot BadgeMultiple 1`] = `
           class="InputText__Wrapper css-newnfq"
         >
           <div
-            class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-1czrsxs-MuiInputBase-root"
+            class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-18xqfrp-MuiInputBase-root"
           >
             <input
               aria-autocomplete="list"
@@ -240,19 +240,19 @@ exports[`DropDown match snapshot BadgeMultiple 1`] = `
 exports[`DropDown match snapshot BadgeRequiredFalse 1`] = `
 <div>
   <div
-    class="MuiFormControl-root css-1rzpxn4-MuiFormControl-root"
+    class="MuiFormControl-root css-1girsym-MuiFormControl-root"
   >
     <div
       class="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-1qqsdnr-MuiAutocomplete-root"
     >
       <div
-        class="MuiFormControl-root css-1bi1rm7-MuiFormControl-root"
+        class="MuiFormControl-root css-x8sez7-MuiFormControl-root"
       >
         <div
           class="InputText__Wrapper css-newnfq"
         >
           <div
-            class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-1czrsxs-MuiInputBase-root"
+            class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-18xqfrp-MuiInputBase-root"
           >
             <input
               aria-autocomplete="list"
@@ -296,19 +296,19 @@ exports[`DropDown match snapshot BadgeRequiredFalse 1`] = `
 exports[`DropDown match snapshot BadgeRequiredTrue 1`] = `
 <div>
   <div
-    class="MuiFormControl-root css-1rzpxn4-MuiFormControl-root"
+    class="MuiFormControl-root css-1girsym-MuiFormControl-root"
   >
     <div
       class="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-1qqsdnr-MuiAutocomplete-root"
     >
       <div
-        class="MuiFormControl-root css-1bi1rm7-MuiFormControl-root"
+        class="MuiFormControl-root css-x8sez7-MuiFormControl-root"
       >
         <div
           class="InputText__Wrapper css-newnfq"
         >
           <div
-            class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-1czrsxs-MuiInputBase-root"
+            class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-18xqfrp-MuiInputBase-root"
             required=""
           >
             <input
