@@ -1,31 +1,16 @@
-import { useEffect } from 'react'
 import {
+  IUser,
   getUser,
   storageGet,
   tokenStorageKey,
 } from '@elastic-suite/gally-admin-shared'
+import { useMemo } from 'react'
 
-import { selectToken, setUser, useAppDispatch, useAppSelector } from '../store'
-
-import { useLog } from './useLog'
-
-export function useUser(): void {
-  const dispatch = useAppDispatch()
-  const log = useLog()
+export function useUser(): IUser | null {
   const token = storageGet(tokenStorageKey)
-  const stateToken = useAppSelector(selectToken)
-
-  useEffect(() => {
-    try {
-      if (token && token !== stateToken) {
-        const user = getUser(token)
-        dispatch(setUser({ token, user }))
-      }
-    } catch (error) {
-      log(error)
-      if (stateToken !== '') {
-        dispatch(setUser({ token: '', user: null }))
-      }
-    }
-  }, [dispatch, log, stateToken, token])
+  try {
+    return useMemo(() => getUser(token), [token])
+  } catch (error) {
+    return null
+  }
 }
