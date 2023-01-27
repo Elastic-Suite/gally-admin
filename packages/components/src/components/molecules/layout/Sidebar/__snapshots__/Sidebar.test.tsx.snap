@@ -17,7 +17,7 @@ exports[`SideBar match snapshot SideBarStateFalse 1`] = `
           style="width: inherit;"
         >
           <a
-            href="/"
+            href="/admin/settings/scope/catalogs"
           >
             <div
               class="css-fqqimh"
@@ -38,6 +38,7 @@ exports[`SideBar match snapshot SideBarStateFalse 1`] = `
               </div>
               <div
                 class="css-qzjp43"
+                style="opacity: 0;"
               >
                 <img
                   alt="Logo"
@@ -651,7 +652,7 @@ exports[`SideBar match snapshot SideBarStateTrue 1`] = `
           class="css-1b00w0w"
         >
           <a
-            href="/"
+            href="/admin/settings/scope/catalogs"
           >
             <div
               class="css-fqqimh"
@@ -672,6 +673,7 @@ exports[`SideBar match snapshot SideBarStateTrue 1`] = `
               </div>
               <div
                 class="css-qzjp43"
+                style="opacity: 0;"
               >
                 <img
                   alt="Logo"

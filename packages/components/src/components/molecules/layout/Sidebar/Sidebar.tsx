@@ -89,7 +89,7 @@ function Sidebar(props: IProps): JSX.Element {
       timeout={sidebarState ? 0 : 200}
     >
       <CustomRoot style={sidebarState ? {} : { width: 'inherit' }}>
-        <Link href="/" as="/">
+        <Link href="/admin/settings/scope/catalogs">
           <CustomImgContainer>
             <CustomImgExtended
               style={!sidebarStateTimeout ? {} : { opacity: 0 }}
@@ -101,7 +101,9 @@ function Sidebar(props: IProps): JSX.Element {
                 height="29"
               />
             </CustomImgExtended>
-            <CustomImgCollapse>
+            <CustomImgCollapse
+              style={sidebarStateTimeout ? {} : { opacity: 0 }}
+            >
               <Image
                 src="/images/LogoBlinkCollapse.svg"
                 alt="Logo"

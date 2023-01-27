@@ -15,7 +15,7 @@ exports[`NoAttributes match snapshot 1`] = `
       No attributes were specified as searchable in the settings
     </div>
     <button
-      class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge css-17v59uh-MuiButtonBase-root-MuiButton-root"
+      class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge css-zwkw2d-MuiButtonBase-root-MuiButton-root"
       tabindex="0"
       type="button"
     >

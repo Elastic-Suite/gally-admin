@@ -7,7 +7,7 @@ exports[`AppBar match snapshot AppBar simple 1`] = `
   >
     <nav
       aria-label="breadcrumb"
-      class="MuiTypography-root MuiTypography-body1 MuiBreadcrumbs-root css-qno6wy-MuiTypography-root-MuiBreadcrumbs-root"
+      class="MuiTypography-root MuiTypography-body1 MuiBreadcrumbs-root css-ayvqor-MuiTypography-root-MuiBreadcrumbs-root"
     >
       <ol
         class="MuiBreadcrumbs-ol css-4pdmu4-MuiBreadcrumbs-ol"
@@ -16,7 +16,7 @@ exports[`AppBar match snapshot AppBar simple 1`] = `
           class="MuiBreadcrumbs-li"
         >
           <p
-            class="MuiTypography-root MuiTypography-body1 css-1lejrg3-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body1 css-1kgipl8-MuiTypography-root"
           >
             <span
               class="css-6nl1o3"
@@ -133,7 +133,7 @@ exports[`AppBar match snapshot AppBar simple 1`] = `
                     <div
                       class="css-9vgysh"
                     >
-                      Log out
+                      log.out
                     </div>
                   </div>
                 </div>
@@ -154,7 +154,7 @@ exports[`AppBar match snapshot AppBarThreeSlug 1`] = `
   >
     <nav
       aria-label="breadcrumb"
-      class="MuiTypography-root MuiTypography-body1 MuiBreadcrumbs-root css-qno6wy-MuiTypography-root-MuiBreadcrumbs-root"
+      class="MuiTypography-root MuiTypography-body1 MuiBreadcrumbs-root css-ayvqor-MuiTypography-root-MuiBreadcrumbs-root"
     >
       <ol
         class="MuiBreadcrumbs-ol css-4pdmu4-MuiBreadcrumbs-ol"
@@ -163,7 +163,7 @@ exports[`AppBar match snapshot AppBarThreeSlug 1`] = `
           class="MuiBreadcrumbs-li"
         >
           <p
-            class="MuiTypography-root MuiTypography-body1 css-1lejrg3-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body1 css-1kgipl8-MuiTypography-root"
           >
             <span
               class="css-1epdhd3"
@@ -182,7 +182,7 @@ exports[`AppBar match snapshot AppBarThreeSlug 1`] = `
           class="MuiBreadcrumbs-li"
         >
           <p
-            class="MuiTypography-root MuiTypography-body1 css-1lejrg3-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body1 css-1kgipl8-MuiTypography-root"
           >
             <span
               class="css-1epdhd3"
@@ -201,7 +201,7 @@ exports[`AppBar match snapshot AppBarThreeSlug 1`] = `
           class="MuiBreadcrumbs-li"
         >
           <p
-            class="MuiTypography-root MuiTypography-body1 css-1lejrg3-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body1 css-1kgipl8-MuiTypography-root"
           >
             <span
               class="css-6nl1o3"
@@ -318,7 +318,7 @@ exports[`AppBar match snapshot AppBarThreeSlug 1`] = `
                     <div
                       class="css-9vgysh"
                     >
-                      Log out
+                      log.out
                     </div>
                   </div>
                 </div>
@@ -339,7 +339,7 @@ exports[`AppBar match snapshot AppBarThreeSlug not connected 1`] = `
   >
     <nav
       aria-label="breadcrumb"
-      class="MuiTypography-root MuiTypography-body1 MuiBreadcrumbs-root css-qno6wy-MuiTypography-root-MuiBreadcrumbs-root"
+      class="MuiTypography-root MuiTypography-body1 MuiBreadcrumbs-root css-ayvqor-MuiTypography-root-MuiBreadcrumbs-root"
     >
       <ol
         class="MuiBreadcrumbs-ol css-4pdmu4-MuiBreadcrumbs-ol"
@@ -348,7 +348,7 @@ exports[`AppBar match snapshot AppBarThreeSlug not connected 1`] = `
           class="MuiBreadcrumbs-li"
         >
           <p
-            class="MuiTypography-root MuiTypography-body1 css-1lejrg3-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body1 css-1kgipl8-MuiTypography-root"
           >
             <span
               class="css-1epdhd3"
@@ -367,7 +367,7 @@ exports[`AppBar match snapshot AppBarThreeSlug not connected 1`] = `
           class="MuiBreadcrumbs-li"
         >
           <p
-            class="MuiTypography-root MuiTypography-body1 css-1lejrg3-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body1 css-1kgipl8-MuiTypography-root"
           >
             <span
               class="css-1epdhd3"
@@ -386,7 +386,7 @@ exports[`AppBar match snapshot AppBarThreeSlug not connected 1`] = `
           class="MuiBreadcrumbs-li"
         >
           <p
-            class="MuiTypography-root MuiTypography-body1 css-1lejrg3-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body1 css-1kgipl8-MuiTypography-root"
           >
             <span
               class="css-6nl1o3"
@@ -408,7 +408,7 @@ exports[`AppBar match snapshot AppBarTwoSlug 1`] = `
   >
     <nav
       aria-label="breadcrumb"
-      class="MuiTypography-root MuiTypography-body1 MuiBreadcrumbs-root css-qno6wy-MuiTypography-root-MuiBreadcrumbs-root"
+      class="MuiTypography-root MuiTypography-body1 MuiBreadcrumbs-root css-ayvqor-MuiTypography-root-MuiBreadcrumbs-root"
     >
       <ol
         class="MuiBreadcrumbs-ol css-4pdmu4-MuiBreadcrumbs-ol"
@@ -417,7 +417,7 @@ exports[`AppBar match snapshot AppBarTwoSlug 1`] = `
           class="MuiBreadcrumbs-li"
         >
           <p
-            class="MuiTypography-root MuiTypography-body1 css-1lejrg3-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body1 css-1kgipl8-MuiTypography-root"
           >
             <span
               class="css-1epdhd3"
@@ -436,7 +436,7 @@ exports[`AppBar match snapshot AppBarTwoSlug 1`] = `
           class="MuiBreadcrumbs-li"
         >
           <p
-            class="MuiTypography-root MuiTypography-body1 css-1lejrg3-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body1 css-1kgipl8-MuiTypography-root"
           >
             <span
               class="css-6nl1o3"
@@ -553,7 +553,7 @@ exports[`AppBar match snapshot AppBarTwoSlug 1`] = `
                     <div
                       class="css-9vgysh"
                     >
-                      Log out
+                      log.out
                     </div>
                   </div>
                 </div>
