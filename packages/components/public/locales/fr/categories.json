@@ -26,7 +26,7 @@
   "select.label": "Tri par défaut",
   "searchBarResult": "{{value.value}} {{value.result}}",
   "placeholder": "Aucune catégorie disponible.",
-  "buttonSave": "Sauvegarde",
+  "buttonSave": "Enregistrer",
   "stickybar.noPositionProduct": "Les produits ne peuvent pas être épinglés lorsque le tri n'est pas Position",
   "alert": "Sauvegarde des données avec succès",
   "alert.error": "Une erreur s'est produite",
