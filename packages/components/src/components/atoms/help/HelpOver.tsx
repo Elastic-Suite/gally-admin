@@ -25,12 +25,7 @@ const CustomA = styled('a')({
 function HelpOver(): JSX.Element {
   return (
     <CustomRoot>
-      <Link
-        href="https://elasticsuite.zendesk.com"
-        legacyBehavior
-        passHref
-        style={{ textDecoration: 'none!important', color: 'red' }}
-      >
+      <Link href="https://elasticsuite.zendesk.com" legacyBehavior passHref>
         <CustomA>Helpdesk</CustomA>
       </Link>
 
@@ -43,9 +38,7 @@ function HelpOver(): JSX.Element {
       </Link>
 
       {process.env.NODE_ENV === 'development' && (
-        <Link href="/swagger/docs" legacyBehavior passHref>
-          <CustomA>API documentation</CustomA>
-        </Link>
+        <CustomA href="/docs">API documentation</CustomA>
       )}
     </CustomRoot>
   )
