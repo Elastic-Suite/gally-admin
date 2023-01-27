@@ -101,7 +101,9 @@ function Sidebar(props: IProps): JSX.Element {
                 height="29"
               />
             </CustomImgExtended>
-            <CustomImgCollapse>
+            <CustomImgCollapse
+              style={sidebarStateTimeout ? {} : { opacity: 0 }}
+            >
               <Image
                 src="/images/LogoBlinkCollapse.svg"
                 alt="Logo"

@@ -3,10 +3,10 @@
 exports[`Textarea match snapshot TextareaAllFalse 1`] = `
 <div>
   <div
-    class="MuiFormControl-root css-1rzpxn4-MuiFormControl-root"
+    class="MuiFormControl-root css-1girsym-MuiFormControl-root"
   >
     <label
-      class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard MuiFormLabel-colorPrimary css-1ubsiac-MuiFormLabel-root-MuiInputLabel-root"
+      class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard MuiFormLabel-colorPrimary css-8f1bkl-MuiFormLabel-root-MuiInputLabel-root"
       data-shrink="true"
       for="textarea"
     >
@@ -28,7 +28,7 @@ exports[`Textarea match snapshot TextareaAllFalse 1`] = `
       tabindex="-1"
     />
     <p
-      class="MuiFormHelperText-root MuiFormHelperText-sizeMedium css-1us48wl-MuiFormHelperText-root"
+      class="MuiFormHelperText-root MuiFormHelperText-sizeMedium css-1kzozl2-MuiFormHelperText-root"
       style="display: block; text-align: right;"
     >
       0/250
@@ -40,10 +40,10 @@ exports[`Textarea match snapshot TextareaAllFalse 1`] = `
 exports[`Textarea match snapshot TextareaAllTrue 1`] = `
 <div>
   <div
-    class="MuiFormControl-root css-1rzpxn4-MuiFormControl-root"
+    class="MuiFormControl-root css-1girsym-MuiFormControl-root"
   >
     <label
-      class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard MuiFormLabel-colorPrimary Mui-required css-1ubsiac-MuiFormLabel-root-MuiInputLabel-root"
+      class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard MuiFormLabel-colorPrimary Mui-required css-8f1bkl-MuiFormLabel-root-MuiInputLabel-root"
       data-shrink="true"
       for="textarea"
     >
@@ -74,7 +74,7 @@ exports[`Textarea match snapshot TextareaAllTrue 1`] = `
       tabindex="-1"
     />
     <p
-      class="MuiFormHelperText-root MuiFormHelperText-sizeMedium css-1us48wl-MuiFormHelperText-root"
+      class="MuiFormHelperText-root MuiFormHelperText-sizeMedium css-1kzozl2-MuiFormHelperText-root"
       style="display: block; text-align: right;"
     >
       0/250

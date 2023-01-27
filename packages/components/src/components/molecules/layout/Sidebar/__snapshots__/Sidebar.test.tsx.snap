@@ -38,6 +38,7 @@ exports[`SideBar match snapshot SideBarStateFalse 1`] = `
               </div>
               <div
                 class="css-qzjp43"
+                style="opacity: 0;"
               >
                 <img
                   alt="Logo"
@@ -672,6 +673,7 @@ exports[`SideBar match snapshot SideBarStateTrue 1`] = `
               </div>
               <div
                 class="css-qzjp43"
+                style="opacity: 0;"
               >
                 <img
                   alt="Logo"

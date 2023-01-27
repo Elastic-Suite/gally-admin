@@ -2,7 +2,7 @@ import React, { FormEvent, useCallback, useEffect, useState } from 'react'
 import { useTranslation } from 'next-i18next'
 import { useRouter } from 'next/router'
 import Head from 'next/head'
-import { Paper } from '@mui/material'
+import { styled } from '@mui/system'
 import {
   ILogin,
   isError,
@@ -17,6 +17,32 @@ import { selectRequestedPath, selectUser, useAppSelector } from '../store'
 import Button from '../components/atoms/buttons/Button'
 import InputText from '../components/atoms/form/InputText'
 import PageTitle from '../components/atoms/PageTitle/PageTitle'
+import Image from 'next/image'
+
+const CustomRoot = styled('div')({
+  width: '100vw',
+  height: '100vh',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  flexDirection: 'column',
+  background: 'rgb(250, 251, 254)',
+})
+
+const CustomImg = styled('div')({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  marginBottom: '32px',
+})
+
+const CustomBloc = styled('div')({
+  padding: '32px',
+  marginBottom: '6%',
+  border: '1px solid rgb(226, 230, 243)',
+  borderRadius: '8px',
+  background: 'rgb(255, 255, 255)',
+})
 
 function Login(): JSX.Element {
   const { t } = useTranslation('login')
@@ -56,12 +82,20 @@ function Login(): JSX.Element {
   const title = t('title.login')
 
   return (
-    <div>
+    <CustomRoot>
       <Head>
         <title>{title}</title>
       </Head>
-      <PageTitle title={title} />
-      <Paper sx={{ padding: 4 }}>
+      <CustomBloc>
+        <CustomImg>
+          <Image
+            src="/images/LogoBlinkExtended.svg"
+            alt="Logo"
+            width="150"
+            height="45"
+          />
+        </CustomImg>
+        <PageTitle title={title} />
         <form onSubmit={handleSubmit}>
           <InputText
             autoComplete="email"
@@ -80,10 +114,12 @@ function Login(): JSX.Element {
             type="password"
             value={password}
           />
-          <Button type="submit">{t('action.login')}</Button>
+          <Button sx={{ marginTop: '8px' }} type="submit">
+            {t('action.login')}
+          </Button>
         </form>
-      </Paper>
-    </div>
+      </CustomBloc>
+    </CustomRoot>
   )
 }
 
