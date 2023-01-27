@@ -9,8 +9,8 @@ import {
   log,
   resource,
 } from '@elastic-suite/gally-admin-shared'
+import Router from 'next/router'
 
-import * as userStore from '../store/user'
 import { renderHookWithProviders } from '../utils/tests'
 
 import {
@@ -62,12 +62,12 @@ describe('useApi', () => {
       mock.mockImplementationOnce(() =>
         Promise.reject(new AuthError('Unauthorized/Forbidden'))
       )
-      jest.spyOn(userStore, 'setUser')
+      const pushSpy = Router.push as jest.Mock
+      pushSpy.mockClear()
       const { result } = renderHookWithProviders(() => useApiFetch())
       const json = await result.current('/test')
       expect((json as IError).error.message).toEqual('Unauthorized/Forbidden')
-      expect(userStore.setUser).toHaveBeenCalledWith({ token: '', user: null })
-      ;(userStore.setUser as unknown as jest.Mock).mockRestore()
+      expect(pushSpy).toHaveBeenCalledWith('/login')
     })
   })
 
