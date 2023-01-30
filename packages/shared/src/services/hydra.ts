@@ -54,7 +54,7 @@ export function getFieldName(property: string): string {
 export function getField(resource: IResource, name: string): IField {
   name = getFieldName(name)
   return resource.supportedProperty.find((field) => {
-    return field.title === name
+    return field.title === name || field?.gally?.alias === name
   })
 }
 

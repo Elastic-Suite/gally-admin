@@ -82,6 +82,10 @@ describe('Hydra service', () => {
       expect(getField(resourceWithRef, 'metadata')).toMatchObject(fieldRef)
       expect(getField(resourceWithRef, 'foo')).toEqual(undefined)
     })
+
+    it("Should return the field from the Gally's alias field", () => {
+      expect(getField(resourceWithRef, 'code.alias')).toMatchObject(fieldString)
+    })
   })
 
   describe('getFieldType', () => {
