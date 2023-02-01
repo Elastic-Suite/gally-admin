@@ -16,7 +16,7 @@ interface IProps {
   children: ReactNode
 }
 
-function FullTextRequestType(props: IProps): JSX.Element {
+function FullRequestType(props: IProps): JSX.Element {
   const { data, handleChangeSelectAll, width = 190, children } = props
   const isAllSelected = Boolean(data.data.find((a) => a?.id === -1))
 
@@ -37,4 +37,4 @@ function FullTextRequestType(props: IProps): JSX.Element {
   )
 }
 
-export default FullTextRequestType
+export default FullRequestType

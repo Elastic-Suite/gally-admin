@@ -3,7 +3,7 @@ import { styled } from '@mui/system'
 import TextFieldTags from '../form/TextFieldTags'
 import TreeSelector from '../form/TreeSelector'
 import { IRequestType, ITreeItem } from '@elastic-suite/gally-admin-shared'
-import FullTextRequestType from '../fullTextRequestType/FullTextRequestType'
+import FullRequestType from '../fullRequestType/FullRequestType'
 
 const CustomRoot = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -41,7 +41,7 @@ function ItemRequestType(props: IProps): JSX.Element {
   if (isAllSelected) {
     return (
       <CustomRoot>
-        <FullTextRequestType
+        <FullRequestType
           handleChangeSelectAll={handleChangeSelectAll}
           data={data}
         >
@@ -54,14 +54,14 @@ function ItemRequestType(props: IProps): JSX.Element {
               inputVal={inputVal}
             />
           ) : null}
-        </FullTextRequestType>
+        </FullRequestType>
       </CustomRoot>
     )
   }
 
   return (
     <CustomRoot>
-      <FullTextRequestType
+      <FullRequestType
         handleChangeSelectAll={handleChangeSelectAll}
         data={data}
       >
@@ -91,7 +91,7 @@ function ItemRequestType(props: IProps): JSX.Element {
             onChange={setValCategories}
           />
         )}
-      </FullTextRequestType>
+      </FullRequestType>
     </CustomRoot>
   )
 }
