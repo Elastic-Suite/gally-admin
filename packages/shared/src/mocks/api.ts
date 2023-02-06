@@ -526,7 +526,12 @@ export const resources = [
     supportedProperty: [
       {
         '@type': 'http://www.w3.org/ns/hydra/core#SupportedProperty',
-        gally: { editable: false, position: 10, visible: true },
+        gally: {
+          editable: false,
+          position: 10,
+          visible: true,
+          alias: 'code.alias',
+        },
         property: {
           '@id': 'https://localhost/docs.jsonld#SourceField/code',
           '@type': 'http://www.w3.org/1999/02/22-rdf-syntax-ns#Property',

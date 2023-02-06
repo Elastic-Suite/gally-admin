@@ -100,6 +100,7 @@ export interface IGallyProperty {
   type?: string
   validation?: Record<string, string | number>
   visible?: boolean
+  alias?: string
 }
 
 export interface IDropdownStaticOptions {
