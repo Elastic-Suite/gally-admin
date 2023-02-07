@@ -17,14 +17,22 @@ const CustomRootTextFieldTags = styled('div')(({ theme }) => ({
   gap: theme.spacing(2),
   display: 'flex',
   flexDirection: 'column',
+  justifyContent: 'center',
+  minHeight: '54px',
 }))
 
-const CustomForm = styled('form')({
-  width: '100%',
-  '& .MuiFormControl-root': {
-    width: '100%',
-  },
-})
+const CustomRootTextFieldTagsDisabled = styled(CustomRootTextFieldTags)(
+  ({ theme }) => ({
+    paddingRight: theme.spacing(2),
+    paddingLeft: theme.spacing(2),
+    borderColor: theme.palette.colors.neutral[300],
+    color: theme.palette.colors.neutral[500],
+    background: theme.palette.colors.neutral[300],
+    width: 'auto',
+    maxWidth: '350px',
+    minWidth: '180px',
+  })
+)
 
 const CustomTags = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -33,34 +41,11 @@ const CustomTags = styled('div')(({ theme }) => ({
   flexWrap: 'wrap',
 }))
 
-const CustomTextField = styled('div')(({ theme }) => ({
-  display: 'flex',
-  gap: theme.spacing(1),
-  flexDirection: 'row',
-  alignItems: 'center',
-}))
-
-const CustomBtnAdd = styled('div')(({ theme }) => ({
-  color: theme.palette.colors.secondary[700],
-  fontSize: theme.spacing(1.8),
-  fontFamily: 'var(--gally-font)',
-  padding: theme.spacing(1),
-  borderRadius: '50%',
-  position: 'relative',
-  ':hover': {
-    cursor: 'pointer',
-    background: 'rgba(0, 0, 0, 0.04)',
-  },
-  '::after': {
-    content: "''",
-    background: theme.palette.colors.secondary[700],
-    height: '1px',
-    width: `calc(100% - 16px)`,
-    position: 'absolute',
-    left: theme.spacing(1),
-    bottom: '4px',
-  },
-}))
+const CustomLabelDisabled = styled('div')({
+  fontSize: '14px',
+  fontWeight: '400',
+  cursor: 'default',
+})
 
 interface IProps {
   data: ITextFieldTags
@@ -68,7 +53,7 @@ interface IProps {
   handleAddDataTag: (idItem: string, event?: FormEvent<HTMLFormElement>) => void
   inputVal: Record<string, string> | undefined
   handleChangeInput: (idItem: string, value: string) => void
-  isDisabled?: boolean
+  disabled?: boolean
 }
 
 function TextFieldTags(props: IProps): JSX.Element {
@@ -78,49 +63,64 @@ function TextFieldTags(props: IProps): JSX.Element {
     handleAddDataTag,
     inputVal,
     handleChangeInput,
-    isDisabled,
+    disabled,
   } = props
 
-  const isAllSelected =
-    Boolean(data.data.find((a) => a?.id === -1)) || isDisabled
-
+  const isDisabled = Boolean(data.data.find((a) => a?.id === -1)) || disabled
+  const CustomRoot = isDisabled
+    ? CustomRootTextFieldTagsDisabled
+    : CustomRootTextFieldTags
   return (
-    <CustomRootTextFieldTags
-      style={{ filter: isAllSelected ? 'grayscale(100%)' : '' }}
-    >
-      {data.data.length !== 0 && (
-        <CustomTags>
-          {data.data.map((item) => {
-            return isAllSelected ? (
-              <Chip key={item.id} label={item.label} />
-            ) : (
-              <Chip
-                key={item.id}
-                label={item.label}
-                onDelete={(): void => handleRemoveDataTag(data.id, item.id)}
-              />
+    <CustomRoot>
+      <CustomTags
+        style={{
+          display: 'flex',
+          flexDirection: 'row',
+          flexWrap: 'wrap',
+          alignItems: 'center',
+        }}
+      >
+        {data.data.map((item) => {
+          return isDisabled ? (
+            item.id === -1 && (
+              <CustomLabelDisabled>{item.label}</CustomLabelDisabled>
             )
-          })}
-        </CustomTags>
-      )}
-      {!isAllSelected && (
-        <CustomTextField>
-          <CustomForm onSubmit={(e): void => handleAddDataTag(data.id, e)}>
+          ) : (
+            <Chip
+              key={item.id}
+              label={item.label}
+              onDelete={(): void => handleRemoveDataTag(data.id, item.id)}
+            />
+          )
+        })}
+        {!isDisabled && (
+          <form
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              alignItems: 'center',
+            }}
+            onSubmit={(e): void => handleAddDataTag(data.id, e)}
+          >
             <InputText
               value={inputVal?.[data.id]}
               size="small"
-              sx={{ width: '100%' }}
+              sx={{
+                minWidth: 'auto',
+                width: '146px',
+                border: 'none',
+                background: 'inherit',
+                '&.MuiInputBase-root': { minHeight: 0, paddingLeft: '8px' },
+              }}
+              placeholder={data.label}
               onChange={(value): void =>
                 handleChangeInput(data.id, value as string)
               }
             />
-          </CustomForm>
-          <CustomBtnAdd onClick={(): void => handleAddDataTag(data.id)}>
-            Add
-          </CustomBtnAdd>
-        </CustomTextField>
-      )}
-    </CustomRootTextFieldTags>
+          </form>
+        )}
+      </CustomTags>
+    </CustomRoot>
   )
 }
 

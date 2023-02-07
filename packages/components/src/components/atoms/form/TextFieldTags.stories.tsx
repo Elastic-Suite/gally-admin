@@ -58,7 +58,7 @@ const Template: ComponentStory<typeof TextFieldTagsComponent> = (args) => {
       event.preventDefault()
     }
 
-    if (inputVal?.[idItem] === undefined || inputVal?.[idItem] === '') {
+    if (inputVal?.[idItem] === undefined || inputVal?.[idItem].trim() === '') {
       return null
     }
 

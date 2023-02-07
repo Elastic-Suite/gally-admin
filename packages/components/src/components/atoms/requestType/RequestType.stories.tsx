@@ -1,4 +1,4 @@
-import React, { FormEvent, useState } from 'react'
+import React, { FormEvent, useEffect, useState } from 'react'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
 import RequestTypeComponent from './RequestType'
 import categories from '../../../../public/mocks/categories.json'
@@ -20,7 +20,7 @@ const mocksListRequestType: IRequestType[] = [
   {
     label: 'Catalogue product view',
     id: 'catalogue_product_view',
-    isSelected: false,
+    isSelected: true,
     labelIsAll: 'All categories',
     data: [{ id: -1, label: 'All categories' }],
     value: 10,
@@ -32,7 +32,7 @@ const mocksListRequestType: IRequestType[] = [
     isSelected: true,
     labelIsAll: 'All search terms',
     data: [
-      { id: 1, label: 'Hello' },
+      { id: -1, label: 'All search terms' },
       { id: 2, label: 'HelloDeux' },
       { id: 3, label: 'HelloTrois' },
     ],
@@ -59,7 +59,7 @@ const mocksListRequestType: IRequestType[] = [
   },
 ]
 
-const Template: ComponentStory<typeof RequestTypeComponent> = () => {
+const Template: ComponentStory<typeof RequestTypeComponent> = (args) => {
   const [multiValue, setMultiValue] = useState<number[]>(
     mocksListRequestType
       .filter((item) => item.isSelected)
@@ -70,12 +70,6 @@ const Template: ComponentStory<typeof RequestTypeComponent> = () => {
 
   function handleChange(value: number[]): void {
     setMultiValue(value)
-    const newData = data.map((item) =>
-      value.find((val) => val === item.value)
-        ? { ...item, isSelected: true }
-        : { ...item, isSelected: false }
-    )
-    setData(newData)
   }
 
   const [inputVal, setInputVal] = useState<Record<string, string>>()
@@ -88,7 +82,6 @@ const Template: ComponentStory<typeof RequestTypeComponent> = () => {
       }
       return item
     })
-
     return setData(newData)
   }
 
@@ -100,7 +93,7 @@ const Template: ComponentStory<typeof RequestTypeComponent> = () => {
       event.preventDefault()
     }
 
-    if (inputVal?.[idItem] === undefined || inputVal?.[idItem] === '') {
+    if (inputVal?.[idItem] === undefined || inputVal?.[idItem].trim() === '') {
       return null
     }
 
@@ -126,7 +119,9 @@ const Template: ComponentStory<typeof RequestTypeComponent> = () => {
         const isAllSelected = item.data.find((a) => a.id === -1)
         return {
           ...item,
-          data: !isAllSelected ? [{ id: -1, label: item.labelIsAll }] : [],
+          data: !isAllSelected
+            ? [...item.data, { id: -1, label: item.labelIsAll }]
+            : [...item.data.filter((a) => a.id !== -1)],
         }
       }
       return item
@@ -138,8 +133,23 @@ const Template: ComponentStory<typeof RequestTypeComponent> = () => {
     return setInputVal({ ...inputVal, [idItem]: value })
   }
 
+  function handleRemoveSelect(value: number): void {
+    const newData = multiValue.filter((val) => val !== value)
+    setMultiValue(newData)
+  }
+
+  useEffect(() => {
+    const newData = data.map((item) =>
+      multiValue.find((val) => val === item.value)
+        ? { ...item, isSelected: true }
+        : { ...item, isSelected: false }
+    )
+    setData(newData)
+  }, [multiValue, data])
+
   return (
     <RequestTypeComponent
+      {...args}
       data={data}
       handleChange={handleChange}
       multiValue={multiValue}
@@ -151,9 +161,10 @@ const Template: ComponentStory<typeof RequestTypeComponent> = () => {
       dataCategories={categories.categories}
       setValCategories={setValCategories}
       valCategories={valCategories}
+      handleRemoveSelect={handleRemoveSelect}
     />
   )
 }
 
 export const Default = Template.bind({})
-Default.args = {}
+Default.args = { width: 200 }

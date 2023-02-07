@@ -199,7 +199,6 @@ function TreeSelector<Multiple extends boolean | undefined>(
       startAdornment.push(<span key={startAdornment.length}>+{more}</span>)
     }
   }
-
   return (
     <Root
       {...getRootProps()}

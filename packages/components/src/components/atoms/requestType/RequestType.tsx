@@ -81,22 +81,12 @@ interface IProps {
   dataCategories: ITreeItem[]
   valCategories: ITreeItem[]
   setValCategories: (value: ITreeItem[], event: SyntheticEvent) => void
+  handleRemoveSelect: (value: number) => void
+  width?: number
 }
 
 function RequestType(props: IProps): JSX.Element {
-  const {
-    data,
-    handleChange,
-    multiValue,
-    handleRemoveDataTag,
-    handleAddDataTag,
-    inputVal,
-    handleChangeInput,
-    handleChangeSelectAll,
-    dataCategories,
-    valCategories,
-    setValCategories,
-  } = props
+  const { data, handleChange, multiValue, ...restProps } = props
 
   return (
     <CustomRoot>
@@ -119,17 +109,7 @@ function RequestType(props: IProps): JSX.Element {
                 : CustomFirstSelectedMultiple
             return (
               <CustomDiv key={item.id}>
-                <ItemRequestType
-                  data={item}
-                  handleChangeSelectAll={handleChangeSelectAll}
-                  handleRemoveDataTag={handleRemoveDataTag}
-                  handleAddDataTag={handleAddDataTag}
-                  handleChangeInput={handleChangeInput}
-                  inputVal={inputVal}
-                  setValCategories={setValCategories}
-                  dataCategories={dataCategories}
-                  valCategories={valCategories}
-                />
+                <ItemRequestType data={item} {...restProps} />
               </CustomDiv>
             )
           }
@@ -140,17 +120,7 @@ function RequestType(props: IProps): JSX.Element {
 
           return (
             <CustomDiv key={item.id}>
-              <ItemRequestType
-                data={item}
-                handleChangeSelectAll={handleChangeSelectAll}
-                handleRemoveDataTag={handleRemoveDataTag}
-                handleAddDataTag={handleAddDataTag}
-                handleChangeInput={handleChangeInput}
-                inputVal={inputVal}
-                dataCategories={dataCategories}
-                setValCategories={setValCategories}
-                valCategories={valCategories}
-              />
+              <ItemRequestType data={item} {...restProps} />
             </CustomDiv>
           )
         })}
