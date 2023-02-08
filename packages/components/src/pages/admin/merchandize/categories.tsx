@@ -62,12 +62,15 @@ function AdminMerchandizeCategories(): JSX.Element {
   const [selectedCategoryItem, setSelectedCategoryItem] = useState<ICategory>()
   const filters = useMemo(() => {
     const filters: { catalogId?: number; localizedCatalogId?: number } = {}
-    if (catalogId !== -1) {
-      filters.catalogId = catalogId
+    if (catalogId && localizedCatalogId) {
+      if (catalogId !== -1) {
+        filters.catalogId = catalogId
+      }
+      if (localizedCatalogId !== -1) {
+        filters.localizedCatalogId = localizedCatalogId
+      }
     }
-    if (localizedCatalogId !== -1) {
-      filters.localizedCatalogId = localizedCatalogId
-    }
+
     return filters
   }, [catalogId, localizedCatalogId])
   const [categories] = useFetchApi<ICategories>('categoryTree', filters)
@@ -94,19 +97,30 @@ function AdminMerchandizeCategories(): JSX.Element {
   const { update, create } =
     useResourceOperations<ICategoryConfiguration>(catConfResource)
   useEffect(() => {
-    if (selectedCategoryItem?.id) {
-      fetchApi<ICategoryConfiguration>(
-        `${catConfResource.url}/category/${selectedCategoryItem.id}`,
-        filters
-      ).then((catConf) => {
-        if (!isError(catConf)) {
-          const parsedCatConf = parseCatConf(catConf)
-          prevCatConf.current = parsedCatConf
-          setCatConf(parsedCatConf)
-        }
-      })
+    if (
+      selectedCategoryItem?.id &&
+      categories.status === LoadStatus.SUCCEEDED
+    ) {
+      if (
+        categories?.data?.categories.find(
+          (item) => item.id === selectedCategoryItem?.id
+        )
+      ) {
+        fetchApi<ICategoryConfiguration>(
+          `${catConfResource.url}/category/${selectedCategoryItem.id}`,
+          filters
+        ).then((catConf) => {
+          if (!isError(catConf)) {
+            const parsedCatConf = parseCatConf(catConf)
+            prevCatConf.current = parsedCatConf
+            setCatConf(parsedCatConf)
+          }
+        })
+      }
     }
-  }, [fetchApi, filters, selectedCategoryItem?.id, catConfResource.url])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [fetchApi, selectedCategoryItem?.id, catConfResource.url, categories])
+
   const isValid = !catConf?.isVirtual || isRuleValid(catConf?.virtualRule)
 
   // Rule engine graphql filters

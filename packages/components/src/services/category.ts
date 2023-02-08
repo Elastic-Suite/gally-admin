@@ -16,5 +16,5 @@ export function findCategory(
     return false
   }
   categories.some(recursiveFind)
-  return foundCategory
+  return foundCategory ?? categories[0]
 }
