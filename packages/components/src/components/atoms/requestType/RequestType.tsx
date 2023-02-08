@@ -102,21 +102,17 @@ function RequestType(props: IProps): JSX.Element {
       {data
         .filter((item) => item.isSelected)
         .map((item, key) => {
-          if (key === 0) {
-            const CustomDiv =
-              multiValue.length === 1
-                ? CustomFirstSelectedAlone
-                : CustomFirstSelectedMultiple
-            return (
-              <CustomDiv key={item.id}>
-                <ItemRequestType data={item} {...restProps} />
-              </CustomDiv>
-            )
-          }
-          const CustomDiv =
+          let CustomDiv =
             key + 1 < multiValue.length
               ? CustomSelected
               : CustomLastSelectedMultiple
+
+          if (key === 0) {
+            CustomDiv =
+              multiValue.length === 1
+                ? CustomFirstSelectedAlone
+                : CustomFirstSelectedMultiple
+          }
 
           return (
             <CustomDiv key={item.id}>
