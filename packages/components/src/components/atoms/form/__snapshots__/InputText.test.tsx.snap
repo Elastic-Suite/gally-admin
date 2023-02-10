@@ -16,11 +16,11 @@ exports[`InputText match snapshot BadgeDisabledFalse 1`] = `
       class="InputText__Wrapper css-newnfq"
     >
       <div
-        class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-1wru4jl-MuiInputBase-root"
+        class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-1jf161a-MuiInputBase-root"
       >
         <input
           aria-invalid="false"
-          class="MuiInputBase-input css-yz9k0d-MuiInputBase-input"
+          class="MuiInputBase-input css-ngazp5-MuiInputBase-input"
           id="input-text"
           placeholder="Name"
           type="text"
@@ -55,12 +55,12 @@ exports[`InputText match snapshot BadgeDisabledFalseRequired 1`] = `
       class="InputText__Wrapper css-newnfq"
     >
       <div
-        class="MuiInputBase-root MuiInputBase-colorPrimary Mui-disabled MuiInputBase-formControl css-1wru4jl-MuiInputBase-root"
+        class="MuiInputBase-root MuiInputBase-colorPrimary Mui-disabled MuiInputBase-formControl css-1jf161a-MuiInputBase-root"
         required=""
       >
         <input
           aria-invalid="false"
-          class="MuiInputBase-input Mui-disabled css-yz9k0d-MuiInputBase-input"
+          class="MuiInputBase-input Mui-disabled css-ngazp5-MuiInputBase-input"
           disabled=""
           id="input-text"
           placeholder="Name"

@@ -38,11 +38,11 @@ exports[`SearchBar match snapshot SearchBar 1`] = `
                 class="InputText__Wrapper css-newnfq"
               >
                 <div
-                  class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedEnd css-18xqfrp-MuiInputBase-root"
+                  class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedEnd css-33c5sc-MuiInputBase-root"
                 >
                   <input
                     aria-invalid="false"
-                    class="MuiInputBase-input MuiInputBase-inputAdornedEnd css-yz9k0d-MuiInputBase-input"
+                    class="MuiInputBase-input MuiInputBase-inputAdornedEnd css-ngazp5-MuiInputBase-input"
                     id="input-text"
                     placeholder="searchBar.placeholder"
                     type="text"

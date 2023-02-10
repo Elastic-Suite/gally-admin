@@ -107,7 +107,7 @@ exports[`CustomTable match snapshot with editable content 1`] = `
                     class="InputText__Wrapper css-newnfq"
                   >
                     <div
-                      class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-18xqfrp-MuiInputBase-root"
+                      class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-33c5sc-MuiInputBase-root"
                     >
                       <input
                         aria-autocomplete="list"
@@ -115,7 +115,7 @@ exports[`CustomTable match snapshot with editable content 1`] = `
                         aria-invalid="false"
                         autocapitalize="none"
                         autocomplete="off"
-                        class="MuiInputBase-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-yz9k0d-MuiInputBase-input"
+                        class="MuiInputBase-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-ngazp5-MuiInputBase-input"
                         id=":r0:"
                         role="combobox"
                         spellcheck="false"
