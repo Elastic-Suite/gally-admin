@@ -77,7 +77,8 @@ export interface ITextFIeldTagsForm {
 
 export interface ITextFieldTag extends ITextFIeldTagsForm {
   value: string[]
-  onChange: (value: string[]) => void
+  onChange: (value: string[], idItem?: string) => void
+  idItem?: string
 }
 
 function TextFieldTags(props: ITextFieldTag): JSX.Element {
@@ -96,6 +97,7 @@ function TextFieldTags(props: ITextFieldTag): JSX.Element {
     placeholder,
     size,
     disabledValue,
+    idItem,
   } = props
 
   const [val, setVal] = useState<string>('')
@@ -111,11 +113,11 @@ function TextFieldTags(props: ITextFieldTag): JSX.Element {
       }
       const newTags = value.concat([val])
       setVal('')
-      return onChange(newTags)
+      return onChange(newTags, idItem)
     }
 
     const newTags = value.filter((item) => item !== tag)
-    return onChange(newTags)
+    return onChange(newTags, idItem)
   }
 
   return (
