@@ -85,8 +85,9 @@ function CustomTable(
     if (refCurrent?.scrollTo) {
       refCurrent.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
     }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [tableRows.length, tableRows[0].id, refCurrent])
+  }, [tableRows.length, tableRows?.[0]?.id, refCurrent])
 
   /**
    * Compute the length of the sticky part.
