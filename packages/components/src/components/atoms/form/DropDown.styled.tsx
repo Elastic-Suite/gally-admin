@@ -13,7 +13,6 @@ export const StyledPaper = styled('div')(({ theme }) => ({
     padding: 0,
   },
   '& .MuiAutocomplete-listbox .MuiAutocomplete-option': {
-    fontFamily: 'var(--gally-font)',
     listStyle: 'none',
     padding: '8px 12px',
     cursor: 'default',
