@@ -52,9 +52,18 @@ const StyledChip = styled(MuiChip)(({ theme }) => ({
   },
 }))
 
+const CustomChipDisabled = styled(StyledChip)({
+  fontSize: '14px',
+  fontWeight: '400',
+  cursor: 'default',
+})
+
 function Chip(props: ChipProps): JSX.Element {
+  const { disabled } = props
+  const Component = disabled ? CustomChipDisabled : StyledChip
+
   return (
-    <StyledChip
+    <Component
       {...props}
       deleteIcon={
         <IconButton>

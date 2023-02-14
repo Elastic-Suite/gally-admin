@@ -46,12 +46,6 @@ const CustomTags = styled('div')(({ theme }) => ({
   alignItems: 'center',
 }))
 
-const CustomLabelDisabled = styled('div')({
-  fontSize: '14px',
-  fontWeight: '400',
-  cursor: 'default',
-})
-
 export interface ITextFIeldTagsForm {
   disabled?: boolean
   error?: boolean
@@ -62,6 +56,7 @@ export interface ITextFIeldTagsForm {
   label?: string
   margin?: 'none' | 'dense' | 'normal'
   required?: boolean
+  size?: 'small' | 'medium' | undefined
 }
 
 export interface ITextFieldTag extends ITextFIeldTagsForm {
@@ -69,10 +64,10 @@ export interface ITextFieldTag extends ITextFIeldTagsForm {
   onChange: (
     idItem: string,
     idTag: number | undefined,
-    event?: FormEvent<HTMLFormElement>
+    event?: FormEvent<HTMLFormElement>,
+    value?: string
   ) => void
-  value: string | undefined
-  onChangeInput: (idItem: string, value: string) => void
+  value?: string
 }
 
 function TextFieldTags(props: ITextFieldTag): JSX.Element {
@@ -80,7 +75,6 @@ function TextFieldTags(props: ITextFieldTag): JSX.Element {
     data,
     onChange,
     value,
-    onChangeInput,
     disabled,
     required,
     error,
@@ -90,6 +84,7 @@ function TextFieldTags(props: ITextFieldTag): JSX.Element {
     label,
     margin,
     infoTooltip,
+    size,
   } = props
 
   const isDisabled = Boolean(data.data.find((a) => a?.id === -1)) || disabled
@@ -112,7 +107,7 @@ function TextFieldTags(props: ITextFieldTag): JSX.Element {
           {data.data.map((item) => {
             return isDisabled ? (
               item.id === -1 && (
-                <CustomLabelDisabled>{item.label}</CustomLabelDisabled>
+                <Chip disabled key={item.id} label={item.label} />
               )
             ) : (
               <Chip
@@ -133,7 +128,7 @@ function TextFieldTags(props: ITextFieldTag): JSX.Element {
             >
               <InputText
                 value={value}
-                size="small"
+                size={size}
                 sx={{
                   minWidth: 'auto',
                   width: '146px',
@@ -143,7 +138,7 @@ function TextFieldTags(props: ITextFieldTag): JSX.Element {
                 }}
                 placeholder={data.label}
                 onChange={(value): void =>
-                  onChangeInput(data.id, value as string)
+                  onChange(data.id, undefined, undefined, value as string)
                 }
               />
             </form>

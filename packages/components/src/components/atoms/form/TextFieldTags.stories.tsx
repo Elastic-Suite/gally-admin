@@ -23,11 +23,11 @@ const mocksData: ITextFieldTags[] = [
     data: [
       {
         label: 'chipOne',
-        id: 1,
+        id: -1,
       },
       {
         label: 'chipTwo',
-        id: 2,
+        id: -1,
       },
       {
         label: 'chipThree',
@@ -91,20 +91,26 @@ const Template: ComponentStory<typeof TextFieldTagsComponent> = (args) => {
     return setInputVal({ ...inputVal, [idItem]: '' })
   }
 
+  function onChangeInput(idItem: string, value: string): void {
+    return setInputVal({ ...inputVal, [idItem]: value })
+  }
+
   function onChange(
     idItem: string,
-    idTag: number | undefined,
-    event?: FormEvent<HTMLFormElement>
+    idTag?: number,
+    event?: FormEvent<HTMLFormElement>,
+    value?: string
   ): void | null {
+    if (idItem && value) {
+      return onChangeInput(idItem, value)
+    }
+
     if (event) {
       event.preventDefault()
       return onAddDataTag(idItem)
     }
-    return onRemoveDataTag(idItem, idTag as number)
-  }
 
-  function onChangeInput(idItem: string, value: string): void {
-    return setInputVal({ ...inputVal, [idItem]: value })
+    return onRemoveDataTag(idItem, idTag as number)
   }
 
   return (
@@ -114,11 +120,10 @@ const Template: ComponentStory<typeof TextFieldTagsComponent> = (args) => {
         return (
           <TextFieldTagsComponent
             {...args}
+            key={item.id}
             data={item}
             onChange={onChange}
             value={value}
-            onChangeInput={onChangeInput}
-            key={item.id}
           />
         )
       })}
@@ -136,9 +141,11 @@ Default.args = {
   error: false,
   fullWidth: false,
   infoTooltip: '',
+  size: 'small',
 }
 
 export const Disabled = Template.bind({})
 Disabled.args = {
   disabled: true,
+  size: 'small',
 }
