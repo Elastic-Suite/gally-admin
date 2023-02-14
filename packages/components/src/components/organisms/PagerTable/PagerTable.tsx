@@ -17,7 +17,7 @@ const CustomNoResult = styled('div')(({ theme }) => ({
   fontWeight: 500,
   fontSize: 14,
   lineHeight: '20px',
-  color: theme.palette.colors.black,
+  color: theme.palette.colors.neutral[900],
   textAlign: 'center',
   padding: theme.spacing(3),
 }))
