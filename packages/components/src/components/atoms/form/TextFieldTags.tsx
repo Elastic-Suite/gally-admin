@@ -1,8 +1,7 @@
-import React, { FormEvent, ReactNode } from 'react'
+import React, { FormEvent, ReactNode, useState } from 'react'
 import { styled } from '@mui/system'
 import Chip from '../Chip/Chip'
 import InputText from './InputText'
-import { ITextFieldTags } from '@elastic-suite/gally-admin-shared'
 import { FormHelperText, InputLabel } from '@mui/material'
 import IonIcon from '../IonIcon/IonIcon'
 import InfoTooltip from './InfoTooltip'
@@ -48,6 +47,7 @@ const CustomTags = styled('div')(({ theme }) => ({
 
 export interface ITextFIeldTagsForm {
   disabled?: boolean
+  disabledValue?: string
   error?: boolean
   fullWidth?: boolean
   infoTooltip?: string
@@ -57,24 +57,18 @@ export interface ITextFIeldTagsForm {
   margin?: 'none' | 'dense' | 'normal'
   required?: boolean
   size?: 'small' | 'medium' | undefined
+  placeholder?: string
 }
 
 export interface ITextFieldTag extends ITextFIeldTagsForm {
-  data: ITextFieldTags
-  onChange: (
-    idItem: string,
-    idTag: number | undefined,
-    event?: FormEvent<HTMLFormElement>,
-    value?: string
-  ) => void
-  value?: string
+  data: string[]
+  onChange: (data: string[], event?: FormEvent<HTMLFormElement>) => void
 }
 
 function TextFieldTags(props: ITextFieldTag): JSX.Element {
   const {
     data,
     onChange,
-    value,
     disabled,
     required,
     error,
@@ -84,19 +78,40 @@ function TextFieldTags(props: ITextFieldTag): JSX.Element {
     label,
     margin,
     infoTooltip,
+    placeholder,
     size,
+    disabledValue,
   } = props
 
-  const isDisabled = Boolean(data.data.find((a) => a?.id === -1)) || disabled
-  const CustomRoot = isDisabled
+  const CustomRoot = disabled
     ? CustomRootTextFieldTagsDisabled
     : CustomRootTextFieldTags
+
+  const [val, setVal] = useState<string>('')
+
+  function manageTags(
+    tag?: string,
+    event?: FormEvent<HTMLFormElement>
+  ): void | null {
+    if (event) {
+      event.preventDefault()
+      if (val === undefined || val.trim() === '') {
+        return null
+      }
+      const newTags = data.concat([val])
+      setVal('')
+      return onChange(newTags, event)
+    }
+
+    const newTags = data.filter((item) => item !== tag)
+    return onChange(newTags, event)
+  }
 
   return (
     <FormControl error={error} fullWidth={fullWidth} margin={margin}>
       {Boolean(label || infoTooltip) && (
         <div style={{ marginBottom: '24px' }}>
-          <InputLabel shrink htmlFor={data.id} required={required}>
+          <InputLabel shrink required={required}>
             {label}
             {infoTooltip ? <InfoTooltip title={infoTooltip} /> : null}
           </InputLabel>
@@ -104,30 +119,32 @@ function TextFieldTags(props: ITextFieldTag): JSX.Element {
       )}
       <CustomRoot>
         <CustomTags>
-          {data.data.map((item) => {
-            return isDisabled ? (
-              item.id === -1 && (
-                <Chip disabled key={item.id} label={item.label} />
+          {disabled ? (
+            <Chip disabled label={disabledValue} />
+          ) : (
+            data.map((item: string) => {
+              return disabled ? (
+                <Chip disabled key={item} label={disabledValue} />
+              ) : (
+                <Chip
+                  key={item}
+                  label={item}
+                  onDelete={(): void | null => manageTags(item)}
+                />
               )
-            ) : (
-              <Chip
-                key={item.id}
-                label={item.label}
-                onDelete={(): void => onChange(data.id, item.id)}
-              />
-            )
-          })}
-          {!isDisabled && (
+            })
+          )}
+          {!disabled && (
             <form
               style={{
                 display: 'flex',
                 flexDirection: 'row',
                 alignItems: 'center',
               }}
-              onSubmit={(e): void => onChange(data.id, undefined, e)}
+              onSubmit={(e): void | null => manageTags(undefined, e)}
             >
               <InputText
-                value={value}
+                value={val}
                 size={size}
                 sx={{
                   minWidth: 'auto',
@@ -136,10 +153,8 @@ function TextFieldTags(props: ITextFieldTag): JSX.Element {
                   background: 'inherit',
                   '&.MuiInputBase-root': { minHeight: 0, paddingLeft: '8px' },
                 }}
-                placeholder={data.label}
-                onChange={(value): void =>
-                  onChange(data.id, undefined, undefined, value as string)
-                }
+                placeholder={placeholder}
+                onChange={(value): void => setVal(value as string)}
               />
             </form>
           )}
