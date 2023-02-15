@@ -7,7 +7,11 @@ import IonIcon from '../IonIcon/IonIcon'
 import InfoTooltip from './InfoTooltip'
 import FormControl from './FormControl'
 
-const CustomRootTextFieldTags = styled('div')(({ theme }) => ({
+const customRootTextFieldTagsProps = ['disabled']
+const CustomRootTextFieldTags = styled('div', {
+  shouldForwardProp: (prop: string) =>
+    !customRootTextFieldTagsProps.includes(prop),
+})<{ disabled?: boolean }>(({ theme, disabled }) => ({
   paddingTop: theme.spacing(1.5),
   paddingBottom: theme.spacing(1.5),
   paddingRight: theme.spacing(2),
@@ -22,10 +26,7 @@ const CustomRootTextFieldTags = styled('div')(({ theme }) => ({
   flexDirection: 'column',
   justifyContent: 'center',
   minHeight: '54px',
-}))
-
-const CustomRootTextFieldTagsDisabled = styled(CustomRootTextFieldTags)(
-  ({ theme }) => ({
+  ...(disabled && {
     paddingRight: theme.spacing(2),
     paddingLeft: theme.spacing(2),
     borderColor: theme.palette.colors.neutral[300],
@@ -34,8 +35,8 @@ const CustomRootTextFieldTagsDisabled = styled(CustomRootTextFieldTags)(
     width: 'auto',
     maxWidth: '350px',
     minWidth: '180px',
-  })
-)
+  }),
+}))
 
 const CustomTags = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -44,6 +45,20 @@ const CustomTags = styled('div')(({ theme }) => ({
   flexWrap: 'wrap',
   alignItems: 'center',
 }))
+
+const CustomFormTextFieldTags = styled('form')({
+  display: 'flex',
+  flexDirection: 'row',
+  alignItems: 'center',
+})
+
+const CustomInputTextTextFieldTags = styled(InputText)({
+  minWidth: 'auto',
+  width: '146px',
+  border: 'none',
+  background: 'inherit',
+  '&.MuiInputBase-root': { minHeight: 0, paddingLeft: '8px' },
+})
 
 export interface ITextFIeldTagsForm {
   disabled?: boolean
@@ -61,13 +76,13 @@ export interface ITextFIeldTagsForm {
 }
 
 export interface ITextFieldTag extends ITextFIeldTagsForm {
-  data: string[]
-  onChange: (data: string[], event?: FormEvent<HTMLFormElement>) => void
+  value: string[]
+  onChange: (value: string[]) => void
 }
 
 function TextFieldTags(props: ITextFieldTag): JSX.Element {
   const {
-    data,
+    value,
     onChange,
     disabled,
     required,
@@ -83,10 +98,6 @@ function TextFieldTags(props: ITextFieldTag): JSX.Element {
     disabledValue,
   } = props
 
-  const CustomRoot = disabled
-    ? CustomRootTextFieldTagsDisabled
-    : CustomRootTextFieldTags
-
   const [val, setVal] = useState<string>('')
 
   function manageTags(
@@ -98,13 +109,13 @@ function TextFieldTags(props: ITextFieldTag): JSX.Element {
       if (val === undefined || val.trim() === '') {
         return null
       }
-      const newTags = data.concat([val])
+      const newTags = value.concat([val])
       setVal('')
-      return onChange(newTags, event)
+      return onChange(newTags)
     }
 
-    const newTags = data.filter((item) => item !== tag)
-    return onChange(newTags, event)
+    const newTags = value.filter((item) => item !== tag)
+    return onChange(newTags)
   }
 
   return (
@@ -117,12 +128,12 @@ function TextFieldTags(props: ITextFieldTag): JSX.Element {
           </InputLabel>
         </div>
       )}
-      <CustomRoot>
+      <CustomRootTextFieldTags disabled={disabled}>
         <CustomTags>
           {disabled ? (
             <Chip disabled label={disabledValue} />
           ) : (
-            data.map((item: string) => {
+            value.map((item: string) => {
               return disabled ? (
                 <Chip disabled key={item} label={disabledValue} />
               ) : (
@@ -135,31 +146,19 @@ function TextFieldTags(props: ITextFieldTag): JSX.Element {
             })
           )}
           {!disabled && (
-            <form
-              style={{
-                display: 'flex',
-                flexDirection: 'row',
-                alignItems: 'center',
-              }}
+            <CustomFormTextFieldTags
               onSubmit={(e): void | null => manageTags(undefined, e)}
             >
-              <InputText
+              <CustomInputTextTextFieldTags
                 value={val}
                 size={size}
-                sx={{
-                  minWidth: 'auto',
-                  width: '146px',
-                  border: 'none',
-                  background: 'inherit',
-                  '&.MuiInputBase-root': { minHeight: 0, paddingLeft: '8px' },
-                }}
                 placeholder={placeholder}
                 onChange={(value): void => setVal(value as string)}
               />
-            </form>
+            </CustomFormTextFieldTags>
           )}
         </CustomTags>
-      </CustomRoot>
+      </CustomRootTextFieldTags>
       {Boolean(helperText) && (
         <FormHelperText error={error}>
           {Boolean(helperIcon) && (

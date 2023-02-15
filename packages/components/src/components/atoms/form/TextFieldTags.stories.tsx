@@ -1,4 +1,4 @@
-import React, { FormEvent, useState } from 'react'
+import React, { useState } from 'react'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
 
 import TextFieldTagsComponent from './TextFieldTags'
@@ -16,20 +16,10 @@ export default {
 } as ComponentMeta<typeof TextFieldTagsComponent>
 
 const Template: ComponentStory<typeof TextFieldTagsComponent> = (args) => {
-  const [data, setData] = useState<string[]>([])
-
-  function onChange(
-    data: string[],
-    event?: FormEvent<HTMLFormElement>
-  ): void | null {
-    if (event) {
-      event.preventDefault()
-    }
-    return setData(data)
-  }
-
-  return <TextFieldTagsComponent {...args} data={data} onChange={onChange} />
+  const [value, setValue] = useState<string[]>([])
+  return <TextFieldTagsComponent {...args} value={value} onChange={setValue} />
 }
+
 export const Default = Template.bind({})
 Default.args = {
   margin: 'normal',
@@ -44,10 +34,4 @@ Default.args = {
   size: 'small',
   disabledValue: 'DisabledValue',
   placeholder: 'Placeholder',
-}
-
-export const Disabled = Template.bind({})
-Disabled.args = {
-  disabled: true,
-  size: 'small',
 }
