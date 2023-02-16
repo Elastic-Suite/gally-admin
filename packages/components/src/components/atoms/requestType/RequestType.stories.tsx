@@ -62,6 +62,17 @@ const mocksListRequestType: IRequestType[] = [
   },
 ]
 
+const mocksDataTags = [
+  {
+    id: 'search_terms',
+    data: ['TagsOne', 'TagsTwo'],
+  },
+  {
+    id: 'catalogue_product_view',
+    data: ['catalogue_product_view One', 'catalogue_product_view Two'],
+  },
+]
+
 const Template: ComponentStory<typeof RequestTypeComponent> = (args) => {
   const [data, setData] = useState(mocksListRequestType)
 
@@ -81,7 +92,8 @@ const Template: ComponentStory<typeof RequestTypeComponent> = (args) => {
     setMultiValue(newData)
   }
 
-  const [valTags, setValTags] = useState<{ id: string; data: string[] }[]>([])
+  const [valTags, setValTags] =
+    useState<{ id: string; data: string[] }[]>(mocksDataTags)
   function onChangeValTags(value: [string], idItem: string): void {
     const idIsExist = valTags.find((item) => item.id === idItem)
     if (!idIsExist) {

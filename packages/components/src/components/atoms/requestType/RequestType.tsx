@@ -142,7 +142,7 @@ function RequestType(props: IProps): JSX.Element {
           multiple
           onChange={onChange}
           value={multiValue}
-          options={data}
+          options={data.map((item) => ({ ...item, disabled: undefined }))}
         />
         {data
           .filter((item) => item.isSelected)
