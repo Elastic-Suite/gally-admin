@@ -12,7 +12,7 @@ exports[`TreeSelector should match snapshot 1`] = `
         class="InputText__Wrapper css-newnfq"
       >
         <div
-          class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedStart MuiInputBase-adornedEnd  css-dhmw9c-MuiInputBase-root"
+          class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedStart MuiInputBase-adornedEnd  css-4g1i97-MuiInputBase-root"
         >
           <input
             aria-autocomplete="list"
@@ -20,7 +20,7 @@ exports[`TreeSelector should match snapshot 1`] = `
             aria-invalid="false"
             autocapitalize="none"
             autocomplete="off"
-            class="MuiInputBase-input MuiInputBase-inputAdornedStart MuiInputBase-inputAdornedEnd css-yz9k0d-MuiInputBase-input"
+            class="MuiInputBase-input MuiInputBase-inputAdornedStart MuiInputBase-inputAdornedEnd css-ngazp5-MuiInputBase-input"
             id=":r0:"
             role="combobox"
             spellcheck="false"

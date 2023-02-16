@@ -430,6 +430,9 @@ export const theme = createTheme({
         },
       },
     },
+    MuiInputBase: {
+      styleOverrides: { root: { fontFamily: 'var(--gally-font)' } },
+    },
     MuiFormControl: {
       styleOverrides: {
         root: {

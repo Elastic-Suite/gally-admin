@@ -15,7 +15,7 @@ exports[`DropDown match snapshot BadgeDisabledFalse 1`] = `
           class="InputText__Wrapper css-newnfq"
         >
           <div
-            class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-18xqfrp-MuiInputBase-root"
+            class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-33c5sc-MuiInputBase-root"
           >
             <input
               aria-autocomplete="list"
@@ -23,7 +23,7 @@ exports[`DropDown match snapshot BadgeDisabledFalse 1`] = `
               aria-invalid="false"
               autocapitalize="none"
               autocomplete="off"
-              class="MuiInputBase-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-yz9k0d-MuiInputBase-input"
+              class="MuiInputBase-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-ngazp5-MuiInputBase-input"
               id=":r0:"
               role="combobox"
               spellcheck="false"
@@ -71,7 +71,7 @@ exports[`DropDown match snapshot BadgeDisabledTrue 1`] = `
           class="InputText__Wrapper css-newnfq"
         >
           <div
-            class="MuiInputBase-root MuiInputBase-colorPrimary Mui-disabled MuiInputBase-formControl MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-18xqfrp-MuiInputBase-root"
+            class="MuiInputBase-root MuiInputBase-colorPrimary Mui-disabled MuiInputBase-formControl MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-33c5sc-MuiInputBase-root"
           >
             <input
               aria-autocomplete="list"
@@ -79,7 +79,7 @@ exports[`DropDown match snapshot BadgeDisabledTrue 1`] = `
               aria-invalid="false"
               autocapitalize="none"
               autocomplete="off"
-              class="MuiInputBase-input Mui-disabled MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-yz9k0d-MuiInputBase-input"
+              class="MuiInputBase-input Mui-disabled MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-ngazp5-MuiInputBase-input"
               disabled=""
               id=":r1:"
               role="combobox"
@@ -133,7 +133,7 @@ exports[`DropDown match snapshot BadgeLabel 1`] = `
           class="InputText__Wrapper css-newnfq"
         >
           <div
-            class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-18xqfrp-MuiInputBase-root"
+            class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-33c5sc-MuiInputBase-root"
           >
             <input
               aria-autocomplete="list"
@@ -141,7 +141,7 @@ exports[`DropDown match snapshot BadgeLabel 1`] = `
               aria-invalid="false"
               autocapitalize="none"
               autocomplete="off"
-              class="MuiInputBase-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-yz9k0d-MuiInputBase-input"
+              class="MuiInputBase-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-ngazp5-MuiInputBase-input"
               id=":r2:"
               role="combobox"
               spellcheck="false"
@@ -196,7 +196,7 @@ exports[`DropDown match snapshot BadgeMultiple 1`] = `
           class="InputText__Wrapper css-newnfq"
         >
           <div
-            class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-18xqfrp-MuiInputBase-root"
+            class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-33c5sc-MuiInputBase-root"
           >
             <input
               aria-autocomplete="list"
@@ -204,7 +204,7 @@ exports[`DropDown match snapshot BadgeMultiple 1`] = `
               aria-invalid="false"
               autocapitalize="none"
               autocomplete="off"
-              class="MuiInputBase-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-yz9k0d-MuiInputBase-input"
+              class="MuiInputBase-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-ngazp5-MuiInputBase-input"
               id=":r5:"
               role="combobox"
               spellcheck="false"
@@ -252,7 +252,7 @@ exports[`DropDown match snapshot BadgeRequiredFalse 1`] = `
           class="InputText__Wrapper css-newnfq"
         >
           <div
-            class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-18xqfrp-MuiInputBase-root"
+            class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-33c5sc-MuiInputBase-root"
           >
             <input
               aria-autocomplete="list"
@@ -260,7 +260,7 @@ exports[`DropDown match snapshot BadgeRequiredFalse 1`] = `
               aria-invalid="false"
               autocapitalize="none"
               autocomplete="off"
-              class="MuiInputBase-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-yz9k0d-MuiInputBase-input"
+              class="MuiInputBase-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-ngazp5-MuiInputBase-input"
               id=":r3:"
               role="combobox"
               spellcheck="false"
@@ -308,7 +308,7 @@ exports[`DropDown match snapshot BadgeRequiredTrue 1`] = `
           class="InputText__Wrapper css-newnfq"
         >
           <div
-            class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-18xqfrp-MuiInputBase-root"
+            class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-33c5sc-MuiInputBase-root"
             required=""
           >
             <input
@@ -317,7 +317,7 @@ exports[`DropDown match snapshot BadgeRequiredTrue 1`] = `
               aria-invalid="false"
               autocapitalize="none"
               autocomplete="off"
-              class="MuiInputBase-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-yz9k0d-MuiInputBase-input"
+              class="MuiInputBase-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-ngazp5-MuiInputBase-input"
               id=":r4:"
               required=""
               role="combobox"

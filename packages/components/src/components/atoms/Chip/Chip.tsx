@@ -4,13 +4,13 @@ import { ChipProps, IconButton, Chip as MuiChip } from '@mui/material'
 
 import IonIcon from '../IonIcon/IonIcon'
 
-const StyledChip = styled(MuiChip)(({ theme }) => ({
+const StyledChip = styled(MuiChip)(({ theme, disabled }) => ({
   display: 'inline-flex',
   height: '26px',
   color: theme.palette.colors.neutral['900'],
   fontFamily: 'var(--gally-font)',
-  fontWeight: 600,
-  fontSize: 12,
+  fontWeight: disabled ? 400 : 600,
+  fontSize: disabled ? 14 : 12,
   lineHeight: '18px',
   textAlign: 'center',
   alignItems: 'center',
@@ -53,8 +53,11 @@ const StyledChip = styled(MuiChip)(({ theme }) => ({
 }))
 
 function Chip(props: ChipProps): JSX.Element {
+  const { disabled } = props
+
   return (
     <StyledChip
+      disabled={disabled}
       {...props}
       deleteIcon={
         <IconButton>
