@@ -3,11 +3,9 @@ body {
   overflow: hidden;
 }
 
-input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active,
-textarea:-webkit-autofill,
 textarea:-webkit-autofill:hover,
 textarea:-webkit-autofill:focus,
 textarea:-webkit-autofill:active,
@@ -15,4 +13,10 @@ select:-webkit-autofill,
 select:-webkit-autofill:hover,
 select:-webkit-autofill:focus {
   background-color: transparent !important;
+}
+
+input:-webkit-autofill,
+textarea:-webkit-autofill {
+  background: transparent !important;
+  transition: background-color 999999999s ease-in-out 0s;
 }
