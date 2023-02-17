@@ -1,4 +1,4 @@
-import React, { FormEvent, SyntheticEvent } from 'react'
+import React from 'react'
 import { styled } from '@mui/system'
 import { IRequestType, ITreeItem } from '@elastic-suite/gally-admin-shared'
 import { IconButton } from '@mui/material'
@@ -21,32 +21,25 @@ const CustomFullRequestType = styled('div')(({ theme }) => ({
 interface IProps {
   data: IRequestType
   value: Record<string, string> | undefined
-  onChangeInput: (idItem: string, value: string) => void
-  onChangeSelectAll: (idItem: string) => void
   dataCategories: ITreeItem[]
   valCategories: ITreeItem[]
-  setValCategories: (value: ITreeItem[], event: SyntheticEvent) => void
-  onRemoveSelect: (value: number) => void
   width?: number
-  onChange: (
-    idItem: string,
-    idTag: number | undefined,
-    event?: FormEvent<HTMLFormElement>
-  ) => void
   Component: any
   disabled: boolean
+  onChange: (
+    value?: string[] | number[] | number | ITreeItem[],
+    idItem?: string
+  ) => void
 }
 
-function ItemRequestType(props: IProps): JSX.Element {
+function RequestTypeItem(props: IProps): JSX.Element {
   const {
-    onRemoveSelect,
     data,
     dataCategories,
-    onChangeSelectAll,
-    width = 190,
-    setValCategories,
+    width,
     valCategories,
     Component,
+    onChange,
     ...restProps
   } = props
 
@@ -61,22 +54,25 @@ function ItemRequestType(props: IProps): JSX.Element {
             label={data.labelIsAll}
             small
             checked={isAllSelected}
-            onChange={(): void => onChangeSelectAll(data.id)}
+            onChange={(): void => onChange(undefined, data.id)}
             list
           />
         </div>
-        <Component data={dataCategories || data} {...restProps} />
+        <Component
+          data={dataCategories || data}
+          onChange={onChange}
+          {...restProps}
+        />
       </CustomFullRequestType>
-      <>
-        <IconButton onClick={(): void => onRemoveSelect(data.value)}>
-          <IonIcon
-            style={{ fontSize: '18px', color: '#424880' }}
-            name="close"
-          />
-        </IconButton>
-      </>
+      <IconButton onClick={(): void => onChange(data.value)}>
+        <IonIcon style={{ fontSize: '18px', color: '#424880' }} name="close" />
+      </IconButton>
     </CustomRoot>
   )
 }
 
-export default ItemRequestType
+RequestTypeItem.defaultProps = {
+  width: 190,
+}
+
+export default RequestTypeItem

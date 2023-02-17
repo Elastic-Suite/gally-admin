@@ -83,43 +83,56 @@ const Template: ComponentStory<typeof RequestTypeComponent> = (args) => {
       .filter((item) => item.isSelected)
       .map((item) => item.value)
   )
-  function onChangeSelect(value: number[]): void {
-    setMultiValue(value)
-  }
-
-  function onRemoveSelect(value: number): void {
-    const newData = multiValue.filter((val) => val !== value)
-    setMultiValue(newData)
-  }
 
   const [valTags, setValTags] =
     useState<{ id: string; data: string[] }[]>(mocksDataTags)
-  function onChangeValTags(value: [string], idItem: string): void {
-    const idIsExist = valTags.find((item) => item.id === idItem)
-    if (!idIsExist) {
-      const newData = [...valTags, { id: idItem, data: value }]
-      return setValTags(newData)
-    }
-    const newData = valTags.map((item) => {
-      if (item.id === idItem) {
-        return { id: idItem, data: value }
-      }
-      return item
-    })
-    return setValTags(newData)
-  }
 
-  function onChangeSelectAll(idItem: string): void {
-    const newData = data.map((item) => {
-      if (idItem === item.id) {
-        return {
-          ...item,
-          disabled: !item.disabled,
-        }
+  function onChange(
+    value?: string[] | number[] | number | ITreeItem[],
+    idItem?: string
+  ): void | null {
+    if (Array.isArray(value)) {
+      if (typeof value[0] === 'number') {
+        return setMultiValue(value as number[])
       }
-      return item
-    })
-    setData(newData)
+
+      if (typeof value[0] === 'string' && idItem) {
+        const idIsExist = valTags.find((item) => item.id === idItem)
+        if (!idIsExist) {
+          const newData = [...valTags, { id: idItem, data: value as string[] }]
+          return setValTags(newData)
+        }
+        const newData = valTags.map((item) => {
+          if (item.id === idItem) {
+            return { id: idItem, data: value as string[] }
+          }
+          return item
+        })
+        return setValTags(newData)
+      }
+
+      return setValCategories(value as ITreeItem[])
+    }
+
+    if (typeof value === 'number') {
+      const newData = multiValue.filter((val) => val !== value)
+      setMultiValue(newData)
+    }
+
+    if (!value && idItem) {
+      const newData = data.map((item) => {
+        if (idItem === item.id) {
+          return {
+            ...item,
+            disabled: !item.disabled,
+          }
+        }
+        return item
+      })
+      setData(newData)
+    }
+
+    return null
   }
 
   useEffect(() => {
@@ -136,14 +149,10 @@ const Template: ComponentStory<typeof RequestTypeComponent> = (args) => {
     <RequestTypeComponent
       {...args}
       data={data}
-      onChange={onChangeSelect}
-      onRemoveSelect={onRemoveSelect}
+      onChange={onChange}
       multiValue={multiValue}
-      onChangeValTags={onChangeValTags}
       valTags={valTags}
-      onChangeSelectAll={onChangeSelectAll}
       dataCategories={categories.categories}
-      setValCategories={setValCategories}
       valCategories={valCategories}
     />
   )

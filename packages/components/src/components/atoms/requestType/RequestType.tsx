@@ -1,7 +1,7 @@
-import React, { ReactNode, SyntheticEvent } from 'react'
+import React, { ReactNode } from 'react'
 import { styled } from '@mui/system'
 import DropDown from '../form/DropDown'
-import ItemRequestType from './ItemRequestType'
+import RequestTypeItem from './RequestTypeItem'
 import { IRequestType, ITreeItem } from '@elastic-suite/gally-admin-shared'
 import FormControl from '../form/FormControl'
 import { FormHelperText, InputLabel } from '@mui/material'
@@ -92,15 +92,14 @@ export interface ITextFIeldTagsForm {
 
 interface IProps extends ITextFIeldTagsForm {
   data: IRequestType[]
-  // eslint-disable-next-line
-  onChange: (value: any) => void // il  y a problème de tipage dans le compo DropDown
+  onChange: (
+    value?: string[] | number[] | number | ITreeItem[],
+    idItem?: string
+  ) => void
+
   multiValue: number[] | []
-  onChangeSelectAll: (idItem: string) => void
   dataCategories: ITreeItem[]
   valCategories: ITreeItem[]
-  setValCategories: (value: ITreeItem[], event: SyntheticEvent) => void
-  onRemoveSelect: (value: number) => void
-  onChangeValTags: (value: [string], idItem: string) => void
   valTags: { id: string; data: string[] }[]
   width?: number
 }
@@ -120,7 +119,6 @@ function RequestType(props: IProps): JSX.Element {
     margin,
     infoTooltip,
     valTags,
-    onChangeValTags,
     ...restProps
   } = props
 
@@ -140,7 +138,7 @@ function RequestType(props: IProps): JSX.Element {
             data.find((item) => item.isSelected) ? '' : 'Add request type'
           }
           multiple
-          onChange={onChange}
+          onChange={(value: number | number[]): void => onChange(value)}
           value={multiValue}
           options={data.map((item) => ({ ...item, disabled: undefined }))}
         />
@@ -161,7 +159,8 @@ function RequestType(props: IProps): JSX.Element {
             if (item.type === 'tags' || item.type === 'products') {
               const value = valTags.find((valTag) => valTag.id === item.id)
               props.Component = TextFieldTags
-              props.onChange = onChangeValTags
+              props.onChange = (value: string[]): void =>
+                onChange(value, item.id)
               props.dataCategories = undefined
               props.disabled = item.disabled
               props.placeholder = item.label
@@ -174,14 +173,14 @@ function RequestType(props: IProps): JSX.Element {
               props.Component = TreeSelector
               props.multiple = true
               props.value = item.disabled ? [] : restProps.valCategories
-              props.onChange = restProps.setValCategories
+              props.onChange = onChange
               props.disabled = item.disabled
               props.placeholder = item.disabled ? item.labelIsAll : ''
             }
 
             return (
               <CustomDiv key={item.id} multiVal={multiVal}>
-                <ItemRequestType {...props} />
+                <RequestTypeItem {...props} />
               </CustomDiv>
             )
           })}
