@@ -62,15 +62,12 @@ function AdminMerchandizeCategories(): JSX.Element {
   const [selectedCategoryItem, setSelectedCategoryItem] = useState<ICategory>()
   const filters = useMemo(() => {
     const filters: { catalogId?: number; localizedCatalogId?: number } = {}
-    if (catalogId && localizedCatalogId) {
-      if (catalogId !== -1) {
-        filters.catalogId = catalogId
-      }
-      if (localizedCatalogId !== -1) {
-        filters.localizedCatalogId = localizedCatalogId
-      }
+    if (catalogId !== -1) {
+      filters.catalogId = catalogId
     }
-
+    if (localizedCatalogId !== -1) {
+      filters.localizedCatalogId = localizedCatalogId
+    }
     return filters
   }, [catalogId, localizedCatalogId])
   const [categories] = useFetchApi<ICategories>('categoryTree', filters)
@@ -109,9 +106,7 @@ function AdminMerchandizeCategories(): JSX.Element {
         }
       })
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [fetchApi, selectedCategoryItem?.id, catConfResource.url])
-
+  }, [fetchApi, filters, selectedCategoryItem?.id, catConfResource.url])
   const isValid = !catConf?.isVirtual || isRuleValid(catConf?.virtualRule)
 
   // Rule engine graphql filters
