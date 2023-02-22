@@ -97,18 +97,7 @@ function AdminMerchandizeCategories(): JSX.Element {
   const { update, create } =
     useResourceOperations<ICategoryConfiguration>(catConfResource)
   useEffect(() => {
-    if (
-      selectedCategoryItem?.id &&
-      categories.status === LoadStatus.SUCCEEDED
-    ) {
-      return null
-    }
-
-    if (
-      categories?.data?.categories.find(
-        (item) => item.id === selectedCategoryItem?.id
-      )
-    ) {
+    if (selectedCategoryItem?.id) {
       fetchApi<ICategoryConfiguration>(
         `${catConfResource.url}/category/${selectedCategoryItem.id}`,
         filters
@@ -121,7 +110,7 @@ function AdminMerchandizeCategories(): JSX.Element {
       })
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [fetchApi, selectedCategoryItem?.id, catConfResource.url, categories])
+  }, [fetchApi, selectedCategoryItem?.id, catConfResource.url])
 
   const isValid = !catConf?.isVirtual || isRuleValid(catConf?.virtualRule)
 
