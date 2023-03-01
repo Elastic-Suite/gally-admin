@@ -91,9 +91,10 @@ export interface ITextFIeldTagsForm {
 }
 
 interface IProps extends ITextFIeldTagsForm {
-  data: IRequestType[]
+  // data: IRequestType[]
   onChange: (
-    value?: string[] | number[] | number | ITreeItem[],
+    description: string,
+    value?: string[] | ITreeItem[],
     idItem?: string
   ) => void
 
@@ -102,11 +103,15 @@ interface IProps extends ITextFIeldTagsForm {
   valCategories: ITreeItem[]
   valTags: { id: string; data: string[] }[]
   width?: number
+  requestTypesOptions: any
+  dataGeneral: any
+  limitationsTypes: any
+  textOperatorOptions: any
 }
 
 function RequestType(props: IProps): JSX.Element {
   const {
-    data,
+    // data,
     onChange,
     multiValue,
     disabled,
@@ -119,9 +124,25 @@ function RequestType(props: IProps): JSX.Element {
     margin,
     infoTooltip,
     valTags,
+    requestTypesOptions,
+    dataGeneral,
+    limitationsTypes,
+    textOperatorOptions,
     ...restProps
   } = props
 
+  const selectedOptions = requestTypesOptions.filter((item) =>
+    dataGeneral[0].requestTypes.find((it) => it.requestType === item.value)
+  )
+
+  const limitationsArray = dataGeneral[0].requestTypes.map((item) => {
+    return requestTypesOptions.find((it) => it.value === item.requestType)
+  })
+
+  console.log('limitationsArray', limitationsArray)
+  console.log('selectedOptions', selectedOptions)
+  console.log('multiValue', multiValue)
+  console.log('limitationsTypes', limitationsTypes)
   return (
     <FormControl error={error} fullWidth={fullWidth} margin={margin}>
       {Boolean(label || infoTooltip) && (
@@ -134,15 +155,52 @@ function RequestType(props: IProps): JSX.Element {
       )}
       <CustomRoot>
         <DropDown
-          placeholder={
-            data.find((item) => item.isSelected) ? '' : 'Add request type'
-          }
+          placeholder={selectedOptions.length ? '' : 'Add request type'}
           multiple
-          onChange={(value: number | number[]): void => onChange(value)}
-          value={multiValue}
-          options={data.map((item) => ({ ...item, disabled: undefined }))}
+          onChange={(value: string[] | string): void =>
+            onChange('optionsDropdown', value as string[])
+          }
+          value={selectedOptions.map((item) => item.value)}
+          options={requestTypesOptions}
         />
-        {data
+        {limitationsArray.map((item, key) => {
+          let multiVal = key + 1 < limitationsArray.length
+          let CustomDiv = CustomSelected
+
+          if (key === 0) {
+            multiVal = limitationsArray.length === 1
+            CustomDiv = CustomFirstSelected
+          }
+
+          const requestType = dataGeneral[0].requestTypes.find(
+            (it) => it.requestType === item.value
+          )
+
+          const limiTationType = limitationsTypes.find(
+            (it) => it.value === item.limitation_type
+          )
+
+          // console.log('limiTationType', limiTationType)
+          // console.log('requestType', requestType)
+
+          const props = {
+            Component: TextFieldTags,
+            textOperatorOptions: textOperatorOptions,
+          }
+
+          return (
+            <CustomDiv key={item.id} multiVal={multiVal}>
+              <RequestTypeItem
+                requestType={requestType}
+                limiTationType={limiTationType}
+                data={dataGeneral[0][item.limitation_type + 'Limitations']}
+                onChange={onChange}
+                {...props}
+              />
+            </CustomDiv>
+          )
+        })}
+        {/* {data
           .filter((item) => item.isSelected)
           .map((item, key) => {
             let multiVal = key + 1 < multiValue.length
@@ -183,7 +241,7 @@ function RequestType(props: IProps): JSX.Element {
                 <RequestTypeItem {...props} />
               </CustomDiv>
             )
-          })}
+          })} */}
       </CustomRoot>
       {Boolean(helperText) && (
         <FormHelperText error={error}>

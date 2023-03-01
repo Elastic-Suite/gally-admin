@@ -19,52 +19,90 @@ const CustomFullRequestType = styled('div')(({ theme }) => ({
 }))
 
 interface IProps {
-  data: IRequestType
-  value: Record<string, string> | undefined
-  dataCategories: ITreeItem[]
-  valCategories: ITreeItem[]
+  // data: IRequestType
+  // value: Record<string, string> | undefined
+  // dataCategories: ITreeItem[]
+  // valCategories: ITreeItem[]
   width?: number
   Component: any
-  disabled: boolean
+  // disabled: boolean
+  // onChange: (
+  //   value?: string[] | number[] | number | ITreeItem[],
+  //   idItem?: string
+  // ) => void
+  limiTationType: any
+  requestType: any
+  data: any
   onChange: (
-    value?: string[] | number[] | number | ITreeItem[],
-    idItem?: string
+    description: string,
+    value?: string[] | ITreeItem[],
+    idItem?: string,
+    operator?: any
   ) => void
+  textOperatorOptions: any
 }
 
 function RequestTypeItem(props: IProps): JSX.Element {
   const {
-    data,
-    dataCategories,
+    // data,
+    // dataCategories,
     width,
-    valCategories,
+    // valCategories,
     Component,
     onChange,
+    limiTationType,
+    requestType,
+    data,
+    textOperatorOptions,
     ...restProps
   } = props
 
-  const isAllSelected = restProps.disabled
+  // console.log(
+  //   'data',
+  //   data.map((item) => item.queryText)
+  // )
 
   return (
     <CustomRoot>
       <CustomFullRequestType>
-        <div style={{ width: `${width}px` }}>{data.label}</div>
+        <div style={{ width: `${width}px` }}>{limiTationType.label}</div>
         <div style={{ width: `${width}px` }}>
           <Checkbox
-            label={data.labelIsAll}
+            label={limiTationType.labelIsAll}
             small
-            checked={isAllSelected}
-            onChange={(): void => onChange(undefined, data.id)}
+            checked={requestType.applyToAll}
+            onChange={(): void =>
+              onChange('allSelected', undefined, requestType.requestType)
+            }
             list
           />
         </div>
-        <Component
-          data={dataCategories || data}
-          onChange={onChange}
-          {...restProps}
-        />
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+          {textOperatorOptions.map((item) => {
+            return (
+              <div key={item?.id || item.queryText + item.operator}>
+                <div>{item.label}</div>
+                <Component
+                  value={data
+                    .filter((it) => it.operator === item.value)
+                    .map((it) => it.queryText)}
+                  onChange={(a) =>
+                    onChange('data', a, limiTationType.value, item.value)
+                  }
+                  disabled={requestType.applyToAll}
+                  disabledValue={limiTationType.labelIsAll}
+                  {...restProps}
+                />
+              </div>
+            )
+          })}
+        </div>
       </CustomFullRequestType>
-      <IconButton onClick={(): void => onChange(data.value)}>
+      <IconButton
+        onClick={(): void =>
+          onChange('optionsDropdown', requestType.requestType)
+        }
+      >
         <IonIcon style={{ fontSize: '18px', color: '#424880' }} name="close" />
       </IconButton>
     </CustomRoot>

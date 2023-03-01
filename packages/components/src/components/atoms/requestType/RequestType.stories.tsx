@@ -8,6 +8,13 @@ import {
   RequestType,
 } from '@elastic-suite/gally-admin-shared'
 
+import {
+  requestTypesOptions,
+  textOperatorOptions,
+  limitationsTypes,
+  dataGeneralBoost as dataGenerals,
+} from './RequestTypeMocks'
+
 export default {
   title: 'Atoms/RequestType',
   helperIcon: {
@@ -75,6 +82,7 @@ const mocksDataTags = [
 
 const Template: ComponentStory<typeof RequestTypeComponent> = (args) => {
   const [data, setData] = useState(mocksListRequestType)
+  const [dataGeneral, setDataGeneral] = useState(dataGenerals)
 
   const [valCategories, setValCategories] = useState<ITreeItem[]>([])
 
@@ -88,72 +96,154 @@ const Template: ComponentStory<typeof RequestTypeComponent> = (args) => {
     useState<{ id: string; data: string[] }[]>(mocksDataTags)
 
   function onChange(
-    value?: string[] | number[] | number | ITreeItem[],
-    idItem?: string
+    description: string,
+    value?: string[] | string | number[] | number | ITreeItem[],
+    idItem?: string,
+    operator?: string
   ): void | null {
-    if (Array.isArray(value)) {
-      if (typeof value[0] === 'number') {
-        return setMultiValue(value as number[])
-      }
-
-      if (typeof value[0] === 'string' && idItem) {
-        const idIsExist = valTags.find((item) => item.id === idItem)
-        if (!idIsExist) {
-          const newData = [...valTags, { id: idItem, data: value as string[] }]
-          return setValTags(newData)
+    switch (description) {
+      case 'optionsDropdown':
+        let newRequestTypeOptionsSelected
+        if (typeof value === 'string') {
+          newRequestTypeOptionsSelected = dataGeneral[0].requestTypes.filter(
+            (it) => {
+              return it.requestType !== value
+            }
+          )
+        } else {
+          newRequestTypeOptionsSelected = (value as string[]).map((item) => {
+            return (
+              dataGeneral[0].requestTypes.find(
+                (it) => it.requestType === item
+              ) ?? { applyToAll: false, requestType: item }
+            )
+          })
         }
-        const newData = valTags.map((item) => {
-          if (item.id === idItem) {
-            return { id: idItem, data: value as string[] }
-          }
-          return item
+
+        const newDataGeneral = dataGeneral.map((item) => {
+          return { ...item, requestTypes: newRequestTypeOptionsSelected }
         })
-        return setValTags(newData)
-      }
 
-      return setValCategories(value as ITreeItem[])
-    }
+        return setDataGeneral(newDataGeneral as any) // TODO
 
-    if (typeof value === 'number') {
-      const newData = multiValue.filter((val) => val !== value)
-      setMultiValue(newData)
-    }
-
-    if (!value && idItem) {
-      const newData = data.map((item) => {
-        if (idItem === item.id) {
-          return {
-            ...item,
-            disabled: !item.disabled,
+      case 'allSelected':
+        const newRequestTypesSelected = dataGeneral[0].requestTypes.map(
+          (item) => {
+            if (item.requestType === idItem) {
+              return { ...item, applyToAll: !item.applyToAll }
+            }
+            return item
           }
-        }
-        return item
-      })
-      setData(newData)
+        )
+        const newDataGeneralSelected = dataGeneral.map((item) => {
+          return { ...item, requestTypes: newRequestTypesSelected }
+        })
+        return setDataGeneral(newDataGeneralSelected)
+
+      case 'data':
+        // console.log('value string', (value as string[]).pop())
+        // console.log('value', value)
+        // console.log('idItem', idItem)
+        // console.log('operator', operator)
+        // const newLimitations = [
+        //   ...dataGeneral[0][idItem + 'Limitations'],
+        //   { operator, queryText: (value as string[]).pop() },
+        // ]
+        // console.log('newLimitations', newLimitations)
+
+        // const newDataGeneralLimitations = dataGeneral.map((item) => {
+        //   return { ...item, [idItem + 'Limitations']: newLimitations }
+        // })
+        // console.log(newDataGeneralLimitations)
+        // console.log('aaaaaaaaaaaaaaaaa')
+
+        const newValue = (value as string[]).map((item) => ({
+          operator,
+          queryText: item,
+        }))
+
+        const newLimitationsDelete = dataGeneral[0][idItem + 'Limitations']
+          .filter((it) => it.operator !== operator)
+          .concat(newValue)
+
+        const newDataGeneralLimitationsDelete = dataGeneral.map((item) => {
+          return { ...item, [idItem + 'Limitations']: newLimitationsDelete }
+        })
+        return setDataGeneral(newDataGeneralLimitationsDelete)
+
+      default:
+        break
     }
 
-    return null
+    // if (Array.isArray(value)) {
+    //   if (typeof value[0] === 'number') {
+    //     return setMultiValue(value as number[])
+    //   }
+
+    //   if (typeof value[0] === 'string' && idItem) {
+    //     const idIsExist = valTags.find((item) => item.id === idItem)
+    //     if (!idIsExist) {
+    //       const newData = [...valTags, { id: idItem, data: value as string[] }]
+    //       return setValTags(newData)
+    //     }
+    //     const newData = valTags.map((item) => {
+    //       if (item.id === idItem) {
+    //         return { id: idItem, data: value as string[] }
+    //       }
+    //       return item
+    //     })
+    //     return setValTags(newData)
+    //   }
+
+    //   return setValCategories(value as ITreeItem[])
+    // }
+
+    // if (typeof value === 'number') {
+    //   const newData = multiValue.filter((val) => val !== value)
+    //   setMultiValue(newData)
+    // }
+
+    // if (!value && idItem) {
+    //   const newData = data.map((item) => {
+    //     if (idItem === item.id) {
+    //       return {
+    //         ...item,
+    //         disabled: !item.disabled,
+    //       }
+    //     }
+    //     return item
+    //   })
+    //   setData(newData)
+    // }
+
+    // return null
   }
 
-  useEffect(() => {
-    const newData = data.map((item) =>
-      multiValue.find((val) => val === item.value)
-        ? { ...item, isSelected: true }
-        : { ...item, isSelected: false }
-    )
-    setData(newData)
-    // eslint-disable-next-line
-  }, [multiValue])
+  // useEffect(() => {
+  //   const newData = data.map((item) =>
+  //     multiValue.find((val) => val === item.value)
+  //       ? { ...item, isSelected: true }
+  //       : { ...item, isSelected: false }
+  //   )
+  //   setData(newData)
+  //   // eslint-disable-next-line
+  // }, [multiValue])
+
+  // console.log('dataGeneral', dataGeneral)
 
   return (
     <RequestTypeComponent
       {...args}
-      data={data}
+      // data={data}
       onChange={onChange}
       multiValue={multiValue}
       valTags={valTags}
       dataCategories={categories.categories}
       valCategories={valCategories}
+      requestTypesOptions={requestTypesOptions}
+      dataGeneral={dataGeneral}
+      limitationsTypes={limitationsTypes}
+      textOperatorOptions={textOperatorOptions}
     />
   )
 }
