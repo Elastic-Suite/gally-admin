@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { styled } from '@mui/system'
 import { IRequestType, ITreeItem } from '@elastic-suite/gally-admin-shared'
 import { IconButton } from '@mui/material'
@@ -61,6 +61,9 @@ function RequestTypeItem(props: IProps): JSX.Element {
   //   'data',
   //   data.map((item) => item.queryText)
   // )
+  console.log('data', data)
+  const initOperator = ''
+  const [activeOperator, setActiveOperator] = useState([])
 
   return (
     <CustomRoot>

@@ -143,6 +143,7 @@ function RequestType(props: IProps): JSX.Element {
   console.log('selectedOptions', selectedOptions)
   console.log('multiValue', multiValue)
   console.log('limitationsTypes', limitationsTypes)
+
   return (
     <FormControl error={error} fullWidth={fullWidth} margin={margin}>
       {Boolean(label || infoTooltip) && (

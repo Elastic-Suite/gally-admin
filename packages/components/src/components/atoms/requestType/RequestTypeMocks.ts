@@ -83,13 +83,13 @@ export const dataGeneralBoost = [
         queryText: 'EQ',
       },
       {
-        '@id': '/boost_search_limitations/1',
+        '@id': '/boost_search_limitations/2',
         '@type': 'BoostSearchLimitation',
         operator: 'eq',
         queryText: 'eq again',
       },
       {
-        '@id': '/boost_search_limitations/1',
+        '@id': '/boost_search_limitations/3',
         '@type': 'BoostSearchLimitation',
         operator: '%like',
         queryText: '%like',
@@ -110,4 +110,8 @@ export const dataGeneralBoost = [
     createdAt: '2023-03-01T10:42:15+00:00',
     updatedAt: '2023-03-01T10:42:15+00:00',
   },
+][
+  {
+    eq: ['queryTExt'],
+  }
 ]
