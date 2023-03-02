@@ -81,9 +81,8 @@ const Template: ComponentStory<typeof TextFieldTagsComponentMultiple> = (
     tableau.map((item) => {
       if (transformedObject[item.operator]) {
         return transformedObject[item.operator].push(item.queryText)
-      } 
-        return (transformedObject[item.operator] = [item.queryText])
-      
+      }
+      return (transformedObject[item.operator] = [item.queryText])
     })
     return transformedObject
   }

@@ -142,7 +142,8 @@ function TextFieldTagsMultiple(props: ITextFieldTag): JSX.Element {
             )
           })
         )}
-        {optionDefault && !disabled ? <CustomSelectOperator>
+        {optionDefault && !disabled ? (
+          <CustomSelectOperator>
             <DropDown
               onChange={(newOption): void =>
                 setOptionDefault(
@@ -158,7 +159,8 @@ function TextFieldTagsMultiple(props: ITextFieldTag): JSX.Element {
             >
               Add
             </Button>
-          </CustomSelectOperator> : null}
+          </CustomSelectOperator>
+        ) : null}
       </CustomMultipleTextFieldsTags>
       {Boolean(helperText) && (
         <FormHelperText error={error}>

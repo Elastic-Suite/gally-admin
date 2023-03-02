@@ -35,7 +35,7 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
   const dirty = Boolean(
     diffValue !== undefined &&
       ((diffValue !== null && diffValue !== value) ||
-        (diffValue === null && Boolean(value?.toString())))
+        (diffValue === null && value))
   )
 
   function handleChange(

@@ -103,7 +103,7 @@ function AdminMerchandizeCategories(): JSX.Element {
     ) {
       if (
         categories?.data?.categories.find(
-          (item) => item.path === selectedCategoryItem?.path.split('/')[0]
+          (item) => item.id === selectedCategoryItem?.id
         )
       ) {
         fetchApi<ICategoryConfiguration>(

@@ -62,16 +62,6 @@ interface IProps {
   showSearch?: boolean
 }
 
-const listOfDefaultFacets = [
-  'defaultCoverageRate',
-  'defaultDisplayMode',
-  'defaultIsRecommendable',
-  'defaultIsVirtual',
-  'defaultMaxSize',
-  'defaultSortOrder',
-  'defaultPosition',
-]
-
 function ResourceTable(props: IProps): JSX.Element {
   const { t } = useTranslation('resourceTable')
   const {
@@ -111,24 +101,16 @@ function ResourceTable(props: IProps): JSX.Element {
   const tableRows = data?.['hydra:member'] as unknown as ITableRow[]
   const diffRows: ITableRow[] = useMemo(() => {
     if (diffDefaultValues && tableRows) {
-      const newTableRows = tableRows.map((itemTableRow) => {
-        const newDefault = listOfDefaultFacets.map((itemDefaultFacets) => {
-          return { [itemDefaultFacets]: itemTableRow[itemDefaultFacets] }
-        })
-        return Object.assign({}, itemTableRow, ...newDefault)
-      })
-
-      return newTableRows.map((row) =>
-        Object.fromEntries([
-          ...Object.entries(row)
+      return tableRows.map((row) =>
+        Object.fromEntries(
+          Object.entries(row)
             .filter(([key]) => key.startsWith('default'))
-            .map(([key, value]) => [getNameFromDefault(key), value]),
-        ])
+            .map(([key, value]) => [getNameFromDefault(key), value])
+        )
       ) as ITableRow[]
     }
     return []
   }, [diffDefaultValues, tableRows])
-
   const diffCount = useMemo(
     () =>
       diffRows.reduce(
@@ -181,11 +163,9 @@ function ResourceTable(props: IProps): JSX.Element {
 
   function handleReset(): void {
     diffRows.forEach((row, index) => {
-      const entries = Object.entries(row)
-        .filter(([key, value]) => value !== tableRows?.[index][key])
-        .map((item) => {
-          return [item[0], item?.[1] ?? null]
-        })
+      const entries = Object.entries(row).filter(
+        ([key, value]) => value !== tableRows?.[index][key]
+      )
       if (entries.length > 0) {
         replace({
           ...tableRows?.[index],
@@ -204,11 +184,13 @@ function ResourceTable(props: IProps): JSX.Element {
     !filterOrSearchAreUp
   ) {
     return (
-      <NoAttributes
-        title={isFacets ? t('facets.none') : t('attributes.none')}
-        btnTitle={isFacets ? t('facets.none.btn') : t('attributes.none.btn')}
-        btnHref="admin/settings/attributes"
-      />
+      <>
+        <NoAttributes
+          title={isFacets ? t('facets.none') : t('attributes.none')}
+          btnTitle={isFacets ? t('facets.none.btn') : t('attributes.none.btn')}
+          btnHref="admin/settings/attributes"
+        />
+      </>
     )
   }
   return (

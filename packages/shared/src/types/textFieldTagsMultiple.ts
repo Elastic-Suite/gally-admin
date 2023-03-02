@@ -11,4 +11,4 @@ export interface ILimitations {
   queryText: string
 }
 
-export type ITransformedLimitations = Record<string, string[]>;
+export type ITransformedLimitations = Record<string, string[]>

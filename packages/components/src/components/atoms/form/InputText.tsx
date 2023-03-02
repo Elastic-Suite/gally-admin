@@ -91,7 +91,7 @@ function InputText(
           onChange={handleChange}
           required={required}
           ref={ref}
-          value={(value ?? '').toString()}
+          value={value ? String(value) : ''}
           {...InputProps}
         />
         {Boolean(suffix) && <Suffix>{suffix}</Suffix>}
