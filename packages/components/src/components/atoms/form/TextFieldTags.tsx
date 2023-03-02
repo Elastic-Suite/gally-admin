@@ -76,8 +76,8 @@ export interface ITextFIeldTagsForm {
 }
 
 export interface ITextFieldTag extends ITextFIeldTagsForm {
-  value: string[]
-  onChange: (value: string[]) => void
+  value?: string[]
+  onChange?: (value: string[]) => void
 }
 
 function TextFieldTags(props: ITextFieldTag): JSX.Element {
@@ -104,6 +104,9 @@ function TextFieldTags(props: ITextFieldTag): JSX.Element {
     tag?: string,
     event?: FormEvent<HTMLFormElement>
   ): void | null {
+    if (!value || !onChange) {
+      return null
+    }
     if (event) {
       event.preventDefault()
       if (val === undefined || val.trim() === '') {
@@ -130,7 +133,7 @@ function TextFieldTags(props: ITextFieldTag): JSX.Element {
       )}
       <CustomRootTextFieldTags disabled={disabled}>
         <CustomTags>
-          {disabled ? (
+          {disabled || !value ? (
             <Chip disabled label={disabledValue} />
           ) : (
             value.map((item: string) => {
