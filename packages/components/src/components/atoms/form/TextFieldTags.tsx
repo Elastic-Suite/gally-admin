@@ -1,4 +1,4 @@
-import React, { FormEvent, ReactNode, useState } from 'react'
+import React, { FormEvent, useState } from 'react'
 import { styled } from '@mui/system'
 import Chip from '../Chip/Chip'
 import InputText from './InputText'
@@ -6,6 +6,7 @@ import { FormHelperText, InputLabel } from '@mui/material'
 import IonIcon from '../IonIcon/IonIcon'
 import InfoTooltip from './InfoTooltip'
 import FormControl from './FormControl'
+import { ITextFieldTagsForm } from '@elastic-suite/gally-admin-shared'
 
 const customRootTextFieldTagsProps = ['disabled']
 const CustomRootTextFieldTags = styled('div', {
@@ -60,22 +61,7 @@ const CustomInputTextTextFieldTags = styled(InputText)({
   '&.MuiInputBase-root': { minHeight: 0, paddingLeft: '8px' },
 })
 
-export interface ITextFIeldTagsForm {
-  disabled?: boolean
-  disabledValue?: string
-  error?: boolean
-  fullWidth?: boolean
-  infoTooltip?: string
-  helperText?: ReactNode
-  helperIcon?: string
-  label?: string
-  margin?: 'none' | 'dense' | 'normal'
-  required?: boolean
-  size?: 'small' | 'medium' | undefined
-  placeholder?: string
-}
-
-export interface ITextFieldTag extends ITextFIeldTagsForm {
+export interface ITextFieldTag extends Omit<ITextFieldTagsForm, 'options'> {
   value?: string[]
   onChange?: (value: string[]) => void
 }

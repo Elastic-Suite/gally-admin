@@ -5,8 +5,8 @@ export interface IOptionsTags {
 }
 
 export interface ILimitations {
-  '@id': string
-  '@type': string
+  '@id'?: string
+  '@type'?: string
   operator: string
   queryText: string
 }

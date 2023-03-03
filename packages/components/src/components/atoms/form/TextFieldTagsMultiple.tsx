@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { styled } from '@mui/system'
 import { FormHelperText, InputLabel } from '@mui/material'
 import IonIcon from '../IonIcon/IonIcon'
@@ -8,7 +8,9 @@ import TextFieldTags from './TextFieldTags'
 import Button from '../buttons/Button'
 
 import {
+  ILimitations,
   IOptionsTags,
+  ITextFieldTagsForm,
   ITransformedLimitations,
 } from '@elastic-suite/gally-admin-shared'
 import DropDown from './DropDown'
@@ -39,28 +41,19 @@ const CustomSelectOperator = styled('div')(({ theme }) => ({
   flexDirection: 'row',
 }))
 
-export interface ITextFIeldTagsForm {
-  disabled?: boolean
-  error?: boolean
-  fullWidth?: boolean
-  infoTooltip?: string
-  helperText?: ReactNode
-  helperIcon?: string
-  label?: string
-  margin?: 'none' | 'dense' | 'normal'
-  required?: boolean
-  options: IOptionsTags[]
+export interface ITextFieldTagsMultipleProps
+  extends Omit<ITextFieldTagsForm, 'size' | 'placeholder'> {
+  value: ILimitations[]
+  onChange: (value: ILimitations[]) => void
 }
 
-export interface ITextFieldTag extends ITextFIeldTagsForm {
-  value: ITransformedLimitations
-  onChange: (operator: string | string[], data?: string[] | string) => void
-}
-
-function TextFieldTagsMultiple(props: ITextFieldTag): JSX.Element {
+function TextFieldTagsMultiple(
+  props: ITextFieldTagsMultipleProps
+): JSX.Element {
   const {
     value,
     onChange,
+    disabledValue,
     disabled,
     required,
     error,
@@ -73,13 +66,49 @@ function TextFieldTagsMultiple(props: ITextFieldTag): JSX.Element {
     options,
   } = props
 
-  const optionsListAvailable: (IOptionsTags & { disabled?: boolean })[] =
-    options.map((item) => {
-      if (value[item.value]) {
-        return { ...item, disabled: true }
+  function transformedValue(tableau: ILimitations[]): ITransformedLimitations {
+    const transformedObject: ITransformedLimitations = {}
+    tableau.map((item) => {
+      if (transformedObject[item.operator]) {
+        return transformedObject[item.operator].push(item.queryText)
       }
-      return item
+      return (transformedObject[item.operator] = [item.queryText])
     })
+    return transformedObject
+  }
+
+  const [modifiedValue, setModifiedValue] = useState(transformedValue(value))
+
+  function onChangeModifiedValue(
+    operator: string | string[],
+    data?: string[] | string
+  ): void {
+    if (Array.isArray(operator)) {
+      return setModifiedValue({ ...modifiedValue, [operator.toString()]: [] })
+    }
+
+    if (typeof operator === 'string' && typeof data === 'string') {
+      const newValue = { ...modifiedValue }
+      newValue[data] = newValue[operator]
+      delete newValue[operator]
+      return setModifiedValue(newValue)
+    }
+
+    if (!data) {
+      const newValue = { ...modifiedValue }
+      delete newValue[operator as string]
+      return setModifiedValue(newValue)
+    }
+    return setModifiedValue({
+      ...modifiedValue,
+      [operator as string]: data as string[],
+    })
+  }
+
+  const optionsListAvailable: (IOptionsTags & { disabled?: boolean })[] =
+    options.map((item) =>
+      modifiedValue[item.value] ? { ...item, disabled: true } : item
+    )
 
   const [optionDefault, setOptionDefault] = useState<undefined | IOptionsTags>()
 
@@ -90,6 +119,24 @@ function TextFieldTagsMultiple(props: ITextFieldTag): JSX.Element {
       ) ?? optionsListAvailable.find((item) => !item?.disabled)
     )
   }, [optionsListAvailable, optionDefault])
+
+  function unModifiedValue(obj: ITransformedLimitations): ILimitations[] {
+    const tableau = [] as ILimitations[]
+
+    for (const [key, item] of Object.entries(obj)) {
+      item.forEach((queryText) => {
+        tableau.push({
+          operator: key,
+          queryText,
+        })
+      })
+    }
+
+    return tableau
+  }
+  useEffect(() => {
+    return onChange(unModifiedValue(modifiedValue))
+  }, [modifiedValue, onChange])
 
   return (
     <FormControl error={error} fullWidth={fullWidth} margin={margin}>
@@ -103,21 +150,21 @@ function TextFieldTagsMultiple(props: ITextFieldTag): JSX.Element {
       )}
       <CustomMultipleTextFieldsTags>
         {disabled ? (
-          <TextFieldTags disabledValue="disabled" disabled />
+          <TextFieldTags disabledValue={disabledValue} disabled />
         ) : (
-          Object.entries(value).map((item) => {
-            const option = options.find((it) => it.value === item[0])
+          Object.entries(modifiedValue).map(([key, value]) => {
+            const option = options.find((it) => it.value === key)
             const newOptionsList = options.map((it) => {
-              if (value[it.value] && item[0] !== it.value) {
+              if (modifiedValue[it.value] && key !== it.value) {
                 return { ...it, disabled: true }
               }
               return it
             })
             return (
-              <div key={item[0]}>
+              <div key={key}>
                 <DropDown
                   onChange={(newOption): void =>
-                    onChange(item[0], newOption as string)
+                    onChangeModifiedValue(key, newOption as string)
                   }
                   value={option?.value}
                   options={newOptionsList}
@@ -125,7 +172,7 @@ function TextFieldTagsMultiple(props: ITextFieldTag): JSX.Element {
                 />
                 <div style={{ position: 'relative' }}>
                   <CustomCloseTagsByOperator
-                    onClick={(): void => onChange(item[0])}
+                    onClick={(): void => onChangeModifiedValue(key)}
                   >
                     <IonIcon
                       name="close"
@@ -133,8 +180,8 @@ function TextFieldTagsMultiple(props: ITextFieldTag): JSX.Element {
                     />
                   </CustomCloseTagsByOperator>
                   <TextFieldTags
-                    onChange={(a): void => onChange(item[0], a)}
-                    value={item[1]}
+                    onChange={(a): void => onChangeModifiedValue(key, a)}
+                    value={value}
                     placeholder={option?.label}
                   />
                 </div>
@@ -155,7 +202,7 @@ function TextFieldTagsMultiple(props: ITextFieldTag): JSX.Element {
             />
             <Button
               size="medium"
-              onClick={(): void => onChange([optionDefault.value])}
+              onClick={(): void => onChangeModifiedValue([optionDefault.value])}
             >
               Add
             </Button>
