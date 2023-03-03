@@ -8,7 +8,7 @@ export interface ILimitations {
   '@id'?: string
   '@type'?: string
   operator: string
-  queryText: string
+  queryText: string | null
 }
 
 export type ITransformedLimitations = Record<string, string[]>

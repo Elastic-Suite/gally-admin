@@ -122,17 +122,19 @@ function TextFieldTags(props: ITextFieldTag): JSX.Element {
           {disabled || !value ? (
             <Chip disabled label={disabledValue} />
           ) : (
-            value.map((item: string) => {
-              return disabled ? (
-                <Chip disabled key={item} label={disabledValue} />
-              ) : (
-                <Chip
-                  key={item}
-                  label={item}
-                  onDelete={(): void | null => manageTags(item)}
-                />
-              )
-            })
+            value
+              .filter((it) => it)
+              .map((item: string) => {
+                return disabled ? (
+                  <Chip disabled key={item} label={disabledValue} />
+                ) : (
+                  <Chip
+                    key={item}
+                    label={item}
+                    onDelete={(): void | null => manageTags(item)}
+                  />
+                )
+              })
           )}
           {!disabled && (
             <CustomFormTextFieldTags

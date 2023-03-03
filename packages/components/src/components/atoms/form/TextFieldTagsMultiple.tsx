@@ -69,40 +69,66 @@ function TextFieldTagsMultiple(
   function transformedValue(tableau: ILimitations[]): ITransformedLimitations {
     const transformedObject: ITransformedLimitations = {}
     tableau.map((item) => {
-      if (transformedObject[item.operator]) {
-        return transformedObject[item.operator].push(item.queryText)
+      if (transformedObject[item.operator]?.[0]) {
+        return transformedObject[item.operator].push(item.queryText as string)
       }
-      return (transformedObject[item.operator] = [item.queryText])
+      return (transformedObject[item.operator] = [item.queryText as string])
     })
     return transformedObject
   }
 
-  const [modifiedValue, setModifiedValue] = useState(transformedValue(value))
+  function unModifiedValue(obj: ITransformedLimitations): ILimitations[] {
+    const tableau = [] as ILimitations[]
+    for (const [key, item] of Object.entries(obj)) {
+      item.length !== 0
+        ? item.map((queryText) =>
+            tableau.push({
+              operator: key,
+              queryText,
+            })
+          )
+        : tableau.push({
+            operator: key,
+            queryText: null,
+          })
+    }
+    return tableau
+  }
+
+  const modifiedValue = transformedValue(value)
 
   function onChangeModifiedValue(
     operator: string | string[],
     data?: string[] | string
   ): void {
     if (Array.isArray(operator)) {
-      return setModifiedValue({ ...modifiedValue, [operator.toString()]: [] })
+      return onChange(
+        unModifiedValue({ ...modifiedValue, [operator.toString()]: [] })
+      )
     }
 
     if (typeof operator === 'string' && typeof data === 'string') {
       const newValue = { ...modifiedValue }
       newValue[data] = newValue[operator]
       delete newValue[operator]
-      return setModifiedValue(newValue)
+      return onChange(unModifiedValue(newValue))
     }
 
     if (!data) {
       const newValue = { ...modifiedValue }
       delete newValue[operator as string]
-      return setModifiedValue(newValue)
+      return onChange(unModifiedValue(newValue))
     }
-    return setModifiedValue({
-      ...modifiedValue,
-      [operator as string]: data as string[],
-    })
+
+    return onChange(
+      unModifiedValue({
+        ...modifiedValue,
+        [operator as string]:
+          (data as string[]).length > 1
+            ? (data as string[]).filter((it) => it !== null)
+            : (data as string[]),
+      })
+    )
   }
 
   const optionsListAvailable: (IOptionsTags & { disabled?: boolean })[] =
@@ -110,33 +136,15 @@ function TextFieldTagsMultiple(
       modifiedValue[item.value] ? { ...item, disabled: true } : item
     )
 
-  const [optionDefault, setOptionDefault] = useState<undefined | IOptionsTags>()
+  const [operatorValue, setOperatorValue] = useState<undefined | IOptionsTags>()
 
   useEffect(() => {
-    setOptionDefault(
+    setOperatorValue(
       optionsListAvailable.find(
-        (item) => optionDefault?.value === item.value && !item?.disabled
+        (item) => operatorValue?.value === item.value && !item?.disabled
       ) ?? optionsListAvailable.find((item) => !item?.disabled)
     )
-  }, [optionsListAvailable, optionDefault])
-
-  function unModifiedValue(obj: ITransformedLimitations): ILimitations[] {
-    const tableau = [] as ILimitations[]
-
-    for (const [key, item] of Object.entries(obj)) {
-      item.forEach((queryText) => {
-        tableau.push({
-          operator: key,
-          queryText,
-        })
-      })
-    }
-
-    return tableau
-  }
-  useEffect(() => {
-    return onChange(unModifiedValue(modifiedValue))
-  }, [modifiedValue, onChange])
+  }, [optionsListAvailable, operatorValue])
 
   return (
     <FormControl error={error} fullWidth={fullWidth} margin={margin}>
@@ -180,6 +188,7 @@ function TextFieldTagsMultiple(
                     />
                   </CustomCloseTagsByOperator>
                   <TextFieldTags
+                    fullWidth={fullWidth}
                     onChange={(a): void => onChangeModifiedValue(key, a)}
                     value={value}
                     placeholder={option?.label}
@@ -189,20 +198,20 @@ function TextFieldTagsMultiple(
             )
           })
         )}
-        {optionDefault && !disabled ? (
+        {operatorValue && !disabled ? (
           <CustomSelectOperator>
             <DropDown
               onChange={(newOption): void =>
-                setOptionDefault(
+                setOperatorValue(
                   optionsListAvailable.find((item) => item?.value === newOption)
                 )
               }
-              value={optionDefault?.value}
+              value={operatorValue?.value}
               options={optionsListAvailable}
             />
             <Button
               size="medium"
-              onClick={(): void => onChangeModifiedValue([optionDefault.value])}
+              onClick={(): void => onChangeModifiedValue([operatorValue.value])}
             >
               Add
             </Button>
