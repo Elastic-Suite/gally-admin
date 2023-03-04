@@ -4,7 +4,7 @@ export interface IOptionsTags {
   label: string
 }
 
-export interface ILimitations {
+export interface ISearchLimitations {
   '@id'?: string
   '@type'?: string
   operator: string

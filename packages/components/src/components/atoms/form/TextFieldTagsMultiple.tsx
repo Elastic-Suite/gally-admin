@@ -8,8 +8,8 @@ import TextFieldTags from './TextFieldTags'
 import Button from '../buttons/Button'
 
 import {
-  ILimitations,
   IOptionsTags,
+  ISearchLimitations,
   ITextFieldTagsForm,
   ITransformedLimitations,
 } from '@elastic-suite/gally-admin-shared'
@@ -43,8 +43,8 @@ const CustomSelectOperator = styled('div')(({ theme }) => ({
 
 export interface ITextFieldTagsMultipleProps
   extends Omit<ITextFieldTagsForm, 'size' | 'placeholder'> {
-  value: ILimitations[]
-  onChange: (value: ILimitations[]) => void
+  value: ISearchLimitations[]
+  onChange: (value: ISearchLimitations[]) => void
 }
 
 function TextFieldTagsMultiple(
@@ -66,7 +66,9 @@ function TextFieldTagsMultiple(
     options,
   } = props
 
-  function transformedValue(list: ILimitations[]): ITransformedLimitations {
+  function transformedValue(
+    list: ISearchLimitations[]
+  ): ITransformedLimitations {
     const transformedObject: ITransformedLimitations = {}
     list.forEach((item) => {
       if (transformedObject[item.operator]) {
@@ -78,8 +80,8 @@ function TextFieldTagsMultiple(
     return transformedObject
   }
 
-  function unModifiedValue(obj: ITransformedLimitations): ILimitations[] {
-    const list = [] as ILimitations[]
+  function unModifiedValue(obj: ITransformedLimitations): ISearchLimitations[] {
+    const list = [] as ISearchLimitations[]
     for (const [key, item] of Object.entries(obj)) {
       item.length !== 0
         ? item.map((queryText) =>
