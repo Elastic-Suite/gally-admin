@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
 
-import TextFieldTagsComponentMultiple from './TextFieldTagsMultiple'
 import {
   IOptions,
   ILimitationsTypes,
   IRequestType,
+  IRequestTypesOptions,
 } from '@elastic-suite/gally-admin-shared'
-import TextFieldTagsItem from './TextFieldTagsItem'
+import RequestTypeItem from './RequestTypeItem'
 
 const limitationsTypes: ILimitationsTypes[] = [
   {
@@ -19,6 +19,27 @@ const limitationsTypes: ILimitationsTypes[] = [
     label: 'Search terms',
     labelAll: 'All Search terms',
     value: 'search',
+  },
+]
+
+const requestTypesOptions: IRequestTypesOptions[] = [
+  {
+    label: 'Product catalog',
+    limitation_type: 'category',
+    id: 'product_catalog',
+    value: 'product_catalog',
+  },
+  {
+    label: 'Search terms',
+    limitation_type: 'search',
+    id: 'product_search',
+    value: 'product_search',
+  },
+  {
+    label: 'Autocomplete terms',
+    limitation_type: 'search',
+    id: 'Autocomplete_terms',
+    value: 'product_autocomplete',
   },
 ]
 
@@ -45,7 +66,7 @@ const textOperatorOptions: IOptions<string> = [
   },
 ]
 
-export const dataGeneralBoost: IRequestType = {
+const dataGeneralBoost: IRequestType = {
   '@id': '/boosts/1',
   '@type': 'Boost',
   id: 1,
@@ -60,6 +81,18 @@ export const dataGeneralBoost: IRequestType = {
       '@id': '/boost_request_types/1',
       '@type': 'BoostRequestType',
       requestType: 'product_catalog',
+      applyToAll: false,
+    },
+    {
+      '@id': '/boost_request_types/2',
+      '@type': 'BoostRequestType',
+      requestType: 'product_search',
+      applyToAll: false,
+    },
+    {
+      '@id': '/boost_request_types/3',
+      '@type': 'BoostRequestType',
+      requestType: 'product_autocomplete',
       applyToAll: false,
     },
   ],
@@ -107,7 +140,7 @@ export const dataGeneralBoost: IRequestType = {
 }
 
 export default {
-  title: 'Atoms/Form/TextFieldTagsItem',
+  title: 'Atoms/Form/RequestTypeItem',
   helperIcon: {
     options: ['', 'information-circle', 'checkmark', 'close'],
     control: { type: 'select' },
@@ -115,18 +148,18 @@ export default {
   helperText: {
     control: 'text',
   },
-  component: TextFieldTagsItem,
-} as ComponentMeta<typeof TextFieldTagsItem>
+  component: RequestTypeItem,
+} as ComponentMeta<typeof RequestTypeItem>
 
-const Template: ComponentStory<typeof TextFieldTagsItem> = (args) => {
-  console.log('args', args)
+const Template: ComponentStory<typeof RequestTypeItem> = (args) => {
   const [value, setValue] = useState<IRequestType>(dataGeneralBoost)
 
-  return <TextFieldTagsItem {...args} value={value} onChange={setValue} />
+  return <RequestTypeItem {...args} value={value} onChange={setValue} />
 }
 
 export const Default = Template.bind({})
 Default.args = {
   options: textOperatorOptions,
-  limitationsType: limitationsTypes,
+  limitationsTypes: limitationsTypes,
+  requestTypesOptions: requestTypesOptions,
 }

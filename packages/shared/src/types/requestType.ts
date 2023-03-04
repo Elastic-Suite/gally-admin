@@ -8,6 +8,12 @@ export interface ILimitationsTypes {
   labelAll: string
 }
 
+export interface IRequestTypesOptions {
+  label: string
+  limitation_type: string
+  id: string
+  value: string
+}
 export interface IRequestTypes {
   '@id'?: string
   '@type'?: string
