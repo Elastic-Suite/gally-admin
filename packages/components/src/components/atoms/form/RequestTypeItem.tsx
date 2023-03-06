@@ -55,62 +55,56 @@ function RequestTypeItem(props: ITextFieldTagssss): JSX.Element {
   const { value, onChange, options, limitationsTypes, requestTypesOptions } =
     props
 
-  function onChangeVal(
-    idItem: IRequestTypesOptions[] | ISearchLimitations[],
-    val?: boolean | string
+  function onChangeApplyToAll(
+    idItem: IRequestTypesOptions[],
+    val: boolean
   ): void {
-    if (Array.isArray(idItem) && typeof val === 'boolean') {
-      const newData = value.requestTypes.map((item) => {
-        if (
-          item.requestType ===
-          (idItem as IRequestTypesOptions[]).find(
-            (it) => it.value === item.requestType
-          )?.value
-        ) {
-          return { ...item, applyToAll: !item.applyToAll }
-        }
-        return item
-      })
-      return onChange({ ...value, requestTypes: newData })
-    }
-
-    if (Array.isArray(idItem) && typeof val === 'string') {
-      return onChange({ ...value, [val]: idItem })
-    }
-
-    if (!val) {
-      const newData = value.requestTypes.filter(
-        (item) =>
-          item.requestType !==
-          (idItem as IRequestTypesOptions[]).find(
-            (it) => it.value === item.requestType
-          )?.value
-      )
-
-      return onChange({ ...value, requestTypes: newData })
-    }
+    const newData = value.requestTypes.map((item) => {
+      if (
+        item.requestType ===
+        (idItem as IRequestTypesOptions[]).find(
+          (it) => it.value === item.requestType
+        )?.value
+      ) {
+        return { ...item, applyToAll: val }
+      }
+      return item
+    })
+    return onChange({ ...value, requestTypes: newData })
   }
 
-  function countLines(): number {
-    const listUniqueLimitationType: string[] = []
-    for (const item of value.requestTypes) {
-      const limitation_type = requestTypesOptions.find(
-        (its) => its.value === item.requestType
-      )?.limitation_type
+  function onChangeDataLimitations(
+    idItem: string,
+    val: ISearchLimitations[]
+  ): void {
+    return onChange({ ...value, [idItem]: val })
+  }
 
-      if (
-        limitation_type &&
-        !listUniqueLimitationType.includes(limitation_type)
-      ) {
-        listUniqueLimitationType.push(limitation_type)
-      }
-    }
-    return listUniqueLimitationType.length
+  function onDeleteLine(idItem: IRequestTypesOptions[]): void {
+    const newData = value.requestTypes.filter(
+      (item) =>
+        item.requestType !==
+        (idItem as IRequestTypesOptions[]).find(
+          (it) => it.value === item.requestType
+        )?.value
+    )
+    return onChange({ ...value, requestTypes: newData })
   }
 
   return (
     <CustomRootItem>
       {limitationsTypes.map((item, key) => {
+        const limitationTypeMap = requestTypesOptions.reduce<
+          Record<string, string>
+        >((acc, option) => {
+          acc[option.value] = option.limitation_type
+          return acc
+        }, {})
+        const uniqLimitationTypes = new Set(
+          value.requestTypes.map((item) => limitationTypeMap[item.requestType])
+        )
+        const countLines = uniqLimitationTypes.size
+
         const requestTypeOption = requestTypesOptions.filter(
           (it) =>
             it.limitation_type === item.value &&
@@ -122,24 +116,26 @@ function RequestTypeItem(props: ITextFieldTagssss): JSX.Element {
         }
 
         const concatLabel = requestTypeOption.map((it) => it.label)
+
+        const findValueInRequestTypesOptions = requestTypesOptions.find(
+          (it) => it.limitation_type === item.value
+        )?.value
         const isApplyToAll = value.requestTypes.find(
-          (it) =>
-            it.requestType ===
-            requestTypeOption.find((its) => its.value === it.requestType)?.value
+          (it) => it.requestType === findValueInRequestTypesOptions
         )?.applyToAll
 
         const limitationsData: ISearchLimitations[] | ICategoryLimitations[] =
           value[`${item.value}Limitations`]
-        let multiVal = key + 1 < countLines()
+        let uniqueLine = key + 1 < countLines
         let CustomDiv = CustomSelectedItem
 
-        if (key === 0 || countLines() === 1) {
-          multiVal = countLines() === 1
+        if (key === 0 || countLines === 1) {
+          uniqueLine = countLines === 1
           CustomDiv = CustomFirstSelectedItem
         }
 
         return (
-          <CustomDiv key={item.value} multiVal={multiVal}>
+          <CustomDiv key={item.value} uniqueLine={uniqueLine}>
             <CustomItem>
               <CustomLabel>{concatLabel.join(' / ')}</CustomLabel>
               <div style={{ marginTop: '-12px' }}>
@@ -147,7 +143,7 @@ function RequestTypeItem(props: ITextFieldTagssss): JSX.Element {
                   checked={isApplyToAll}
                   label={item.labelAll}
                   onChange={(val: boolean): void =>
-                    onChangeVal(requestTypeOption, val)
+                    onChangeApplyToAll(requestTypeOption, val)
                   }
                 />
               </div>
@@ -159,12 +155,12 @@ function RequestTypeItem(props: ITextFieldTagssss): JSX.Element {
                     options={options}
                     value={limitationsData as ISearchLimitations[]}
                     onChange={(data): void =>
-                      onChangeVal(data, `${item.value}Limitations`)
+                      onChangeDataLimitations(`${item.value}Limitations`, data)
                     }
                   />
                 )}
                 <IconButton
-                  onClick={(): void => onChangeVal(requestTypeOption)}
+                  onClick={(): void => onDeleteLine(requestTypeOption)}
                 >
                   <IonIcon
                     style={{ fontSize: '20px', color: '#424880' }}

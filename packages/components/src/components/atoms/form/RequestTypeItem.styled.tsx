@@ -16,10 +16,10 @@ export const CustomRoot = styled(CustomRootItem)(({ theme }) => ({
   borderRadius: theme.spacing(1),
 }))
 
-const CustomProp = ['multiVal']
+const CustomProp = ['uniqueLine']
 export const CustomFirstSelectedItem = styled('div', {
   shouldForwardProp: (prop: string) => !CustomProp.includes(prop),
-})<{ multiVal: boolean }>(({ theme, multiVal }) => ({
+})<{ uniqueLine: boolean }>(({ theme, uniqueLine }) => ({
   marginLeft: theme.spacing(5),
   marginTop: theme.spacing(4),
   position: 'relative',
@@ -34,7 +34,7 @@ export const CustomFirstSelectedItem = styled('div', {
     top: '-32px',
     left: '-24px',
   },
-  ...(!multiVal && {
+  ...(!uniqueLine && {
     '::after': {
       content: "''",
       position: 'absolute',
@@ -51,11 +51,11 @@ export const CustomFirstSelectedItem = styled('div', {
 
 export const CustomSelectedItem = styled('div', {
   shouldForwardProp: (prop: string) => !CustomProp.includes(prop),
-})<{ multiVal: boolean }>(({ theme, multiVal }) => ({
+})<{ uniqueLine: boolean }>(({ theme, uniqueLine }) => ({
   marginLeft: theme.spacing(5),
   marginTop: theme.spacing(4),
   position: 'relative',
-  ...(multiVal && {
+  ...(uniqueLine && {
     '::after': {
       content: "''",
       position: 'absolute',

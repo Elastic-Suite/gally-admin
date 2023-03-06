@@ -4,7 +4,6 @@ import {
   ILimitationsTypes,
   IOptionsTags,
   IRequestType,
-  IRequestTypes,
   IRequestTypesOptions,
 } from '@elastic-suite/gally-admin-shared'
 
@@ -24,14 +23,13 @@ function RequestType(props: IProps): JSX.Element {
   const { value, onChange, options, limitationsTypes, requestTypesOptions } =
     props
 
-  function updateSelectedDropDown(list: string[]): void {
-    const newData = list.map((item) => {
-      if (value.requestTypes.find((it) => it.requestType === item)) {
-        return value.requestTypes.find((it) => it.requestType === item)
-      }
-      return { requestType: item, applyToAll: false }
-    }) as IRequestTypes[]
-
+  function updateSelectedDropDown(list: string[] | string): void {
+    const newData = (list as string[]).map((item) => {
+      const existingRequestType = value.requestTypes.find(
+        (it) => it.requestType === item
+      )
+      return existingRequestType || { requestType: item, applyToAll: false }
+    })
     return onChange({ ...value, requestTypes: newData })
   }
 
@@ -40,9 +38,7 @@ function RequestType(props: IProps): JSX.Element {
       <DropDown
         placeholder={value.requestTypes.length !== 0 ? '' : 'Add request type'}
         multiple
-        onChange={(value: string[] | string): void =>
-          updateSelectedDropDown(value as string[])
-        }
+        onChange={updateSelectedDropDown}
         value={value.requestTypes.map((item) => item.requestType)}
         options={requestTypesOptions}
       />
