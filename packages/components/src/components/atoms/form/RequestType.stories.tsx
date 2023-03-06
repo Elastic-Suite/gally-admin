@@ -7,7 +7,7 @@ import {
   IRequestType,
   IRequestTypesOptions,
 } from '@elastic-suite/gally-admin-shared'
-import RequestTypeItem from './RequestTypeItem'
+import RequestType from './RequestType'
 
 const limitationsTypes: ILimitationsTypes[] = [
   {
@@ -140,7 +140,7 @@ const dataGeneralBoost: IRequestType = {
 }
 
 export default {
-  title: 'Atoms/Form/RequestTypeItem',
+  title: 'Atoms/Form/RequestType',
   helperIcon: {
     options: ['', 'information-circle', 'checkmark', 'close'],
     control: { type: 'select' },
@@ -148,13 +148,13 @@ export default {
   helperText: {
     control: 'text',
   },
-  component: RequestTypeItem,
-} as ComponentMeta<typeof RequestTypeItem>
+  component: RequestType,
+} as ComponentMeta<typeof RequestType>
 
-const Template: ComponentStory<typeof RequestTypeItem> = (args) => {
+const Template: ComponentStory<typeof RequestType> = (args) => {
   const [value, setValue] = useState<IRequestType>(dataGeneralBoost)
 
-  return <RequestTypeItem {...args} value={value} onChange={setValue} />
+  return <RequestType {...args} value={value} onChange={setValue} />
 }
 
 export const Default = Template.bind({})

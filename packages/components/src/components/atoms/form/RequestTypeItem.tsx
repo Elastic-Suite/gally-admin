@@ -2,11 +2,11 @@ import React from 'react'
 import { styled } from '@mui/system'
 
 import {
+  ILimitations,
   ILimitationsTypes,
+  IOptionsTags,
   IRequestType,
   IRequestTypesOptions,
-  IOptionsTags,
-  ILimitations,
 } from '@elastic-suite/gally-admin-shared'
 
 import TextFieldTagsMultiple from './TextFieldTagsMultiple'
@@ -14,11 +14,11 @@ import TextFieldTagsMultiple from './TextFieldTagsMultiple'
 import Checkbox from './Checkbox'
 import { IconButton } from '@mui/material'
 import IonIcon from '../IonIcon/IonIcon'
-
-const CustomRoot = styled('div')({
-  display: 'flex',
-  flexDirection: 'column',
-})
+import {
+  CustomFirstSelectedItem,
+  CustomRootItem,
+  CustomSelectedItem,
+} from './RequestTypeItem.styled'
 
 const CustomItem = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -31,6 +31,7 @@ const CustomLabel = styled('div')(({ theme }) => ({
   fontFamily: 'var(--gally-font)',
   fontSize: theme.spacing(1.5),
   fontWeight: '600',
+  width: '190px',
   lineHeight: '18px',
 }))
 
@@ -49,14 +50,14 @@ export interface ITextFieldTagssss {
   requestTypesOptions: IRequestTypesOptions[]
 }
 
-function TextFieldTagsItem(props: ITextFieldTagssss): JSX.Element {
+function RequestTypeItem(props: ITextFieldTagssss): JSX.Element {
   const { value, onChange, options, limitationsTypes, requestTypesOptions } =
     props
 
   function onChangeVal(
     idItem: IRequestTypesOptions[] | ILimitations[],
     val?: boolean | string
-  ) {
+  ): void {
     if (Array.isArray(idItem) && typeof val === 'boolean') {
       const newData = value.requestTypes.map((item) => {
         if (
@@ -89,27 +90,55 @@ function TextFieldTagsItem(props: ITextFieldTagssss): JSX.Element {
     }
   }
 
+  function countLines(): number {
+    const listUniqueLimitationType: string[] = []
+    for (const item of value.requestTypes) {
+      const limitation_type = requestTypesOptions.find(
+        (its) => its.value === item.requestType
+      )?.limitation_type
+
+      if (
+        limitation_type &&
+        !listUniqueLimitationType.includes(limitation_type)
+      ) {
+        listUniqueLimitationType.push(limitation_type)
+      }
+    }
+    return listUniqueLimitationType.length
+  }
+
   return (
-    <CustomRoot>
-      {limitationsTypes.map((item) => {
+    <CustomRootItem>
+      {limitationsTypes.map((item, key) => {
         const requestTypeOption = requestTypesOptions.filter(
           (it) =>
             it.limitation_type === item.value &&
             value.requestTypes.find((its) => its.requestType === it.value)
         )
-        if (requestTypeOption.length !== 0) {
-          const concatLabel = requestTypeOption.map((it) => it.label)
-          const isApplyToAll = value.requestTypes.find(
-            (it) =>
-              it.requestType ===
-              requestTypeOption.find((its) => its.value === it.requestType)
-                ?.value
-          )?.applyToAll
 
-          const limitationsData = value[item.value + 'Limitations']
+        if (requestTypeOption.length === 0) {
+          return null
+        }
 
-          return (
-            <CustomItem key={item.label}>
+        const concatLabel = requestTypeOption.map((it) => it.label)
+        const isApplyToAll = value.requestTypes.find(
+          (it) =>
+            it.requestType ===
+            requestTypeOption.find((its) => its.value === it.requestType)?.value
+        )?.applyToAll
+
+        const limitationsData = value[`${item.value}Limitations`]
+        let multiVal = key + 1 < countLines()
+        let CustomDiv = CustomSelectedItem
+
+        if (key === 0 || countLines() === 1) {
+          multiVal = countLines() === 1
+          CustomDiv = CustomFirstSelectedItem
+        }
+
+        return (
+          <CustomDiv key={item.value} multiVal={multiVal}>
+            <CustomItem>
               <CustomLabel>{concatLabel.join(' / ')}</CustomLabel>
               <div style={{ marginTop: '-12px' }}>
                 <Checkbox
@@ -142,11 +171,11 @@ function TextFieldTagsItem(props: ITextFieldTagssss): JSX.Element {
                 </IconButton>
               </CustomDataLimitations>
             </CustomItem>
-          )
-        }
+          </CustomDiv>
+        )
       })}
-    </CustomRoot>
+    </CustomRootItem>
   )
 }
 
-export default TextFieldTagsItem
+export default RequestTypeItem
