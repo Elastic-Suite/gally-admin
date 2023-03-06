@@ -2,11 +2,12 @@ import React from 'react'
 import { styled } from '@mui/system'
 
 import {
-  ILimitations,
+  ICategoryLimitations,
   ILimitationsTypes,
   IOptionsTags,
   IRequestType,
   IRequestTypesOptions,
+  ISearchLimitations,
 } from '@elastic-suite/gally-admin-shared'
 
 import TextFieldTagsMultiple from './TextFieldTagsMultiple'
@@ -55,7 +56,7 @@ function RequestTypeItem(props: ITextFieldTagssss): JSX.Element {
     props
 
   function onChangeVal(
-    idItem: IRequestTypesOptions[] | ILimitations[],
+    idItem: IRequestTypesOptions[] | ISearchLimitations[],
     val?: boolean | string
   ): void {
     if (Array.isArray(idItem) && typeof val === 'boolean') {
@@ -127,7 +128,8 @@ function RequestTypeItem(props: ITextFieldTagssss): JSX.Element {
             requestTypeOption.find((its) => its.value === it.requestType)?.value
         )?.applyToAll
 
-        const limitationsData = value[`${item.value}Limitations`]
+        const limitationsData: ISearchLimitations[] | ICategoryLimitations[] =
+          value[`${item.value}Limitations`]
         let multiVal = key + 1 < countLines()
         let CustomDiv = CustomSelectedItem
 
@@ -155,7 +157,7 @@ function RequestTypeItem(props: ITextFieldTagssss): JSX.Element {
                     disabled={isApplyToAll}
                     disabledValue={item.labelAll}
                     options={options}
-                    value={limitationsData}
+                    value={limitationsData as ISearchLimitations[]}
                     onChange={(data): void =>
                       onChangeVal(data, `${item.value}Limitations`)
                     }

@@ -1,5 +1,5 @@
 import { IJsonldBase } from './jsonld'
-import { ILimitations } from './textFieldTagsMultiple'
+import { ISearchLimitations } from './textFieldTagsMultiple'
 
 export interface ILimitationsTypes {
   label: string
@@ -36,7 +36,7 @@ export interface IRequestType extends IJsonldBase {
   localizedCatalogs: string[]
   requestTypes: IRequestTypes[]
   categoryLimitations: ICategoryLimitations[]
-  searchLimitations: ILimitations[]
+  searchLimitations: ISearchLimitations[]
   createdAt: string
   updatedAt: string
 }
