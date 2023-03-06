@@ -1,4 +1,5 @@
 import React from 'react'
+import { useRouter } from 'next/router'
 import { styled } from '@mui/system'
 import {
   IUser,
@@ -6,7 +7,6 @@ import {
   tokenStorageKey,
 } from '@elastic-suite/gally-admin-shared'
 
-import { setUser, useAppDispatch } from '../../../store'
 import FormatText from '../formatText/FormatText'
 
 import { useTranslation } from 'next-i18next'
@@ -45,13 +45,13 @@ interface IProps {
 }
 
 function UserMenuShow({ user }: IProps): JSX.Element {
-  const dispatch = useAppDispatch()
+  const { push } = useRouter()
 
   const { t } = useTranslation('common')
 
   function handleLogOut(): void {
     storageRemove(tokenStorageKey)
-    dispatch(setUser({ token: '', user: null }))
+    push('/login')
   }
 
   return (

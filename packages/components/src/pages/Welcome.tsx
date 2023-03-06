@@ -1,11 +1,10 @@
 import { useEffect } from 'react'
-import { useRouter } from 'next/router'
+import Router from 'next/router'
 
 function Welcome(): void {
-  const router = useRouter()
   useEffect(() => {
-    router.push('/login')
-  }, [router])
+    Router.push('/login')
+  }, [])
 
   return null
 }

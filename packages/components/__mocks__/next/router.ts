@@ -8,3 +8,5 @@ const router = {
 export function useRouter(): NextRouter {
   return router
 }
+
+export default router

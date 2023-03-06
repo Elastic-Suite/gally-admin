@@ -3,7 +3,7 @@ import { styled } from '@mui/system'
 import Collapse from '@mui/material/Collapse'
 import Box from '@mui/material/Box'
 
-import { selectUser, useAppSelector } from '../../../store'
+import { useUser } from '../../../hooks'
 
 import CloseComponent from '../closeComponent/CloseComponent'
 import IonIcon from '../IonIcon/IonIcon'
@@ -61,7 +61,7 @@ const CustomUserMenu = styled('div')(({ theme }) => ({
 
 function UserMenu(): JSX.Element {
   const [openUserMenu, setOpenUserMenu] = useState(false)
-  const user = useAppSelector(selectUser)
+  const user = useUser()
 
   return (
     <>
@@ -72,7 +72,7 @@ function UserMenu(): JSX.Element {
             style={{ fontSize: '15px', color: '#8187B9' }}
           />
           <CustomUserName>
-            <FormatText name={user.username} toolTip firstLetterUpp />
+            <FormatText name={user?.username} toolTip firstLetterUpp />
           </CustomUserName>
           <CustomArrow
             style={openUserMenu ? { transform: 'rotate(180deg)' } : {}}
