@@ -1,4 +1,4 @@
-import React, { FormEvent, ReactNode, useState } from 'react'
+import React, { FormEvent, useState } from 'react'
 import { styled } from '@mui/system'
 import Chip from '../Chip/Chip'
 import InputText from './InputText'
@@ -6,6 +6,7 @@ import { FormHelperText, InputLabel } from '@mui/material'
 import IonIcon from '../IonIcon/IonIcon'
 import InfoTooltip from './InfoTooltip'
 import FormControl from './FormControl'
+import { ITextFieldTagsForm } from '@elastic-suite/gally-admin-shared'
 
 const customRootTextFieldTagsProps = ['disabled']
 const CustomRootTextFieldTags = styled('div', {
@@ -60,24 +61,9 @@ const CustomInputTextTextFieldTags = styled(InputText)({
   '&.MuiInputBase-root': { minHeight: 0, paddingLeft: '8px' },
 })
 
-export interface ITextFIeldTagsForm {
-  disabled?: boolean
-  disabledValue?: string
-  error?: boolean
-  fullWidth?: boolean
-  infoTooltip?: string
-  helperText?: ReactNode
-  helperIcon?: string
-  label?: string
-  margin?: 'none' | 'dense' | 'normal'
-  required?: boolean
-  size?: 'small' | 'medium' | undefined
-  placeholder?: string
-}
-
-export interface ITextFieldTag extends ITextFIeldTagsForm {
-  value: string[]
-  onChange: (value: string[]) => void
+export interface ITextFieldTag extends Omit<ITextFieldTagsForm, 'options'> {
+  value?: string[]
+  onChange?: (value: string[]) => void
 }
 
 function TextFieldTags(props: ITextFieldTag): JSX.Element {
@@ -104,6 +90,9 @@ function TextFieldTags(props: ITextFieldTag): JSX.Element {
     tag?: string,
     event?: FormEvent<HTMLFormElement>
   ): void | null {
+    if (!value || !onChange) {
+      return null
+    }
     if (event) {
       event.preventDefault()
       if (val === undefined || val.trim() === '') {
@@ -130,20 +119,22 @@ function TextFieldTags(props: ITextFieldTag): JSX.Element {
       )}
       <CustomRootTextFieldTags disabled={disabled}>
         <CustomTags>
-          {disabled ? (
+          {disabled || !value ? (
             <Chip disabled label={disabledValue} />
           ) : (
-            value.map((item: string) => {
-              return disabled ? (
-                <Chip disabled key={item} label={disabledValue} />
-              ) : (
-                <Chip
-                  key={item}
-                  label={item}
-                  onDelete={(): void | null => manageTags(item)}
-                />
-              )
-            })
+            value
+              .filter((it) => it)
+              .map((item: string) => {
+                return disabled ? (
+                  <Chip disabled key={item} label={disabledValue} />
+                ) : (
+                  <Chip
+                    key={item}
+                    label={item}
+                    onDelete={(): void | null => manageTags(item)}
+                  />
+                )
+              })
           )}
           {!disabled && (
             <CustomFormTextFieldTags
