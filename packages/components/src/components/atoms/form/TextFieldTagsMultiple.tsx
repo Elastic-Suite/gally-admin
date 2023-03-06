@@ -66,67 +66,60 @@ function TextFieldTagsMultiple(
     options,
   } = props
 
-  function transformedValue(tableau: ILimitations[]): ITransformedLimitations {
+  function transformedValue(list: ILimitations[]): ITransformedLimitations {
     const transformedObject: ITransformedLimitations = {}
-    tableau.map((item) => {
-      if (transformedObject[item.operator]?.[0]) {
-        return transformedObject[item.operator].push(item.queryText as string)
+    list.forEach((item) => {
+      if (transformedObject[item.operator]) {
+        transformedObject[item.operator].push(item.queryText as string)
+      } else {
+        transformedObject[item.operator] = [item.queryText as string]
       }
-      return (transformedObject[item.operator] = [item.queryText as string])
     })
     return transformedObject
   }
 
   function unModifiedValue(obj: ITransformedLimitations): ILimitations[] {
-    const tableau = [] as ILimitations[]
+    const list = [] as ILimitations[]
     for (const [key, item] of Object.entries(obj)) {
       item.length !== 0
         ? item.map((queryText) =>
-            tableau.push({
+            list.push({
               operator: key,
               queryText,
             })
           )
-        : tableau.push({
+        : list.push({
             operator: key,
             queryText: null,
           })
     }
-    return tableau
+    return list
   }
 
   const modifiedValue = transformedValue(value)
 
-  function onChangeModifiedValue(
-    operator: string | string[],
-    data?: string[] | string
-  ): void {
-    if (Array.isArray(operator)) {
-      return onChange(
-        unModifiedValue({ ...modifiedValue, [operator.toString()]: [] })
-      )
-    }
+  function addItem(operator: string): void {
+    onChange(unModifiedValue({ ...modifiedValue, [operator]: [] }))
+  }
 
-    if (typeof operator === 'string' && typeof data === 'string') {
-      const newValue = { ...modifiedValue }
-      newValue[data] = newValue[operator]
-      delete newValue[operator]
-      return onChange(unModifiedValue(newValue))
-    }
+  function removeItem(operator: string): void {
+    const newValue = { ...modifiedValue }
+    delete newValue[operator as string]
+    onChange(unModifiedValue(newValue))
+  }
 
-    if (!data) {
-      const newValue = { ...modifiedValue }
-      delete newValue[operator as string]
-      return onChange(unModifiedValue(newValue))
-    }
+  function updateOperator(oldOperator: string, newOperator: string): void {
+    const newValue = { ...modifiedValue }
+    newValue[newOperator] = newValue[oldOperator]
+    delete newValue[oldOperator]
+    return onChange(unModifiedValue(newValue))
+  }
 
+  function updateValue(operator: string, data: string[]): void {
     return onChange(
       unModifiedValue({
         ...modifiedValue,
-        [operator as string]:
-          (data as string[]).length > 1
-            ? (data as string[]).filter((it) => it !== null)
-            : (data as string[]),
+        [operator]: data.filter((it) => it !== null),
       })
     )
   }
@@ -140,11 +133,12 @@ function TextFieldTagsMultiple(
 
   useEffect(() => {
     setOperatorValue(
-      optionsListAvailable.find(
-        (item) => operatorValue?.value === item.value && !item?.disabled
-      ) ?? optionsListAvailable.find((item) => !item?.disabled)
+      (operatorValue) =>
+        optionsListAvailable.find(
+          (item) => operatorValue?.value === item.value && !item?.disabled
+        ) ?? optionsListAvailable.find((item) => !item?.disabled)
     )
-  }, [optionsListAvailable, operatorValue])
+  }, [optionsListAvailable])
 
   return (
     <FormControl error={error} fullWidth={fullWidth} margin={margin}>
@@ -172,7 +166,7 @@ function TextFieldTagsMultiple(
               <div key={key}>
                 <DropDown
                   onChange={(newOption): void =>
-                    onChangeModifiedValue(key, newOption as string)
+                    updateOperator(key, newOption as string)
                   }
                   value={option?.value}
                   options={newOptionsList}
@@ -180,7 +174,7 @@ function TextFieldTagsMultiple(
                 />
                 <div style={{ position: 'relative' }}>
                   <CustomCloseTagsByOperator
-                    onClick={(): void => onChangeModifiedValue(key)}
+                    onClick={(): void => removeItem(key)}
                   >
                     <IonIcon
                       name="close"
@@ -189,7 +183,7 @@ function TextFieldTagsMultiple(
                   </CustomCloseTagsByOperator>
                   <TextFieldTags
                     fullWidth={fullWidth}
-                    onChange={(a): void => onChangeModifiedValue(key, a)}
+                    onChange={(value): void => updateValue(key, value)}
                     value={value}
                     placeholder={option?.label}
                   />
@@ -211,7 +205,7 @@ function TextFieldTagsMultiple(
             />
             <Button
               size="medium"
-              onClick={(): void => onChangeModifiedValue([operatorValue.value])}
+              onClick={(): void => addItem(operatorValue.value)}
             >
               Add
             </Button>
