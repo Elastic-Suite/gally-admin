@@ -34,5 +34,8 @@
     "concurrently": "7.4.0",
     "husky": "8.0.1",
     "lerna": "6.3.0"
+  },
+  "dependencies": {
+    "crypto": "1.0.1"
   }
 }
