@@ -5,6 +5,7 @@ import {
   IOptionsTags,
   IRequestType,
   IRequestTypesOptions,
+  ITreeItem,
 } from '@elastic-suite/gally-admin-shared'
 
 import { CustomRoot } from './RequestTypeItem.styled'
@@ -17,11 +18,18 @@ export interface IProps {
   options: IOptionsTags[]
   limitationsTypes: ILimitationsTypes[]
   requestTypesOptions: IRequestTypesOptions[]
+  categoriesList: ITreeItem[]
 }
 
 function RequestType(props: IProps): JSX.Element {
-  const { value, onChange, options, limitationsTypes, requestTypesOptions } =
-    props
+  const {
+    value,
+    onChange,
+    options,
+    limitationsTypes,
+    requestTypesOptions,
+    categoriesList,
+  } = props
 
   function updateSelectedDropDown(list: string[] | string): void {
     const newData = (list as string[]).map((item) => {
@@ -48,6 +56,7 @@ function RequestType(props: IProps): JSX.Element {
         limitationsTypes={limitationsTypes}
         options={options}
         requestTypesOptions={requestTypesOptions}
+        categoriesList={categoriesList}
       />
     </CustomRoot>
   )

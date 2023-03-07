@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
+import categoriesList from '../../../../public/mocks/categories.json'
 
 import {
   ILimitationsTypes,
@@ -100,7 +101,7 @@ const dataGeneralBoost: IRequestType = {
     {
       '@id': '/boost_category_limitations/1',
       '@type': 'BoostCategoryLimitation',
-      category: '/categories/cat_2',
+      category: '/categories/one',
     },
   ],
   searchLimitations: [
@@ -162,4 +163,5 @@ Default.args = {
   options: textOperatorOptions,
   limitationsTypes,
   requestTypesOptions,
+  categoriesList: categoriesList.categories,
 }

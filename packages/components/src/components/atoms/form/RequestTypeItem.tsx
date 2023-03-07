@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import { styled } from '@mui/system'
+import TreeSelector from './TreeSelector'
 
 import {
   ICategoryLimitations,
@@ -8,6 +9,8 @@ import {
   IRequestType,
   IRequestTypesOptions,
   ISearchLimitations,
+  ITreeItem,
+  flatTree,
 } from '@elastic-suite/gally-admin-shared'
 
 import TextFieldTagsMultiple from './TextFieldTagsMultiple'
@@ -43,17 +46,29 @@ const CustomDataLimitations = styled('div')(({ theme }) => ({
   alignItems: 'center',
 }))
 
-export interface ITextFieldTagssss {
+export interface IRequestTypeItem {
   value: IRequestType
   onChange: (value: IRequestType) => void
   options: IOptionsTags[]
   limitationsTypes: ILimitationsTypes[]
   requestTypesOptions: IRequestTypesOptions[]
+  categoriesList: ITreeItem[]
 }
 
-function RequestTypeItem(props: ITextFieldTagssss): JSX.Element {
-  const { value, onChange, options, limitationsTypes, requestTypesOptions } =
-    props
+interface IPropsComponent {
+  disabled?: boolean
+  onChange: (data: ITreeItem[] | ISearchLimitations[]) => void
+}
+
+function RequestTypeItem(props: IRequestTypeItem): JSX.Element {
+  const {
+    value,
+    onChange,
+    options,
+    limitationsTypes,
+    requestTypesOptions,
+    categoriesList,
+  } = props
 
   function onChangeApplyToAll(
     idItem: IRequestTypesOptions[],
@@ -75,8 +90,16 @@ function RequestTypeItem(props: ITextFieldTagssss): JSX.Element {
 
   function onChangeDataLimitations(
     idItem: string,
-    val: ISearchLimitations[]
+    val: ISearchLimitations[] | ITreeItem[]
   ): void {
+    if (idItem === 'categoryLimitations') {
+      const newData = (val as ITreeItem[]).map((item) => {
+        return {
+          category: `/categories/${item.id}`,
+        }
+      })
+      return onChange({ ...value, [idItem]: newData })
+    }
     return onChange({ ...value, [idItem]: val })
   }
 
@@ -90,6 +113,12 @@ function RequestTypeItem(props: ITextFieldTagssss): JSX.Element {
     )
     return onChange({ ...value, requestTypes: newData })
   }
+
+  const flatCategories: ITreeItem[] = useMemo(() => {
+    const flat: ITreeItem[] = []
+    flatTree(categoriesList, flat)
+    return flat
+  }, [categoriesList])
 
   return (
     <CustomRootItem>
@@ -134,6 +163,18 @@ function RequestTypeItem(props: ITextFieldTagssss): JSX.Element {
           CustomDiv = CustomFirstSelectedItem
         }
 
+        const treeSelectorValue = flatCategories.filter((category) => {
+          return (limitationsData as ICategoryLimitations[]).some(
+            (it) => it?.category?.split('/')?.pop() === category.id
+          )
+        })
+
+        const props: IPropsComponent = {
+          disabled: isApplyToAll,
+          onChange: (data: ITreeItem[] | ISearchLimitations[]): void =>
+            onChangeDataLimitations(`${item.value}Limitations`, data),
+        }
+
         return (
           <CustomDiv key={item.value} uniqueLine={uniqueLine}>
             <CustomItem>
@@ -150,13 +191,24 @@ function RequestTypeItem(props: ITextFieldTagssss): JSX.Element {
               <CustomDataLimitations>
                 {item.value === 'search' && (
                   <TextFieldTagsMultiple
-                    disabled={isApplyToAll}
+                    {...props}
                     disabledValue={item.labelAll}
                     options={options}
                     value={limitationsData as ISearchLimitations[]}
-                    onChange={(data): void =>
-                      onChangeDataLimitations(`${item.value}Limitations`, data)
+                  />
+                )}
+
+                {item.value === 'category' && (
+                  <TreeSelector
+                    {...props}
+                    value={isApplyToAll ? [] : treeSelectorValue}
+                    placeholder={
+                      isApplyToAll || treeSelectorValue.length === 0
+                        ? item.labelAll
+                        : ''
                     }
+                    data={categoriesList}
+                    multiple
                   />
                 )}
                 <IconButton
