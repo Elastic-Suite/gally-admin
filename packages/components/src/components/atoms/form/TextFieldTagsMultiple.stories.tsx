@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
 
 import TextFieldTagsComponentMultiple from './TextFieldTagsMultiple'
-import { ILimitations, IOptions } from '@elastic-suite/gally-admin-shared'
+import { IOptions, ISearchLimitations } from '@elastic-suite/gally-admin-shared'
 
 const textOperatorOptions: IOptions<string> = [
   {
@@ -27,7 +27,7 @@ const textOperatorOptions: IOptions<string> = [
   },
 ]
 
-const searchLimitations: ILimitations[] = [
+const searchLimitations: ISearchLimitations[] = [
   {
     '@id': '/boost_search_limitations/1',
     '@type': 'BoostSearchLimitation',
@@ -69,7 +69,7 @@ export default {
 const Template: ComponentStory<typeof TextFieldTagsComponentMultiple> = (
   args
 ) => {
-  const [value, setValue] = useState<ILimitations[]>(searchLimitations)
+  const [value, setValue] = useState<ISearchLimitations[]>(searchLimitations)
 
   return (
     <TextFieldTagsComponentMultiple

@@ -22,6 +22,7 @@ const CustomRootTextFieldTags = styled('div', {
   borderColor: theme.palette.colors.neutral[600],
   width: '350px',
   boxSizing: 'border-box',
+  background: theme.palette.colors.white,
   gap: theme.spacing(2),
   display: 'flex',
   flexDirection: 'column',
