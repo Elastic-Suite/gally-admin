@@ -33,10 +33,25 @@ function RequestType(props: IProps): JSX.Element {
 
   function updateSelectedDropDown(list: string[] | string): void {
     const newData = (list as string[]).map((item) => {
-      const existingRequestType = value.requestTypes.find(
-        (it) => it.requestType === item
-      )
-      return existingRequestType || { requestType: item, applyToAll: false }
+      const existingRequestType = value.requestTypes.some((it) => {
+        return it.requestType === item
+      })
+      if (existingRequestType) {
+        return value.requestTypes.find((it) => it.requestType === item)!
+      }
+      const limitation_type = requestTypesOptions.find(
+        (it) => it.value === item
+      )?.limitation_type
+
+      const requestTypesValue = requestTypesOptions
+        .filter((it) => it.limitation_type === limitation_type)
+        .map((it) => it.value)
+
+      const applyToAll = value.requestTypes.find((item) =>
+        requestTypesValue.includes(item.requestType)
+      )?.applyToAll
+
+      return { requestType: item, applyToAll: Boolean(applyToAll) }
     })
     return onChange({ ...value, requestTypes: newData })
   }

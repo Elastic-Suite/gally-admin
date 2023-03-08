@@ -74,13 +74,11 @@ function RequestTypeItem(props: IRequestTypeItem): JSX.Element {
     idItem: IRequestTypesOptions[],
     val: boolean
   ): void {
+    const requestTypeOptionValues = (idItem as IRequestTypesOptions[]).map(
+      (it) => it.value
+    )
     const newData = value.requestTypes.map((item) => {
-      if (
-        item.requestType ===
-        (idItem as IRequestTypesOptions[]).find(
-          (it) => it.value === item.requestType
-        )?.value
-      ) {
+      if (requestTypeOptionValues.includes(item.requestType)) {
         return { ...item, applyToAll: val }
       }
       return item
@@ -104,13 +102,13 @@ function RequestTypeItem(props: IRequestTypeItem): JSX.Element {
   }
 
   function onDeleteLine(idItem: IRequestTypesOptions[]): void {
-    const newData = value.requestTypes.filter(
-      (item) =>
-        item.requestType !==
-        (idItem as IRequestTypesOptions[]).find(
-          (it) => it.value === item.requestType
-        )?.value
+    const requestTypeOptionValues = (idItem as IRequestTypesOptions[]).map(
+      (it) => it.value
     )
+    const newData = value.requestTypes.filter(
+      (item) => !requestTypeOptionValues.includes(item.requestType)
+    )
+
     return onChange({ ...value, requestTypes: newData })
   }
 
@@ -120,24 +118,29 @@ function RequestTypeItem(props: IRequestTypeItem): JSX.Element {
     return flat
   }, [categoriesList])
 
+  const limitationTypeMap = requestTypesOptions.reduce<Record<string, string>>(
+    (acc, option) => {
+      acc[option.value] = option.limitation_type
+      return acc
+    },
+    {}
+  )
+
   return (
     <CustomRootItem>
       {limitationsTypes.map((item, key) => {
-        const limitationTypeMap = requestTypesOptions.reduce<
-          Record<string, string>
-        >((acc, option) => {
-          acc[option.value] = option.limitation_type
-          return acc
-        }, {})
         const uniqLimitationTypes = new Set(
           value.requestTypes.map((item) => limitationTypeMap[item.requestType])
         )
         const countLines = uniqLimitationTypes.size
 
+        const requestTypeRequestType = value.requestTypes.map(
+          (item) => item.requestType
+        )
         const requestTypeOption = requestTypesOptions.filter(
           (it) =>
             it.limitation_type === item.value &&
-            value.requestTypes.find((its) => its.requestType === it.value)
+            requestTypeRequestType.includes(it.value)
         )
 
         if (requestTypeOption.length === 0) {
@@ -147,8 +150,11 @@ function RequestTypeItem(props: IRequestTypeItem): JSX.Element {
         const concatLabel = requestTypeOption.map((it) => it.label)
 
         const findValueInRequestTypesOptions = requestTypesOptions.find(
-          (it) => it.limitation_type === item.value
+          (it) =>
+            requestTypeRequestType.includes(it.value) &&
+            it.limitation_type === item.value
         )?.value
+
         const isApplyToAll = value.requestTypes.find(
           (it) => it.requestType === findValueInRequestTypesOptions
         )?.applyToAll

@@ -26,19 +26,19 @@ const requestTypesOptions: IRequestTypesOptions[] = [
   {
     label: 'Product catalog',
     limitation_type: 'category',
-    id: 'product_catalog',
+    id: 'a',
     value: 'product_catalog',
   },
   {
     label: 'Search terms',
     limitation_type: 'search',
-    id: 'product_search',
+    id: 'aa',
     value: 'product_search',
   },
   {
     label: 'Autocomplete terms',
     limitation_type: 'search',
-    id: 'Autocomplete_terms',
+    id: 'aaa',
     value: 'product_autocomplete',
   },
 ]
