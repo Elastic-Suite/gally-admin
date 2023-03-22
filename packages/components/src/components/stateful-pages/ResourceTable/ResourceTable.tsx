@@ -89,6 +89,8 @@ function ResourceTable(props: IProps): JSX.Element {
   } = props
 
   const resource = useResource(resourceName)
+  // const resource = useResource('Boost')
+  console.log('resource', resource)
   const [page, setPage] = usePage()
   const [searchValue, setSearchValue] = useSearch()
   const parameters = useFilterParameters(activeFilters, filters)
@@ -107,6 +109,8 @@ function ResourceTable(props: IProps): JSX.Element {
       urlParams ? `${resource.url}${urlParams}` : null
     )
   const { data, error } = resourceData
+
+  // console.log('data', data)
 
   const tableRows = data?.['hydra:member'] as unknown as ITableRow[]
   const diffRows: ITableRow[] = useMemo(() => {
@@ -211,6 +215,21 @@ function ResourceTable(props: IProps): JSX.Element {
       />
     )
   }
+
+  // console.log('Field', Field)
+  // console.log("data['hydra:totalItems']", data['hydra:totalItems'])
+  // console.log('page', page)
+  // console.log('diffRows', diffRows)
+  // console.log('massUpdate', massUpdate)
+  // console.log('handlePageChange', handlePageChange)
+  // console.log('handleRowChange', handleRowChange)
+  // console.log('onRowsPerPageChange', onRowsPerPageChange)
+  // console.log('resource', resource)
+  // console.log('rowsPerPage', rowsPerPage)
+  // console.log('rowsPerPageOptions', rowsPerPageOptions)
+  // console.log('getTableConfigs?.(tableRows)', getTableConfigs?.(tableRows))
+  // console.log('tableRows', tableRows)
+
   return (
     <>
       <FiltersGuesser

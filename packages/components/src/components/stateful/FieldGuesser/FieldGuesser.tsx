@@ -6,7 +6,7 @@ import ReadableFieldGuesser from './ReadableFieldGuesser'
 
 function FieldGuesser(props: IFieldGuesserProps): JSX.Element {
   const { editable, ...fieldProps } = props
-
+  console.log('ok')
   if (editable) {
     return <EditableFieldGuesser {...fieldProps} />
   }

@@ -25,6 +25,8 @@ export function getFieldDataContentType(field: IField): DataContentType {
     return DataContentType.BOOLEAN
   } else if (type === 'integer' || type === 'float' || type === 'percentage') {
     return DataContentType.NUMBER
+  } else if (type === 'select') {
+    return DataContentType.SELECT
   }
   return DataContentType.STRING
 }
@@ -40,7 +42,13 @@ export function getFieldInput(
   field: IField,
   fallback: DataContentType
 ): DataContentType {
+  console.log(
+    'aaaaaaaaaaaaa' + field.gally?.input,
+    field.gally?.input && isDataContentType(field.gally.input)
+  )
+
   if (field.gally?.input && isDataContentType(field.gally.input)) {
+    console.log('bbbbbbb', field.gally.input)
     return field.gally.input
   }
   return fallback
@@ -62,6 +70,13 @@ export function getFieldHeader(field: IField, t: TFunction): IFieldConfig {
   const type = getFieldDataContentType(field)
   const id = field.title
   const input = getFieldInput(field, type)
+
+  // console.log('fieldConfig', fieldConfig)
+  // console.log('type', type)
+  // console.log('id', id)
+  // console.log('input', input)
+
+  // return true
   return {
     ...fieldConfig,
     editable: field.gally?.editable && field.writeable,

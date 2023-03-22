@@ -79,7 +79,21 @@ function ReadableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
     }
 
     default: {
-      return <Box>{value as string}</Box>
+      const valueIsArray = Array.isArray(value)
+
+      return (
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: valueIsArray ? 'column' : 'row',
+            alignItems: valueIsArray ? 'baseline' : 'center',
+          }}
+        >
+          {valueIsArray
+            ? value.map((item) => <div>{item}</div>)
+            : (value as string)}
+        </Box>
+      )
     }
   }
 }

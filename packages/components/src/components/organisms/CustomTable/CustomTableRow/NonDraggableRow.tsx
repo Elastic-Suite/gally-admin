@@ -150,9 +150,13 @@ function NonDraggableRow(props: IProps): JSX.Element {
                 tableRow[header.name] as string
               )
             : tableRow[header.name]
+        console.log('Field', Field)
 
         return (
-          <BaseTableCell sx={nonStickyStyle(header.type)} key={header.name}>
+          <BaseTableCell
+            sx={(nonStickyStyle(header.type), { flexDirection: 'column' })}
+            key={header.name}
+          >
             <Field
               {...header}
               diffValue={diffRow ? diffRow[header.name] ?? null : undefined}

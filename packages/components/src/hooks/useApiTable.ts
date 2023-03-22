@@ -11,10 +11,17 @@ import {
 export function useApiHeaders(resource: IResource): IFieldConfig[] {
   const { t } = useTranslation('api')
   return useMemo(() => {
-    return resource.supportedProperty
-      .filter((field) => field.gally?.visible)
-      .sort((a, b) => a.gally?.position - b.gally?.position)
-      .map((field) => getFieldHeader(field, t))
+    return (
+      resource.supportedProperty
+        // .filter((field) => field.gally?.visible && field.gally.input !== 'select')
+        .filter((field) => field.gally?.visible)
+        .sort((a, b) => a.gally?.position - b.gally?.position)
+        .map((field) => {
+          // console.log('field LAST = requestTypeLabels', field)
+          // console.log('getFieldHeader(field, t)', getFieldHeader(field, t))
+          return getFieldHeader(field, t)
+        })
+    )
   }, [resource, t])
 }
 

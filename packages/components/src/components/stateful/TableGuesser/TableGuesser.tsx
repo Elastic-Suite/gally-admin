@@ -14,6 +14,7 @@ import {
   ITableConfig,
   ITableRow,
   defaultPageSize,
+  IFieldConfig,
 } from '@elastic-suite/gally-admin-shared'
 
 import { useApiEditableFieldOptions, useApiHeaders } from '../../../hooks'
@@ -65,6 +66,7 @@ function TableGuesser<T extends IHydraMember>(props: IProps<T>): JSX.Element {
     tableConfigs,
     tableRows,
   } = props
+
   const tableHeaders = useApiHeaders(resource)
   const fieldOptions = useApiEditableFieldOptions(resource)
 
@@ -111,6 +113,9 @@ function TableGuesser<T extends IHydraMember>(props: IProps<T>): JSX.Element {
       } as unknown as Partial<T>)
     }
   }
+
+  console.log('tableRows', tableRows)
+  console.log('tableHeaders', tableHeaders)
 
   return (
     <>

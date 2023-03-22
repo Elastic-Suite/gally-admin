@@ -35,6 +35,7 @@ export function isHydraError<T extends IJsonldType>(
 }
 
 export function getResource(api: IApi, resourceName: string): IResource {
+  console.log('api', api)
   return api.find(
     (resource) =>
       resource.title === resourceName || resource.label === resourceName
@@ -59,7 +60,7 @@ export function getField(resource: IResource, name: string): IField {
 }
 
 export function getFieldType(field: IField): string {
-  switch (field.property?.range['@id']) {
+  switch (field.property?.range?.['@id']) {
     case 'http://www.w3.org/2001/XMLSchema#array':
       return 'array'
     case 'http://www.w3.org/2001/XMLSchema#integer':
