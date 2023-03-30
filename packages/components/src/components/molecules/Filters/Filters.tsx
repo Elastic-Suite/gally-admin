@@ -4,6 +4,7 @@ import { Collapse, InputAdornment, Stack } from '@mui/material'
 import {
   IFieldConfig,
   IFieldOptions,
+  IOption,
   rangeSeparator,
 } from '@elastic-suite/gally-admin-shared'
 
@@ -55,13 +56,19 @@ function getActiveFilterLabel(
 ): string {
   const options =
     filter?.options ?? fieldOptions.get(filter?.field.property['@id']) ?? []
+
   if (filter.id.endsWith('[between]')) {
     value = (value as (string | number)[]).join('-')
   }
+
   let label = `${filter?.label}: ${value}`
-  const option = options.find((option) => option.value === value)
+
+  const option: IOption<unknown> = options.find((option) => {
+    return option.value === value
+  })
+
   if (option) {
-    label = `${filter?.label}: ${option.label}`
+    return (label = `${filter?.label}: ${option.label}`)
   }
   return label
 }
@@ -99,6 +106,7 @@ function Filters(props: IProps): JSX.Element {
   const filterMap = new Map<string, IFieldConfig>(
     filters.map((filter) => [filter.id, filter])
   )
+
   const activeFilters = Object.entries(activeValues)
     .filter(([_, value]) => value !== '')
     .reduce<IActiveFilter[]>((acc, [id, value]) => {
@@ -116,7 +124,17 @@ function Filters(props: IProps): JSX.Element {
             )
           )
         } else {
-          acc.push(getActiveFilter(filter, value, fieldOptions))
+          acc.push(
+            getActiveFilter(
+              filter,
+              typeof value === 'boolean'
+                ? value
+                  ? t('filter.yes')
+                  : t('filter.no')
+                : value,
+              fieldOptions
+            )
+          )
         }
       }
       return acc

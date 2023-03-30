@@ -30,6 +30,8 @@ interface IProps {
   tableRows: ITableRow[]
   withSelection: boolean
   configuration: IConfigurations
+  updateLink?: string
+  hasUpdateLink?: boolean
 }
 
 function DraggableBody(props: IProps): JSX.Element {
@@ -47,13 +49,24 @@ function DraggableBody(props: IProps): JSX.Element {
     tableRows,
     withSelection,
     configuration,
+    updateLink,
+    hasUpdateLink,
   } = props
+
+  const newTableRows = hasUpdateLink
+    ? tableRows.map((item) => {
+        const link = updateLink
+          ? `${updateLink}?id=${item.id}`
+          : `./edit?id=${item.id}`
+        return { ...item, edit: link }
+      })
+    : tableRows
 
   return (
     <Droppable droppableId="droppableTable">
       {(provider): JSX.Element => (
         <TableBody ref={provider.innerRef} {...provider.droppableProps}>
-          {tableRows.map((tableRow, index) => (
+          {newTableRows.map((tableRow, index) => (
             <Draggable
               key={tableRow.id}
               draggableId={String(tableRow.id)}

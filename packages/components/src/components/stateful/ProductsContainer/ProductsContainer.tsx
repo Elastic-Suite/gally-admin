@@ -55,6 +55,8 @@ interface IProps {
   prevCatConf: MutableRefObject<IParsedCategoryConfiguration>
   prevProductPositions: MutableRefObject<string>
   productGraphqlFilters: IProductFieldFilterInput
+  hasUpdateLink?: boolean
+  updateLink?: string
 }
 
 function ProductsContainer(props: IProps): JSX.Element {
@@ -68,6 +70,8 @@ function ProductsContainer(props: IProps): JSX.Element {
     prevCatConf,
     prevProductPositions,
     productGraphqlFilters,
+    hasUpdateLink,
+    updateLink,
   } = props
   const { localizedCatalogIdWithDefault } = useContext(catalogContext)
 
@@ -241,6 +245,8 @@ function ProductsContainer(props: IProps): JSX.Element {
             sortValue={defaultSorting}
             searchValue={search}
             nbTopProducts={nbTopRows}
+            hasUpdateLink={hasUpdateLink}
+            updateLink={updateLink}
           />
         )}
       </Layout>

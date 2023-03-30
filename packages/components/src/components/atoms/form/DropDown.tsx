@@ -31,6 +31,7 @@ export interface IDropDownProps<T>
   options: IOptions<T>
   style?: CSSProperties
   value?: T | T[]
+  useGroups?: boolean
 }
 
 function DropDown<T>(props: IDropDownProps<T>): JSX.Element {
@@ -43,6 +44,7 @@ function DropDown<T>(props: IDropDownProps<T>): JSX.Element {
     options,
     style,
     value,
+    useGroups,
     ...otherProps
   } = props
   const { required, small } = otherProps
@@ -52,6 +54,7 @@ function DropDown<T>(props: IDropDownProps<T>): JSX.Element {
     () => new Map(options.map((option) => [option.value, option])),
     [options]
   )
+
   const optionValue =
     value instanceof Array
       ? value.map((val) => optionMap.get(val))
@@ -88,11 +91,13 @@ function DropDown<T>(props: IDropDownProps<T>): JSX.Element {
       props: HTMLAttributes<HTMLLIElement>,
       { label }: IOption<T>,
       { selected }: AutocompleteRenderOptionState
-    ): ReactNode => (
-      <li {...props}>
-        <Checkbox checked={selected} label={label} list />
-      </li>
-    )
+    ): ReactNode => {
+      return (
+        <li {...props}>
+          <Checkbox checked={selected} label={label} list />
+        </li>
+      )
+    }
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     renderTags = (value: IOption<T>[], getTagProps: any): ReactNode[] =>
       value
@@ -124,6 +129,16 @@ function DropDown<T>(props: IDropDownProps<T>): JSX.Element {
         onChange={handleChange}
         openText={openText}
         options={options}
+        groupBy={
+          useGroups
+            ? (option: IOption<T>): string => {
+                return option.id as string
+              }
+            : undefined
+        }
+        getOptionLabel={
+          useGroups ? (options: IOption<T>): string => options.label : undefined
+        }
         popupIcon={<IonIcon name="chevron-down" />}
         renderInput={(params): JSX.Element => {
           const { InputLabelProps, InputProps, ...inputProps } = params

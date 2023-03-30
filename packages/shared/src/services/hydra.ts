@@ -59,7 +59,7 @@ export function getField(resource: IResource, name: string): IField {
 }
 
 export function getFieldType(field: IField): string {
-  switch (field.property?.range['@id']) {
+  switch (field.property?.range?.['@id']) {
     case 'http://www.w3.org/2001/XMLSchema#array':
       return 'array'
     case 'http://www.w3.org/2001/XMLSchema#integer':
@@ -135,14 +135,27 @@ export function getOptionsFromOptionLabelResource(
   }))
 }
 
+function convertValueForOpt(data: IApiSchemaOptions[]): IOptions<string> {
+  return data.flatMap(({ label, options }) =>
+    options.map((option) => ({
+      id: label,
+      value: option.value,
+      label: option.label,
+    }))
+  )
+}
+
 export function getOptionsFromApiSchema(
   response: IHydraResponse<IApiSchemaOptions>
 ): IOptions<string | number> {
-  return response['hydra:member'].map((member) => ({
-    id: member.code,
-    label: member.label,
-    value: member.code,
-  }))
+  const res = response['hydra:member'].map(
+    ({ label, value, code, options }) => ({
+      label,
+      value: value ?? code,
+      options,
+    })
+  )
+  return res.some(({ options }) => options) ? convertValueForOpt(res) : res
 }
 
 export function castFieldParameter(
