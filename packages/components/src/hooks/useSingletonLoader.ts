@@ -30,6 +30,7 @@ export function useSingletonLoader<T>(
 ): IUseLoader<T> {
   const fetchApi = useApiFetch()
   const [map, setMap] = useState<Map<string, T>>(defaultState)
+  console.log('sigleton map', map)
   const fieldOptionsStatuses = useRef<ILoadStatuses>(new Map())
 
   const updateFieldOptions = useCallback((id: string, options: T) => {

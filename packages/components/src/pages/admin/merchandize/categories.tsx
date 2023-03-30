@@ -243,6 +243,7 @@ function AdminMerchandizeCategories(): JSX.Element {
               prevProductPositions={prevProductPositions}
               productGraphqlFilters={productGraphqlFilters}
               isLoading={isLoading}
+              hasUpdateLink
             />
           </Placeholder>
         )}

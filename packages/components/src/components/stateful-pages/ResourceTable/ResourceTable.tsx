@@ -60,6 +60,8 @@ interface IProps {
   setActiveFilters: Dispatch<SetStateAction<ISearchParameters>>
   urlParams?: string
   showSearch?: boolean
+  hasUpdateLink?: boolean
+  updateLink?: string
 }
 
 const listOfDefaultFacets = [
@@ -86,13 +88,15 @@ function ResourceTable(props: IProps): JSX.Element {
     setActiveFilters,
     urlParams,
     showSearch,
+    hasUpdateLink,
+    updateLink,
   } = props
 
   const resource = useResource(resourceName)
   const [page, setPage] = usePage()
   const [searchValue, setSearchValue] = useSearch()
   const parameters = useFilterParameters(activeFilters, filters)
-  useFiltersRedirect(page, activeFilters, searchValue, active ? active : true)
+  useFiltersRedirect(page, activeFilters, searchValue, active)
 
   const rowsPerPageOptions = defaultRowsPerPageOptions
   const [rowsPerPage, setRowsPerPage] = useState<number>(defaultPageSize)
@@ -261,6 +265,8 @@ function ResourceTable(props: IProps): JSX.Element {
         rowsPerPageOptions={rowsPerPageOptions}
         tableConfigs={getTableConfigs?.(tableRows)}
         tableRows={tableRows}
+        hasUpdateLink={hasUpdateLink}
+        updateLink={updateLink}
       />
     </>
   )

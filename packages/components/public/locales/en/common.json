@@ -55,5 +55,7 @@
   "formError.maxDate": "The date is not available",
   "field.productImage": "Product image",
   "default.undefined": "empty",
-  "log.out": "Log out"
+  "log.out": "Log out",
+  "true": "Yes",
+  "false": "No"
 }

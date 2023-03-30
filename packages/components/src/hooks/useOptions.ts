@@ -27,6 +27,8 @@ export function useOptions(): IOptionsContext {
   const api = useAppSelector(selectApi)
   const { t } = useTranslation('options')
 
+  console.log('map', map)
+
   const load = useCallback(
     (field: IField) => {
       const id = field.property['@id']
@@ -44,17 +46,21 @@ export function useOptions(): IOptionsContext {
           // options from api
           const response = await fetchApi(field.gally.options.api_rest)
           if (!isError(response)) {
+            console.log('OK 1 ')
             return getOptionsFromApiSchema(
               response as IHydraResponse<IApiSchemaOptions>
             )
           }
           throw new Error('error')
         } else if (isReferenceField(field)) {
+          console.log('OK 1 ')
+
           // get options by loading all items of the referenced field
           const response = await fetchApi(
             getReferencedResource(api, field)?.url
           )
           if (!isError(response)) {
+            console.log('OK 3')
             return getOptionsFromResource(
               response as IHydraResponse<IHydraMember>
             )

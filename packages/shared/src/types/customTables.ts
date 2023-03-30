@@ -18,6 +18,7 @@ export enum DataContentType {
   STOCK = 'stock',
   STRING = 'string',
   TAG = 'tag',
+  BUTTON = 'button',
 }
 
 export interface ITableHeader extends IFieldConfig {

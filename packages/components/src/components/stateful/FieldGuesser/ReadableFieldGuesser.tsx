@@ -1,5 +1,4 @@
 import React, { useContext } from 'react'
-import { Switch } from '@mui/material'
 import { styled } from '@mui/system'
 import { useTranslation } from 'next-i18next'
 import {
@@ -17,6 +16,8 @@ import Chip from '../../atoms/Chip/Chip'
 import Score from '../../atoms/score/Score'
 import Stock from '../../atoms/stock/Stock'
 import Price from '../../atoms/price/Price'
+import Link from 'next/link'
+import ReadableDropDownGuesser from './ReadableDropDownGuesser'
 
 const Image = styled('img')({
   height: 80,
@@ -32,8 +33,12 @@ const Box = styled('div')({
   whiteSpace: 'nowrap',
 })
 
+const CustomA = styled('a')(({ theme }) => ({
+  color: theme.palette.colors.neutral[600],
+}))
+
 function ReadableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
-  const { input, value } = props
+  const { input, value, field, options } = props
   const { t } = useTranslation('common')
   const language = useAppSelector(selectLanguage)
   const { localizedCatalogWithDefault } = useContext(catalogContext)
@@ -44,7 +49,7 @@ function ReadableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
 
   switch (input) {
     case DataContentType.BOOLEAN: {
-      return <Switch disabled defaultChecked={value as boolean} />
+      return <Box>{t(Boolean(input).toString())}</Box>
     }
 
     case DataContentType.TAG: {
@@ -75,6 +80,28 @@ function ReadableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
           countryCode={language}
           currency={localizedCatalogWithDefault.currency}
         />
+      )
+    }
+
+    case DataContentType.SELECT: {
+      return (
+        <Box>
+          <ReadableDropDownGuesser
+            value={value as string | string[]}
+            field={field}
+            options={options}
+          />
+        </Box>
+      )
+    }
+
+    case DataContentType.BUTTON: {
+      return (
+        <Box>
+          <Link href={value as string} legacyBehavior passHref>
+            <CustomA>{t('Edit')}</CustomA>
+          </Link>
+        </Box>
       )
     }
 
