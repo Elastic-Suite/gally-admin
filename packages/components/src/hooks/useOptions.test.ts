@@ -32,11 +32,11 @@ describe('useOptions', () => {
         fieldDropdownWithApiOptions.property['@id']
       )
     ).toEqual([
-      { id: 'position', value: 'position', label: 'Position' },
-      { id: 'id', value: 'id', label: 'Id' },
-      { id: 'stock.status', value: 'stock.status', label: 'Stock status' },
-      { id: 'sku', value: 'sku', label: 'Sku' },
-      { id: 'price', value: 'price', label: 'Price' },
+      { value: 'position', label: 'Position', options: undefined },
+      { value: 'id', label: 'Id', options: undefined },
+      { value: 'stock.status', label: 'Stock status', options: undefined },
+      { value: 'sku', label: 'Sku', options: undefined },
+      { value: 'price', label: 'Price', options: undefined },
     ])
   })
 

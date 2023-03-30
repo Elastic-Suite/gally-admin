@@ -442,29 +442,29 @@ describe('Hydra service', () => {
     it('Should return the options', () => {
       expect(getOptionsFromApiSchema(categorySortingOptions)).toEqual([
         {
-          id: 'position',
           label: 'Position',
           value: 'position',
+          options: undefined,
         },
         {
-          id: 'id',
           label: 'Id',
           value: 'id',
+          options: undefined,
         },
         {
-          id: 'stock.status',
           label: 'Stock status',
           value: 'stock.status',
+          options: undefined,
         },
         {
-          id: 'sku',
           label: 'Sku',
           value: 'sku',
+          options: undefined,
         },
         {
-          id: 'price',
           label: 'Price',
           value: 'price',
+          options: undefined,
         },
       ])
     })
