@@ -11,6 +11,7 @@ import React, {
 import { DragDropContext, DropResult } from 'react-beautiful-dnd'
 
 import {
+  DataContentType,
   IConfigurations,
   IFieldGuesserProps,
   ITableConfig,
@@ -52,6 +53,8 @@ export interface ICustomTableProps {
   tableRows: ITableRow[]
   withSelection?: boolean
   configuration?: IConfigurations
+  hasUpdateLink?: boolean
+  updateLink?: string
 }
 
 function CustomTable(
@@ -74,6 +77,8 @@ function CustomTable(
     selectedRows,
     withSelection,
     configuration,
+    hasUpdateLink,
+    updateLink,
   } = props
 
   const [scrollLength, setScrollLength] = useState<number>(0)
@@ -156,6 +161,17 @@ function CustomTable(
     onSelection(event.target.checked)
   }
 
+  const newHeadersTable = hasUpdateLink
+    ? tableHeaders.concat([
+        {
+          id: 'actions',
+          name: 'edit',
+          label: 'Actions',
+          input: DataContentType.BUTTON,
+        },
+      ])
+    : tableHeaders
+
   return (
     <>
       <DragDropContext onDragEnd={handleDragEnd}>
@@ -179,7 +195,7 @@ function CustomTable(
               massiveSelectionState={massiveSelectionState}
               onSelection={handleSelection}
               shadow={shadow}
-              tableHeaders={tableHeaders}
+              tableHeaders={newHeadersTable}
               withSelection={withSelection}
             />
             {Boolean(!draggable) && (
@@ -193,10 +209,12 @@ function CustomTable(
                 selectedRows={selectedRows}
                 shadow={shadow}
                 tableConfigs={tableConfigs}
-                tableHeaders={tableHeaders}
+                tableHeaders={newHeadersTable}
                 tableRows={tableRows}
                 withSelection={withSelection}
                 configuration={configuration}
+                hasUpdateLink={hasUpdateLink}
+                updateLink={updateLink}
               />
             )}
             {Boolean(draggable) && (
@@ -210,10 +228,12 @@ function CustomTable(
                 selectedRows={selectedRows}
                 shadow={shadow}
                 tableConfigs={tableConfigs}
-                tableHeaders={tableHeaders}
+                tableHeaders={newHeadersTable}
                 tableRows={tableRows}
                 withSelection={withSelection}
                 configuration={configuration}
+                hasUpdateLink={hasUpdateLink}
+                updateLink={updateLink}
               />
             )}
           </StyledTable>
