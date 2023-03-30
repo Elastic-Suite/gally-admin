@@ -39,6 +39,8 @@ interface IProps {
   sortValue: string
   searchValue: string
   nbTopProducts: number
+  hasUpdateLink?: boolean
+  updateLink?: string
 }
 
 function ProductsTopAndBottom(
@@ -58,6 +60,8 @@ function ProductsTopAndBottom(
     sortValue,
     searchValue,
     nbTopProducts,
+    hasUpdateLink,
+    updateLink,
   } = props
   const { t } = useTranslation('categories')
 
@@ -84,6 +88,8 @@ function ProductsTopAndBottom(
               searchValue={searchValue}
               configuration={configuration}
               setNbTopRows={setNbTopRows}
+              hasUpdateLink={hasUpdateLink}
+              updateLink={updateLink}
             />
           )}
           <BottomTable
@@ -97,6 +103,8 @@ function ProductsTopAndBottom(
             searchValue={searchValue}
             configuration={configuration}
             nbTopProducts={nbTopProducts}
+            hasUpdateLink={hasUpdateLink}
+            updateLink={updateLink}
           />
         </Box>
       </Paper>
