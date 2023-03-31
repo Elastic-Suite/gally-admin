@@ -19,6 +19,7 @@ export enum DataContentType {
   STRING = 'string',
   TAG = 'tag',
   BUTTON = 'button',
+  OTPGROUP = 'optgroup',
 }
 
 export interface ITableHeader extends IFieldConfig {

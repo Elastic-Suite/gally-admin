@@ -13,7 +13,11 @@ import {
 } from '@mui/material'
 import { useTranslation } from 'next-i18next'
 
-import { IOption, IOptions } from '@elastic-suite/gally-admin-shared'
+import {
+  IApiSchemaOptions,
+  IOption,
+  IOptions,
+} from '@elastic-suite/gally-admin-shared'
 
 import Checkbox from './Checkbox'
 import { SmallStyledPaper, StyledPaper } from './DropDown.styled'
@@ -28,9 +32,10 @@ export interface IDropDownProps<T>
   limitTags?: number
   multiple?: boolean
   onChange?: (value: T | T[], event: SyntheticEvent) => void
-  options: IOptions<T>
+  options: IOptions<T> | IApiSchemaOptions[]
   style?: CSSProperties
   value?: T | T[]
+  isOpt?: boolean
 }
 
 function DropDown<T>(props: IDropDownProps<T>): JSX.Element {
@@ -43,6 +48,7 @@ function DropDown<T>(props: IDropDownProps<T>): JSX.Element {
     options,
     style,
     value,
+    isOpt,
     ...otherProps
   } = props
   const { required, small } = otherProps
@@ -52,6 +58,7 @@ function DropDown<T>(props: IDropDownProps<T>): JSX.Element {
     () => new Map(options.map((option) => [option.value, option])),
     [options]
   )
+
   const optionValue =
     value instanceof Array
       ? value.map((val) => optionMap.get(val))
@@ -88,11 +95,13 @@ function DropDown<T>(props: IDropDownProps<T>): JSX.Element {
       props: HTMLAttributes<HTMLLIElement>,
       { label }: IOption<T>,
       { selected }: AutocompleteRenderOptionState
-    ): ReactNode => (
-      <li {...props}>
-        <Checkbox checked={selected} label={label} list />
-      </li>
-    )
+    ): ReactNode => {
+      return (
+        <li {...props}>
+          <Checkbox checked={selected} label={label} list />
+        </li>
+      )
+    }
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     renderTags = (value: IOption<T>[], getTagProps: any): ReactNode[] =>
       value
@@ -124,6 +133,14 @@ function DropDown<T>(props: IDropDownProps<T>): JSX.Element {
         onChange={handleChange}
         openText={openText}
         options={options}
+        groupBy={
+          isOpt ? (options: IApiSchemaOptions): string => options.id : undefined
+        }
+        getOptionLabel={
+          isOpt
+            ? (options: IApiSchemaOptions): string => options.label
+            : undefined
+        }
         popupIcon={<IonIcon name="chevron-down" />}
         renderInput={(params): JSX.Element => {
           const { InputLabelProps, InputProps, ...inputProps } = params

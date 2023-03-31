@@ -2,8 +2,10 @@ import React, { FormEvent, ReactNode, useContext, useState } from 'react'
 import { useTranslation } from 'next-i18next'
 import { Collapse, InputAdornment, Stack } from '@mui/material'
 import {
+  IApiSchemaOptions,
   IFieldConfig,
   IFieldOptions,
+  IOption,
   rangeSeparator,
 } from '@elastic-suite/gally-admin-shared'
 
@@ -48,6 +50,20 @@ interface IProps {
   showSearch?: boolean
 }
 
+function transformOptions(data: IApiSchemaOptions[]): Record<string, string> {
+  const newOptions: Record<string, string> = {}
+
+  data.forEach((item) => {
+    newOptions[item.label] = item.value
+
+    item?.options?.forEach((option) => {
+      newOptions[option.value] = option.label
+    })
+  })
+
+  return newOptions
+}
+
 function getActiveFilterLabel(
   filter: IFieldConfig,
   value: unknown,
@@ -55,13 +71,29 @@ function getActiveFilterLabel(
 ): string {
   const options =
     filter?.options ?? fieldOptions.get(filter?.field.property['@id']) ?? []
+
   if (filter.id.endsWith('[between]')) {
     value = (value as (string | number)[]).join('-')
   }
   let label = `${filter?.label}: ${value}`
-  const option = options.find((option) => option.value === value)
+
+  const newOptions = transformOptions(options as IApiSchemaOptions[])
+
+  const option: IOption<unknown> | IApiSchemaOptions = options.find(
+    (option) => {
+      if ((option as IApiSchemaOptions)?.options) {
+        return newOptions[value as string]
+      }
+
+      return option.value === value
+    }
+  )
+
   if (option) {
-    label = `${filter?.label}: ${option.label}`
+    if ((option as IApiSchemaOptions)?.options) {
+      return (label = `${filter?.label}: ${newOptions[value as string]}`)
+    }
+    return (label = `${filter?.label}: ${option.label}`)
   }
   return label
 }
@@ -99,6 +131,7 @@ function Filters(props: IProps): JSX.Element {
   const filterMap = new Map<string, IFieldConfig>(
     filters.map((filter) => [filter.id, filter])
   )
+
   const activeFilters = Object.entries(activeValues)
     .filter(([_, value]) => value !== '')
     .reduce<IActiveFilter[]>((acc, [id, value]) => {

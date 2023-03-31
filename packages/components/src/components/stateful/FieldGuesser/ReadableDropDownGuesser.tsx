@@ -23,7 +23,7 @@ function ReadableDropDownGuesser(props: IProps): JSX.Element {
   }, [field, load, options])
 
   const newDropDownOptions = Object.fromEntries(
-    dropDownOptions.map((it) => [it.id ?? it.value, it.label])
+    dropDownOptions.map((it) => [it.value, it.label])
   )
 
   if (statuses.current.get(field.property['@id']) === LoadStatus.SUCCEEDED) {
