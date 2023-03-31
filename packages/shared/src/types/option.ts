@@ -26,4 +26,6 @@ export interface IOptionsContext {
 export interface IApiSchemaOptions {
   code: string
   label: string
+  id?: string
+  value?: string
 }

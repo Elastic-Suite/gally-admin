@@ -51,8 +51,7 @@ export function useApiFetch(secure = true): IFetchApi {
           options,
           secure
         )
-        console.log('json', json)
-        return json // TODO
+        return json
       } catch (error) {
         log(error)
         if (error instanceof AuthError) {

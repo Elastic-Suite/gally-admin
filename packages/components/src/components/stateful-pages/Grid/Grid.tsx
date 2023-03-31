@@ -36,11 +36,11 @@ function Grid(props: IProps): JSX.Element {
   return (
     <>
       <PageTitle title={title ?? resourceName}>
-        {hasNewLink && (
+        {hasNewLink ? (
           <Button href={newLink ?? './new'}>
             Create new {title ?? resourceName}
           </Button>
-        )}
+        ) : null}
       </PageTitle>
 
       <ResourceTable

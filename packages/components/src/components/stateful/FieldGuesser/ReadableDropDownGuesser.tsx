@@ -6,15 +6,14 @@ import { Box } from '@mui/material'
 interface IProps {
   value: string | string[]
   field?: IField
-  options?: any
+  options?: IOptions<unknown>
 }
 
 function ReadableDropDownGuesser(props: IProps): JSX.Element {
   const { value, field, options } = props
 
   const { fieldOptions, load, statuses } = useContext(optionsContext)
-  //   console.log('fieldOptions', fieldOptions)
-  const dropDownOptions: IOptions<unknown> =
+  const dropDownOptions =
     options ?? fieldOptions.get(field.property['@id']) ?? []
 
   useEffect(() => {
@@ -23,29 +22,22 @@ function ReadableDropDownGuesser(props: IProps): JSX.Element {
     }
   }, [field, load, options])
 
+  const newDropDownOptions = Object.fromEntries(
+    dropDownOptions.map((it) => [it.id ?? it.value, it.label])
+  )
+
   if (statuses.current.get(field.property['@id']) === LoadStatus.SUCCEEDED) {
-    // console.log('dropDownOptions', dropDownOptions)
-    // console.log('value', value)
-
     if (Array.isArray(value)) {
-      //   console.log('valueARRAY', value)
-
       return (
-        <div>
+        <Box>
           {(value as string[]).map((item) => {
-            const val =
-              dropDownOptions.find((val) => val?.value === item)?.label ?? item
+            const val = newDropDownOptions[item] ?? item
             return <div key={val}>{val}</div>
           })}
-        </div>
+        </Box>
       )
     }
-    return (
-      <>
-        {dropDownOptions.find((val) => val?.value === value)?.label ??
-          (value as string)}
-      </>
-    )
+    return <Box>{newDropDownOptions[value as string] ?? (value as string)}</Box>
   }
 }
 

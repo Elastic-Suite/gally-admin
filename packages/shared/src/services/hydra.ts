@@ -139,9 +139,9 @@ export function getOptionsFromApiSchema(
   response: IHydraResponse<IApiSchemaOptions>
 ): IOptions<string | number> {
   return response['hydra:member'].map((member) => ({
-    id: member.code,
+    id: member.id ?? member.code,
     label: member.label,
-    value: member.code,
+    value: member.value ?? member.code,
   }))
 }
 
