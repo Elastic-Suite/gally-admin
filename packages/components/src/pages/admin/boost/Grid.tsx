@@ -5,6 +5,7 @@ import Grid from '../../../components/stateful-pages/Grid/Grid'
 function AdminBoostGrid(): JSX.Element {
   return (
     <Grid
+      title="Adrien tié le boss"
       resourceName="Boost"
       hasUpdateLink
       updateLink="./helloworldUpdate"
@@ -13,7 +14,5 @@ function AdminBoostGrid(): JSX.Element {
     />
   )
 }
-
-// filtres
 
 export default withAuth(withOptions(AdminBoostGrid))
