@@ -172,28 +172,11 @@ exports[`TopProductTable Should match snapschot 1`] = `
             <td
               class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-toz5yf-MuiTableCell-root"
             >
-              <span
-                class="MuiSwitch-root MuiSwitch-sizeMedium css-tnsvld-MuiSwitch-root"
+              <div
+                class="css-12hsf1n"
               >
-                <span
-                  aria-disabled="true"
-                  class="MuiButtonBase-root MuiSwitch-switchBase MuiSwitch-colorPrimary Mui-disabled Mui-disabled PrivateSwitchBase-root MuiSwitch-switchBase MuiSwitch-colorPrimary Mui-disabled Mui-checked Mui-disabled css-1vk7jze-MuiButtonBase-root-MuiSwitch-switchBase"
-                  tabindex="-1"
-                >
-                  <input
-                    checked=""
-                    class="PrivateSwitchBase-input MuiSwitch-input css-1m9pwf3"
-                    disabled=""
-                    type="checkbox"
-                  />
-                  <span
-                    class="MuiSwitch-thumb css-epwt2k-MuiSwitch-thumb"
-                  />
-                </span>
-                <span
-                  class="MuiSwitch-track css-1mr4grv-MuiSwitch-track"
-                />
-              </span>
+                true
+              </div>
             </td>
           </tr>
           <tr
@@ -284,28 +267,11 @@ exports[`TopProductTable Should match snapschot 1`] = `
             <td
               class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-toz5yf-MuiTableCell-root"
             >
-              <span
-                class="MuiSwitch-root MuiSwitch-sizeMedium css-tnsvld-MuiSwitch-root"
+              <div
+                class="css-12hsf1n"
               >
-                <span
-                  aria-disabled="true"
-                  class="MuiButtonBase-root MuiSwitch-switchBase MuiSwitch-colorPrimary Mui-disabled Mui-disabled PrivateSwitchBase-root MuiSwitch-switchBase MuiSwitch-colorPrimary Mui-disabled Mui-checked Mui-disabled css-1vk7jze-MuiButtonBase-root-MuiSwitch-switchBase"
-                  tabindex="-1"
-                >
-                  <input
-                    checked=""
-                    class="PrivateSwitchBase-input MuiSwitch-input css-1m9pwf3"
-                    disabled=""
-                    type="checkbox"
-                  />
-                  <span
-                    class="MuiSwitch-thumb css-epwt2k-MuiSwitch-thumb"
-                  />
-                </span>
-                <span
-                  class="MuiSwitch-track css-1mr4grv-MuiSwitch-track"
-                />
-              </span>
+                true
+              </div>
             </td>
           </tr>
         </tbody>
