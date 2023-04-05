@@ -53,14 +53,14 @@ function DraggableBody(props: IProps): JSX.Element {
     hasUpdateLink,
   } = props
 
-  const tableRowsWithUpdate = tableRows.map((item) => {
-    const link = updateLink
-      ? `${updateLink}?id=${item.id}`
-      : `./edit?id=${item.id}`
-    return { ...item, edit: link }
-  })
-
-  const newTableRows = hasUpdateLink ? tableRowsWithUpdate : tableRows
+  const newTableRows = hasUpdateLink
+    ? tableRows.map((item) => {
+        const link = updateLink
+          ? `${updateLink}?id=${item.id}`
+          : `./edit?id=${item.id}`
+        return { ...item, edit: link }
+      })
+    : tableRows
 
   return (
     <Droppable droppableId="droppableTable">

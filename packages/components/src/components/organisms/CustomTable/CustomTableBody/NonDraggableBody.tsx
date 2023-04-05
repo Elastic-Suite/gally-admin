@@ -52,14 +52,14 @@ function NonDraggableBody(props: IProps): JSX.Element {
     updateLink,
   } = props
 
-  const tableRowsWithUpdate = tableRows.map((item) => {
-    const link = updateLink
-      ? `${updateLink}?id=${item.id}`
-      : `./edit?id=${item.id}`
-    return { ...item, edit: link }
-  })
-
-  const newTableRows = hasUpdateLink ? tableRowsWithUpdate : tableRows
+  const newTableRows = hasUpdateLink
+    ? tableRows.map((item) => {
+        const link = updateLink
+          ? `${updateLink}?id=${item.id}`
+          : `./edit?id=${item.id}`
+        return { ...item, edit: link }
+      })
+    : tableRows
 
   return (
     <TableBody>

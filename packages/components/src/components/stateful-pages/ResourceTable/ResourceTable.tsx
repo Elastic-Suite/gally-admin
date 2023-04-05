@@ -48,7 +48,7 @@ const Paragraph = styled('p')(({ theme }) => ({
 function isObjectNotEmpty(object: object): boolean {
   return Object.values(object).some((value) => value)
 }
-interface IProps {
+export interface IResourceTable {
   Field?: FunctionComponent<IFieldGuesserProps>
   active?: boolean
   activeFilters: ISearchParameters
@@ -74,7 +74,7 @@ const listOfDefaultFacets = [
   'defaultPosition',
 ]
 
-function ResourceTable(props: IProps): JSX.Element {
+function ResourceTable(props: IResourceTable): JSX.Element {
   const { t } = useTranslation('resourceTable')
   const {
     Field,

@@ -1,27 +1,13 @@
-import {
-  IFieldGuesserProps,
-  ISearchParameters,
-  ITableConfig,
-  ITableRow,
-} from '@elastic-suite/gally-admin-shared'
-import React, { FunctionComponent } from 'react'
+import React from 'react'
 import { PageTitle } from '../../../components'
 import Button from '../../../components/atoms/buttons/Button'
-import ResourceTable from '../../../components/stateful-pages/ResourceTable/ResourceTable'
+import ResourceTable, {
+  IResourceTable,
+} from '../../../components/stateful-pages/ResourceTable/ResourceTable'
 import { useFilters, useResource } from '../../../hooks'
 
-interface IProps {
-  Field?: FunctionComponent<IFieldGuesserProps>
-  active?: boolean
-  diffDefaultValues?: boolean
-  getTableConfigs?: (rows: ITableRow[]) => ITableConfig[]
-  filters?: ISearchParameters
-  isFacets?: boolean
-  resourceName: string
-  urlParams?: string
-  showSearch?: boolean
-  hasUpdateLink?: boolean
-  updateLink?: string
+interface IProps
+  extends Omit<IResourceTable, 'activeFilters' | 'setActiveFilters'> {
   title?: string
   hasNewLink?: boolean
   newLink?: string

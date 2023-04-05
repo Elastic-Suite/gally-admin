@@ -13,11 +13,7 @@ import {
 } from '@mui/material'
 import { useTranslation } from 'next-i18next'
 
-import {
-  IApiSchemaOptions,
-  IOption,
-  IOptions,
-} from '@elastic-suite/gally-admin-shared'
+import { IOption, IOptions } from '@elastic-suite/gally-admin-shared'
 
 import Checkbox from './Checkbox'
 import { SmallStyledPaper, StyledPaper } from './DropDown.styled'
@@ -32,10 +28,10 @@ export interface IDropDownProps<T>
   limitTags?: number
   multiple?: boolean
   onChange?: (value: T | T[], event: SyntheticEvent) => void
-  options: IOptions<T> | IApiSchemaOptions[]
+  options: IOptions<T>
   style?: CSSProperties
   value?: T | T[]
-  isOpt?: boolean
+  useGroups?: boolean
 }
 
 function DropDown<T>(props: IDropDownProps<T>): JSX.Element {
@@ -48,7 +44,7 @@ function DropDown<T>(props: IDropDownProps<T>): JSX.Element {
     options,
     style,
     value,
-    isOpt,
+    useGroups,
     ...otherProps
   } = props
   const { required, small } = otherProps
@@ -134,12 +130,14 @@ function DropDown<T>(props: IDropDownProps<T>): JSX.Element {
         openText={openText}
         options={options}
         groupBy={
-          isOpt ? (options: IApiSchemaOptions): string => options.id : undefined
+          useGroups
+            ? (option: IOption<T>): string => {
+                return option.id as string
+              }
+            : undefined
         }
         getOptionLabel={
-          isOpt
-            ? (options: IApiSchemaOptions): string => options.label
-            : undefined
+          useGroups ? (options: IOption<T>): string => options.label : undefined
         }
         popupIcon={<IonIcon name="chevron-down" />}
         renderInput={(params): JSX.Element => {

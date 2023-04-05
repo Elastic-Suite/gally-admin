@@ -135,14 +135,27 @@ export function getOptionsFromOptionLabelResource(
   }))
 }
 
+function convertValueForOpt(data: IApiSchemaOptions[]): IOptions<string> {
+  return data.flatMap(({ label, options }) =>
+    options.map((option) => ({
+      id: label,
+      value: option.value,
+      label: option.label,
+    }))
+  )
+}
+
 export function getOptionsFromApiSchema(
   response: IHydraResponse<IApiSchemaOptions>
 ): IOptions<string | number> {
-  return response['hydra:member'].map((member) => ({
-    label: member.label,
-    value: member.value ?? member.code,
-    options: member?.options,
-  }))
+  const res = response['hydra:member'].map(
+    ({ label, value, code, options }) => ({
+      label,
+      value: value ?? code,
+      options,
+    })
+  )
+  return res.some(({ options }) => options) ? convertValueForOpt(res) : res
 }
 
 export function castFieldParameter(

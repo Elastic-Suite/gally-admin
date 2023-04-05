@@ -26,19 +26,21 @@ function ReadableDropDownGuesser(props: IProps): JSX.Element {
     dropDownOptions.map((it) => [it.value, it.label])
   )
 
-  if (statuses.current.get(field.property['@id']) === LoadStatus.SUCCEEDED) {
-    if (Array.isArray(value)) {
-      return (
-        <Box>
-          {(value as string[]).map((item) => {
-            const val = newDropDownOptions[item] ?? item
-            return <div key={val}>{val}</div>
-          })}
-        </Box>
-      )
-    }
-    return <Box>{newDropDownOptions[value as string] ?? (value as string)}</Box>
+  if (statuses.current.get(field.property['@id']) !== LoadStatus.SUCCEEDED) {
+    return null
   }
+
+  if (value instanceof Array) {
+    return (
+      <Box>
+        {value.map((item) => {
+          const val = newDropDownOptions[item] ?? item
+          return <div key={val}>{val}</div>
+        })}
+      </Box>
+    )
+  }
+  return <Box>{newDropDownOptions[value as string] ?? (value as string)}</Box>
 }
 
 export default ReadableDropDownGuesser

@@ -12,7 +12,6 @@ import Switch from '../../atoms/form/Switch'
 
 import ReadableFieldGuesser from './ReadableFieldGuesser'
 import EditableDropDownGuesser from './EditableDropDownGuesser'
-import EditableOptGroupGuesser from './EditableOptGroupGuesser'
 
 function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
   const {
@@ -92,12 +91,15 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
       )
     }
 
-    case DataContentType.OTPGROUP: {
-      return <EditableOptGroupGuesser {...props} onChange={handleChange} />
-    }
-
+    case DataContentType.OTPGROUP:
     case DataContentType.SELECT: {
-      return <EditableDropDownGuesser {...props} onChange={handleChange} />
+      return (
+        <EditableDropDownGuesser
+          {...props}
+          onChange={handleChange}
+          useGroups={Boolean(input ?? type === DataContentType.OTPGROUP)}
+        />
+      )
     }
 
     case DataContentType.BOOLEAN: {

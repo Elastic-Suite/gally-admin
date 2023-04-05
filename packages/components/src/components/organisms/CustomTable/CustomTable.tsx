@@ -161,16 +161,16 @@ function CustomTable(
     onSelection(event.target.checked)
   }
 
-  const tableHeadersWithUpdate = tableHeaders.concat([
-    {
-      id: 'actions',
-      name: 'edit',
-      label: 'Actions',
-      input: DataContentType.BUTTON,
-    },
-  ])
-
-  const newHeadersTable = hasUpdateLink ? tableHeadersWithUpdate : tableHeaders
+  const newHeadersTable = hasUpdateLink
+    ? tableHeaders.concat([
+        {
+          id: 'actions',
+          name: 'edit',
+          label: 'Actions',
+          input: DataContentType.BUTTON,
+        },
+      ])
+    : tableHeaders
 
   return (
     <>
