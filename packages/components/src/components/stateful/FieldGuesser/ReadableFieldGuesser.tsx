@@ -49,7 +49,7 @@ function ReadableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
 
   switch (input) {
     case DataContentType.BOOLEAN: {
-      return <Box>{t(Boolean(input).toString())}</Box>
+      return <Box>{value ? t('filter.yes') : t('filter.no')}</Box>
     }
 
     case DataContentType.TAG: {

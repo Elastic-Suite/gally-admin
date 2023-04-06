@@ -60,6 +60,7 @@ function getActiveFilterLabel(
   if (filter.id.endsWith('[between]')) {
     value = (value as (string | number)[]).join('-')
   }
+
   let label = `${filter?.label}: ${value}`
 
   const option: IOption<unknown> = options.find((option) => {
@@ -123,7 +124,17 @@ function Filters(props: IProps): JSX.Element {
             )
           )
         } else {
-          acc.push(getActiveFilter(filter, value, fieldOptions))
+          acc.push(
+            getActiveFilter(
+              filter,
+              typeof value === 'boolean'
+                ? value
+                  ? t('filter.yes')
+                  : t('filter.no')
+                : value,
+              fieldOptions
+            )
+          )
         }
       }
       return acc

@@ -55,7 +55,5 @@
   "formError.maxDate": "La date n'est pas disponible",
   "field.productImage": "Image produit",
   "default.undefined": "vide",
-  "log.out": "Déconnexion",
-  "true": "Oui",
-  "false": "Non"
+  "log.out": "Déconnexion"
 }
