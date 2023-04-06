@@ -2,7 +2,6 @@ import React, { FormEvent, ReactNode, useContext, useState } from 'react'
 import { useTranslation } from 'next-i18next'
 import { Collapse, InputAdornment, Stack } from '@mui/material'
 import {
-  IApiSchemaOptions,
   IFieldConfig,
   IFieldOptions,
   IOption,
@@ -50,20 +49,6 @@ interface IProps {
   showSearch?: boolean
 }
 
-function transformOptions(data: IApiSchemaOptions[]): Record<string, string> {
-  const newOptions: Record<string, string> = {}
-
-  data.forEach((item) => {
-    newOptions[item.label] = item.value
-
-    item?.options?.forEach((option) => {
-      newOptions[option.value] = option.label
-    })
-  })
-
-  return newOptions
-}
-
 function getActiveFilterLabel(
   filter: IFieldConfig,
   value: unknown,
@@ -77,22 +62,11 @@ function getActiveFilterLabel(
   }
   let label = `${filter?.label}: ${value}`
 
-  const newOptions = transformOptions(options as IApiSchemaOptions[])
-
-  const option: IOption<unknown> | IApiSchemaOptions = options.find(
-    (option) => {
-      if ((option as IApiSchemaOptions)?.options) {
-        return newOptions[value as string]
-      }
-
-      return option.value === value
-    }
-  )
+  const option: IOption<unknown> = options.find((option) => {
+    return option.value === value
+  })
 
   if (option) {
-    if ((option as IApiSchemaOptions)?.options) {
-      return (label = `${filter?.label}: ${newOptions[value as string]}`)
-    }
     return (label = `${filter?.label}: ${option.label}`)
   }
   return label
