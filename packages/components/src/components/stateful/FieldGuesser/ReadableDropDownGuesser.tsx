@@ -7,10 +7,11 @@ interface IProps {
   value: string | string[]
   field?: IField
   options?: IOptions<unknown>
+  multipleSeparatorValue?: string
 }
 
 function ReadableDropDownGuesser(props: IProps): JSX.Element {
-  const { value, field, options } = props
+  const { value, field, options, multipleSeparatorValue } = props
 
   const { fieldOptions, load, statuses } = useContext(optionsContext)
   const dropDownOptions =
@@ -32,12 +33,14 @@ function ReadableDropDownGuesser(props: IProps): JSX.Element {
 
   if (value instanceof Array) {
     return (
-      <Box>
-        {value.map((item) => {
-          const val = newDropDownOptions[item] ?? item
-          return <div key={val}>{val}</div>
-        })}
-      </Box>
+      <div>
+        {multipleSeparatorValue
+          ? value.join(multipleSeparatorValue)
+          : value.map((item) => {
+              const val = newDropDownOptions[item] ?? item
+              return <div key={val}>{val}</div>
+            })}
+      </div>
     )
   }
   return <Box>{newDropDownOptions[value as string] ?? (value as string)}</Box>

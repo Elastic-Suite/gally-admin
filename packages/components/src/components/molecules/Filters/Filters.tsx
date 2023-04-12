@@ -61,16 +61,14 @@ function getActiveFilterLabel(
     value = (value as (string | number)[]).join('-')
   }
 
-  let label = `${filter?.label}: ${value}`
-
   const option: IOption<unknown> = options.find((option) => {
     return option.value === value
   })
 
   if (option) {
-    return (label = `${filter?.label}: ${option.label}`)
+    return `${filter?.label}: ${option.label}`
   }
-  return label
+  return `${filter?.label}: ${value}`
 }
 
 function getActiveFilter(

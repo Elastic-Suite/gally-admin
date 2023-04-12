@@ -38,7 +38,7 @@ const CustomA = styled('a')(({ theme }) => ({
 }))
 
 function ReadableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
-  const { input, value, field, options } = props
+  const { input, value, field, options, multipleSeparatorValue } = props
   const { t } = useTranslation('common')
   const language = useAppSelector(selectLanguage)
   const { localizedCatalogWithDefault } = useContext(catalogContext)
@@ -91,6 +91,7 @@ function ReadableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
             value={value as string | string[]}
             field={field}
             options={options}
+            multipleSeparatorValue={multipleSeparatorValue}
           />
         </Box>
       )
@@ -107,7 +108,15 @@ function ReadableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
     }
 
     default: {
-      return <Box>{value as string}</Box>
+      return value instanceof Array ? (
+        <div>
+          {multipleSeparatorValue
+            ? value.join(multipleSeparatorValue)
+            : value.map((item) => <div key={item}>{item}</div>)}
+        </div>
+      ) : (
+        <Box>{value as string}</Box>
+      )
     }
   }
 }
