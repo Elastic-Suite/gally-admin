@@ -32,8 +32,6 @@ interface IProps extends ICustomTableProps {
   ) => void
   rowsPerPage: number
   rowsPerPageOptions: number[]
-  hasUpdateLink?: boolean
-  updateLink?: string
 }
 
 function PagerTable(
