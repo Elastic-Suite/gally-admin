@@ -1,5 +1,6 @@
 export { default as AdminMerchandizeCategories } from './admin/merchandize/categories'
 export { default as AdminBoostGrid } from './admin/boost/Grid'
+export { default as AdminBoostNew } from './admin/boost/New'
 export { default as AdminSearchFacetsConfigurationAttributes } from './admin/search/configuration/Attributes'
 export { default as AdminSearchFacets } from './admin/search/Facets'
 export { default as AdminSettingsIndex } from './admin/settings/Index'
