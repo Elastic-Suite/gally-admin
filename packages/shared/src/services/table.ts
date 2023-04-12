@@ -73,6 +73,7 @@ export function getFieldHeader(field: IField, t: TFunction): IFieldConfig {
     name: id,
     required: field.gally?.required ?? field.required,
     type,
+    multipleSeparatorValue: field.gally?.multipleSeparatorValue,
   }
 }
 

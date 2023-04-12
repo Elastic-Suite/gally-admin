@@ -27,6 +27,7 @@ export interface IFieldConfig extends IFieldState {
   suffix?: string
   type?: DataContentType
   validation?: Record<string, string | number>
+  multipleSeparatorValue?: string
 }
 
 export interface IFieldGuesserProps extends IFieldConfig {
