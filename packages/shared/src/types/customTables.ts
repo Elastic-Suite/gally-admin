@@ -20,6 +20,8 @@ export enum DataContentType {
   TAG = 'tag',
   BUTTON = 'button',
   OTPGROUP = 'optgroup',
+  RANGEDATE = 'rangeDate',
+  REQUESTTYPE = 'requestType',
 }
 
 export interface ITableHeader extends IFieldConfig {
