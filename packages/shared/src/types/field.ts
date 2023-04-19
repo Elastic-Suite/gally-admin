@@ -30,6 +30,13 @@ export interface IFieldConfig extends IFieldState {
   multipleSeparatorValue?: string
 }
 
+export interface IFieldConfigFormWithFieldset {
+  position?: number
+  label: string
+  code: string
+  children: IFieldConfig[]
+}
+
 export interface IFieldGuesserProps extends IFieldConfig {
   diffValue?: unknown
   onChange?: (name: string, value: unknown, event?: SyntheticEvent) => void

@@ -12,6 +12,9 @@ import Switch from '../../atoms/form/Switch'
 
 import ReadableFieldGuesser from './ReadableFieldGuesser'
 import EditableDropDownGuesser from './EditableDropDownGuesser'
+import DoubleDatePicker, {
+  IDoubleDatePickerValues,
+} from '../../atoms/form/DoubleDatePicker'
 
 function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
   const {
@@ -39,8 +42,13 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
   )
 
   function handleChange(
-    value: boolean | number | string | (boolean | number | string)[],
-    event: SyntheticEvent
+    value:
+      | boolean
+      | number
+      | string
+      | (boolean | number | string)[]
+      | IDoubleDatePickerValues,
+    event?: SyntheticEvent
   ): void {
     if (onChange) {
       onChange(name, value, event)
@@ -91,6 +99,15 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
       )
     }
 
+    case DataContentType.RANGEDATE: {
+      return (
+        <DoubleDatePicker
+          value={value as IDoubleDatePickerValues}
+          onChange={handleChange}
+        />
+      )
+    }
+
     case DataContentType.OTPGROUP:
     case DataContentType.SELECT: {
       return (
@@ -135,6 +152,7 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
           }
           onChange={handleChange}
           required={required}
+          label={label}
         />
       )
     }
