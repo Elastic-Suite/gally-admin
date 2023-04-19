@@ -26,12 +26,17 @@ export interface IOperation extends IJsonldType {
   title: string
 }
 
+export interface IFieldSetClass {
+  fieldset: Record<string, { position: number; label: string }>
+}
+
 export interface IResource extends IJsonldBase {
   label: string
   supportedOperation: IOperation[]
   supportedProperty: IField[]
   title: string
   url: string
+  gally?: IFieldSetClass
 }
 
 export type IApi = IResource[]

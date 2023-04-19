@@ -2,7 +2,9 @@ import React, { useState } from 'react'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
 import { Dayjs } from 'dayjs'
 
-import DoubleDatePickerComponent from './DoubleDatePicker'
+import DoubleDatePickerComponent, {
+  IDoubleDatePickerValues,
+} from './DoubleDatePicker'
 import DoubleDatePickerError from './DoubleDatePickerError'
 
 export default {
@@ -35,19 +37,21 @@ export default {
 } as ComponentMeta<typeof DoubleDatePickerComponent>
 
 const Template: ComponentStory<typeof DoubleDatePickerComponent> = (args) => {
-  const [value, setValue] = useState<{
-    from: Dayjs | null
-    to: Dayjs | null
-  } | null>({ from: null, to: null })
+  const [value, setValue] = useState<IDoubleDatePickerValues | null>({
+    from: null,
+    to: null,
+  })
 
-  function onChange(
-    value: { from: Dayjs | null; to: Dayjs | null } | null
-  ): void {
+  function onChange(value: IDoubleDatePickerValues | null): void {
     setValue(value)
   }
 
   return (
-    <DoubleDatePickerComponent {...args} value={value} onChange={onChange} />
+    <DoubleDatePickerComponent
+      {...args}
+      value={value as IDoubleDatePickerValues}
+      onChange={onChange}
+    />
   )
 }
 
