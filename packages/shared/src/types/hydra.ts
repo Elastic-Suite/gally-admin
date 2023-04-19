@@ -89,6 +89,12 @@ export interface IHydraProperty extends IJsonldBase {
   'rdfs:range'?: (IJsonldId | IRdfsRange)[]
 }
 
+export interface IFormConfig extends IGallyProperty {
+  fieldset?: string
+  fromDate?: boolean
+  toDate?: boolean
+}
+
 export interface IGallyProperty {
   context?: Record<string, IGallyProperty>
   depends?: IFieldCondition
@@ -101,6 +107,7 @@ export interface IGallyProperty {
   validation?: Record<string, string | number>
   visible?: boolean
   alias?: string
+  form?: IFormConfig
 }
 
 export interface IDropdownStaticOptions {

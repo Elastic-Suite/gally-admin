@@ -18,6 +18,8 @@ export enum DataContentType {
   STOCK = 'stock',
   STRING = 'string',
   TAG = 'tag',
+  RANGEDATE = 'rangeDate',
+  REQUESTTYPE = 'requestType',
 }
 
 export interface ITableHeader extends IFieldConfig {

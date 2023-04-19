@@ -1,0 +1,466 @@
+{
+  "@id": "https://localhost/docs.jsonld#Boost",
+  "@type": "http://www.w3.org/ns/hydra/core#Class",
+  "gally": {
+    "fieldset": {
+      "general": { "position": 10, "label": "General label" },
+      "sub": { "position": 20, "label": "Sub label" }
+    }
+  },
+  "supportedOperation": [
+    {
+      "@type": [
+        "http://www.w3.org/ns/hydra/core#Operation",
+        "http://schema.org/FindAction"
+      ],
+      "method": "GET",
+      "title": "Retrieves the collection of Boost resources.",
+      "label": "Retrieves the collection of Boost resources.",
+      "returns": {
+        "@id": "http://www.w3.org/ns/hydra/core#Collection"
+      }
+    },
+    {
+      "@type": [
+        "http://www.w3.org/ns/hydra/core#Operation",
+        "http://schema.org/CreateAction"
+      ],
+      "expects": {
+        "@id": "https://localhost/docs.jsonld#Boost"
+      },
+      "method": "POST",
+      "title": "Creates a Boost resource.",
+      "label": "Creates a Boost resource.",
+      "returns": {
+        "@id": "https://localhost/docs.jsonld#Boost"
+      }
+    },
+    {
+      "@type": [
+        "http://www.w3.org/ns/hydra/core#Operation",
+        "http://schema.org/FindAction"
+      ],
+      "method": "GET",
+      "title": "Retrieves Boost resource.",
+      "label": "Retrieves Boost resource.",
+      "returns": {
+        "@id": "https://localhost/docs.jsonld#Boost"
+      }
+    },
+    {
+      "@type": [
+        "http://www.w3.org/ns/hydra/core#Operation",
+        "http://schema.org/ReplaceAction"
+      ],
+      "expects": {
+        "@id": "https://localhost/docs.jsonld#Boost"
+      },
+      "method": "PUT",
+      "title": "Replaces the Boost resource.",
+      "label": "Replaces the Boost resource.",
+      "returns": {
+        "@id": "https://localhost/docs.jsonld#Boost"
+      }
+    },
+    {
+      "@type": [
+        "http://www.w3.org/ns/hydra/core#Operation",
+        "http://schema.org/DeleteAction"
+      ],
+      "method": "DELETE",
+      "title": "Deletes the Boost resource.",
+      "label": "Deletes the Boost resource.",
+      "returns": {
+        "@id": "http://www.w3.org/2002/07/owl#Nothing"
+      }
+    }
+  ],
+  "supportedProperty": [
+    {
+      "@type": "http://www.w3.org/ns/hydra/core#SupportedProperty",
+      "gally": {
+        "visible": true,
+        "editable": false,
+        "position": 10,
+        "form": {
+          "visible": true,
+          "fieldset": "general"
+        }
+      },
+      "property": {
+        "@id": "https://localhost/docs.jsonld#Boost/name",
+        "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#Property",
+        "domain": {
+          "@id": "https://localhost/docs.jsonld#Boost"
+        },
+        "range": {
+          "@id": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "label": "Name"
+      },
+      "readable": true,
+      "required": true,
+      "title": "name",
+      "writeable": true
+    },
+    {
+      "@type": "http://www.w3.org/ns/hydra/core#SupportedProperty",
+      "gally": {
+        "visible": true,
+        "editable": false,
+        "position": 20,
+        "form": {
+          "visible": true,
+          "fieldset": "general"
+        }
+      },
+      "property": {
+        "@id": "https://localhost/docs.jsonld#Boost/isActive",
+        "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#Property",
+        "domain": {
+          "@id": "https://localhost/docs.jsonld#Boost"
+        },
+        "range": {
+          "@id": "http://www.w3.org/2001/XMLSchema#boolean"
+        },
+        "label": "Enabled"
+      },
+      "readable": true,
+      "required": false,
+      "title": "isActive",
+      "writeable": true
+    },
+    {
+      "@type": "http://www.w3.org/ns/hydra/core#SupportedProperty",
+      "gally": {
+        "position": 30,
+        "input": "rangeDate",
+        "form": {
+          "visible": true,
+          "fieldset": "general",
+          "fromDate": true
+        }
+      },
+      "property": {
+        "@id": "https://localhost/docs.jsonld#Boost/fromDate",
+        "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#Property",
+        "domain": {
+          "@id": "https://localhost/docs.jsonld#Boost"
+        },
+        "range": {
+          "@id": "http://www.w3.org/2001/XMLSchema#dateTime"
+        },
+        "label": "fromDate"
+      },
+      "readable": true,
+      "required": false,
+      "title": "fromDate",
+      "writeable": true
+    },
+    {
+      "@type": "http://www.w3.org/ns/hydra/core#SupportedProperty",
+      "gally": {
+        "position": 30,
+        "input": "rangeDate",
+        "form": {
+          "visible": true,
+          "fieldset": "general",
+          "toDate": true
+        }
+      },
+      "property": {
+        "@id": "https://localhost/docs.jsonld#Boost/toDate",
+        "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#Property",
+        "domain": {
+          "@id": "https://localhost/docs.jsonld#Boost"
+        },
+        "range": {
+          "@id": "http://www.w3.org/2001/XMLSchema#dateTime"
+        },
+        "label": "toDate"
+      },
+      "readable": true,
+      "required": false,
+      "title": "toDate",
+      "writeable": true
+    },
+    {
+      "@type": "http://www.w3.org/ns/hydra/core#SupportedProperty",
+      "gally": {
+        "position": 50,
+        "form": {
+          "visible": true,
+          "fieldset": "general"
+        }
+      },
+      "property": {
+        "@id": "https://localhost/docs.jsonld#Boost/conditionRule",
+        "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#Property",
+        "domain": {
+          "@id": "https://localhost/docs.jsonld#Boost"
+        },
+        "range": {
+          "@id": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "label": "conditionRule"
+      },
+      "readable": true,
+      "required": false,
+      "title": "conditionRule",
+      "writeable": true
+    },
+    {
+      "@type": "http://www.w3.org/ns/hydra/core#SupportedProperty",
+      "gally": {
+        "editable": false,
+        "input": "select",
+        "options": {
+          "api_graphql": "boostModelOptions",
+          "api_rest": "/boost_model_options"
+        },
+        "position": 60,
+        "visible": true,
+        "form": {
+          "visible": true,
+          "fieldset": "sub"
+        }
+      },
+      "property": {
+        "@id": "https://localhost/docs.jsonld#Boost/model",
+        "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#Property",
+        "domain": {
+          "@id": "https://localhost/docs.jsonld#Boost"
+        },
+        "range": {
+          "@id": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "label": "Model"
+      },
+      "readable": true,
+      "required": true,
+      "title": "model",
+      "writeable": true
+    },
+    {
+      "@type": "http://www.w3.org/ns/hydra/core#SupportedProperty",
+      "gally": {
+        "position": 70,
+        "form": {
+          "visible": true,
+          "fieldset": "sub"
+        }
+      },
+      "property": {
+        "@id": "https://localhost/docs.jsonld#Boost/modelConfig",
+        "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#Property",
+        "domain": {
+          "@id": "https://localhost/docs.jsonld#Boost"
+        },
+        "range": {
+          "@id": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "label": "modelConfig"
+      },
+      "readable": true,
+      "required": true,
+      "title": "modelConfig",
+      "writeable": true
+    },
+    {
+      "@type": "http://www.w3.org/ns/hydra/core#SupportedProperty",
+      "gally": {
+        "position": 80,
+        "form": {
+          "visible": true,
+          "fieldset": "general"
+        }
+      },
+      "property": {
+        "@id": "https://localhost/docs.jsonld#Boost/localizedCatalogs",
+        "@type": "http://www.w3.org/ns/hydra/core#Link",
+        "domain": {
+          "@id": "https://localhost/docs.jsonld#Boost"
+        },
+        "range": {
+          "@id": "https://localhost/docs.jsonld#LocalizedCatalog"
+        },
+        "label": "localizedCatalogs"
+      },
+      "readable": true,
+      "required": true,
+      "title": "localizedCatalogs",
+      "writeable": true
+    },
+    {
+      "@type": "http://www.w3.org/ns/hydra/core#SupportedProperty",
+      "gally": {
+        "position": 90,
+        "input": "requestType",
+        "form": {
+          "visible": true,
+          "fieldset": "general"
+        }
+      },
+      "property": {
+        "@id": "https://localhost/docs.jsonld#Boost/requestTypes",
+        "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#Property",
+        "domain": {
+          "@id": "https://localhost/docs.jsonld#Boost"
+        },
+        "range": {
+          "@id": "https://localhost/docs.jsonld#BoostRequestType"
+        },
+        "label": "requestTypes"
+      },
+      "readable": true,
+      "required": false,
+      "title": "requestTypes",
+      "writeable": true
+    },
+    {
+      "@type": "http://www.w3.org/ns/hydra/core#SupportedProperty",
+      "gally": {
+        "visible": true,
+        "editable": false,
+        "position": 100,
+        "input": "select",
+        "options": {
+          "api_rest": "/boost_request_type_options",
+          "api_graphql": "boostRequestTypeOptions"
+        },
+        "alias": "requestTypes.requestType",
+        "form": {
+          "fieldset": "general"
+        }
+      },
+      "property": {
+        "@id": "https://localhost/docs.jsonld#Boost/requestTypeLabels",
+        "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#Property",
+        "domain": {
+          "@id": "https://localhost/docs.jsonld#Boost"
+        },
+        "label": "Request type"
+      },
+      "readable": true,
+      "required": false,
+      "title": "requestTypeLabels",
+      "writeable": false
+    },
+    {
+      "@type": "http://www.w3.org/ns/hydra/core#SupportedProperty",
+      "gally": {
+        "position": 110,
+        "form": {
+          "visible": true,
+          "fieldset": "general"
+        }
+      },
+      "property": {
+        "@id": "https://localhost/docs.jsonld#Boost/categoryLimitations",
+        "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#Property",
+        "domain": {
+          "@id": "https://localhost/docs.jsonld#Boost"
+        },
+        "range": {
+          "@id": "https://localhost/docs.jsonld#BoostCategoryLimitation"
+        },
+        "label": "categoryLimitations"
+      },
+      "readable": true,
+      "required": false,
+      "title": "categoryLimitations",
+      "writeable": true
+    },
+    {
+      "@type": "http://www.w3.org/ns/hydra/core#SupportedProperty",
+      "gally": {
+        "position": 120,
+        "form": {
+          "visible": true,
+          "fieldset": "general"
+        }
+      },
+      "property": {
+        "@id": "https://localhost/docs.jsonld#Boost/searchLimitations",
+        "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#Property",
+        "domain": {
+          "@id": "https://localhost/docs.jsonld#Boost"
+        },
+        "range": {
+          "@id": "https://localhost/docs.jsonld#BoostSearchLimitation"
+        },
+        "label": "searchLimitations"
+      },
+      "readable": true,
+      "required": false,
+      "title": "searchLimitations",
+      "writeable": true
+    },
+    {
+      "@type": "http://www.w3.org/ns/hydra/core#SupportedProperty",
+      "property": {
+        "@id": "https://localhost/docs.jsonld#Boost/createdAt",
+        "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#Property",
+        "domain": {
+          "@id": "https://localhost/docs.jsonld#Boost"
+        },
+        "range": {
+          "@id": "http://www.w3.org/2001/XMLSchema#dateTime"
+        },
+        "label": "createdAt"
+      },
+      "readable": true,
+      "required": false,
+      "title": "createdAt",
+      "writeable": false
+    },
+    {
+      "@type": "http://www.w3.org/ns/hydra/core#SupportedProperty",
+      "property": {
+        "@id": "https://localhost/docs.jsonld#Boost/updatedAt",
+        "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#Property",
+        "domain": {
+          "@id": "https://localhost/docs.jsonld#Boost"
+        },
+        "range": {
+          "@id": "http://www.w3.org/2001/XMLSchema#dateTime"
+        },
+        "label": "updatedAt"
+      },
+      "readable": true,
+      "required": false,
+      "title": "updatedAt",
+      "writeable": false
+    },
+    {
+      "@type": "http://www.w3.org/ns/hydra/core#SupportedProperty",
+      "gally": {
+        "alias": "localizedCatalogs.id",
+        "editable": false,
+        "input": "optgroup",
+        "options": {
+          "api_graphql": "localizedCatalogGroupOptions",
+          "api_rest": "/localized_catalog_group_options"
+        },
+        "position": 130,
+        "visible": true,
+        "form": { "fieldset": "general" }
+      },
+      "property": {
+        "@id": "https://localhost/docs.jsonld#Boost/localizedCatalogLabels",
+        "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#Property",
+        "domain": {
+          "@id": "https://localhost/docs.jsonld#Boost"
+        },
+        "label": "Scope"
+      },
+      "readable": true,
+      "required": false,
+      "title": "localizedCatalogLabels",
+      "writeable": false
+    }
+  ],
+  "title": "Boost",
+  "label": "Boost",
+  "url": "https://localhost/boosts"
+}
