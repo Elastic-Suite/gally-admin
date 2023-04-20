@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
 import boostData from '../../../../public/mocks/boostData.json'
+import boostWithUseResource from '../../../../public/mocks/boostWithUseResource.json'
 
 import CustomForm from './CustomForm'
 
@@ -10,20 +11,12 @@ export default {
 } as ComponentMeta<typeof CustomForm>
 
 const Template: ComponentStory<typeof CustomForm> = (args) => {
-  const [data, setData] = useState<Record<string, unknown>>() // boostData
+  const [data, setData] = useState<Record<string, unknown>>() // boostData if it's for updateForm
 
-  function handleChange(name: string, response: any) {
-    if (name === 'doubleDatePicker') {
-      const formatDate = { fromDate: response?.from, toDate: response?.to }
-
-      return setData({ ...data, ...formatDate })
-    }
-    return setData({ ...data, [name]: response })
-  }
-  return <CustomForm {...args} data={data} handleChange={handleChange} />
+  return <CustomForm {...args} data={data} setData={setData} />
 }
 
 export const Default = Template.bind({})
 Default.args = {
-  resourceName: 'Boost',
+  resourceData: boostWithUseResource, // make useResource(resourceName) for use it out storybook
 }

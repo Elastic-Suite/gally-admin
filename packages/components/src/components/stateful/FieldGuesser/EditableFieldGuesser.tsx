@@ -15,6 +15,7 @@ import EditableDropDownGuesser from './EditableDropDownGuesser'
 import DoubleDatePicker, {
   IDoubleDatePickerValues,
 } from '../../atoms/form/DoubleDatePicker'
+import { Box } from '@mui/material'
 
 function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
   const {
@@ -101,10 +102,12 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
 
     case DataContentType.RANGEDATE: {
       return (
-        <DoubleDatePicker
-          value={value as IDoubleDatePickerValues}
-          onChange={handleChange}
-        />
+        <Box>
+          <DoubleDatePicker
+            value={value as IDoubleDatePickerValues}
+            onChange={handleChange}
+          />
+        </Box>
       )
     }
 
