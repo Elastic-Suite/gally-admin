@@ -1,6 +1,7 @@
 export * from './useApi'
 export * from './useApiFilters'
 export * from './useApiTable'
+export * from './useApiForm'
 export * from './useCatalogs'
 export * from './useDataLoader'
 export * from './useFilters'
