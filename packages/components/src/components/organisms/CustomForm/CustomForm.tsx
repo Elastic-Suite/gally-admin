@@ -1,73 +1,132 @@
-import React, { useState } from 'react'
-// import boostData from '../../../../public/mocks/boostData.json'
+import React from 'react'
 import boostJsLd from '../../../../public/mocks/boostJsLd.json'
 import {
   useApiDoubleDatePicker,
   useApiHeadersForm,
   useResource,
 } from '../../../hooks'
-import { IResource } from '@elastic-suite/gally-admin-shared'
+import {
+  IDependsForm,
+  IFieldConfig,
+  IFieldConfigFormWithFieldset,
+  IResource,
+} from '@elastic-suite/gally-admin-shared'
 import FieldGuesser from '../../stateful/FieldGuesser/FieldGuesser'
-import DoubleDatePicker from '../../atoms/form/DoubleDatePicker'
+import Tooltip from '../../atoms/modals/Tooltip'
+import IonIcon from '../../atoms/IonIcon/IonIcon'
+import {
+  MainSectionFieldSet,
+  MainSection,
+  SectionFieldSet,
+  ListItemForm,
+  LabelFieldSet,
+} from './CustomForm.styled'
+import { getDoubleDatePickerValue, isHiddenDepends } from '../../../services'
 
-function transformDateForApiBoost(data) {
-  return {}
+interface IProps {
+  data: Record<string, unknown> | undefined
+  handleChange: (val: string, response: any) => void
+  resourceName: string
 }
 
-function CustomForm(): JSX.Element {
-  const [data, setData]: any = useState()
+function CustomForm(props: IProps): JSX.Element {
+  const { data, handleChange, resourceName } = props
+
   const resource = boostJsLd as IResource
+  // const resource = useResource(ressourceName)
 
-  // console.log('resource', resource)
+  const concatMultiDatePicker = useApiDoubleDatePicker(resource)
+  const headers = useApiHeadersForm(concatMultiDatePicker)
 
-  function handleChange(a, e) {
-    // console.log('handleChange', a, e)
-
-    return setData({ ...data, [a]: e })
-  }
-
-  const a = useApiHeadersForm(resource)
-  console.log('useApiHeadersForm', useApiHeadersForm)
-
-  const b = useApiDoubleDatePicker(a)
-
-  console.log('useApiDoubleDatePicker', b)
+  const Root = (headers as unknown[]).find(
+    (it) => (it as IFieldConfigFormWithFieldset)?.children
+  )
+    ? MainSectionFieldSet
+    : MainSection
 
   return (
-    <div>
-      {a.map((item) => {
-        if (item?.children) {
+    <Root>
+      {headers.map((item: IFieldConfig | IFieldConfigFormWithFieldset) => {
+        if ((item as IFieldConfigFormWithFieldset)?.children) {
           return (
-            <>
-              <h1>{item.label}</h1>
-              <div>
-                {item.children.map((it) => {
-                  const val = data?.[it.name]
+            <SectionFieldSet>
+              {item.label && (
+                <LabelFieldSet>
+                  {item.label}
+                  {(item as IFieldConfigFormWithFieldset).tooltip && (
+                    <Tooltip
+                      title={
+                        (item as IFieldConfigFormWithFieldset).tooltip as string
+                      }
+                    >
+                      <span style={{ display: 'inline-block' }}>
+                        <IonIcon name="informationCircle" tooltip />
+                      </span>
+                    </Tooltip>
+                  )}
+                </LabelFieldSet>
+              )}
+              <ListItemForm>
+                {(item as IFieldConfigFormWithFieldset).children.map((it) => {
+                  const dependsForm = it?.field?.gally?.form?.depends
+                  if (dependsForm) {
+                    const isHidden = isHiddenDepends(
+                      dependsForm as IDependsForm[],
+                      data
+                    )
+
+                    if (isHidden) {
+                      return null
+                    }
+                  }
+
+                  const val =
+                    it?.input === 'rangeDate'
+                      ? getDoubleDatePickerValue(
+                          data as Record<string, unknown>
+                        )
+                      : data?.[it.name]
                   return (
                     <div>
                       <FieldGuesser
                         {...it}
-                        // label=""
                         onChange={handleChange}
-                        // row={tableRow}
                         value={val}
                         editable
-                        // {...getFieldState(
-                        //   tableRow,
-                        //   stickyHeader.depends,
-                        //   tableConfig[stickyHeader.name]
-                        // )}
                       />
                     </div>
                   )
                 })}
-              </div>
-            </>
+              </ListItemForm>
+            </SectionFieldSet>
           )
         }
-        return <div>{item.label}</div>
+
+        const dependsForm = (item as IFieldConfig)?.field?.gally?.form?.depends
+        if (dependsForm) {
+          const isHidden = isHiddenDepends(dependsForm as IDependsForm[], data)
+
+          if (isHidden) {
+            return null
+          }
+        }
+
+        const val =
+          (item as IFieldConfig)?.input === 'rangeDate'
+            ? getDoubleDatePickerValue(data as Record<string, unknown>)
+            : data?.[(item as IFieldConfig)?.name]
+        return (
+          <div>
+            <FieldGuesser
+              {...(item as IFieldConfig)}
+              onChange={handleChange}
+              value={val}
+              editable
+            />
+          </div>
+        )
       })}
-    </div>
+    </Root>
   )
 }
 
