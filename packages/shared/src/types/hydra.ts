@@ -11,7 +11,6 @@ import {
 } from './jsonld'
 import { IOptions } from './option'
 import { IHydraSimpleCatalog } from './catalog'
-import { IFieldCondition } from './field'
 
 export enum HydraType {
   ARRAY = 'array',
@@ -89,12 +88,6 @@ export interface IHydraProperty extends IJsonldBase {
   'rdfs:range'?: (IJsonldId | IRdfsRange)[]
 }
 
-export interface IFormConfig extends IGallyProperty {
-  fieldset?: string
-  rangeDateType?: string
-  rangeDateId?: number | string
-}
-
 export interface IDependsForm {
   field?: string
   value?: string
@@ -102,7 +95,7 @@ export interface IDependsForm {
 
 export interface IGallyProperty {
   context?: Record<string, IGallyProperty>
-  depends?: IFieldCondition | IDependsForm[]
+  depends?: any
   editable?: boolean
   input?: string
   options?: IDropdownStaticOptions | IDropdownApiOptions
@@ -113,7 +106,11 @@ export interface IGallyProperty {
   visible?: boolean
   alias?: string
   multipleSeparatorValue?: string
-  form?: IFormConfig
+  fieldset?: string
+  rangeDateType?: string
+  rangeDateId?: number | string
+  form?: IGallyProperty
+  grid?: IGallyProperty
 }
 
 export interface IDropdownStaticOptions {

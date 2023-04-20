@@ -1,10 +1,5 @@
 import React from 'react'
-import boostJsLd from '../../../../public/mocks/boostJsLd.json'
-import {
-  useApiDoubleDatePicker,
-  useApiHeadersForm,
-  useResource,
-} from '../../../hooks'
+import { useApiDoubleDatePicker, useApiHeaders } from '../../../hooks'
 import {
   IDependsForm,
   IFieldConfig,
@@ -25,18 +20,16 @@ import { getDoubleDatePickerValue, isHiddenDepends } from '../../../services'
 
 interface IProps {
   data: Record<string, unknown> | undefined
-  handleChange: (val: string, response: any) => void
-  resourceName: string
+  setData: (val: Record<string, unknown> | undefined) => void
+  resourceData: IResource
 }
 
 function CustomForm(props: IProps): JSX.Element {
-  const { data, handleChange, resourceName } = props
+  const { data, setData, resourceData } = props
 
-  const resource = boostJsLd as IResource
-  // const resource = useResource(ressourceName)
+  const resource = resourceData
 
-  const concatMultiDatePicker = useApiDoubleDatePicker(resource)
-  const headers = useApiHeadersForm(concatMultiDatePicker)
+  const headers = useApiHeaders(resource)
 
   const Root = (headers as unknown[]).find(
     (it) => (it as IFieldConfigFormWithFieldset)?.children
@@ -44,12 +37,23 @@ function CustomForm(props: IProps): JSX.Element {
     ? MainSectionFieldSet
     : MainSection
 
+  function handleChange(name: string, response: any) {
+    if (name === 'doubleDatePicker') {
+      const formatDate = { fromDate: response?.from, toDate: response?.to }
+
+      return setData({ ...data, ...formatDate })
+    }
+    return setData({ ...data, [name]: response })
+  }
+
   return (
     <Root>
       {headers.map((item: IFieldConfig | IFieldConfigFormWithFieldset) => {
         if ((item as IFieldConfigFormWithFieldset)?.children) {
           return (
-            <SectionFieldSet>
+            <SectionFieldSet
+              key={(item as IFieldConfigFormWithFieldset)?.position}
+            >
               {item.label && (
                 <LabelFieldSet>
                   {item.label}
@@ -87,14 +91,13 @@ function CustomForm(props: IProps): JSX.Element {
                         )
                       : data?.[it.name]
                   return (
-                    <div>
-                      <FieldGuesser
-                        {...it}
-                        onChange={handleChange}
-                        value={val}
-                        editable
-                      />
-                    </div>
+                    <FieldGuesser
+                      key={it?.id}
+                      {...it}
+                      onChange={handleChange}
+                      value={val}
+                      editable
+                    />
                   )
                 })}
               </ListItemForm>
@@ -116,14 +119,13 @@ function CustomForm(props: IProps): JSX.Element {
             ? getDoubleDatePickerValue(data as Record<string, unknown>)
             : data?.[(item as IFieldConfig)?.name]
         return (
-          <div>
-            <FieldGuesser
-              {...(item as IFieldConfig)}
-              onChange={handleChange}
-              value={val}
-              editable
-            />
-          </div>
+          <FieldGuesser
+            key={(item as IFieldConfig)?.id}
+            {...(item as IFieldConfig)}
+            onChange={handleChange}
+            value={val}
+            editable
+          />
         )
       })}
     </Root>
