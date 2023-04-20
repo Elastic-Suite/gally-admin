@@ -3,7 +3,9 @@
   "@type": "http://www.w3.org/ns/hydra/core#Class",
   "gally": {
     "fieldset": {
-      "general": { "position": 10 },
+      "general": {
+        "position": 10
+      },
       "sub": {
         "position": 20,
         "label": "Fonctionnement du boost",
@@ -86,10 +88,7 @@
         "visible": true,
         "editable": false,
         "position": 10,
-        "form": {
-          "visible": true,
-          "fieldset": "general"
-        }
+        "fieldset": "general"
       },
       "property": {
         "@id": "https://localhost/docs.jsonld#Boost/name",
@@ -118,14 +117,17 @@
         "visible": true,
         "editable": false,
         "position": 20,
-        "form": {
-          "visible": true,
-          "fieldset": "general",
-          "depends": [
-            { "field": "name", "value": "salut" },
-            { "field": "conditionRule", "value": "test" }
-          ]
-        }
+        "fieldset": "general",
+        "depends": [
+          {
+            "field": "name",
+            "value": "salut"
+          },
+          {
+            "field": "conditionRule",
+            "value": "test"
+          }
+        ]
       },
       "property": {
         "@id": "https://localhost/docs.jsonld#Boost/isActive",
@@ -148,12 +150,10 @@
       "gally": {
         "position": 30,
         "input": "rangeDate",
-        "form": {
-          "visible": true,
-          "fieldset": "general",
-          "rangeDateType": "to",
-          "rangeDateId": 1
-        }
+        "visible": true,
+        "fieldset": "general",
+        "rangeDateType": "to",
+        "rangeDateId": 1
       },
       "property": {
         "@id": "https://localhost/docs.jsonld#Boost/fromDate",
@@ -176,12 +176,10 @@
       "gally": {
         "position": 30,
         "input": "rangeDate",
-        "form": {
-          "visible": true,
-          "fieldset": "general",
-          "rangeDateType": "from",
-          "rangeDateId": 1
-        }
+        "visible": true,
+        "fieldset": "general",
+        "rangeDateType": "from",
+        "rangeDateId": 1
       },
       "property": {
         "@id": "https://localhost/docs.jsonld#Boost/toDate",
@@ -203,10 +201,8 @@
       "@type": "http://www.w3.org/ns/hydra/core#SupportedProperty",
       "gally": {
         "position": 50,
-        "form": {
-          "visible": true,
-          "fieldset": "general"
-        }
+        "visible": true,
+        "fieldset": "general"
       },
       "property": {
         "@id": "https://localhost/docs.jsonld#Boost/conditionRule",
@@ -235,10 +231,7 @@
         },
         "position": 60,
         "visible": true,
-        "form": {
-          "visible": true,
-          "fieldset": "sub"
-        }
+        "fieldset": "sub"
       },
       "property": {
         "@id": "https://localhost/docs.jsonld#Boost/model",
@@ -260,10 +253,8 @@
       "@type": "http://www.w3.org/ns/hydra/core#SupportedProperty",
       "gally": {
         "position": 70,
-        "form": {
-          "visible": true,
-          "fieldset": "sub"
-        }
+        "visible": true,
+        "fieldset": "sub"
       },
       "property": {
         "@id": "https://localhost/docs.jsonld#Boost/modelConfig",
@@ -285,10 +276,8 @@
       "@type": "http://www.w3.org/ns/hydra/core#SupportedProperty",
       "gally": {
         "position": 80,
-        "form": {
-          "visible": true,
-          "fieldset": "general"
-        }
+        "visible": true,
+        "fieldset": "general"
       },
       "property": {
         "@id": "https://localhost/docs.jsonld#Boost/localizedCatalogs",
@@ -311,10 +300,8 @@
       "gally": {
         "position": 90,
         "input": "select",
-        "form": {
-          "visible": true,
-          "fieldset": "general"
-        }
+        "visible": true,
+        "fieldset": "general"
       },
       "property": {
         "@id": "https://localhost/docs.jsonld#Boost/requestTypes",
@@ -344,9 +331,7 @@
           "api_graphql": "boostRequestTypeOptions"
         },
         "alias": "requestTypes.requestType",
-        "form": {
-          "fieldset": "general"
-        }
+        "fieldset": "general"
       },
       "property": {
         "@id": "https://localhost/docs.jsonld#Boost/requestTypeLabels",
@@ -365,10 +350,8 @@
       "@type": "http://www.w3.org/ns/hydra/core#SupportedProperty",
       "gally": {
         "position": 110,
-        "form": {
-          "visible": true,
-          "fieldset": "general"
-        }
+        "visible": true,
+        "fieldset": "general"
       },
       "property": {
         "@id": "https://localhost/docs.jsonld#Boost/categoryLimitations",
@@ -390,10 +373,8 @@
       "@type": "http://www.w3.org/ns/hydra/core#SupportedProperty",
       "gally": {
         "position": 120,
-        "form": {
-          "visible": true,
-          "fieldset": "general"
-        }
+        "visible": true,
+        "fieldset": "general"
       },
       "property": {
         "@id": "https://localhost/docs.jsonld#Boost/searchLimitations",
@@ -459,7 +440,7 @@
         },
         "position": 130,
         "visible": true,
-        "form": { "fieldset": "general" }
+        "fieldset": "general"
       },
       "property": {
         "@id": "https://localhost/docs.jsonld#Boost/localizedCatalogLabels",

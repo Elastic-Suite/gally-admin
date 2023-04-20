@@ -15,7 +15,7 @@ export interface IFieldState {
 }
 
 export interface IFieldConfig extends IFieldState {
-  depends?: IFieldCondition | IDependsForm[]
+  depends?: any
   editable?: boolean
   field?: IField
   id: string

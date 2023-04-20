@@ -31,10 +31,16 @@ function updateProperties(
   return properties
 }
 
+declare enum IMainContext {
+  GRID = 'grid',
+  FORM = 'form',
+}
 export function updatePropertiesAccordingToPath(
   field: IField,
-  path: string
+  path: string,
+  mainContext: IMainContext
 ): IField {
+  let result: IField = field
   if (path?.includes('admin/settings')) {
     path = 'settings_attribute'
   } else {
@@ -55,13 +61,24 @@ export function updatePropertiesAccordingToPath(
             propertyValue
           ))
       )
-      return {
-        ...field,
+      result = {
+        ...result,
         gally: newProperties,
       }
     }
   }
-  return field
+
+  const mainContextGally = field.gally?.[mainContext as IMainContext]
+  if (mainContextGally) {
+    let newGallyValue: IGallyProperty = { ...mainContextGally }
+    delete result.gally[mainContext]
+    result = {
+      ...result,
+      gally: { ...field.gally, ...newGallyValue },
+    }
+  }
+
+  return result
 }
 
 export function hasFieldOptions(field: IField): boolean {
