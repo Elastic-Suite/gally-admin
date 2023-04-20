@@ -7,6 +7,7 @@ import React, {
 } from 'react'
 import {
   IField,
+  IFieldConfig,
   IFieldGuesserProps,
   IHydraMember,
   IResource,
@@ -65,7 +66,7 @@ function TableGuesser<T extends IHydraMember>(props: IProps<T>): JSX.Element {
     tableConfigs,
     tableRows,
   } = props
-  const tableHeaders = useApiHeaders(resource)
+  const tableHeaders = useApiHeaders(resource) as IFieldConfig[]
   const fieldOptions = useApiEditableFieldOptions(resource)
 
   const tableRef = useRef<HTMLDivElement>()

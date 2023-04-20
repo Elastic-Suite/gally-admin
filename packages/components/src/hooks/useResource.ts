@@ -17,7 +17,10 @@ import { selectApi, useAppSelector } from '../store'
 
 import { useApiFetch } from './useApi'
 
-export function useResource(resourceName: string): IResource {
+export function useResource(
+  resourceName: string,
+  mainContext: string = 'grid'
+): IResource {
   const api = useAppSelector(selectApi)
   const { pathname } = useRouter()
 
@@ -26,7 +29,7 @@ export function useResource(resourceName: string): IResource {
     return {
       ...resource,
       supportedProperty: resource?.supportedProperty.map((field) =>
-        updatePropertiesAccordingToPath(field, pathname)
+        updatePropertiesAccordingToPath(field, pathname, mainContext)
       ),
     }
   }, [api, pathname, resourceName])
