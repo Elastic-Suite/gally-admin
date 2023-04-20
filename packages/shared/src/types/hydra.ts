@@ -91,13 +91,18 @@ export interface IHydraProperty extends IJsonldBase {
 
 export interface IFormConfig extends IGallyProperty {
   fieldset?: string
-  fromDate?: boolean
-  toDate?: boolean
+  rangeDateType?: string
+  rangeDateId?: number | string
+}
+
+export interface IDependsForm {
+  field?: string
+  value?: string
 }
 
 export interface IGallyProperty {
   context?: Record<string, IGallyProperty>
-  depends?: IFieldCondition
+  depends?: IFieldCondition | IDependsForm[]
   editable?: boolean
   input?: string
   options?: IDropdownStaticOptions | IDropdownApiOptions

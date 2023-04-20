@@ -3,8 +3,12 @@
   "@type": "http://www.w3.org/ns/hydra/core#Class",
   "gally": {
     "fieldset": {
-      "general": { "position": 10, "label": "General label" },
-      "sub": { "position": 20, "label": "Sub label" }
+      "general": { "position": 10 },
+      "sub": {
+        "position": 20,
+        "label": "Fonctionnement du boost",
+        "tooltip": "Fonctionnement du boost blabla tooltip"
+      }
     }
   },
   "supportedOperation": [
@@ -111,7 +115,11 @@
         "position": 20,
         "form": {
           "visible": true,
-          "fieldset": "general"
+          "fieldset": "general",
+          "depends": [
+            { "field": "name", "value": "salut" },
+            { "field": "conditionRule", "value": "test" }
+          ]
         }
       },
       "property": {
@@ -138,7 +146,8 @@
         "form": {
           "visible": true,
           "fieldset": "general",
-          "fromDate": true
+          "rangeDateType": "to",
+          "rangeDateId": 1
         }
       },
       "property": {
@@ -165,7 +174,8 @@
         "form": {
           "visible": true,
           "fieldset": "general",
-          "toDate": true
+          "rangeDateType": "from",
+          "rangeDateId": 1
         }
       },
       "property": {
@@ -295,7 +305,7 @@
       "@type": "http://www.w3.org/ns/hydra/core#SupportedProperty",
       "gally": {
         "position": 90,
-        "input": "requestType",
+        "input": "select",
         "form": {
           "visible": true,
           "fieldset": "general"

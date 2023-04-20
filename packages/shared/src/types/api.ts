@@ -27,11 +27,14 @@ export interface IOperation extends IJsonldType {
 }
 
 export interface IFieldSetClass {
-  fieldset: Record<string, { position: number; label: string }>
+  fieldset: Record<
+    string,
+    { position: number; label?: string; tooltip?: string }
+  >
 }
 
 export interface IResource extends IJsonldBase {
-  label: string
+  label?: string
   supportedOperation: IOperation[]
   supportedProperty: IField[]
   title: string
