@@ -26,7 +26,7 @@ export interface IOperation extends IJsonldType {
   title: string
 }
 
-export interface IFieldSetClass {
+export interface IGallyClass {
   fieldset: Record<
     string,
     { position: number; label?: string; tooltip?: string }
@@ -39,7 +39,7 @@ export interface IResource extends IJsonldBase {
   supportedProperty: IField[]
   title: string
   url: string
-  gally?: IFieldSetClass
+  gally?: IGallyClass
 }
 
 export type IApi = IResource[]
