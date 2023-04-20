@@ -1,133 +1,66 @@
 {
-  "@context": "/contexts/Boost",
-  "@id": "/boosts",
-  "@type": "hydra:Collection",
-  "hydra:member": [
+  "@id": "/boosts/1",
+  "@type": "Boost",
+  "id": 1,
+  "name": "My First Boost",
+  "isActive": true,
+  "fromDate": null,
+  "toDate": null,
+  "conditionRule": null,
+  "model": "constant_score",
+  "modelConfig": "{\"scale_factor\":\"1\",\"constant_score_value\":\"23\",\"scale_function\":\"\"}",
+  "localizedCatalogs": ["/localized_catalogs/7", "/localized_catalogs/8"],
+  "requestTypes": [
     {
-      "@id": "/boosts/1",
-      "@type": "Boost",
-      "id": 1,
-      "name": "My First Boost",
-      "isActive": true,
-      "fromDate": null,
-      "toDate": null,
-      "conditionRule": null,
-      "model": "constant_score",
-      "modelConfig": "{\"scale_factor\":\"1\",\"constant_score_value\":\"23\",\"scale_function\":\"\"}",
-      "localizedCatalogs": ["/localized_catalogs/7", "/localized_catalogs/8"],
-      "requestTypes": [
-        {
-          "@id": "/boost_request_types/1",
-          "@type": "BoostRequestType",
-          "requestType": "product_catalog",
-          "applyToAll": false
-        },
-        {
-          "@id": "/boost_request_types/2",
-          "@type": "BoostRequestType",
-          "requestType": "product_search",
-          "applyToAll": false
-        }
-      ],
-      "requestTypeLabels": ["Catalog product view", "Search items"],
-      "categoryLimitations": [
-        {
-          "@id": "/boost_category_limitations/1",
-          "@type": "BoostCategoryLimitation",
-          "category": "/categories/cat_2"
-        },
-        {
-          "@id": "/boost_category_limitations/2",
-          "@type": "BoostCategoryLimitation",
-          "category": "/categories/cat_3"
-        }
-      ],
-      "searchLimitations": [
-        {
-          "@id": "/boost_search_limitations/1",
-          "@type": "BoostSearchLimitation",
-          "operator": "eq",
-          "queryText": "Red"
-        },
-        {
-          "@id": "/boost_search_limitations/2",
-          "@type": "BoostSearchLimitation",
-          "operator": "eq",
-          "queryText": "Color red"
-        },
-        {
-          "@id": "/boost_search_limitations/3",
-          "@type": "BoostSearchLimitation",
-          "operator": "like%",
-          "queryText": "Color red"
-        }
-      ],
-      "createdAt": "2023-03-20T15:33:33+00:00",
-      "updatedAt": "2023-03-20T15:33:33+00:00",
-      "localizedCatalogLabels": [
-        "COM Catalog - COM French Catalog",
-        "COM Catalog - COM English Catalog"
-      ]
+      "@id": "/boost_request_types/1",
+      "@type": "BoostRequestType",
+      "requestType": "product_catalog",
+      "applyToAll": false
+    },
+    {
+      "@id": "/boost_request_types/2",
+      "@type": "BoostRequestType",
+      "requestType": "product_search",
+      "applyToAll": false
     }
   ],
-  "hydra:totalItems": 1,
-  "hydra:view": {
-    "@id": "/boosts?pageSize=30",
-    "@type": "hydra:PartialCollectionView"
-  },
-  "hydra:search": {
-    "@type": "hydra:IriTemplate",
-    "hydra:template": "/boosts{?name,model,model[],localizedCatalogs.id,localizedCatalogs.id[],requestTypes.requestType,requestTypes.requestType[],isActive}",
-    "hydra:variableRepresentation": "BasicRepresentation",
-    "hydra:mapping": [
-      {
-        "@type": "IriTemplateMapping",
-        "variable": "name",
-        "property": "name",
-        "required": false
-      },
-      {
-        "@type": "IriTemplateMapping",
-        "variable": "model",
-        "property": "model",
-        "required": false
-      },
-      {
-        "@type": "IriTemplateMapping",
-        "variable": "model[]",
-        "property": "model",
-        "required": false
-      },
-      {
-        "@type": "IriTemplateMapping",
-        "variable": "localizedCatalogs.id",
-        "property": "localizedCatalogs.id",
-        "required": false
-      },
-      {
-        "@type": "IriTemplateMapping",
-        "variable": "localizedCatalogs.id[]",
-        "property": "localizedCatalogs.id",
-        "required": false
-      },
-      {
-        "@type": "IriTemplateMapping",
-        "variable": "requestTypes.requestType",
-        "property": "requestTypes.requestType",
-        "required": false
-      },
-      {
-        "@type": "IriTemplateMapping",
-        "variable": "requestTypes.requestType[]",
-        "property": "requestTypes.requestType",
-        "required": false
-      },
-      {
-        "@type": "IriTemplateMapping",
-        "variable": "isActive",
-        "property": "isActive",
-        "required": false
-      }
-    ]
-  }
+  "requestTypeLabels": ["Catalog product view", "Search items"],
+  "categoryLimitations": [
+    {
+      "@id": "/boost_category_limitations/1",
+      "@type": "BoostCategoryLimitation",
+      "category": "/categories/cat_2"
+    },
+    {
+      "@id": "/boost_category_limitations/2",
+      "@type": "BoostCategoryLimitation",
+      "category": "/categories/cat_3"
+    }
+  ],
+  "searchLimitations": [
+    {
+      "@id": "/boost_search_limitations/1",
+      "@type": "BoostSearchLimitation",
+      "operator": "eq",
+      "queryText": "Red"
+    },
+    {
+      "@id": "/boost_search_limitations/2",
+      "@type": "BoostSearchLimitation",
+      "operator": "eq",
+      "queryText": "Color red"
+    },
+    {
+      "@id": "/boost_search_limitations/3",
+      "@type": "BoostSearchLimitation",
+      "operator": "like%",
+      "queryText": "Color red"
+    }
+  ],
+  "createdAt": "2023-03-20T15:33:33+00:00",
+  "updatedAt": "2023-03-20T15:33:33+00:00",
+  "localizedCatalogLabels": [
+    "COM Catalog - COM French Catalog",
+    "COM Catalog - COM English Catalog"
+  ]
 }

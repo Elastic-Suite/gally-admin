@@ -3,6 +3,7 @@ import { SyntheticEvent } from 'react'
 import { IField } from './api'
 import { DataContentType, ITableRow } from './customTables'
 import { IOptions } from './option'
+import { IDependsForm } from './hydra'
 
 export interface IFieldCondition {
   conditions: Record<string, unknown>
@@ -14,7 +15,7 @@ export interface IFieldState {
 }
 
 export interface IFieldConfig extends IFieldState {
-  depends?: IFieldCondition
+  depends?: IFieldCondition | IDependsForm[]
   editable?: boolean
   field?: IField
   id: string
@@ -32,7 +33,8 @@ export interface IFieldConfig extends IFieldState {
 
 export interface IFieldConfigFormWithFieldset {
   position?: number
-  label: string
+  label?: string
+  tooltip?: string
   code: string
   children: IFieldConfig[]
 }
