@@ -13,10 +13,10 @@ export default {
 const Template: ComponentStory<typeof CustomForm> = (args) => {
   const [data, setData] = useState<Record<string, unknown>>() // boostData if it's for updateForm
 
-  return <CustomForm {...args} data={data} setData={setData} />
+  return <CustomForm {...args} data={data} onChange={setData} />
 }
 
 export const Default = Template.bind({})
 Default.args = {
-  resourceData: boostWithUseResource, // make useResource(resourceName) for use it out storybook
+  resource: boostWithUseResource, // do useResource(resourceName) for use it out storybook
 }
