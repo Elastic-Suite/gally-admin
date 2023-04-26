@@ -1,5 +1,5 @@
-import React from 'react'
-import { useApiDoubleDatePicker, useApiHeaders } from '../../../hooks'
+import React, { SyntheticEvent } from 'react'
+import { useApiHeaders } from '../../../hooks'
 import {
   IDependsForm,
   IFieldConfig,
@@ -20,14 +20,12 @@ import { getDoubleDatePickerValue, isHiddenDepends } from '../../../services'
 
 interface IProps {
   data: Record<string, unknown> | undefined
-  setData: (val: Record<string, unknown> | undefined) => void
-  resourceData: IResource
+  onChange: (val: Record<string, unknown> | undefined) => void
+  resource: IResource
 }
 
 function CustomForm(props: IProps): JSX.Element {
-  const { data, setData, resourceData } = props
-
-  const resource = resourceData
+  const { data, onChange, resource } = props
 
   const headers = useApiHeaders(resource)
 
@@ -37,13 +35,14 @@ function CustomForm(props: IProps): JSX.Element {
     ? MainSectionFieldSet
     : MainSection
 
-  function handleChange(name: string, response: any) {
-    if (name === 'doubleDatePicker') {
-      const formatDate = { fromDate: response?.from, toDate: response?.to }
-
-      return setData({ ...data, ...formatDate })
+  function handleChange(
+    name: string | Record<string, string>,
+    response: unknown
+  ): void {
+    if (typeof response === 'object') {
+      return onChange({ ...data, ...response })
     }
-    return setData({ ...data, [name]: response })
+    return onChange({ ...data, [name as string]: response })
   }
 
   return (
