@@ -10,7 +10,6 @@ export function useApiDoubleDatePicker(resource: IResource): IResource {
           title: 'doubleDatePicker',
           property: {
             ...element.property,
-            '@id': 'https://localhost/docs.jsonld#Boost/doubleDatePicker',
             label: 'doubleDatePicker',
           },
         }

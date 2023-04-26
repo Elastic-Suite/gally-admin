@@ -52,7 +52,14 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
     event?: SyntheticEvent
   ): void {
     if (onChange) {
-      onChange(name, value, event)
+      if (name === 'doubleDatePicker') {
+        const formatDate = {
+          fromDate: (value as IDoubleDatePickerValues)?.from,
+          toDate: (value as IDoubleDatePickerValues)?.to,
+        }
+        return onChange(name, formatDate, event)
+      }
+      return onChange(name, value, event)
     }
   }
 
