@@ -17,35 +17,34 @@ export function useApiHeaders(
   let transformedResource = useApiDoubleDatePicker(resource)
   return useMemo(() => {
     if (transformedResource.gally?.fieldset) {
-      const newArr: IFieldConfigFormWithFieldset[] = []
+      const fieldsetMap: { [key: string]: IFieldConfigFormWithFieldset } = {}
+
       transformedResource.supportedProperty
         .filter((field) => field.gally?.visible)
         .sort((a, b) => a.gally?.position - b.gally?.position)
         .forEach((field) => {
-          const fieldsetIndex = newArr.findIndex(
-            (item) => item.code === field?.gally?.fieldset
-          )
-          if (fieldsetIndex !== -1) {
-            newArr[fieldsetIndex].children.push(getFieldHeader(field, t))
+          const fieldsetCode = field?.gally?.fieldset
+          const fieldHeader = getFieldHeader(field, t)
+
+          if (fieldsetCode in fieldsetMap) {
+            fieldsetMap[fieldsetCode].children.push(fieldHeader)
           } else {
-            newArr.push({
-              position:
-                transformedResource.gally?.fieldset?.[field?.gally?.fieldset]
-                  ?.position,
-              label:
-                transformedResource.gally?.fieldset?.[field?.gally?.fieldset]
-                  ?.label,
-              code: field?.gally?.fieldset,
-              tooltip:
-                transformedResource.gally?.fieldset?.[field?.gally?.fieldset]
-                  ?.tooltip,
-              children: [getFieldHeader(field, t)],
-            })
+            const fieldset = transformedResource.gally?.fieldset?.[fieldsetCode]
+            fieldsetMap[fieldsetCode] = {
+              position: fieldset?.position,
+              label: fieldset?.label,
+              code: fieldsetCode,
+              tooltip: fieldset?.tooltip,
+              children: [fieldHeader],
+            }
           }
         })
-      return newArr.sort(
+
+      const result = Object.values(fieldsetMap).sort(
         (a, b) => a.position - b.position
       ) as IFieldConfigFormWithFieldset[]
+
+      return result
     }
     return transformedResource.supportedProperty
       .filter((field) => field.gally?.visible)
