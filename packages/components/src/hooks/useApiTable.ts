@@ -10,47 +10,55 @@ import {
 } from '@elastic-suite/gally-admin-shared'
 import { useApiDoubleDatePicker } from './useApiForm'
 
-export function useApiHeaders(
-  resource: IResource
-): IFieldConfig[] | IFieldConfigFormWithFieldset[] {
+export function useApiHeaders(resource: IResource): IFieldConfig[] {
   const { t } = useTranslation('api')
-  let transformedResource = useApiDoubleDatePicker(resource)
-  return useMemo(() => {
-    if (transformedResource.gally?.fieldset) {
-      const fieldsetMap: { [key: string]: IFieldConfigFormWithFieldset } = {}
-
+  const transformedResource = useApiDoubleDatePicker(resource)
+  return useMemo(
+    () =>
       transformedResource.supportedProperty
         .filter((field) => field.gally?.visible)
         .sort((a, b) => a.gally?.position - b.gally?.position)
-        .forEach((field) => {
-          const fieldsetCode = field?.gally?.fieldset
-          const fieldHeader = getFieldHeader(field, t)
+        .map((field) => getFieldHeader(field, t)),
+    [t, transformedResource]
+  )
+}
 
-          if (fieldsetCode in fieldsetMap) {
-            fieldsetMap[fieldsetCode].children.push(fieldHeader)
-          } else {
-            const fieldset = transformedResource.gally?.fieldset?.[fieldsetCode]
-            fieldsetMap[fieldsetCode] = {
-              position: fieldset?.position,
-              label: fieldset?.label,
-              code: fieldsetCode,
-              tooltip: fieldset?.tooltip,
-              children: [fieldHeader],
-            }
+// group all fields that do not have a fieldset in this fieldset
+const FIELDSET_OTHER_KEY = '_other';
+
+export function useApiHeadersForm(
+  resource: IResource
+): IFieldConfigFormWithFieldset[] {
+  const apiHeaders = useApiHeaders(resource)
+  return useMemo(() => {
+    const apiHeaderMap = apiHeaders.reduce<
+      Record<string, IFieldConfigFormWithFieldset>
+    >((acc, header) => {
+      const fieldsetCode = header.fieldset
+      const fieldset = resource.gally?.fieldset?.[fieldsetCode]
+      if (fieldsetCode && fieldset) {
+        if (fieldsetCode in acc) {
+          acc[fieldsetCode].children.push(header)
+        } else {
+          acc[fieldsetCode] = {
+            ...fieldset,
+            code: fieldsetCode,
+            children: [header],
           }
-        })
-
-      const result = Object.values(fieldsetMap).sort(
-        (a, b) => a.position - b.position
-      ) as IFieldConfigFormWithFieldset[]
-
-      return result
-    }
-    return transformedResource.supportedProperty
-      .filter((field) => field.gally?.visible)
-      .sort((a, b) => a.gally?.position - b.gally?.position)
-      .map((field) => getFieldHeader(field, t))
-  }, [resource, t])
+        }
+      } else {
+        acc[FIELDSET_OTHER_KEY].children.push(header)
+      }
+      return acc
+    }, {
+      [FIELDSET_OTHER_KEY]: {
+        code: FIELDSET_OTHER_KEY,
+        children: [],
+        position: Infinity,
+      }
+    })
+    return Object.values(apiHeaderMap).sort((a, b) => a?.position - b?.position)
+  }, [apiHeaders, resource])
 }
 
 export function useApiEditableFieldOptions(
