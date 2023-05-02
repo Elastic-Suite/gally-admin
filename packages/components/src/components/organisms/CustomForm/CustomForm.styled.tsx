@@ -1,18 +1,9 @@
 import { styled } from '@mui/system'
-import FieldGuesser from '../../stateful/FieldGuesser/FieldGuesser'
 
 export const MainSectionFieldSet = styled('div')(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
   gap: theme.spacing(4),
-}))
-
-export const MainSection = styled(MainSectionFieldSet)(({ theme }) => ({
-  background: theme.palette.colors.white,
-  border: '1px solid ',
-  borderColor: theme.palette.colors.neutral[300],
-  borderRadius: theme.spacing(1),
-  padding: theme.spacing(4),
 }))
 
 export const SectionFieldSet = styled('div')(({ theme }) => ({

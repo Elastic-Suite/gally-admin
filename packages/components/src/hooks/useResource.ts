@@ -4,6 +4,7 @@ import { useRouter } from 'next/router'
 import {
   IError,
   IHydraMember,
+  IMainContext,
   IResource,
   IResourceOperations,
   Method,
@@ -19,7 +20,7 @@ import { useApiFetch } from './useApi'
 
 export function useResource(
   resourceName: string,
-  mainContext: string = 'grid'
+  mainContext: IMainContext = IMainContext.GRID
 ): IResource {
   const api = useAppSelector(selectApi)
   const { pathname } = useRouter()
@@ -32,7 +33,7 @@ export function useResource(
         updatePropertiesAccordingToPath(field, pathname, mainContext)
       ),
     }
-  }, [api, pathname, resourceName])
+  }, [api, pathname, mainContext, resourceName])
 }
 
 export function useResourceOperations<T extends IHydraMember>(
