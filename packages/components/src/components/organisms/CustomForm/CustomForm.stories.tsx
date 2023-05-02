@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
-import boostData from '../../../../public/mocks/boostData.json'
+// import boostData from '../../../../public/mocks/boostData.json'
 import boostWithUseResource from '../../../../public/mocks/boostWithUseResource.json'
 
 import CustomForm from './CustomForm'

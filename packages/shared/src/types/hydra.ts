@@ -11,7 +11,7 @@ import {
 } from './jsonld'
 import { IOptions } from './option'
 import { IHydraSimpleCatalog } from './catalog'
-import { IFieldCondition } from './field'
+// import { IFieldCondition } from './field'
 
 export enum HydraType {
   ARRAY = 'array',

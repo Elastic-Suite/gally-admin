@@ -65,6 +65,7 @@ export function getFieldHeader(field: IField, t: TFunction): IFieldConfig {
   return {
     ...fieldConfig,
     editable: field.gally?.editable && field.writeable,
+    fieldset: field.gally?.fieldset,
     id,
     input,
     label:
