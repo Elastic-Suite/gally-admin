@@ -17,7 +17,13 @@ import { fetchJson } from './fetch'
 
 type IExpandedHydraSupportedClassMap = Map<string, IExpandedHydraSupportedClass>
 
-export function getDocumentationUrlFromHeaders(headers: Headers): string {
+export function getDocumentationUrlFromHeaders(
+  headers: Headers,
+  apiUrl: string
+): string {
+  if (process.env.NEXT_PUBLIC_LOCAL) {
+    return `${apiUrl}/docs.jsonld`
+  }
   const linkHeader = headers.get('Link')
   if (linkHeader) {
     const matches = headerRegexp.exec(linkHeader)
@@ -32,7 +38,7 @@ export async function fetchDocs(apiUrl: string): Promise<{
   entrypointUrl: string
 }> {
   const { json: entrypoint, response } = await fetchJson<IEntrypoint>(apiUrl)
-  const docsUrl = getDocumentationUrlFromHeaders(response.headers)
+  const docsUrl = getDocumentationUrlFromHeaders(response.headers, apiUrl)
   const { json: docs } = await fetchJson<JsonLdDocument>(docsUrl)
   const [expandedDoc, expandedEntrypoint] = await Promise.all([
     jsonld.expand(docs, { base: docsUrl }),
