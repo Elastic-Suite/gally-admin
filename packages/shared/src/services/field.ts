@@ -3,6 +3,8 @@ import {
   IDropdownStaticOptions,
   IField,
   IFieldCondition,
+  IFieldConfig,
+  IFieldConfigFormWithFieldset,
   IFieldState,
   IGallyProperty,
 } from '../types'
@@ -31,7 +33,7 @@ function updateProperties(
   return properties
 }
 
-declare enum IMainContext {
+export enum IMainContext {
   GRID = 'grid',
   FORM = 'form',
 }
@@ -70,7 +72,7 @@ export function updatePropertiesAccordingToPath(
 
   const mainContextGally = field.gally?.[mainContext as IMainContext]
   if (mainContextGally) {
-    let newGallyValue: IGallyProperty = { ...mainContextGally }
+    const newGallyValue: IGallyProperty = { ...mainContextGally }
     delete result.gally[mainContext]
     result = {
       ...result,
@@ -107,4 +109,10 @@ export function getFieldState(
     ...(conditionActive && conditionalState),
     ...state,
   }
+}
+
+export function isFieldConfigFormWithFieldset(
+  fieldConfig: IFieldConfig | IFieldConfigFormWithFieldset
+): fieldConfig is IFieldConfigFormWithFieldset {
+  return 'children' in fieldConfig
 }

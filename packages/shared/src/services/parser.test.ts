@@ -18,7 +18,8 @@ describe('Parser service', () => {
         getDocumentationUrlFromHeaders(
           new Headers({
             'Content-Type': 'application/ld+json',
-          })
+          }),
+          'http://localhost:6006'
         )
       ).toEqual(undefined)
     })
@@ -28,10 +29,11 @@ describe('Parser service', () => {
         getDocumentationUrlFromHeaders(
           new Headers({
             'Content-Type': 'application/ld+json',
-            link: '<http://localhost:3000/mocks/docs.jsonld>; rel="http://www.w3.org/ns/hydra/core#apiDocumentation"',
-          })
+            link: '<http://localhost:6006/mocks/docs.jsonld>; rel="http://www.w3.org/ns/hydra/core#apiDocumentation"',
+          }),
+          'http://localhost:6006'
         )
-      ).toEqual('http://localhost:3000/mocks/docs.jsonld')
+      ).toEqual('http://localhost:6006/mocks/docs.jsonld')
     })
   })
 

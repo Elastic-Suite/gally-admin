@@ -107,16 +107,16 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
       )
     }
 
-    case DataContentType.RANGEDATE: {
-      return (
-        <Box>
-          <DoubleDatePicker
-            value={value as IDoubleDatePickerValues}
-            onChange={handleChange}
-          />
-        </Box>
-      )
-    }
+    // case DataContentType.RANGEDATE: {
+    //   return (
+    //     <Box>
+    //       <DoubleDatePicker
+    //         value={value as IDoubleDatePickerValues}
+    //         onChange={handleChange}
+    //       />
+    //     </Box>
+    //   )
+    // }
 
     case DataContentType.OTPGROUP:
     case DataContentType.SELECT: {

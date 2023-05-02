@@ -1,6 +1,6 @@
 {
   "@context": {
-    "@vocab": "http://localhost:3000/mocks/docs.jsonld#",
+    "@vocab": "http://localhost:6006//docs.jsonld#",
     "hydra": "http://www.w3.org/ns/hydra/core#",
     "index": { "@id": "Entrypoint/index", "@type": "@id" },
     "mappingStatus": { "@id": "Entrypoint/mappingStatus", "@type": "@id" },

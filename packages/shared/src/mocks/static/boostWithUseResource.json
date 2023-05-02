@@ -87,8 +87,7 @@
       "gally": {
         "visible": true,
         "editable": false,
-        "position": 10,
-        "fieldset": "general"
+        "position": 10
       },
       "property": {
         "@id": "https://localhost/docs.jsonld#Boost/name",
