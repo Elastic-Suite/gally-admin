@@ -16,7 +16,7 @@ import {
 
 interface IProps {
   data?: Record<string, unknown>
-  onChange: (val: Record<string, unknown> | undefined) => void
+  onChange: (val: Record<string, unknown>) => void
   resource: IResource
 }
 
