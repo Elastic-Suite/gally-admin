@@ -14,6 +14,8 @@ import {
   ISourceFieldOptionLabel,
 } from '../types'
 
+import dayjs from 'dayjs'
+
 export class HydraError extends Error {
   error: IHydraError
   constructor(error: IHydraError) {
@@ -213,4 +215,38 @@ export function getFilterParameters(
       return acc
     }, [])
   )
+}
+
+export function valueInitializer(input: string): unknown {
+  switch (input) {
+    case 'boolean':
+      return false
+
+    case 'array':
+      return []
+
+    case 'integer':
+    case 'float':
+      return 0
+
+    case 'date':
+      return dayjs(new Date()).format('YYYY-MM-DD')
+
+    case 'dateTime':
+      return dayjs(new Date()).format('YYYY-MM-DD HH:mm:ss')
+
+    default:
+      return ''
+  }
+}
+
+export function initResourceData(resource: IResource): Record<string, unknown> {
+  const visibleChamp = Object.fromEntries(
+    resource.supportedProperty
+      .filter((property) => property?.gally?.visible)
+      .map((item) => {
+        return [item.title, valueInitializer(getFieldType(item))]
+      })
+  )
+  return visibleChamp
 }
