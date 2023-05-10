@@ -7,9 +7,9 @@ import {
 } from '../mocks'
 
 import {
+  IMainContext,
   getFieldState,
   hasFieldOptions,
-  IMainContext,
   isDropdownStaticOptions,
   updatePropertiesAccordingToPath,
 } from './field'
