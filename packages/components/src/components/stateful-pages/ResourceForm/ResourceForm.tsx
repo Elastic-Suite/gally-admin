@@ -54,7 +54,7 @@ function ResourceForm(props: IProps): JSX.Element {
     <CustomResourceForm>
       <CustomForm data={data} onChange={setData} resource={resource} />
       <Box>
-        <Button disabled={isValidForm} onClick={createForm} loading={isLoading}>
+        <Button disabled={!isValidForm} onClick={createForm} loading={isLoading}>
           Create
         </Button>
       </Box>
