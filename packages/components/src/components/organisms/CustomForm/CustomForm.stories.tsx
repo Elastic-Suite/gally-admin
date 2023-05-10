@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
-// import boostData from '../../../../public/mocks/boostData.json'
 import boostWithUseResource from '../../../../public/mocks/boostWithUseResource.json'
 
 import CustomForm from './CustomForm'
@@ -11,12 +10,12 @@ export default {
 } as ComponentMeta<typeof CustomForm>
 
 const Template: ComponentStory<typeof CustomForm> = (args) => {
-  const [data, setData] = useState<Record<string, unknown>>() // boostData if it's for updateForm
+  const [data, setData] = useState<Record<string, unknown>>()
 
   return <CustomForm {...args} data={data} onChange={setData} />
 }
 
 export const Default = Template.bind({})
 Default.args = {
-  resource: boostWithUseResource, // do useResource(resourceName) for use it out storybook
+  resource: boostWithUseResource,
 }
