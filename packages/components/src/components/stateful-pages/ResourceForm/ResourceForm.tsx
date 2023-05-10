@@ -9,7 +9,7 @@ import {
 
 import CustomForm from '../../organisms/CustomForm/CustomForm'
 import Button from '../../atoms/buttons/Button'
-import { isError } from '@elastic-suite/gally-admin-shared'
+import { initResourceData, isError } from '@elastic-suite/gally-admin-shared'
 import { closeSnackbar, enqueueSnackbar } from 'notistack'
 import { useTranslation } from 'react-i18next'
 import styled from '@emotion/styled'
@@ -37,11 +37,11 @@ function ResourceForm(props: IProps): JSX.Element {
     (property) => property.required && property?.gally?.visible
   )
 
-  const [data, setData] = useState<Record<string, unknown>>()
-
-  const isValidForm = !requiredChamps.some(
-    (it) => !(data as Record<string, unknown>)?.[it.title as string]
+  const [data, setData] = useState<Record<string, unknown>>(
+    id ? {} : initResourceData(resource)
   )
+
+  const isValidForm = !requiredChamps.some((it) => !data?.[it.title as string])
 
   const fetchApi = useApiFetch()
   const log = useLog()
