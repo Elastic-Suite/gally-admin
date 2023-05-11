@@ -1,6 +1,6 @@
 import React, { FormEvent, useCallback, useEffect, useState } from 'react'
 import { useTranslation } from 'next-i18next'
-import { useRouter } from 'next/router'
+import Router from 'next/router'
 import Head from 'next/head'
 import { styled } from '@mui/system'
 import {
@@ -11,8 +11,8 @@ import {
   tokenStorageKey,
 } from '@elastic-suite/gally-admin-shared'
 
-import { useApiFetch } from '../hooks'
-import { selectRequestedPath, selectUser, useAppSelector } from '../store'
+import { useApiFetch, useUser } from '../hooks'
+import { selectRequestedPath, useAppSelector } from '../store'
 
 import Button from '../components/atoms/buttons/Button'
 import InputText from '../components/atoms/form/InputText'
@@ -46,8 +46,7 @@ const CustomBloc = styled('div')({
 
 function Login(): JSX.Element {
   const { t } = useTranslation('login')
-  const { push } = useRouter()
-  const user = useAppSelector(selectUser)
+  const user = useUser()
   const requestedPath = useAppSelector(selectRequestedPath)
 
   const fetchApi = useApiFetch(false)
@@ -55,8 +54,8 @@ function Login(): JSX.Element {
   const [password, setPassword] = useState('')
 
   const redirectToRequestedPath = useCallback(
-    () => push(requestedPath ?? '/admin/settings/scope/catalogs'),
-    [push, requestedPath]
+    () => Router.push(requestedPath ?? '/admin/settings/scope/catalogs'),
+    [requestedPath]
   )
 
   useEffect(() => {

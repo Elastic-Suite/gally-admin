@@ -5,6 +5,7 @@ import {
   useEffect,
   useState,
 } from 'react'
+import Router from 'next/router'
 import { useTranslation } from 'next-i18next'
 import {
   AuthError,
@@ -14,15 +15,14 @@ import {
   LoadStatus,
   fetchGraphql,
   isError,
+  storageRemove,
+  tokenStorageKey,
 } from '@elastic-suite/gally-admin-shared'
-
-import { setUser, useAppDispatch } from '../store'
 
 import { useLog } from './useLog'
 
 export function useApiGraphql(secure = true): IGraphqlApi {
   const { i18n } = useTranslation('common')
-  const dispatch = useAppDispatch()
   const log = useLog()
 
   return useCallback(
@@ -43,12 +43,13 @@ export function useApiGraphql(secure = true): IGraphqlApi {
       } catch (error) {
         log(error)
         if (error instanceof AuthError) {
-          dispatch(setUser({ token: '', user: null }))
+          storageRemove(tokenStorageKey)
+          Router.push('/login')
         }
         return { error }
       }
     },
-    [dispatch, i18n.language, log, secure]
+    [i18n.language, log, secure]
   )
 }
 
