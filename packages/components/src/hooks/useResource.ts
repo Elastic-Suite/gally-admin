@@ -23,6 +23,7 @@ export function useResource(
   mainContext: IMainContext = IMainContext.GRID
 ): IResource {
   const api = useAppSelector(selectApi)
+  console.log('api', api)
   const { pathname } = useRouter()
 
   return useMemo(() => {

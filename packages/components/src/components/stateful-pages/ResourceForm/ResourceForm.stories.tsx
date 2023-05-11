@@ -26,5 +26,5 @@ const Template: ComponentStory<typeof ResourceForm> = (args) => {
 
 export const Default = Template.bind({})
 Default.args = {
-  resourceName: 'SourceField',
+  resourceName: 'Boost',
 }

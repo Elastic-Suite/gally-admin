@@ -7,13 +7,13 @@ import Button from '../../atoms/buttons/Button'
 import { isError } from '@elastic-suite/gally-admin-shared'
 import { closeSnackbar, enqueueSnackbar } from 'notistack'
 import { useTranslation } from 'react-i18next'
-import styled from '@emotion/styled'
-import { Box, Theme } from '@mui/material'
+import { styled } from '@mui/system'
+import { Box } from '@mui/material'
 
 const CustomResourceForm = styled('div')(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
-  gap: (theme as Theme).spacing(2),
+  gap: theme.spacing(2),
 }))
 interface IProps {
   // id?: string
@@ -54,8 +54,12 @@ function ResourceForm(props: IProps): JSX.Element {
     <CustomResourceForm>
       <CustomForm data={data} onChange={setData} resource={resource} />
       <Box>
-        <Button disabled={!isValidForm} onClick={createForm} loading={isLoading}>
-          Create
+        <Button
+          disabled={!isValidForm}
+          onClick={createForm}
+          loading={isLoading}
+        >
+          Save
         </Button>
       </Box>
     </CustomResourceForm>
