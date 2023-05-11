@@ -5,7 +5,6 @@ function Welcome(): void {
   useEffect(() => {
     Router.push('/login')
   }, [])
-
   return null
 }
 
