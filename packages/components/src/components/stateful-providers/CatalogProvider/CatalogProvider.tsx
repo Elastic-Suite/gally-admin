@@ -7,8 +7,13 @@ import {
 import React, { ReactNode, useEffect, useState } from 'react'
 
 import { catalogContext } from '../../../contexts'
-import { useApiFetch, useCatalogs, useLog, useResource } from '../../../hooks'
-import { selectUser, useAppSelector } from '../../../store'
+import {
+  useApiFetch,
+  useCatalogs,
+  useLog,
+  useResource,
+  useUser,
+} from '../../../hooks'
 
 interface IProps {
   children: ReactNode
@@ -20,7 +25,7 @@ function CatalogProvider(props: IProps): JSX.Element {
   const log = useLog()
   const fetchApi = useApiFetch()
   const resource = useResource('Catalog')
-  const user = useAppSelector(selectUser)
+  const user = useUser()
 
   const [catalogs, setCatalogs] = useState<IHydraCatalog[]>([])
 

@@ -6,6 +6,7 @@ import {
   useMemo,
   useState,
 } from 'react'
+import Router from 'next/router'
 import { useTranslation } from 'next-i18next'
 import debounce from 'lodash.debounce'
 import {
@@ -23,9 +24,9 @@ import {
   fetchApi,
   getListApiParameters,
   isError,
+  storageRemove,
+  tokenStorageKey,
 } from '@elastic-suite/gally-admin-shared'
-
-import { setUser, useAppDispatch } from '../store'
 
 import { useLog } from './useLog'
 import { useResourceOperations } from './useResource'
@@ -34,7 +35,6 @@ const debounceDelay = 200
 
 export function useApiFetch(secure = true): IFetchApi {
   const { i18n } = useTranslation('common')
-  const dispatch = useAppDispatch()
   const log = useLog()
 
   return useCallback<IFetchApi>(
@@ -55,12 +55,13 @@ export function useApiFetch(secure = true): IFetchApi {
       } catch (error) {
         log(error)
         if (error instanceof AuthError) {
-          dispatch(setUser({ token: '', user: null }))
+          storageRemove(tokenStorageKey)
+          Router.push('/login')
         }
         return { error }
       }
     },
-    [dispatch, i18n.language, log, secure]
+    [i18n.language, log, secure]
   )
 }
 

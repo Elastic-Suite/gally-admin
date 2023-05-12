@@ -9,14 +9,13 @@ import {
 
 import { breadcrumbContext } from '../../../contexts'
 
-import { useApiFetch } from '../../../hooks'
+import { useApiFetch, useUser } from '../../../hooks'
 import {
   selectChildrenState,
   selectMenu,
   selectMenuItemActive,
   selectSidebarState,
   selectSidebarStateTimeout,
-  selectUser,
   setChildState,
   setMenu,
   setMenuItemActive,
@@ -122,7 +121,7 @@ function Layout({ children }: IProps): JSX.Element {
   const menu = useAppSelector(selectMenu)
   const [breadcrumb] = useContext(breadcrumbContext)
   const fetchApi = useApiFetch()
-  const user = useAppSelector(selectUser)
+  const user = useUser()
 
   // Load menu
   useEffect(() => {

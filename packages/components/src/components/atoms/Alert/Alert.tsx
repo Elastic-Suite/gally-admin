@@ -2,6 +2,7 @@ import React, { ForwardedRef, forwardRef } from 'react'
 import { IconButton, Alert as MuiAlert } from '@mui/material'
 import { styled } from '@mui/system'
 import { CustomContentProps, SnackbarKey } from 'notistack'
+import { useTranslation } from 'next-i18next'
 
 import IonIcon from '../IonIcon/IonIcon'
 
@@ -49,6 +50,7 @@ interface IProps extends Partial<CustomContentProps> {
 
 function Alert(props: IProps, ref: ForwardedRef<HTMLDivElement>): JSX.Element {
   const { id, message, onShut, variant = 'info', mb = 2 } = props
+  const { t } = useTranslation('alert')
 
   function handleClick(): void {
     onShut?.(id)
@@ -70,7 +72,7 @@ function Alert(props: IProps, ref: ForwardedRef<HTMLDivElement>): JSX.Element {
       severity={variant as 'success' | 'info' | 'warning' | 'error'}
       sx={{ mb }}
     >
-      {message}
+      {t(message)}
     </StyledAlert>
   )
 }
