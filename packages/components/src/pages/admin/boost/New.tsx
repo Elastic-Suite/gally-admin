@@ -2,10 +2,10 @@ import React from 'react'
 import { withAuth, withOptions } from '../../../hocs'
 import { useResource } from '../../../../src/hooks'
 
-function AdminBoostNew(): JSX.Element {
+function AdminBoostCreate(): JSX.Element {
   const a = useResource('Boost')
   console.log(a)
   return <div>Salut</div>
 }
 
-export default withAuth(withOptions(AdminBoostNew))
+export default withAuth(withOptions(AdminBoostCreate))
