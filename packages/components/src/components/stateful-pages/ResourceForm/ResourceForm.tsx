@@ -38,7 +38,7 @@ function ResourceForm(props: IProps): JSX.Element {
     (property) => property.required && property?.gally?.visible
   )
 
-  const [data, setData] = useState<Record<string, unknown>>() // boostData if it's for updateForm
+  const [data, setData] = useState<Record<string, unknown>>()
 
   const isValidForm = !requiredChamps.some(
     (it) => !(data as Record<string, unknown>)?.[it.title as string]
@@ -49,7 +49,7 @@ function ResourceForm(props: IProps): JSX.Element {
 
   useEffect(() => {
     if (id) {
-      fetchApi<Record<string, unknown>>(resourceName, { id: id }).then(
+      fetchApi<Record<string, unknown>>(`${resourceName}/${id}`).then(
         (json) => {
           if (isError(json)) {
             log(json.error)

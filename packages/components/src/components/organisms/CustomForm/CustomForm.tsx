@@ -1,5 +1,5 @@
 import React from 'react'
-import { useApiHeadersForm } from '../../../hooks'
+import { useApiHeadersForm, useResource } from '../../../hooks'
 import {
   IFieldConfigFormWithFieldset,
   IResource,

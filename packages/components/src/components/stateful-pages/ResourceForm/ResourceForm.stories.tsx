@@ -1,7 +1,5 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
-// import boostData from '../../../../public/mocks/boostData.json'
-// import boostWithUseResource from '../../../../public/mocks/boostWithUseResource.json'
 import DataProvider from '../../stateful-providers/DataProvider/DataProvider'
 import AppProvider from '../../stateful-providers/AppProvider/AppProvider'
 import { setupStore } from '../../../store'
@@ -26,6 +24,6 @@ const Template: ComponentStory<typeof ResourceForm> = (args) => {
 
 export const Default = Template.bind({})
 Default.args = {
-  resourceName: 'SourceField',
-  id: '9',
+  resourceName: 'Boost',
+  id: '1',
 }

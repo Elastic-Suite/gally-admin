@@ -3,10 +3,7 @@
   "@id": "/extra_bundles",
   "@type": "hydra:Collection",
   "hydra:member": [
-    {
-      "id": "GallyVirtualCategoryBundle",
-      "name": "GallyVirtualCategoryBundle"
-    }
+    { "id": "GallyVirtualCategoryBundle", "name": "GallyVirtualCategoryBundle" }
   ],
   "hydra:totalItems": 1
 }
