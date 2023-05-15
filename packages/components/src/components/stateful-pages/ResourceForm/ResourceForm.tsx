@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 
 import {
   useApiFetch,
-  useFetchApi,
   useLog,
   useResource,
   useResourceOperations,
@@ -10,17 +9,19 @@ import {
 
 import CustomForm from '../../organisms/CustomForm/CustomForm'
 import Button from '../../atoms/buttons/Button'
-import { fetchApi, isError, log } from '@elastic-suite/gally-admin-shared'
+import { isError } from '@elastic-suite/gally-admin-shared'
 import { closeSnackbar, enqueueSnackbar } from 'notistack'
 import { useTranslation } from 'react-i18next'
 import styled from '@emotion/styled'
 import { Box, Theme } from '@mui/material'
+import { SetDataInitializer } from '@elastic-suite/gally-admin-shared'
 
 const CustomResourceForm = styled('div')(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
   gap: (theme as Theme).spacing(2),
 }))
+
 interface IProps {
   id?: string
   resourceName: string
@@ -49,16 +50,15 @@ function ResourceForm(props: IProps): JSX.Element {
 
   useEffect(() => {
     if (id) {
-      fetchApi<Record<string, unknown>>(resourceName, { id: id }).then(
-        (json) => {
-          if (isError(json)) {
-            log(json.error)
-          } else {
-            setData(json)
-          }
+      fetchApi<Record<string, unknown>>(resourceName, { id }).then((json) => {
+        if (isError(json)) {
+          log(json.error)
+        } else {
+          setData(json)
         }
-      )
+      })
     }
+    return SetDataInitializer({ resource: resource, onChange: setData })
   }, [])
 
   async function sendingData(): Promise<any> {
