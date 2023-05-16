@@ -25,6 +25,22 @@ const defaultState = {
     configurations: {
       'base_url/media': 'https://localhost/media/catalog/product/',
     },
+    metadata: [
+      {
+        '@id': '/metadata/3',
+        '@type': 'Metadata',
+        id: 3,
+        entity: 'product',
+        sourceFields: ['/source_fields/217', '/source_fields/253'],
+      },
+      {
+        '@id': '/metadata/4',
+        '@type': 'Metadata',
+        id: 4,
+        entity: 'category',
+        sourceFields: ['/source_fields/254', '/source_fields/286'],
+      },
+    ],
   },
   user: {
     requestedPath: '',
