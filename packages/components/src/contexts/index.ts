@@ -1,5 +1,6 @@
 export * from './breadcrumb'
 export * from './catalog'
 export * from './i18n'
+export * from './metadata'
 export * from './options'
 export * from './ruleOptions'
