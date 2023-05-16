@@ -201,6 +201,7 @@ function MenuItem(props: IProps): JSX.Element {
   const Root = !sidebarStateTimeout ? CustomOpacityFull : CustomHeightZero
 
   const Line = isActive ? CustomLineActive : CustomLineHover
+
   return (
     <CustomRoot>
       <Root>
