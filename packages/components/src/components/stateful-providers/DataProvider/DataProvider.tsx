@@ -3,6 +3,7 @@ import {
   selectApi,
   selectBundles,
   selectConfiguration,
+  selectMetadata,
   useAppSelector,
 } from '../../../store'
 
@@ -15,11 +16,12 @@ function DataProvider(props: IProps): JSX.Element {
   const api = useAppSelector(selectApi)
   const bundles = useAppSelector(selectBundles)
   const configurations = useAppSelector(selectConfiguration)
+  const metadatas = useAppSelector(selectMetadata)
 
   // Load data in the store
   useDataLoader()
 
-  if (!api || !bundles || !configurations) {
+  if (!api || !bundles || !configurations || !metadatas) {
     return null
   }
 

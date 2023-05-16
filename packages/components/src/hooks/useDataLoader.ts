@@ -3,6 +3,7 @@ import {
   IConfigurations,
   IExtraBundle,
   IHydraResponse,
+  IMetadata,
   LoadStatus,
   useSchemaLoader,
 } from '@elastic-suite/gally-admin-shared'
@@ -17,18 +18,11 @@ export function useDataLoader(): void {
   const log = useLog()
 
   const api = useSchemaLoader()
-  const [bundles] = useFetchApi<IHydraResponse<IExtraBundle>>(
-    'extra_bundles',
-    undefined,
-    undefined,
-    false
-  )
-  const [configurations] = useFetchApi<IHydraResponse<IConfigurations>>(
-    'configurations',
-    undefined,
-    undefined,
-    false
-  )
+  const [bundles] = useFetchApi<IHydraResponse<IExtraBundle>>('extra_bundles')
+  const [configurations] =
+    useFetchApi<IHydraResponse<IConfigurations>>('configurations')
+
+  const [metadata] = useFetchApi<IHydraResponse<IMetadata>>('metadata')
 
   useEffect(() => {
     if (api.status === LoadStatus.FAILED) {
@@ -40,7 +34,11 @@ export function useDataLoader(): void {
     if (configurations.status === LoadStatus.FAILED) {
       log(configurations.error)
     }
-    if (api.data && bundles.data && configurations.data) {
+
+    if (metadata.status === LoadStatus.FAILED) {
+      log(metadata.error)
+    }
+    if (api.data && bundles.data && configurations.data && metadata.data) {
       dispatch(
         setData({
           api: api.data,
@@ -51,8 +49,9 @@ export function useDataLoader(): void {
               configuration.value,
             ])
           ),
+          metadata: metadata.data['hydra:member'],
         })
       )
     }
-  }, [api, bundles, configurations, dispatch, log])
+  }, [api, bundles, configurations, metadata, dispatch, log])
 }
