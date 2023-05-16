@@ -93,6 +93,7 @@ export { default as ResourceForm } from './stateful-pages/ResourceForm/ResourceF
 export { default as AppProvider } from './stateful-providers/AppProvider/AppProvider'
 export { default as BreadcrumbProvider } from './stateful-providers/BreadcrumbProvider/BreadcrumbProvider'
 export { default as CatalogProvider } from './stateful-providers/CatalogProvider/CatalogProvider'
+export { default as MetadataProvider } from './stateful-providers/MetadataProvider/MetadataProvider'
 export { default as DataProvider } from './stateful-providers/DataProvider/DataProvider'
 export { default as I18nProvider } from './stateful-providers/I18nProvider/I18nProvider'
 export { default as OptionsProvider } from './stateful-providers/OptionsProvider/OptionsProvider'
