@@ -10,6 +10,7 @@ import CatalogProvider from '../components/stateful-providers/CatalogProvider/Ca
 import DataProvider from '../components/stateful-providers/DataProvider/DataProvider'
 import Layout from '../components/stateful-layout/Layout/Layout'
 import { useRouter } from 'next/router'
+import MetadataProvider from '../components/stateful-providers/MetadataProvider/MetadataProvider'
 
 const store = setupStore()
 
@@ -23,13 +24,15 @@ function GallyApp(props: AppProps): JSX.Element {
     <AppProvider store={store}>
       <DataProvider>
         <CatalogProvider>
-          {isLoginPage ? (
-            <Cmp {...pageProps} />
-          ) : (
-            <Layout>
+          <MetadataProvider>
+            {isLoginPage ? (
               <Cmp {...pageProps} />
-            </Layout>
-          )}
+            ) : (
+              <Layout>
+                <Cmp {...pageProps} />
+              </Layout>
+            )}
+          </MetadataProvider>
         </CatalogProvider>
       </DataProvider>
     </AppProvider>
