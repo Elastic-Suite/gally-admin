@@ -10,9 +10,10 @@ import { useFilters, useResource } from '../../../../hooks'
 import Alert from '../../../../components/atoms/Alert/Alert'
 import PageTitle from '../../../../components/atoms/PageTitle/PageTitle'
 import ResourceTable from '../../../../components/stateful-pages/ResourceTable/ResourceTable'
+import Metadata from '../../../../components/atoms/metadata/Metadata'
+import { selectMetadata, useAppSelector } from '../../../../../src/store'
 
 const pagesSlug = ['search', 'configuration', 'attributes']
-const fixedFilters = { 'metadata.entity': 'product' }
 
 function AdminSearchFacetsConfigurationAttributes(): JSX.Element {
   const [isVisibleAlertAttributes, setIsVisibleAlertAttributes] = useState(true)
@@ -21,12 +22,22 @@ function AdminSearchFacetsConfigurationAttributes(): JSX.Element {
   const [, setBreadcrumb] = useContext(breadcrumbContext)
   const { t } = useTranslation('attributes')
 
+  const [fixedFilters, setFixedFilters] = useState<Record<string, string>>({
+    'metadata.entity': 'product',
+  })
+
   useEffect(() => {
     setBreadcrumb(pagesSlug)
   }, [router.query, setBreadcrumb])
 
   const resource = useResource('SourceField')
   const [activeFilters, setActiveFilters] = useFilters(resource)
+
+  const metadatas = useAppSelector(selectMetadata)
+
+  if (!metadatas) {
+    return null
+  }
 
   return (
     <>
@@ -37,6 +48,11 @@ function AdminSearchFacetsConfigurationAttributes(): JSX.Element {
           onShut={(): void => setIsVisibleAlertAttributes(false)}
         />
       )}
+      <Metadata
+        setFixedFilters={setFixedFilters}
+        fixedFilters={fixedFilters['metadata.entity']}
+        metadatas={metadatas}
+      />
       <ResourceTable
         activeFilters={activeFilters}
         filters={fixedFilters}
