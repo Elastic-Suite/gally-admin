@@ -6,32 +6,7 @@ import {
   IFieldConfig,
   IFieldConfigFormWithFieldset,
   IFieldState,
-  IGallyProperty,
 } from '../types'
-
-function updateProperties(
-  properties: IGallyProperty,
-  key: string,
-  value: number | boolean
-): IGallyProperty {
-  if (key === 'visible') {
-    return {
-      ...properties,
-      visible: value as boolean,
-    }
-  } else if (key === 'editable') {
-    return {
-      ...properties,
-      editable: value as boolean,
-    }
-  } else if (key === 'position') {
-    return {
-      ...properties,
-      position: value as number,
-    }
-  }
-  return properties
-}
 
 export enum IMainContext {
   GRID = 'grid',
@@ -52,32 +27,20 @@ export function updatePropertiesAccordingToPath(
   const mainContextGally = field.gally?.[mainContext as IMainContext]
 
   if (mainContextGally) {
-    const newGallyValue: IGallyProperty = { ...mainContextGally }
-    delete result.gally[mainContext]
     result = {
       ...result,
-      gally: { ...field.gally, ...newGallyValue },
+      gally: { ...field.gally, ...mainContextGally },
     }
   }
 
   if (field.gally?.context) {
-    const [, newPropertiesvalues] = Object.entries(field.gally?.context)
-      .filter(([key, _]) => key === path)
-      .flat()
+    const newPropertiesvalues = Object.entries(field.gally?.context).find(
+      ([key, _]) => key === path
+    )
     if (newPropertiesvalues) {
-      let newProperties = field.gally
-      // eslint-disable-next-line no-return-assign
-      Object.entries(newPropertiesvalues).forEach(
-        ([property, propertyValue]) =>
-          (newProperties = updateProperties(
-            newProperties,
-            property,
-            propertyValue
-          ))
-      )
       result = {
         ...result,
-        gally: { ...field.gally, ...newProperties },
+        gally: { ...field.gally, ...newPropertiesvalues[1] },
       }
     }
   }
