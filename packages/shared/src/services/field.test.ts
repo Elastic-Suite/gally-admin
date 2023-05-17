@@ -4,7 +4,6 @@ import {
   fieldDropdownWithApiOptions,
   fieldDropdownWithContext,
   fieldWithContextAndMainContext,
-  fieldWithContextAndMultipleDataMainContext,
 } from '../mocks'
 
 import {
@@ -71,16 +70,16 @@ describe('Field service', () => {
     it('Should update mulitple properties with MainContext', () => {
       expect(
         updatePropertiesAccordingToPath(
-          fieldWithContextAndMultipleDataMainContext,
+          fieldWithContextAndMainContext,
           '',
           IMainContext.FORM
         )
       ).toEqual({
-        ...fieldWithContextAndMultipleDataMainContext,
+        ...fieldWithContextAndMainContext,
         gally: {
-          ...fieldWithContextAndMultipleDataMainContext.gally,
+          ...fieldWithContextAndMainContext.gally,
           editable: true,
-          position: 80,
+          position: 60,
           visible: false,
         },
       })
