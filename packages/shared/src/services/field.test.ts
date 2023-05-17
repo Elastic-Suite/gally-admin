@@ -3,11 +3,14 @@ import {
   fieldDropdown,
   fieldDropdownWithApiOptions,
   fieldDropdownWithContext,
+  fieldWithContextAndMainContext,
+  fieldWithContextAndMultipleDataMainContext,
 } from '../mocks'
 
 import {
   getFieldState,
   hasFieldOptions,
+  IMainContext,
   isDropdownStaticOptions,
   updatePropertiesAccordingToPath,
 } from './field'
@@ -18,7 +21,8 @@ describe('Field service', () => {
       expect(
         updatePropertiesAccordingToPath(
           fieldDropdownWithContext,
-          'admin/settings/attributes'
+          'admin/settings/attributes',
+          IMainContext.FORM
         )
       ).toEqual({
         ...fieldDropdownWithContext,
@@ -32,7 +36,8 @@ describe('Field service', () => {
       expect(
         updatePropertiesAccordingToPath(
           fieldDropdownWithContext,
-          'search/configuration/attribute'
+          'search/configuration/attribute',
+          IMainContext.FORM
         )
       ).toEqual({
         ...fieldDropdownWithContext,
@@ -45,11 +50,48 @@ describe('Field service', () => {
       })
     })
 
+    it('Should update properties with context and not MainContext', () => {
+      expect(
+        updatePropertiesAccordingToPath(
+          fieldWithContextAndMainContext,
+          'search/configuration/attributes',
+          IMainContext.FORM
+        )
+      ).toEqual({
+        ...fieldWithContextAndMainContext,
+        gally: {
+          ...fieldWithContextAndMainContext.gally,
+          editable: true,
+          position: 60,
+          visible: true,
+        },
+      })
+    })
+
+    it('Should update mulitple properties with MainContext', () => {
+      expect(
+        updatePropertiesAccordingToPath(
+          fieldWithContextAndMultipleDataMainContext,
+          '',
+          IMainContext.FORM
+        )
+      ).toEqual({
+        ...fieldWithContextAndMultipleDataMainContext,
+        gally: {
+          ...fieldWithContextAndMultipleDataMainContext.gally,
+          editable: true,
+          position: 80,
+          visible: false,
+        },
+      })
+    })
+
     it('Should update properties without context', () => {
       expect(
         updatePropertiesAccordingToPath(
           fieldDropdown,
-          'admin/settings/attributes'
+          'admin/settings/attributes',
+          IMainContext.FORM
         )
       ).toEqual({
         ...fieldDropdown,
@@ -66,7 +108,8 @@ describe('Field service', () => {
       expect(
         updatePropertiesAccordingToPath(
           fieldDropdownWithContext,
-          'test/useless'
+          'test/useless',
+          IMainContext.FORM
         )
       ).toEqual({
         ...fieldDropdownWithContext,
