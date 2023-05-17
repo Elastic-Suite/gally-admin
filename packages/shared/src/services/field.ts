@@ -48,6 +48,18 @@ export function updatePropertiesAccordingToPath(
   } else {
     path = path?.replaceAll('/', '_').replace('_admin_', '')
   }
+
+  const mainContextGally = field.gally?.[mainContext as IMainContext]
+
+  if (mainContextGally) {
+    const newGallyValue: IGallyProperty = { ...mainContextGally }
+    delete result.gally[mainContext]
+    result = {
+      ...result,
+      gally: { ...field.gally, ...newGallyValue },
+    }
+  }
+
   if (field.gally?.context) {
     const [, newPropertiesvalues] = Object.entries(field.gally?.context)
       .filter(([key, _]) => key === path)
@@ -65,18 +77,8 @@ export function updatePropertiesAccordingToPath(
       )
       result = {
         ...result,
-        gally: newProperties,
+        gally: { ...field.gally, ...newProperties },
       }
-    }
-  }
-
-  const mainContextGally = field.gally?.[mainContext as IMainContext]
-  if (mainContextGally) {
-    const newGallyValue: IGallyProperty = { ...mainContextGally }
-    delete result.gally[mainContext]
-    result = {
-      ...result,
-      gally: { ...field.gally, ...newGallyValue },
     }
   }
 
