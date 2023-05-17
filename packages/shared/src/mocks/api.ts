@@ -94,36 +94,6 @@ export const fieldWithContextAndMainContext = {
   writeable: true,
 } as IField
 
-export const fieldWithContextAndMultipleDataMainContext = {
-  '@type': 'http://www.w3.org/ns/hydra/core#SupportedProperty',
-  gally: {
-    context: {
-      search_configuration_attributes: {
-        visible: true,
-      },
-    },
-    editable: true,
-    position: 60,
-    visible: true,
-    form: { visible: false, position: 80 },
-  },
-  property: {
-    '@id': 'http://localhost:6006//docs.jsonld#SourceField/isSortable',
-    '@type': 'http://www.w3.org/1999/02/22-rdf-syntax-ns#Property',
-    domain: {
-      '@id': 'http://localhost:6006//docs.jsonld#SourceField',
-    },
-    range: {
-      '@id': 'http://www.w3.org/2001/XMLSchema#boolean',
-    },
-    label: 'Sortable',
-  },
-  readable: true,
-  required: false,
-  title: 'isSortable',
-  writeable: true,
-} as IField
-
 export const fieldDropdownWithApiOptions = {
   '@type': 'http://www.w3.org/ns/hydra/core#SupportedProperty',
   gally: {
