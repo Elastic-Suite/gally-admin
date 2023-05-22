@@ -11,6 +11,7 @@ const initialState: IDataState = {
   api: null,
   bundles: null,
   configurations: null,
+  metadata: null,
 }
 
 describe('dataReducer', () => {
