@@ -41,6 +41,11 @@ interface IProps {
   sidebarStateTimeout?: boolean
 }
 
+const itemRouterTabs: Record<string, boolean> = {
+  settings: true,
+  monitoring: true,
+}
+
 function Menu(props: IProps): JSX.Element {
   const {
     childrenState,
@@ -57,12 +62,14 @@ function Menu(props: IProps): JSX.Element {
     <div className={className}>
       <CustomFirstItems>
         {menu?.hierarchy.map((item: IMenuChild) => {
-          if (!(item.code === 'settings') && !(item.code === 'monitoring')) {
+          let path = item?.path
+
+          if (!itemRouterTabs[item.code]) {
             return (
               <CustomBoldStyle key={item.code}>
                 <MenuItemIcon
                   code={item.code}
-                  href={slugify(item.code, 0)}
+                  href={path ?? slugify(item.code, 0)}
                   isActive={words.includes(item.code)}
                   isRoot={words[0] === item.code}
                   label={item.label}
@@ -72,27 +79,31 @@ function Menu(props: IProps): JSX.Element {
                   sidebarStateTimeout={sidebarStateTimeout}
                 />
                 <CustomSecondItems>
-                  {item.children?.map((item: IMenuChild) => (
-                    <div key={item.code}>
-                      <MenuItem
-                        childrenState={childrenState}
-                        code={item.code}
-                        href={slugify(item.code, 1)}
-                        isActive={words.join('_') === item.code}
-                        isBoosts={
-                          words.length > 2 &&
-                          words.slice(0, 2).join('_') === item.code
-                            ? words[2] !== 'boosts'
-                            : null
-                        }
-                        label={item.label}
-                        menuChildren={item.children}
-                        onToggle={onChildToggle}
-                        sidebarStateTimeout={sidebarStateTimeout}
-                        words={words}
-                      />
-                    </div>
-                  ))}
+                  {item.children?.map((item: IMenuChild) => {
+                    path = item?.path
+
+                    return (
+                      <div key={item.code}>
+                        <MenuItem
+                          childrenState={childrenState}
+                          code={item.code}
+                          href={path ?? slugify(item.code, 1)}
+                          isActive={words.join('_') === item.code}
+                          isBoosts={
+                            words.length > 2 &&
+                            words.slice(0, 2).join('_') === item.code
+                              ? words[2] !== 'boosts'
+                              : null
+                          }
+                          label={item.label}
+                          menuChildren={item.children}
+                          onToggle={onChildToggle}
+                          sidebarStateTimeout={sidebarStateTimeout}
+                          words={words}
+                        />
+                      </div>
+                    )
+                  })}
                 </CustomSecondItems>
               </CustomBoldStyle>
             )
@@ -101,7 +112,7 @@ function Menu(props: IProps): JSX.Element {
             <div key={item.code}>
               <MenuItemIcon
                 code={item.code}
-                href={slugify(item.code, 0)}
+                href={path ?? slugify(item.code, 0)}
                 isActive={words.includes(item.code)}
                 isRoot={words[0] === item.code}
                 label={item.label}
