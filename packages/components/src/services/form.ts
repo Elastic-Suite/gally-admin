@@ -1,5 +1,7 @@
 import { IDependsForm } from '@elastic-suite/gally-admin-shared'
 import { InputBaseProps } from '@mui/material'
+import { Dayjs } from 'dayjs'
+import { IDoubleDatePickerValues } from 'src/components/atoms/form/DoubleDatePicker'
 
 export type IProps = Pick<InputBaseProps, 'required' | 'type'>
 
@@ -14,14 +16,16 @@ export function getFormValue(value: string, props: IProps): string | number {
   return value
 }
 
-export function getDoubleDatePickerValue(data: Record<string, unknown>) {
+export function getDoubleDatePickerValue(
+  data: Record<string, Dayjs>
+): IDoubleDatePickerValues {
   return { from: data?.fromDate, to: data?.toDate }
 }
 
 export function isHiddenDepends(
   dependsForm: IDependsForm[],
   data: Record<string, unknown> | undefined
-) {
+): boolean {
   return dependsForm
     .map((item) => {
       const field = item?.field as string

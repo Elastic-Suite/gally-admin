@@ -24,7 +24,7 @@ export function useApiHeaders(resource: IResource): IFieldConfig[] {
 }
 
 // group all fields that do not have a fieldset in this fieldset
-const FIELDSET_OTHER_KEY = '_other';
+const FIELDSET_OTHER_KEY = '_other'
 
 export function useApiHeadersForm(
   resource: IResource
@@ -33,30 +33,33 @@ export function useApiHeadersForm(
   return useMemo(() => {
     const apiHeaderMap = apiHeaders.reduce<
       Record<string, IFieldConfigFormWithFieldset>
-    >((acc, header) => {
-      const fieldsetCode = header.fieldset
-      const fieldset = resource.gally?.fieldset?.[fieldsetCode]
-      if (fieldsetCode && fieldset) {
-        if (fieldsetCode in acc) {
-          acc[fieldsetCode].children.push(header)
-        } else {
-          acc[fieldsetCode] = {
-            ...fieldset,
-            code: fieldsetCode,
-            children: [header],
+    >(
+      (acc, header) => {
+        const fieldsetCode = header?.field?.gally?.fieldset
+        const fieldset = resource.gally?.fieldset?.[fieldsetCode]
+        if (fieldsetCode && fieldset) {
+          if (fieldsetCode in acc) {
+            acc[fieldsetCode].children.push(header)
+          } else {
+            acc[fieldsetCode] = {
+              ...fieldset,
+              code: fieldsetCode,
+              children: [header],
+            }
           }
+        } else {
+          acc[FIELDSET_OTHER_KEY].children.push(header)
         }
-      } else {
-        acc[FIELDSET_OTHER_KEY].children.push(header)
+        return acc
+      },
+      {
+        [FIELDSET_OTHER_KEY]: {
+          code: FIELDSET_OTHER_KEY,
+          children: [],
+          position: Infinity,
+        },
       }
-      return acc
-    }, {
-      [FIELDSET_OTHER_KEY]: {
-        code: FIELDSET_OTHER_KEY,
-        children: [],
-        position: Infinity,
-      }
-    })
+    )
     return Object.values(apiHeaderMap).sort((a, b) => a?.position - b?.position)
   }, [apiHeaders, resource])
 }

@@ -12,6 +12,7 @@ export enum IMainContext {
   GRID = 'grid',
   FORM = 'form',
 }
+
 export function updatePropertiesAccordingToPath(
   field: IField,
   path: string,

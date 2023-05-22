@@ -38,6 +38,10 @@ function CustomForm(props: IProps): JSX.Element {
   return (
     <MainSectionFieldSet>
       {headers.map((fieldset: IFieldConfigFormWithFieldset) => {
+        if (fieldset.children.length === 0) {
+          return null
+        }
+
         return (
           <SectionFieldSet key={fieldset?.position}>
             {Boolean(fieldset.label) && (
