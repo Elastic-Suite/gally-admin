@@ -1,0 +1,26 @@
+{
+  "@context": "/contexts/BoostRequestTypeOption",
+  "@id": "/boost_request_type_options",
+  "@type": "hydra:Collection",
+  "hydra:member": [
+    {
+      "label": "Catalog product view",
+      "id": "product_catalog",
+      "value": "product_catalog",
+      "limitationType": "category"
+    },
+    {
+      "label": "Search items",
+      "id": "product_search",
+      "value": "product_search",
+      "limitationType": "search"
+    },
+    {
+      "label": "Autocomplete terms",
+      "limitationType": "search",
+      "id": "Autocomplete_terms",
+      "value": "product_autocomplete"
+    }
+  ],
+  "hydra:totalItems": 2
+}

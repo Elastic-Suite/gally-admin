@@ -26,19 +26,19 @@ const limitationsTypes: ILimitationsTypes[] = [
 const requestTypesOptions: IRequestTypesOptions[] = [
   {
     label: 'Product catalog',
-    limitation_type: 'category',
+    limitationType: 'category',
     id: 'product_catalog',
     value: 'product_catalog',
   },
   {
     label: 'Search terms',
-    limitation_type: 'search',
+    limitationType: 'search',
     id: 'product_search',
     value: 'product_search',
   },
   {
     label: 'Autocomplete terms',
-    limitation_type: 'search',
+    limitationType: 'search',
     id: 'Autocomplete_terms',
     value: 'product_autocomplete',
   },
@@ -68,15 +68,6 @@ const textOperatorOptions: IOptions<string> = [
 ]
 
 const dataGeneralBoost: IRequestType = {
-  '@id': '/boosts/1',
-  '@type': 'Boost',
-  id: 1,
-  name: 'My First Boost',
-  isActive: true,
-  model: 'constant_score',
-  modelConfig:
-    '{"scale_factor":"1","constant_score_value":"23","scale_function":""}',
-  localizedCatalogs: ['/localized_catalogs/19', '/localized_catalogs/20'],
   requestTypes: [
     {
       '@id': '/boost_request_types/1',
@@ -128,12 +119,6 @@ const dataGeneralBoost: IRequestType = {
       '@type': 'BoostSearchLimitation',
       operator: '%like%',
       queryText: '%like%',
-    },
-    {
-      '@id': '/boost_search_limitations/1',
-      '@type': 'BoostSearchLimitation',
-      operator: 'like%',
-      queryText: 'like%',
     },
   ],
   createdAt: '2023-03-01T10:42:15+00:00',
