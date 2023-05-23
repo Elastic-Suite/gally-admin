@@ -120,7 +120,7 @@ function RequestTypeItem(props: IRequestTypeItem): JSX.Element {
 
   const limitationTypeMap = requestTypesOptions.reduce<Record<string, string>>(
     (acc, option) => {
-      acc[option.value] = option.limitation_type
+      acc[option.value] = option.limitationType
       return acc
     },
     {}
@@ -139,7 +139,7 @@ function RequestTypeItem(props: IRequestTypeItem): JSX.Element {
         )
         const requestTypeOption = requestTypesOptions.filter(
           (it) =>
-            it.limitation_type === item.value &&
+            it.limitationType === item.value &&
             requestTypeRequestType.includes(it.value)
         )
 
@@ -152,7 +152,7 @@ function RequestTypeItem(props: IRequestTypeItem): JSX.Element {
         const findValueInRequestTypesOptions = requestTypesOptions.find(
           (it) =>
             requestTypeRequestType.includes(it.value) &&
-            it.limitation_type === item.value
+            it.limitationType === item.value
         )?.value
 
         const isApplyToAll = value.requestTypes.find(
@@ -160,7 +160,9 @@ function RequestTypeItem(props: IRequestTypeItem): JSX.Element {
         )?.applyToAll
 
         const limitationsData: ISearchLimitations[] | ICategoryLimitations[] =
-          value[`${item.value}Limitations`]
+          value[`${item.value}Limitations` as keyof IRequestType] as
+            | ISearchLimitations[]
+            | ICategoryLimitations[]
         let uniqueLine = key + 1 < countLines
         let CustomDiv = CustomSelectedItem
 
