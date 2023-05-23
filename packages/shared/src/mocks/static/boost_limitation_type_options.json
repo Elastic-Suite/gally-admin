@@ -1,0 +1,20 @@
+{
+  "@context": "/contexts/BoostLimitationTypeOption",
+  "@id": "/boost_limitation_type_options",
+  "@type": "hydra:Collection",
+  "hydra:member": [
+    {
+      "id": "category",
+      "value": "category",
+      "label": "Category",
+      "labelAll": "All categories"
+    },
+    {
+      "id": "search",
+      "value": "search",
+      "label": "Search",
+      "labelAll": "All search terms"
+    }
+  ],
+  "hydra:totalItems": 2
+}
