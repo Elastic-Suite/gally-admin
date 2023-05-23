@@ -1,0 +1,53 @@
+{
+  "@context": "/contexts/LocalizedCatalogGroupOption",
+  "@id": "/localized_catalog_group_options",
+  "@type": "hydra:Collection",
+  "hydra:member": [
+    {
+      "id": "com",
+      "value": "com",
+      "label": "COM Catalog",
+      "options": [
+        {
+          "value": "localized_catalogs/7",
+          "label": "COM French Catalog"
+        },
+        {
+          "value": "localized_catalogs/8",
+          "label": "COM English Catalog"
+        }
+      ]
+    },
+    {
+      "id": "fr",
+      "value": "fr",
+      "label": "FR Catalog",
+      "options": [
+        {
+          "value": "localized_catalogs/9",
+          "label": "FR French Catalog"
+        },
+        {
+          "value": "localized_catalogs/10",
+          "label": "FR English Catalog"
+        }
+      ]
+    },
+    {
+      "id": "uk",
+      "value": "uk",
+      "label": "UK Catalog",
+      "options": [
+        {
+          "value": "localized_catalogs/11",
+          "label": "EN French Catalog"
+        },
+        {
+          "value": "localized_catalogs/12",
+          "label": "EN English Catalog"
+        }
+      ]
+    }
+  ],
+  "hydra:totalItems": 3
+}

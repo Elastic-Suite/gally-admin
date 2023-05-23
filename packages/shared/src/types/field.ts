@@ -30,6 +30,7 @@ export interface IFieldConfig extends IFieldState {
   type?: DataContentType
   validation?: Record<string, string | number>
   multipleSeparatorValue?: string
+  requestTypeConfigurations?: Record<string, string>
 }
 
 export interface IFieldConfigFormWithFieldset {

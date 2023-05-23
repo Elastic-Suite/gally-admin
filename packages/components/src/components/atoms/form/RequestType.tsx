@@ -11,6 +11,7 @@ import {
 import { CustomRoot } from './RequestTypeItem.styled'
 import DropDown from './DropDown'
 import RequestTypeItem from './RequestTypeItem'
+import { FormControl, InputLabel } from '@mui/material'
 
 export interface IProps {
   value: IRequestType
@@ -19,6 +20,10 @@ export interface IProps {
   limitationsTypes: ILimitationsTypes[]
   requestTypesOptions: IRequestTypesOptions[]
   categoriesList: ITreeItem[]
+  label?: string
+  required?: boolean
+  fullWidth?: boolean
+  margin?: 'none' | 'dense' | 'normal'
 }
 
 function RequestType(props: IProps): JSX.Element {
@@ -29,6 +34,10 @@ function RequestType(props: IProps): JSX.Element {
     limitationsTypes,
     requestTypesOptions,
     categoriesList,
+    label,
+    required,
+    fullWidth,
+    margin,
   } = props
 
   function updateSelectedDropDown(list: string[] | string): void {
@@ -39,12 +48,12 @@ function RequestType(props: IProps): JSX.Element {
       if (existingRequestType) {
         return value.requestTypes.find((it) => it.requestType === item)!
       }
-      const limitation_type = requestTypesOptions.find(
+      const limitationType = requestTypesOptions.find(
         (it) => it.value === item
-      )?.limitation_type
+      )?.limitationType
 
       const requestTypesValue = requestTypesOptions
-        .filter((it) => it.limitation_type === limitation_type)
+        .filter((it) => it.limitationType === limitationType)
         .map((it) => it.value)
 
       const applyToAll = value.requestTypes.find((item) =>
@@ -57,23 +66,32 @@ function RequestType(props: IProps): JSX.Element {
   }
 
   return (
-    <CustomRoot>
-      <DropDown
-        placeholder={value.requestTypes.length !== 0 ? '' : 'Add request type'}
-        multiple
-        onChange={updateSelectedDropDown}
-        value={value.requestTypes.map((item) => item.requestType)}
-        options={requestTypesOptions}
-      />
-      <RequestTypeItem
-        value={value}
-        onChange={onChange}
-        limitationsTypes={limitationsTypes}
-        options={options}
-        requestTypesOptions={requestTypesOptions}
-        categoriesList={categoriesList}
-      />
-    </CustomRoot>
+    <FormControl fullWidth={fullWidth} margin={margin} variant="standard">
+      {Boolean(label) && (
+        <InputLabel shrink required={required}>
+          {label}
+        </InputLabel>
+      )}
+      <CustomRoot>
+        <DropDown
+          placeholder={
+            value.requestTypes.length !== 0 ? '' : 'Add request type'
+          }
+          multiple
+          onChange={updateSelectedDropDown}
+          value={value.requestTypes.map((item) => item.requestType)}
+          options={requestTypesOptions}
+        />
+        <RequestTypeItem
+          value={value}
+          onChange={onChange}
+          limitationsTypes={limitationsTypes}
+          options={options}
+          requestTypesOptions={requestTypesOptions}
+          categoriesList={categoriesList}
+        />
+      </CustomRoot>
+    </FormControl>
   )
 }
 

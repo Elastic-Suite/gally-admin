@@ -217,12 +217,25 @@ export function getFilterParameters(
   )
 }
 
-export function valueInitializer(input: string): unknown {
+export function inputInitializer(input: string): unknown {
   switch (input) {
+    case 'requestType':
+    case 'searchLimitations':
+    case 'categoryLimitations':
+      return []
+
+    default:
+      return ''
+  }
+}
+
+export function valueInitializer(type: string, input?: string): unknown {
+  switch (type) {
     case 'boolean':
       return false
 
     case 'array':
+    case 'select':
       return []
 
     case 'integer':
@@ -236,7 +249,7 @@ export function valueInitializer(input: string): unknown {
       return dayjs(new Date()).format('YYYY-MM-DD HH:mm:ss')
 
     default:
-      return ''
+      return input ? inputInitializer(input) : ''
   }
 }
 
@@ -245,7 +258,10 @@ export function initResourceData(resource: IResource): Record<string, unknown> {
     resource.supportedProperty
       .filter((property) => property?.gally?.visible)
       .map((item) => {
-        return [item.title, valueInitializer(getFieldType(item))]
+        return [
+          item.title,
+          valueInitializer(getFieldType(item), item?.gally?.input),
+        ]
       })
   )
   return visibleChamp

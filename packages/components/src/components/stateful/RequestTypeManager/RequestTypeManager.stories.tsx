@@ -1,70 +1,8 @@
 import React, { useState } from 'react'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
 
-import {
-  ILimitationsTypes,
-  IOptions,
-  IRequestType,
-  IRequestTypesOptions,
-} from '@elastic-suite/gally-admin-shared'
-import RequestTypeItem from './RequestTypeItem'
-
-const limitationsTypes: ILimitationsTypes[] = [
-  {
-    label: 'Product catalog',
-    labelAll: 'All Products catalogs',
-    value: 'category',
-  },
-  {
-    label: 'Search terms',
-    labelAll: 'All Search terms',
-    value: 'search',
-  },
-]
-
-const requestTypesOptions: IRequestTypesOptions[] = [
-  {
-    label: 'Product catalog',
-    limitationType: 'category',
-    id: 'a',
-    value: 'product_catalog',
-  },
-  {
-    label: 'Search terms',
-    limitationType: 'search',
-    id: 'aa',
-    value: 'product_search',
-  },
-  {
-    label: 'Autocomplete terms',
-    limitationType: 'search',
-    id: 'aaa',
-    value: 'product_autocomplete',
-  },
-]
-
-const textOperatorOptions: IOptions<string> = [
-  {
-    id: 'eq',
-    value: 'eq',
-    label: 'is',
-  },
-  {
-    id: '%like',
-    value: '%like',
-    label: 'starts with',
-  },
-  {
-    id: '%like%',
-    value: '%like%',
-    label: 'contains',
-  },
-  {
-    id: 'like%',
-    value: 'like%',
-    label: 'ends with',
-  },
-]
+import RequestTypeManager from './RequestTypeManager'
+import { IRequestType } from '@elastic-suite/gally-admin-shared'
 
 const dataGeneralBoost: IRequestType = {
   requestTypes: [
@@ -91,7 +29,7 @@ const dataGeneralBoost: IRequestType = {
     {
       '@id': '/boost_category_limitations/1',
       '@type': 'BoostCategoryLimitation',
-      category: '/categories/cat_2',
+      category: '/categories/one',
     },
   ],
   searchLimitations: [
@@ -131,26 +69,15 @@ const dataGeneralBoost: IRequestType = {
 }
 
 export default {
-  title: 'Atoms/Form/RequestTypeItem',
-  helperIcon: {
-    options: ['', 'information-circle', 'checkmark', 'close'],
-    control: { type: 'select' },
-  },
-  helperText: {
-    control: 'text',
-  },
-  component: RequestTypeItem,
-} as ComponentMeta<typeof RequestTypeItem>
+  title: 'Stateful/RequestTypeManager',
+  component: RequestTypeManager,
+} as ComponentMeta<typeof RequestTypeManager>
 
-const Template: ComponentStory<typeof RequestTypeItem> = (args) => {
+const Template: ComponentStory<typeof RequestTypeManager> = (args) => {
   const [value, setValue] = useState<IRequestType>(dataGeneralBoost)
 
-  return <RequestTypeItem {...args} value={value} onChange={setValue} />
+  return <RequestTypeManager {...args} value={value} onChange={setValue} />
 }
 
 export const Default = Template.bind({})
-Default.args = {
-  options: textOperatorOptions,
-  limitationsTypes,
-  requestTypesOptions,
-}
+Default.args = {}
