@@ -13,6 +13,7 @@ import {
   MainSectionFieldSet,
   SectionFieldSet,
 } from './CustomForm.styled'
+import { getRequestTypeData } from '../../../services'
 
 interface IProps {
   data?: Record<string, unknown>
@@ -70,16 +71,33 @@ function CustomForm(props: IProps): JSX.Element {
                 //   }
                 // }
 
-                // const val =
-                //   field?.input === 'rangeDate'
-                //     ? getDoubleDatePickerValue(data as Record<string, unknown>)
-                //     : data?.[field.name]
+                if (field?.label.endsWith('Limitations')) {
+                  return null
+                }
+
+                let val
+                switch (field?.input) {
+                  case 'requestType':
+                    val = getRequestTypeData(data)
+                    break
+
+                  // case 'rangeDate':
+                  //   val = getDoubleDatePickerValue(
+                  //     data as Record<string, unknown>
+                  //   )
+                  //   break
+
+                  default:
+                    val = data?.[field.name]
+                    break
+                }
+
                 return (
                   <FieldGuesser
                     key={field?.id}
                     {...field}
                     onChange={handleChange}
-                    value={data?.[field.name]}
+                    value={val}
                     editable
                   />
                 )

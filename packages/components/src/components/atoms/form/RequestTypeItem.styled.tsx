@@ -14,6 +14,7 @@ export const CustomRoot = styled(CustomRootItem)(({ theme }) => ({
   border: '1px solid',
   borderColor: theme.palette.colors.neutral[300],
   borderRadius: theme.spacing(1),
+  marginTop: theme.spacing(3),
 }))
 
 const CustomProp = ['uniqueLine']
