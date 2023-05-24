@@ -38,7 +38,9 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
     type,
     validation,
     requestTypeConfigurations,
+    categoriesList,
   } = props
+
   const { t } = useTranslation('common')
   const dirty = Boolean(
     diffValue !== undefined &&
@@ -131,6 +133,7 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
           onChange={handleChange}
           label={label}
           required={required}
+          categoriesList={categoriesList}
         />
       )
     }
