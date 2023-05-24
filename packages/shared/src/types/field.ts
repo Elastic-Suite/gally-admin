@@ -50,4 +50,5 @@ export interface IFieldGuesserProps extends IFieldConfig {
   useDropdownBoolean?: boolean
   row?: ITableRow
   value: unknown
+  data?: Record<string, unknown>
 }
