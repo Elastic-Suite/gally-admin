@@ -13,6 +13,7 @@ import {
   ITreeItem,
   initResourceData,
   isError,
+  IResource,
 } from '@elastic-suite/gally-admin-shared'
 import { closeSnackbar, enqueueSnackbar } from 'notistack'
 import { useTranslation } from 'react-i18next'
@@ -30,10 +31,14 @@ interface IProps {
   categoriesList?: ITreeItem[]
 }
 
+import boostWithUseResource from '../../../../public/mocks/boostWithUseResource.json'
+
 function ResourceForm(props: IProps): JSX.Element {
   const { resourceName, id, categoriesList } = props
   const { t } = useTranslation('boost')
-  const resource = useResource(resourceName)
+
+  const resource = boostWithUseResource as IResource // TODO TO DELETE
+  // const resource = useResource(resourceName)
 
   const { update, create } = useResourceOperations<any>(resource)
 

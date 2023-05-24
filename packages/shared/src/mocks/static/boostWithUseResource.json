@@ -69,10 +69,7 @@
       }
     },
     {
-      "@type": [
-        "http://www.w3.org/ns/hydra/core#Operation",
-        "http://schema.org/DeleteAction"
-      ],
+      "@type": "http://schema.org/DeleteAction",
       "method": "DELETE",
       "title": "Deletes the Boost resource.",
       "label": "Deletes the Boost resource.",
