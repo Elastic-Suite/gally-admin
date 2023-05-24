@@ -1,4 +1,8 @@
-import { IDependsForm, IRequestType } from '@elastic-suite/gally-admin-shared'
+import {
+  IDependsForm,
+  IFieldConfig,
+  IRequestType,
+} from '@elastic-suite/gally-admin-shared'
 import { InputBaseProps } from '@mui/material'
 import { Dayjs } from 'dayjs'
 import { IDoubleDatePickerValues } from '../components/atoms/form/DoubleDatePicker'
@@ -45,4 +49,22 @@ export function getRequestTypeData(data: Record<string, any>): IRequestType {
   }
 
   return requestTypeData
+}
+
+export function getValue(
+  field: IFieldConfig,
+  data: Record<string, unknown>
+): unknown {
+  switch (field?.input) {
+    case 'requestType':
+      return getRequestTypeData(data)
+
+    // case 'rangeDate':
+    //   return getDoubleDatePickerValue(
+    //     data as Record<string, unknown>
+    //   )
+
+    default:
+      return data?.[field.name]
+  }
 }
