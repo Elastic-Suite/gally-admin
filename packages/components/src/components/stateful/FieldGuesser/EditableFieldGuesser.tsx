@@ -13,11 +13,11 @@ import Switch from '../../atoms/form/Switch'
 
 import ReadableFieldGuesser from './ReadableFieldGuesser'
 import EditableDropDownGuesser from './EditableDropDownGuesser'
-import {
-  // DoubleDatePicker,
+import DoubleDatePicker, {
   IDoubleDatePickerValues,
 } from '../../atoms/form/DoubleDatePicker'
-// import { Box } from '@mui/material'
+
+import { Box } from '@mui/material'
 import RequestTypeManager from '../../stateful/RequestTypeManager/RequestTypeManager'
 
 function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
@@ -114,16 +114,16 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
       )
     }
 
-    // case DataContentType.RANGEDATE: {
-    //   return (
-    //     <Box>
-    //       <DoubleDatePicker
-    //         value={value as IDoubleDatePickerValues}
-    //         onChange={handleChange}
-    //       />onChange
-    //     </Box>
-    //   )
-    // }
+    case DataContentType.RANGEDATE: {
+      return (
+        <Box>
+          <DoubleDatePicker
+            value={value as IDoubleDatePickerValues}
+            onChange={handleChange}
+          />
+        </Box>
+      )
+    }
 
     case DataContentType.REQUESTTYPE: {
       return (
