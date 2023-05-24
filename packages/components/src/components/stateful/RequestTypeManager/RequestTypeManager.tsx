@@ -1,12 +1,12 @@
 import React from 'react'
 import { useApiList } from '../../../hooks'
 import RequestType from '../../atoms/form/RequestType'
-import categoriesList from '../../../../public/mocks/categories.json'
 import {
   ILimitationsTypes,
   IOptionsTags,
   IRequestType,
   IRequestTypesOptions,
+  ITreeItem,
 } from '@elastic-suite/gally-admin-shared'
 
 interface IProps {
@@ -17,32 +17,38 @@ interface IProps {
   fullWidth?: boolean
   margin?: 'none' | 'dense' | 'normal'
   requestTypeConfigurations?: Record<string, string>
+  categoriesList: ITreeItem[]
 }
 
 function RequestTypeManager(props: IProps): JSX.Element | null {
-  const { value, onChange, requestTypeConfigurations, ...args } = props
+  const {
+    value,
+    onChange,
+    requestTypeConfigurations,
+    categoriesList,
+    ...args
+  } = props
 
   const [operatorOptionsApi] = useApiList<IOptionsTags>(
-    requestTypeConfigurations.operatorOptionsApi
+    requestTypeConfigurations?.operatorOptionsApi
   )
   const [limitationTypeOptionsApi] = useApiList<ILimitationsTypes>(
-    requestTypeConfigurations.limitationTypeOptionsApi
+    requestTypeConfigurations?.limitationTypeOptionsApi
   )
   const [requestTypeOptionsApi] = useApiList<IRequestTypesOptions>(
-    requestTypeConfigurations.requestTypeOptionsApi
+    requestTypeConfigurations?.requestTypeOptionsApi
   )
 
   const operatorOptions = operatorOptionsApi?.data?.['hydra:member']
   const limitationTypeOptions = limitationTypeOptionsApi?.data?.['hydra:member']
   const requestTypeOptions = requestTypeOptionsApi?.data?.['hydra:member']
-  const { categories } = categoriesList
 
   if (
     !(
       operatorOptions &&
       limitationTypeOptions &&
       requestTypeOptions &&
-      categories
+      categoriesList
     )
   ) {
     return null
@@ -56,7 +62,7 @@ function RequestTypeManager(props: IProps): JSX.Element | null {
       options={operatorOptions}
       limitationsTypes={limitationTypeOptions}
       requestTypesOptions={requestTypeOptions}
-      categoriesList={categories}
+      categoriesList={categoriesList}
     />
   )
 }
