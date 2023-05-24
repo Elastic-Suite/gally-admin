@@ -61,18 +61,6 @@ function CustomForm(props: IProps): JSX.Element {
             )}
             <ListItemForm>
               {fieldset.children.map((field) => {
-                // const dependsForm = it?.field?.gally?.form?.depends
-                // if (dependsForm) {
-                //   const isHidden = isHiddenDepends(
-                //     dependsForm as IDependsForm[],
-                //     data
-                //   )
-
-                //   if (isHidden) {
-                //     return null
-                //   }
-                // }
-
                 if (field?.label.endsWith('Limitations')) {
                   return null
                 }
@@ -85,6 +73,7 @@ function CustomForm(props: IProps): JSX.Element {
                     value={getValue(field, data)}
                     categoriesList={categoriesList}
                     editable
+                    data={data}
                   />
                 )
               })}

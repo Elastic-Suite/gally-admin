@@ -121,11 +121,11 @@
         "depends": [
           {
             "field": "name",
-            "value": "salut"
+            "value": "adr"
           },
           {
             "field": "conditionRule",
-            "value": "test"
+            "value": "adr"
           }
         ]
       },
