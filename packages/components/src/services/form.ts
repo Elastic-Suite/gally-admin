@@ -51,20 +51,15 @@ export function getRequestTypeData(data: Record<string, any>): IRequestType {
   return requestTypeData
 }
 
-export function getValue(
-  field: IFieldConfig,
-  data: Record<string, unknown>
-): unknown {
+export function getValue(field: IFieldConfig, data: unknown): unknown {
   switch (field?.input) {
     case 'requestType':
       return getRequestTypeData(data)
 
-    // case 'rangeDate':
-    //   return getDoubleDatePickerValue(
-    //     data as Record<string, unknown>
-    //   )
+    case 'rangeDate':
+      return getDoubleDatePickerValue(data as Record<string, Dayjs>)
 
     default:
-      return data?.[field.name]
+      return (data as Record<string, unknown>)?.[field.name]
   }
 }
