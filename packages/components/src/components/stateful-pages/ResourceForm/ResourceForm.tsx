@@ -9,7 +9,11 @@ import {
 
 import CustomForm from '../../organisms/CustomForm/CustomForm'
 import Button from '../../atoms/buttons/Button'
-import { initResourceData, isError } from '@elastic-suite/gally-admin-shared'
+import {
+  ITreeItem,
+  initResourceData,
+  isError,
+} from '@elastic-suite/gally-admin-shared'
 import { closeSnackbar, enqueueSnackbar } from 'notistack'
 import { useTranslation } from 'react-i18next'
 import styled from '@emotion/styled'
@@ -23,11 +27,12 @@ const CustomResourceForm = styled('div')(({ theme }) => ({
 interface IProps {
   id?: string
   resourceName: string
+  categoriesList?: ITreeItem[]
 }
 
 function ResourceForm(props: IProps): JSX.Element {
+  const { resourceName, id, categoriesList } = props
   const { t } = useTranslation('boost')
-  const { resourceName, id } = props
   const resource = useResource(resourceName)
 
   const { update, create } = useResourceOperations<any>(resource)
@@ -79,7 +84,12 @@ function ResourceForm(props: IProps): JSX.Element {
 
   return (
     <CustomResourceForm>
-      <CustomForm data={data} onChange={setData} resource={resource} />
+      <CustomForm
+        data={data}
+        onChange={setData}
+        resource={resource}
+        categoriesList={categoriesList}
+      />
       <Box>
         <Button
           disabled={!isValidForm}

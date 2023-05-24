@@ -3,6 +3,7 @@ import { useApiHeadersForm } from '../../../hooks'
 import {
   IFieldConfigFormWithFieldset,
   IResource,
+  ITreeItem,
 } from '@elastic-suite/gally-admin-shared'
 import FieldGuesser from '../../stateful/FieldGuesser/FieldGuesser'
 import Tooltip from '../../atoms/modals/Tooltip'
@@ -13,16 +14,17 @@ import {
   MainSectionFieldSet,
   SectionFieldSet,
 } from './CustomForm.styled'
-import { getRequestTypeData } from '../../../services'
+import { getValue } from '../../../services'
 
 interface IProps {
   data?: Record<string, unknown>
   onChange: (val: Record<string, unknown>) => void
   resource: IResource
+  categoriesList?: ITreeItem[]
 }
 
 function CustomForm(props: IProps): JSX.Element {
-  const { data, onChange, resource } = props
+  const { data, onChange, resource, categoriesList } = props
 
   const headers = useApiHeadersForm(resource)
 
@@ -75,29 +77,13 @@ function CustomForm(props: IProps): JSX.Element {
                   return null
                 }
 
-                let val
-                switch (field?.input) {
-                  case 'requestType':
-                    val = getRequestTypeData(data)
-                    break
-
-                  // case 'rangeDate':
-                  //   val = getDoubleDatePickerValue(
-                  //     data as Record<string, unknown>
-                  //   )
-                  //   break
-
-                  default:
-                    val = data?.[field.name]
-                    break
-                }
-
                 return (
                   <FieldGuesser
                     key={field?.id}
                     {...field}
                     onChange={handleChange}
-                    value={val}
+                    value={getValue(field, data)}
+                    categoriesList={categoriesList}
                     editable
                   />
                 )
