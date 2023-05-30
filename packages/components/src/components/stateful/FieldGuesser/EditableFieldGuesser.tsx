@@ -2,6 +2,7 @@ import React, { SyntheticEvent } from 'react'
 import { useTranslation } from 'next-i18next'
 import {
   DataContentType,
+  IDependsForm,
   IFieldGuesserProps,
   IRequestType,
 } from '@elastic-suite/gally-admin-shared'
@@ -19,6 +20,7 @@ import DoubleDatePicker, {
 
 import { Box } from '@mui/material'
 import RequestTypeManager from '../../stateful/RequestTypeManager/RequestTypeManager'
+import { isHiddenDepends } from '../../../services'
 
 function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
   const {
@@ -37,8 +39,10 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
     suffix,
     type,
     validation,
+    depends,
     requestTypeConfigurations,
     categoriesList,
+    data,
   } = props
 
   const { t } = useTranslation('common')
@@ -67,6 +71,14 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
         return onChange(name, formatDate, event)
       }
       return onChange(name, value, event)
+    }
+  }
+
+  if (depends) {
+    const isHidden = isHiddenDepends(depends as IDependsForm[], data)
+
+    if (isHidden) {
+      return null
     }
   }
 
