@@ -110,6 +110,7 @@ export interface IGallyProperty {
   fieldset?: string
   rangeDateType?: string
   rangeDateId?: number | string
+  requestTypeConfigurations?: Record<string, string>
   form?: IGallyProperty
   grid?: IGallyProperty
 }

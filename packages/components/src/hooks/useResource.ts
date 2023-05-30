@@ -82,10 +82,7 @@ export function useResourceOperations<T extends IHydraMember>(
   return useMemo(
     () =>
       supportedOperation.reduce<IResourceOperations<T>>((acc, operation) => {
-        if (
-          typeof operation['@type'] === 'string' &&
-          operation.method === Method.PATCH
-        ) {
+        if (typeof operation['@type'] === 'string') {
           acc.update = update
         } else if (
           operation['@type'] instanceof Array &&

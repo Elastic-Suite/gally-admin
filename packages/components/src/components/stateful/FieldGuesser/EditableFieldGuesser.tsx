@@ -3,6 +3,7 @@ import { useTranslation } from 'next-i18next'
 import {
   DataContentType,
   IFieldGuesserProps,
+  IRequestType,
 } from '@elastic-suite/gally-admin-shared'
 
 import DropDown from '../../atoms/form/DropDown'
@@ -17,6 +18,7 @@ import {
   IDoubleDatePickerValues,
 } from '../../atoms/form/DoubleDatePicker'
 // import { Box } from '@mui/material'
+import RequestTypeManager from '../../stateful/RequestTypeManager/RequestTypeManager'
 
 function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
   const {
@@ -35,7 +37,10 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
     suffix,
     type,
     validation,
+    requestTypeConfigurations,
+    categoriesList,
   } = props
+
   const { t } = useTranslation('common')
   const dirty = Boolean(
     diffValue !== undefined &&
@@ -49,7 +54,8 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
       | number
       | string
       | (boolean | number | string)[]
-      | IDoubleDatePickerValues,
+      | IDoubleDatePickerValues
+      | IRequestType,
     event?: SyntheticEvent
   ): void {
     if (onChange) {
@@ -114,10 +120,23 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
     //       <DoubleDatePicker
     //         value={value as IDoubleDatePickerValues}
     //         onChange={handleChange}
-    //       />
+    //       />onChange
     //     </Box>
     //   )
     // }
+
+    case DataContentType.REQUESTTYPE: {
+      return (
+        <RequestTypeManager
+          requestTypeConfigurations={requestTypeConfigurations}
+          value={value as IRequestType}
+          onChange={handleChange}
+          label={label}
+          required={required}
+          categoriesList={categoriesList}
+        />
+      )
+    }
 
     case DataContentType.OTPGROUP:
     case DataContentType.SELECT: {

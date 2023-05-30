@@ -1,4 +1,3 @@
-import { IJsonldBase } from './jsonld'
 import { ISearchLimitations } from './textFieldTagsMultiple'
 
 export interface ILimitationsTypes {
@@ -10,7 +9,7 @@ export interface ILimitationsTypes {
 
 export interface IRequestTypesOptions {
   label: string
-  limitation_type: string
+  limitationType: string
   id: string
   value: string
 }
@@ -27,16 +26,10 @@ export interface ICategoryLimitations {
   category: string
 }
 
-export interface IRequestType extends IJsonldBase {
-  id: number
-  name: string
-  isActive: boolean
-  model: string
-  modelConfig: string
-  localizedCatalogs: string[]
+export interface IRequestType {
   requestTypes: IRequestTypes[]
   categoryLimitations: ICategoryLimitations[]
   searchLimitations: ISearchLimitations[]
-  createdAt: string
-  updatedAt: string
+  createdAt?: string
+  updatedAt?: string
 }

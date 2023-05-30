@@ -1,0 +1,28 @@
+{
+  "@context": "/contexts/BoostQueryTextOperatorOption",
+  "@id": "/boost_query_text_operator_options",
+  "@type": "hydra:Collection",
+  "hydra:member": [
+    {
+      "id": "eq",
+      "value": "eq",
+      "label": "is"
+    },
+    {
+      "id": "%like",
+      "value": "%like",
+      "label": "starts with"
+    },
+    {
+      "id": "%like%",
+      "value": "%like%",
+      "label": "contains"
+    },
+    {
+      "id": "like%",
+      "value": "like%",
+      "label": "ends with"
+    }
+  ],
+  "hydra:totalItems": 4
+}

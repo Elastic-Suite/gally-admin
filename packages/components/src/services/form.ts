@@ -1,4 +1,8 @@
-import { IDependsForm } from '@elastic-suite/gally-admin-shared'
+import {
+  IDependsForm,
+  IFieldConfig,
+  IRequestType,
+} from '@elastic-suite/gally-admin-shared'
 import { InputBaseProps } from '@mui/material'
 import { Dayjs } from 'dayjs'
 import { IDoubleDatePickerValues } from '../components/atoms/form/DoubleDatePicker'
@@ -34,4 +38,33 @@ export function isHiddenDepends(
       return Boolean(fieldValue && (value ? fieldValue === value : true))
     })
     .some((its) => !its)
+}
+
+export function getRequestTypeData(data: Record<string, any>): IRequestType {
+  const requestTypeData = {} as IRequestType
+  for (const key in data) {
+    if (key.endsWith('Limitations') || key === 'requestTypes') {
+      requestTypeData[key as keyof IRequestType] = data[key]
+    }
+  }
+
+  return requestTypeData
+}
+
+export function getValue(
+  field: IFieldConfig,
+  data: Record<string, unknown>
+): unknown {
+  switch (field?.input) {
+    case 'requestType':
+      return getRequestTypeData(data)
+
+    // case 'rangeDate':
+    //   return getDoubleDatePickerValue(
+    //     data as Record<string, unknown>
+    //   )
+
+    default:
+      return data?.[field.name]
+  }
 }

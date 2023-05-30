@@ -1,0 +1,63 @@
+{
+  "requestTypes": [
+    {
+      "@id": "/boost_request_types/1",
+      "@type": "BoostRequestType",
+      "requestType": "product_catalog",
+      "applyToAll": false
+    },
+    {
+      "@id": "/boost_request_types/2",
+      "@type": "BoostRequestType",
+      "requestType": "product_search",
+      "applyToAll": false
+    },
+    {
+      "@id": "/boost_request_types/3",
+      "@type": "BoostRequestType",
+      "requestType": "product_autocomplete",
+      "applyToAll": false
+    }
+  ],
+  "categoryLimitations": [
+    {
+      "@id": "/boost_category_limitations/1",
+      "@type": "BoostCategoryLimitation",
+      "category": "/categories/one"
+    }
+  ],
+  "searchLimitations": [
+    {
+      "@id": "/boost_search_limitations/1",
+      "@type": "BoostSearchLimitation",
+      "operator": "eq",
+      "queryText": "EQ"
+    },
+    {
+      "@id": "/boost_search_limitations/1",
+      "@type": "BoostSearchLimitation",
+      "operator": "eq",
+      "queryText": "eq again"
+    },
+    {
+      "@id": "/boost_search_limitations/1",
+      "@type": "BoostSearchLimitation",
+      "operator": "%like",
+      "queryText": "%like"
+    },
+    {
+      "@id": "/boost_search_limitations/1",
+      "@type": "BoostSearchLimitation",
+      "operator": "%like%",
+      "queryText": "%like%"
+    },
+    {
+      "@id": "/boost_search_limitations/1",
+      "@type": "BoostSearchLimitation",
+      "operator": "like%",
+      "queryText": "like%"
+    }
+  ],
+  "createdAt": "2023-03-01T10:42:15+00:00",
+  "updatedAt": "2023-03-01T10:42:15+00:00"
+}

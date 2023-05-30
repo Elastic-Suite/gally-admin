@@ -3,6 +3,7 @@ import { SyntheticEvent } from 'react'
 import { IField } from './api'
 import { DataContentType, ITableRow } from './customTables'
 import { IOptions } from './option'
+import { ITreeItem } from './tree'
 // import { IDependsForm } from './hydra'
 
 export interface IFieldCondition {
@@ -30,6 +31,8 @@ export interface IFieldConfig extends IFieldState {
   type?: DataContentType
   validation?: Record<string, string | number>
   multipleSeparatorValue?: string
+  requestTypeConfigurations?: Record<string, string>
+  categoriesList?: ITreeItem[]
 }
 
 export interface IFieldConfigFormWithFieldset {

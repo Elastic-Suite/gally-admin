@@ -1,0 +1,13 @@
+{
+  "@context": "/contexts/BoostModelOption",
+  "@id": "/boost_model_options",
+  "@type": "hydra:Collection",
+  "hydra:member": [
+    {
+      "id": "constant_score",
+      "value": "constant_score",
+      "label": "Constant score"
+    }
+  ],
+  "hydra:totalItems": 1
+}
