@@ -9,20 +9,22 @@ import { selectBundles, useAppSelector } from '../store'
 
 import { useApiFetch } from './useApi'
 
-export function useRuleOperators(): IRuleEngineOperators {
+export function useRuleOperators(
+  ruleOperatorsDefault?: IRuleEngineOperators
+): IRuleEngineOperators {
   const [ruleOperators, setRuleOperators] = useState<IRuleEngineOperators>()
   const bundles = useAppSelector(selectBundles)
   const fetchApi = useApiFetch()
 
   useEffect(() => {
-    if (isVirtualCategoryEnabled(bundles)) {
+    if (isVirtualCategoryEnabled(bundles) && !ruleOperatorsDefault) {
       fetchApi<IRuleEngineOperators>('rule_engine_operators').then((json) => {
         if (!isError(json)) {
           setRuleOperators(json)
         }
       })
     }
-  }, [bundles, fetchApi])
+  }, [bundles, fetchApi, ruleOperatorsDefault])
 
-  return ruleOperators
+  return ruleOperatorsDefault ?? ruleOperators
 }

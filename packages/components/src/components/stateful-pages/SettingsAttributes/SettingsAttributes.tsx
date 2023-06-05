@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { useTranslation } from 'next-i18next'
 import {
   ITabContentProps,
@@ -13,7 +13,7 @@ import Alert from '../../atoms/Alert/Alert'
 import ResourceTable from '../ResourceTable/ResourceTable'
 
 import Metadata from '../../atoms/metadata/Metadata'
-import { selectMetadata, useAppSelector } from '../../../store'
+import { metadataContext } from '../../../contexts'
 
 function SettingsAttributes(props: ITabContentProps): JSX.Element {
   const { active } = props
@@ -42,7 +42,7 @@ function SettingsAttributes(props: ITabContentProps): JSX.Element {
     }))
   }
 
-  const metadatas = useAppSelector(selectMetadata)
+  const metadatas = useContext(metadataContext)
 
   if (!metadatas) {
     return null
