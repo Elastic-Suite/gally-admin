@@ -35,7 +35,7 @@ export function useApiHeadersForm(
       Record<string, IFieldConfigFormWithFieldset>
     >(
       (acc, header) => {
-        const fieldsetCode = header?.field?.gally?.fieldset
+        const fieldsetCode = header.fieldset
         const fieldset = resource.gally?.fieldset?.[fieldsetCode]
         if (fieldsetCode && fieldset) {
           if (fieldsetCode in acc) {
