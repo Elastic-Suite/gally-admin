@@ -1,7 +1,7 @@
 import { IDependsForm } from '@elastic-suite/gally-admin-shared'
 import { InputBaseProps } from '@mui/material'
 import { Dayjs } from 'dayjs'
-import { IDoubleDatePickerValues } from '../components/atoms/form/DoubleDatePicker'
+import { IDoubleDatePickerValues } from 'src/components/atoms/form/DoubleDatePicker'
 
 export type IProps = Pick<InputBaseProps, 'required' | 'type'>
 
