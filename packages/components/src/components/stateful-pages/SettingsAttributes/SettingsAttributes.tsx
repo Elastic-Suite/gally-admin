@@ -12,15 +12,10 @@ import Alert from '../../atoms/Alert/Alert'
 
 import ResourceTable from '../ResourceTable/ResourceTable'
 
-import Metadata from '../../atoms/metadata/Metadata'
-import { selectMetadata, useAppSelector } from '../../../store'
+const fixedFilters = { 'metadata.entity': 'product' }
 
 function SettingsAttributes(props: ITabContentProps): JSX.Element {
   const { active } = props
-
-  const [fixedFilters, setFixedFilters] = useState<Record<string, string>>({
-    'metadata.entity': 'product',
-  })
 
   const [
     isVisibleAlertSettingsAttributes,
@@ -42,12 +37,6 @@ function SettingsAttributes(props: ITabContentProps): JSX.Element {
     }))
   }
 
-  const metadatas = useAppSelector(selectMetadata)
-
-  if (!metadatas) {
-    return null
-  }
-
   return (
     <>
       {Boolean(isVisibleAlertSettingsAttributes) && (
@@ -56,11 +45,6 @@ function SettingsAttributes(props: ITabContentProps): JSX.Element {
           onShut={(): void => setIsVisibleAlertSettingsAttributes(false)}
         />
       )}
-      <Metadata
-        setFixedFilters={setFixedFilters}
-        fixedFilters={fixedFilters['metadata.entity']}
-        metadatas={metadatas}
-      />
       <ResourceTable
         active={active}
         activeFilters={activeFilters}
