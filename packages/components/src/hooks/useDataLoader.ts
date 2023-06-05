@@ -3,7 +3,6 @@ import {
   IConfigurations,
   IExtraBundle,
   IHydraResponse,
-  IMetadata,
   LoadStatus,
   useSchemaLoader,
 } from '@elastic-suite/gally-admin-shared'
@@ -22,8 +21,6 @@ export function useDataLoader(): void {
   const [configurations] =
     useFetchApi<IHydraResponse<IConfigurations>>('configurations')
 
-  const [metadata] = useFetchApi<IHydraResponse<IMetadata>>('metadata')
-
   useEffect(() => {
     if (api.status === LoadStatus.FAILED) {
       log(api.error)
@@ -35,10 +32,7 @@ export function useDataLoader(): void {
       log(configurations.error)
     }
 
-    if (metadata.status === LoadStatus.FAILED) {
-      log(metadata.error)
-    }
-    if (api.data && bundles.data && configurations.data && metadata.data) {
+    if (api.data && bundles.data && configurations.data) {
       dispatch(
         setData({
           api: api.data,
@@ -49,9 +43,8 @@ export function useDataLoader(): void {
               configuration.value,
             ])
           ),
-          metadata: metadata.data['hydra:member'],
         })
       )
     }
-  }, [api, bundles, configurations, metadata, dispatch, log])
+  }, [api, bundles, configurations, dispatch, log])
 }

@@ -32,7 +32,6 @@ const preloadedState: PreloadedState<RootState> = {
     api: null,
     bundles: null,
     configurations: null,
-    metadata: null,
   },
 }
 
@@ -48,12 +47,6 @@ describe('useDataLoader', () => {
       configurations: {
         GallyVirtualCategoryBundle: undefined,
       },
-      metadata: [
-        {
-          id: 'GallyVirtualCategoryBundle',
-          name: 'GallyVirtualCategoryBundle',
-        },
-      ],
     })
   })
 
@@ -72,7 +65,6 @@ describe('useDataLoader', () => {
       api: null,
       bundles: null,
       configurations: null,
-      metadata: null,
     })
   })
 
@@ -90,7 +82,6 @@ describe('useDataLoader', () => {
       api: null,
       bundles: null,
       configurations: null,
-      metadata: null,
     })
   })
 })

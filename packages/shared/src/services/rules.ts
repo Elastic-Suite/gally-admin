@@ -32,7 +32,7 @@ export function isAttributeRuleValueMultiple(
   return valueType?.startsWith('[') && valueType?.endsWith(']')
 }
 
-function parseRule<R extends IRule>(rule: R): R {
+export function parseRule<R extends IRule>(rule: R): R {
   if (isCombinationRule(rule)) {
     return {
       ...rule,

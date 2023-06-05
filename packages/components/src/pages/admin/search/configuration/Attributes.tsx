@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 import { searchableAttributeUrl } from '@elastic-suite/gally-admin-shared'
 
-import { breadcrumbContext } from '../../../../contexts'
+import { breadcrumbContext, metadataContext } from '../../../../contexts'
 import { withAuth, withOptions } from '../../../../hocs'
 import { useFilters, useResource } from '../../../../hooks'
 
@@ -11,7 +11,6 @@ import Alert from '../../../../components/atoms/Alert/Alert'
 import PageTitle from '../../../../components/atoms/PageTitle/PageTitle'
 import ResourceTable from '../../../../components/stateful-pages/ResourceTable/ResourceTable'
 import Metadata from '../../../../components/atoms/metadata/Metadata'
-import { selectMetadata, useAppSelector } from '../../../../../src/store'
 
 const pagesSlug = ['search', 'configuration', 'attributes']
 
@@ -33,7 +32,7 @@ function AdminSearchFacetsConfigurationAttributes(): JSX.Element {
   const resource = useResource('SourceField')
   const [activeFilters, setActiveFilters] = useFilters(resource)
 
-  const metadatas = useAppSelector(selectMetadata)
+  const metadatas = useContext(metadataContext)
 
   if (!metadatas) {
     return null
