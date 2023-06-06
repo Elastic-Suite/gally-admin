@@ -1,11 +1,14 @@
 import React, { useContext, useMemo } from 'react'
 
-import { useApiList, useResource } from '../../../hooks'
+import { useApiList, useResource, useRuleOperators } from '../../../hooks'
 import {
+  IRuleCombination,
   IRuleEngineOperators,
   ISourceField,
   ISourceFieldLabel,
   RuleAttributeType,
+  parseRule,
+  serializeRule,
 } from '@elastic-suite/gally-admin-shared'
 
 import { catalogContext } from '../../../contexts'
@@ -21,14 +24,33 @@ const sourceFieldFixedFilters = {
 }
 
 interface IProps
-  extends Omit<ICombinationRulesProps, 'catalogId' | 'localizedCatalogId'> {
+  extends Omit<
+    ICombinationRulesProps,
+    'catalogId' | 'localizedCatalogId' | 'rule' | 'onChange'
+  > {
   active?: boolean
-  ruleOperators: IRuleEngineOperators
+  rule?: string | IRuleCombination
+  onChange?: (value: string | IRuleCombination) => void
+  ruleOperators?: IRuleEngineOperators
 }
 
 function RulesManager(props: IProps): JSX.Element {
-  const { active, ruleOperators, ...ruleProps } = props
+  const { active, ruleOperators: ruleOperatorsDefault, ...ruleProps } = props
   const { catalogId, localizedCatalogId } = useContext(catalogContext)
+  const ruleOperators = useRuleOperators(ruleOperatorsDefault)
+  const rule: IRuleCombination =
+    typeof ruleProps.rule === 'string'
+      ? parseRule(JSON.parse(ruleProps.rule))
+      : ruleProps.rule
+
+  function handleChange(rule: IRuleCombination): void {
+    if (typeof ruleProps.rule === 'string') {
+      return ruleProps.onChange(
+        JSON.stringify(serializeRule(rule, ruleOperators))
+      )
+    }
+    ruleProps.onChange(rule)
+  }
 
   // Source fields
   const sourceFieldResource = useResource('SourceField')
@@ -95,6 +117,8 @@ function RulesManager(props: IProps): JSX.Element {
           catalogId={catalogId}
           localizedCatalogId={localizedCatalogId}
           {...ruleProps}
+          rule={rule}
+          onChange={handleChange}
         />
       )}
     </RuleOptionsProvider>
