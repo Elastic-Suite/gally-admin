@@ -202,7 +202,8 @@
       "gally": {
         "position": 50,
         "visible": true,
-        "fieldset": "general"
+        "fieldset": "general",
+        "input": "ruleEngine"
       },
       "property": {
         "@id": "https://localhost/docs.jsonld#Boost/conditionRule",
