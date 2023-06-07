@@ -7,6 +7,11 @@
       "id": "constant_score",
       "value": "constant_score",
       "label": "Constant score"
+    },
+    {
+      "id": "behavioral_data",
+      "value": "behavioral_data",
+      "label": "Behavioral Data"
     }
   ],
   "hydra:totalItems": 1
