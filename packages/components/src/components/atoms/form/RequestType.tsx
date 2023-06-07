@@ -12,6 +12,7 @@ import { CustomRoot } from './RequestTypeItem.styled'
 import DropDown from './DropDown'
 import RequestTypeItem from './RequestTypeItem'
 import { FormControl, InputLabel } from '@mui/material'
+import InfoTooltip from './InfoTooltip'
 
 export interface IProps {
   value: IRequestType
@@ -24,6 +25,7 @@ export interface IProps {
   required?: boolean
   fullWidth?: boolean
   margin?: 'none' | 'dense' | 'normal'
+  infoTooltip?: string
 }
 
 function RequestType(props: IProps): JSX.Element {
@@ -38,6 +40,7 @@ function RequestType(props: IProps): JSX.Element {
     required,
     fullWidth,
     margin,
+    infoTooltip,
   } = props
 
   function updateSelectedDropDown(list: string[] | string): void {
@@ -67,11 +70,12 @@ function RequestType(props: IProps): JSX.Element {
 
   return (
     <FormControl fullWidth={fullWidth} margin={margin} variant="standard">
-      {Boolean(label) && (
-        <InputLabel shrink required={required}>
-          {label}
+      {label || infoTooltip ? (
+        <InputLabel sx={{ maxWidth: '90%' }} required={required} shrink>
+          {label ? label : null}
+          {infoTooltip ? <InfoTooltip title={infoTooltip} /> : null}
         </InputLabel>
-      )}
+      ) : undefined}
       <CustomRoot>
         <DropDown
           placeholder={
