@@ -5,6 +5,7 @@ import {
   IDependsForm,
   IFieldGuesserProps,
   IRequestType,
+  IRuleCombination,
 } from '@elastic-suite/gally-admin-shared'
 
 import DropDown from '../../atoms/form/DropDown'
@@ -21,6 +22,7 @@ import DoubleDatePicker, {
 import { Box } from '@mui/material'
 import RequestTypeManager from '../../stateful/RequestTypeManager/RequestTypeManager'
 import { isHiddenDepends } from '../../../services'
+import RulesManager from '../RulesManager/RulesManager'
 
 function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
   const {
@@ -59,7 +61,8 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
       | string
       | (boolean | number | string)[]
       | IDoubleDatePickerValues
-      | IRequestType,
+      | IRequestType
+      | IRuleCombination,
     event?: SyntheticEvent
   ): void {
     if (onChange) {
@@ -137,6 +140,17 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
             onChange={handleChange}
           />
         </Box>
+      )
+    }
+
+    case DataContentType.RULEENGINE: {
+      return (
+        <RulesManager
+          rule={value as string | IRuleCombination}
+          active
+          onChange={handleChange}
+          first={false}
+        />
       )
     }
 

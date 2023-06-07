@@ -5,6 +5,7 @@ import boostWithUseResource from '../../../../public/mocks/boostWithUseResource.
 import CustomForm from './CustomForm'
 import { IResource, initResourceData } from '@elastic-suite/gally-admin-shared'
 import categoriesList from '../../../../public/mocks/categories.json'
+import DataProvider from '../../stateful-providers/DataProvider/DataProvider'
 
 export default {
   title: 'Organisms/CustomForm',
@@ -15,8 +16,11 @@ const Template: ComponentStory<typeof CustomForm> = (args) => {
   const [data, setData] = useState<Record<string, unknown>>(
     initResourceData(boostWithUseResource as IResource)
   )
-
-  return <CustomForm {...args} data={data} onChange={setData} />
+  return (
+    <DataProvider>
+      <CustomForm {...args} data={data} onChange={setData} />
+    </DataProvider>
+  )
 }
 
 export const Default = Template.bind({})
