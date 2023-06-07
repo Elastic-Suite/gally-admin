@@ -38,8 +38,8 @@ interface IProps {
   searchValue: string
   configuration: IConfigurations
   nbTopProducts: number
-  hasUpdateLink?: boolean
-  updateLink?: string
+  hasEditLink?: boolean
+  editLink?: string
 }
 
 function BottomTable(
@@ -56,8 +56,8 @@ function BottomTable(
     searchValue,
     configuration,
     nbTopProducts,
-    hasUpdateLink,
-    updateLink,
+    hasEditLink,
+    editLink,
   } = props
   const { localizedCatalogIdWithDefault } = useContext(catalogContext)
 
@@ -176,8 +176,8 @@ function BottomTable(
                 }
                 withSelection={withSelection}
                 configuration={configuration}
-                hasUpdateLink={hasUpdateLink}
-                updateLink={updateLink}
+                hasEditLink={hasEditLink}
+                editLink={editLink}
               />
             </Box>
           )

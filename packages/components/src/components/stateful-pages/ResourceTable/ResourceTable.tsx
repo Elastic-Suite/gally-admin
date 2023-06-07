@@ -60,8 +60,8 @@ export interface IResourceTable {
   setActiveFilters: Dispatch<SetStateAction<ISearchParameters>>
   urlParams?: string
   showSearch?: boolean
-  hasUpdateLink?: boolean
-  updateLink?: string
+  hasEditLink?: boolean
+  editLink?: string
 }
 
 const listOfDefaultFacets = [
@@ -88,8 +88,8 @@ function ResourceTable(props: IResourceTable): JSX.Element {
     setActiveFilters,
     urlParams,
     showSearch,
-    hasUpdateLink,
-    updateLink,
+    hasEditLink,
+    editLink,
   } = props
 
   const resource = useResource(resourceName)
@@ -265,8 +265,8 @@ function ResourceTable(props: IResourceTable): JSX.Element {
         rowsPerPageOptions={rowsPerPageOptions}
         tableConfigs={getTableConfigs?.(tableRows)}
         tableRows={tableRows}
-        hasUpdateLink={hasUpdateLink}
-        updateLink={updateLink}
+        hasEditLink={hasEditLink}
+        editLink={editLink}
       />
     </>
   )

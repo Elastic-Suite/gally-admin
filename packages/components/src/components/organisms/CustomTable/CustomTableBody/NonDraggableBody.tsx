@@ -29,8 +29,8 @@ interface IProps {
   tableRows: ITableRow[]
   withSelection: boolean
   configuration: IConfigurations
-  hasUpdateLink?: boolean
-  updateLink?: string
+  hasEditLink?: boolean
+  editLink?: string
 }
 
 function NonDraggableBody(props: IProps): JSX.Element {
@@ -48,14 +48,14 @@ function NonDraggableBody(props: IProps): JSX.Element {
     tableRows,
     withSelection,
     configuration,
-    hasUpdateLink,
-    updateLink,
+    hasEditLink,
+    editLink,
   } = props
 
-  const newTableRows = hasUpdateLink
+  const newTableRows = hasEditLink
     ? tableRows.map((item) => {
-        const link = updateLink
-          ? `${updateLink}?id=${item.id}`
+        const link = editLink
+          ? `${editLink}?id=${item.id}`
           : `./edit?id=${item.id}`
         return { ...item, edit: link }
       })

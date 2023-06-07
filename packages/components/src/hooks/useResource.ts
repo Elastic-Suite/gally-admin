@@ -24,7 +24,6 @@ export function useResource(
 ): IResource {
   const api = useAppSelector(selectApi)
   const { pathname } = useRouter()
-
   return useMemo(() => {
     const resource = getResource(api, resourceName)
     return {
