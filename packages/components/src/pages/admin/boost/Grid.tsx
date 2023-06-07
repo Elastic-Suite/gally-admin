@@ -4,12 +4,7 @@ import Grid from '../../../components/stateful-pages/Grid/Grid'
 
 function AdminBoostGrid(): JSX.Element {
   return (
-    <Grid
-      resourceName="Boost"
-      hasNewLink
-      hasUpdateLink
-      updateLink="update"
-    />
+    <Grid resourceName="Boost" hasNewLink hasUpdateLink updateLink="update" />
   )
 }
 
