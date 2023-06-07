@@ -1,0 +1,7 @@
+{
+  "alert.update": "Sauvegarde des données avec succès",
+  "alert.create": "Création du formulaire avec succès",
+  "alert.error": "Une erreur s'est produite",
+  "save": "Sauvegarder",
+  "create": "Créer"
+}

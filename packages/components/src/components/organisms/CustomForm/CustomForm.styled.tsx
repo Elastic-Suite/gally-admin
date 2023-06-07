@@ -32,5 +32,5 @@ export const LabelFieldSet = styled('div')(({ theme }) => ({
   flexDirection: 'row',
   gap: theme.spacing(1),
   alignItems: 'center',
-  fontFamily: 'Inter',
+  fontFamily: 'var(--gally-font)',
 }))

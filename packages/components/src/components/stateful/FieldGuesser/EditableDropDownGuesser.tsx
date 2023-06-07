@@ -29,6 +29,7 @@ function EditableDropDownGuesser(props: IProps): JSX.Element {
     required,
     value,
     useGroups,
+    infoTooltip,
   } = props
 
   const { t } = useTranslation('common')
@@ -54,6 +55,7 @@ function EditableDropDownGuesser(props: IProps): JSX.Element {
 
   return (
     <DropDown
+      infoTooltip={infoTooltip}
       dirty={dirty}
       disabled={disabled}
       helperText={

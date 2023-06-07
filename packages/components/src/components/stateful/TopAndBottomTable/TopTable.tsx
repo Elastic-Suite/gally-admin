@@ -35,8 +35,8 @@ interface IProps {
   configuration: IConfigurations
   searchValue: string
   setNbTopRows: (value: number) => void
-  hasUpdateLink?: boolean
-  updateLink?: string
+  hasEditLink?: boolean
+  editLink?: string
 }
 
 function TopTable(props: IProps): JSX.Element {
@@ -51,8 +51,8 @@ function TopTable(props: IProps): JSX.Element {
     configuration,
     searchValue,
     setNbTopRows,
-    hasUpdateLink,
-    updateLink,
+    hasEditLink,
+    editLink,
   } = props
   const { localizedCatalogIdWithDefault } = useContext(catalogContext)
 
@@ -148,8 +148,8 @@ function TopTable(props: IProps): JSX.Element {
         tableRows={tableRows}
         withSelection={withSelection}
         configuration={configuration}
-        hasUpdateLink={hasUpdateLink}
-        updateLink={updateLink}
+        hasEditLink={hasEditLink}
+        editLink={editLink}
       />
     )
   )

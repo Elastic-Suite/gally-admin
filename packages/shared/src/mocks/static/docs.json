@@ -1627,8 +1627,8 @@
             "position": 20,
             "input": "select",
             "options": {
-              "api_rest": "/boost_model_options",
-              "api_graphql": "boostModelOptions"
+              "api_rest": "/boost_model_optionsAA",
+              "api_graphql": "boostModelOptionsAAA"
             }
           }
         },
