@@ -10,6 +10,7 @@ import {
 import CustomForm from '../../organisms/CustomForm/CustomForm'
 import Button from '../../atoms/buttons/Button'
 import {
+  IMainContext,
   ITreeItem,
   initResourceData,
   isError,
@@ -33,9 +34,8 @@ interface IProps {
 function ResourceForm(props: IProps): JSX.Element {
   const { resourceName, id, categoriesList } = props
   const { t } = useTranslation('boost')
-  const resource = useResource(resourceName)
-
-  const { update, create } = useResourceOperations<any>(resource)
+  const resource = useResource(resourceName, IMainContext.FORM)
+  const { replace, create } = useResourceOperations<any>(resource)
 
   const [isLoading, setIsLoading] = useState(false)
   const requiredChamps = resource.supportedProperty.filter(
@@ -53,7 +53,7 @@ function ResourceForm(props: IProps): JSX.Element {
 
   useEffect(() => {
     if (id) {
-      fetchApi<Record<string, unknown>>(`${resourceName}/${id}`).then(
+      fetchApi<Record<string, unknown>>(`${resource.url}/${id}`).then(
         (json) => {
           if (isError(json)) {
             log(json.error)
@@ -63,13 +63,13 @@ function ResourceForm(props: IProps): JSX.Element {
         }
       )
     }
-  }, [id, fetchApi, log, resourceName])
+  }, [id, fetchApi, log, resource.url])
 
   async function sendingData(): Promise<any> {
     setIsLoading(true)
     let sendingToApi
     if (id) {
-      sendingToApi = await (update as any)(id, data)
+      sendingToApi = await (replace as any)({ id, data })
     } else {
       sendingToApi = await (create as any)(data)
     }

@@ -19,7 +19,7 @@ export enum DataContentType {
   STRING = 'string',
   TAG = 'tag',
   BUTTON = 'button',
-  OTPGROUP = 'optgroup',
+  OPTGROUP = 'optgroup',
   RANGEDATE = 'rangeDate',
   REQUESTTYPE = 'requestType',
 }
