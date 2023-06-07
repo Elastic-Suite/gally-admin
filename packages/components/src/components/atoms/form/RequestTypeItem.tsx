@@ -44,6 +44,7 @@ const CustomDataLimitations = styled('div')(({ theme }) => ({
   flexDirection: 'row',
   gap: theme.spacing(2),
   alignItems: 'center',
+  marginTop: '-12px',
 }))
 
 export interface IRequestTypeItem {
