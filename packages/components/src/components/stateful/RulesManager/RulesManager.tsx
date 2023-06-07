@@ -38,6 +38,7 @@ function RulesManager(props: IProps): JSX.Element {
   const { active, ruleOperators: ruleOperatorsDefault, ...ruleProps } = props
   const { catalogId, localizedCatalogId } = useContext(catalogContext)
   const ruleOperators = useRuleOperators(ruleOperatorsDefault)
+
   const rule: IRuleCombination =
     typeof ruleProps.rule === 'string'
       ? parseRule(JSON.parse(ruleProps.rule))
@@ -54,13 +55,14 @@ function RulesManager(props: IProps): JSX.Element {
 
   // Source fields
   const sourceFieldResource = useResource('SourceField')
-  const filters = useMemo(
-    () => ({
-      ...sourceFieldFixedFilters,
-      'type[]': Object.keys(ruleOperators.operatorsValueType),
-    }),
-    [ruleOperators.operatorsValueType]
-  )
+  const filters = useMemo(() => {
+    if (ruleOperators?.operatorsValueType) {
+      return {
+        ...sourceFieldFixedFilters,
+        'type[]': Object.keys(ruleOperators.operatorsValueType),
+      }
+    }
+  }, [ruleOperators?.operatorsValueType])
   const [sourceFields] = useApiList<ISourceField>(
     sourceFieldResource,
     false,
@@ -84,7 +86,7 @@ function RulesManager(props: IProps): JSX.Element {
     sourceFieldLabelFilters
   )
 
-  if (!sourceFields.data || !sourceFieldLabels.data) {
+  if (!sourceFields.data || !sourceFieldLabels.data || !ruleOperators) {
     return null
   }
 
