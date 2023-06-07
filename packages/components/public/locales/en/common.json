@@ -56,5 +56,6 @@
   "field.productImage": "Product image",
   "default.undefined": "empty",
   "log.out": "Log out",
-  "entity": "Entity"
+  "entity": "Entity",
+  "create": "Create"
 }
