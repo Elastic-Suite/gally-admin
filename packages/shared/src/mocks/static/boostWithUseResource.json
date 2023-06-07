@@ -327,33 +327,6 @@
     {
       "@type": "http://www.w3.org/ns/hydra/core#SupportedProperty",
       "gally": {
-        "visible": false,
-        "editable": false,
-        "position": 100,
-        "input": "requestTypes",
-        "options": {
-          "api_rest": "/boost_request_type_options",
-          "api_graphql": "boostRequestTypeOptions"
-        },
-        "alias": "requestTypes.requestType",
-        "fieldset": "general"
-      },
-      "property": {
-        "@id": "https://localhost/docs.jsonld#Boost/requestTypeLabels",
-        "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#Property",
-        "domain": {
-          "@id": "https://localhost/docs.jsonld#Boost"
-        },
-        "label": "Request type"
-      },
-      "readable": true,
-      "required": false,
-      "title": "requestTypeLabels",
-      "writeable": false
-    },
-    {
-      "@type": "http://www.w3.org/ns/hydra/core#SupportedProperty",
-      "gally": {
         "position": 110,
         "visible": true,
         "fieldset": "general",

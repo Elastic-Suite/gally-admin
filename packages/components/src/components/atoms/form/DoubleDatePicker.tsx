@@ -10,6 +10,8 @@ import IonIcon from '../IonIcon/IonIcon'
 import DatePicker, { IDatePickerProps } from './DatePicker'
 import FormControl from './FormControl'
 import InfoTooltip from './InfoTooltip'
+import { LocalizationProvider } from '@mui/x-date-pickers'
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 
 const CustomBox = styled(Box)(() => ({
   fontWeight: 400,
@@ -91,32 +93,33 @@ function DoubleDatePicker(props: IDoubleDatePickerProps): JSX.Element {
         sx={{ marginTop: label ? '24px' : '0px' }}
       >
         <CustomBox sx={{ paddingRight: '20px' }}> {t('form.from')} </CustomBox>
-        <Grid item xs>
-          <DatePicker
-            {...args}
-            error={error}
-            fullWidth={fullWidth}
-            inputProps={inputProps}
-            value={value?.from}
-            onChange={onChangeFrom}
-            onError={onErrorFrom}
-          />
-        </Grid>
-        <CustomBox sx={{ paddingRight: '20px', paddingLeft: '20px' }}>
-          {' '}
-          {t('form.to')}{' '}
-        </CustomBox>
-        <Grid item xs>
-          <DatePicker
-            {...args}
-            error={error}
-            fullWidth={fullWidth}
-            inputProps={inputProps}
-            value={value?.to}
-            onChange={onChangeTo}
-            onError={onErrorTo}
-          />
-        </Grid>
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <Grid item xs>
+            <DatePicker
+              {...args}
+              error={error}
+              fullWidth={fullWidth}
+              inputProps={inputProps}
+              value={value?.from}
+              onChange={onChangeFrom}
+              onError={onErrorFrom}
+            />
+          </Grid>
+          <CustomBox sx={{ paddingRight: '20px', paddingLeft: '20px' }}>
+            {t('form.to')}
+          </CustomBox>
+          <Grid item xs>
+            <DatePicker
+              {...args}
+              error={error}
+              fullWidth={fullWidth}
+              inputProps={inputProps}
+              value={value?.to}
+              onChange={onChangeTo}
+              onError={onErrorTo}
+            />
+          </Grid>
+        </LocalizationProvider>
       </Grid>
       {Boolean(helperText) && (
         <FormHelperText>
