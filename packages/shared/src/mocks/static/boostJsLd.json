@@ -121,10 +121,7 @@
         "form": {
           "visible": true,
           "fieldset": "general",
-          "depends": [
-            { "field": "name", "value": "salut" },
-            { "field": "conditionRule", "value": "test" }
-          ]
+          "depends": [{ "field": "model", "value": "model_score" }]
         }
       },
       "property": {

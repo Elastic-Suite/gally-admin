@@ -3,7 +3,7 @@ import { Box, FormHelperText, Grid, InputLabel } from '@mui/material'
 import { DateValidationError } from '@mui/x-date-pickers/internals/hooks/validation/useDateValidation'
 import { useTranslation } from 'next-i18next'
 import { styled } from '@mui/system'
-import { Dayjs } from 'dayjs'
+import dayjs, { Dayjs } from 'dayjs'
 
 import IonIcon from '../IonIcon/IonIcon'
 
@@ -19,8 +19,8 @@ const CustomBox = styled(Box)(() => ({
 }))
 
 export interface IDoubleDatePickerValues {
-  from: Dayjs | null
-  to: Dayjs | null
+  from: Dayjs | string | null
+  to: Dayjs | string | null
 }
 export interface IDoubleDatePickerErrors {
   from: DateValidationError
@@ -40,6 +40,7 @@ export interface IDoubleDatePickerProps
   margin?: 'none' | 'dense' | 'normal'
   helperText?: ReactNode
   helperIcon?: string
+  stringFormat?: boolean
 }
 
 function DoubleDatePicker(props: IDoubleDatePickerProps): JSX.Element {
@@ -58,12 +59,25 @@ function DoubleDatePicker(props: IDoubleDatePickerProps): JSX.Element {
     onChange,
     onError,
     required,
+    stringFormat = true,
     ...args
   } = props
   const { t } = useTranslation('common')
 
-  function onChangeFrom(date: Dayjs | null): void {
-    onChange({ ...value, from: date })
+  function stringToDayJs(date: string): Dayjs | null {
+    if (!date) {
+      return null
+    }
+    return dayjs(date)
+  }
+
+  function onChangeFrom(date: Dayjs | Record<string, string>): void {
+    const newFormatDate = stringFormat
+      ? new Date((date as Record<string, string>).$d).toLocaleDateString(
+          'en-EN'
+        ) // TODO change en-EN with global variable of I18N
+      : (date as Dayjs)
+    onChange({ ...value, from: newFormatDate })
   }
 
   function onChangeTo(date: Dayjs | null): void {
@@ -100,7 +114,11 @@ function DoubleDatePicker(props: IDoubleDatePickerProps): JSX.Element {
               error={error}
               fullWidth={fullWidth}
               inputProps={inputProps}
-              value={value?.from}
+              value={
+                stringFormat
+                  ? stringToDayJs(value?.from as string)
+                  : (value?.from as Dayjs)
+              }
               onChange={onChangeFrom}
               onError={onErrorFrom}
             />
@@ -114,7 +132,11 @@ function DoubleDatePicker(props: IDoubleDatePickerProps): JSX.Element {
               error={error}
               fullWidth={fullWidth}
               inputProps={inputProps}
-              value={value?.to}
+              value={
+                stringFormat
+                  ? stringToDayJs(value?.to as string)
+                  : (value?.to as Dayjs)
+              }
               onChange={onChangeTo}
               onError={onErrorTo}
             />

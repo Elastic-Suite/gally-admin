@@ -27,6 +27,7 @@ function Switch(props: IProps): JSX.Element {
     label,
     margin,
     onChange,
+    required,
     ...switchProps
   } = props
 
@@ -37,7 +38,7 @@ function Switch(props: IProps): JSX.Element {
   return (
     <StyleFormControl fullWidth variant="standard" margin={margin}>
       {label || infoTooltip ? (
-        <InputLabel sx={{ maxWidth: '90%' }} shrink>
+        <InputLabel sx={{ maxWidth: '90%' }} required={required} shrink>
           {label ? label : null}
           {infoTooltip ? <InfoTooltip title={infoTooltip} /> : null}
         </InputLabel>
