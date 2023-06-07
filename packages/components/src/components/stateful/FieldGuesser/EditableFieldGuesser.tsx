@@ -75,7 +75,10 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
   }
 
   if (depends) {
-    const isHidden = isHiddenDepends(depends as IDependsForm[], data)
+    const isHidden = isHiddenDepends(
+      depends instanceof Array ? (depends as IDependsForm[]) : [depends],
+      data
+    )
 
     if (isHidden) {
       return null
@@ -150,13 +153,13 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
       )
     }
 
-    case DataContentType.OTPGROUP:
+    case DataContentType.OPTGROUP:
     case DataContentType.SELECT: {
       return (
         <EditableDropDownGuesser
           {...props}
           onChange={handleChange}
-          useGroups={Boolean(input ?? type === DataContentType.OTPGROUP)}
+          useGroups={Boolean(input ?? type === DataContentType.OPTGROUP)}
         />
       )
     }

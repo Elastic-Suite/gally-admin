@@ -5,6 +5,7 @@ import ResourceTable, {
   IResourceTable,
 } from '../../../components/stateful-pages/ResourceTable/ResourceTable'
 import { useFilters, useResource } from '../../../hooks'
+import { useTranslation } from 'next-i18next'
 
 interface IProps
   extends Omit<IResourceTable, 'activeFilters' | 'setActiveFilters'> {
@@ -18,14 +19,15 @@ function Grid(props: IProps): JSX.Element {
 
   const resource = useResource(resourceName)
   const [activeFilters, setActiveFilters] = useFilters(resource)
+  const { t } = useTranslation('common')
 
   return (
     <>
       <PageTitle title={title ?? resourceName}>
         {hasNewLink ? (
           <Button>
-            <a style={{ textDecoration: 'none' }} href={newLink ?? './new'}>
-              Create new {title ?? resourceName}
+            <a style={{ textDecoration: 'none' }} href={newLink ?? './create'}>
+              {t('create')} {title ?? resourceName}
             </a>
           </Button>
         ) : null}

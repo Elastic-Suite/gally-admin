@@ -83,7 +83,7 @@ function ReadableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
       )
     }
 
-    case DataContentType.OTPGROUP:
+    case DataContentType.OPTGROUP:
     case DataContentType.SELECT: {
       return (
         <Box>
