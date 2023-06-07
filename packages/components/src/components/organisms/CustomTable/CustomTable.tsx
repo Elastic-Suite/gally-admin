@@ -53,8 +53,8 @@ export interface ICustomTableProps {
   tableRows: ITableRow[]
   withSelection?: boolean
   configuration?: IConfigurations
-  hasUpdateLink?: boolean
-  updateLink?: string
+  hasEditLink?: boolean
+  editLink?: string
 }
 
 function CustomTable(
@@ -77,8 +77,8 @@ function CustomTable(
     selectedRows,
     withSelection,
     configuration,
-    hasUpdateLink,
-    updateLink,
+    hasEditLink,
+    editLink,
   } = props
 
   const [scrollLength, setScrollLength] = useState<number>(0)
@@ -161,7 +161,7 @@ function CustomTable(
     onSelection(event.target.checked)
   }
 
-  const newHeadersTable = hasUpdateLink
+  const newHeadersTable = hasEditLink
     ? tableHeaders.concat([
         {
           id: 'actions',
@@ -213,8 +213,8 @@ function CustomTable(
                 tableRows={tableRows}
                 withSelection={withSelection}
                 configuration={configuration}
-                hasUpdateLink={hasUpdateLink}
-                updateLink={updateLink}
+                hasEditLink={hasEditLink}
+                editLink={editLink}
               />
             )}
             {Boolean(draggable) && (
@@ -232,8 +232,8 @@ function CustomTable(
                 tableRows={tableRows}
                 withSelection={withSelection}
                 configuration={configuration}
-                hasUpdateLink={hasUpdateLink}
-                updateLink={updateLink}
+                hasEditLink={hasEditLink}
+                editLink={editLink}
               />
             )}
           </StyledTable>

@@ -94,6 +94,15 @@ export interface IDependsForm {
   value?: string
 }
 
+export interface IInputDependencies {
+  field: string
+  value: string
+  input: string
+  jsonKeyValue: string
+}
+export interface IMultipleInputConfiguration {
+  inputDependencies: IInputDependencies[]
+}
 export interface IGallyProperty {
   context?: Record<string, IGallyProperty>
   depends?: any
@@ -113,6 +122,8 @@ export interface IGallyProperty {
   requestTypeConfigurations?: Record<string, string>
   form?: IGallyProperty
   grid?: IGallyProperty
+  infoTooltip?: string
+  multipleInputConfiguration?: IMultipleInputConfiguration
 }
 
 export interface IDropdownStaticOptions {

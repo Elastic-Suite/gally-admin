@@ -230,9 +230,9 @@
           "api_graphql": "boostModelOptions",
           "api_rest": "/boost_model_options"
         },
-        "position": 60,
+        "position": 1,
         "visible": true,
-        "fieldset": "sub"
+        "fieldset": "general"
       },
       "property": {
         "@id": "https://localhost/docs.jsonld#Boost/model",
@@ -253,9 +253,21 @@
     {
       "@type": "http://www.w3.org/ns/hydra/core#SupportedProperty",
       "gally": {
-        "position": 70,
+        "position": 2,
         "visible": true,
-        "fieldset": "sub"
+        "fieldset": "general",
+        "input": "modelConfig",
+        "infoTooltip": "tooltip hello",
+        "options": {
+          "values": [
+            { "field": "model", "value": "constant_score", "input": "slider" },
+            {
+              "field": "model",
+              "value": "behavioral_data",
+              "input": "boolean"
+            }
+          ]
+        }
       },
       "property": {
         "@id": "https://localhost/docs.jsonld#Boost/modelConfig",

@@ -2,9 +2,9 @@ import { SyntheticEvent } from 'react'
 
 import { IField } from './api'
 import { DataContentType, ITableRow } from './customTables'
-import { IOptions } from './option'
+import { IMultipleInputConfiguration } from './hydra'
+import { IOption, IOptions } from './option'
 import { ITreeItem } from './tree'
-// import { IDependsForm } from './hydra'
 
 export interface IFieldCondition {
   conditions: Record<string, unknown>
@@ -33,6 +33,9 @@ export interface IFieldConfig extends IFieldState {
   multipleSeparatorValue?: string
   requestTypeConfigurations?: Record<string, string>
   categoriesList?: ITreeItem[]
+  optionConfig?: IOption<string>
+  infoTooltip?: string
+  multipleInputConfiguration?: IMultipleInputConfiguration
 }
 
 export interface IFieldConfigFormWithFieldset {
@@ -45,7 +48,11 @@ export interface IFieldConfigFormWithFieldset {
 
 export interface IFieldGuesserProps extends IFieldConfig {
   diffValue?: unknown
-  onChange?: (name: string, value: unknown, event?: SyntheticEvent) => void
+  onChange?: (
+    name: string | IOption<string>,
+    value: unknown,
+    event?: SyntheticEvent
+  ) => void
   showError?: boolean
   useDropdownBoolean?: boolean
   row?: ITableRow
