@@ -224,6 +224,9 @@ export function inputInitializer(input: string): unknown {
     case 'categoryLimitations':
       return []
 
+    case 'ruleEngine':
+      return '{"type":"combination","operator":"all","value":"true","children":[]}'
+
     default:
       return ''
   }

@@ -22,6 +22,7 @@ export enum DataContentType {
   OTPGROUP = 'optgroup',
   RANGEDATE = 'rangeDate',
   REQUESTTYPE = 'requestType',
+  RULEENGINE = 'ruleEngine',
 }
 
 export interface ITableHeader extends IFieldConfig {
