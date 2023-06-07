@@ -1,5 +1,7 @@
 {
   "save": "Save",
   "create": "Create",
-  "alert": "Save data with success"
+  "alert": "Save data with success",
+  "title.update": "Updating of boost",
+  "title.create": "Creating of boost"
 }

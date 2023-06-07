@@ -56,5 +56,6 @@
   "field.productImage": "Image produit",
   "default.undefined": "vide",
   "log.out": "Déconnexion",
-  "entity": "Entité"
+  "entity": "Entité",
+  "create": "Créer"
 }
