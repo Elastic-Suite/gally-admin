@@ -1,24 +1,24 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { withAuth, withOptions } from '../../../hocs'
-import { setupStore } from '../../../../src/store'
+import { withAuth, withOptions } from '../../../../hocs'
+import { setupStore } from '../../../../store'
 import {
   AppProvider,
   DataProvider,
   PageTitle,
   ResourceForm,
-} from '../../../../src/components'
+} from '../../../../components'
 import { useRouter } from 'next/router'
-import { breadcrumbContext } from '../../../../src/contexts'
+import { breadcrumbContext } from '../../../../contexts'
 import { useTranslation } from 'next-i18next'
 
-const pagesSlug = ['search', 'configuration', 'attributes']
+const pagesSlug = ['merchandize', 'boosts']
 
-function AdminBoostUpdate(): JSX.Element {
+function AdminBoostEdit(): JSX.Element {
   const store = setupStore()
   const router = useRouter()
+  const { t } = useTranslation('boost')
   const [, setBreadcrumb] = useContext(breadcrumbContext)
   const [idUpdate, setIdUpdate] = useState<string>('')
-  const { t } = useTranslation('boost')
 
   useEffect(() => {
     setBreadcrumb(pagesSlug)
@@ -31,14 +31,18 @@ function AdminBoostUpdate(): JSX.Element {
 
   return (
     <>
-      <PageTitle title={t(pagesSlug.at(-1))} sx={{ marginBottom: '32px' }} />
+      <PageTitle title={t('title.update')} sx={{ marginBottom: '32px' }} />
       <AppProvider store={store}>
         <DataProvider>
-          <ResourceForm resourceName="Boost" id={idUpdate} />
+          <ResourceForm
+            resourceName="Boost"
+            id={idUpdate}
+            categoriesList={[]}
+          />
         </DataProvider>
       </AppProvider>
     </>
   )
 }
 
-export default withAuth(withOptions(AdminBoostUpdate))
+export default withAuth(withOptions(AdminBoostEdit))

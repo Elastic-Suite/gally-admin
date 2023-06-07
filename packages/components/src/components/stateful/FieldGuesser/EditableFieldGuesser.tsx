@@ -150,13 +150,13 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
       )
     }
 
-    case DataContentType.OTPGROUP:
+    case DataContentType.OPTGROUP:
     case DataContentType.SELECT: {
       return (
         <EditableDropDownGuesser
           {...props}
           onChange={handleChange}
-          useGroups={Boolean(input ?? type === DataContentType.OTPGROUP)}
+          useGroups={Boolean(input ?? type === DataContentType.OPTGROUP)}
         />
       )
     }
