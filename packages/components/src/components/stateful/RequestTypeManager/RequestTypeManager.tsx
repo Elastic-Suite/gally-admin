@@ -18,6 +18,7 @@ interface IProps {
   margin?: 'none' | 'dense' | 'normal'
   requestTypeConfigurations?: Record<string, string>
   categoriesList: ITreeItem[]
+  infoTooltip?: string
 }
 
 function RequestTypeManager(props: IProps): JSX.Element | null {
@@ -48,7 +49,8 @@ function RequestTypeManager(props: IProps): JSX.Element | null {
       operatorOptions &&
       limitationTypeOptions &&
       requestTypeOptions &&
-      categoriesList
+      categoriesList &&
+      value?.requestTypes
     )
   ) {
     return null

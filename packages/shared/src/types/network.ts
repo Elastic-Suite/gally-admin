@@ -20,7 +20,8 @@ export enum Method {
 }
 
 export interface IError {
-  error: Error
+  error?: Error
+  violations?: any
 }
 
 export type NetworkError = Error | ApiError | AuthError | GraphqlError | string

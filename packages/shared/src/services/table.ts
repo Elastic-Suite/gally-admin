@@ -69,6 +69,7 @@ export function getFieldHeader(field: IField, t: TFunction): IFieldConfig {
     fieldset: field.gally?.fieldset,
     id,
     input,
+    infoTooltip: field.gally?.infoTooltip,
     label:
       field.property.label ?? t(...getFieldLabelTranslationArgs(field.title)),
     name: id,
@@ -76,6 +77,7 @@ export function getFieldHeader(field: IField, t: TFunction): IFieldConfig {
     type,
     multipleSeparatorValue: field.gally?.multipleSeparatorValue,
     requestTypeConfigurations: field.gally?.requestTypeConfigurations,
+    multipleInputConfiguration: field.gally?.multipleInputConfiguration,
   }
 }
 

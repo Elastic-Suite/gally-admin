@@ -14,7 +14,7 @@ function AdminBoostGrid(): JSX.Element {
     setBreadcrumb(pagesSlug)
   }, [router.query, setBreadcrumb])
 
-  return <Grid resourceName="Boost" hasNewLink hasUpdateLink />
+  return <Grid resourceName="Boost" hasNewLink hasEditLink />
 }
 
 export default withAuth(withOptions(AdminBoostGrid))

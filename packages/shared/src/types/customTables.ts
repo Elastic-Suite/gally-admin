@@ -23,6 +23,8 @@ export enum DataContentType {
   RANGEDATE = 'rangeDate',
   REQUESTTYPE = 'requestType',
   RULEENGINE = 'ruleEngine',
+  SLIDER = 'slider',
+  MULTIPLEINPUT = 'multipleInput',
 }
 
 export interface ITableHeader extends IFieldConfig {
