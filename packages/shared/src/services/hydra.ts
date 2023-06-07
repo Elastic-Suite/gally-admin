@@ -14,8 +14,6 @@ import {
   ISourceFieldOptionLabel,
 } from '../types'
 
-import dayjs from 'dayjs'
-
 export class HydraError extends Error {
   error: IHydraError
   constructor(error: IHydraError) {
@@ -243,10 +241,8 @@ export function valueInitializer(type: string, input?: string): unknown {
       return 0
 
     case 'date':
-      return dayjs(new Date()).format('YYYY-MM-DD')
-
     case 'dateTime':
-      return dayjs(new Date()).format('YYYY-MM-DD HH:mm:ss')
+      return null
 
     default:
       return input ? inputInitializer(input) : ''
