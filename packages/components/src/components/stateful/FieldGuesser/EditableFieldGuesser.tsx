@@ -75,7 +75,10 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
   }
 
   if (depends) {
-    const isHidden = isHiddenDepends(depends as IDependsForm[], data)
+    const isHidden = isHiddenDepends(
+      depends instanceof Array ? (depends as IDependsForm[]) : [depends],
+      data
+    )
 
     if (isHidden) {
       return null

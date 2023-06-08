@@ -69,7 +69,7 @@ function ResourceForm(props: IProps): JSX.Element {
     setIsLoading(true)
     let sendingToApi
     if (id) {
-      sendingToApi = await (replace as any)({ id, data })
+      sendingToApi = await (replace as any)(data)
     } else {
       sendingToApi = await (create as any)(data)
     }
@@ -82,6 +82,7 @@ function ResourceForm(props: IProps): JSX.Element {
     setIsLoading(false)
   }
 
+  console.log('data', data)
   return (
     <CustomResourceForm>
       <CustomForm
