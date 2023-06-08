@@ -48,7 +48,8 @@ function RequestTypeManager(props: IProps): JSX.Element | null {
       operatorOptions &&
       limitationTypeOptions &&
       requestTypeOptions &&
-      categoriesList
+      categoriesList &&
+      value?.requestTypes
     )
   ) {
     return null

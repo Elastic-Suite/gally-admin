@@ -150,13 +150,26 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
       )
     }
 
+    // case DataContentType.OPTGROUP: {
+    //   return (
+    //     <EditableDropDownGuesser
+    //       {...props}
+    //       value={['localized_catalogs/7', 'localized_catalogs/8']}
+    //       onChange={handleChange}
+    //       useGroups={Boolean((input ?? type) === DataContentType.OPTGROUP)}
+    //       multiple={Boolean(value instanceof Array)}
+    //     />
+    //   )
+    // }
+
     case DataContentType.OPTGROUP:
     case DataContentType.SELECT: {
       return (
         <EditableDropDownGuesser
           {...props}
           onChange={handleChange}
-          useGroups={Boolean(input ?? type === DataContentType.OPTGROUP)}
+          useGroups={Boolean((input ?? type) === DataContentType.OPTGROUP)}
+          multiple={Boolean(value instanceof Array)}
         />
       )
     }

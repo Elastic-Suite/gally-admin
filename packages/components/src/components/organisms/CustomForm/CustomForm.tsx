@@ -32,10 +32,10 @@ function CustomForm(props: IProps): JSX.Element {
     name: string | Record<string, string>,
     response: unknown
   ): void {
-    if (typeof response === 'object') {
-      return onChange({ ...data, ...response })
+    if (response instanceof Array || typeof response !== 'object') {
+      return onChange({ ...data, [name as string]: response })
     }
-    return onChange({ ...data, [name as string]: response })
+    return onChange({ ...data, ...response })
   }
 
   return (

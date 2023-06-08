@@ -220,6 +220,7 @@ export function inputInitializer(input: string): unknown {
     case 'requestType':
     case 'searchLimitations':
     case 'categoryLimitations':
+    case 'optgroup':
       return []
 
     default:
