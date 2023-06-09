@@ -22,6 +22,7 @@ export enum DataContentType {
   OPTGROUP = 'optgroup',
   RANGEDATE = 'rangeDate',
   REQUESTTYPE = 'requestType',
+  SLIDER = 'slider',
 }
 
 export interface ITableHeader extends IFieldConfig {

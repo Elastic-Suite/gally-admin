@@ -223,6 +223,9 @@ export function inputInitializer(input: string): unknown {
     case 'optgroup':
       return []
 
+    case 'slider':
+      return 0
+
     default:
       return ''
   }
