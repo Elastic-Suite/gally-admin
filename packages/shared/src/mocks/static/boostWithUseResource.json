@@ -262,7 +262,7 @@
             {
               "field": "model",
               "value": "behavioral_data",
-              "input": "behavioral"
+              "input": "boolean"
             }
           ]
         }

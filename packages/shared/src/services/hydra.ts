@@ -242,6 +242,7 @@ export function valueInitializer(type: string, input?: string): unknown {
 
     case 'integer':
     case 'float':
+    case 'slider':
       return 0
 
     case 'date':

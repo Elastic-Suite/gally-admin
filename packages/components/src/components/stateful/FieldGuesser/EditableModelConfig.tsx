@@ -1,44 +1,37 @@
 import React, { useContext, useEffect } from 'react'
 import {
+  DataContentType,
   IFieldGuesserProps,
   IOption,
   IOptions,
   LoadStatus,
+  valueInitializer,
 } from '@elastic-suite/gally-admin-shared'
 import { optionsContext } from '../../../contexts'
-import Slider from '../../atoms/form/Slider'
-import Switch from '../../atoms/form/Switch'
+import FieldGuesser from './FieldGuesser'
 
 interface IProps extends Omit<IFieldGuesserProps, 'onChange'> {
   onChange: (val: string) => void
 }
 
 function initOrUpdateModelConfigValue(
-  otp: IOption<unknown>,
+  optionConfig: IOption<unknown>,
   data?: unknown
 ): string {
-  switch (otp?.input) {
-    case 'slider':
-      return JSON.stringify({
-        [otp?.value as string]: data !== undefined ? String(data) : '0',
-      })
-
-    case 'behavioral': //TODO TO DELETE
-      return JSON.stringify({
-        [otp?.value as string]: data !== undefined ? String(data) : 'false',
-      })
-
-    default:
-      break
-  }
+  return JSON.stringify({
+    [optionConfig?.value as string]:
+      data !== undefined
+        ? String(data)
+        : String(valueInitializer(optionConfig?.input)),
+  })
 }
 
 function EditableModelConfig(props: IProps): JSX.Element {
-  const { field, value, onChange, data, options } = props
+  const { field, value, onChange, data, options, label } = props
   const { fieldOptions, load, statuses } = useContext(optionsContext)
 
-  function handleChange(otp: IOption<string>, data?: unknown): void {
-    return onChange(initOrUpdateModelConfigValue(otp, data))
+  function handleChange(optionConfig: IOption<string>, data?: unknown): void {
+    return onChange(initOrUpdateModelConfigValue(optionConfig, data))
   }
 
   const optionsConfig = (options ??
@@ -61,35 +54,28 @@ function EditableModelConfig(props: IProps): JSX.Element {
 
   return (
     <>
-      {optionsConfig.map((otp) => {
-        if (data[otp?.field] === otp?.value) {
-          const val = value ? JSON.parse(value as string)?.[otp?.value] : null
+      {optionsConfig.map((optionConfig) => {
+        if (data[optionConfig?.field] === optionConfig?.value) {
+          const val = value
+            ? JSON.parse(value as string)?.[optionConfig?.value]
+            : null
 
           if (!val) {
-            return handleChange(otp)
+            return handleChange(optionConfig)
           }
-          switch (otp?.input) {
-            case 'slider':
-              return (
-                <Slider
-                  key={otp?.input}
-                  value={Number(val)}
-                  onChange={(e): void => handleChange(otp, e)}
-                />
-              )
-
-            case 'behavioral': // TODO TO DELETE
-              return (
-                <Switch
-                  key={otp?.input}
-                  checked={JSON.parse(val)}
-                  onChange={(e): void => handleChange(otp, e)}
-                />
-              )
-
-            default:
-              return null
-          }
+          return (
+            <FieldGuesser
+              {...props}
+              label={label}
+              editable
+              id={optionConfig.input}
+              input={optionConfig.input as DataContentType}
+              key={optionConfig.input}
+              value={val}
+              optionConfig={optionConfig}
+              onChange={handleChange}
+            />
+          )
         }
         return null
       })}

@@ -23,6 +23,7 @@ export enum DataContentType {
   RANGEDATE = 'rangeDate',
   REQUESTTYPE = 'requestType',
   MODELCONFIG = 'modelConfig',
+  SLIDER = 'slider',
 }
 
 export interface ITableHeader extends IFieldConfig {

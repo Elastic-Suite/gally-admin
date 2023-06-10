@@ -4,6 +4,7 @@ import {
   DataContentType,
   IDependsForm,
   IFieldGuesserProps,
+  IOption,
   IRequestType,
 } from '@elastic-suite/gally-admin-shared'
 
@@ -22,6 +23,7 @@ import DoubleDatePicker, {
 import { Box } from '@mui/material'
 import RequestTypeManager from '../../stateful/RequestTypeManager/RequestTypeManager'
 import { isHiddenDepends } from '../../../services'
+import Slider from '../../atoms/form/Slider'
 
 function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
   const {
@@ -44,6 +46,7 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
     requestTypeConfigurations,
     categoriesList,
     data,
+    optionConfig,
   } = props
 
   const { t } = useTranslation('common')
@@ -64,6 +67,9 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
     event?: SyntheticEvent
   ): void {
     if (onChange) {
+      if (optionConfig) {
+        return onChange(optionConfig as IOption<string>, value, event)
+      }
       if (name === 'doubleDatePicker') {
         const formatDate = {
           fromDate: (value as IDoubleDatePickerValues)?.from,
@@ -86,6 +92,7 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
     }
   }
 
+  console.log('input', input)
   switch (input ?? type) {
     case DataContentType.NUMBER:
     case DataContentType.STRING: {
@@ -128,6 +135,10 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
           value={value as (string | number | null)[]}
         />
       )
+    }
+
+    case DataContentType.SLIDER: {
+      return <Slider {...props} value={Number(value)} onChange={handleChange} />
     }
 
     case DataContentType.RANGEDATE: {
@@ -202,7 +213,11 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
       }
       return (
         <Switch
-          checked={Boolean(value)}
+          checked={
+            typeof value === 'string'
+              ? JSON.parse(value as string)
+              : Boolean(value)
+          }
           disabled={disabled}
           helperText={
             Boolean(dirty) &&

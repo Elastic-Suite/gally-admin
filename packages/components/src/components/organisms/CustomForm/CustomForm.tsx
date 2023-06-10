@@ -2,6 +2,7 @@ import React from 'react'
 import { useApiHeadersForm } from '../../../hooks'
 import {
   IFieldConfigFormWithFieldset,
+  IOption,
   IResource,
   ITreeItem,
 } from '@elastic-suite/gally-admin-shared'
@@ -29,7 +30,7 @@ function CustomForm(props: IProps): JSX.Element {
   const headers = useApiHeadersForm(resource)
 
   function handleChange(
-    name: string | Record<string, string>,
+    name: string | Record<string, string> | IOption<string>,
     response: unknown
   ): void {
     if (response instanceof Array || typeof response !== 'object') {
