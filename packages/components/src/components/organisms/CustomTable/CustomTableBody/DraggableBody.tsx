@@ -30,8 +30,8 @@ interface IProps {
   tableRows: ITableRow[]
   withSelection: boolean
   configuration: IConfigurations
-  updateLink?: string
-  hasUpdateLink?: boolean
+  hasEditLink?: boolean
+  editLink?: string
 }
 
 function DraggableBody(props: IProps): JSX.Element {
@@ -49,14 +49,14 @@ function DraggableBody(props: IProps): JSX.Element {
     tableRows,
     withSelection,
     configuration,
-    updateLink,
-    hasUpdateLink,
+    hasEditLink,
+    editLink,
   } = props
 
-  const newTableRows = hasUpdateLink
+  const newTableRows = hasEditLink
     ? tableRows.map((item) => {
-        const link = updateLink
-          ? `${updateLink}?id=${item.id}`
+        const link = editLink
+          ? `${editLink}?id=${item.id}`
           : `./edit?id=${item.id}`
         return { ...item, edit: link }
       })
