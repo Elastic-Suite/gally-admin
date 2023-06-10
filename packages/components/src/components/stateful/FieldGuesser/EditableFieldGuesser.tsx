@@ -14,6 +14,7 @@ import Switch from '../../atoms/form/Switch'
 
 import ReadableFieldGuesser from './ReadableFieldGuesser'
 import EditableDropDownGuesser from './EditableDropDownGuesser'
+import EditableModelConfig from './EditableModelConfig'
 import DoubleDatePicker, {
   IDoubleDatePickerValues,
 } from '../../atoms/form/DoubleDatePicker'
@@ -21,7 +22,6 @@ import DoubleDatePicker, {
 import { Box } from '@mui/material'
 import RequestTypeManager from '../../stateful/RequestTypeManager/RequestTypeManager'
 import { isHiddenDepends } from '../../../services'
-import Slider from '../../atoms/form/Slider'
 
 function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
   const {
@@ -71,10 +71,6 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
         }
         return onChange(name, formatDate, event)
       }
-
-      // if (name === 'modelConfig') {
-      //   return onChange()
-      // }
       return onChange(name, value, event)
     }
   }
@@ -89,8 +85,6 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
       return null
     }
   }
-
-  console.log('input', input, 'type', type)
 
   switch (input ?? type) {
     case DataContentType.NUMBER:
@@ -160,16 +154,19 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
       )
     }
 
-    case DataContentType.SLIDER: {
+    case DataContentType.MODELCONFIG: {
       return (
-        <Slider value={value as number} onChange={handleChange} label={label} />
+        <EditableModelConfig
+          {...props}
+          value={value as string}
+          onChange={handleChange}
+          label={label}
+        />
       )
     }
 
     case DataContentType.OPTGROUP:
     case DataContentType.SELECT: {
-      console.log('label', label)
-      console.log('options', props)
       return (
         <EditableDropDownGuesser
           {...props}

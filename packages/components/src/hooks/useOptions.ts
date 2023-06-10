@@ -37,7 +37,7 @@ export function useOptions(): IOptionsContext {
             // static options
             const options = field.gally.options.values.map((option) => ({
               ...option,
-              label: t(String(option.label)),
+              label: option?.label ? t(String(option?.label)) : undefined,
             }))
             return options
           }

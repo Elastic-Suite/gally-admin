@@ -223,8 +223,8 @@ export function inputInitializer(input: string): unknown {
     case 'optgroup':
       return []
 
-    case 'slider':
-      return 0
+    // case 'modelConfig':
+    //   return '{"constant_score":"95"}'
 
     default:
       return ''

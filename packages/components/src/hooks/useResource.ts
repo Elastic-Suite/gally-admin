@@ -24,12 +24,8 @@ export function useResource(
 ): IResource {
   const api = useAppSelector(selectApi)
   const { pathname } = useRouter()
-  console.log('api', api)
-  console.log('resourceName', resourceName)
   return useMemo(() => {
     const resource = getResource(api, resourceName)
-    console.log('resource1', resource)
-
     return {
       ...resource,
       supportedProperty: resource?.supportedProperty.map((field) =>

@@ -82,7 +82,6 @@ function ResourceForm(props: IProps): JSX.Element {
     setIsLoading(false)
   }
 
-  console.log('data', data)
   return (
     <CustomResourceForm>
       <CustomForm

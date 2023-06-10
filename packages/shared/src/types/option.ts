@@ -6,9 +6,11 @@ import { LoadStatus } from './fetch'
 export interface IOption<T> {
   disabled?: boolean
   id?: string | number
-  label: string
+  label?: string
   value: T
   default?: boolean
+  field?: string
+  input?: string
 }
 
 export type IOptions<T> = IOption<T>[]
