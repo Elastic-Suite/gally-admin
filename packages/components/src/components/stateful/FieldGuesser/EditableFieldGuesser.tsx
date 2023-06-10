@@ -47,6 +47,7 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
     categoriesList,
     data,
     optionConfig,
+    infoTooltip,
   } = props
 
   const { t } = useTranslation('common')
@@ -92,12 +93,12 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
     }
   }
 
-  console.log('input', input)
   switch (input ?? type) {
     case DataContentType.NUMBER:
     case DataContentType.STRING: {
       return (
         <InputTextError
+          infoTooltip={infoTooltip}
           dirty={dirty}
           disabled={disabled}
           helperText={
@@ -121,6 +122,7 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
     case DataContentType.RANGE: {
       return (
         <RangeError
+          infoTooltip={infoTooltip}
           dirty={dirty}
           disabled={disabled}
           helperText={
@@ -138,13 +140,21 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
     }
 
     case DataContentType.SLIDER: {
-      return <Slider {...props} value={Number(value)} onChange={handleChange} />
+      return (
+        <Slider
+          {...props}
+          infoTooltip={infoTooltip}
+          value={Number(value)}
+          onChange={handleChange}
+        />
+      )
     }
 
     case DataContentType.RANGEDATE: {
       return (
         <Box>
           <DoubleDatePicker
+            infoTooltip={infoTooltip}
             value={value as IDoubleDatePickerValues}
             onChange={handleChange}
           />
@@ -155,6 +165,7 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
     case DataContentType.REQUESTTYPE: {
       return (
         <RequestTypeManager
+          infoTooltip={infoTooltip}
           requestTypeConfigurations={requestTypeConfigurations}
           value={value as IRequestType}
           onChange={handleChange}
@@ -169,6 +180,7 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
       return (
         <EditableModelConfig
           {...props}
+          infoTooltip={infoTooltip}
           value={value as string}
           onChange={handleChange}
           label={label}
@@ -181,6 +193,7 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
       return (
         <EditableDropDownGuesser
           {...props}
+          infoTooltip={infoTooltip}
           onChange={handleChange}
           useGroups={Boolean((input ?? type) === DataContentType.OPTGROUP)}
           multiple={Boolean(value instanceof Array)}
@@ -192,6 +205,7 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
       if (useDropdownBoolean) {
         return (
           <DropDown
+            infoTooltip={infoTooltip}
             dirty={dirty}
             disabled={disabled}
             helperText={
@@ -213,6 +227,7 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
       }
       return (
         <Switch
+          infoTooltip={infoTooltip}
           checked={
             typeof value === 'string'
               ? JSON.parse(value as string)
@@ -231,7 +246,7 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
     }
 
     default: {
-      return <ReadableFieldGuesser {...props} />
+      return <ReadableFieldGuesser {...props} infoTooltip={infoTooltip} />
     }
   }
 }

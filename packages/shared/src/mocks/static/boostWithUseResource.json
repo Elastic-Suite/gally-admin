@@ -256,6 +256,7 @@
         "visible": true,
         "fieldset": "general",
         "input": "modelConfig",
+        "infoTooltip": "tooltip hello",
         "options": {
           "values": [
             { "field": "model", "value": "constant_score", "input": "slider" },

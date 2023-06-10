@@ -113,6 +113,7 @@ export interface IGallyProperty {
   requestTypeConfigurations?: Record<string, string>
   form?: IGallyProperty
   grid?: IGallyProperty
+  infoTooltip?: string
 }
 
 export interface IDropdownStaticOptions {

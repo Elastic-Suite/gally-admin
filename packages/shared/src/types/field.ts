@@ -33,6 +33,7 @@ export interface IFieldConfig extends IFieldState {
   requestTypeConfigurations?: Record<string, string>
   categoriesList?: ITreeItem[]
   optionConfig?: IOption<string>
+  infoTooltip?: string
 }
 
 export interface IFieldConfigFormWithFieldset {
