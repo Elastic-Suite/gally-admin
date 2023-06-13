@@ -123,7 +123,7 @@ exports[`DropDown match snapshot BadgeLabel 1`] = `
         class="MuiFormControl-root css-x8sez7-MuiFormControl-root"
       >
         <label
-          class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard MuiFormLabel-colorPrimary css-8f1bkl-MuiFormLabel-root-MuiInputLabel-root"
+          class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard MuiFormLabel-colorPrimary css-rnc4nv-MuiFormLabel-root-MuiInputLabel-root"
           data-shrink="true"
           for=":r2:"
         >
@@ -186,7 +186,7 @@ exports[`DropDown match snapshot BadgeMultiple 1`] = `
         class="MuiFormControl-root css-x8sez7-MuiFormControl-root"
       >
         <label
-          class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard MuiFormLabel-colorPrimary css-8f1bkl-MuiFormLabel-root-MuiInputLabel-root"
+          class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard MuiFormLabel-colorPrimary css-rnc4nv-MuiFormLabel-root-MuiInputLabel-root"
           data-shrink="true"
           for=":r5:"
         >
