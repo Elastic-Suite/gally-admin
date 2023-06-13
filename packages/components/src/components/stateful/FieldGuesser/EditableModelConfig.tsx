@@ -36,9 +36,6 @@ function EditableModelConfig(props: IProps): JSX.Element {
     return null
   }
 
-  console.log('data', data)
-  console.log('inputDependencies', inputDependencies)
-
   return (
     <>
       {inputDependencies.map((inputDependencie) => {
