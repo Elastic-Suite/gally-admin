@@ -2,6 +2,7 @@ import { SyntheticEvent } from 'react'
 
 import { IField } from './api'
 import { DataContentType, ITableRow } from './customTables'
+import { IAssociatedFieldConfig } from './hydra'
 import { IOption, IOptions } from './option'
 import { ITreeItem } from './tree'
 
@@ -34,6 +35,7 @@ export interface IFieldConfig extends IFieldState {
   categoriesList?: ITreeItem[]
   optionConfig?: IOption<string>
   infoTooltip?: string
+  associatedFieldConfig?: IAssociatedFieldConfig
 }
 
 export interface IFieldConfigFormWithFieldset {

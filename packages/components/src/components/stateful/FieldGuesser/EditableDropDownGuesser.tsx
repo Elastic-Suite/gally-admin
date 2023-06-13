@@ -53,6 +53,18 @@ function EditableDropDownGuesser(props: IProps): JSX.Element {
     return null
   }
 
+  const modelOptions = [
+    // to delete TODO
+    {
+      label: 'Constant score',
+      value: 'constant_score',
+    },
+    {
+      label: 'Behavioral Data',
+      value: 'behavioral_data',
+    },
+  ]
+
   return (
     <DropDown
       infoTooltip={infoTooltip}
@@ -67,7 +79,7 @@ function EditableDropDownGuesser(props: IProps): JSX.Element {
       }
       label={label}
       multiple={multiple}
-      options={dropDownOptions}
+      options={label === 'Model' ? modelOptions : dropDownOptions}
       required={required}
       value={value}
       onChange={onChange}

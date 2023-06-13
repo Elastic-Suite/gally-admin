@@ -94,6 +94,14 @@ export interface IDependsForm {
   value?: string
 }
 
+export interface IInputDependencies {
+  field: string
+  value: string
+  input: string
+}
+export interface IAssociatedFieldConfig {
+  inputDependencies: IInputDependencies[]
+}
 export interface IGallyProperty {
   context?: Record<string, IGallyProperty>
   depends?: any
@@ -114,6 +122,7 @@ export interface IGallyProperty {
   form?: IGallyProperty
   grid?: IGallyProperty
   infoTooltip?: string
+  associatedFieldConfig?: IAssociatedFieldConfig
 }
 
 export interface IDropdownStaticOptions {
