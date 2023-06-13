@@ -16,7 +16,7 @@ exports[`Merchandize match snapshot testSelect 1`] = `
           class="MuiFormControl-root MuiFormControl-fullWidth css-e8gwa4-MuiFormControl-root"
         >
           <label
-            class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard MuiFormLabel-colorPrimary css-1hutl6r-MuiFormLabel-root-MuiInputLabel-root"
+            class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard MuiFormLabel-colorPrimary css-1cpkhc9-MuiFormLabel-root-MuiInputLabel-root"
             data-shrink="true"
           >
             name
@@ -70,7 +70,7 @@ exports[`Merchandize match snapshot testSelect 1`] = `
               class="MuiFormControl-root css-x8sez7-MuiFormControl-root"
             >
               <label
-                class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard MuiFormLabel-colorPrimary MuiFormLabel-filled Mui-required css-8f1bkl-MuiFormLabel-root-MuiInputLabel-root"
+                class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard MuiFormLabel-colorPrimary MuiFormLabel-filled Mui-required css-rnc4nv-MuiFormLabel-root-MuiInputLabel-root"
                 data-shrink="true"
                 for=":r1:"
               >
@@ -147,7 +147,7 @@ exports[`Merchandize match snapshot testSelect 1`] = `
           class="MuiFormControl-root MuiFormControl-fullWidth css-e8gwa4-MuiFormControl-root"
         >
           <label
-            class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard MuiFormLabel-colorPrimary css-1hutl6r-MuiFormLabel-root-MuiInputLabel-root"
+            class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard MuiFormLabel-colorPrimary css-1cpkhc9-MuiFormLabel-root-MuiInputLabel-root"
             data-shrink="true"
           >
             virtual
