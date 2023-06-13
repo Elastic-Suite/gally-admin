@@ -30,7 +30,10 @@ function EditableModelConfig(props: IProps): JSX.Element {
     return onChange(initOrUpdateModelConfigValue(optionConfig, data))
   }
 
-  const { inputDependencies } = multipleInputConfiguration
+  const inputDependencies =
+    multipleInputConfiguration.inputDependencies instanceof Array
+      ? multipleInputConfiguration.inputDependencies
+      : [multipleInputConfiguration.inputDependencies]
 
   if (!inputDependencies) {
     return null

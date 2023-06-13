@@ -63,6 +63,7 @@ export function getFieldHeader(field: IField, t: TFunction): IFieldConfig {
   const id = field.title
   const input = getFieldInput(field, type)
 
+  console.log('field', field)
   return {
     ...fieldConfig,
     editable: field.gally?.editable && field.writeable,
