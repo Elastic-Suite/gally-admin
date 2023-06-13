@@ -85,3 +85,17 @@ export function formatPrice(
     currency: `${currency}`,
   }).format(price)
 }
+
+export function removeFirstCharIfExist(
+  word: string,
+  name?: string
+): string | null {
+  if (!name) {
+    return null
+  }
+
+  if (name.charAt(0) === word) {
+    return name.substring(1)
+  }
+  return name
+}
