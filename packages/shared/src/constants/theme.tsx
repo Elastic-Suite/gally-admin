@@ -399,6 +399,7 @@ export const theme = createTheme({
           fontWeight: 500,
           lineHeight: '20px',
           color: '#151A47',
+          fontFamily: 'var(--gally-font)',
           '&.Mui-focused': {
             color: '#151A47',
           },

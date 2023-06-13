@@ -6,7 +6,7 @@ exports[`Textarea match snapshot TextareaAllFalse 1`] = `
     class="MuiFormControl-root css-1girsym-MuiFormControl-root"
   >
     <label
-      class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard MuiFormLabel-colorPrimary css-8f1bkl-MuiFormLabel-root-MuiInputLabel-root"
+      class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard MuiFormLabel-colorPrimary css-rnc4nv-MuiFormLabel-root-MuiInputLabel-root"
       data-shrink="true"
       for="textarea"
     >
@@ -43,7 +43,7 @@ exports[`Textarea match snapshot TextareaAllTrue 1`] = `
     class="MuiFormControl-root css-1girsym-MuiFormControl-root"
   >
     <label
-      class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard MuiFormLabel-colorPrimary Mui-required css-8f1bkl-MuiFormLabel-root-MuiInputLabel-root"
+      class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard MuiFormLabel-colorPrimary Mui-required css-rnc4nv-MuiFormLabel-root-MuiInputLabel-root"
       data-shrink="true"
       for="textarea"
     >
