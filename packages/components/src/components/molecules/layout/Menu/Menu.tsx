@@ -1,6 +1,10 @@
 import React from 'react'
 import { styled } from '@mui/system'
-import { IMenu, IMenuChild } from '@elastic-suite/gally-admin-shared'
+import {
+  IMenu,
+  IMenuChild,
+  removeFirstCharIfExist,
+} from '@elastic-suite/gally-admin-shared'
 
 import MenuItemIcon from '../../../atoms/menu/MenuItemIcon'
 import MenuItem from '../../../atoms/menu/MenuItem'
@@ -62,7 +66,7 @@ function Menu(props: IProps): JSX.Element {
     <div className={className}>
       <CustomFirstItems>
         {menu?.hierarchy.map((item: IMenuChild) => {
-          let path = item?.path
+          let path = removeFirstCharIfExist('/', item?.path)
 
           if (!itemRouterTabs[item.code]) {
             return (
@@ -80,7 +84,7 @@ function Menu(props: IProps): JSX.Element {
                 />
                 <CustomSecondItems>
                   {item.children?.map((item: IMenuChild) => {
-                    path = item?.path
+                    path = removeFirstCharIfExist('/', item?.path)
 
                     return (
                       <div key={item.code}>
