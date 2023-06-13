@@ -176,7 +176,7 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
       )
     }
 
-    case DataContentType.MODELCONFIG: {
+    case DataContentType.MULTIPLEINPUT: {
       return (
         <EditableModelConfig
           {...props}

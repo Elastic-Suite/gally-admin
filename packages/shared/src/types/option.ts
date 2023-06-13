@@ -11,6 +11,7 @@ export interface IOption<T> {
   default?: boolean
   field?: string
   input?: string
+  jsonKeyValue?: string
 }
 
 export type IOptions<T> = IOption<T>[]

@@ -16,7 +16,7 @@ function initOrUpdateModelConfigValue(
   data?: unknown
 ): string {
   return JSON.stringify({
-    [optionConfig?.value as string]:
+    [optionConfig?.jsonKeyValue as string]:
       data !== undefined
         ? String(data)
         : String(valueInitializer(optionConfig?.input)),
@@ -24,24 +24,27 @@ function initOrUpdateModelConfigValue(
 }
 
 function EditableModelConfig(props: IProps): JSX.Element {
-  const { value, onChange, data, associatedFieldConfig, label } = props
+  const { value, onChange, data, multipleInputConfiguration, label } = props
 
   function handleChange(optionConfig: IOption<string>, data?: unknown): void {
     return onChange(initOrUpdateModelConfigValue(optionConfig, data))
   }
 
-  const { inputDependencies } = associatedFieldConfig
+  const { inputDependencies } = multipleInputConfiguration
 
   if (!inputDependencies) {
     return null
   }
+
+  console.log('data', data)
+  console.log('inputDependencies', inputDependencies)
 
   return (
     <>
       {inputDependencies.map((inputDependencie) => {
         if (data[inputDependencie?.field] === inputDependencie?.value) {
           const val = value
-            ? JSON.parse(value as string)?.[inputDependencie?.value]
+            ? JSON.parse(value as string)?.[inputDependencie?.jsonKeyValue]
             : null
 
           if (!val) {

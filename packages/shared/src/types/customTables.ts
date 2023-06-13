@@ -24,6 +24,7 @@ export enum DataContentType {
   REQUESTTYPE = 'requestType',
   MODELCONFIG = 'modelConfig',
   SLIDER = 'slider',
+  MULTIPLEINPUT = 'multipleInput',
 }
 
 export interface ITableHeader extends IFieldConfig {

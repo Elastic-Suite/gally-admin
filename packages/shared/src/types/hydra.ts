@@ -98,8 +98,9 @@ export interface IInputDependencies {
   field: string
   value: string
   input: string
+  jsonKeyValue: string
 }
-export interface IAssociatedFieldConfig {
+export interface IMultipleInputConfiguration {
   inputDependencies: IInputDependencies[]
 }
 export interface IGallyProperty {
@@ -122,7 +123,7 @@ export interface IGallyProperty {
   form?: IGallyProperty
   grid?: IGallyProperty
   infoTooltip?: string
-  associatedFieldConfig?: IAssociatedFieldConfig
+  multipleInputConfiguration?: IMultipleInputConfiguration
 }
 
 export interface IDropdownStaticOptions {

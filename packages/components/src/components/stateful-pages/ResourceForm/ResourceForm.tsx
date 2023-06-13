@@ -16,7 +16,7 @@ import {
   isError,
 } from '@elastic-suite/gally-admin-shared'
 import { closeSnackbar, enqueueSnackbar } from 'notistack'
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from 'next-i18next'
 import styled from '@emotion/styled'
 import { Box, Theme } from '@mui/material'
 import { useRouter } from 'next/router'
@@ -72,6 +72,7 @@ function ResourceForm(props: IProps): JSX.Element {
     let sendingToApi
     if (id) {
       sendingToApi = await (replace as any)(data)
+      setData(sendingToApi)
     } else {
       sendingToApi = await (create as any)(data)
     }
@@ -84,8 +85,12 @@ function ResourceForm(props: IProps): JSX.Element {
         return router.push('./grid')
       }
     } else {
-      throw new Error(
-        sendingToApi?.error?.message ?? sendingToApi?.violations[0]?.message
+      enqueueSnackbar(
+        sendingToApi?.error?.message ?? sendingToApi?.violations[0]?.message,
+        {
+          onShut: closeSnackbar,
+          variant: 'error',
+        }
       )
     }
     setIsLoading(false)
