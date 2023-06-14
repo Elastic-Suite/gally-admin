@@ -171,11 +171,13 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
     case DataContentType.RULEENGINE: {
       return (
         <RulesManager
+          label={label}
           rule={value as string | IRuleCombination}
           active
           onChange={handleChange}
           first={false}
           placeholder={placeholder}
+          required={required}
         />
       )
     }
