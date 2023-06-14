@@ -78,6 +78,7 @@ export function getFieldHeader(field: IField, t: TFunction): IFieldConfig {
     multipleSeparatorValue: field.gally?.multipleSeparatorValue,
     requestTypeConfigurations: field.gally?.requestTypeConfigurations,
     multipleInputConfiguration: field.gally?.multipleInputConfiguration,
+    placeholder: field.gally?.placeholder,
   }
 }
 
