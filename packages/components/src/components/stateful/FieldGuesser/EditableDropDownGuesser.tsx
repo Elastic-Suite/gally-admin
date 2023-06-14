@@ -74,7 +74,13 @@ function EditableDropDownGuesser(props: IProps): JSX.Element {
       value={value}
       onChange={onChange}
       useGroups={useGroups}
-      placeholder={placeholder}
+      placeholder={
+        value instanceof Array
+          ? value?.length !== 0
+            ? ''
+            : placeholder
+          : placeholder
+      }
     />
   )
 }
