@@ -17,6 +17,8 @@ import CombinationRules, {
   ICombinationRulesProps,
 } from '../../atoms/rules/CombinationRules'
 import RuleOptionsProvider from '../../stateful-providers/RuleOptionsProvider/RuleOptionsProvider'
+import { InputLabel } from '@mui/material'
+import InfoTooltip from '../../atoms/form/InfoTooltip'
 
 const sourceFieldFixedFilters = {
   'metadata.entity': 'product',
@@ -33,10 +35,20 @@ interface IProps
   onChange?: (value: string | IRuleCombination) => void
   ruleOperators?: IRuleEngineOperators
   placeholder?: string
+  label?: string
+  infoTooltip?: string
+  required?: boolean
 }
 
 function RulesManager(props: IProps): JSX.Element {
-  const { active, ruleOperators: ruleOperatorsDefault, ...ruleProps } = props
+  const {
+    active,
+    ruleOperators: ruleOperatorsDefault,
+    label,
+    infoTooltip,
+    required,
+    ...ruleProps
+  } = props
   const { catalogId, localizedCatalogId } = useContext(catalogContext)
   const ruleOperators = useRuleOperators(ruleOperatorsDefault)
 
@@ -115,6 +127,12 @@ function RulesManager(props: IProps): JSX.Element {
       fields={fields}
       ruleOperators={ruleOperators}
     >
+      {Boolean(label || infoTooltip) && (
+        <InputLabel sx={{ marginBottom: '-20px' }} shrink required={required}>
+          {label}
+          {infoTooltip ? <InfoTooltip title={infoTooltip} /> : null}
+        </InputLabel>
+      )}
       {Boolean(active) && (
         <CombinationRules
           catalogId={catalogId}
