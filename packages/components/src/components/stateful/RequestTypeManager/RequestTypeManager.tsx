@@ -19,6 +19,7 @@ interface IProps {
   requestTypeConfigurations?: Record<string, string>
   categoriesList: ITreeItem[]
   infoTooltip?: string
+  placeholder?: string
 }
 
 function RequestTypeManager(props: IProps): JSX.Element | null {

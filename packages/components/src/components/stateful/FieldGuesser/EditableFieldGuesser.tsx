@@ -50,6 +50,7 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
     data,
     optionConfig,
     infoTooltip,
+    placeholder,
   } = props
 
   const { t } = useTranslation('common')
@@ -118,6 +119,7 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
           suffix={suffix}
           type={input === DataContentType.NUMBER ? 'number' : 'text'}
           value={value as string | number | null}
+          placeholder={placeholder}
         />
       )
     }
@@ -157,6 +159,7 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
       return (
         <Box>
           <DoubleDatePicker
+            placeholder={placeholder}
             infoTooltip={infoTooltip}
             value={value as IDoubleDatePickerValues}
             onChange={handleChange}
@@ -172,6 +175,7 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
           active
           onChange={handleChange}
           first={false}
+          placeholder={placeholder}
         />
       )
     }
@@ -186,6 +190,7 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
           label={label}
           required={required}
           categoriesList={categoriesList}
+          placeholder={placeholder}
         />
       )
     }
@@ -198,6 +203,7 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
           value={value as string}
           onChange={handleChange}
           label={label}
+          placeholder={placeholder}
         />
       )
     }
@@ -236,6 +242,7 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
             required={required}
             value={value}
             onChange={handleChange}
+            placeholder={placeholder}
           />
         )
       }
@@ -255,6 +262,7 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
           onChange={handleChange}
           required={required}
           label={label}
+          placeholder={placeholder}
         />
       )
     }
