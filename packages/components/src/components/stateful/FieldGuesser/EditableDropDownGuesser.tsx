@@ -15,6 +15,7 @@ interface IProps extends Omit<IFieldGuesserProps, 'onChange'> {
     event: SyntheticEvent
   ) => void
   useGroups?: boolean
+  placeholder?: string
 }
 
 function EditableDropDownGuesser(props: IProps): JSX.Element {
@@ -30,6 +31,7 @@ function EditableDropDownGuesser(props: IProps): JSX.Element {
     value,
     useGroups,
     infoTooltip,
+    placeholder,
   } = props
 
   const { t } = useTranslation('common')
@@ -72,6 +74,7 @@ function EditableDropDownGuesser(props: IProps): JSX.Element {
       value={value}
       onChange={onChange}
       useGroups={useGroups}
+      placeholder={placeholder}
     />
   )
 }

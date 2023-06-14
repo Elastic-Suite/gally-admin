@@ -32,6 +32,7 @@ interface IProps
   rule?: string | IRuleCombination
   onChange?: (value: string | IRuleCombination) => void
   ruleOperators?: IRuleEngineOperators
+  placeholder?: string
 }
 
 function RulesManager(props: IProps): JSX.Element {
