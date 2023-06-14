@@ -36,6 +36,7 @@ export interface IFieldConfig extends IFieldState {
   optionConfig?: IOption<string>
   infoTooltip?: string
   multipleInputConfiguration?: IMultipleInputConfiguration
+  placeholder?: string
 }
 
 export interface IFieldConfigFormWithFieldset {

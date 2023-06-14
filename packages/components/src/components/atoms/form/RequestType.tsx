@@ -26,6 +26,7 @@ export interface IProps {
   fullWidth?: boolean
   margin?: 'none' | 'dense' | 'normal'
   infoTooltip?: string
+  placeholder?: string
 }
 
 function RequestType(props: IProps): JSX.Element {
@@ -41,6 +42,7 @@ function RequestType(props: IProps): JSX.Element {
     fullWidth,
     margin,
     infoTooltip,
+    placeholder,
   } = props
 
   function updateSelectedDropDown(list: string[] | string): void {
@@ -78,9 +80,7 @@ function RequestType(props: IProps): JSX.Element {
       ) : undefined}
       <CustomRoot>
         <DropDown
-          placeholder={
-            value.requestTypes.length !== 0 ? '' : 'Add request type'
-          }
+          placeholder={value.requestTypes.length !== 0 ? '' : placeholder}
           multiple
           onChange={updateSelectedDropDown}
           value={value.requestTypes.map((item) => item.requestType)}
