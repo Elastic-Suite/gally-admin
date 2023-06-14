@@ -5,7 +5,6 @@ export { default as AdminBoostEdit } from './admin/merchandize/boost/Edit'
 export { default as AdminThesaurusGrid } from './admin/search/thesaurus/Grid'
 export { default as AdminThesaurusCreate } from './admin/search/thesaurus/Create'
 export { default as AdminThesaurusEdit } from './admin/search/thesaurus/Edit'
-
 export { default as AdminSearchFacetsConfigurationAttributes } from './admin/search/configuration/Attributes'
 export { default as AdminSearchFacets } from './admin/search/Facets'
 export { default as AdminSettingsIndex } from './admin/settings/Index'
