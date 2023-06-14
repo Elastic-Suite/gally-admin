@@ -5,7 +5,7 @@ import { useRouter } from 'next/router'
 import { breadcrumbContext } from '../../../../contexts'
 import { useTranslation } from 'next-i18next'
 
-const pagesSlug = ['merchandize', 'thesaurus']
+const pagesSlug = ['search', 'thesaurus']
 
 function AdminThesaurusCreate(): JSX.Element {
   const router = useRouter()
