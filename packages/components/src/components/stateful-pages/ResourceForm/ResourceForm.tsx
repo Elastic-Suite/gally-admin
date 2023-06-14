@@ -48,7 +48,11 @@ function ResourceForm(props: IProps): JSX.Element {
     id ? {} : initResourceData(resource)
   )
 
-  const isValidForm = !requiredChamps.some((it) => !data?.[it.title as string])
+  const isValidForm = !requiredChamps.some((it) =>
+    typeof data?.[it.title] === 'string'
+      ? !data?.[it.title as string]
+      : (data?.[it.title] as unknown[])?.length === 0
+  )
 
   const fetchApi = useApiFetch()
   const log = useLog()
@@ -72,11 +76,11 @@ function ResourceForm(props: IProps): JSX.Element {
     let sendingToApi
     if (id) {
       sendingToApi = await (replace as any)(data)
-      setData(sendingToApi)
     } else {
       sendingToApi = await (create as any)(data)
     }
     if (!isError(sendingToApi)) {
+      setData(sendingToApi)
       enqueueSnackbar(id ? t('alert.update') : t('alert.create'), {
         onShut: closeSnackbar,
         variant: 'success',
