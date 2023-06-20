@@ -39,6 +39,6 @@ export async function fetchJson<T extends object>(
     url = normalizeUrl(url.toString())
   }
   const response = await fetch(url, options)
-  const json = await response.json()
+  const json = response?.status !== 204 ? await response.json() : {}
   return { json, response }
 }
