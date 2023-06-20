@@ -125,6 +125,7 @@ export interface IGallyProperty {
   infoTooltip?: string
   multipleInputConfiguration?: IMultipleInputConfiguration
   placeholder?: string
+  defaultValue?: unknown
 }
 
 export interface IDropdownStaticOptions {

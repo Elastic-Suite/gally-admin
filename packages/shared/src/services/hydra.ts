@@ -215,6 +215,10 @@ export function getFilterParameters(
   )
 }
 
+function returnDefaultValue(val: unknown, defaultValue?: unknown): unknown {
+  return defaultValue !== undefined ? defaultValue : val
+}
+
 export function inputInitializer(input: string): unknown {
   switch (input) {
     case 'requestType':
@@ -261,7 +265,10 @@ export function initResourceData(resource: IResource): Record<string, unknown> {
       .map((item) => {
         return [
           item.title,
-          valueInitializer(getFieldType(item), item?.gally?.input),
+          returnDefaultValue(
+            valueInitializer(getFieldType(item), item?.gally?.input),
+            item.gally?.defaultValue
+          ),
         ]
       })
   )
