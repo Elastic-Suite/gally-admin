@@ -11,6 +11,7 @@ import CustomForm from '../../organisms/CustomForm/CustomForm'
 import Button from '../../atoms/buttons/Button'
 import {
   IMainContext,
+  ITreeItem,
   initResourceData,
   isError,
 } from '@elastic-suite/gally-admin-shared'
@@ -19,6 +20,8 @@ import { useTranslation } from 'next-i18next'
 import styled from '@emotion/styled'
 import { Box, Theme } from '@mui/material'
 import { useRouter } from 'next/router'
+import PageTitle from '../../atoms/PageTitle/PageTitle'
+import PopIn from '../../atoms/modals/PopIn'
 
 const CustomResourceForm = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -28,13 +31,15 @@ const CustomResourceForm = styled('div')(({ theme }) => ({
 interface IProps {
   id?: string
   resourceName: string
+  categoriesList?: ITreeItem[]
+  title?: string
 }
 
 function ResourceForm(props: IProps): JSX.Element {
-  const { resourceName, id } = props
+  const { resourceName, id, categoriesList, title } = props
   const { t } = useTranslation('resourceForm')
   const resource = useResource(resourceName, IMainContext.FORM)
-  const { replace, create } = useResourceOperations<any>(resource)
+  const { replace, create, remove } = useResourceOperations<any>(resource)
 
   const router = useRouter()
   const [isLoading, setIsLoading] = useState(false)
@@ -60,22 +65,21 @@ function ResourceForm(props: IProps): JSX.Element {
       fetchApi<Record<string, unknown>>(`${resource.url}/${id}`).then(
         (json) => {
           if (isError(json)) {
-            log(json.error)
-          } else {
-            setData(json)
+            return router.push('./grid')
           }
+          setData(json)
         }
       )
     }
-  }, [id, fetchApi, log, resource.url])
+  }, [id, fetchApi, log, resource.url, router])
 
-  async function sendingData(): Promise<any> {
+  async function sendingData(): Promise<void> {
     setIsLoading(true)
     let sendingToApi
     if (id) {
-      sendingToApi = await (replace as any)(data)
+      sendingToApi = await replace(data)
     } else {
-      sendingToApi = await (create as any)(data)
+      sendingToApi = await create(data)
     }
     if (!isError(sendingToApi)) {
       setData(sendingToApi)
@@ -84,7 +88,8 @@ function ResourceForm(props: IProps): JSX.Element {
         variant: 'success',
       })
       if (!id) {
-        return router.push('./grid')
+        router.push('./grid')
+        return
       }
     } else {
       enqueueSnackbar(
@@ -98,19 +103,61 @@ function ResourceForm(props: IProps): JSX.Element {
     setIsLoading(false)
   }
 
+  async function deleteData(): Promise<void> {
+    setIsLoading(true)
+    const sendingToApi = await remove(id)
+    if (!isError(sendingToApi)) {
+      enqueueSnackbar(t('alert.remove'), {
+        onShut: closeSnackbar,
+        variant: 'success',
+      })
+      router.push('./grid')
+      return
+    }
+    enqueueSnackbar(
+      sendingToApi?.error?.message ?? sendingToApi?.violations[0]?.message,
+      {
+        onShut: closeSnackbar,
+        variant: 'error',
+      }
+    )
+    setIsLoading(false)
+  }
+
   return (
-    <CustomResourceForm>
-      <CustomForm data={data} onChange={setData} resource={resource} />
-      <Box>
-        <Button
-          disabled={!isValidForm}
-          onClick={sendingData}
-          loading={isLoading}
-        >
-          {id ? t('save') : t('create')}
-        </Button>
-      </Box>
-    </CustomResourceForm>
+    <>
+      {title ? (
+        <PageTitle title={title} sx={{ marginBottom: '32px' }}>
+          {id ? (
+            <PopIn
+              onConfirm={deleteData}
+              titlePopIn={t('confirmation.message.delete')}
+              cancelName={t('cancel')}
+              confirmName={t('confirm')}
+              title={<Button loading={isLoading}>{t('delete')}</Button>}
+              loading={isLoading}
+            />
+          ) : null}
+        </PageTitle>
+      ) : null}
+      <CustomResourceForm>
+        <CustomForm
+          data={data}
+          onChange={setData}
+          resource={resource}
+          categoriesList={categoriesList}
+        />
+        <Box>
+          <Button
+            disabled={!isValidForm}
+            onClick={sendingData}
+            loading={isLoading}
+          >
+            {id ? t('save') : t('create')}
+          </Button>
+        </Box>
+      </CustomResourceForm>
+    </>
   )
 }
 
