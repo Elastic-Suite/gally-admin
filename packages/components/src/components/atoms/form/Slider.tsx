@@ -8,7 +8,8 @@ import IonIcon from '../IonIcon/IonIcon'
 import InfoTooltip from './InfoTooltip'
 import { StyledFormControl } from './InputText.styled'
 
-export interface ISliderProps extends Omit<SliderProps, 'onChange'> {
+export interface ISliderProps
+  extends Omit<SliderProps, 'defaultValue' | 'onChange'> {
   error?: boolean
   fullWidth?: boolean
   infoTooltip?: string

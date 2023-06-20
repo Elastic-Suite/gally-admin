@@ -79,6 +79,7 @@ export function getFieldHeader(field: IField, t: TFunction): IFieldConfig {
     requestTypeConfigurations: field.gally?.requestTypeConfigurations,
     multipleInputConfiguration: field.gally?.multipleInputConfiguration,
     placeholder: field.gally?.placeholder,
+    defaultValue: field.gally?.defaultValue,
   }
 }
 
