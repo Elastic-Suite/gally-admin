@@ -1,7 +1,12 @@
 {
   "alert.update": "Sauvegarde des données avec succès",
   "alert.create": "Création du formulaire avec succès",
+  "alert.remove": "Le formulaire a été supprimé avec succès",
   "alert.error": "Une erreur s'est produite",
   "save": "Sauvegarder",
-  "create": "Créer"
+  "create": "Créer",
+  "delete": "Supprimer",
+  "confirmation.message.delete": "Confirmez-vous la suppression de ce formulaire ?",
+  "cancel": "Annuler",
+  "confirm": "Confirmer"
 }
