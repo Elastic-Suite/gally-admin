@@ -2,6 +2,11 @@
   "save": "Save",
   "create": "Create",
   "alert.update": "Updating of form with success",
-  "alert.create": "Creating of form with succes",
-  "alert.error": "Une erreur s'est produite"
+  "alert.create": "Creating of form with success",
+  "alert.remove": "Form has been deleted with success",
+  "alert.error": "Une erreur s'est produite",
+  "delete": "Delete",
+  "confirmation.message.delete": "Do you confirm the deletion of this form ?",
+  "cancel": "Cancel",
+  "confirm": "Confirm"
 }
