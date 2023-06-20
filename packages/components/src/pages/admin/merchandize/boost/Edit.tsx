@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { withAuth, withOptions } from '../../../../hocs'
-import { PageTitle, ResourceForm } from '../../../../components'
+import { ResourceForm } from '../../../../components'
 import { useRouter } from 'next/router'
 import { breadcrumbContext } from '../../../../contexts'
 import { useTranslation } from 'next-i18next'
@@ -23,10 +23,12 @@ function AdminBoostEdit(): JSX.Element {
   }
 
   return (
-    <>
-      <PageTitle title={t('title.update')} sx={{ marginBottom: '32px' }} />
-      <ResourceForm resourceName="Boost" id={idUpdate} />
-    </>
+    <ResourceForm
+      title={t('title.update')}
+      resourceName="Boost"
+      id={idUpdate}
+      categoriesList={[]}
+    />
   )
 }
 
