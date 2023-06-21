@@ -5,7 +5,7 @@ import React, {
   useMemo,
   useState,
 } from 'react'
-import { useTranslation } from 'next-i18next'
+import { TFunction, useTranslation } from 'next-i18next'
 import { styled } from '@mui/system'
 import {
   IFieldGuesserProps,
@@ -28,7 +28,9 @@ import {
   useSearch,
 } from '../../../hooks'
 
-import NoAttributes from '../../atoms/noAttributes/NoAttributes'
+import NoAttributes, {
+  INoAttributesProps,
+} from '../../atoms/noAttributes/NoAttributes'
 import Button from '../../atoms/buttons/Button'
 import FieldGuesser from '../../stateful/FieldGuesser/FieldGuesser'
 import FiltersGuesser from '../../stateful/FiltersGuesser/FiltersGuesser'
@@ -45,6 +47,32 @@ const Paragraph = styled('p')(({ theme }) => ({
   marginTop: theme.spacing(1),
 }))
 
+function getProps(resourceName: string, t: TFunction): INoAttributesProps {
+  switch (resourceName) {
+    case 'FacetConfiguration':
+      return {
+        title: t('facets.none'),
+        btnTitle: t('facets.none.btn'),
+        btnHref: 'admin/settings/attributes',
+      }
+
+    case 'SourceField':
+      return {
+        title: t('attributes.none'),
+        btnTitle: t('attributes.none.btn'),
+        btnHref: 'admin/settings/attributes',
+      }
+
+    case 'Boost':
+      return {
+        title: t('boost.none'),
+        btnTitle: t('boost.none.btn'),
+        btnHref: './create',
+        absolutLink: false,
+      }
+  }
+}
+
 function isObjectNotEmpty(object: object): boolean {
   return Object.values(object).some((value) => value)
 }
@@ -55,7 +83,6 @@ export interface IResourceTable {
   diffDefaultValues?: boolean
   getTableConfigs?: (rows: ITableRow[]) => ITableConfig[]
   filters?: ISearchParameters
-  isFacets?: boolean
   resourceName: string
   setActiveFilters: Dispatch<SetStateAction<ISearchParameters>>
   urlParams?: string
@@ -83,7 +110,6 @@ function ResourceTable(props: IResourceTable): JSX.Element {
     diffDefaultValues,
     getTableConfigs,
     filters,
-    isFacets,
     resourceName,
     setActiveFilters,
     urlParams,
@@ -207,13 +233,7 @@ function ResourceTable(props: IResourceTable): JSX.Element {
     resourceData.status === LoadStatus.SUCCEEDED &&
     !filterOrSearchAreUp
   ) {
-    return (
-      <NoAttributes
-        title={isFacets ? t('facets.none') : t('attributes.none')}
-        btnTitle={isFacets ? t('facets.none.btn') : t('attributes.none.btn')}
-        btnHref="admin/settings/attributes"
-      />
-    )
+    return <NoAttributes {...getProps(resourceName, t)} />
   }
   return (
     <>
