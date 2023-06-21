@@ -122,7 +122,6 @@ function AdminSearchFacets(): JSX.Element {
           filters={filters}
           resourceName="FacetConfiguration"
           diffDefaultValues
-          isFacets
           showSearch
         />
       </TwoColsLayout>
