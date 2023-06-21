@@ -3,6 +3,8 @@
   "attributes.none.btn": "Add searchable attributes",
   "facets.none": "No attributes were specified as filterable in the settings",
   "facets.none.btn": "Add filterable attributes",
+  "boost.none": "No boost has been created",
+  "boost.none.btn": "Create a boost",
   "default.customValue_zero": "You don't have any custom value",
   "default.customValue_one": "You are using {{value}} custom value",
   "default.customValue_other": "You are using {{value}} custom values",
