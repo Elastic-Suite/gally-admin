@@ -4,6 +4,7 @@ import Link from 'next/link'
 
 import Button from '../buttons/Button'
 import IonIcon from '../IonIcon/IonIcon'
+import { useRouter } from 'next/router'
 
 const CustomRoot = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -27,13 +28,22 @@ const CustomTitle = styled('div')(({ theme }) => ({
   width: '550px',
 }))
 
-interface IProps {
+export interface INoAttributesProps {
   title: string
   btnTitle?: string
   btnHref?: string
+  absolutLink?: boolean
 }
 
-function NoAttributes({ title, btnTitle, btnHref }: IProps): JSX.Element {
+function NoAttributes(props: INoAttributesProps): JSX.Element {
+  const { title, btnTitle, btnHref, absolutLink = true } = props
+
+  const { pathname } = useRouter()
+  const pathnameWithoutLastFile =
+    !absolutLink && pathname
+      ? pathname.substring(0, pathname.lastIndexOf('/'))
+      : ''
+
   return (
     <CustomRoot>
       <IonIcon
@@ -43,7 +53,11 @@ function NoAttributes({ title, btnTitle, btnHref }: IProps): JSX.Element {
       <CustomTitle>{title}</CustomTitle>
       {Boolean(btnTitle) && (
         <Button endIcon={null} startIcon={null} size="large">
-          <Link href={`/${btnHref}`} legacyBehavior passHref>
+          <Link
+            href={`${pathnameWithoutLastFile}/${btnHref}`}
+            legacyBehavior
+            passHref
+          >
             <a style={{ textDecoration: 'none' }}>{btnTitle}</a>
           </Link>
         </Button>
