@@ -10,8 +10,9 @@ import {
 import CustomForm from '../../organisms/CustomForm/CustomForm'
 import Button from '../../atoms/buttons/Button'
 import {
+  IErrorsForm,
   IMainContext,
-  ITreeItem,
+  concatenateValuesWithLineBreaks,
   initResourceData,
   isError,
 } from '@elastic-suite/gally-admin-shared'
@@ -28,18 +29,24 @@ const CustomResourceForm = styled('div')(({ theme }) => ({
   flexDirection: 'column',
   gap: (theme as Theme).spacing(2),
 }))
+
+interface IViolations {
+  propertyPath?: string
+  message?: string
+}
+
 interface IProps {
   id?: string
   resourceName: string
-  categoriesList?: ITreeItem[]
   title?: string
 }
 
 function ResourceForm(props: IProps): JSX.Element {
-  const { resourceName, id, categoriesList, title } = props
+  const { resourceName, id, title } = props
   const { t } = useTranslation('resourceForm')
   const resource = useResource(resourceName, IMainContext.FORM)
   const { replace, create, remove } = useResourceOperations<any>(resource)
+  const [errors, setErrors] = useState<IErrorsForm>()
 
   const router = useRouter()
   const [isLoading, setIsLoading] = useState(false)
@@ -73,7 +80,18 @@ function ResourceForm(props: IProps): JSX.Element {
     }
   }, [id, fetchApi, log, resource.url, router])
 
-  async function sendingData(): Promise<void> {
+  function transformPropertyPath(propertyPath: string): string {
+    switch (propertyPath) {
+      case 'fromDate':
+      case 'toDate':
+        return 'doubleDatePicker'
+
+      default:
+        return propertyPath
+    }
+  }
+
+  async function sendingData(): Promise<any> {
     setIsLoading(true)
     let sendingToApi
     if (id) {
@@ -92,13 +110,31 @@ function ResourceForm(props: IProps): JSX.Element {
         return
       }
     } else {
-      enqueueSnackbar(
-        sendingToApi?.error?.message ?? sendingToApi?.violations[0]?.message,
-        {
+      const newErrors: IErrorsForm = { fields: {}, global: [] }
+
+      sendingToApi?.violations?.forEach((err: IViolations) => {
+        if (err?.propertyPath && err?.message) {
+          newErrors.fields[transformPropertyPath(err?.propertyPath)] =
+            err.message
+        } else if (err?.message) {
+          newErrors.global.push(err.message)
+        }
+      })
+
+      enqueueSnackbar(t('error.form'), {
+        onShut: closeSnackbar,
+        variant: 'error',
+      })
+
+      if (newErrors.global.length !== 0) {
+        enqueueSnackbar(concatenateValuesWithLineBreaks(newErrors.global), {
           onShut: closeSnackbar,
           variant: 'error',
-        }
-      )
+          style: { whiteSpace: 'pre-line' },
+          autoHideDuration: Infinity,
+        })
+      }
+      setErrors(newErrors)
     }
     setIsLoading(false)
   }
@@ -145,7 +181,7 @@ function ResourceForm(props: IProps): JSX.Element {
           data={data}
           onChange={setData}
           resource={resource}
-          categoriesList={categoriesList}
+          errors={errors}
         />
         <Box>
           <Button
