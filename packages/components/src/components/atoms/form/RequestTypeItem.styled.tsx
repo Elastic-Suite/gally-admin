@@ -8,11 +8,16 @@ export const CustomRootItem = styled('div')(({ theme }) => ({
   lineHeight: '18px',
 }))
 
-export const CustomRoot = styled(CustomRootItem)(({ theme }) => ({
+const CustomPropError = ['error']
+export const CustomRoot = styled(CustomRootItem, {
+  shouldForwardProp: (prop: string) => !CustomPropError.includes(prop),
+})<{ error: boolean }>(({ theme, error }) => ({
   padding: theme.spacing(2),
   background: theme.palette.colors.neutral[200],
   border: '1px solid',
-  borderColor: theme.palette.colors.neutral[300],
+  borderColor: error
+    ? theme.palette.colors.primary[700]
+    : theme.palette.colors.neutral[300],
   borderRadius: theme.spacing(1),
   marginTop: theme.spacing(3),
 }))

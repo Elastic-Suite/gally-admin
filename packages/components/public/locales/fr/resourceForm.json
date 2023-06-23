@@ -8,5 +8,6 @@
   "delete": "Supprimer",
   "confirmation.message.delete": "Confirmez-vous la suppression de ce formulaire ?",
   "cancel": "Annuler",
-  "confirm": "Confirmer"
+  "confirm": "Confirmer",
+  "error.form": "Erreur du formulaire"
 }
