@@ -24,7 +24,15 @@ function initOrUpdateModelConfigValue(
 }
 
 function EditableModelConfig(props: IProps): JSX.Element {
-  const { value, onChange, data, multipleInputConfiguration, label } = props
+  const {
+    value,
+    onChange,
+    data,
+    multipleInputConfiguration,
+    label,
+    error,
+    helperText,
+  } = props
 
   function handleChange(optionConfig: IOption<string>, data?: unknown): void {
     return onChange(initOrUpdateModelConfigValue(optionConfig, data))
@@ -61,6 +69,8 @@ function EditableModelConfig(props: IProps): JSX.Element {
               value={val}
               optionConfig={inputDependencie}
               onChange={handleChange}
+              error={error}
+              helperText={helperText}
             />
           )
         }

@@ -4,7 +4,6 @@ import { IField } from './api'
 import { DataContentType, ITableRow } from './customTables'
 import { IMultipleInputConfiguration } from './hydra'
 import { IOption, IOptions } from './option'
-import { ITreeItem } from './tree'
 
 export interface IFieldCondition {
   conditions: Record<string, unknown>
@@ -32,12 +31,13 @@ export interface IFieldConfig extends IFieldState {
   validation?: Record<string, string | number>
   multipleSeparatorValue?: string
   requestTypeConfigurations?: Record<string, string>
-  categoriesList?: ITreeItem[]
   optionConfig?: IOption<string>
   infoTooltip?: string
   multipleInputConfiguration?: IMultipleInputConfiguration
   placeholder?: string
   defaultValue?: unknown
+  helperText?: string
+  error?: boolean
 }
 
 export interface IFieldConfigFormWithFieldset {
