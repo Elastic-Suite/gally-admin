@@ -16,6 +16,9 @@ interface IProps extends Omit<IFieldGuesserProps, 'onChange'> {
   ) => void
   useGroups?: boolean
   placeholder?: string
+  error?: boolean
+  helperText?: string
+  helperIcon?: string
 }
 
 function EditableDropDownGuesser(props: IProps): JSX.Element {
@@ -32,6 +35,9 @@ function EditableDropDownGuesser(props: IProps): JSX.Element {
     useGroups,
     infoTooltip,
     placeholder,
+    error,
+    helperText,
+    helperIcon,
   } = props
 
   const { t } = useTranslation('common')
@@ -61,12 +67,15 @@ function EditableDropDownGuesser(props: IProps): JSX.Element {
       dirty={dirty}
       disabled={disabled}
       helperText={
-        Boolean(dirty) &&
-        t('form.defaultValue', {
-          value: dropDownOptions.find(({ value }) => value === diffValue)
-            ?.label,
-        })
+        dirty
+          ? t('form.defaultValue', {
+              value: dropDownOptions.find(({ value }) => value === diffValue)
+                ?.label,
+            })
+          : helperText
       }
+      error={error}
+      helperIcon={helperIcon}
       label={label}
       multiple={multiple}
       options={dropDownOptions}
