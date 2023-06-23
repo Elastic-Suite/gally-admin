@@ -106,7 +106,16 @@ function DoubleDatePicker(props: IDoubleDatePickerProps): JSX.Element {
         container
         sx={{ marginTop: label ? '24px' : '0px' }}
       >
-        <CustomBox sx={{ paddingRight: '20px' }}> {t('form.from')} </CustomBox>
+        <CustomBox sx={{ paddingRight: '20px' }}>
+          <InputLabel
+            shrink
+            htmlFor={id}
+            required={required}
+            sx={{ display: 'contents!important' }}
+          >
+            {t('form.from')}
+          </InputLabel>
+        </CustomBox>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <Grid item xs>
             <DatePicker
@@ -124,7 +133,14 @@ function DoubleDatePicker(props: IDoubleDatePickerProps): JSX.Element {
             />
           </Grid>
           <CustomBox sx={{ paddingRight: '20px', paddingLeft: '20px' }}>
-            {t('form.to')}
+            <InputLabel
+              shrink
+              htmlFor={id}
+              required={required}
+              sx={{ display: 'contents!important' }}
+            >
+              {t('form.to')}
+            </InputLabel>
           </CustomBox>
           <Grid item xs>
             <DatePicker

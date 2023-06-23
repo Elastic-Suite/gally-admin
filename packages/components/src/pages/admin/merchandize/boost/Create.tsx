@@ -16,13 +16,7 @@ function AdminBoostCreate(): JSX.Element {
     setBreadcrumb(pagesSlug)
   }, [router.query, setBreadcrumb])
 
-  return (
-    <ResourceForm
-      title={t('title.create')}
-      resourceName="Boost"
-      categoriesList={[]}
-    />
-  )
+  return <ResourceForm title={t('title.create')} resourceName="Boost" />
 }
 
 export default withAuth(withOptions(AdminBoostCreate))

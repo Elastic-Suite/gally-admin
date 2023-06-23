@@ -19,6 +19,9 @@ interface IProps {
   requestTypeConfigurations?: Record<string, string>
   infoTooltip?: string
   placeholder?: string
+  error?: boolean
+  helperText?: string
+  helperIcon?: string
 }
 
 function RequestTypeManager(props: IProps): JSX.Element | null {

@@ -34,6 +34,7 @@ const StyledAlert = styled(MuiAlert)(({ severity, theme }) => ({
     fontWeight: 400,
     fontSize: '12px',
     lineHeight: '18px',
+    whiteSpace: 'pre-line',
   },
   '& .MuiAlert-action': {
     paddingLeft: '10px',

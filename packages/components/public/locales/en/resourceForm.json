@@ -8,5 +8,6 @@
   "delete": "Delete",
   "confirmation.message.delete": "Do you confirm the deletion of this form ?",
   "cancel": "Cancel",
-  "confirm": "Confirm"
+  "confirm": "Confirm",
+  "error.form": "Error of form"
 }

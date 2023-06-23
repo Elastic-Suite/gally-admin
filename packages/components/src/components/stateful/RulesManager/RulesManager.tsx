@@ -17,8 +17,9 @@ import CombinationRules, {
   ICombinationRulesProps,
 } from '../../atoms/rules/CombinationRules'
 import RuleOptionsProvider from '../../stateful-providers/RuleOptionsProvider/RuleOptionsProvider'
-import { InputLabel } from '@mui/material'
+import { FormHelperText, InputLabel } from '@mui/material'
 import InfoTooltip from '../../atoms/form/InfoTooltip'
+import IonIcon from '../../atoms/IonIcon/IonIcon'
 
 const sourceFieldFixedFilters = {
   'metadata.entity': 'product',
@@ -38,6 +39,9 @@ interface IProps
   label?: string
   infoTooltip?: string
   required?: boolean
+  error?: boolean
+  helperText?: string
+  helperIcon?: string
 }
 
 function RulesManager(props: IProps): JSX.Element {
@@ -47,6 +51,9 @@ function RulesManager(props: IProps): JSX.Element {
     label,
     infoTooltip,
     required,
+    error,
+    helperText,
+    helperIcon,
     ...ruleProps
   } = props
   const { catalogId, localizedCatalogId } = useContext(catalogContext)
@@ -141,6 +148,17 @@ function RulesManager(props: IProps): JSX.Element {
           rule={rule}
           onChange={handleChange}
         />
+      )}
+      {Boolean(helperText) && (
+        <FormHelperText>
+          {Boolean(helperIcon) && (
+            <IonIcon
+              name={helperIcon}
+              style={{ fontSize: 18, marginRight: 2 }}
+            />
+          )}
+          {helperText}
+        </FormHelperText>
       )}
     </RuleOptionsProvider>
   )
