@@ -27,7 +27,6 @@ function AdminBoostEdit(): JSX.Element {
       title={t('title.update')}
       resourceName="Boost"
       id={idUpdate}
-      categoriesList={[]}
     />
   )
 }

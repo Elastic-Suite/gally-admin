@@ -31,6 +31,14 @@ export function joinUrlPath(...parts: string[]): string {
     .join('/')
 }
 
+export function isObjectEmpty(obj: Record<string, unknown>): boolean {
+  return Object.keys(obj).length === 0
+}
+
+export function concatenateValuesWithLineBreaks(global: string[]): string {
+  return global.join('\n')
+}
+
 export function getFieldLabelTranslationArgs(
   source: string,
   resource?: string

@@ -50,6 +50,8 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
     optionConfig,
     infoTooltip,
     placeholder,
+    error,
+    helperText,
   } = props
 
   const { t } = useTranslation('common')
@@ -104,11 +106,13 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
           infoTooltip={infoTooltip}
           dirty={dirty}
           disabled={disabled}
+          error={error}
           helperText={
-            Boolean(dirty) &&
-            t('form.defaultValue', {
-              value: diffValue ? diffValue : t('default.undefined'),
-            })
+            dirty
+              ? t('form.defaultValue', {
+                  value: diffValue ? diffValue : t('default.undefined'),
+                })
+              : helperText
           }
           inputProps={validation}
           label={label}
@@ -130,8 +134,9 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
           dirty={dirty}
           disabled={disabled}
           helperText={
-            Boolean(dirty) && t('form.defaultValue', { value: diffValue })
+            dirty ? t('form.defaultValue', { value: diffValue }) : helperText
           }
+          error={error}
           inputProps={validation}
           label={label}
           onChange={handleChange}
@@ -147,9 +152,11 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
       return (
         <Slider
           {...props}
+          error={error}
           infoTooltip={infoTooltip}
           value={Number(value)}
           onChange={handleChange}
+          helperText={helperText}
         />
       )
     }
@@ -162,6 +169,8 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
             infoTooltip={infoTooltip}
             value={value as IDoubleDatePickerValues}
             onChange={handleChange}
+            error={error}
+            helperText={helperText}
           />
         </Box>
       )
@@ -177,6 +186,8 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
           first={false}
           placeholder={placeholder}
           required={required}
+          error={error}
+          helperText={helperText}
         />
       )
     }
@@ -191,6 +202,8 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
           label={label}
           required={required}
           placeholder={placeholder}
+          error={error}
+          helperText={helperText}
         />
       )
     }
@@ -204,6 +217,8 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
           onChange={handleChange}
           label={label}
           placeholder={placeholder}
+          error={error}
+          helperText={helperText}
         />
       )
     }
@@ -217,6 +232,8 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
           onChange={handleChange}
           useGroups={Boolean((input ?? type) === DataContentType.OPTGROUP)}
           multiple={Boolean(value instanceof Array)}
+          error={error}
+          helperText={helperText}
         />
       )
     }
@@ -229,7 +246,7 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
             dirty={dirty}
             disabled={disabled}
             helperText={
-              Boolean(dirty) && t('form.defaultValue', { value: diffValue })
+              dirty ? t('form.defaultValue', { value: diffValue }) : helperText
             }
             label={label}
             multiple={multiple}
@@ -243,6 +260,7 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
             value={value}
             onChange={handleChange}
             placeholder={placeholder}
+            error={error}
           />
         )
       }

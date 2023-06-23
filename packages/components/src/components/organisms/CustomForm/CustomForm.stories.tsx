@@ -4,7 +4,6 @@ import boostWithUseResource from '../../../../public/mocks/boostWithUseResource.
 
 import CustomForm from './CustomForm'
 import { IResource, initResourceData } from '@elastic-suite/gally-admin-shared'
-import categoriesList from '../../../../public/mocks/categories.json'
 import DataProvider from '../../stateful-providers/DataProvider/DataProvider'
 
 export default {
@@ -26,5 +25,4 @@ const Template: ComponentStory<typeof CustomForm> = (args) => {
 export const Default = Template.bind({})
 Default.args = {
   resource: boostWithUseResource,
-  categoriesList: categoriesList.categories,
 }
