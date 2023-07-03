@@ -13,6 +13,7 @@ import {
 } from '@elastic-suite/gally-admin-shared'
 
 import { useApiFetch } from './useApi'
+import { useLog } from './useLog'
 
 export type ILoader<T> = (fetchApi: IFetchApi) => Promise<T>
 
@@ -31,7 +32,7 @@ export function useSingletonLoader<T>(
   const fetchApi = useApiFetch()
   const [map, setMap] = useState<Map<string, T>>(defaultState)
   const fieldOptionsStatuses = useRef<ILoadStatuses>(new Map())
-
+  const log = useLog()
   const updateFieldOptions = useCallback((id: string, options: T) => {
     fieldOptionsStatuses.current.set(id, LoadStatus.SUCCEEDED)
     setMap((prevState) => {
@@ -49,12 +50,13 @@ export function useSingletonLoader<T>(
         try {
           const data = await loader(fetchApi)
           updateFieldOptions(id, data)
-        } catch {
+        } catch (err) {
+          log(err)
           fieldOptionsStatuses.current.set(id, LoadStatus.FAILED)
         }
       }
     },
-    [fetchApi, updateFieldOptions]
+    [fetchApi, updateFieldOptions, log]
   )
 
   return { fetch, map, setMap, statuses: fieldOptionsStatuses }
