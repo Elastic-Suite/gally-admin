@@ -15,7 +15,7 @@
         {
           "@id": "/source_field_option_labels/3439",
           "@type": "SourceFieldOptionLabel",
-          "catalog": {
+          "localizedCatalog": {
             "@id": "/localized_catalogs/50",
             "@type": "LocalizedCatalog",
             "id": 50,
@@ -26,7 +26,7 @@
         {
           "@id": "/source_field_option_labels/3452",
           "@type": "SourceFieldOptionLabel",
-          "catalog": {
+          "localizedCatalog": {
             "@id": "/localized_catalogs/49",
             "@type": "LocalizedCatalog",
             "id": 49,
@@ -48,7 +48,7 @@
         {
           "@id": "/source_field_option_labels/3440",
           "@type": "SourceFieldOptionLabel",
-          "catalog": {
+          "localizedCatalog": {
             "@id": "/localized_catalogs/50",
             "@type": "LocalizedCatalog",
             "id": 50,
@@ -59,7 +59,7 @@
         {
           "@id": "/source_field_option_labels/3453",
           "@type": "SourceFieldOptionLabel",
-          "catalog": {
+          "localizedCatalog": {
             "@id": "/localized_catalogs/49",
             "@type": "LocalizedCatalog",
             "id": 49,
@@ -81,7 +81,7 @@
         {
           "@id": "/source_field_option_labels/3441",
           "@type": "SourceFieldOptionLabel",
-          "catalog": {
+          "localizedCatalog": {
             "@id": "/localized_catalogs/50",
             "@type": "LocalizedCatalog",
             "id": 50,
@@ -92,7 +92,7 @@
         {
           "@id": "/source_field_option_labels/3454",
           "@type": "SourceFieldOptionLabel",
-          "catalog": {
+          "localizedCatalog": {
             "@id": "/localized_catalogs/49",
             "@type": "LocalizedCatalog",
             "id": 49,
@@ -114,7 +114,7 @@
         {
           "@id": "/source_field_option_labels/3442",
           "@type": "SourceFieldOptionLabel",
-          "catalog": {
+          "localizedCatalog": {
             "@id": "/localized_catalogs/50",
             "@type": "LocalizedCatalog",
             "id": 50,
@@ -125,7 +125,7 @@
         {
           "@id": "/source_field_option_labels/3455",
           "@type": "SourceFieldOptionLabel",
-          "catalog": {
+          "localizedCatalog": {
             "@id": "/localized_catalogs/49",
             "@type": "LocalizedCatalog",
             "id": 49,
@@ -147,7 +147,7 @@
         {
           "@id": "/source_field_option_labels/3456",
           "@type": "SourceFieldOptionLabel",
-          "catalog": {
+          "localizedCatalog": {
             "@id": "/localized_catalogs/49",
             "@type": "LocalizedCatalog",
             "id": 49,
@@ -158,7 +158,7 @@
         {
           "@id": "/source_field_option_labels/3443",
           "@type": "SourceFieldOptionLabel",
-          "catalog": {
+          "localizedCatalog": {
             "@id": "/localized_catalogs/50",
             "@type": "LocalizedCatalog",
             "id": 50,
@@ -180,7 +180,7 @@
         {
           "@id": "/source_field_option_labels/3457",
           "@type": "SourceFieldOptionLabel",
-          "catalog": {
+          "localizedCatalog": {
             "@id": "/localized_catalogs/49",
             "@type": "LocalizedCatalog",
             "id": 49,
@@ -191,7 +191,7 @@
         {
           "@id": "/source_field_option_labels/3444",
           "@type": "SourceFieldOptionLabel",
-          "catalog": {
+          "localizedCatalog": {
             "@id": "/localized_catalogs/50",
             "@type": "LocalizedCatalog",
             "id": 50,
@@ -213,7 +213,7 @@
         {
           "@id": "/source_field_option_labels/3445",
           "@type": "SourceFieldOptionLabel",
-          "catalog": {
+          "localizedCatalog": {
             "@id": "/localized_catalogs/50",
             "@type": "LocalizedCatalog",
             "id": 50,
@@ -224,7 +224,7 @@
         {
           "@id": "/source_field_option_labels/3458",
           "@type": "SourceFieldOptionLabel",
-          "catalog": {
+          "localizedCatalog": {
             "@id": "/localized_catalogs/49",
             "@type": "LocalizedCatalog",
             "id": 49,
@@ -246,7 +246,7 @@
         {
           "@id": "/source_field_option_labels/3446",
           "@type": "SourceFieldOptionLabel",
-          "catalog": {
+          "localizedCatalog": {
             "@id": "/localized_catalogs/50",
             "@type": "LocalizedCatalog",
             "id": 50,
@@ -257,7 +257,7 @@
         {
           "@id": "/source_field_option_labels/3459",
           "@type": "SourceFieldOptionLabel",
-          "catalog": {
+          "localizedCatalog": {
             "@id": "/localized_catalogs/49",
             "@type": "LocalizedCatalog",
             "id": 49,
@@ -279,7 +279,7 @@
         {
           "@id": "/source_field_option_labels/3447",
           "@type": "SourceFieldOptionLabel",
-          "catalog": {
+          "localizedCatalog": {
             "@id": "/localized_catalogs/50",
             "@type": "LocalizedCatalog",
             "id": 50,
@@ -290,7 +290,7 @@
         {
           "@id": "/source_field_option_labels/3460",
           "@type": "SourceFieldOptionLabel",
-          "catalog": {
+          "localizedCatalog": {
             "@id": "/localized_catalogs/49",
             "@type": "LocalizedCatalog",
             "id": 49,
@@ -312,7 +312,7 @@
         {
           "@id": "/source_field_option_labels/3461",
           "@type": "SourceFieldOptionLabel",
-          "catalog": {
+          "localizedCatalog": {
             "@id": "/localized_catalogs/49",
             "@type": "LocalizedCatalog",
             "id": 49,
@@ -323,7 +323,7 @@
         {
           "@id": "/source_field_option_labels/3448",
           "@type": "SourceFieldOptionLabel",
-          "catalog": {
+          "localizedCatalog": {
             "@id": "/localized_catalogs/50",
             "@type": "LocalizedCatalog",
             "id": 50,
@@ -345,7 +345,7 @@
         {
           "@id": "/source_field_option_labels/3462",
           "@type": "SourceFieldOptionLabel",
-          "catalog": {
+          "localizedCatalog": {
             "@id": "/localized_catalogs/49",
             "@type": "LocalizedCatalog",
             "id": 49,
@@ -356,7 +356,7 @@
         {
           "@id": "/source_field_option_labels/3449",
           "@type": "SourceFieldOptionLabel",
-          "catalog": {
+          "localizedCatalog": {
             "@id": "/localized_catalogs/50",
             "@type": "LocalizedCatalog",
             "id": 50,
@@ -378,7 +378,7 @@
         {
           "@id": "/source_field_option_labels/3450",
           "@type": "SourceFieldOptionLabel",
-          "catalog": {
+          "localizedCatalog": {
             "@id": "/localized_catalogs/50",
             "@type": "LocalizedCatalog",
             "id": 50,
@@ -389,7 +389,7 @@
         {
           "@id": "/source_field_option_labels/3463",
           "@type": "SourceFieldOptionLabel",
-          "catalog": {
+          "localizedCatalog": {
             "@id": "/localized_catalogs/49",
             "@type": "LocalizedCatalog",
             "id": 49,
@@ -411,7 +411,7 @@
         {
           "@id": "/source_field_option_labels/3464",
           "@type": "SourceFieldOptionLabel",
-          "catalog": {
+          "localizedCatalog": {
             "@id": "/localized_catalogs/49",
             "@type": "LocalizedCatalog",
             "id": 49,
@@ -422,7 +422,7 @@
         {
           "@id": "/source_field_option_labels/3451",
           "@type": "SourceFieldOptionLabel",
-          "catalog": {
+          "localizedCatalog": {
             "@id": "/localized_catalogs/50",
             "@type": "LocalizedCatalog",
             "id": 50,
