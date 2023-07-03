@@ -114,8 +114,9 @@ export function getOptionsFromOptionResource(
     let label = option.defaultLabel
     if (localizedCatalogId !== -1) {
       label =
-        option.labels.find((label) => label.catalog.id === localizedCatalogId)
-          ?.label ?? label
+        option.labels.find(
+          (label) => label.localizedCatalog.id === localizedCatalogId
+        )?.label ?? label
     }
     return {
       id: option.code,

@@ -162,7 +162,7 @@ export interface IHydraMember extends IJsonldBase {
 }
 
 export interface IHydraLabelMember extends IHydraMember {
-  catalog: IHydraSimpleCatalog
+  localizedCatalog: IHydraSimpleCatalog
   label: string
 }
 
