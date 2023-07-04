@@ -19,7 +19,7 @@ function AdminBoostCreate(): JSX.Element {
   return (
     <>
       <PageTitle title={t('title.create')} sx={{ marginBottom: '32px' }} />
-      <ResourceForm resourceName="Boost" categoriesList={[]} />
+      <ResourceForm resourceName="Boost" />
     </>
   )
 }

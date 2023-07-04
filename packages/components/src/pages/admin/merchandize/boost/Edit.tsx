@@ -25,7 +25,7 @@ function AdminBoostEdit(): JSX.Element {
   return (
     <>
       <PageTitle title={t('title.update')} sx={{ marginBottom: '32px' }} />
-      <ResourceForm resourceName="Boost" id={idUpdate} categoriesList={[]} />
+      <ResourceForm resourceName="Boost" id={idUpdate} />
     </>
   )
 }
