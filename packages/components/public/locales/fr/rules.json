@@ -17,5 +17,6 @@
   "operator.is not": "n'est pas égal",
   "operator.exist": "existe",
   "attributeRule": "Condition attribut",
-  "combinationRule": "Condition combinaison"
+  "combinationRule": "Condition combinaison",
+  "error.format.rules": "Format incorrect ou incomplet"
 }
