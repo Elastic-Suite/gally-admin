@@ -11,7 +11,6 @@ import CustomForm from '../../organisms/CustomForm/CustomForm'
 import Button from '../../atoms/buttons/Button'
 import {
   IMainContext,
-  ITreeItem,
   initResourceData,
   isError,
 } from '@elastic-suite/gally-admin-shared'
@@ -29,11 +28,10 @@ const CustomResourceForm = styled('div')(({ theme }) => ({
 interface IProps {
   id?: string
   resourceName: string
-  categoriesList?: ITreeItem[]
 }
 
 function ResourceForm(props: IProps): JSX.Element {
-  const { resourceName, id, categoriesList } = props
+  const { resourceName, id } = props
   const { t } = useTranslation('resourceForm')
   const resource = useResource(resourceName, IMainContext.FORM)
   const { replace, create } = useResourceOperations<any>(resource)
@@ -102,12 +100,7 @@ function ResourceForm(props: IProps): JSX.Element {
 
   return (
     <CustomResourceForm>
-      <CustomForm
-        data={data}
-        onChange={setData}
-        resource={resource}
-        categoriesList={categoriesList}
-      />
+      <CustomForm data={data} onChange={setData} resource={resource} />
       <Box>
         <Button
           disabled={!isValidForm}
