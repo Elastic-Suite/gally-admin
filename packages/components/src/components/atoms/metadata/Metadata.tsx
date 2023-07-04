@@ -4,6 +4,8 @@ import {
   firstLetterUppercase,
 } from '@elastic-suite/gally-admin-shared'
 
+import { useTranslation } from 'next-i18next'
+
 import DropDown from '../form/DropDown'
 import { styled } from '@mui/system'
 
@@ -35,13 +37,15 @@ interface IProps {
 
 function Metadata(props: IProps): JSX.Element {
   const { metadatas, fixedFilters, setFixedFilters } = props
+  const { t } = useTranslation('common')
+
   const metadataOptions = metadatas?.map((item) => ({
     label: firstLetterUppercase(item.entity),
     value: item.entity,
   }))
   return (
     <CustomBlocEntity>
-      <CustomNameBloc>Entity</CustomNameBloc>
+      <CustomNameBloc>{t('entity')}</CustomNameBloc>
       <DropDown
         options={metadataOptions}
         value={fixedFilters}
