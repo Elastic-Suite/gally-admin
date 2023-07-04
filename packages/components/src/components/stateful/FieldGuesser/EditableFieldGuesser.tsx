@@ -46,7 +46,6 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
     validation,
     depends,
     requestTypeConfigurations,
-    categoriesList,
     data,
     optionConfig,
     infoTooltip,
@@ -191,7 +190,6 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
           onChange={handleChange}
           label={label}
           required={required}
-          categoriesList={categoriesList}
           placeholder={placeholder}
         />
       )
