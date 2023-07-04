@@ -7,6 +7,7 @@ import {
   ISourceField,
   ISourceFieldLabel,
   RuleAttributeType,
+  isRuleValid,
   parseRule,
   serializeRule,
 } from '@elastic-suite/gally-admin-shared'
@@ -20,6 +21,7 @@ import RuleOptionsProvider from '../../stateful-providers/RuleOptionsProvider/Ru
 import { FormHelperText, InputLabel } from '@mui/material'
 import InfoTooltip from '../../atoms/form/InfoTooltip'
 import IonIcon from '../../atoms/IonIcon/IonIcon'
+import { useTranslation } from 'next-i18next'
 
 const sourceFieldFixedFilters = {
   'metadata.entity': 'product',
@@ -54,8 +56,10 @@ function RulesManager(props: IProps): JSX.Element {
     error,
     helperText,
     helperIcon,
+    first,
     ...ruleProps
   } = props
+  const { t } = useTranslation('rules')
   const { catalogId, localizedCatalogId } = useContext(catalogContext)
   const ruleOperators = useRuleOperators(ruleOperatorsDefault)
 
@@ -127,6 +131,10 @@ function RulesManager(props: IProps): JSX.Element {
     }
   })
 
+  const isValid = isRuleValid(rule)
+  const helperTextRules = helperText ?? (!isValid && 'error.format.rules')
+  const errorRules = error || !isValid
+
   return (
     <RuleOptionsProvider
       catalogId={catalogId}
@@ -145,19 +153,23 @@ function RulesManager(props: IProps): JSX.Element {
           catalogId={catalogId}
           localizedCatalogId={localizedCatalogId}
           {...ruleProps}
+          first={first}
           rule={rule}
           onChange={handleChange}
         />
       )}
-      {Boolean(helperText) && (
-        <FormHelperText>
+      {Boolean(helperTextRules) && (
+        <FormHelperText
+          error={errorRules}
+          sx={{ marginTop: !first ? '-12px' : '8px' }}
+        >
           {Boolean(helperIcon) && (
             <IonIcon
               name={helperIcon}
               style={{ fontSize: 18, marginRight: 2 }}
             />
           )}
-          {helperText}
+          {t(helperTextRules)}
         </FormHelperText>
       )}
     </RuleOptionsProvider>

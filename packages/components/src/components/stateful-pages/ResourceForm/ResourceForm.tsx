@@ -12,9 +12,11 @@ import Button from '../../atoms/buttons/Button'
 import {
   IErrorsForm,
   IMainContext,
+  IRule,
   concatenateValuesWithLineBreaks,
   initResourceData,
   isError,
+  isRuleValid,
 } from '@elastic-suite/gally-admin-shared'
 import { closeSnackbar, enqueueSnackbar } from 'notistack'
 import { useTranslation } from 'next-i18next'
@@ -58,11 +60,17 @@ function ResourceForm(props: IProps): JSX.Element {
     id ? {} : initResourceData(resource)
   )
 
-  const isValidForm = !requiredChamps.some((it) =>
-    typeof data?.[it.title] === 'string'
-      ? !data?.[it.title as string]
-      : (data?.[it.title] as unknown[])?.length === 0
-  )
+  const isValidRules =
+    !data?.conditionRule ||
+    isRuleValid(JSON.parse(data?.conditionRule as string) as IRule)
+
+  const isValidForm =
+    isValidRules &&
+    !requiredChamps.some((it) =>
+      typeof data?.[it.title] === 'string'
+        ? !data?.[it.title as string]
+        : (data?.[it.title] as unknown[])?.length === 0
+    )
 
   const fetchApi = useApiFetch()
   const log = useLog()
