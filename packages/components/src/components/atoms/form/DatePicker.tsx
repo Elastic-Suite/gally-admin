@@ -13,6 +13,8 @@ import IonIcon from '../IonIcon/IonIcon'
 
 import InputText, { IInputTextProps } from './InputText'
 
+import { useTranslation } from 'next-i18next'
+
 const CustomPickersDay = styled(PickersDay, {
   shouldForwardProp: (prop) =>
     prop !== 'dayIsBetween' && prop !== 'isFirstDay' && prop !== 'isLastDay',
@@ -30,8 +32,8 @@ const CustomPickersDay = styled(PickersDay, {
 
 export interface IDatePickerProps
   extends Omit<IInputTextProps, 'value' | 'onChange' | 'onError'> {
-  value: Dayjs | null
-  onChange: (value: Dayjs | null) => void
+  value: Dayjs | string | null
+  onChange: (value: Dayjs | string | null) => void
   onError?: (reason: DateValidationError, value: Dayjs) => void
 }
 
@@ -50,9 +52,11 @@ function ShowIcon(): JSX.Element {
 }
 
 function DatePicker(props: IDatePickerProps): JSX.Element {
+  const { t, i18n } = useTranslation('common')
   const { value, onChange, onError, ...args } = props
+
   const renderWeekPickerDay = (
-    _: Dayjs,
+    _: string,
     __: Array<Dayjs | null>,
     pickersDayProps: PickersDayProps<Dayjs>
   ): JSX.Element => {
@@ -71,7 +75,7 @@ function DatePicker(props: IDatePickerProps): JSX.Element {
       }}
       renderInput={(params): JSX.Element => {
         const { InputProps, inputProps, ...rest } = params
-        const { onChange, placeholder, readOnly, type, value } = inputProps
+        const { onChange, readOnly, type, value } = inputProps
         return (
           <InputText
             {...InputProps}
@@ -80,7 +84,7 @@ function DatePicker(props: IDatePickerProps): JSX.Element {
             onChange={(_: string | number, event: SyntheticEvent): void =>
               onChange(event as ChangeEvent<HTMLInputElement>)
             }
-            placeholder={placeholder}
+            placeholder={t(`date.placeholder.${i18n.language}`)}
             readOnly={readOnly}
             ref={params.ref as Ref<HTMLDivElement>}
             type={type}

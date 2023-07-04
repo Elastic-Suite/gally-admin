@@ -57,5 +57,6 @@
   "default.undefined": "empty",
   "log.out": "Log out",
   "create": "Create",
+  "date.placeholder.en": "mm/dd/yyyy",
   "entity": "Entity"
 }
