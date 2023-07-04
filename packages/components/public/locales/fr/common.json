@@ -57,5 +57,6 @@
   "default.undefined": "vide",
   "log.out": "Déconnexion",
   "entity": "Entité",
-  "create": "Créer"
+  "create": "Créer",
+  "date.placeholder.fr": "jj/mm/aaaa"
 }
