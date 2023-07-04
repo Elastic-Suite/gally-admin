@@ -226,6 +226,7 @@ function AdminMerchandizeCategories(): JSX.Element {
                 onChange={handleUpdateRule}
                 rule={catConf?.virtualRule}
                 ruleOperators={ruleOperators}
+                error={!isValid}
               />
             </TitleBlock>
           ),
