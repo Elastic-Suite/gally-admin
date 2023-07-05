@@ -30,14 +30,14 @@ export function isHiddenDepends(
   dependsForm: IDependsForm[],
   data: Record<string, unknown> | undefined
 ): boolean {
-  return dependsForm
-    .map((item) => {
-      const field = item?.field as string
-      const value = item?.value
-      const fieldValue = data?.[field]
-      return Boolean(fieldValue && (value ? fieldValue === value : true))
-    })
-    .some((its) => !its)
+  return dependsForm.some((item) => {
+    const field = item?.field as string
+    const { value } = item
+    const fieldValue = data?.[field]
+    return (
+      fieldValue === undefined || (value !== fieldValue && value !== undefined)
+    )
+  })
 }
 
 export function getRequestTypeData(data: Record<string, any>): IRequestType {
