@@ -48,6 +48,7 @@ export const customIcons = [
 /*
  * Creation of special props to be clean on Typescripts files
  * See: https://github.com/ionic-team/ionicons
+ * List: https://ionic.io/ionicons/
  *
  * Setup switch for special names that need svg or have another name in ion-icons
  */
