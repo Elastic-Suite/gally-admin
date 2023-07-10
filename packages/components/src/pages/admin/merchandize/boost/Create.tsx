@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react'
 import { withAuth, withOptions } from '../../../../hocs'
-import { PageTitle, ResourceForm } from '../../../../components'
+import { ResourceForm } from '../../../../components'
 import { useRouter } from 'next/router'
 import { breadcrumbContext } from '../../../../contexts'
 import { useTranslation } from 'next-i18next'
@@ -17,10 +17,11 @@ function AdminBoostCreate(): JSX.Element {
   }, [router.query, setBreadcrumb])
 
   return (
-    <>
-      <PageTitle title={t('title.create')} sx={{ marginBottom: '32px' }} />
-      <ResourceForm resourceName="Boost" />
-    </>
+    <ResourceForm
+      title={t('title.create')}
+      resourceName="Boost"
+      categoriesList={[]}
+    />
   )
 }
 

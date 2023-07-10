@@ -4,6 +4,7 @@ import { styled } from '@mui/system'
 
 import Button from '../buttons/Button'
 import IonIcon from '../IonIcon/IonIcon'
+import { useLog } from '../../../hooks'
 
 const CustomClose = styled('div')(({ theme }) => ({
   position: 'absolute',
@@ -32,11 +33,12 @@ const CustomTitle = styled('div')(({ theme }) => ({
 }))
 
 interface IProps {
-  onConfirm?: () => void
+  onConfirm?: () => void | Promise<void>
   title: ReactNode
   cancelName: string
   confirmName: string
   titlePopIn: string
+  loading?: boolean
 }
 
 function PopIn({
@@ -45,8 +47,10 @@ function PopIn({
   titlePopIn,
   cancelName,
   confirmName,
+  loading,
 }: IProps): JSX.Element {
   const [open, setOpen] = useState(false)
+  const log = useLog()
 
   function handleClickOpen(): void {
     setOpen(true)
@@ -56,9 +60,18 @@ function PopIn({
     setOpen(false)
   }
 
-  function handleConfirm(): void {
+  async function handleConfirm(): Promise<void> {
+    if (typeof onConfirm === 'function') {
+      try {
+        const result = onConfirm()
+        if (result instanceof Promise) {
+          return await result
+        }
+      } catch (error) {
+        return log(error)
+      }
+    }
     setOpen(false)
-    typeof onConfirm === 'function' && onConfirm()
   }
 
   return (
@@ -79,13 +92,15 @@ function PopIn({
         <DialogActions
           sx={{ padding: 0, marginLeft: 0, justifyContent: 'center', gap: 1 }}
         >
-          <Box onClick={handleClose}>
-            <Button display="tertiary" size="large">
+          <Box>
+            <Button onClick={handleClose} display="tertiary" size="large">
               {cancelName}
             </Button>
           </Box>
-          <Box onClick={handleConfirm}>
-            <Button size="large">{confirmName}</Button>
+          <Box>
+            <Button onClick={handleConfirm} loading={loading} size="large">
+              {confirmName}
+            </Button>
           </Box>
         </DialogActions>
       </Dialog>
