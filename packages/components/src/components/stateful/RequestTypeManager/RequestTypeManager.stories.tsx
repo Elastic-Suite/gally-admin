@@ -4,7 +4,6 @@ import { ComponentMeta, ComponentStory } from '@storybook/react'
 import RequestTypeManager from './RequestTypeManager'
 import { IRequestType } from '@elastic-suite/gally-admin-shared'
 import dataGeneralBoost from '../../../../public/mocks/requestTypes.json'
-import categoriesList from '../../../../public/mocks/categories.json'
 
 export default {
   title: 'Stateful/RequestTypeManager',
@@ -19,7 +18,6 @@ const Template: ComponentStory<typeof RequestTypeManager> = (args) => {
 
 export const Default = Template.bind({})
 Default.args = {
-  categoriesList: categoriesList.categories,
   requestTypeConfigurations: {
     operatorOptionsApi: 'boost_query_text_operator_options',
     limitationTypeOptionsApi: 'boost_limitation_type_options',

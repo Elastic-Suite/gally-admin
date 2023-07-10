@@ -1,10 +1,10 @@
 import React from 'react'
 import { useApiHeadersForm } from '../../../hooks'
 import {
+  IErrorsForm,
   IFieldConfigFormWithFieldset,
   IOption,
   IResource,
-  ITreeItem,
 } from '@elastic-suite/gally-admin-shared'
 import FieldGuesser from '../../stateful/FieldGuesser/FieldGuesser'
 import Tooltip from '../../atoms/modals/Tooltip'
@@ -21,11 +21,11 @@ interface IProps {
   data?: Record<string, unknown>
   onChange: (val: Record<string, unknown>) => void
   resource: IResource
-  categoriesList?: ITreeItem[]
+  errors?: IErrorsForm
 }
 
 function CustomForm(props: IProps): JSX.Element {
-  const { data, onChange, resource, categoriesList } = props
+  const { data, onChange, resource, errors } = props
 
   const headers = useApiHeadersForm(resource)
 
@@ -72,9 +72,10 @@ function CustomForm(props: IProps): JSX.Element {
                     {...field}
                     onChange={handleChange}
                     value={getValue(field, data)}
-                    categoriesList={categoriesList}
                     editable
                     data={data}
+                    helperText={errors?.fields?.[field?.name]}
+                    error={Boolean(errors?.fields?.[field?.name])}
                   />
                 )
               })}

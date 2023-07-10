@@ -11,8 +11,10 @@ import {
 import { CustomRoot } from './RequestTypeItem.styled'
 import DropDown from './DropDown'
 import RequestTypeItem from './RequestTypeItem'
-import { FormControl, InputLabel } from '@mui/material'
+import { FormHelperText, InputLabel } from '@mui/material'
 import InfoTooltip from './InfoTooltip'
+import IonIcon from '../IonIcon/IonIcon'
+import { StyledFormControl } from './InputText.styled'
 
 export interface IProps {
   value: IRequestType
@@ -27,6 +29,9 @@ export interface IProps {
   margin?: 'none' | 'dense' | 'normal'
   infoTooltip?: string
   placeholder?: string
+  error?: boolean
+  helperText?: string
+  helperIcon?: string
 }
 
 function RequestType(props: IProps): JSX.Element {
@@ -43,6 +48,9 @@ function RequestType(props: IProps): JSX.Element {
     margin,
     infoTooltip,
     placeholder,
+    error,
+    helperText,
+    helperIcon,
   } = props
 
   function updateSelectedDropDown(list: string[] | string): void {
@@ -71,14 +79,19 @@ function RequestType(props: IProps): JSX.Element {
   }
 
   return (
-    <FormControl fullWidth={fullWidth} margin={margin} variant="standard">
+    <StyledFormControl
+      fullWidth={fullWidth}
+      margin={margin}
+      variant="standard"
+      error={error}
+    >
       {label || infoTooltip ? (
-        <InputLabel sx={{ maxWidth: '90%' }} required={required} shrink>
+        <InputLabel shrink sx={{ maxWidth: '90%' }} required={required}>
           {label ? label : null}
           {infoTooltip ? <InfoTooltip title={infoTooltip} /> : null}
         </InputLabel>
       ) : undefined}
-      <CustomRoot>
+      <CustomRoot error={error}>
         <DropDown
           placeholder={value.requestTypes.length !== 0 ? '' : placeholder}
           multiple
@@ -95,7 +108,18 @@ function RequestType(props: IProps): JSX.Element {
           categoriesList={categoriesList}
         />
       </CustomRoot>
-    </FormControl>
+      {Boolean(helperText) && (
+        <FormHelperText>
+          {Boolean(helperIcon) && (
+            <IonIcon
+              name={helperIcon}
+              style={{ fontSize: 18, marginRight: 2 }}
+            />
+          )}
+          {helperText}
+        </FormHelperText>
+      )}
+    </StyledFormControl>
   )
 }
 
