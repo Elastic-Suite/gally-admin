@@ -25,6 +25,8 @@ export enum DataContentType {
   RULEENGINE = 'ruleEngine',
   SLIDER = 'slider',
   MULTIPLEINPUT = 'multipleInput',
+  SYNONYM = 'synonym',
+  EXPANSION = 'expansion',
 }
 
 export interface ITableHeader extends IFieldConfig {

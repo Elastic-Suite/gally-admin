@@ -90,6 +90,7 @@ function EditableDropDownGuesser(props: IProps): JSX.Element {
             : placeholder
           : placeholder
       }
+      objectKeyValue={field?.gally?.options?.objectKeyValue}
       sx={{ minWidth: '230.667px' }}
     />
   )

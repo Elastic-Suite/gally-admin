@@ -1,0 +1,43 @@
+{
+  "@context": "/contexts/Thesaurus",
+  "@id": "/thesauruses/1",
+  "@type": "Thesaurus",
+  "id": 1,
+  "name": "Thesaurus #1 - Synonym",
+  "isActive": true,
+  "type": "synonym",
+  "scopeType": "localized_catalog",
+  "localizedCatalogs": [
+    "/localized_catalogs/1",
+    "/localized_catalogs/2",
+    "/localized_catalogs/4"
+  ],
+  "locales": [],
+  "synonyms": [
+    {
+      "@id": "/thesaurus_synonyms/1",
+      "@type": "ThesaurusSynonym",
+      "terms": [
+        {
+          "@id": "/thesaurus_synonym_terms/1",
+          "@type": "ThesaurusSynonymTerm",
+          "term": "robe"
+        },
+        {
+          "@id": "/thesaurus_synonym_terms/2",
+          "@type": "ThesaurusSynonymTerm",
+          "term": "dress"
+        }
+      ]
+    }
+  ],
+  "expansions": [],
+  "createdAt": "2023-08-07T12:22:08+00:00",
+  "updatedAt": "2023-08-07T12:22:08+00:00",
+  "scope": [
+    "COM Catalog - COM French Catalog",
+    "COM Catalog - COM English Catalog",
+    "FR Catalog - FR English Catalog"
+  ],
+  "termLabels": ["robe, dress"]
+}

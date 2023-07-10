@@ -30,8 +30,9 @@ export interface IDropDownProps<T>
   onChange?: (value: T | T[], event: SyntheticEvent) => void
   options: IOptions<T>
   style?: CSSProperties
-  value?: T | T[]
+  value?: T | T[] | object | object[]
   useGroups?: boolean
+  objectKeyValue?: string
 }
 
 function DropDown<T>(props: IDropDownProps<T>): JSX.Element {
@@ -45,6 +46,7 @@ function DropDown<T>(props: IDropDownProps<T>): JSX.Element {
     style,
     value,
     useGroups,
+    objectKeyValue,
     ...otherProps
   } = props
   const { required, small } = otherProps
@@ -57,8 +59,14 @@ function DropDown<T>(props: IDropDownProps<T>): JSX.Element {
 
   const optionValue =
     value instanceof Array
-      ? value.map((val) => optionMap.get(val))
-      : optionMap.get(value) ?? null
+      ? value.map((val: any) => {
+          return objectKeyValue
+            ? optionMap.get(val[objectKeyValue])
+            : optionMap.get(val)
+        })
+      : value instanceof Object
+      ? optionMap.get(value[objectKeyValue as keyof object] as T) ?? null
+      : optionMap.get(value as T) ?? null
 
   function handleChange(
     event: SyntheticEvent,
@@ -70,11 +78,18 @@ function DropDown<T>(props: IDropDownProps<T>): JSX.Element {
         onChange(null, dropdownEvent)
       } else if (option instanceof Array) {
         onChange(
-          option.map(({ value }) => value),
+          option.map(({ value }) =>
+            objectKeyValue ? ({ [objectKeyValue]: value } as T) : value
+          ),
           dropdownEvent
         )
       } else if (option) {
-        onChange(option.value, dropdownEvent)
+        onChange(
+          objectKeyValue
+            ? ({ [objectKeyValue]: option.value } as T)
+            : option.value,
+          dropdownEvent
+        )
       }
     }, 0)
   }

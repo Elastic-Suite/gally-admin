@@ -22,19 +22,6 @@ const CustomMultipleTextFieldsTags = styled('div')(({ theme }) => ({
   flexDirection: 'column',
 }))
 
-const CustomCloseTagsByOperator = styled('div')(({ theme }) => ({
-  position: 'absolute',
-  right: '-5px',
-  top: '-5px',
-  borderRadius: '50%',
-  background: theme.palette.colors.neutral[600],
-  color: 'white',
-  display: 'flex',
-  padding: theme.spacing(0.5),
-  zIndex: '1',
-  cursor: 'pointer',
-}))
-
 const CustomSelectOperator = styled('div')(({ theme }) => ({
   display: 'flex',
   gap: theme.spacing(1),

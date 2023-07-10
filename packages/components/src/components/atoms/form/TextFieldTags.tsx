@@ -22,8 +22,10 @@ const CustomRootTextFieldTags = styled('div', {
   border: '1px solid',
   minWidth: '350px',
   maxWidth: '650px',
+  borderColor: theme.palette.colors.neutral[600],
   boxSizing: 'border-box',
   background: theme.palette.colors.white,
+  position: 'relative',
   gap: theme.spacing(2),
   display: 'flex',
   flexDirection: 'column',
@@ -34,6 +36,7 @@ const CustomRootTextFieldTags = styled('div', {
     paddingBottom: '1px',
     paddingRight: theme.spacing(1),
     paddingLeft: theme.spacing(1),
+    borderColor: theme.palette.colors.neutral[300],
     color: theme.palette.colors.neutral['500'],
     WebkitTextFillColor: theme.palette.colors.neutral['500'],
     background: theme.palette.colors.neutral[300],
@@ -66,9 +69,23 @@ const CustomInputTextTextFieldTags = styled(InputText)({
   '&.MuiInputBase-root': { minHeight: 0, paddingLeft: '8px' },
 })
 
+const CustomCloseTagsByOperator = styled('div')(({ theme }) => ({
+  position: 'absolute',
+  right: '-5px',
+  top: '-5px',
+  borderRadius: '50%',
+  background: theme.palette.colors.neutral[600],
+  color: 'white',
+  display: 'flex',
+  padding: theme.spacing(0.5),
+  zIndex: '9',
+  cursor: 'pointer',
+}))
+
 export interface ITextFieldTag extends Omit<ITextFieldTagsForm, 'options'> {
   value?: string[]
   onChange?: (value: string[]) => void
+  onRemoveItem?: () => void
 }
 
 const colorOfBorderTextFieldTagsInputInit = '#e2e6f3'
@@ -79,6 +96,7 @@ function TextFieldTags(props: ITextFieldTag): JSX.Element {
   const {
     value,
     onChange,
+    onRemoveItem,
     disabled,
     required,
     error,
@@ -158,6 +176,11 @@ function TextFieldTags(props: ITextFieldTag): JSX.Element {
         }
         style={{ borderColor: colorOfBorderTextFieldTagsInput }}
       >
+        {onRemoveItem ? (
+          <CustomCloseTagsByOperator onClick={onRemoveItem}>
+            <IonIcon name="close" style={{ fontSize: 14, padding: '0px' }} />
+          </CustomCloseTagsByOperator>
+        ) : null}
         <CustomTags>
           {disabled || !value ? (
             <Chip disabled label={disabledValue} />

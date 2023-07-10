@@ -12,13 +12,20 @@ import CustomForm from '../../organisms/CustomForm/CustomForm'
 import Button from '../../atoms/buttons/Button'
 import BackToLastPage from '../../atoms/backToLastPage/BackToLastPage'
 import {
+  DataContentType,
   IErrorsForm,
+  IExpansions,
   IMainContext,
+  IResource,
   IRequestType,
   IRequestTypesOptions,
   IRule,
+  ISynonyms,
+  areExpansionsValid,
+  areSynonymsValid,
   concatenateValuesWithLineBreaks,
   initResourceData,
+  isDependsField,
   isError,
   isRequestTypeValid,
   isRuleValid,
@@ -64,9 +71,6 @@ function ResourceForm(props: IProps): JSX.Element {
 
   const router = useRouter()
   const [isLoading, setIsLoading] = useState(false)
-  const requiredChamps = resource.supportedProperty.filter(
-    (property) => property.required && property?.gally?.visible
-  )
 
   const [data, setData] = useState<Record<string, unknown>>(
     id ? {} : initResourceData(resource)
@@ -97,14 +101,78 @@ function ResourceForm(props: IProps): JSX.Element {
     !data?.conditionRule ||
     isRuleValid(JSON.parse(data?.conditionRule as string) as IRule)
 
-  const isValidForm =
-    isValidRules &&
-    isValidRequestType &&
-    !requiredChamps.some((it) =>
+  function checkSynonymsValidity(
+    resource: IResource,
+    data: Record<string, unknown>
+  ): boolean {
+    let result = true
+    const synonymFields = resource.supportedProperty.filter(
+      (property) =>
+        property?.gally?.input === DataContentType.SYNONYM &&
+        isDependsField(property, data)
+    )
+
+    synonymFields.forEach((field) => {
+      if (
+        result &&
+        field.title in data &&
+        !areSynonymsValid(data[field.title] as ISynonyms)
+      ) {
+        result = false
+      }
+    })
+
+    return result
+  }
+
+  function checkExpansionsValidity(
+    resource: IResource,
+    data: Record<string, unknown>
+  ): boolean {
+    let result = true
+    const expansionFields = resource.supportedProperty.filter(
+      (property) =>
+        property?.gally?.input === DataContentType.EXPANSION &&
+        isDependsField(property, data)
+    )
+
+    expansionFields.forEach((field) => {
+      if (
+        result &&
+        field.title in data &&
+        !areExpansionsValid(data[field.title] as IExpansions)
+      ) {
+        result = false
+      }
+    })
+
+    return result
+  }
+
+  function checkRequiredFields(
+    resource: IResource,
+    data: Record<string, unknown>
+  ): boolean {
+    const requiredFields = resource.supportedProperty.filter(
+      (property) =>
+        property.required &&
+        property?.gally?.visible &&
+        isDependsField(property, data)
+    )
+
+    return !requiredFields.some((it) =>
       typeof data?.[it.title] === 'string'
         ? !data?.[it.title as string]
         : (data?.[it.title] as unknown[])?.length === 0
     )
+  }
+
+  const isValidForm =
+    checkRequiredFields(resource, data) &&
+    checkSynonymsValidity(resource, data) &&
+    checkExpansionsValidity(resource, data) &&
+    isValidRules &&
+    isValidRequestType
 
   const fetchApi = useApiFetch()
   const log = useLog()
