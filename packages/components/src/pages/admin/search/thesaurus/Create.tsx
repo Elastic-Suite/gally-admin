@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react'
 import { withAuth, withOptions } from '../../../../hocs'
-import { PageTitle, ResourceForm } from '../../../../components'
+import { ResourceForm } from '../../../../components'
 import { useRouter } from 'next/router'
 import { breadcrumbContext } from '../../../../contexts'
 import { useTranslation } from 'next-i18next'
@@ -16,12 +16,7 @@ function AdminThesaurusCreate(): JSX.Element {
     setBreadcrumb(pagesSlug)
   }, [router.query, setBreadcrumb])
 
-  return (
-    <>
-      <PageTitle title={t('title.create')} sx={{ marginBottom: '32px' }} />
-      <ResourceForm resourceName="Thesaurus" />
-    </>
-  )
+  return <ResourceForm title={t('title.create')} resourceName="Thesaurus" />
 }
 
 export default withAuth(withOptions(AdminThesaurusCreate))

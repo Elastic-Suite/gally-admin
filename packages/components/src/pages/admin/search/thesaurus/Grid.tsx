@@ -6,6 +6,10 @@ import { breadcrumbContext } from '../../../../contexts'
 
 const pagesSlug = ['merchandize', 'thesaurus']
 
+const propsButton = {
+  endIcon: <ion-icon name="add-circle-outline" />,
+}
+
 function AdminThesaurusGrid(): JSX.Element {
   const router = useRouter()
   const [, setBreadcrumb] = useContext(breadcrumbContext)
@@ -14,7 +18,14 @@ function AdminThesaurusGrid(): JSX.Element {
     setBreadcrumb(pagesSlug)
   }, [router.query, setBreadcrumb])
 
-  return <Grid resourceName="Thesaurus" hasNewLink hasEditLink />
+  return (
+    <Grid
+      resourceName="Thesaurus"
+      hasNewLink
+      hasEditLink
+      propsButton={propsButton}
+    />
+  )
 }
 
 export default withAuth(withOptions(AdminThesaurusGrid))

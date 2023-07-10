@@ -5,5 +5,9 @@
   "Result count": "Nombre de résultats",
   "Admin sort": "Tri admin",
   "Name": "Nom",
-  "Relevance": "Pertinence"
+  "Relevance": "Pertinence",
+  "Expansion": "Expansion",
+  "Synonym": "Synonyme",
+  "Locale": "Paramètre régionaux",
+  "Localized catalog": "Catalog localizé"
 }

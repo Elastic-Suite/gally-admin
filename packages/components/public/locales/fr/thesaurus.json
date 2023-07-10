@@ -1,7 +1,17 @@
 {
-  "save": "Sauvegarder",
-  "create": "Créer",
-  "alert": "Sauvegarde des données avec succès",
   "title.update": "Modification d’un thesaurus",
-  "title.create": "Création d’un thesaurus"
+  "title.create": "Création d’un thesaurus",
+  "reference term": "Terme de référence",
+  "expansion terms": "Termes étendus",
+  "expansions": "Expansions",
+  "synonyms": "Synonymes",
+  "terms": "Termes",
+  "add": "Ajouter",
+  "add text": "Ajouter texte",
+  "synonym.error_message.terms.size.invalid": "Veuillez renseigner au moins deux valeurs dans tous les champs \"synonymes\".",
+  "synonym.error_message.terms.duplicate": "Il y a des doublons parmi les \"synonymes\", veuillez les retirer.",
+  "expansion.error_message.reference_terms.duplicate": "Il y a des doublons parmi les \"termes de référence\", veuillez les retirer.",
+  "expansion.error_message.reference_term.empty": "Veuillez renseigner une valeur dans tous les champs \"terme de référence\".",
+  "expansion.error_message.expansion_terms.empty": "Veuillez renseigner au moins une valeur dans tous les champs \"termes étendus\".",
+  "expansion.error_message.expansion_terms.duplicate": "Il y a des doublons parmi les \"termes étendus\", veuillez les retirer."
 }
