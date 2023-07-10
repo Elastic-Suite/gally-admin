@@ -56,5 +56,6 @@
   "field.productImage": "Image produit",
   "default.undefined": "vide",
   "log.out": "Déconnexion",
-  "create": "Créer"
+  "create": "Créer",
+  "date.placeholder.fr": "jj/mm/aaaa"
 }
