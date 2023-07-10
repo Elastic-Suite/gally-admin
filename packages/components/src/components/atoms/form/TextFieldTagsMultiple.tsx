@@ -21,19 +21,6 @@ const CustomMultipleTextFieldsTags = styled('div')(({ theme }) => ({
   flexDirection: 'column',
 }))
 
-const CustomCloseTagsByOperator = styled('div')(({ theme }) => ({
-  position: 'absolute',
-  right: '-5px',
-  top: '-5px',
-  borderRadius: '50%',
-  background: theme.palette.colors.neutral[600],
-  color: 'white',
-  display: 'flex',
-  padding: theme.spacing(0.5),
-  zIndex: '1',
-  cursor: 'pointer',
-}))
-
 const CustomSelectOperator = styled('div')(({ theme }) => ({
   display: 'flex',
   gap: theme.spacing(1),
@@ -175,19 +162,12 @@ function TextFieldTagsMultiple(
                   sx={{ marginBottom: 1 }}
                 />
                 <div style={{ position: 'relative' }}>
-                  <CustomCloseTagsByOperator
-                    onClick={(): void => removeItem(key)}
-                  >
-                    <IonIcon
-                      name="close"
-                      style={{ fontSize: 14, padding: '0px' }}
-                    />
-                  </CustomCloseTagsByOperator>
                   <TextFieldTags
                     fullWidth={fullWidth}
                     onChange={(value): void => updateValue(key, value)}
                     value={value}
                     placeholder={option?.label}
+                    onRemoveItem={(): void => removeItem(key)}
                   />
                 </div>
               </div>

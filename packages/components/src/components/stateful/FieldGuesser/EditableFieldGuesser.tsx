@@ -3,10 +3,12 @@ import { useTranslation } from 'next-i18next'
 import {
   DataContentType,
   IDependsForm,
+  IExpansions,
   IFieldGuesserProps,
   IOption,
   IRequestType,
   IRuleCombination,
+  ISynonyms,
 } from '@elastic-suite/gally-admin-shared'
 
 import DropDown from '../../atoms/form/DropDown'
@@ -26,6 +28,8 @@ import RequestTypeManager from '../../stateful/RequestTypeManager/RequestTypeMan
 import { isHiddenDepends } from '../../../services'
 import RulesManager from '../RulesManager/RulesManager'
 import Slider from '../../atoms/form/Slider'
+import Synonym from '../../atoms/form/Synonym'
+import Expansion from '../../atoms/form/Expansion'
 
 function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
   const {
@@ -69,7 +73,9 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
       | (boolean | number | string)[]
       | IDoubleDatePickerValues
       | IRequestType
-      | IRuleCombination,
+      | IRuleCombination
+      | ISynonyms
+      | IExpansions,
     event?: SyntheticEvent
   ): void {
     if (onChange) {
@@ -199,6 +205,35 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
           infoTooltip={infoTooltip}
           requestTypeConfigurations={requestTypeConfigurations}
           value={value as IRequestType}
+          onChange={handleChange}
+          label={label}
+          required={required}
+          placeholder={placeholder}
+          error={error}
+          helperText={helperText}
+        />
+      )
+    }
+    case DataContentType.SYNONYM: {
+      return (
+        <Synonym
+          infoTooltip={infoTooltip}
+          value={value as ISynonyms}
+          onChange={handleChange}
+          label={label}
+          required={required}
+          placeholder={placeholder}
+          error={error}
+          helperText={helperText}
+        />
+      )
+    }
+
+    case DataContentType.EXPANSION: {
+      return (
+        <Expansion
+          infoTooltip={infoTooltip}
+          value={value as IExpansions}
           onChange={handleChange}
           label={label}
           required={required}

@@ -108,7 +108,7 @@ export interface IGallyProperty {
   depends?: any
   editable?: boolean
   input?: string
-  options?: IDropdownStaticOptions | IDropdownApiOptions
+  options?: IDropdownOptions & (IDropdownStaticOptions | IDropdownApiOptions)
   position?: number
   required?: boolean
   type?: string
@@ -126,6 +126,9 @@ export interface IGallyProperty {
   multipleInputConfiguration?: IMultipleInputConfiguration
   placeholder?: string
   defaultValue?: unknown
+}
+export interface IDropdownOptions {
+  objectKeyValue?: string
 }
 
 export interface IDropdownStaticOptions {

@@ -1,0 +1,39 @@
+{
+  "@context": "/contexts/Thesaurus",
+  "@id": "/thesauruses/3",
+  "@type": "Thesaurus",
+  "id": 3,
+  "name": "Thesaurus #3 - Expansion",
+  "isActive": true,
+  "type": "expansion",
+  "scopeType": "localized_catalog",
+  "localizedCatalogs": ["/localized_catalogs/2", "/localized_catalogs/4"],
+  "locales": [],
+  "synonyms": [],
+  "expansions": [
+    {
+      "@id": "/thesaurus_expansions/2",
+      "@type": "ThesaurusExpansion",
+      "referenceTerm": "trousers",
+      "terms": [
+        {
+          "@id": "/thesaurus_expansion_terms/3",
+          "@type": "ThesaurusExpansionTerm",
+          "term": "pants"
+        },
+        {
+          "@id": "/thesaurus_expansion_terms/4",
+          "@type": "ThesaurusExpansionTerm",
+          "term": "shorts"
+        }
+      ]
+    }
+  ],
+  "createdAt": "2023-08-07T12:22:08+00:00",
+  "updatedAt": "2023-08-07T12:22:08+00:00",
+  "scope": [
+    "COM Catalog - COM English Catalog",
+    "FR Catalog - FR English Catalog"
+  ],
+  "termLabels": ["trousers → pants, shorts"]
+}

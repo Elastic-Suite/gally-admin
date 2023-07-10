@@ -23,6 +23,7 @@ const CustomRootTextFieldTags = styled('div', {
   width: '350px',
   boxSizing: 'border-box',
   background: theme.palette.colors.white,
+  position: 'relative',
   gap: theme.spacing(2),
   display: 'flex',
   flexDirection: 'column',
@@ -65,15 +66,30 @@ const CustomInputTextTextFieldTags = styled(InputText)({
   '&.MuiInputBase-root': { minHeight: 0, paddingLeft: '8px' },
 })
 
+const CustomCloseTagsByOperator = styled('div')(({ theme }) => ({
+  position: 'absolute',
+  right: '-5px',
+  top: '-5px',
+  borderRadius: '50%',
+  background: theme.palette.colors.neutral[600],
+  color: 'white',
+  display: 'flex',
+  padding: theme.spacing(0.5),
+  zIndex: '9',
+  cursor: 'pointer',
+}))
+
 export interface ITextFieldTag extends Omit<ITextFieldTagsForm, 'options'> {
   value?: string[]
   onChange?: (value: string[]) => void
+  onRemoveItem?: () => void
 }
 
 function TextFieldTags(props: ITextFieldTag): JSX.Element {
   const {
     value,
     onChange,
+    onRemoveItem,
     disabled,
     required,
     error,
@@ -122,6 +138,11 @@ function TextFieldTags(props: ITextFieldTag): JSX.Element {
         </div>
       )}
       <CustomRootTextFieldTags disabled={disabled}>
+        {onRemoveItem ? (
+          <CustomCloseTagsByOperator onClick={onRemoveItem}>
+            <IonIcon name="close" style={{ fontSize: 14, padding: '0px' }} />
+          </CustomCloseTagsByOperator>
+        ) : null}
         <CustomTags>
           {disabled || !value ? (
             <Chip disabled label={disabledValue} />
