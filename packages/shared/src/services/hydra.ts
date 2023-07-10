@@ -226,6 +226,8 @@ export function inputInitializer(input: string): unknown {
     case 'searchLimitations':
     case 'categoryLimitations':
     case 'optgroup':
+    case 'synonym':
+    case 'expansion':
       return []
 
     case 'ruleEngine':

@@ -1,7 +1,17 @@
 {
-  "save": "Save",
-  "create": "Create",
-  "alert": "Save data with success",
   "title.update": "Updating of thesaurus",
-  "title.create": "Creating of thesaurus"
+  "title.create": "Creating of thesaurus",
+  "reference term": "Reference term",
+  "expansion terms": "Expansion terms",
+  "expansions": "Expansions",
+  "synonyms": "Synonyms",
+  "terms": "Terms",
+  "add": "Add",
+  "add text": "Add text",
+  "synonym.error_message.terms.size.invalid": "Please provide at least two values in all \"synonyms\" fields.",
+  "synonym.error_message.terms.duplicate": "There are duplicates among the \"synonyms\", please remove them.",
+  "expansion.error_message.reference_terms.duplicate": "There are duplicates among the \"reference terms\", please remove them.",
+  "expansion.error_message.reference_term.empty": "Please enter a value in all the \"reference term\" fields.",
+  "expansion.error_message.expansion_terms.empty": "Please enter at least one value in all \"expansion terms\" fields.",
+  "expansion.error_message.expansion_terms.duplicate": "There are duplicates among the \"expansion terms\", please remove them."
 }
