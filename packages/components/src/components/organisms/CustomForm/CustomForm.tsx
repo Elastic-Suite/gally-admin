@@ -28,7 +28,7 @@ function CustomForm(props: IProps): JSX.Element {
   const { data, onChange, resource, errors } = props
 
   const headers = useApiHeadersForm(resource)
-
+  console.log('headers', headers)
   function handleChange(
     name: string | Record<string, string> | IOption<string>,
     response: unknown
@@ -62,9 +62,9 @@ function CustomForm(props: IProps): JSX.Element {
             )}
             <ListItemForm>
               {fieldset.children.map((field) => {
-                if (field?.label.endsWith('Limitations')) {
-                  return null
-                }
+                // if (field?.label.endsWith('Limitations')) {
+                //   return null
+                // }
 
                 return (
                   <FieldGuesser

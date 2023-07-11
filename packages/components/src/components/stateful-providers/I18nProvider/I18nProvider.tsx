@@ -23,7 +23,7 @@ const languages: Record<ILocaleAvailable, ILocale> = {
     load: () => import('date-fns/locale/fr'),
   },
   en: {
-    load: () => import('date-fns/locale/en-US'),
+    load: () => import('date-fns/locale/zh-CN'),
   },
 }
 interface IProps {

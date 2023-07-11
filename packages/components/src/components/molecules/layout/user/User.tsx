@@ -3,6 +3,7 @@ import { styled } from '@mui/system'
 
 import Help from '../../../atoms/help/Help'
 import UserMenu from '../../../atoms/userMenu/UserMenu'
+import Language from '../../../atoms/language/Language'
 
 const CustomRoot = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -22,6 +23,7 @@ function User({ isConnected }: IProps): JSX.Element | null {
 
   return (
     <CustomRoot>
+      <Language />
       <Help />
       <UserMenu />
     </CustomRoot>

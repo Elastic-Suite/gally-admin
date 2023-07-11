@@ -118,7 +118,7 @@ function DoubleDatePicker(props: IDoubleDatePickerProps): JSX.Element {
         </Grid>
       </Grid>
       {Boolean(helperText) && (
-        <FormHelperText>
+        <FormHelperText error={error}>
           {Boolean(helperIcon) && (
             <IonIcon
               name={helperIcon}

@@ -41,14 +41,34 @@ export function isHiddenDepends(
 }
 
 export function getRequestTypeData(data: Record<string, any>): IRequestType {
-  const requestTypeData = {} as IRequestType
-  for (const key in data) {
-    if (key.endsWith('Limitations') || key === 'requestTypes') {
-      requestTypeData[key as keyof IRequestType] = data[key]
-    }
-  }
+  const a = [
+    {
+      id: 'category',
+      value: 'category',
+      label: 'Category',
+      labelAll: 'All categories',
+    },
+    {
+      id: 'search',
+      value: 'search',
+      label: 'Search',
+      labelAll: 'All search terms',
+    },
+  ]
 
-  return requestTypeData
+  const requestTypeData = {} as IRequestType
+  // for (const key in data) {
+  //   if (key.endsWith('Limitations') || key === 'requestTypes') {
+  //     requestTypeData[key as keyof IRequestType] = data[key]
+  //   }
+  // }
+
+  a.forEach((it) => {
+    requestTypeData[`${it.value}Limitations` as keyof IRequestType] =
+      data[`${it.value}Limitations`]
+  })
+
+  return { ...requestTypeData, requestTypes: data['requestTypes'] }
 }
 
 export function getValue(field: IFieldConfig, data: unknown): unknown {
