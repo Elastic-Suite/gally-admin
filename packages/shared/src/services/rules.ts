@@ -108,7 +108,9 @@ export function serializeCatConf(
 }
 
 export function isRuleValid(rule: IRule): boolean {
-  if (isCombinationRule(rule)) {
+  if (!rule) {
+    return true
+  } else if (isCombinationRule(rule)) {
     return rule.children.every(isRuleValid)
   } else if (isAttributeRule(rule)) {
     return rule.field !== '' && rule.operator !== '' && rule.value !== ''

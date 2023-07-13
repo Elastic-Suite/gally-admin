@@ -225,6 +225,24 @@ function ResourceTable(props: IResourceTable): JSX.Element {
     }, [])
   }
 
+  const a = [
+    { id: 56, name: 'Boubkar' },
+    { id: 98, name: 'Bob' },
+  ]
+
+  // const b = a.map((item) => {
+  //   if (item.id === 98) {
+  //     return { ...item, name: 'bob' }
+  //   }
+  //   return item
+  // })
+
+  const c = a.find((item) => item.id === 98)
+
+  const d = a.filter((item) => item.id !== 98)
+
+  const e = { ...d, ...c }
+
   const filterOrSearchAreUp =
     searchValue !== '' || isObjectNotEmpty(activeFilters)
 

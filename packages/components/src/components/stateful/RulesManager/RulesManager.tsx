@@ -131,7 +131,7 @@ function RulesManager(props: IProps): JSX.Element {
     }
   })
 
-  const isValid = !rule ? true : isRuleValid(rule)
+  const isValid = isRuleValid(rule)
   const helperTextRules = helperText ?? (!isValid && 'error.format.rules')
   const errorRules = error || !isValid
 
