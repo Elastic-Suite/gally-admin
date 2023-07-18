@@ -62,10 +62,6 @@ function CustomForm(props: IProps): JSX.Element {
             )}
             <ListItemForm>
               {fieldset.children.map((field) => {
-                if (field?.label.endsWith('Limitations')) {
-                  return null
-                }
-
                 return (
                   <FieldGuesser
                     key={field?.id}
