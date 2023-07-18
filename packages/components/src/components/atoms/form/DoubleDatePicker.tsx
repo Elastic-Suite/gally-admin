@@ -69,11 +69,15 @@ function DoubleDatePicker(props: IDoubleDatePickerProps): JSX.Element {
   }
 
   function onErrorFrom(reason: DateValidationError): void {
-    onError({ ...errors, from: reason })
+    if (onError) {
+      onError({ ...errors, from: reason })
+    }
   }
 
   function onErrorTo(reason: DateValidationError): void {
-    onError({ ...errors, to: reason })
+    if (onError) {
+      onError({ ...errors, to: reason })
+    }
   }
 
   return (
