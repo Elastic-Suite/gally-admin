@@ -171,6 +171,7 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
             onChange={handleChange}
             error={error}
             helperText={helperText}
+            label={label}
           />
         </Box>
       )

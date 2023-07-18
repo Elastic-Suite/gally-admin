@@ -26,9 +26,9 @@ import { useRouter } from 'next/router'
 import PageTitle from '../../atoms/PageTitle/PageTitle'
 import PopIn from '../../atoms/modals/PopIn'
 
-const CustomResourceForm = styled('div')(({ theme }) => ({
+const CustomDoubleButtonSticky = styled('div')(({ theme }) => ({
   display: 'flex',
-  flexDirection: 'column',
+  flexDirection: 'row',
   gap: (theme as Theme).spacing(2),
 }))
 
@@ -171,36 +171,51 @@ function ResourceForm(props: IProps): JSX.Element {
   return (
     <>
       {title ? (
-        <PageTitle title={title} sx={{ marginBottom: '32px' }}>
-          {id ? (
-            <PopIn
-              onConfirm={deleteData}
-              titlePopIn={t('confirmation.message.delete')}
-              cancelName={t('cancel')}
-              confirmName={t('confirm')}
-              title={<Button loading={isLoading}>{t('delete')}</Button>}
-              loading={isLoading}
-            />
-          ) : null}
+        <PageTitle title={title} sx={{ marginBottom: '32px' }} sticky>
+          <CustomDoubleButtonSticky>
+            {id ? (
+              <PopIn
+                onConfirm={deleteData}
+                titlePopIn={t('confirmation.message.delete')}
+                cancelName={t('cancel')}
+                confirmName={t('confirm')}
+                title={
+                  <Button
+                    display="secondary"
+                    disabled={isLoading}
+                    endIcon={<ion-icon name="trash-outline" />}
+                  >
+                    {t('delete')}
+                  </Button>
+                }
+                loading={isLoading}
+              />
+            ) : null}
+            <Box>
+              <Button
+                disabled={!isValidForm}
+                onClick={sendingData}
+                loading={isLoading}
+                endIcon={
+                  id ? (
+                    <ion-icon name="save-outline" />
+                  ) : (
+                    <ion-icon name="add-circle-outline" />
+                  )
+                }
+              >
+                {id ? t('save') : t('create')}
+              </Button>
+            </Box>
+          </CustomDoubleButtonSticky>
         </PageTitle>
       ) : null}
-      <CustomResourceForm>
-        <CustomForm
-          data={data}
-          onChange={setData}
-          resource={resource}
-          errors={errors}
-        />
-        <Box>
-          <Button
-            disabled={!isValidForm}
-            onClick={sendingData}
-            loading={isLoading}
-          >
-            {id ? t('save') : t('create')}
-          </Button>
-        </Box>
-      </CustomResourceForm>
+      <CustomForm
+        data={data}
+        onChange={setData}
+        resource={resource}
+        errors={errors}
+      />
     </>
   )
 }

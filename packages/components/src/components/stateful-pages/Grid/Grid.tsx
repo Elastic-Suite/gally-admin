@@ -12,10 +12,18 @@ interface IProps
   title?: string
   hasNewLink?: boolean
   newLink?: string
+  propsButton?: Record<string, any>
 }
 
 function Grid(props: IProps): JSX.Element {
-  const { resourceName, title, newLink, hasNewLink, ...otherProps } = props
+  const {
+    resourceName,
+    title,
+    newLink,
+    hasNewLink,
+    propsButton,
+    ...otherProps
+  } = props
 
   const resource = useResource(resourceName)
   const [activeFilters, setActiveFilters] = useFilters(resource)
@@ -25,7 +33,7 @@ function Grid(props: IProps): JSX.Element {
     <>
       <PageTitle title={title ?? resourceName}>
         {hasNewLink ? (
-          <Button>
+          <Button {...propsButton}>
             <a style={{ textDecoration: 'none' }} href={newLink ?? './create'}>
               {t('create')} {title ?? resourceName}
             </a>
