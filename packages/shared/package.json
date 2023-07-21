@@ -7,7 +7,7 @@
     "react",
     "next"
   ],
-  "version": "1.1.1-alpha.0",
+  "version": "1.1.0-alpha.1",
   "private": false,
   "license": "OSL-3.0",
   "files": [
