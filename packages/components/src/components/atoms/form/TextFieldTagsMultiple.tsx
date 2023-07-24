@@ -30,7 +30,7 @@ const CustomCloseTagsByOperator = styled('div')(({ theme }) => ({
   color: 'white',
   display: 'flex',
   padding: theme.spacing(0.5),
-  zIndex: '9',
+  zIndex: '1',
   cursor: 'pointer',
 }))
 
