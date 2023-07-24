@@ -206,7 +206,12 @@ function ProductsContainer(props: IProps): JSX.Element {
           sx={{ marginBottom: '12px' }}
           title={category?.name ? category?.name : category?.catalogName}
         >
-          <Button disabled={disabled} onClick={handleSave} loading={isLoading}>
+          <Button
+            disabled={disabled}
+            onClick={handleSave}
+            loading={isLoading}
+            endIcon={<ion-icon name="save-outline" />}
+          >
             {t('buttonSave')}
           </Button>
         </PageTitle>

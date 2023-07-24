@@ -185,7 +185,10 @@ function Filters(props: IProps): JSX.Element {
           </SearchBox>
         ) : null}
         <FilterBox>
-          <FilterSecondaryButton onClick={toggleFilters}>
+          <FilterSecondaryButton
+            onClick={toggleFilters}
+            endIcon={<ion-icon name="filter-outline" />}
+          >
             {t('filters.filter')}
             {activeFilters.length > 0 && ` (${activeFilters.length})`}
           </FilterSecondaryButton>
@@ -198,7 +201,10 @@ function Filters(props: IProps): JSX.Element {
               />
             ))}
           </FacetteBox>
-          <FilterTertiaryButton onClick={onClearAll}>
+          <FilterTertiaryButton
+            onClick={onClearAll}
+            endIcon={<ion-icon name="reload-outline" />}
+          >
             {t('filters.clearAll')}
           </FilterTertiaryButton>
         </FilterBox>
@@ -218,8 +224,17 @@ function Filters(props: IProps): JSX.Element {
             ))}
           </FiltersBox>
           <Stack spacing={1} direction="row">
-            <Button type="submit">{t('filters.apply')}</Button>
-            <Button display="tertiary" onClick={onClearAll}>
+            <Button
+              type="submit"
+              endIcon={<ion-icon name="checkmark-done-outline" />}
+            >
+              {t('filters.apply')}
+            </Button>
+            <Button
+              display="tertiary"
+              onClick={onClearAll}
+              endIcon={<ion-icon name="reload-outline" />}
+            >
               {t('filters.clearAll')}
             </Button>
           </Stack>

@@ -6,6 +6,10 @@ import { breadcrumbContext } from '../../../../../src/contexts'
 
 const pagesSlug = ['merchandize', 'boosts']
 
+const propsButton = {
+  endIcon: <ion-icon name="add-circle-outline" />,
+}
+
 function AdminBoostGrid(): JSX.Element {
   const router = useRouter()
   const [, setBreadcrumb] = useContext(breadcrumbContext)
@@ -14,7 +18,14 @@ function AdminBoostGrid(): JSX.Element {
     setBreadcrumb(pagesSlug)
   }, [router.query, setBreadcrumb])
 
-  return <Grid resourceName="Boost" hasNewLink hasEditLink />
+  return (
+    <Grid
+      resourceName="Boost"
+      hasNewLink
+      hasEditLink
+      propsButton={propsButton}
+    />
+  )
 }
 
 export default withAuth(withOptions(AdminBoostGrid))

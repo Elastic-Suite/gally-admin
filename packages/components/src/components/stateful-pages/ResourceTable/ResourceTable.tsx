@@ -252,6 +252,7 @@ function ResourceTable(props: IResourceTable): JSX.Element {
               disabled={diffCount === 0}
               display="secondary"
               onClick={handleReset}
+              endIcon={<ion-icon name="reload-outline" />}
             >
               {t('default.button')}
             </Button>

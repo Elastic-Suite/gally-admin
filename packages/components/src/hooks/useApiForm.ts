@@ -8,10 +8,6 @@ export function useApiDoubleDatePicker(resource: IResource): IResource {
         return {
           ...element,
           title: 'doubleDatePicker',
-          property: {
-            ...element.property,
-            label: 'doubleDatePicker',
-          },
         }
       }
       return element

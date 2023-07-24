@@ -11,9 +11,12 @@ import DatePicker, { IDatePickerProps } from './DatePicker'
 import FormControl from './FormControl'
 import InfoTooltip from './InfoTooltip'
 
-const CustomBox = styled(Box)(() => ({
-  fontWeight: 400,
+const CustomBox = styled(Box)(({ theme }) => ({
+  fontWeight: 500,
   fontFamily: 'var(--gally-font)',
+  fontSize: '14px',
+  lineHeight: '20px',
+  color: theme.palette.colors.neutral[600],
 }))
 
 export interface IDoubleDatePickerValues {
@@ -122,7 +125,7 @@ function DoubleDatePicker(props: IDoubleDatePickerProps): JSX.Element {
         </Grid>
       </Grid>
       {Boolean(helperText) && (
-        <FormHelperText>
+        <FormHelperText error={error}>
           {Boolean(helperIcon) && (
             <IonIcon
               name={helperIcon}
