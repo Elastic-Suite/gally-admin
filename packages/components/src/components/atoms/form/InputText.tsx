@@ -89,7 +89,6 @@ function InputText(
         <InputTextStyled
           id={id}
           onChange={handleChange}
-          required={required}
           ref={ref}
           value={(value ?? '').toString()}
           {...InputProps}
