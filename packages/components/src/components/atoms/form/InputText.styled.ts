@@ -98,6 +98,10 @@ export const InputTextStyled = styled(
         fontSize: '12px',
         fontWeight: 'bold',
       }),
+      ...(small === false && {
+        fontWeight: 'bold',
+        fontSize: '12px',
+      }),
     },
     '&:hover': {
       borderColor: theme.palette.colors.neutral['400'],

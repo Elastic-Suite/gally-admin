@@ -74,11 +74,19 @@ export interface ICombinationRulesProps {
   onChange?: (rule: IRuleCombination) => void
   onDelete?: () => void
   rule?: IRuleCombination
+  small?: boolean
 }
 
 function CombinationRules(props: ICombinationRulesProps): JSX.Element {
-  const { catalogId, first, localizedCatalogId, onChange, onDelete, rule } =
-    props
+  const {
+    catalogId,
+    first,
+    localizedCatalogId,
+    onChange,
+    onDelete,
+    rule,
+    small,
+  } = props
   const { t } = useTranslation('rules')
 
   if (!rule) {
@@ -135,6 +143,7 @@ function CombinationRules(props: ICombinationRulesProps): JSX.Element {
           onChange={onChange}
           onDelete={onDelete}
           rule={rule}
+          small={small}
         />
       </RuleAndLinkContainer>
       {Boolean(children) && (
@@ -160,6 +169,7 @@ function CombinationRules(props: ICombinationRulesProps): JSX.Element {
                   onChange={handleChildChange(key)}
                   onDelete={handleChildDelete(key)}
                   rule={item}
+                  small={small}
                 />
               ) : isAttributeRule(item) ? (
                 <Rule
@@ -168,6 +178,7 @@ function CombinationRules(props: ICombinationRulesProps): JSX.Element {
                   onChange={handleChildChange(key)}
                   onDelete={handleChildDelete(key)}
                   rule={item}
+                  small={small}
                 />
               ) : null}
             </RuleAndLinkContainer>

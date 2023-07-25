@@ -6,7 +6,7 @@ export const Root = styled('div')(({ theme }) => ({
   padding: theme.spacing(1),
   display: 'flex',
   justifyContent: 'center',
-  width: 'fit-content',
+  width: 'max-content',
   border: '1px solid',
   borderColor: theme.palette.colors.neutral['300'],
   borderRadius: theme.spacing(1),
