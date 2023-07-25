@@ -47,7 +47,8 @@ function AdminMerchandizeCategories(): JSX.Element {
   const { t } = useTranslation('categories')
   const [isLoading, setIsLoading] = useState(false)
   const bundles = useAppSelector(selectBundles)
-  const { catalogId, localizedCatalogId } = useContext(catalogContext)
+  const { catalogId, localizedCatalogId, localizedCatalogIdWithDefault } =
+    useContext(catalogContext)
 
   // Breadcrumb
   const [, setBreadcrumb] = useContext(breadcrumbContext)
@@ -233,7 +234,7 @@ function AdminMerchandizeCategories(): JSX.Element {
           ),
         ]}
       >
-        {Boolean(selectedCategoryItem?.id) && (
+        {Boolean(selectedCategoryItem?.id && localizedCatalogIdWithDefault) && (
           <Placeholder placeholder={t('placeholder')}>
             <ProductsContainer
               catConf={catConf}
@@ -245,6 +246,7 @@ function AdminMerchandizeCategories(): JSX.Element {
               prevProductPositions={prevProductPositions}
               productGraphqlFilters={productGraphqlFilters}
               isLoading={isLoading}
+              localizedCatalogIdWithDefault={localizedCatalogIdWithDefault}
             />
           </Placeholder>
         )}

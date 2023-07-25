@@ -1,6 +1,5 @@
 import React, {
   MutableRefObject,
-  useContext,
   useEffect,
   useMemo,
   useRef,
@@ -20,7 +19,6 @@ import {
   getProductPosition,
 } from '@elastic-suite/gally-admin-shared'
 
-import { catalogContext } from '../../../contexts'
 import { useApiList, useGraphqlApi, useResource } from '../../../hooks'
 
 import Button from '../../atoms/buttons/Button'
@@ -57,6 +55,7 @@ interface IProps {
   productGraphqlFilters: IProductFieldFilterInput
   hasEditLink?: boolean
   editLink?: string
+  localizedCatalogIdWithDefault: string
 }
 
 function ProductsContainer(props: IProps): JSX.Element {
@@ -72,9 +71,8 @@ function ProductsContainer(props: IProps): JSX.Element {
     productGraphqlFilters,
     hasEditLink,
     editLink,
+    localizedCatalogIdWithDefault,
   } = props
-  const { localizedCatalogIdWithDefault } = useContext(catalogContext)
-
   const tableRef = useRef<HTMLDivElement>()
   const [topSelectedRows, setTopSelectedRows] = useState<string[]>([])
   const [bottomSelectedRows, setBottomSelectedRows] = useState<string[]>([])
@@ -90,6 +88,7 @@ function ProductsContainer(props: IProps): JSX.Element {
     }),
     [localizedCatalogIdWithDefault, category?.id]
   )
+
   const [productPositions, setProductPositions] =
     useGraphqlApi<IGraphqlProductPosition>(getProductPosition, variables)
   useEffect(() => {
