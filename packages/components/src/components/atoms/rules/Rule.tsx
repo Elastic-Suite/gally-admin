@@ -39,10 +39,12 @@ interface IProps {
   onChange?: (rule: IRule) => void
   onDelete?: () => void
   rule: IRule
+  small?: boolean
 }
 
 function Rule(props: IProps): JSX.Element {
-  const { catalogId, localizedCatalogId, onChange, onDelete, rule } = props
+  const { catalogId, localizedCatalogId, onChange, onDelete, rule, small } =
+    props
   const {
     getAttributeOperatorOptions,
     getAttributeType,
@@ -141,7 +143,7 @@ function Rule(props: IProps): JSX.Element {
               []) as IOptions<boolean>
           }
           required
-          small
+          small={small}
           value={value}
         />
       )
@@ -155,7 +157,7 @@ function Rule(props: IProps): JSX.Element {
               []) as IOptions<unknown>
           }
           required
-          small
+          small={small}
           value={value}
         />
       )
@@ -172,7 +174,7 @@ function Rule(props: IProps): JSX.Element {
           multiple={multiple}
           onChange={handleCategoryChange}
           required
-          small
+          small={small}
           value={treeSelectorValue}
         />
       )
@@ -182,7 +184,7 @@ function Rule(props: IProps): JSX.Element {
       <InputText
         onChange={handleInputChange(multiple)}
         required
-        small
+        small={small}
         type={getInputType(valueType)}
         value={
           multiple
@@ -205,7 +207,7 @@ function Rule(props: IProps): JSX.Element {
               []) as IOptions<string>
           }
           required
-          small
+          small={small}
           value={operator}
         />
         <CustomCombination>{t('conditionsAre')}</CustomCombination>
@@ -216,7 +218,7 @@ function Rule(props: IProps): JSX.Element {
               []) as IOptions<boolean>
           }
           required
-          small
+          small={small}
           value={value}
         />
       </>
@@ -233,13 +235,13 @@ function Rule(props: IProps): JSX.Element {
           }
           required
           value={field}
-          small
+          small={small}
         />
         <DropDown
           onChange={handleOperatorChange}
           options={getAttributeOperatorOptions(field)}
           required
-          small
+          small={small}
           transparent
           value={operator}
         />

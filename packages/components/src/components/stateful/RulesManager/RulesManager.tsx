@@ -44,6 +44,7 @@ interface IProps
   error?: boolean
   helperText?: string
   helperIcon?: string
+  small?: boolean
 }
 
 function RulesManager(props: IProps): JSX.Element {
@@ -57,6 +58,7 @@ function RulesManager(props: IProps): JSX.Element {
     helperText,
     helperIcon,
     first,
+    small,
     ...ruleProps
   } = props
   const { t } = useTranslation('rules')
@@ -156,6 +158,7 @@ function RulesManager(props: IProps): JSX.Element {
           first={first}
           rule={rule}
           onChange={handleChange}
+          small={small}
         />
       )}
       {Boolean(helperTextRules) && (
@@ -178,6 +181,7 @@ function RulesManager(props: IProps): JSX.Element {
 
 RulesManager.defaultProps = {
   first: true,
+  small: false,
 }
 
 export default RulesManager
