@@ -14,7 +14,16 @@ function InputTextError(
 ): JSX.Element {
   const { onChange, showError, ...inputProps } = props
   const [formErrorProps] = useFormError(onChange, showError)
-  return <InputText {...formErrorProps} {...inputProps} ref={ref} />
+  return (
+    <InputText
+      {...inputProps}
+      {...formErrorProps}
+      error={inputProps?.error || formErrorProps?.error}
+      helperIcon={inputProps?.helperIcon || formErrorProps?.helperIcon}
+      helperText={inputProps?.helperText || formErrorProps?.helperText}
+      ref={ref}
+    />
+  )
 }
 
 export default forwardRef(InputTextError)

@@ -33,7 +33,14 @@ function DatePickerError(props: IDatePickerErrorProps): JSX.Element {
   }
 
   return (
-    <DatePicker {...inputProps} {...formErrorProps} onError={handleError} />
+    <DatePicker
+      {...inputProps}
+      {...formErrorProps}
+      error={inputProps?.error || formErrorProps?.error}
+      helperIcon={inputProps?.helperIcon || formErrorProps?.helperIcon}
+      helperText={inputProps?.helperText || formErrorProps?.helperText}
+      onError={handleError}
+    />
   )
 }
 
