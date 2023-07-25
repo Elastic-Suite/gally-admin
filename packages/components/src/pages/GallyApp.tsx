@@ -11,6 +11,7 @@ import DataProvider from '../components/stateful-providers/DataProvider/DataProv
 import Layout from '../components/stateful-layout/Layout/Layout'
 import { useRouter } from 'next/router'
 import MetadataProvider from '../components/stateful-providers/MetadataProvider/MetadataProvider'
+import Head from 'next/head'
 
 const store = setupStore()
 
@@ -21,21 +22,26 @@ function GallyApp(props: AppProps): JSX.Element {
   const isLoginPage = router.route === '/login'
 
   return (
-    <AppProvider store={store}>
-      <DataProvider>
-        <CatalogProvider>
-          <MetadataProvider>
-            {isLoginPage ? (
-              <Cmp {...pageProps} />
-            ) : (
-              <Layout>
+    <>
+      <Head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      </Head>
+      <AppProvider store={store}>
+        <DataProvider>
+          <CatalogProvider>
+            <MetadataProvider>
+              {isLoginPage ? (
                 <Cmp {...pageProps} />
-              </Layout>
-            )}
-          </MetadataProvider>
-        </CatalogProvider>
-      </DataProvider>
-    </AppProvider>
+              ) : (
+                <Layout>
+                  <Cmp {...pageProps} />
+                </Layout>
+              )}
+            </MetadataProvider>
+          </CatalogProvider>
+        </DataProvider>
+      </AppProvider>
+    </>
   )
 }
 
