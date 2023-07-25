@@ -58,5 +58,6 @@
   "log.out": "Déconnexion",
   "entity": "Entité",
   "create": "Créer",
-  "date.placeholder.fr": "jj/mm/aaaa"
+  "date.placeholder.fr": "jj/mm/aaaa",
+  "error.format": "Format incorrect ou incomplet"
 }

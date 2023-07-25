@@ -17,6 +17,5 @@
   "operator.is not": "is not equal",
   "operator.exist": "exist",
   "attributeRule": "Attribute condition",
-  "combinationRule": "Combination condition",
-  "error.format.rules": "Incorrect or incomplete format"
+  "combinationRule": "Combination condition"
 }

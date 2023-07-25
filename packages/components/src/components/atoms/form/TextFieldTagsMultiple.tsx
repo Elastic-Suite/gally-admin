@@ -218,7 +218,7 @@ function TextFieldTagsMultiple(
         <FormHelperText error={error}>
           {Boolean(helperIcon) && (
             <IonIcon
-              name={helperIcon as string}
+              name={helperIcon}
               style={{ fontSize: 18, marginRight: 2 }}
             />
           )}

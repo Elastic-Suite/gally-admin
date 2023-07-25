@@ -58,5 +58,6 @@
   "log.out": "Log out",
   "entity": "Entity",
   "create": "Create",
-  "date.placeholder.en": "mm/dd/yyyy"
+  "date.placeholder.en": "mm/dd/yyyy",
+  "error.format": "Incorrect or incomplete format"
 }

@@ -1,4 +1,3 @@
-import { ReactNode } from 'react'
 import { IOptionsTags } from './textFieldTagsMultiple'
 
 export interface ITextFieldTagsForm {
@@ -7,7 +6,7 @@ export interface ITextFieldTagsForm {
   error?: boolean
   fullWidth?: boolean
   infoTooltip?: string
-  helperText?: ReactNode
+  helperText?: string
   helperIcon?: string
   label?: string
   margin?: 'none' | 'dense' | 'normal'
