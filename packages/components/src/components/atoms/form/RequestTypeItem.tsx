@@ -224,7 +224,7 @@ function RequestTypeItem(props: IRequestTypeItem): JSX.Element {
                       isApplyToAll || treeSelectorValue.length === 0
                         ? propsLimitations.disabled
                           ? item.labelAll
-                          : t('requestType.categories.placeholder')
+                          : t('placeholder.requestType.search')
                         : ''
                     }
                     data={categoriesList}
