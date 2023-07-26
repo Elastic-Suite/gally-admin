@@ -1,10 +1,13 @@
 import React from 'react'
 
 import {
+  ICategoryLimitations,
   ILimitationsTypes,
   IOptionsTags,
   IRequestType,
+  IRequestTypes,
   IRequestTypesOptions,
+  ISearchLimitations,
   ITreeItem,
 } from '@elastic-suite/gally-admin-shared'
 
@@ -33,6 +36,11 @@ export interface IProps {
   helperText?: string
   helperIcon?: string
 }
+
+type LimitationValue = IRequestTypes[] &
+  ICategoryLimitations[] &
+  ISearchLimitations[] &
+  string
 
 function RequestType(props: IProps): JSX.Element {
   const {
