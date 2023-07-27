@@ -16,6 +16,7 @@ import {
   concatenateValuesWithLineBreaks,
   initResourceData,
   isError,
+  isRequestTypeValid,
   isRuleValid,
 } from '@elastic-suite/gally-admin-shared'
 import { closeSnackbar, enqueueSnackbar } from 'notistack'
@@ -60,12 +61,16 @@ function ResourceForm(props: IProps): JSX.Element {
     id ? {} : initResourceData(resource)
   )
 
+  const isValidRequestType =
+    !data?.searchLimitations || isRequestTypeValid(data)
+
   const isValidRules =
     !data?.conditionRule ||
     isRuleValid(JSON.parse(data?.conditionRule as string) as IRule)
 
   const isValidForm =
     isValidRules &&
+    isValidRequestType &&
     !requiredChamps.some((it) =>
       typeof data?.[it.title] === 'string'
         ? !data?.[it.title as string]

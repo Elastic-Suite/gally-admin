@@ -11,9 +11,12 @@ import {
   ISearchLimitations,
   ITreeItem,
   flatTree,
+  isRequestTypeValid,
 } from '@elastic-suite/gally-admin-shared'
 
 import TextFieldTagsMultiple from './TextFieldTagsMultiple'
+
+import { useTranslation } from 'next-i18next'
 
 import Checkbox from './Checkbox'
 import { IconButton } from '@mui/material'
@@ -70,6 +73,7 @@ function RequestTypeItem(props: IRequestTypeItem): JSX.Element {
     requestTypesOptions,
     categoriesList,
   } = props
+  const { t } = useTranslation('common')
 
   function onChangeApplyToAll(
     idItem: IRequestTypesOptions[],
@@ -126,6 +130,9 @@ function RequestTypeItem(props: IRequestTypeItem): JSX.Element {
     },
     {}
   )
+
+  const isValidRequestType =
+    !value?.searchLimitations || isRequestTypeValid(value)
 
   return (
     <CustomRootItem>
@@ -204,6 +211,8 @@ function RequestTypeItem(props: IRequestTypeItem): JSX.Element {
                     disabledValue={item.labelAll}
                     options={options}
                     value={limitationsData as ISearchLimitations[]}
+                    helperText={!isValidRequestType && t('error.format')}
+                    error={!isValidRequestType}
                   />
                 )}
 

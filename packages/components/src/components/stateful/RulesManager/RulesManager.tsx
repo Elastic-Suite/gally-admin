@@ -61,7 +61,7 @@ function RulesManager(props: IProps): JSX.Element {
     small,
     ...ruleProps
   } = props
-  const { t } = useTranslation('rules')
+  const { t } = useTranslation('common')
   const { catalogId, localizedCatalogId } = useContext(catalogContext)
   const ruleOperators = useRuleOperators(ruleOperatorsDefault)
 
@@ -134,7 +134,7 @@ function RulesManager(props: IProps): JSX.Element {
   })
 
   const isValid = isRuleValid(rule)
-  const helperTextRules = helperText ?? (!isValid && 'error.format.rules')
+  const helperTextRules = helperText ?? (!isValid && 'error.format')
   const errorRules = error || !isValid
 
   return (
