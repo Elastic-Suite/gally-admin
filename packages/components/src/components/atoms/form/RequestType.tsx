@@ -75,7 +75,25 @@ function RequestType(props: IProps): JSX.Element {
 
       return { requestType: item, applyToAll: Boolean(applyToAll) }
     })
-    return onChange({ ...value, requestTypes: newData })
+
+    const newValue: Record<string, unknown> = {
+      requestTypes: newData,
+    } as Record<string, unknown>
+    requestTypesOptions.forEach((requestTypesOption) => {
+      const key =
+        `${requestTypesOption.limitationType}Limitations` as keyof IRequestType
+
+      if (
+        (list as string[])?.find(
+          (itemList) => itemList === requestTypesOption?.value
+        )
+      ) {
+        newValue[key] = value[key]
+      } else {
+        newValue[key] = []
+      }
+    })
+    return onChange(newValue as unknown as IRequestType)
   }
 
   return (
