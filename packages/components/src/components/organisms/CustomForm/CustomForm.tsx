@@ -66,6 +66,7 @@ function CustomForm(props: IProps): JSX.Element {
                   <FieldGuesser
                     key={field?.id}
                     {...field}
+                    showError
                     onChange={handleChange}
                     value={getValue(field, data)}
                     editable
