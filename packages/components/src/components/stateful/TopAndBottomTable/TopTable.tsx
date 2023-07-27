@@ -30,7 +30,7 @@ interface IProps {
   selectedRows: (string | number)[]
   setProductPositions: Dispatch<SetStateAction<IGraphqlProductPosition>>
   topProducts: IProductPositions
-  topProductsIds: number[]
+  topProductsIds: string[]
   sortValue: string
   configuration: IConfigurations
   searchValue: string
@@ -85,7 +85,7 @@ function TopTable(props: IProps): JSX.Element {
   function handleReorder(rows: ITableRow[]): void {
     let position = 0
     const positions = rows.map((row) => ({
-      productId: Number(String(row.id).split('/')[2]),
+      productId: String(row.id).split('/')[2],
       position: ++position,
     }))
     setProductPositions({

@@ -5,7 +5,7 @@ export interface IGraphqlProductPosition {
 }
 
 export interface IProductPosition {
-  productId: number
+  productId: string
   position: number
 }
 
