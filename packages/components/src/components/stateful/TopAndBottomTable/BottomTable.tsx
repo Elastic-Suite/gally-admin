@@ -32,7 +32,7 @@ interface IProps {
   onSelectedRows: (rowIds: string[]) => void
   productGraphqlFilters: IProductFieldFilterInput
   selectedRows: (string | number)[]
-  topProductsIds: number[]
+  topProductsIds: string[]
   setNbBottomRows: (value: number) => void
   sortValue: string
   searchValue: string

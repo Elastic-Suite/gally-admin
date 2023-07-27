@@ -61,9 +61,7 @@ function ProductsTopAndBottom(
   } = props
   const { t } = useTranslation('categories')
 
-  const topProductsIds = topProducts
-    .map((topProduct) => topProduct.productId)
-    .sort()
+  const topProductsIds = topProducts.map((topProduct) => topProduct.productId)
 
   const configuration = useAppSelector(selectConfiguration)
 
