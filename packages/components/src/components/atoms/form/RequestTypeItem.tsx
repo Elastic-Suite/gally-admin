@@ -185,7 +185,7 @@ function RequestTypeItem(props: IRequestTypeItem): JSX.Element {
           )
         })
 
-        const props: IPropsComponent = {
+        const propsLimitations: IPropsComponent = {
           disabled: isApplyToAll,
           onChange: (data: ITreeItem[] | ISearchLimitations[]): void =>
             onChangeDataLimitations(`${item.value}Limitations`, data),
@@ -207,7 +207,7 @@ function RequestTypeItem(props: IRequestTypeItem): JSX.Element {
               <CustomDataLimitations>
                 {item.value === 'search' && (
                   <TextFieldTagsMultiple
-                    {...props}
+                    {...propsLimitations}
                     disabledValue={item.labelAll}
                     options={options}
                     value={limitationsData as ISearchLimitations[]}
@@ -218,11 +218,13 @@ function RequestTypeItem(props: IRequestTypeItem): JSX.Element {
 
                 {item.value === 'category' && (
                   <TreeSelector
-                    {...props}
+                    {...propsLimitations}
                     value={isApplyToAll ? [] : treeSelectorValue}
                     placeholder={
                       isApplyToAll || treeSelectorValue.length === 0
-                        ? item.labelAll
+                        ? propsLimitations.disabled
+                          ? item.labelAll
+                          : t('requestType.categories.placeholder')
                         : ''
                     }
                     data={categoriesList}
