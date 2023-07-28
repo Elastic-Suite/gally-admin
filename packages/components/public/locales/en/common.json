@@ -5,10 +5,6 @@
   "catalog.activeLocale_other": "active locales",
   "filter.no": "No",
   "filter.yes": "Yes",
-  "filters.apply": "Apply",
-  "filters.clearAll": "Clear all",
-  "filters.filter": "Filter",
-  "filters.search": "Search",
   "form.clear": "Clear",
   "form.close": "Close",
   "form.open": "Open",
@@ -59,5 +55,6 @@
   "entity": "Entity",
   "create": "Create",
   "date.placeholder.en": "mm/dd/yyyy",
-  "error.format": "Incorrect or incomplete format"
+  "error.format": "Wrong or incomplet format",
+  "requestType.categories.placeholder": "Selection of categories"
 }

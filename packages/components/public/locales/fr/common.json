@@ -5,10 +5,6 @@
   "catalog.activeLocale_other": "langues actives",
   "filter.no": "Non",
   "filter.yes": "Oui",
-  "filters.apply": "Appliquer",
-  "filters.clearAll": "Réinitialiser",
-  "filters.filter": "Filtrer",
-  "filters.search": "Chercher",
   "form.clear": "Reinitialiser",
   "form.close": "Fermer",
   "form.open": "Ouvrir",
@@ -59,5 +55,6 @@
   "entity": "Entité",
   "create": "Créer",
   "date.placeholder.fr": "jj/mm/aaaa",
-  "error.format": "Format incorrect ou incomplet"
+  "error.format": "Format incorrect ou incomplet",
+  "requestType.categories.placeholder": "Selection des catégories"
 }

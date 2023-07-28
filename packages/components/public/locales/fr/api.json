@@ -13,5 +13,20 @@
   "Display": "Affichage",
   "Coverage": "Taux de couverture",
   "Max size": "Taille max",
-  "Sort order": "Tri de la facette"
+  "Sort order": "Tri de la facette",
+  "Enable": "Actif",
+  "Configure the model and the value of your boost": "Configuration du modèle et de la valeur du boost",
+  "From -99 to 100": "De -99 à 100",
+  "Select the localized catalog(s) where the boost will be applied": "Sélection du(des) catalogue(s) localisé(s) sur le(s)quel(s) le boost sera appliqué",
+  "Scope": "Contexte",
+  "Rule engine": "Règle virtuelle",
+  "Model": "Modèle",
+  "Boost value (%)": "Valeur du boost (%)",
+  "Request type": "Type de demande",
+  "filter.no": "Non",
+  "filter.yes": "Oui",
+  "filters.apply": "Appliquer",
+  "filters.clearAll": "Réinitialiser",
+  "filters.filter": "Filtrer",
+  "filters.search": "Chercher"
 }

@@ -16,6 +16,7 @@ import {
   SectionFieldSet,
 } from './CustomForm.styled'
 import { getValue } from '../../../services'
+import { useTranslation } from 'next-i18next'
 
 interface IProps {
   data?: Record<string, unknown>
@@ -28,6 +29,7 @@ function CustomForm(props: IProps): JSX.Element {
   const { data, onChange, resource, errors } = props
 
   const headers = useApiHeadersForm(resource)
+  const { t } = useTranslation('api')
 
   function handleChange(
     name: string | Record<string, string> | IOption<string>,
@@ -66,6 +68,8 @@ function CustomForm(props: IProps): JSX.Element {
                   <FieldGuesser
                     key={field?.id}
                     {...field}
+                    label={t(field?.label)}
+                    infoTooltip={t(field?.infoTooltip)}
                     showError
                     onChange={handleChange}
                     value={getValue(field, data)}

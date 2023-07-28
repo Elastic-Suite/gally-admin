@@ -98,7 +98,7 @@ function Filters(props: IProps): JSX.Element {
     showSearch,
   } = props
   const [open, setOpen] = useState(false)
-  const { t } = useTranslation('common')
+  const { t } = useTranslation('api')
   const { fieldOptions } = useContext(optionsContext)
 
   const filterMap = new Map<string, IFieldConfig>(
@@ -166,6 +166,11 @@ function Filters(props: IProps): JSX.Element {
     onApply()
   }
 
+  function chipFilterLabelWithTraduction(label: string): string {
+    const [key, value] = label.split(':')
+    return `${t(key)}: ${value}`
+  }
+
   return (
     <FiltersPaper elevation={0}>
       <HeaderBox>
@@ -196,7 +201,7 @@ function Filters(props: IProps): JSX.Element {
             {activeFilters.map(({ filter, label, value }) => (
               <Chip
                 key={`${filter.id}${rangeSeparator}${value}`}
-                label={label}
+                label={chipFilterLabelWithTraduction(label)}
                 onDelete={(): void => handleClear(filter, value)}
               />
             ))}
@@ -218,6 +223,7 @@ function Filters(props: IProps): JSX.Element {
                 {...filter}
                 onChange={handleChange}
                 showError
+                label={t(filter.label)}
                 useDropdownBoolean
                 value={filterValues[filter.id]}
               />
