@@ -65,9 +65,11 @@ function TopTable(props: IProps): JSX.Element {
   )
   const filters = [productGraphqlFilters]
   if (topProductsIds.length > 0) {
-    filters.push({ id: { in: topProductsIds } })
+    const topProductsIdsToString = topProductsIds.map((topProductsId) =>
+      topProductsId.toString()
+    )
+    filters.push({ id: { in: topProductsIdsToString } })
   }
-
   if (searchValue) {
     filters.push({
       boolFilter: {

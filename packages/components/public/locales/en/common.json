@@ -56,5 +56,5 @@
   "create": "Create",
   "date.placeholder.en": "mm/dd/yyyy",
   "error.format": "Wrong or incomplet format",
-  "placeholder.requestType.search": "Selection of categories"
+  "placeholder.requestType.search": "Select categories"
 }

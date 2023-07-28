@@ -79,8 +79,11 @@ function BottomTable(
   )
   const filters = [productGraphqlFilters]
   if (topProductsIds.length > 0 && sortValue === 'category__position') {
+    const topProductsIdsToString = topProductsIds.map((topProductsId) =>
+      topProductsId.toString()
+    )
     filters.push({
-      boolFilter: { _not: [{ id: { in: topProductsIds } }] },
+      boolFilter: { _not: [{ id: { in: topProductsIdsToString } }] },
     })
   }
 
