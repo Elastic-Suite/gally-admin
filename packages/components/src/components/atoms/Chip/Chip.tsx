@@ -59,6 +59,7 @@ function Chip(props: ChipProps): JSX.Element {
     <StyledChip
       disabled={disabled}
       {...props}
+      style={{ opacity: 1 }}
       deleteIcon={
         <IconButton>
           <IonIcon name="close" />

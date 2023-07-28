@@ -61,19 +61,10 @@ function RequestType(props: IProps): JSX.Element {
       if (existingRequestType) {
         return value.requestTypes.find((it) => it.requestType === item)!
       }
-      const limitationType = requestTypesOptions.find(
-        (it) => it.value === item
-      )?.limitationType
-
-      const requestTypesValue = requestTypesOptions
-        .filter((it) => it.limitationType === limitationType)
-        .map((it) => it.value)
-
-      const applyToAll = value.requestTypes.find((item) =>
-        requestTypesValue.includes(item.requestType)
-      )?.applyToAll
-
-      return { requestType: item, applyToAll: Boolean(applyToAll) }
+      return {
+        requestType: item,
+        applyToAll: true,
+      }
     })
 
     const newValue: Record<string, unknown> = {
