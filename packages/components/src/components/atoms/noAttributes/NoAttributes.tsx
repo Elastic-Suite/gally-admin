@@ -5,6 +5,7 @@ import Link from 'next/link'
 import Button from '../buttons/Button'
 import IonIcon from '../IonIcon/IonIcon'
 import { useRouter } from 'next/router'
+import { CustomAHref } from '../../stateful-pages/Grid/Grid'
 
 const CustomRoot = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -58,7 +59,7 @@ function NoAttributes(props: INoAttributesProps): JSX.Element {
             legacyBehavior
             passHref
           >
-            <a style={{ textDecoration: 'none' }}>{btnTitle}</a>
+            <CustomAHref large>{btnTitle}</CustomAHref>
           </Link>
         </Button>
       )}

@@ -20,8 +20,8 @@ exports[`NoAttributes NoAttributes with absolutLink 1`] = `
       type="button"
     >
       <a
+        class="css-honi22"
         href="/admin/settings/attributes"
-        style="text-decoration: none;"
       >
         Add searchable attributes
       </a>
@@ -53,8 +53,8 @@ exports[`NoAttributes NoAttributes without absolutLink 1`] = `
       type="button"
     >
       <a
+        class="css-honi22"
         href="/admin/settings/attributes"
-        style="text-decoration: none;"
       >
         Add searchable attributes
       </a>
