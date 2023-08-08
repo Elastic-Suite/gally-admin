@@ -22,11 +22,11 @@ import {
 } from '@elastic-suite/gally-admin-shared'
 import { closeSnackbar, enqueueSnackbar } from 'notistack'
 import { useTranslation } from 'next-i18next'
-import styled from '@emotion/styled'
 import { Box, Theme } from '@mui/material'
 import { useRouter } from 'next/router'
 import PageTitle from '../../atoms/PageTitle/PageTitle'
 import PopIn from '../../atoms/modals/PopIn'
+import { styled } from '@mui/system'
 
 const CustomDoubleButtonSticky = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -44,6 +44,12 @@ interface IProps {
   resourceName: string
   title?: string
 }
+
+const CustomRoot = styled('div')(({ theme }) => ({
+  display: 'flex',
+  gap: theme.spacing(2),
+  flexDirection: 'column',
+}))
 
 function ResourceForm(props: IProps): JSX.Element {
   const { resourceName, id, title } = props
@@ -175,7 +181,7 @@ function ResourceForm(props: IProps): JSX.Element {
   }
 
   return (
-    <>
+    <CustomRoot>
       {title ? (
         <PageTitle title={title} sx={{ marginBottom: '32px' }} sticky>
           <CustomDoubleButtonSticky>
@@ -223,7 +229,7 @@ function ResourceForm(props: IProps): JSX.Element {
         resource={resource}
         errors={errors}
       />
-    </>
+    </CustomRoot>
   )
 }
 
