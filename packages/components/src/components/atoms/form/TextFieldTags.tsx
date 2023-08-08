@@ -91,7 +91,7 @@ function TextFieldTags(props: ITextFieldTag): JSX.Element {
   const [val, setVal] = useState<string>('')
 
   function manageTags(
-    tag?: string,
+    key?: number,
     event?: FormEvent<HTMLFormElement>
   ): void | null {
     if (!value || !onChange) {
@@ -107,7 +107,7 @@ function TextFieldTags(props: ITextFieldTag): JSX.Element {
       return onChange(newTags)
     }
 
-    const newTags = value.filter((item) => item !== tag)
+    const newTags = value.filter((_, keyValue) => key !== keyValue)
     return onChange(newTags)
   }
 
@@ -128,14 +128,16 @@ function TextFieldTags(props: ITextFieldTag): JSX.Element {
           ) : (
             value
               .filter((it) => it)
-              .map((item: string) => {
+              .map((item: string, key: number) => {
                 return disabled ? (
-                  <Chip disabled key={item} label={disabledValue} />
+                  // eslint-disable-next-line react/no-array-index-key
+                  <Chip disabled key={key} label={disabledValue} />
                 ) : (
                   <Chip
-                    key={item}
+                    // eslint-disable-next-line react/no-array-index-key
+                    key={key}
                     label={item}
-                    onDelete={(): void | null => manageTags(item)}
+                    onDelete={(): void | null => manageTags(key)}
                   />
                 )
               })
