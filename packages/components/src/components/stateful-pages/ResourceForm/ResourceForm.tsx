@@ -9,6 +9,7 @@ import {
 
 import CustomForm from '../../organisms/CustomForm/CustomForm'
 import Button from '../../atoms/buttons/Button'
+import BackToLastPage from '../../atoms/backToLastPage/BackToLastPage'
 import {
   IErrorsForm,
   IMainContext,
@@ -178,6 +179,7 @@ function ResourceForm(props: IProps): JSX.Element {
       {title ? (
         <PageTitle title={title} sx={{ marginBottom: '32px' }} sticky>
           <CustomDoubleButtonSticky>
+            <BackToLastPage urlRedirection="./grid" />
             {id ? (
               <PopIn
                 onConfirm={deleteData}
