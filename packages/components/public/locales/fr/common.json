@@ -56,5 +56,6 @@
   "create": "Créer",
   "date.placeholder.fr": "jj/mm/aaaa",
   "error.format": "Format incorrect ou incomplet",
-  "placeholder.requestType.search": "Selection des catégories"
+  "placeholder.requestType.search": "Selection des catégories",
+  "back": "Back"
 }
