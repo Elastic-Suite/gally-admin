@@ -61,6 +61,11 @@ export const InputTextStyled = styled(
     ...(Boolean(value) && {
       borderColor: theme.palette.colors.neutral['400'],
     }),
+    ...(small === false && {
+      '.MuiAutocomplete-input': {
+        width: 'auto!important',
+      },
+    }),
     ...(Boolean(small) && {
       minHeight: '26px',
       minWidth: 'initial',
