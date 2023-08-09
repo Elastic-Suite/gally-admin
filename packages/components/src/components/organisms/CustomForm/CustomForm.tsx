@@ -6,7 +6,7 @@ import {
   IOption,
   IResource,
 } from '@elastic-suite/gally-admin-shared'
-import FieldGuesser from '../../stateful/FieldGuesser/FieldGuesser'
+import FormFieldGuesser from '../../stateful/FieldGuesser/FormFieldGuesser'
 import Tooltip from '../../atoms/modals/Tooltip'
 import IonIcon from '../../atoms/IonIcon/IonIcon'
 import {
@@ -15,7 +15,6 @@ import {
   MainSectionFieldSet,
   SectionFieldSet,
 } from './CustomForm.styled'
-import { getValue } from '../../../services'
 import { useTranslation } from 'next-i18next'
 
 interface IProps {
@@ -65,14 +64,13 @@ function CustomForm(props: IProps): JSX.Element {
             <ListItemForm>
               {fieldset.children.map((field) => {
                 return (
-                  <FieldGuesser
+                  <FormFieldGuesser
                     key={field?.id}
-                    {...field}
+                    field={field}
                     label={t(field?.label)}
                     infoTooltip={t(field?.infoTooltip)}
                     showError
                     onChange={handleChange}
-                    value={getValue(field, data)}
                     editable
                     data={data}
                     helperText={errors?.fields?.[field?.name]}

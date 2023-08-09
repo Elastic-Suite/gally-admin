@@ -7,7 +7,9 @@ import {
   IOptionsTags,
   IRequestType,
   IRequestTypesOptions,
+  getRequestTypeErrorMessages,
 } from '@elastic-suite/gally-admin-shared'
+import { useTranslation } from 'next-i18next'
 
 interface IProps {
   value: IRequestType
@@ -26,6 +28,8 @@ interface IProps {
 
 function RequestTypeManager(props: IProps): JSX.Element | null {
   const { value, onChange, requestTypeConfigurations, ...args } = props
+
+  const { t } = useTranslation('boost')
 
   const [operatorOptionsApi] = useApiList<IOptionsTags>(
     requestTypeConfigurations?.operatorOptionsApi
@@ -57,6 +61,11 @@ function RequestTypeManager(props: IProps): JSX.Element | null {
     return null
   }
 
+  const requestTypeValid = getRequestTypeErrorMessages(
+    value,
+    requestTypeOptions,
+    t
+  )
   return (
     <RequestType
       {...args}
@@ -66,6 +75,8 @@ function RequestTypeManager(props: IProps): JSX.Element | null {
       limitationsTypes={limitationTypeOptions}
       requestTypesOptions={requestTypeOptions}
       categoriesList={categoriesList}
+      error={requestTypeValid.length !== 0}
+      helperText={requestTypeValid}
     />
   )
 }

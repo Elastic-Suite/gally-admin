@@ -3,5 +3,8 @@
   "create": "Créer",
   "alert": "Sauvegarde des données avec succès",
   "title.update": "Modification d’un boost",
-  "title.create": "Création d’un boost"
+  "title.create": "Création d’un boost",
+  "empty.searchLimitations": "Aucun opérateur n'a été ajouté. Cliquez sur la case à cocher pour selectionner tous les termes de recherche ou ajoutez-en un.",
+  "empty.searchLimitations.queryText": "Aucun terme de recherche n'a été ajouté. Cliquez sur la case à cocher pour selectionner tous les termes de recherche ou ajoutez-en un.",
+  "empty.categoryLimitations": "Aucune catégorie n'est selectionnée. Cliquez sur la case à cocher pour selectionner toutes les catégories ou choississez en au moins une dans la liste déroulante."
 }
