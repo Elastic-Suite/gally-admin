@@ -88,7 +88,17 @@ function RequestTypeItem(props: IRequestTypeItem): JSX.Element {
       }
       return item
     })
-    return onChange({ ...value, requestTypes: newData })
+
+    const requestTypeLimitationType: Record<string, []> = {
+      [`${(idItem as IRequestTypesOptions[]).find((it) => it.limitationType)
+        .limitationType!}Limitations`]: [],
+    }
+
+    return onChange({
+      ...value,
+      ...requestTypeLimitationType,
+      requestTypes: newData,
+    })
   }
 
   function onChangeDataLimitations(
