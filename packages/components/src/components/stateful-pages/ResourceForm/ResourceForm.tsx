@@ -83,48 +83,33 @@ function ResourceForm(props: IProps): JSX.Element {
     resource: IResource,
     data: Record<string, unknown>
   ): boolean {
-    let result = true
     const synonymFields = resource.supportedProperty.filter(
       (property) =>
         property?.gally?.input === DataContentType.SYNONYM &&
         isDependsField(property, data)
     )
 
-    synonymFields.forEach((field) => {
-      if (
-        result &&
-        field.title in data &&
-        !areSynonymsValid(data[field.title] as ISynonyms)
-      ) {
-        result = false
-      }
-    })
-
-    return result
+    return !synonymFields.some(
+      (field) =>
+        field.title in data && !areSynonymsValid(data[field.title] as ISynonyms)
+    )
   }
 
   function checkExpansionsValidity(
     resource: IResource,
     data: Record<string, unknown>
   ): boolean {
-    let result = true
     const expansionFields = resource.supportedProperty.filter(
       (property) =>
         property?.gally?.input === DataContentType.EXPANSION &&
         isDependsField(property, data)
     )
 
-    expansionFields.forEach((field) => {
-      if (
-        result &&
+    return !expansionFields.some(
+      (field) =>
         field.title in data &&
         !areExpansionsValid(data[field.title] as IExpansions)
-      ) {
-        result = false
-      }
-    })
-
-    return result
+    )
   }
 
   function checkRequiredFields(

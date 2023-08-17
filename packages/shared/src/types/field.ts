@@ -2,7 +2,7 @@ import { SyntheticEvent } from 'react'
 
 import { IField } from './api'
 import { DataContentType, ITableRow } from './customTables'
-import { IMultipleInputConfiguration } from './hydra'
+import { IMultipleInputConfiguration, IMultipleValueFormat } from './hydra'
 import { IOption, IOptions } from './option'
 
 export interface IFieldCondition {
@@ -29,7 +29,7 @@ export interface IFieldConfig extends IFieldState {
   suffix?: string
   type?: DataContentType
   validation?: Record<string, string | number>
-  multipleSeparatorValue?: string
+  multipleValueFormat?: IMultipleValueFormat
   requestTypeConfigurations?: Record<string, string>
   optionConfig?: IOption<string>
   infoTooltip?: string

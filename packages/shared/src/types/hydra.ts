@@ -103,6 +103,12 @@ export interface IInputDependencies {
 export interface IMultipleInputConfiguration {
   inputDependencies: IInputDependencies[]
 }
+
+export interface IMultipleValueFormat {
+  separator?: string
+  maxCount?: number
+}
+
 export interface IGallyProperty {
   context?: Record<string, IGallyProperty>
   depends?: any
@@ -115,7 +121,7 @@ export interface IGallyProperty {
   validation?: Record<string, string | number>
   visible?: boolean
   alias?: string
-  multipleSeparatorValue?: string
+  multipleValueFormat?: IMultipleValueFormat
   fieldset?: string
   rangeDateType?: string
   rangeDateId?: number | string

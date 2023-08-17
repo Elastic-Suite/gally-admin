@@ -5,7 +5,7 @@ import { ComponentMeta, ComponentStory } from '@storybook/react'
 import FormatText from './FormatText'
 
 export default {
-  title: 'Atoms/FormatText',
+  title: 'Atoms/format/FormatText',
   component: FormatText,
 } as ComponentMeta<typeof FormatText>
 

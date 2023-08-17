@@ -7,7 +7,7 @@ import { useUser } from '../../../hooks'
 
 import CloseComponent from '../closeComponent/CloseComponent'
 import IonIcon from '../IonIcon/IonIcon'
-import FormatText from '../formatText/FormatText'
+import FormatText from '../format/FormatText'
 
 import UserMenuShow from './UserMenuShow'
 
