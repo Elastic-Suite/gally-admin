@@ -59,9 +59,9 @@ function DropDown<T>(props: IDropDownProps<T>): JSX.Element {
 
   const optionValue =
     value instanceof Array
-      ? value.map((val: any) => {
-          return objectKeyValue
-            ? optionMap.get(val[objectKeyValue])
+      ? value.map((val: T | object) => {
+          return typeof val === 'object'
+            ? optionMap.get(val[objectKeyValue as keyof object] as T)
             : optionMap.get(val)
         })
       : value instanceof Object

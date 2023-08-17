@@ -18,6 +18,7 @@ import Stock from '../../atoms/stock/Stock'
 import Price from '../../atoms/price/Price'
 import Link from 'next/link'
 import ReadableDropDownGuesser from './ReadableDropDownGuesser'
+import FormatRowArray from '../../molecules/format/FormatRowArray'
 
 const Image = styled('img')({
   height: 80,
@@ -37,7 +38,7 @@ const CustomA = styled('a')(({ theme }) => ({
 }))
 
 function ReadableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
-  const { input, value, field, options, multipleSeparatorValue } = props
+  const { input, value, field, options, multipleValueFormat } = props
   const { t } = useTranslation('common')
   const language = useAppSelector(selectLanguage)
   const { localizedCatalogWithDefault } = useContext(catalogContext)
@@ -90,7 +91,7 @@ function ReadableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
             value={value as string | string[]}
             field={field}
             options={options}
-            multipleSeparatorValue={multipleSeparatorValue}
+            multipleValueFormat={multipleValueFormat}
           />
         </Box>
       )
@@ -108,11 +109,10 @@ function ReadableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
 
     default: {
       return value instanceof Array ? (
-        <div>
-          {multipleSeparatorValue
-            ? value.join(multipleSeparatorValue)
-            : value.map((item) => <div key={item}>{item}</div>)}
-        </div>
+        <FormatRowArray
+          values={value}
+          multipleValueFormat={multipleValueFormat}
+        />
       ) : (
         <Box>{value as string}</Box>
       )

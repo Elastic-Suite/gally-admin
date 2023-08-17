@@ -7,7 +7,7 @@ import {
   tokenStorageKey,
 } from '@elastic-suite/gally-admin-shared'
 
-import FormatText from '../formatText/FormatText'
+import FormatText from '../format/FormatText'
 
 import { useTranslation } from 'next-i18next'
 
