@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FormatArray match snapshot FormatArray Full 1`] = `
+<div>
+  <div>
+    <span
+      class=""
+      data-mui-internal-clone-element="true"
+      style="display: inline-block;"
+    >
+      blazer, jacket
+      ...
+    </span>
+  </div>
+</div>
+`;

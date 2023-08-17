@@ -18,12 +18,11 @@ export const StyledTable = styled(Table)({
 })
 
 export const BaseTableCell = styled(TableCell)({
-  height: '40px',
   maxHeight: '80px',
   maxWidth: '20%',
   textOverflow: 'ellipsis',
   overflow: 'hidden',
-  verticalAlign: 'top',
+  verticalAlign: 'middle',
 })
 
 export const StickyTableCell = styled(BaseTableCell)({
