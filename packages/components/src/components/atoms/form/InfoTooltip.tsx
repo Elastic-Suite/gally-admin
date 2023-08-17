@@ -4,7 +4,7 @@ import Tooltip from '../modals/Tooltip'
 import IonIcon from '../IonIcon/IonIcon'
 
 interface IProps {
-  title: string
+  title: string | NonNullable<React.ReactNode>
   children?: ReactNode
   noStyle?: boolean
 }

@@ -75,7 +75,7 @@ export function getFieldHeader(field: IField, t: TFunction): IFieldConfig {
     name: id,
     required: field.gally?.required ?? field.required,
     type,
-    multipleSeparatorValue: field.gally?.multipleSeparatorValue,
+    multipleValueFormat: field.gally?.multipleValueFormat,
     requestTypeConfigurations: field.gally?.requestTypeConfigurations,
     multipleInputConfiguration: field.gally?.multipleInputConfiguration,
     placeholder: field.gally?.placeholder,

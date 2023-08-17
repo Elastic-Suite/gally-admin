@@ -1,17 +1,23 @@
 import React, { useContext, useEffect } from 'react'
-import { IField, IOptions, LoadStatus } from '@elastic-suite/gally-admin-shared'
+import {
+  IField,
+  IMultipleValueFormat,
+  IOptions,
+  LoadStatus,
+} from '@elastic-suite/gally-admin-shared'
 import { optionsContext } from '../../../../src/contexts'
 import { Box } from '@mui/material'
+import FormatRowArray from '../../molecules/format/FormatRowArray'
 
 interface IProps {
   value: string | string[]
   field?: IField
   options?: IOptions<unknown>
-  multipleSeparatorValue?: string
+  multipleValueFormat?: IMultipleValueFormat
 }
 
 function ReadableDropDownGuesser(props: IProps): JSX.Element {
-  const { value, field, options, multipleSeparatorValue } = props
+  const { value, field, options, multipleValueFormat } = props
 
   const { fieldOptions, load, statuses } = useContext(optionsContext)
   const dropDownOptions =
@@ -31,19 +37,14 @@ function ReadableDropDownGuesser(props: IProps): JSX.Element {
     return null
   }
 
-  if (value instanceof Array) {
-    return (
-      <div>
-        {multipleSeparatorValue
-          ? value.join(multipleSeparatorValue)
-          : value.map((item) => {
-              const val = newDropDownOptions[item] ?? item
-              return <div key={val}>{val}</div>
-            })}
-      </div>
-    )
-  }
-  return <Box>{newDropDownOptions[value as string] ?? (value as string)}</Box>
+  return value instanceof Array ? (
+    <FormatRowArray
+      values={value.map((item) => newDropDownOptions[item] ?? item)}
+      multipleValueFormat={multipleValueFormat}
+    />
+  ) : (
+    <Box>{newDropDownOptions[value as string] ?? (value as string)}</Box>
+  )
 }
 
 export default ReadableDropDownGuesser

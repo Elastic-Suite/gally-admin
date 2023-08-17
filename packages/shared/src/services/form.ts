@@ -123,9 +123,8 @@ export function areSynonymsValid(synonyms: ISynonyms): boolean {
 
 export function getExpansionsErrorMessages(expansions: IExpansions): string[] {
   const errors: string[] = []
-  let referenceTerms: string[] = []
+  const referenceTerms: string[] = []
   expansions.forEach((expansion) => {
-
     if (
       expansion.referenceTerm === undefined ||
       expansion.referenceTerm === ''
@@ -154,7 +153,6 @@ export function getExpansionsErrorMessages(expansions: IExpansions): string[] {
   if (referenceTerms.length !== [...new Set(referenceTerms)].length) {
     errors.push('expansion.error_message.reference_terms.duplicate')
   }
-
 
   // Remove duplicates.
   return [...new Set(errors)]

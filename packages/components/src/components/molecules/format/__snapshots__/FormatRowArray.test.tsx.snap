@@ -1,0 +1,63 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FormatRowArray match snapshot FormatRowArray Full 1`] = `
+<div>
+  <div>
+    <span
+      aria-label="blazer, jacket, trousers, pants"
+      class=""
+      data-mui-internal-clone-element="true"
+      style="display: inline-block;"
+    >
+      blazer, jacket...
+    </span>
+  </div>
+</div>
+`;
+
+exports[`FormatRowArray match snapshot FormatRowArray maxCount=1 1`] = `
+<div>
+  <div>
+    <span
+      aria-label="blazer, jacket, trousers, pants"
+      class=""
+      data-mui-internal-clone-element="true"
+      style="display: inline-block;"
+    >
+      blazer...
+    </span>
+  </div>
+</div>
+`;
+
+exports[`FormatRowArray match snapshot FormatRowArray without maxCount 1`] = `
+<div>
+  <div>
+    <span
+      aria-label="blazer, jacket, trousers, pants"
+      class=""
+      data-mui-internal-clone-element="true"
+      style="display: inline-block;"
+    >
+      blazer...
+    </span>
+  </div>
+</div>
+`;
+
+exports[`FormatRowArray match snapshot FormatRowArray without separator 1`] = `
+<div>
+  <div>
+    <div>
+      <span
+        class=""
+        data-mui-internal-clone-element="true"
+        style="display: inline-block;"
+      >
+        blazer
+        ...
+      </span>
+    </div>
+  </div>
+</div>
+`;
