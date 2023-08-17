@@ -18,8 +18,6 @@ import TextFieldTagsMultiple from './TextFieldTagsMultiple'
 import { useTranslation } from 'next-i18next'
 
 import Checkbox from './Checkbox'
-import { IconButton } from '@mui/material'
-import IonIcon from '../IonIcon/IonIcon'
 import {
   CustomFirstSelectedItem,
   CustomRootItem,
@@ -37,7 +35,7 @@ const CustomLabel = styled('div')(({ theme }) => ({
   fontFamily: 'var(--gally-font)',
   fontSize: theme.spacing(1.5),
   fontWeight: '600',
-  width: '190px',
+  width: '130px',
   lineHeight: '18px',
 }))
 
@@ -117,17 +115,6 @@ function RequestTypeItem(props: IRequestTypeItem): JSX.Element {
     return onChange({ ...value, [idItem]: val })
   }
 
-  function onDeleteLine(idItem: IRequestTypesOptions[]): void {
-    const requestTypeOptionValues = (idItem as IRequestTypesOptions[]).map(
-      (it) => it.value
-    )
-    const newData = value.requestTypes.filter(
-      (item) => !requestTypeOptionValues.includes(item.requestType)
-    )
-
-    return onChange({ ...value, requestTypes: newData })
-  }
-
   const flatCategories: ITreeItem[] = useMemo(() => {
     const flat: ITreeItem[] = []
     flatTree(categoriesList, flat)
@@ -203,7 +190,7 @@ function RequestTypeItem(props: IRequestTypeItem): JSX.Element {
           <CustomDiv key={item.value} uniqueLine={uniqueLine}>
             <CustomItem>
               <CustomLabel>{concatLabel.join(' / ')}</CustomLabel>
-              <div style={{ marginTop: '-12px', width: '200px' }}>
+              <div style={{ marginTop: '-12px', width: '150px' }}>
                 <Checkbox
                   checked={isApplyToAll}
                   label={item.labelAll}
@@ -237,14 +224,6 @@ function RequestTypeItem(props: IRequestTypeItem): JSX.Element {
                     multiple
                   />
                 )}
-                <IconButton
-                  onClick={(): void => onDeleteLine(requestTypeOption)}
-                >
-                  <IonIcon
-                    style={{ fontSize: '20px', color: '#424880' }}
-                    name="close"
-                  />
-                </IconButton>
               </CustomDataLimitations>
             </CustomItem>
           </CustomDiv>

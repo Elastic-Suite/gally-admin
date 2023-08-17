@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { styled } from '@mui/system'
-import { FormHelperText, InputLabel } from '@mui/material'
+import { FormHelperText, IconButton, InputLabel } from '@mui/material'
 import IonIcon from '../IonIcon/IonIcon'
 import InfoTooltip from './InfoTooltip'
 import FormControl from './FormControl'
@@ -100,9 +100,12 @@ function TextFieldTagsMultiple(
 
   const modifiedValue = transformedValue(value)
 
-  function addItem(operator: string): void {
-    onChange(unModifiedValue({ ...modifiedValue, [operator]: [] }))
-  }
+  const addItem = useCallback(
+    (operator: string) => {
+      onChange(unModifiedValue({ ...modifiedValue, [operator]: [] }))
+    },
+    [onChange, modifiedValue]
+  )
 
   function removeItem(operator: string): void {
     const newValue = { ...modifiedValue }
@@ -134,13 +137,17 @@ function TextFieldTagsMultiple(
   const [operatorValue, setOperatorValue] = useState<undefined | IOptionsTags>()
 
   useEffect(() => {
-    setOperatorValue(
-      (operatorValue) =>
-        optionsListAvailable.find(
-          (item) => operatorValue?.value === item.value && !item?.disabled
-        ) ?? optionsListAvailable.find((item) => !item?.disabled)
-    )
-  }, [optionsListAvailable])
+    if (optionsListAvailable.filter((opt) => opt.disabled).length === 0) {
+      addItem(optionsListAvailable.filter((opt) => !opt.disabled)[0].value)
+    } else {
+      setOperatorValue(
+        (operatorValue) =>
+          optionsListAvailable.find(
+            (item) => operatorValue?.value === item.value && !item?.disabled
+          ) ?? optionsListAvailable.find((item) => !item?.disabled)
+      )
+    }
+  }, [optionsListAvailable, addItem])
 
   return (
     <FormControl error={error} fullWidth={fullWidth} margin={margin}>
@@ -165,49 +172,70 @@ function TextFieldTagsMultiple(
               return it
             })
             return (
-              <div key={key}>
-                <DropDown
-                  onChange={(newOption): void =>
-                    updateOperator(key, newOption as string)
-                  }
-                  value={option?.value}
-                  options={newOptionsList}
-                  sx={{ marginBottom: 1 }}
-                />
-                <div style={{ position: 'relative' }}>
-                  <CustomCloseTagsByOperator
-                    onClick={(): void => removeItem(key)}
-                  >
-                    <IonIcon
-                      name="close"
-                      style={{ fontSize: 14, padding: '0px' }}
-                    />
-                  </CustomCloseTagsByOperator>
-                  <TextFieldTags
-                    fullWidth={fullWidth}
-                    onChange={(value): void => updateValue(key, value)}
-                    value={value}
-                    placeholder={option?.label}
+              <div
+                key={key}
+                style={{ display: 'flex', flexDirection: 'row', gap: '8px' }}
+              >
+                <div
+                  style={{
+                    padding: '16px',
+                    border: '1px solid #E2E6F3',
+                    borderRadius: '8px',
+                    display: 'flex',
+                    flexDirection: 'row',
+                    gap: '8px',
+                  }}
+                >
+                  <DropDown
+                    onChange={(newOption): void =>
+                      updateOperator(key, newOption as string)
+                    }
+                    value={option?.value}
+                    options={newOptionsList}
+                    sx={{ marginBottom: 1 }}
                   />
+                  <div style={{ position: 'relative' }}>
+                    <CustomCloseTagsByOperator
+                      onClick={(): void => updateValue(key, [])}
+                    >
+                      <IonIcon
+                        name="close"
+                        style={{ fontSize: 14, padding: '0px' }}
+                      />
+                    </CustomCloseTagsByOperator>
+                    <TextFieldTags
+                      fullWidth={fullWidth}
+                      onChange={(value): void => updateValue(key, value)}
+                      value={value}
+                    />
+                  </div>
                 </div>
+                {optionsListAvailable.filter((opt) => opt.disabled).length >
+                  1 && (
+                  <div style={{ display: 'flex', alignItems: 'center' }}>
+                    <IconButton onClick={(): void => removeItem(key)}>
+                      <IonIcon
+                        style={{ fontSize: '20px', color: '#424880' }}
+                        name="close"
+                      />
+                    </IconButton>
+                  </div>
+                )}
               </div>
             )
           })
         )}
         {operatorValue && !disabled ? (
           <CustomSelectOperator>
-            <DropDown
-              onChange={(newOption): void =>
-                setOperatorValue(
-                  optionsListAvailable.find((item) => item?.value === newOption)
+            <Button
+              display="secondary"
+              size="medium"
+              onClick={(): void =>
+                addItem(
+                  optionsListAvailable.filter((opt) => !opt.disabled)[0].value
                 )
               }
-              value={operatorValue?.value}
-              options={optionsListAvailable}
-            />
-            <Button
-              size="medium"
-              onClick={(): void => addItem(operatorValue.value)}
+              endIcon={<IonIcon name="add" style={{ fontSize: 24 }} />}
             >
               Add
             </Button>
