@@ -1,3 +1,9 @@
+#### 1.0.2 (2023-08-18)
+
+##### Bug Fixes
+
+- [#1244830](https://github.com/Elastic-Suite/gally-admin/pull/1244830) Fix product identifier type ([43924f06](https://github.com/Elastic-Suite/gally-admin/commit/43924f060b74c0c70ce24464b2f730a95ecba56a))
+
 ## 1.0.0 (2023-01-20)
 
 ##### Chores
