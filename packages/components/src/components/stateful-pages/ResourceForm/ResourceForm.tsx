@@ -209,11 +209,13 @@ function ResourceForm(props: IProps): JSX.Element {
             <BackToLastPage urlRedirection="./grid" />
             {id ? (
               <PopIn
+                confirmationPopIn
+                position="center"
                 onConfirm={deleteData}
                 titlePopIn={t('confirmation.message.delete')}
                 cancelName={t('cancel')}
                 confirmName={t('confirm')}
-                title={
+                triggerElement={
                   <Button
                     display="secondary"
                     disabled={isLoading}
