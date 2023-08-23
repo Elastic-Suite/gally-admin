@@ -1,54 +1,39 @@
-import React, { ReactNode, useState } from 'react'
-import { Box, Dialog, DialogActions } from '@mui/material'
-import { styled } from '@mui/system'
-
-import Button from '../buttons/Button'
+import React, { PropsWithChildren, ReactNode, useState } from 'react'
+import { Box, DialogActions, DialogContent, DialogTitle } from '@mui/material'
+import {
+  CustomClose,
+  CustomDialog,
+  CustomTitle,
+  IPropsCustomDialog,
+} from './PopIn.styled'
 import IonIcon from '../IonIcon/IonIcon'
+import Button from '../buttons/Button'
 import { useLog } from '../../../hooks'
 
-const CustomClose = styled('div')(({ theme }) => ({
-  position: 'absolute',
-  display: 'flex',
-  top: theme.spacing(2),
-  right: theme.spacing(2),
-  cursor: 'pointer',
-  transition: 'all 500ms',
-  padding: theme.spacing(1),
-  borderRadius: theme.spacing(1),
-  color: theme.palette.colors.neutral['900'],
-  '&:hover': {
-    background: theme.palette.colors.neutral['200'],
-  },
-}))
-
-const CustomTitle = styled('div')(({ theme }) => ({
-  marginTop: theme.spacing(9),
-  textAlign: 'center',
-  fontWeight: '400',
-  color: theme.palette.colors.neutral[900],
-  fontSize: '18px',
-  fontFamily: 'var(--gally-font)',
-  lineHeight: '28px',
-  marginBottom: theme.spacing(7),
-}))
-
-interface IProps {
+interface IProps extends Omit<IPropsCustomDialog, 'open'> {
+  confirmationPopIn?: boolean
+  triggerElement: ReactNode
+  actions?: ReactNode
+  titlePopIn?: string
   onConfirm?: () => void | Promise<void>
-  title: ReactNode
-  cancelName: string
-  confirmName: string
-  titlePopIn: string
+  cancelName?: string
+  confirmName?: string
   loading?: boolean
 }
 
 function PopIn({
-  onConfirm,
-  title,
+  confirmationPopIn,
+  triggerElement,
   titlePopIn,
+  actions,
+  children,
+  position,
+  styles,
+  onConfirm,
   cancelName,
   confirmName,
   loading,
-}: IProps): JSX.Element {
+}: PropsWithChildren<IProps>): JSX.Element {
   const [open, setOpen] = useState(false)
   const log = useLog()
 
@@ -76,34 +61,53 @@ function PopIn({
 
   return (
     <div style={{ position: 'relative' }}>
-      <Box onClick={handleClickOpen}>{title}</Box>
+      <Box onClick={handleClickOpen}>{triggerElement}</Box>
 
-      <Dialog
+      <CustomDialog
         open={open}
         onClose={handleClose}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
+        position={position}
+        styles={
+          confirmationPopIn
+            ? {
+                actions: {
+                  padding: '0 32px 32px 32px',
+                  justifyContent: 'center',
+                  gap: 1,
+                },
+              }
+            : styles
+        }
       >
         <CustomClose onClick={handleClose}>
           <IonIcon name="close" style={{ fontSize: '17.85px' }} />
         </CustomClose>
-        <CustomTitle>{titlePopIn}</CustomTitle>
-
-        <DialogActions
-          sx={{ padding: 0, marginLeft: 0, justifyContent: 'center', gap: 1 }}
-        >
-          <Box>
-            <Button onClick={handleClose} display="tertiary" size="large">
-              {cancelName}
-            </Button>
-          </Box>
-          <Box>
-            <Button onClick={handleConfirm} loading={loading} size="large">
-              {confirmName}
-            </Button>
-          </Box>
-        </DialogActions>
-      </Dialog>
+        {!confirmationPopIn ? (
+          <>
+            {titlePopIn ? <DialogTitle> {titlePopIn} </DialogTitle> : null}
+            <DialogContent>{children}</DialogContent>
+            <DialogActions> {actions} </DialogActions>
+          </>
+        ) : (
+          <>
+            <CustomTitle> {titlePopIn} </CustomTitle>
+            <DialogActions>
+              <Box>
+                <Button onClick={handleClose} display="tertiary" size="large">
+                  {cancelName}
+                </Button>
+              </Box>
+              <Box>
+                <Button onClick={handleConfirm} loading={loading} size="large">
+                  {confirmName}
+                </Button>
+              </Box>
+            </DialogActions>
+          </>
+        )}
+      </CustomDialog>
     </div>
   )
 }

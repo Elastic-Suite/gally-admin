@@ -10,12 +10,35 @@ export default {
   component: PopIn,
 } as ComponentMeta<typeof PopIn>
 
-const Template: ComponentStory<typeof PopIn> = (args) => <PopIn {...args} />
+const Template: ComponentStory<typeof PopIn> = ({ children, ...args }) => (
+  <PopIn {...args}>{children}</PopIn>
+)
 
+const handleClick = (text: string): void => {
+  // eslint-disable-next-line no-console
+  console.log(text)
+}
 export const Pop_In = Template.bind({})
 Pop_In.args = {
-  title: <Button size="large">Click on me !</Button>,
-  cancelName: 'Cancel',
-  confirmName: 'Confirm',
-  titlePopIn: 'Hello World',
+  triggerElement: <Button size="large">Click on me !</Button>,
+  actions: (
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: '10px',
+      }}
+    >
+      <Button onClick={(): void => handleClick('Bouton 1')}>Bouton 1</Button>
+      <Button onClick={(): void => handleClick('Bouton 2')}>Bouton 2</Button>
+    </div>
+  ),
+  children: 'Contenu de la PopIn',
+  styles: {
+    paper: {},
+    title: {},
+    content: {},
+    actions: {},
+  },
 }

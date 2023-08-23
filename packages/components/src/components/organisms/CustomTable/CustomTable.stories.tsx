@@ -156,4 +156,5 @@ WithDefaultValues.args = {
   tableHeaders,
   tableRows,
   selectedRows,
+  draggable: true,
 }

@@ -10,7 +10,9 @@ describe('PopIn match snapshot', () => {
   it('PopIn simple', () => {
     const { container } = renderWithProviders(
       <PopIn
-        title={<Button size="large">Click on me !</Button>}
+        position="center"
+        confirmationPopIn
+        triggerElement={<Button size="large">Click on me !</Button>}
         cancelName="Cancel"
         confirmName="Confirm"
         titlePopIn="Hello World"
