@@ -1,7 +1,6 @@
 import { Dispatch, SetStateAction, useEffect, useMemo, useState } from 'react'
 import debounce from 'lodash.debounce'
 import {
-  ICategory,
   IParsedCategoryConfiguration,
   IProductFieldFilterInput,
   IRuleEngineGraphqlFilters,
@@ -20,8 +19,7 @@ const debounceDelay = 200
 
 export function useRuleEngineGraphqlFilters(
   catConf: IParsedCategoryConfiguration,
-  ruleOperators: IRuleEngineOperators,
-  selectedCategoryItem: ICategory
+  ruleOperators: IRuleEngineOperators
 ): [
   IProductFieldFilterInput,
   Dispatch<SetStateAction<IProductFieldFilterInput>>
@@ -67,11 +65,9 @@ export function useRuleEngineGraphqlFilters(
   const productGraphqlFilters: IProductFieldFilterInput = useMemo(() => {
     if (isEnabled && catConf?.isVirtual && ruleEngineGraphqlFilters) {
       return ruleEngineGraphqlFilters
-    } else if ((!catConf?.isVirtual || !isEnabled) && selectedCategoryItem) {
-      return { category__id: { eq: selectedCategoryItem.id } }
     }
     return null
-  }, [catConf, isEnabled, ruleEngineGraphqlFilters, selectedCategoryItem])
+  }, [catConf, isEnabled, ruleEngineGraphqlFilters])
 
   return [productGraphqlFilters, setRuleEngineGraphqlFilters]
 }

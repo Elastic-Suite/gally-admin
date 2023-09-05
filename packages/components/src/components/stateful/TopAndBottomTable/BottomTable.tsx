@@ -9,6 +9,7 @@ import React, {
 import { useTranslation } from 'next-i18next'
 import { Box } from '@mui/material'
 import {
+  ICategory,
   IConfigurations,
   IGraphqlSearchProducts,
   IProductFieldFilterInput,
@@ -29,6 +30,7 @@ import PagerTable from '../../organisms/PagerTable/PagerTable'
 import FieldGuesser from '../FieldGuesser/FieldGuesser'
 
 interface IProps {
+  category: ICategory
   onSelectedRows: (rowIds: string[]) => void
   productGraphqlFilters: IProductFieldFilterInput
   selectedRows: (string | number)[]
@@ -47,6 +49,7 @@ function BottomTable(
   ref: MutableRefObject<HTMLDivElement>
 ): JSX.Element {
   const {
+    category,
     onSelectedRows,
     productGraphqlFilters,
     selectedRows,
@@ -66,6 +69,7 @@ function BottomTable(
   const { t } = useTranslation('categories')
   const variables = useMemo(
     () => ({
+      currentCategoryId: category?.id,
       localizedCatalog: localizedCatalogIdWithDefault,
       currentPage,
       pageSize: rowsPerPage,
@@ -75,9 +79,15 @@ function BottomTable(
           ? { [sortValue]: 'asc' }
           : {},
     }),
-    [currentPage, localizedCatalogIdWithDefault, rowsPerPage, sortValue]
+    [
+      category,
+      currentPage,
+      localizedCatalogIdWithDefault,
+      rowsPerPage,
+      sortValue,
+    ]
   )
-  const filters = [productGraphqlFilters]
+  const filters = productGraphqlFilters ? [productGraphqlFilters] : []
   if (topProductsIds.length > 0 && sortValue === 'category__position') {
     filters.push({
       boolFilter: { _not: [{ id: { in: topProductsIds } }] },

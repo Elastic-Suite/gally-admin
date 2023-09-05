@@ -6,6 +6,7 @@ import React, {
   useMemo,
 } from 'react'
 import {
+  ICategory,
   IConfigurations,
   IGraphqlProductPosition,
   IGraphqlSearchProducts,
@@ -25,6 +26,7 @@ import FieldGuesser from '../FieldGuesser/FieldGuesser'
 import TopProductsTable from '../TopProductsTable/TopProductsTable'
 
 interface IProps {
+  category: ICategory
   onSelectedRows: (rowIds: string[]) => void
   productGraphqlFilters: IProductFieldFilterInput
   selectedRows: (string | number)[]
@@ -41,6 +43,7 @@ interface IProps {
 
 function TopTable(props: IProps): JSX.Element {
   const {
+    category,
     selectedRows,
     onSelectedRows,
     productGraphqlFilters,
@@ -58,12 +61,13 @@ function TopTable(props: IProps): JSX.Element {
 
   const variables = useMemo(
     () => ({
+      currentCategoryId: category?.id,
       localizedCatalog: localizedCatalogIdWithDefault,
       requestType: ProductRequestType.CATALOG,
     }),
-    [localizedCatalogIdWithDefault]
+    [category, localizedCatalogIdWithDefault]
   )
-  const filters = [productGraphqlFilters]
+  const filters = productGraphqlFilters ? [productGraphqlFilters] : []
   if (topProductsIds.length > 0) {
     filters.push({ id: { in: topProductsIds } })
   }

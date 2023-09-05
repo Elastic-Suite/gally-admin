@@ -233,10 +233,12 @@ function ProductsContainer(props: IProps): JSX.Element {
           isInputAdornmentClickable
         />
         {Boolean(
-          catConf && (!catConf.virtualRule || productGraphqlFilters)
+          catConf &&
+            (!catConf.virtualRule || productGraphqlFilters || category?.id)
         ) && (
           <ProductsTopAndBottom
             ref={tableRef}
+            category={category}
             bottomSelectedRows={bottomSelectedRows}
             productGraphqlFilters={productGraphqlFilters}
             onBottomSelectedRows={setBottomSelectedRows}
