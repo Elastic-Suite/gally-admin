@@ -126,7 +126,7 @@ function AdminMerchandizeCategories(): JSX.Element {
 
   // Rule engine graphql filters
   const [productGraphqlFilters, setRuleEngineGraphqlFilters] =
-    useRuleEngineGraphqlFilters(catConf, ruleOperators, selectedCategoryItem)
+    useRuleEngineGraphqlFilters(catConf, ruleOperators)
 
   // Product positions
   const prevProductPositions = useRef<string>('')

@@ -25,23 +25,13 @@ describe('useRuleEngineGraphqlFilters', () => {
       name: 'Category',
       category: '/categories/cat_1',
     }
-    const category = {
-      id: 'cat_1',
-      isVirtual: false,
-      name: 'Category',
-      path: 'cat_1',
-      level: 1,
-    }
     const { result } = renderHookWithProviders(() =>
       useRuleEngineGraphqlFilters(
         catConf,
-        ruleEngineOperators as IRuleEngineOperators,
-        category
+        ruleEngineOperators as IRuleEngineOperators
       )
     )
-    await waitFor(() =>
-      expect(result.current[0]).toEqual({ category__id: { eq: 'cat_1' } })
-    )
+    await waitFor(() => expect(result.current[0]).toEqual(null))
     expect(fetchApi).not.toHaveBeenCalled()
   })
 
@@ -59,18 +49,10 @@ describe('useRuleEngineGraphqlFilters', () => {
       category: '/categories/cat_1',
       virtualRule: combinationRule,
     }
-    const category = {
-      id: 'cat_1',
-      isVirtual: true,
-      name: 'Category',
-      path: 'cat_1',
-      level: 1,
-    }
     const { result } = renderHookWithProviders(() =>
       useRuleEngineGraphqlFilters(
         catConf,
-        ruleEngineOperators as IRuleEngineOperators,
-        category
+        ruleEngineOperators as IRuleEngineOperators
       )
     )
     await waitFor(() =>
@@ -101,23 +83,13 @@ describe('useRuleEngineGraphqlFilters', () => {
       category: '/categories/cat_1',
       virtualRule: combinationRule,
     }
-    const category = {
-      id: 'cat_1',
-      isVirtual: true,
-      name: 'Category',
-      path: 'cat_1',
-      level: 1,
-    }
     const { result } = renderHookWithProviders(() =>
       useRuleEngineGraphqlFilters(
         catConf,
-        ruleEngineOperators as IRuleEngineOperators,
-        category
+        ruleEngineOperators as IRuleEngineOperators
       )
     )
-    await waitFor(() =>
-      expect(result.current[0]).toEqual({ category__id: { eq: 'cat_1' } })
-    )
+    await waitFor(() => expect(result.current[0]).toEqual(null))
     expect(fetchApi).not.toHaveBeenCalled()
   })
 
@@ -135,18 +107,10 @@ describe('useRuleEngineGraphqlFilters', () => {
       category: '/categories/cat_1',
       virtualRule: combinationRule,
     }
-    const category = {
-      id: 'cat_1',
-      isVirtual: true,
-      name: 'Category',
-      path: 'cat_1',
-      level: 1,
-    }
     const { result } = renderHookWithProviders(() =>
       useRuleEngineGraphqlFilters(
         catConf,
-        ruleEngineOperators as IRuleEngineOperators,
-        category
+        ruleEngineOperators as IRuleEngineOperators
       )
     )
     await waitFor(() =>

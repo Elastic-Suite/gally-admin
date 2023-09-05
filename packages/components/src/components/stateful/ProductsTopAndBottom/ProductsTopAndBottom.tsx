@@ -8,6 +8,7 @@ import { Paper } from '@mui/material'
 import { Box, styled } from '@mui/system'
 import { useTranslation } from 'next-i18next'
 import {
+  ICategory,
   IGraphqlProductPosition,
   IProductFieldFilterInput,
   IProductPositions,
@@ -27,6 +28,7 @@ const PreviewArea = styled(Box)(({ theme }) => ({
 }))
 
 interface IProps {
+  category: ICategory
   bottomSelectedRows: (string | number)[]
   onBottomSelectedRows: (rowIds: string[]) => void
   onTopSelectedRows: (rowIds: string[]) => void
@@ -48,6 +50,7 @@ function ProductsTopAndBottom(
   ref: MutableRefObject<HTMLDivElement>
 ): JSX.Element {
   const {
+    category,
     bottomSelectedRows,
     onBottomSelectedRows,
     onTopSelectedRows,
@@ -78,6 +81,7 @@ function ProductsTopAndBottom(
         <Box sx={{ padding: '28px 16px 17px 16px' }}>
           {topProducts.length !== 0 && (
             <TopTable
+              category={category}
               selectedRows={topSelectedRows}
               onSelectedRows={onTopSelectedRows}
               productGraphqlFilters={productGraphqlFilters}
@@ -94,6 +98,7 @@ function ProductsTopAndBottom(
           )}
           <BottomTable
             ref={ref}
+            category={category}
             selectedRows={bottomSelectedRows}
             onSelectedRows={onBottomSelectedRows}
             productGraphqlFilters={productGraphqlFilters}
