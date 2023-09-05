@@ -5,10 +5,12 @@ on:
     branches:
       - main
       - 1.0.x
+      - feature-thesaurus
   pull_request:
     branches:
       - main
       - 1.0.x
+      - feature-thesaurus
     types: [review_requested, ready_for_review, synchronize]
   workflow_dispatch: ~
 
