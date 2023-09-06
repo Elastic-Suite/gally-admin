@@ -3,5 +3,8 @@
   "create": "Create",
   "alert": "Updating of form with success",
   "title.update": "Updating of boost",
-  "title.create": "Creating of boost"
+  "title.create": "Creating of boost",
+  "empty.searchLimitations": "No operator was added. Click on the checkbox to select all search terms or add one.",
+  "empty.searchLimitations.queryText": "No search term was added. Click on the checkbox to select all search terms or add one.",
+  "empty.categoryLimitations": "No category is selected. Click on the checkbox to select all categories or choose at least one from the drop-down list."
 }
