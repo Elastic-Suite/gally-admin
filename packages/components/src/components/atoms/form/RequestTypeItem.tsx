@@ -11,7 +11,6 @@ import {
   ISearchLimitations,
   ITreeItem,
   flatTree,
-  isRequestTypeValid,
 } from '@elastic-suite/gally-admin-shared'
 
 import TextFieldTagsMultiple from './TextFieldTagsMultiple'
@@ -90,6 +89,9 @@ function RequestTypeItem(props: IRequestTypeItem): JSX.Element {
     })
 
     const requestTypeLimitationType: Record<string, []> = {
+      // This constant is used to create an object with the '${limitationType}Limitations'
+      // as the key corresponding to the selected 'requestTypeItem' line and an empty array as the value.
+      // This new object allows resetting the values of the 'limitations' array when the checkbox is clicked.
       [`${(idItem as IRequestTypesOptions[]).find((it) => it.limitationType)
         .limitationType!}Limitations`]: [],
     }
@@ -100,7 +102,6 @@ function RequestTypeItem(props: IRequestTypeItem): JSX.Element {
       requestTypes: newData,
     })
   }
-
   function onChangeDataLimitations(
     idItem: string,
     val: ISearchLimitations[] | ITreeItem[]
@@ -140,9 +141,6 @@ function RequestTypeItem(props: IRequestTypeItem): JSX.Element {
     },
     {}
   )
-
-  const isValidRequestType =
-    !value?.searchLimitations || isRequestTypeValid(value)
 
   return (
     <CustomRootItem>
@@ -221,8 +219,6 @@ function RequestTypeItem(props: IRequestTypeItem): JSX.Element {
                     disabledValue={item.labelAll}
                     options={options}
                     value={limitationsData as ISearchLimitations[]}
-                    helperText={!isValidRequestType && t('error.format')}
-                    error={!isValidRequestType}
                   />
                 )}
 

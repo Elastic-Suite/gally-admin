@@ -1,6 +1,8 @@
 import {
   IDependsForm,
+  IFetch,
   IFieldConfig,
+  IHydraResponse,
   ILimitationsTypes,
   IRequestType,
 } from '@elastic-suite/gally-admin-shared'
@@ -43,14 +45,12 @@ export function isHiddenDepends(
 }
 
 export function getRequestTypeData(
-  data: Record<string, any>,
-  field: IFieldConfig
+  data?: Record<string, any>,
+  limitationTypeOptionsApi?: IFetch<IHydraResponse<ILimitationsTypes>>
 ): IRequestType {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const [limitationTypeOptionsApi] = useApiList<ILimitationsTypes>(
-    field?.requestTypeConfigurations?.limitationTypeOptionsApi ??
-      'boost_limitation_type_options'
-  )
+  if (!data) {
+    return null
+  }
 
   const requestTypeData = {} as IRequestType
 
@@ -62,15 +62,30 @@ export function getRequestTypeData(
   return { ...requestTypeData, requestTypes: data.requestTypes }
 }
 
-export function getValue(field: IFieldConfig, data: unknown): unknown {
-  switch (field?.input) {
+export function useValue(
+  field: IFieldConfig | string,
+  data: unknown
+): unknown | IRequestType {
+  const [limitationTypeOptionsApi] = useApiList<ILimitationsTypes>(
+    (field as IFieldConfig)?.input === 'requestType'
+      ? (field as IFieldConfig)?.requestTypeConfigurations
+          ?.limitationTypeOptionsApi ?? 'boost_limitation_type_options'
+      : typeof field === 'string'
+      ? field
+      : undefined
+  )
+
+  if (typeof field === 'string') {
+    return getRequestTypeData(data, limitationTypeOptionsApi)
+  }
+  switch ((field as IFieldConfig)?.input) {
     case 'requestType':
-      return getRequestTypeData(data, field)
+      return getRequestTypeData(data, limitationTypeOptionsApi)
 
     case 'rangeDate':
       return getDoubleDatePickerValue(data as Record<string, Dayjs>)
 
     default:
-      return (data as Record<string, unknown>)?.[field.name]
+      return (data as Record<string, unknown>)?.[(field as IFieldConfig).name]
   }
 }

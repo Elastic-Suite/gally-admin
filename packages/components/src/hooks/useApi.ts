@@ -88,6 +88,9 @@ export function useFetchApi<T extends object>(
       data: prevState.data,
       status: LoadStatus.LOADING,
     }))
+    if (!resource) {
+      return setResponse({ data: null, status: LoadStatus.SUCCEEDED })
+    }
     fetchApi<T>(resource, searchParameters, options).then((json) => {
       if (isError(json)) {
         setResponse({ error: json.error, status: LoadStatus.FAILED })
@@ -105,12 +108,16 @@ export function useFetchApi<T extends object>(
 }
 
 export function useApiList<T extends object>(
-  resource: IResource | string,
+  resource?: IResource | string,
   page: number | false = 0,
   rowsPerPage: number = defaultPageSize,
   searchParameters?: ISearchParameters,
   searchValue?: string
-): [IFetch<IHydraResponse<T>>, Dispatch<SetStateAction<T[]>>, ILoadResource] {
+): [
+  IFetch<IHydraResponse<T>> | null,
+  Dispatch<SetStateAction<T[]>>?,
+  ILoadResource?
+] {
   const parameters = useMemo(
     () =>
       getListApiParameters(page, rowsPerPage, searchParameters, searchValue),

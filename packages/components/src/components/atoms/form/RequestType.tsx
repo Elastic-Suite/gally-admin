@@ -30,7 +30,7 @@ export interface IProps {
   infoTooltip?: string
   placeholder?: string
   error?: boolean
-  helperText?: string
+  helperText?: string | string[]
   helperIcon?: string
 }
 
@@ -118,14 +118,18 @@ function RequestType(props: IProps): JSX.Element {
         />
       </CustomRoot>
       {Boolean(helperText) && (
-        <FormHelperText>
+        <FormHelperText style={{ flexDirection: 'column' }}>
           {Boolean(helperIcon) && (
             <IonIcon
               name={helperIcon}
               style={{ fontSize: 18, marginRight: 2 }}
             />
           )}
-          {helperText}
+          {typeof helperText === 'string'
+            ? helperText
+            : helperText.map((text) => {
+                return <span key={text}>{text}</span>
+              })}
         </FormHelperText>
       )}
     </StyledFormControl>

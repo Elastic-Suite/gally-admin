@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 
 import {
   useApiFetch,
+  useApiList,
   useLog,
   useResource,
   useResourceOperations,
@@ -13,6 +14,8 @@ import BackToLastPage from '../../atoms/backToLastPage/BackToLastPage'
 import {
   IErrorsForm,
   IMainContext,
+  IRequestType,
+  IRequestTypesOptions,
   IRule,
   concatenateValuesWithLineBreaks,
   initResourceData,
@@ -27,6 +30,7 @@ import { useRouter } from 'next/router'
 import PageTitle from '../../atoms/PageTitle/PageTitle'
 import PopIn from '../../atoms/modals/PopIn'
 import { styled } from '@mui/system'
+import { useValue } from '../../../services'
 
 const CustomDoubleButtonSticky = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -68,8 +72,25 @@ function ResourceForm(props: IProps): JSX.Element {
     id ? {} : initResourceData(resource)
   )
 
+  const listUrlRequestTypeConfigurations: Record<string, string> | null =
+    resource.supportedProperty.find(
+      (item) => item?.gally?.input === 'requestType'
+    )?.gally?.requestTypeConfigurations
+
+  const [requestTypeOptionsApi] = useApiList<IRequestTypesOptions>(
+    listUrlRequestTypeConfigurations?.requestTypeOptionsApi
+  )
+
+  const requestTypeOptions = requestTypeOptionsApi?.data?.['hydra:member']
+
+  const requestTypeData = useValue(
+    listUrlRequestTypeConfigurations?.limitationTypeOptionsApi,
+    data
+  ) as IRequestType
+
   const isValidRequestType =
-    !data?.searchLimitations || isRequestTypeValid(data)
+    !data?.searchLimitations ||
+    isRequestTypeValid(requestTypeData, requestTypeOptions, t)
 
   const isValidRules =
     !data?.conditionRule ||
