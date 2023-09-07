@@ -1,4 +1,4 @@
-import React, { FormEvent, useState } from 'react'
+import React, { FocusEvent, FormEvent, useState } from 'react'
 import { styled } from '@mui/system'
 import Chip from '../Chip/Chip'
 import InputText from './InputText'
@@ -92,7 +92,7 @@ function TextFieldTags(props: ITextFieldTag): JSX.Element {
 
   function manageTags(
     key?: number,
-    event?: FormEvent<HTMLFormElement>
+    event?: FormEvent<HTMLFormElement> | FocusEvent<HTMLInputElement, Element>
   ): void | null {
     if (!value || !onChange) {
       return null
@@ -147,6 +147,7 @@ function TextFieldTags(props: ITextFieldTag): JSX.Element {
               onSubmit={(e): void | null => manageTags(undefined, e)}
             >
               <CustomInputTextTextFieldTags
+                onBlur={(e): void | null => manageTags(undefined, e)}
                 value={val}
                 size={size}
                 placeholder={placeholder}
