@@ -7,6 +7,7 @@ import IonIcon from '../IonIcon/IonIcon'
 import InfoTooltip from './InfoTooltip'
 import FormControl from './FormControl'
 import { ITextFieldTagsForm } from '@elastic-suite/gally-admin-shared'
+import { useTranslation } from 'next-i18next'
 
 const customRootTextFieldTagsProps = ['disabled']
 const CustomRootTextFieldTags = styled('div', {
@@ -19,8 +20,9 @@ const CustomRootTextFieldTags = styled('div', {
   paddingLeft: theme.spacing(2),
   borderRadius: theme.spacing(1),
   border: '1px solid',
-  borderColor: theme.palette.colors.neutral[600],
-  width: '350px',
+  borderColor: theme.palette.colors.neutral[300],
+  minWidth: '350px',
+  maxWidth: '650px',
   boxSizing: 'border-box',
   background: theme.palette.colors.white,
   gap: theme.spacing(2),
@@ -33,7 +35,6 @@ const CustomRootTextFieldTags = styled('div', {
     paddingBottom: '1px',
     paddingRight: theme.spacing(1),
     paddingLeft: theme.spacing(1),
-    borderColor: theme.palette.colors.neutral[300],
     color: theme.palette.colors.neutral['500'],
     WebkitTextFillColor: theme.palette.colors.neutral['500'],
     background: theme.palette.colors.neutral[300],
@@ -111,6 +112,8 @@ function TextFieldTags(props: ITextFieldTag): JSX.Element {
     return onChange(newTags)
   }
 
+  const { t } = useTranslation('common')
+
   return (
     <FormControl error={error} fullWidth={fullWidth} margin={margin}>
       {Boolean(label || infoTooltip) && (
@@ -150,7 +153,9 @@ function TextFieldTags(props: ITextFieldTag): JSX.Element {
                 onBlur={(e): void | null => manageTags(undefined, e)}
                 value={val}
                 size={size}
-                placeholder={placeholder}
+                placeholder={
+                  placeholder ?? t('placeholder.default.textFieldTags')
+                }
                 onChange={(value): void => setVal(value as string)}
               />
             </CustomFormTextFieldTags>

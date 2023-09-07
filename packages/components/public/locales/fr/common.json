@@ -57,5 +57,6 @@
   "date.placeholder.fr": "jj/mm/aaaa",
   "error.format": "Format incorrect ou incomplet",
   "placeholder.requestType.search": "Selection des catégories",
-  "back": "Back"
+  "back": "Back",
+  "placeholder.default.textFieldTags": "Ajouter du texte"
 }
