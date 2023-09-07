@@ -103,7 +103,7 @@ function Rule(props: IProps): JSX.Element {
       ...rule,
       attribute_type: getAttributeType(value) ?? '',
       field: value ?? '',
-      value: '',
+      value: [],
     } as IRuleAttribute)
   }
 
