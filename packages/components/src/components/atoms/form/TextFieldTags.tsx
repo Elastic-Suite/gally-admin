@@ -20,7 +20,6 @@ const CustomRootTextFieldTags = styled('div', {
   paddingLeft: theme.spacing(2),
   borderRadius: theme.spacing(1),
   border: '1px solid',
-  borderColor: theme.palette.colors.neutral[300],
   minWidth: '350px',
   maxWidth: '650px',
   boxSizing: 'border-box',
@@ -42,6 +41,7 @@ const CustomRootTextFieldTags = styled('div', {
     maxWidth: '350px',
     minWidth: '180px',
   }),
+  transition: 'all 400ms',
 }))
 
 const CustomTags = styled('div')(({ theme }) => ({
@@ -71,6 +71,10 @@ export interface ITextFieldTag extends Omit<ITextFieldTagsForm, 'options'> {
   onChange?: (value: string[]) => void
 }
 
+const colorOfBorderTextFieldTagsInputInit = '#e2e6f3'
+const colorOfBorderTextFieldTagsInputHover = '#b5b9d9'
+const colorOfBorderTextFieldTagsInputFocus = '#424880'
+
 function TextFieldTags(props: ITextFieldTag): JSX.Element {
   const {
     value,
@@ -88,6 +92,8 @@ function TextFieldTags(props: ITextFieldTag): JSX.Element {
     size,
     disabledValue,
   } = props
+
+  const { t } = useTranslation('common')
 
   const [val, setVal] = useState<string>('')
 
@@ -112,7 +118,15 @@ function TextFieldTags(props: ITextFieldTag): JSX.Element {
     return onChange(newTags)
   }
 
-  const { t } = useTranslation('common')
+  const [colorOfBorderTextFieldTagsInput, setColorOfBorderTextFieldTagsInput] =
+    useState<string>(colorOfBorderTextFieldTagsInputInit)
+
+  function onBlurInputTextFieldTags(
+    e: FocusEvent<HTMLInputElement, Element>
+  ): void {
+    manageTags(undefined, e)
+    setColorOfBorderTextFieldTagsInput(colorOfBorderTextFieldTagsInputInit)
+  }
 
   return (
     <FormControl error={error} fullWidth={fullWidth} margin={margin}>
@@ -124,7 +138,26 @@ function TextFieldTags(props: ITextFieldTag): JSX.Element {
           </InputLabel>
         </div>
       )}
-      <CustomRootTextFieldTags disabled={disabled}>
+      <CustomRootTextFieldTags
+        disabled={disabled}
+        onMouseOver={(): void =>
+          setColorOfBorderTextFieldTagsInput((color) => {
+            if (color !== colorOfBorderTextFieldTagsInputFocus) {
+              return colorOfBorderTextFieldTagsInputHover
+            }
+            return color
+          })
+        }
+        onMouseOut={(): void =>
+          setColorOfBorderTextFieldTagsInput((color) => {
+            if (color !== colorOfBorderTextFieldTagsInputFocus) {
+              return colorOfBorderTextFieldTagsInputInit
+            }
+            return color
+          })
+        }
+        style={{ borderColor: colorOfBorderTextFieldTagsInput }}
+      >
         <CustomTags>
           {disabled || !value ? (
             <Chip disabled label={disabledValue} />
@@ -150,7 +183,12 @@ function TextFieldTags(props: ITextFieldTag): JSX.Element {
               onSubmit={(e): void | null => manageTags(undefined, e)}
             >
               <CustomInputTextTextFieldTags
-                onBlur={(e): void | null => manageTags(undefined, e)}
+                onFocus={(): void =>
+                  setColorOfBorderTextFieldTagsInput(
+                    colorOfBorderTextFieldTagsInputFocus
+                  )
+                }
+                onBlur={(e): void => onBlurInputTextFieldTags(e)}
                 value={val}
                 size={size}
                 placeholder={
