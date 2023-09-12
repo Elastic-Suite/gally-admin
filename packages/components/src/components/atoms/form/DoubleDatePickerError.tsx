@@ -1,6 +1,5 @@
 import React from 'react'
-import { Dayjs } from 'dayjs'
-
+import { differenceInSeconds } from 'date-fns'
 import { useFormError } from '../../../hooks'
 
 import { dateValidator } from './DatePickerError'
@@ -10,8 +9,8 @@ import DoubleDatePicker, {
 } from './DoubleDatePicker'
 
 export function doubleDateValidator(value: {
-  from: Dayjs | null
-  to: Dayjs | null
+  from: Date | null
+  to: Date | null
 }): string | null {
   const fromError = dateValidator(value.from)
   if (fromError) {
@@ -24,7 +23,7 @@ export function doubleDateValidator(value: {
   if (!value.from || !value.to) {
     return null
   }
-  if (value.to.diff(value.from) >= 0) {
+  if (differenceInSeconds(value.to, value.from) >= 0) {
     return null
   }
   return 'doubleDatePickerRange'

@@ -54,7 +54,7 @@
   "log.out": "Déconnexion",
   "entity": "Entité",
   "create": "Créer",
-  "date.placeholder.fr": "jj/mm/aaaa",
+  "date.placeholder": "JJ/MM/AAAA",
   "error.format": "Format incorrect ou incomplet",
   "placeholder.requestType.search": "Selection des catégories",
   "back": "Retour",

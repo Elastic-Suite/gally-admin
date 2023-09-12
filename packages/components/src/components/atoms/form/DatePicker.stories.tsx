@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
-import { Dayjs } from 'dayjs'
 
 import DatePickerComponent from './DatePicker'
 import DatePickerError from './DatePickerError'
@@ -35,9 +34,9 @@ export default {
 } as ComponentMeta<typeof DatePickerComponent>
 
 const Template: ComponentStory<typeof DatePickerComponent> = (args) => {
-  const [value, setValue] = useState<Dayjs | null>(null)
+  const [value, setValue] = useState<Date | null>(null)
 
-  function onChange(value: Dayjs | null): void {
+  function onChange(value: Date | null): void {
     setValue(value)
   }
 
@@ -61,9 +60,9 @@ Default.args = {
 }
 
 const FormErrorTemplate: ComponentStory<typeof DatePickerError> = (args) => {
-  const [value, setValue] = useState<Dayjs | null>(null)
+  const [value, setValue] = useState<Date | null>(null)
 
-  function onChange(value: Dayjs | null): void {
+  function onChange(value: Date | null): void {
     setValue(value)
   }
 

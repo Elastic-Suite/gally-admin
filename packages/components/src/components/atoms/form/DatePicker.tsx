@@ -7,7 +7,6 @@ import {
 } from '@mui/x-date-pickers/PickersDay'
 import { DateValidationError } from '@mui/x-date-pickers/internals/hooks/validation/useDateValidation'
 import { styled } from '@mui/system'
-import { Dayjs } from 'dayjs'
 
 import IonIcon from '../IonIcon/IonIcon'
 
@@ -18,7 +17,7 @@ import { useTranslation } from 'next-i18next'
 const CustomPickersDay = styled(PickersDay, {
   shouldForwardProp: (prop) =>
     prop !== 'dayIsBetween' && prop !== 'isFirstDay' && prop !== 'isLastDay',
-})<PickersDayProps<Dayjs>>(({ theme }) => ({
+})<PickersDayProps<Date>>(({ theme }) => ({
   fontWeight: 500,
   [`&&.${pickersDayClasses.selected}`]: {
     backgroundColor: theme.palette.colors.primary['400'],
@@ -28,13 +27,13 @@ const CustomPickersDay = styled(PickersDay, {
     backgroundColor: theme.palette.colors.primary['400'],
     color: 'white',
   },
-})) as ComponentType<PickersDayProps<Dayjs>>
+})) as ComponentType<PickersDayProps<Date>>
 
 export interface IDatePickerProps
   extends Omit<IInputTextProps, 'value' | 'onChange' | 'onError'> {
-  value: Dayjs | string | null
-  onChange: (value: Dayjs | string | null) => void
-  onError?: (reason: DateValidationError, value: Dayjs) => void
+  value: Date | string | null
+  onChange: (value: Date | string | null) => void
+  onError?: (reason: DateValidationError, value: Date) => void
 }
 
 function EndIcon(): JSX.Element {
@@ -52,13 +51,13 @@ function ShowIcon(): JSX.Element {
 }
 
 function DatePicker(props: IDatePickerProps): JSX.Element {
-  const { t, i18n } = useTranslation('common')
+  const { t } = useTranslation('common')
   const { value, onChange, onError, ...args } = props
 
   const renderWeekPickerDay = (
     _: string,
-    __: Array<Dayjs | null>,
-    pickersDayProps: PickersDayProps<Dayjs>
+    __: Array<Date | null>,
+    pickersDayProps: PickersDayProps<Date>
   ): JSX.Element => {
     return <CustomPickersDay {...pickersDayProps} />
   }
@@ -84,7 +83,7 @@ function DatePicker(props: IDatePickerProps): JSX.Element {
             onChange={(_: string | number, event: SyntheticEvent): void =>
               onChange(event as ChangeEvent<HTMLInputElement>)
             }
-            placeholder={t(`date.placeholder.${i18n.language}`)}
+            placeholder={t('date.placeholder')}
             readOnly={readOnly}
             ref={params.ref as Ref<HTMLDivElement>}
             type={type}

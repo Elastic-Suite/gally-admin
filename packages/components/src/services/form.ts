@@ -7,7 +7,6 @@ import {
   IRequestType,
 } from '@elastic-suite/gally-admin-shared'
 import { InputBaseProps } from '@mui/material'
-import { Dayjs } from 'dayjs'
 import { useApiList } from '../hooks'
 import { IDoubleDatePickerValues } from '../components/atoms/form/DoubleDatePicker'
 
@@ -25,7 +24,7 @@ export function getFormValue(value: string, props: IProps): string | number {
 }
 
 export function getDoubleDatePickerValue(
-  data: Record<string, Dayjs>
+  data: Record<string, Date>
 ): IDoubleDatePickerValues {
   return { from: data?.fromDate, to: data?.toDate }
 }
@@ -83,7 +82,7 @@ export function useValue(
       return getRequestTypeData(data, limitationTypeOptionsApi)
 
     case 'rangeDate':
-      return getDoubleDatePickerValue(data as Record<string, Dayjs>)
+      return getDoubleDatePickerValue(data as Record<string, Date>)
 
     default:
       return (data as Record<string, unknown>)?.[(field as IFieldConfig).name]

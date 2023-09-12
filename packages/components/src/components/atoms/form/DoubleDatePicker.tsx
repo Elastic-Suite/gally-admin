@@ -3,7 +3,6 @@ import { Box, FormHelperText, Grid, InputLabel } from '@mui/material'
 import { DateValidationError } from '@mui/x-date-pickers/internals/hooks/validation/useDateValidation'
 import { useTranslation } from 'next-i18next'
 import { styled } from '@mui/system'
-import { Dayjs } from 'dayjs'
 
 import IonIcon from '../IonIcon/IonIcon'
 
@@ -20,8 +19,8 @@ const CustomBox = styled(Box)(({ theme }) => ({
 }))
 
 export interface IDoubleDatePickerValues {
-  from: Dayjs | string | null
-  to: Dayjs | string | null
+  from: Date | string | null
+  to: Date | string | null
 }
 export interface IDoubleDatePickerErrors {
   from: DateValidationError
@@ -63,11 +62,11 @@ function DoubleDatePicker(props: IDoubleDatePickerProps): JSX.Element {
   } = props
   const { t } = useTranslation('common')
 
-  function onChangeFrom(date: Dayjs | string): void {
+  function onChangeFrom(date: Date | string): void {
     onChange({ ...value, from: date })
   }
 
-  function onChangeTo(date: Dayjs | string): void {
+  function onChangeTo(date: Date | string): void {
     onChange({ ...value, to: date })
   }
 

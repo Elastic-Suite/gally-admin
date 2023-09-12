@@ -1,6 +1,6 @@
 import React from 'react'
 import { DateValidationError } from '@mui/x-date-pickers/internals/hooks/validation/useDateValidation'
-import { Dayjs } from 'dayjs'
+import { isValid } from 'date-fns'
 
 import { useFormError } from '../../../hooks'
 
@@ -10,11 +10,11 @@ interface IDatePickerErrorProps extends IDatePickerProps {
   showError?: boolean
 }
 
-export function dateValidator(value: Dayjs | null): string | null {
+export function dateValidator(value: Date | null): string | null {
   if (!value) {
     return null
   }
-  if (value.isValid()) {
+  if (isValid(value)) {
     return null
   }
   return 'invalidDate'
