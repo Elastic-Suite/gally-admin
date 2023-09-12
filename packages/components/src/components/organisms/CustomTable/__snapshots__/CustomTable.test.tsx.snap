@@ -107,7 +107,7 @@ exports[`CustomTable match snapshot with editable content 1`] = `
                     class="InputText__Wrapper css-newnfq"
                   >
                     <div
-                      class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-33c5sc-MuiInputBase-root"
+                      class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-1byw8wq-MuiInputBase-root"
                     >
                       <input
                         aria-autocomplete="list"
