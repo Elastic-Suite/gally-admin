@@ -41,7 +41,7 @@ function I18nProvider(props: IProps): JSX.Element {
       context.changeLanguage(i18n.language)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [i18n.language])
 
   useEffect(() => {
     if (i18n.language) {

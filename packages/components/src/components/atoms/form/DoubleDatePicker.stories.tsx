@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
-import { Dayjs } from 'dayjs'
 
 import DoubleDatePickerComponent, {
   IDoubleDatePickerValues,
@@ -78,12 +77,12 @@ const FormErrorTemplate: ComponentStory<typeof DoubleDatePickerError> = (
   args
 ) => {
   const [value, setValue] = useState<{
-    from: Dayjs | null
-    to: Dayjs | null
+    from: Date | null
+    to: Date | null
   } | null>({ from: null, to: null })
 
   function onChange(
-    value: { from: Dayjs | null; to: Dayjs | null } | null
+    value: { from: Date | null; to: Date | null } | null
   ): void {
     setValue(value)
   }

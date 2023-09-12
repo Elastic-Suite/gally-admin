@@ -54,7 +54,7 @@
   "log.out": "Log out",
   "entity": "Entity",
   "create": "Create",
-  "date.placeholder.en": "mm/dd/yyyy",
+  "date.placeholder": "MM/DD/YYYY",
   "error.format": "Wrong or incomplet format",
   "placeholder.requestType.search": "Selection of categories",
   "back": "Retour",
