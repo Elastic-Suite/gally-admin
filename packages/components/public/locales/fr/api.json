@@ -28,5 +28,6 @@
   "filters.apply": "Appliquer",
   "filters.clearAll": "Réinitialiser",
   "filters.filter": "Filtrer",
-  "filters.search": "Chercher"
+  "filters.search": "Chercher",
+  "Select a scope": "Selectionnez un contexte"
 }

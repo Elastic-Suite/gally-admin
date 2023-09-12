@@ -73,6 +73,7 @@ function CustomForm(props: IProps): JSX.Element {
                     onChange={handleChange}
                     editable
                     data={data}
+                    placeholder={t(field?.placeholder ?? field?.label)}
                     helperText={errors?.fields?.[field?.name]}
                     error={Boolean(errors?.fields?.[field?.name])}
                   />
