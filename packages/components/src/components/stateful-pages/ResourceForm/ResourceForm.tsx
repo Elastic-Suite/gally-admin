@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
 import {
   useApiFetch,
@@ -255,6 +255,25 @@ function ResourceForm(props: IProps): JSX.Element {
     setIsLoading(false)
   }
 
+  const ref = useRef()
+  console.log('ref?.current?.checkValidity', ref?.current?.checkValidity())
+
+  const a =
+    ref?.current &&
+    Object.values(ref?.current).map((item) => {
+      return item?.placeholder + ' : ' + item?.validity?.valid
+    })
+  console.log('ref?.current,', ref?.current)
+  console.log('Object.entries', a)
+
+  function handleSubmit() {
+    const isValidForm = ref?.current?.checkValidity()
+    if (isValidForm) {
+      return sendingData()
+    }
+    // return ref?.current?.reportValidity()
+  }
+
   return (
     <CustomRoot>
       {title ? (
@@ -283,8 +302,8 @@ function ResourceForm(props: IProps): JSX.Element {
             ) : null}
             <Box>
               <Button
-                disabled={!isValidForm}
-                onClick={sendingData}
+                //   disabled={!isValidForm}
+                onClick={handleSubmit}
                 loading={isLoading}
                 endIcon={
                   id ? (
@@ -300,12 +319,14 @@ function ResourceForm(props: IProps): JSX.Element {
           </CustomDoubleButtonSticky>
         </PageTitle>
       ) : null}
-      <CustomForm
-        data={data}
-        onChange={setData}
-        resource={resource}
-        errors={errors}
-      />
+      <form ref={ref}>
+        <CustomForm
+          data={data}
+          onChange={setData}
+          resource={resource}
+          errors={errors}
+        />
+      </form>
     </CustomRoot>
   )
 }

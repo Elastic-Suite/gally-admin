@@ -1,8 +1,11 @@
 import React, {
   CSSProperties,
+  ForwardedRef,
   HTMLAttributes,
   ReactNode,
   SyntheticEvent,
+  forwardRef,
+  useEffect,
   useMemo,
   useRef,
 } from 'react'
@@ -35,7 +38,7 @@ export interface IDropDownProps<T>
   objectKeyValue?: string
 }
 
-function DropDown<T>(props: IDropDownProps<T>): JSX.Element {
+function DropDown<T>(props: IDropDownProps<T>, ref?: ForwardedRef<HTMLInputElement>): JSX.Element {
   const {
     disabled,
     fullWidth,
@@ -51,7 +54,7 @@ function DropDown<T>(props: IDropDownProps<T>): JSX.Element {
   } = props
   const { required, small } = otherProps
   const { t } = useTranslation('common')
-  const inputRef = useRef()
+  const inputRef = ref || useRef()
   const optionMap = useMemo(
     () => new Map(options.map((option) => [option.value, option])),
     [options]
@@ -127,6 +130,12 @@ function DropDown<T>(props: IDropDownProps<T>): JSX.Element {
         ))
   }
 
+  useEffect(() => {
+    if(multiple && value.length === 0 && required) {
+      inputRef.current?.setCustomValidity('valueMissing')
+    }
+  }, [])
+
   return (
     <FormControl fullWidth={fullWidth} variant="standard">
       <Autocomplete
@@ -159,11 +168,12 @@ function DropDown<T>(props: IDropDownProps<T>): JSX.Element {
           const { InputLabelProps, InputProps, ...inputProps } = params
           return (
             <InputText
-              {...otherProps}
+              {...{...otherProps, required: multiple ? false : required}}
               {...inputProps}
               {...InputProps}
               fullWidth={fullWidth}
               inputRef={inputRef}
+              requiredLabel={multiple && required}
             />
           )
         }}
@@ -176,4 +186,4 @@ function DropDown<T>(props: IDropDownProps<T>): JSX.Element {
   )
 }
 
-export default DropDown
+export default forwardRef(DropDown)

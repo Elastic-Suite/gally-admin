@@ -30,6 +30,7 @@ import RulesManager from '../RulesManager/RulesManager'
 import Slider from '../../atoms/form/Slider'
 import Synonym from '../../atoms/form/Synonym'
 import Expansion from '../../atoms/form/Expansion'
+import DoubleDatePickerError from '../../atoms/form/DoubleDatePickerError'
 
 function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
   const {
@@ -171,7 +172,8 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
     case DataContentType.RANGEDATE: {
       return (
         <Box>
-          <DoubleDatePicker
+          <DoubleDatePickerError
+           {...props}
             placeholder={placeholder}
             infoTooltip={infoTooltip}
             value={value as IDoubleDatePickerValues}
@@ -179,6 +181,7 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
             error={error}
             helperText={helperText}
             label={label}
+            showError
           />
         </Box>
       )

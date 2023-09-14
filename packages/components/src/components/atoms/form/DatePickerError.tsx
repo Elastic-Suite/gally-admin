@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import { DateValidationError } from '@mui/x-date-pickers/internals/hooks/validation/useDateValidation'
 import { isValid } from 'date-fns'
 
@@ -10,22 +10,30 @@ interface IDatePickerErrorProps extends IDatePickerProps {
   showError?: boolean
 }
 
-export function dateValidator(value: Date | null): string | null {
+export function dateValidator(
+  value: Date | null,
+  required?: boolean
+): string | null {
   if (!value) {
-    return null
+    return required ? 'valueMissing' : ''
   }
   if (isValid(value)) {
-    return null
+    return ''
   }
   return 'invalidDate'
 }
 
 function DatePickerError(props: IDatePickerErrorProps): JSX.Element {
+  const ref = useRef(null)
   const { onChange, showError, ...inputProps } = props
   const [formErrorProps, setError] = useFormError(
     onChange,
+    inputProps.value,
     showError,
-    dateValidator
+    (value) => {
+      return dateValidator(value as Date, inputProps.required)
+    },
+    ref
   )
 
   function handleError(reason: DateValidationError): void {
@@ -40,6 +48,7 @@ function DatePickerError(props: IDatePickerErrorProps): JSX.Element {
       helperIcon={inputProps?.helperIcon || formErrorProps?.helperIcon}
       helperText={inputProps?.helperText || formErrorProps?.helperText}
       onError={handleError}
+      ref={ref}
     />
   )
 }

@@ -4,7 +4,7 @@ import { FormHelperText, IconButton, InputLabel } from '@mui/material'
 import IonIcon from '../IonIcon/IonIcon'
 import InfoTooltip from './InfoTooltip'
 import FormControl from './FormControl'
-import TextFieldTags from './TextFieldTags'
+import TextFieldTagsError from './TextFieldTagsError'
 import Button from '../buttons/Button'
 
 import {
@@ -142,6 +142,10 @@ function TextFieldTagsMultiple(
     }
   }, [optionsListAvailable, addItem, disabled])
 
+  useEffect(() => {
+    console.log(modifiedValue)
+    console.log(Object.entries(modifiedValue))
+  },[modifiedValue])
   return (
     <FormControl error={error} fullWidth={fullWidth} margin={margin}>
       {Boolean(label || infoTooltip) && (
@@ -154,7 +158,7 @@ function TextFieldTagsMultiple(
       )}
       <CustomMultipleTextFieldsTags>
         {disabled ? (
-          <TextFieldTags disabledValue={disabledValue} disabled />
+          <TextFieldTagsError value={[]} disabledValue={disabledValue} disabled />
         ) : (
           Object.entries(modifiedValue).map(([key, value]) => {
             const option = options.find((it) => it.value === key)
@@ -180,6 +184,7 @@ function TextFieldTagsMultiple(
                   }}
                 >
                   <DropDown
+                    required
                     onChange={(newOption): void =>
                       updateOperator(key, newOption as string)
                     }
@@ -187,14 +192,15 @@ function TextFieldTagsMultiple(
                     options={newOptionsList}
                     sx={{ marginBottom: 1 }}
                   />
-                  <div style={{ position: 'relative' }}>
-                    <TextFieldTags
+                    <TextFieldTagsError
+                      required
+                      showError
+                      withCleanButton
                       fullWidth={fullWidth}
                       onChange={(value): void => updateValue(key, value)}
                       value={value}
                       onRemoveItem={(): void => updateValue(key, [])}
                     />
-                  </div>
                 </div>
                 {optionsListAvailable.filter((opt) => opt.disabled).length >
                   1 && (

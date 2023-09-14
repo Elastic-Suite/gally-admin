@@ -1,8 +1,10 @@
 import {
   Dispatch,
+  ForwardedRef,
   SetStateAction,
   SyntheticEvent,
   useCallback,
+  useEffect,
   useMemo,
   useState,
 } from 'react'
@@ -24,8 +26,11 @@ export interface IFormErrorProps {
 
 export function useFormError(
   onChange: IOnChange,
+  value: unknown,
   showError = false,
-  validator?: IValidator
+  validator?: IValidator,
+  ref?: ForwardedRef<HTMLInputElement>,
+  disabled = false,
 ): [IFormErrorProps, Dispatch<SetStateAction<string>>] {
   const [error, setError] = useState('')
   const { t } = useTranslation('common')
@@ -35,42 +40,52 @@ export function useFormError(
       let error = null
       if (validator) {
         error = validator(value, event)
+        ref.current?.setCustomValidity(error)
       }
-      if (error === null && event?.target) {
-        const { validity } = event.target as HTMLInputElement
+      if (error === null && (event?.target || ref.current)) {
+        const { validity } = event ? event.target as HTMLInputElement : ref.current
         if (!validity.valid) {
           error = getFormValidityError(validity)
         }
       }
-      if (error && showError) {
+      if (error) {
         setError(error)
       } else {
         setError('')
       }
-      return error === null
+      return error === null || error === ''
     },
-    [showError, validator]
+    [ref, validator]
   )
+
+  useEffect(() => {
+    validate(value, undefined)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [validate])
 
   const handleChange = useCallback(
     (value: unknown, event?: SyntheticEvent): void => {
-      const isValid = validate(value, event)
-      if (onChange && (isValid || showError)) {
+      validate(value, event)
+      if (onChange) {
         onChange(value, event)
       }
     },
-    [onChange, showError, validate]
+    [onChange, validate]
   )
 
   return useMemo(() => {
     const props: IFormErrorProps = {
-      error: Boolean(error),
+      error: showError ? Boolean(error) : false,
       onChange: handleChange,
     }
-    if (error) {
+    if(disabled){
+        props.helperIcon = ''
+        props.helperText = ''
+      }
+    else if (error && showError) {
       props.helperIcon = 'close'
       props.helperText = t(`formError.${error}`)
     }
     return [props, setError]
-  }, [error, handleChange, t])
+  }, [error, handleChange, t, disabled, showError])
 }

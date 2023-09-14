@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react'
+import React, { forwardRef, ReactNode } from 'react'
 import { Box, FormHelperText, Grid, InputLabel } from '@mui/material'
 import { DateValidationError } from '@mui/x-date-pickers/internals/hooks/validation/useDateValidation'
 import { useTranslation } from 'next-i18next'
@@ -42,7 +42,10 @@ export interface IDoubleDatePickerProps
   helperIcon?: string
 }
 
-function DoubleDatePicker(props: IDoubleDatePickerProps): JSX.Element {
+function DoubleDatePicker(
+  props: IDoubleDatePickerProps,
+  ref: any
+): JSX.Element {
   const {
     value,
     error,
@@ -100,12 +103,14 @@ function DoubleDatePicker(props: IDoubleDatePickerProps): JSX.Element {
         <Grid item xs>
           <DatePicker
             {...args}
+            required={required}
             error={error}
             fullWidth={fullWidth}
             inputProps={inputProps}
             value={value?.from}
             onChange={onChangeFrom}
             onError={onErrorFrom}
+            ref={ref}
           />
         </Grid>
         <CustomBox sx={{ paddingRight: '20px', paddingLeft: '20px' }}>
@@ -114,6 +119,7 @@ function DoubleDatePicker(props: IDoubleDatePickerProps): JSX.Element {
         <Grid item xs>
           <DatePicker
             {...args}
+            required={required}
             error={error}
             fullWidth={fullWidth}
             inputProps={inputProps}
@@ -138,4 +144,4 @@ function DoubleDatePicker(props: IDoubleDatePickerProps): JSX.Element {
   )
 }
 
-export default DoubleDatePicker
+export default forwardRef(DoubleDatePicker)

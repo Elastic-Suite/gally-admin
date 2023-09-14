@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react'
 import { styled } from '@mui/system'
-import TreeSelector from './TreeSelector'
+import TreeSelectorError from './TreeSelectorError'
 
 import {
   ICategoryLimitations,
@@ -210,7 +210,9 @@ function RequestTypeItem(props: IRequestTypeItem): JSX.Element {
                 )}
 
                 {item.value === 'category' && (
-                  <TreeSelector
+                  <TreeSelectorError
+                    required
+                    showError
                     {...propsLimitations}
                     value={isApplyToAll ? [] : treeSelectorValue}
                     placeholder={
