@@ -1,4 +1,11 @@
-import React, { ChangeEvent, ReactNode, Ref, SyntheticEvent } from 'react'
+import React, {
+  ChangeEvent,
+  ForwardedRef,
+  ReactNode,
+  Ref,
+  SyntheticEvent,
+  forwardRef,
+} from 'react'
 import { FormHelperText, InputLabel } from '@mui/material'
 import { useTranslation } from 'next-i18next'
 
@@ -30,7 +37,10 @@ export interface IRangeProps
   value: (string | number | null)[]
 }
 
-function Range(props: IRangeProps): JSX.Element {
+function Range(
+  props: IRangeProps,
+  ref?: ForwardedRef<HTMLInputElement>
+): JSX.Element {
   const { t } = useTranslation('common')
   const {
     error,
@@ -41,12 +51,13 @@ function Range(props: IRangeProps): JSX.Element {
     infoTooltip,
     inputProps,
     label,
-    margin,
+    margin = 'none',
     onChange,
-    placeholder,
+    placeholder = [],
     required,
     suffix,
     value,
+    type = 'number',
     ...InputProps
   } = props
   const [placeholderFrom, placeholderTo] = placeholder
@@ -86,9 +97,11 @@ function Range(props: IRangeProps): JSX.Element {
           onChange={handleChangeFrom}
           required={required}
           {...InputProps}
+          type={type}
           inputProps={{ ...inputProps, max: valueTo }}
           placeholder={placeholderFrom}
           value={valueFrom ? String(valueFrom) : ''}
+          inputRef={ref}
         />
         {t('form.to')}
         <SecondInput
@@ -96,6 +109,7 @@ function Range(props: IRangeProps): JSX.Element {
           onChange={handleChangeTo}
           required={required}
           {...InputProps}
+          type={type}
           inputProps={{ ...inputProps, min: valueFrom }}
           placeholder={placeholderTo}
           value={valueTo ? String(valueTo) : ''}
@@ -117,10 +131,4 @@ function Range(props: IRangeProps): JSX.Element {
   )
 }
 
-Range.defaultProps = {
-  margin: 'none',
-  placeholder: [],
-  type: 'number',
-}
-
-export default Range
+export default forwardRef<HTMLInputElement, IRangeProps>(Range)

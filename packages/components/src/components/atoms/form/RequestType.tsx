@@ -9,7 +9,7 @@ import {
 } from '@elastic-suite/gally-admin-shared'
 
 import { CustomRoot } from './RequestTypeItem.styled'
-import DropDown from './DropDown'
+import DropDownError from './DropDownError'
 import RequestTypeItem from './RequestTypeItem'
 import { FormHelperText, InputLabel } from '@mui/material'
 import InfoTooltip from './InfoTooltip'
@@ -32,6 +32,7 @@ export interface IProps {
   error?: boolean
   helperText?: string | string[]
   helperIcon?: string
+  showError?: boolean
 }
 
 function RequestType(props: IProps): JSX.Element {
@@ -51,8 +52,8 @@ function RequestType(props: IProps): JSX.Element {
     error,
     helperText,
     helperIcon,
+    showError,
   } = props
-
   function updateSelectedDropDown(list: string[] | string): void {
     const newData = (list as string[]).map((item) => {
       const existingRequestType = value.requestTypes.some((it) => {
@@ -101,7 +102,9 @@ function RequestType(props: IProps): JSX.Element {
         </InputLabel>
       ) : undefined}
       <CustomRoot error={error}>
-        <DropDown
+        <DropDownError
+          showError={showError}
+          required={required}
           placeholder={value.requestTypes.length !== 0 ? '' : placeholder}
           multiple
           onChange={updateSelectedDropDown}
@@ -110,6 +113,7 @@ function RequestType(props: IProps): JSX.Element {
         />
         <RequestTypeItem
           value={value}
+          showError={showError}
           onChange={onChange}
           limitationsTypes={limitationsTypes}
           options={options}

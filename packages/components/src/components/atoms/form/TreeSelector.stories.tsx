@@ -4,6 +4,7 @@ import { ComponentMeta, ComponentStory } from '@storybook/react'
 import categories from '../../../../public/mocks/categories.json'
 
 import TreeSelectorComponent from './TreeSelector'
+import TreeSelectorErrorComponent from './TreeSelectorError'
 
 export default {
   title: 'Atoms/Form/TreeSelector',
@@ -67,6 +68,35 @@ Multiple.args = {
   margin: 'none',
   placeholder: '',
   required: false,
+  small: false,
+  transparent: false,
+}
+
+export const MultipleWithError: ComponentStory<typeof TreeSelectorComponent> = (
+  args
+) => {
+  const [value, setValue] = useState([])
+  return (
+    <TreeSelectorErrorComponent
+      {...args}
+      value={value}
+      multiple
+      onChange={setValue}
+    />
+  )
+}
+
+MultipleWithError.args = {
+  data: categories.categories,
+  required: true,
+  showError: true,
+  fullWidth: false,
+  helperText: '',
+  helperIcon: '',
+  infoTooltip: '',
+  label: 'Label',
+  margin: 'none',
+  placeholder: '',
   small: false,
   transparent: false,
 }

@@ -117,10 +117,6 @@ export const fetchJson = jest.fn((url) => {
   }
 })
 
-/* form */
-
-export const getFormValidityError = jest.fn(() => 'test')
-
 /* graphql */
 export const fetchGraphql = jest.fn(() => {
   const data: unknown = { ...body }

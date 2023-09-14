@@ -36,12 +36,12 @@ export default {
 } as ComponentMeta<typeof DoubleDatePickerComponent>
 
 const Template: ComponentStory<typeof DoubleDatePickerComponent> = (args) => {
-  const [value, setValue] = useState<IDoubleDatePickerValues | null>({
-    from: null,
-    to: null,
+  const [value, setValue] = useState<IDoubleDatePickerValues>({
+    fromDate: null,
+    toDate: null,
   })
 
-  function onChange(value: IDoubleDatePickerValues | null): void {
+  function onChange(value: IDoubleDatePickerValues): void {
     setValue(value)
   }
 
@@ -76,14 +76,12 @@ Default.args = {
 const FormErrorTemplate: ComponentStory<typeof DoubleDatePickerError> = (
   args
 ) => {
-  const [value, setValue] = useState<{
-    from: Date | null
-    to: Date | null
-  } | null>({ from: null, to: null })
+  const [value, setValue] = useState<IDoubleDatePickerValues>({
+    fromDate: null,
+    toDate: null,
+  })
 
-  function onChange(
-    value: { from: Date | null; to: Date | null } | null
-  ): void {
+  function onChange(value: IDoubleDatePickerValues): void {
     setValue(value)
   }
 

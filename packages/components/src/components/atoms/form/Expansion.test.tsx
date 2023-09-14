@@ -5,7 +5,6 @@ import { renderWithProviders } from '../../../utils/tests'
 import Expansion from './Expansion'
 import { IExpansions } from '@elastic-suite/gally-admin-shared'
 import { screen } from '@testing-library/react'
-// import {fireEvent} from "@storybook/testing-library";
 
 describe('Expansion match snapshot', () => {
   it('Expansion Full', () => {
@@ -65,30 +64,30 @@ describe('Expansion match snapshot', () => {
 describe('Expansion functional behavior', () => {
   it('Reference term empty error', () => {
     renderWithProviders(
-      <Expansion value={[{ referenceTerm: '', terms: [{ term: 'pants' }] }]} />
+      <Expansion
+        value={[{ referenceTerm: '', terms: [{ term: 'pants' }] }]}
+        showError
+      />
     )
-    expect(
-      screen.getByText('expansion.error_message.reference_term.empty')
-        .textContent
-    ).toBe('expansion.error_message.reference_term.empty')
+    expect(screen.getByText('formError.valueMissing').textContent).toBe(
+      'formError.valueMissing'
+    )
   })
   it('Expansion terms empty error', () => {
     renderWithProviders(
-      <Expansion value={[{ referenceTerm: 'top', terms: [] }]} />
+      <Expansion value={[{ referenceTerm: 'top', terms: [] }]} showError />
     )
-    expect(
-      screen.getByText('expansion.error_message.expansion_terms.empty')
-        .textContent
-    ).toBe('expansion.error_message.expansion_terms.empty')
+    expect(screen.getByText('formError.valueMissing').textContent).toBe(
+      'formError.valueMissing'
+    )
   })
   it('Expansion terms term empty error', () => {
     renderWithProviders(
-      <Expansion value={[{ referenceTerm: 'top', terms: [] }]} />
+      <Expansion value={[{ referenceTerm: 'top', terms: [] }]} showError />
     )
-    expect(
-      screen.getByText('expansion.error_message.expansion_terms.empty')
-        .textContent
-    ).toBe('expansion.error_message.expansion_terms.empty')
+    expect(screen.getByText('formError.valueMissing').textContent).toBe(
+      'formError.valueMissing'
+    )
   })
   it('Expansion terms duplicate error', () => {
     renderWithProviders(
@@ -99,11 +98,11 @@ describe('Expansion functional behavior', () => {
             terms: [{ term: 'pants' }, { term: 'pants' }],
           },
         ]}
+        showError
       />
     )
     expect(
-      screen.getByText('expansion.error_message.expansion_terms.duplicate')
-        .textContent
-    ).toBe('expansion.error_message.expansion_terms.duplicate')
+      screen.getByText('formError.synonymTermsDuplicate').textContent
+    ).toBe('formError.synonymTermsDuplicate')
   })
 })

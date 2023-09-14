@@ -1,19 +1,16 @@
 import React from 'react'
 
-import {
-  IExpansions,
-  getExpansionsErrorMessages,
-} from '@elastic-suite/gally-admin-shared'
+import { IExpansions } from '@elastic-suite/gally-admin-shared'
 
 import { FormHelperText, IconButton, InputLabel } from '@mui/material'
 import InfoTooltip from './InfoTooltip'
 import IonIcon from '../IonIcon/IonIcon'
 import { StyledFormControl } from './InputText.styled'
 import Button from '../buttons/Button'
-import TextFieldTags from './TextFieldTags'
-import { InputText } from '../../index'
+import { InputTextError } from '../../index'
 import { styled } from '@mui/system'
 import { useTranslation } from 'next-i18next'
+import TextFieldTagsError from './TextFieldTagsError'
 
 const CustomPropError = ['error']
 const CustomRoot = styled('div', {
@@ -50,6 +47,7 @@ export interface IProps {
   error?: boolean
   helperText?: string
   helperIcon?: string
+  showError?: boolean
 }
 
 interface IExpansionsFormatted {
@@ -85,6 +83,7 @@ function Expansion(props: IProps): JSX.Element {
     error,
     helperText,
     helperIcon,
+    showError,
   } = props
 
   if (value.length === 0) {
@@ -151,21 +150,6 @@ function Expansion(props: IProps): JSX.Element {
     return onChange(iExpansionsFormattedToIExpansions(expansionsUpdated))
   }
 
-  function emptyTerms(expansionId: string | number): void {
-    const expansionsUpdated = [...expansions]
-    const index = expansionsUpdated.findIndex(
-      (expansion) => expansion.id === expansionId
-    )
-
-    if (index >= 0) {
-      expansionsUpdated[index].terms = []
-    }
-
-    return onChange(iExpansionsFormattedToIExpansions(expansionsUpdated))
-  }
-
-  const errorMessages = getExpansionsErrorMessages(value)
-
   return (
     <StyledFormControl
       fullWidth={fullWidth}
@@ -179,7 +163,7 @@ function Expansion(props: IProps): JSX.Element {
           {infoTooltip ? <InfoTooltip title={infoTooltip} /> : null}
         </InputLabel>
       ) : undefined}
-      <CustomRoot error={errorMessages.length > 0}>
+      <CustomRoot error={false}>
         <div
           style={{
             display: 'flex',
@@ -196,15 +180,18 @@ function Expansion(props: IProps): JSX.Element {
               <div
                 style={{ position: 'relative', display: 'flex', gap: '32px' }}
               >
-                <InputText
+                <InputTextError
+                  required
                   label={t('reference term')}
                   placeholder={t('reference term')}
                   value={expansion.referenceTerm}
                   onChange={(value): void => {
                     updateTerms(expansion.id, value as string, expansion.terms)
                   }}
+                  showError={showError}
                 />
-                <TextFieldTags
+                <TextFieldTagsError
+                  required
                   label={t('expansion terms')}
                   fullWidth={fullWidth}
                   onChange={(terms): void => {
@@ -212,7 +199,13 @@ function Expansion(props: IProps): JSX.Element {
                   }}
                   value={expansion.terms}
                   placeholder={placeholder}
-                  onRemoveItem={(): void => emptyTerms(expansion.id)}
+                  additionalValidator={(value: string[]): string => {
+                    if (value.length !== [...new Set(value)].length)
+                      return 'synonymTermsDuplicate'
+                    return ''
+                  }}
+                  // onRemoveItem={(): void => emptyTerms(expansion.id)}
+                  showError={showError}
                 />
               </div>
               <IconButton
@@ -240,14 +233,6 @@ function Expansion(props: IProps): JSX.Element {
           </Button>
         </div>
       </CustomRoot>
-      {errorMessages.length > 0 && (
-        <FormHelperText error style={{ flexDirection: 'column' }}>
-          {errorMessages.map((errorMessage, key) => (
-            // eslint-disable-next-line react/no-array-index-key
-            <span key={key}>{t(errorMessage)}</span>
-          ))}
-        </FormHelperText>
-      )}
       {Boolean(helperText) && (
         <FormHelperText>
           {Boolean(helperIcon) && (

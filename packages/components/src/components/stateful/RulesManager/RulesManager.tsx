@@ -7,7 +7,6 @@ import {
   ISourceField,
   ISourceFieldLabel,
   RuleAttributeType,
-  isRuleValid,
   parseRule,
   serializeRule,
 } from '@elastic-suite/gally-admin-shared'
@@ -45,6 +44,7 @@ interface IProps
   helperText?: string
   helperIcon?: string
   small?: boolean
+  showError?: boolean
 }
 
 function RulesManager(props: IProps): JSX.Element {
@@ -133,10 +133,6 @@ function RulesManager(props: IProps): JSX.Element {
     }
   })
 
-  const isValid = isRuleValid(rule)
-  const helperTextRules = helperText ?? (!isValid && 'error.format')
-  const errorRules = error || !isValid
-
   return (
     <RuleOptionsProvider
       catalogId={catalogId}
@@ -161,9 +157,9 @@ function RulesManager(props: IProps): JSX.Element {
           small={small}
         />
       )}
-      {Boolean(helperTextRules) && (
+      {Boolean(helperText) && (
         <FormHelperText
-          error={errorRules}
+          error={error}
           sx={{ marginTop: !first ? '-12px' : '8px' }}
         >
           {Boolean(helperIcon) && (
@@ -172,7 +168,7 @@ function RulesManager(props: IProps): JSX.Element {
               style={{ fontSize: 18, marginRight: 2 }}
             />
           )}
-          {t(helperTextRules)}
+          {t(helperText)}
         </FormHelperText>
       )}
     </RuleOptionsProvider>

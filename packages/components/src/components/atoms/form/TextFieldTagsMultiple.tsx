@@ -4,7 +4,7 @@ import { FormHelperText, IconButton, InputLabel } from '@mui/material'
 import IonIcon from '../IonIcon/IonIcon'
 import InfoTooltip from './InfoTooltip'
 import FormControl from './FormControl'
-import TextFieldTags from './TextFieldTags'
+import TextFieldTagsError from './TextFieldTagsError'
 import Button from '../buttons/Button'
 
 import {
@@ -32,7 +32,8 @@ const CustomSelectOperator = styled('div')(({ theme }) => ({
 export interface ITextFieldTagsMultipleProps
   extends Omit<ITextFieldTagsForm, 'size' | 'placeholder'> {
   value: ISearchLimitations[]
-  onChange: (value: ISearchLimitations[]) => void
+  onChange?: (value: ISearchLimitations[]) => void
+  showError?: boolean
 }
 
 function TextFieldTagsMultiple(
@@ -52,6 +53,7 @@ function TextFieldTagsMultiple(
     margin,
     infoTooltip,
     options,
+    showError,
   } = props
 
   const { t } = useTranslation('common')
@@ -92,7 +94,8 @@ function TextFieldTagsMultiple(
 
   const addItem = useCallback(
     (operator: string) => {
-      onChange(unModifiedValue({ ...modifiedValue, [operator]: [] }))
+      if (onChange)
+        onChange(unModifiedValue({ ...modifiedValue, [operator]: [] }))
     },
     [onChange, modifiedValue]
   )
@@ -100,23 +103,24 @@ function TextFieldTagsMultiple(
   function removeItem(operator: string): void {
     const newValue = { ...modifiedValue }
     delete newValue[operator as string]
-    onChange(unModifiedValue(newValue))
+    if (onChange) onChange(unModifiedValue(newValue))
   }
 
   function updateOperator(oldOperator: string, newOperator: string): void {
     const newValue = { ...modifiedValue }
     newValue[newOperator] = newValue[oldOperator]
     delete newValue[oldOperator]
-    return onChange(unModifiedValue(newValue))
+    if (onChange) return onChange(unModifiedValue(newValue))
   }
 
   function updateValue(operator: string, data: string[]): void {
-    return onChange(
-      unModifiedValue({
-        ...modifiedValue,
-        [operator]: data.filter((it) => it !== null),
-      })
-    )
+    if (onChange)
+      return onChange(
+        unModifiedValue({
+          ...modifiedValue,
+          [operator]: data.filter((it) => it !== null),
+        })
+      )
   }
 
   const optionsListAvailable: (IOptionsTags & { disabled?: boolean })[] =
@@ -154,7 +158,11 @@ function TextFieldTagsMultiple(
       )}
       <CustomMultipleTextFieldsTags>
         {disabled ? (
-          <TextFieldTags disabledValue={disabledValue} disabled />
+          <TextFieldTagsError
+            value={[]}
+            disabledValue={disabledValue}
+            disabled
+          />
         ) : (
           Object.entries(modifiedValue).map(([key, value]) => {
             const option = options.find((it) => it.value === key)
@@ -180,6 +188,7 @@ function TextFieldTagsMultiple(
                   }}
                 >
                   <DropDown
+                    required
                     onChange={(newOption): void =>
                       updateOperator(key, newOption as string)
                     }
@@ -187,14 +196,14 @@ function TextFieldTagsMultiple(
                     options={newOptionsList}
                     sx={{ marginBottom: 1 }}
                   />
-                  <div style={{ position: 'relative' }}>
-                    <TextFieldTags
-                      fullWidth={fullWidth}
-                      onChange={(value): void => updateValue(key, value)}
-                      value={value}
-                      onRemoveItem={(): void => updateValue(key, [])}
-                    />
-                  </div>
+                  <TextFieldTagsError
+                    required
+                    showError={showError}
+                    withCleanButton
+                    fullWidth={fullWidth}
+                    onChange={(value): void => updateValue(key, value)}
+                    value={value}
+                  />
                 </div>
                 {optionsListAvailable.filter((opt) => opt.disabled).length >
                   1 && (

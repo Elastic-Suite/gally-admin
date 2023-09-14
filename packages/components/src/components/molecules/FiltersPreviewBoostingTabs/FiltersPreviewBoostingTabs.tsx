@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import CustomTabs from '../layout/tabs/CustomTabs'
-import TreeSelector from '../../atoms/form/TreeSelector'
 import {
   IOptions,
   IRequestTypesOptions,
@@ -13,6 +12,7 @@ import FiltersPreviewBoostingTab, {
 } from './FiltersPreviewBoostingTab'
 import SearchBar from '../../atoms/form/SearchBar'
 import DropdownError from '../../atoms/form/DropDownError'
+import TreeSelectorError from '../../atoms/form/TreeSelectorError'
 export interface IPreviewBoostFilter {
   type: string
   search?: string
@@ -41,7 +41,6 @@ function FiltersPreviewBoostingTabs({
 
   const [category, setCategory] = useState<ITreeItem>(null)
   const [search, setSearch] = useState('')
-  const [localizedCatalogError, setLocalizedCatalogError] = useState(false)
   const sendFilter = (tabId: number): void => {
     onSendFilter({
       type: requestTypes[tabId].value,
@@ -50,10 +49,11 @@ function FiltersPreviewBoostingTabs({
     })
   }
 
+  const [showAllErrors, setShowAllErrors] = useState(false)
+
   const DrowDownLocalizedCatalog = (
     <DropdownError
       onChange={(value: string): void => {
-        setLocalizedCatalogError(Boolean(!value))
         onLocalizedCatalogChange(value)
         setCategory(null)
       }}
@@ -62,16 +62,19 @@ function FiltersPreviewBoostingTabs({
       placeholder={tCommon('localizedCatalog.placeholder')}
       useGroups
       required
-      showError
+      showError={showAllErrors}
       sx={{ minWidth: '252.667px' }}
       label={tCommon('localizedCatalog')}
-      error={localizedCatalogError}
-      helperText={
-        Boolean(localizedCatalogError) && tCommon('formError.valueMissing')
-      }
-      helperIcon={Boolean(localizedCatalogError) && 'close'}
     />
   )
+
+  const handleSearch = (id: number, formIsValid: boolean): void => {
+    if (formIsValid) {
+      sendFilter(id)
+    } else {
+      setShowAllErrors(true)
+    }
+  }
 
   const tabs: ITab<IPropsFiltersPreviewBoostingTab>[] = requestTypes.map(
     (requestType, id) => {
@@ -82,19 +85,18 @@ function FiltersPreviewBoostingTabs({
             Component: FiltersPreviewBoostingTab,
             id,
             componentProps: {
-              buttonDisabled: !(Boolean(localizedCatalog) && Boolean(category)),
-              onSearch: () => sendFilter(id),
+              onSearch: (formIsValid): void => handleSearch(id, formIsValid),
               children: (
                 <>
                   {DrowDownLocalizedCatalog}
-                  <TreeSelector
+                  <TreeSelectorError
+                    showError={showAllErrors}
                     sx={{
                       minWidth: '252.667px',
                     }}
                     data={categories}
                     onChange={(value: ITreeItem): void => {
                       setCategory(value)
-                      if (!localizedCatalog) setLocalizedCatalogError(true)
                     }}
                     value={category}
                     placeholder={tBoost('selectCategory').toString()}
@@ -111,8 +113,7 @@ function FiltersPreviewBoostingTabs({
             Component: FiltersPreviewBoostingTab,
             id,
             componentProps: {
-              buttonDisabled: !(Boolean(localizedCatalog) && search !== ''),
-              onSearch: () => sendFilter(id),
+              onSearch: (formIsValid): void => handleSearch(id, formIsValid),
               children: (
                 <>
                   {DrowDownLocalizedCatalog}
@@ -120,10 +121,10 @@ function FiltersPreviewBoostingTabs({
                     value={search}
                     placeholder={tBoost('termSearch')}
                     onChange={setSearch}
-                    onResearch={(): void => {
-                      sendFilter(id)
-                      if (!localizedCatalog) setLocalizedCatalogError(true)
-                    }}
+                    showError={showAllErrors}
+                    onResearch={(formIsValid): void =>
+                      handleSearch(id, formIsValid)
+                    }
                     label={tBoost('termSearch')}
                   />
                 </>
@@ -138,7 +139,10 @@ function FiltersPreviewBoostingTabs({
     requestTypes.length > 0 && (
       <CustomTabs
         tabs={tabs}
-        onChange={(tabId: number): void => sendFilter(tabId)}
+        onChange={(tabId: number): void => {
+          sendFilter(tabId)
+          setShowAllErrors(false)
+        }}
       />
     )
   )

@@ -22,10 +22,11 @@ interface IProps {
   onChange: (val: Record<string, unknown>) => void
   resource: IResource
   errors?: IErrorsForm
+  showAllErrors?: boolean
 }
 
 function CustomForm(props: IProps): JSX.Element {
-  const { data, onChange, resource, errors } = props
+  const { data, onChange, resource, errors, showAllErrors } = props
 
   const headers = useApiHeadersForm(resource)
   const { t } = useTranslation('api')
@@ -68,7 +69,7 @@ function CustomForm(props: IProps): JSX.Element {
                     field={field}
                     label={t(field?.label)}
                     infoTooltip={t(field?.infoTooltip)}
-                    showError
+                    showError={showAllErrors}
                     onChange={handleChange}
                     editable
                     data={data}

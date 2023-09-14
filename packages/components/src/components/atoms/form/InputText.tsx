@@ -41,11 +41,12 @@ export interface IInputTextProps
   helperIcon?: string
   onChange?: (value: string | number, event: SyntheticEvent) => void
   suffix?: ReactNode
+  requiredLabel?: boolean
 }
 
 function InputText(
   props: IInputTextProps,
-  ref: ForwardedRef<HTMLDivElement>
+  ref?: ForwardedRef<HTMLDivElement>
 ): JSX.Element {
   const {
     error,
@@ -60,6 +61,7 @@ function InputText(
     required,
     suffix,
     value,
+    requiredLabel,
     ...InputProps
   } = props
 
@@ -80,7 +82,7 @@ function InputText(
       variant="standard"
     >
       {Boolean(label || infoTooltip) && (
-        <InputLabel shrink htmlFor={id} required={required}>
+        <InputLabel shrink htmlFor={id} required={requiredLabel || required}>
           {label}
           {infoTooltip ? <InfoTooltip title={infoTooltip} /> : null}
         </InputLabel>

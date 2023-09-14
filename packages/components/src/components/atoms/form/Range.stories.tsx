@@ -31,8 +31,8 @@ export default {
 } as ComponentMeta<typeof Range>
 
 const Template: ComponentStory<typeof Range> = (args) => {
-  const [value, setValue] = useState(['', ''])
-  const handleChange = (value: string[]): void => setValue(value)
+  const [value, setValue] = useState<(number | string)[]>(['', ''])
+  const handleChange = (value: (number | string)[]): void => setValue(value)
   return <Range {...args} value={value} onChange={handleChange} />
 }
 
@@ -56,8 +56,8 @@ Default.args = {
 }
 
 const FormErrorTemplate: ComponentStory<typeof RangeError> = (args) => {
-  const [value, setValue] = useState(['', ''])
-  const handleChange = (value: string[]): void => setValue(value)
+  const [value, setValue] = useState<(number | string)[]>(['', ''])
+  const handleChange = (value: (number | string)[]): void => setValue(value)
   return <RangeError {...args} value={value} onChange={handleChange} />
 }
 
@@ -72,7 +72,7 @@ WithError.args = {
   margin: 'none',
   placeholder: [],
   required: true,
-  showError: false,
+  showError: true,
   small: false,
   suffix: '',
   transparent: false,

@@ -26,4 +26,6 @@ const Template: ComponentStory<typeof Expansion> = (args) => {
 }
 
 export const Default = Template.bind({})
-Default.args = {}
+Default.args = {
+  showError: true,
+}

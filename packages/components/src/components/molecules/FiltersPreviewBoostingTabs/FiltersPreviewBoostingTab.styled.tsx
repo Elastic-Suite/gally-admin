@@ -11,7 +11,7 @@ export const ColumnContainer = styled('div')(({ theme }) => {
   }
 })
 
-export const RowContainer = styled('div')(() => {
+export const RowContainer = styled('form')(() => {
   return {
     display: 'flex',
     gap: '10px',

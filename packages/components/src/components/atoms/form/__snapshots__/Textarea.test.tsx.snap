@@ -27,12 +27,16 @@ exports[`Textarea match snapshot TextareaAllFalse 1`] = `
       style="visibility: hidden; position: absolute; overflow: hidden; height: 150px; top: 0px; left: 0px; transform: translateZ(0); min-width: 320px; resize: none; padding: 0px;"
       tabindex="-1"
     />
-    <p
-      class="MuiFormHelperText-root MuiFormHelperText-sizeMedium css-1kzozl2-MuiFormHelperText-root"
-      style="display: block; text-align: right;"
+    <div
+      style="display: flex; flex-direction: row; justify-content: flex-end;"
     >
-      0/250
-    </p>
+      <p
+        class="MuiFormHelperText-root MuiFormHelperText-sizeMedium css-1kzozl2-MuiFormHelperText-root"
+        style="display: block; text-align: right;"
+      >
+        0/250
+      </p>
+    </div>
   </div>
 </div>
 `;
@@ -73,12 +77,16 @@ exports[`Textarea match snapshot TextareaAllTrue 1`] = `
       style="visibility: hidden; position: absolute; overflow: hidden; height: 150px; top: 0px; left: 0px; transform: translateZ(0); min-width: 320px; resize: both; padding: 0px;"
       tabindex="-1"
     />
-    <p
-      class="MuiFormHelperText-root MuiFormHelperText-sizeMedium css-1kzozl2-MuiFormHelperText-root"
-      style="display: block; text-align: right;"
+    <div
+      style="display: flex; flex-direction: row; justify-content: flex-end;"
     >
-      0/250
-    </p>
+      <p
+        class="MuiFormHelperText-root MuiFormHelperText-sizeMedium css-1kzozl2-MuiFormHelperText-root"
+        style="display: block; text-align: right;"
+      >
+        0/250
+      </p>
+    </div>
   </div>
 </div>
 `;

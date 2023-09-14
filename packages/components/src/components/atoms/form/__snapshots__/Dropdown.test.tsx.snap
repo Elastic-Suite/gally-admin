@@ -513,7 +513,6 @@ exports[`DropDown match snapshot BadgeRequiredTrue 1`] = `
         >
           <div
             class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-33c5sc-MuiInputBase-root"
-            required=""
           >
             <input
               aria-autocomplete="list"
@@ -523,7 +522,6 @@ exports[`DropDown match snapshot BadgeRequiredTrue 1`] = `
               autocomplete="off"
               class="MuiInputBase-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-ngazp5-MuiInputBase-input"
               id=":r4:"
-              required=""
               role="combobox"
               spellcheck="false"
               type="text"

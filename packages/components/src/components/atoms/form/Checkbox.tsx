@@ -1,23 +1,47 @@
-import React, { ChangeEvent, ReactNode } from 'react'
+import React, {
+  ChangeEvent,
+  ForwardedRef,
+  ReactNode,
+  SyntheticEvent,
+  forwardRef,
+} from 'react'
 import {
   CheckboxProps,
   FormControlLabel,
+  FormHelperText,
   Checkbox as MuiCheckbox,
 } from '@mui/material'
+import IonIcon from '../IonIcon/IonIcon'
 
-interface IProps extends Omit<CheckboxProps, 'onChange'> {
+export interface ICheckboxProps extends Omit<CheckboxProps, 'onChange'> {
   label?: ReactNode
   list?: boolean
-  onChange?: (checked: boolean) => void
+  onChange?: (checked: boolean, event: SyntheticEvent) => void
   small?: boolean
+  helperIcon?: string
+  helperText?: ReactNode
+  error?: boolean
 }
 
-function Checkbox(props: IProps): JSX.Element {
-  const { disabled, label, list, onChange, small, ...checkboxProps } = props
+function Checkbox(
+  props: ICheckboxProps,
+  ref?: ForwardedRef<HTMLInputElement>
+): JSX.Element {
+  const {
+    error,
+    helperIcon,
+    helperText,
+    disabled,
+    label,
+    list,
+    onChange,
+    small,
+    ...checkboxProps
+  } = props
 
   function handleChange(event: ChangeEvent<HTMLInputElement>): void {
     if (onChange) {
-      onChange(event.target.checked)
+      onChange(event.target.checked, event)
     }
   }
 
@@ -27,6 +51,7 @@ function Checkbox(props: IProps): JSX.Element {
       control={
         <MuiCheckbox
           {...checkboxProps}
+          inputRef={ref}
           onChange={handleChange}
           sx={{
             ...(Boolean(list) && {
@@ -43,7 +68,22 @@ function Checkbox(props: IProps): JSX.Element {
         />
       }
       disabled={disabled}
-      label={label}
+      label={
+        <div>
+          {label}
+          {Boolean(helperText) && (
+            <FormHelperText error={error}>
+              {Boolean(helperIcon) && (
+                <IonIcon
+                  name={helperIcon}
+                  style={{ fontSize: 18, marginRight: 2 }}
+                />
+              )}
+              {helperText}
+            </FormHelperText>
+          )}
+        </div>
+      }
       sx={{
         ...(Boolean(small) && {
           marginLeft: '-6px',
@@ -53,4 +93,4 @@ function Checkbox(props: IProps): JSX.Element {
   )
 }
 
-export default Checkbox
+export default forwardRef(Checkbox)
