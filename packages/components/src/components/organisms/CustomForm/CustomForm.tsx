@@ -51,9 +51,9 @@ function CustomForm(props: IProps): JSX.Element {
           <SectionFieldSet key={fieldset?.position}>
             {Boolean(fieldset.label) && (
               <LabelFieldSet>
-                {fieldset.label}
+                {t(fieldset.label)}
                 {Boolean(fieldset.tooltip) && (
-                  <Tooltip title={fieldset.tooltip as string}>
+                  <Tooltip title={t(fieldset.tooltip) as string}>
                     <span style={{ display: 'inline-block' }}>
                       <IonIcon name="informationCircle" tooltip />
                     </span>
