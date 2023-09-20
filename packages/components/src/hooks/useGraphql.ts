@@ -24,6 +24,7 @@ import { useLog } from './useLog'
 export function useApiGraphql(secure = true): IGraphqlApi {
   const { i18n } = useTranslation('common')
   const log = useLog()
+  const { t } = useTranslation('alert')
 
   return useCallback(
     async <T extends object>(
@@ -41,15 +42,17 @@ export function useApiGraphql(secure = true): IGraphqlApi {
         )
         return json
       } catch (error) {
-        log(error)
-        if (error instanceof AuthError) {
+        if (secure && error instanceof AuthError) {
           storageRemove(tokenStorageKey)
           Router.push('/login')
+          log(t('Expired JWT Token'))
+        } else {
+          log(error)
         }
         return { error }
       }
     },
-    [i18n.language, log, secure]
+    [i18n.language, log, secure, t]
   )
 }
 

@@ -12,7 +12,11 @@ export function useLog(
   return useCallback(
     (error: NetworkError) =>
       log(error, (message: string) =>
-        enqueueSnackbar(message, { onShut: closeSnackbar, variant: severity })
+        enqueueSnackbar(message, {
+          onShut: closeSnackbar,
+          variant: severity,
+          preventDuplicate: true,
+        })
       ),
     [severity]
   )

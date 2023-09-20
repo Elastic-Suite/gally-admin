@@ -17,9 +17,18 @@ export function useDataLoader(): void {
   const log = useLog()
 
   const api = useSchemaLoader()
-  const [bundles] = useFetchApi<IHydraResponse<IExtraBundle>>('extra_bundles')
-  const [configurations] =
-    useFetchApi<IHydraResponse<IConfigurations>>('configurations')
+  const [bundles] = useFetchApi<IHydraResponse<IExtraBundle>>(
+    'extra_bundles',
+    undefined,
+    undefined,
+    false
+  )
+  const [configurations] = useFetchApi<IHydraResponse<IConfigurations>>(
+    'configurations',
+    undefined,
+    undefined,
+    false
+  )
 
   useEffect(() => {
     if (api.status === LoadStatus.FAILED) {

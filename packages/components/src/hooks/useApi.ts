@@ -37,6 +37,8 @@ export function useApiFetch(secure = true): IFetchApi {
   const { i18n } = useTranslation('common')
   const log = useLog()
 
+  const { t } = useTranslation('alert')
+
   return useCallback<IFetchApi>(
     async <T extends object>(
       resource: IResource | string,
@@ -53,15 +55,17 @@ export function useApiFetch(secure = true): IFetchApi {
         )
         return json
       } catch (error) {
-        log(error)
-        if (error instanceof AuthError) {
+        if (secure && error instanceof AuthError) {
           storageRemove(tokenStorageKey)
           Router.push('/login')
+          log(t('Expired JWT Token'))
+        } else {
+          log(error)
         }
         return { error }
       }
     },
-    [i18n.language, log, secure]
+    [i18n.language, log, secure, t]
   )
 }
 
