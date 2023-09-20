@@ -193,7 +193,7 @@ function RequestTypeItem(props: IRequestTypeItem): JSX.Element {
               <div style={{ marginTop: '-12px', width: '150px' }}>
                 <Checkbox
                   checked={isApplyToAll}
-                  label={item.labelAll}
+                  label={t(item.labelAll)}
                   onChange={(val: boolean): void =>
                     onChangeApplyToAll(requestTypeOption, val)
                   }
@@ -203,7 +203,7 @@ function RequestTypeItem(props: IRequestTypeItem): JSX.Element {
                 {item.value === 'search' && (
                   <TextFieldTagsMultiple
                     {...propsLimitations}
-                    disabledValue={item.labelAll}
+                    disabledValue={t(item.labelAll)}
                     options={options}
                     value={limitationsData as ISearchLimitations[]}
                   />
@@ -216,7 +216,7 @@ function RequestTypeItem(props: IRequestTypeItem): JSX.Element {
                     placeholder={
                       isApplyToAll || treeSelectorValue.length === 0
                         ? propsLimitations.disabled
-                          ? item.labelAll
+                          ? t(item.labelAll)
                           : t('placeholder.requestType.search')
                         : ''
                     }

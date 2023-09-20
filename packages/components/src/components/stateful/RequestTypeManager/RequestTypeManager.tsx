@@ -30,6 +30,7 @@ function RequestTypeManager(props: IProps): JSX.Element | null {
   const { value, onChange, requestTypeConfigurations, ...args } = props
 
   const { t } = useTranslation('boost')
+  const { t: tApi } = useTranslation('api')
 
   const [operatorOptionsApi] = useApiList<IOptionsTags>(
     requestTypeConfigurations?.operatorOptionsApi
@@ -44,7 +45,9 @@ function RequestTypeManager(props: IProps): JSX.Element | null {
     requestTypeConfigurations?.categoryTreeApi ?? 'categoryTree'
   )
 
-  const operatorOptions = operatorOptionsApi?.data?.['hydra:member']
+  const operatorOptions = operatorOptionsApi?.data?.['hydra:member'].map(
+    (option) => ({ ...option, label: tApi(option.label) })
+  )
   const limitationTypeOptions = limitationTypeOptionsApi?.data?.['hydra:member']
   const requestTypeOptions = requestTypeOptionsApi?.data?.['hydra:member']
   const categoriesList = categoriesListApi?.data?.categories

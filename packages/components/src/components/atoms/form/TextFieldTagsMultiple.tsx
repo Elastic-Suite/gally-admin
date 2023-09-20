@@ -14,6 +14,7 @@ import {
   ITransformedLimitations,
 } from '@elastic-suite/gally-admin-shared'
 import DropDown from './DropDown'
+import { useTranslation } from 'next-i18next'
 
 const CustomMultipleTextFieldsTags = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -65,6 +66,8 @@ function TextFieldTagsMultiple(
     infoTooltip,
     options,
   } = props
+
+  const { t } = useTranslation('common')
 
   function transformedValue(
     list: ISearchLimitations[]
@@ -215,8 +218,8 @@ function TextFieldTagsMultiple(
                   <div style={{ display: 'flex', alignItems: 'center' }}>
                     <IconButton onClick={(): void => removeItem(key)}>
                       <IonIcon
-                        style={{ fontSize: '20px', color: '#424880' }}
-                        name="close"
+                        style={{ fontSize: '18px', color: '#424880' }}
+                        name="trash-outline"
                       />
                     </IconButton>
                   </div>
@@ -237,7 +240,7 @@ function TextFieldTagsMultiple(
               }
               endIcon={<IonIcon name="add" style={{ fontSize: 24 }} />}
             >
-              Add
+              {t('Add')}
             </Button>
           </CustomSelectOperator>
         ) : null}
