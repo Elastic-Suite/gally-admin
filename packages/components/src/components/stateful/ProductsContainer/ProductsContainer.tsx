@@ -160,7 +160,7 @@ function ProductsContainer(props: IProps): JSX.Element {
       ...topProducts.map((topProduct) => topProduct.position)
     )
     const newTopProducts = bottomSelectedRows.map((row) => ({
-      productId: Number(row.split('/')[2]),
+      productId: row.split('/')[2],
       position: topProducts.length === 0 ? 1 : ++maxPosition,
     }))
     setProductPositions({
