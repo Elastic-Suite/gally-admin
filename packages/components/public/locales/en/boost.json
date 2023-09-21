@@ -6,5 +6,17 @@
   "title.create": "Creating of boost",
   "empty.searchLimitations": "No operator was added. Click on the checkbox to select all search terms or add one.",
   "empty.searchLimitations.queryText": "No search term was added. Click on the checkbox to select all search terms or add one.",
-  "empty.categoryLimitations": "No category is selected. Click on the checkbox to select all categories or choose at least one from the drop-down list."
+  "empty.categoryLimitations": "No category is selected. Click on the checkbox to select all categories or choose at least one from the drop-down list.",
+  "noProductSearch": "No products were found",
+  "beforeBoosting": "Base results",
+  "afterBoosting": "Optimized results",
+  "previewArea": "Preview area",
+  "searchCatalog": "Search catalog",
+  "navigationCatalog": "Navigation catalog",
+  "autocompletionBox": "Autocompletion box",
+  "search": "Search",
+  "termSearch": "Search a term",
+  "selectCategory": "Select a category",
+  "emptyCategoryMessage": "No categories have been selected, please add one below",
+  "emptySearchMessage": "No search terms have been entered, please add one below"
 }

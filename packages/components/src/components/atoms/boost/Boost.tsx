@@ -4,7 +4,7 @@ import { Box } from '@mui/system'
 import IonIcon from '../IonIcon/IonIcon'
 
 interface IProps {
-  type: 'up' | 'down' | 'no boost'
+  type: 'up' | 'down' | 'straight'
   boostNumber: number
   boostMultiplicator: number
 }
@@ -16,7 +16,7 @@ interface IBoostDetails {
 }
 
 function setBoostDetails(
-  type: 'up' | 'down' | 'no boost',
+  type: 'up' | 'down' | 'straight',
   boostNumber: number,
   boostMultiplicator: number
 ): IBoostDetails {
@@ -35,7 +35,7 @@ function setBoostDetails(
         boostTextColor: 'error.main',
         boostIconName: 'trending-down-outline',
       }
-    case 'no boost':
+    case 'straight':
       return {
         boostText: 'no boost',
         boostColor: 'neutral.light',
@@ -67,7 +67,7 @@ function Boost(props: IProps): JSX.Element {
         <IonIcon
           name={boostDetail.boostIconName}
           style={
-            type === 'no boost'
+            type === 'straight'
               ? { width: '14px', height: '14px' }
               : { width: '14px', height: '8px' }
           }

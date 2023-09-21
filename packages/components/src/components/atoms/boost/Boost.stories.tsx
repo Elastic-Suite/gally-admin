@@ -14,7 +14,7 @@ const Template: ComponentStory<typeof BoostComponent> = (args) => (
 
 export const Boost = Template.bind({})
 Boost.args = {
-  type: 'down' as 'up' | 'down' | 'no boost',
+  type: 'down' as 'up' | 'down' | 'straight',
   boostNumber: 1,
   boostMultiplicator: 1.1,
 }

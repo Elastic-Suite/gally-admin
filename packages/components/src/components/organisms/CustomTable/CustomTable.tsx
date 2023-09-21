@@ -55,6 +55,7 @@ export interface ICustomTableProps {
   configuration?: IConfigurations
   hasEditLink?: boolean
   editLink?: string
+  withoutDragableColumn?: boolean
 }
 
 function CustomTable(
@@ -79,6 +80,7 @@ function CustomTable(
     configuration,
     hasEditLink,
     editLink,
+    withoutDragableColumn,
   } = props
 
   const [scrollLength, setScrollLength] = useState<number>(0)
@@ -197,6 +199,7 @@ function CustomTable(
               shadow={shadow}
               tableHeaders={newHeadersTable}
               withSelection={withSelection}
+              withoutDragableColumn={withoutDragableColumn}
             />
             {Boolean(!draggable) && (
               <NonDraggableBody
@@ -215,6 +218,7 @@ function CustomTable(
                 configuration={configuration}
                 hasEditLink={hasEditLink}
                 editLink={editLink}
+                withoutDragableColumn={withoutDragableColumn}
               />
             )}
             {Boolean(draggable) && (

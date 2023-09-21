@@ -4,6 +4,18 @@ import { IGraphqlQueryContent, IProductFieldFilterInput } from '../types'
 import { IDocumentFieldFilterInput } from '../types/documents'
 import { categoryEntityType } from './category'
 
+export const getPreviewBoost = `query preview($localizedCatalog: String!, $search: String) {
+    previewBoost(
+      localizedCatalog: $localizedCatalog
+      requestType: product_search
+      search: $search
+    ) {
+      id,
+      resultsBefore,
+      resultsAfter
+    }
+  }`
+
 export function getSearchProductsQuery(
   filter: IProductFieldFilterInput | IProductFieldFilterInput[] = null,
   withAggregations = false

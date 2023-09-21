@@ -1,0 +1,751 @@
+{
+  "data": {
+    "previewBoost": {
+      "id": "/boost_previews/3",
+      "resultsBefore": [
+        {
+          "sku": "VSW10",
+          "price": [
+            {
+              "price": 108,
+              "original_price": 108,
+              "group_id": 0,
+              "is_discounted": false
+            },
+            {
+              "price": 108,
+              "original_price": 108,
+              "group_id": 1,
+              "is_discounted": false
+            },
+            {
+              "price": 108,
+              "original_price": 108,
+              "group_id": 2,
+              "is_discounted": false
+            },
+            {
+              "price": 108,
+              "original_price": 108,
+              "group_id": 3,
+              "is_discounted": false
+            }
+          ],
+          "name": ["Corina Lace-Back Sweater"],
+          "id": 1110,
+          "stock": {
+            "qty": 0,
+            "status": true
+          },
+          "image": "/v/s/vsw10-ly_main.jpg",
+          "score": 26
+        },
+        {
+          "sku": "VT05",
+          "price": [
+            {
+              "price": 108,
+              "original_price": 108,
+              "group_id": 0,
+              "is_discounted": false
+            },
+            {
+              "price": 108,
+              "original_price": 108,
+              "group_id": 1,
+              "is_discounted": false
+            },
+            {
+              "price": 108,
+              "original_price": 108,
+              "group_id": 2,
+              "is_discounted": false
+            },
+            {
+              "price": 108,
+              "original_price": 108,
+              "group_id": 3,
+              "is_discounted": false
+            }
+          ],
+          "name": ["Cora Open-Back Tank"],
+          "id": 1103,
+          "stock": {
+            "qty": 0,
+            "status": true
+          },
+          "image": "/v/t/vt05-pe_main.jpg",
+          "score": 26
+        },
+        {
+          "sku": "VSW12",
+          "price": [
+            {
+              "price": 98,
+              "original_price": 98,
+              "group_id": 0,
+              "is_discounted": false
+            },
+            {
+              "price": 98,
+              "original_price": 98,
+              "group_id": 1,
+              "is_discounted": false
+            },
+            {
+              "price": 98,
+              "original_price": 98,
+              "group_id": 2,
+              "is_discounted": false
+            },
+            {
+              "price": 98,
+              "original_price": 98,
+              "group_id": 3,
+              "is_discounted": false
+            }
+          ],
+          "name": ["Lorena Cardigan"],
+          "id": 1108,
+          "stock": {
+            "qty": 0,
+            "status": true
+          },
+          "image": "/v/s/vsw12-pe_main.jpg",
+          "score": 26
+        },
+        {
+          "sku": "VT04",
+          "price": [
+            {
+              "price": 88,
+              "original_price": 88,
+              "group_id": 0,
+              "is_discounted": false
+            },
+            {
+              "price": 88,
+              "original_price": 88,
+              "group_id": 1,
+              "is_discounted": false
+            },
+            {
+              "price": 88,
+              "original_price": 88,
+              "group_id": 2,
+              "is_discounted": false
+            },
+            {
+              "price": 88,
+              "original_price": 88,
+              "group_id": 3,
+              "is_discounted": false
+            }
+          ],
+          "name": ["Anna Draped Top"],
+          "id": 1104,
+          "stock": {
+            "qty": 0,
+            "status": true
+          },
+          "image": "/v/t/vt04-mt_main.jpg",
+          "score": 26
+        },
+        {
+          "sku": "VT09",
+          "price": [
+            {
+              "price": 78,
+              "original_price": 78,
+              "group_id": 0,
+              "is_discounted": false
+            },
+            {
+              "price": 78,
+              "original_price": 78,
+              "group_id": 1,
+              "is_discounted": false
+            },
+            {
+              "price": 78,
+              "original_price": 78,
+              "group_id": 2,
+              "is_discounted": false
+            },
+            {
+              "price": 78,
+              "original_price": 78,
+              "group_id": 3,
+              "is_discounted": false
+            }
+          ],
+          "name": ["Emilia Cropped Lace Top"],
+          "id": 1099,
+          "stock": {
+            "qty": 0,
+            "status": true
+          },
+          "image": "/v/t/vt09-ll_main.jpg",
+          "score": 26
+        },
+        {
+          "sku": "VD03",
+          "price": [
+            {
+              "price": 78,
+              "original_price": 78,
+              "group_id": 0,
+              "is_discounted": false
+            },
+            {
+              "price": 78,
+              "original_price": 78,
+              "group_id": 1,
+              "is_discounted": false
+            },
+            {
+              "price": 78,
+              "original_price": 78,
+              "group_id": 2,
+              "is_discounted": false
+            },
+            {
+              "price": 78,
+              "original_price": 78,
+              "group_id": 3,
+              "is_discounted": false
+            }
+          ],
+          "name": ["Karena Halter Dress"],
+          "id": 1153,
+          "stock": {
+            "qty": 0,
+            "status": true
+          },
+          "image": "/v/d/vd03-mt_main.jpg",
+          "score": 26
+        },
+        {
+          "sku": "VP12",
+          "price": [
+            {
+              "price": 98,
+              "original_price": 98,
+              "group_id": 0,
+              "is_discounted": false
+            },
+            {
+              "price": 98,
+              "original_price": 98,
+              "group_id": 1,
+              "is_discounted": false
+            },
+            {
+              "price": 98,
+              "original_price": 98,
+              "group_id": 2,
+              "is_discounted": false
+            },
+            {
+              "price": 98,
+              "original_price": 98,
+              "group_id": 3,
+              "is_discounted": false
+            }
+          ],
+          "name": ["Liana Lace Shorts"],
+          "id": 1132,
+          "stock": {
+            "qty": 0,
+            "status": true
+          },
+          "image": "/v/p/vp12-la_main.jpg",
+          "score": 26
+        },
+        {
+          "sku": "VD12",
+          "price": [
+            {
+              "price": 108,
+              "original_price": 108,
+              "group_id": 0,
+              "is_discounted": false
+            },
+            {
+              "price": 108,
+              "original_price": 108,
+              "group_id": 1,
+              "is_discounted": false
+            },
+            {
+              "price": 108,
+              "original_price": 108,
+              "group_id": 2,
+              "is_discounted": false
+            },
+            {
+              "price": 108,
+              "original_price": 108,
+              "group_id": 3,
+              "is_discounted": false
+            }
+          ],
+          "name": ["Petra Sundress"],
+          "id": 1144,
+          "stock": {
+            "qty": 0,
+            "status": true
+          },
+          "image": "/v/d/vd12-rn_main.jpg",
+          "score": 26
+        },
+        {
+          "sku": "VT12",
+          "price": [
+            {
+              "price": 58,
+              "original_price": 58,
+              "group_id": 0,
+              "is_discounted": false
+            },
+            {
+              "price": 58,
+              "original_price": 58,
+              "group_id": 1,
+              "is_discounted": false
+            },
+            {
+              "price": 58,
+              "original_price": 58,
+              "group_id": 2,
+              "is_discounted": false
+            },
+            {
+              "price": 58,
+              "original_price": 58,
+              "group_id": 3,
+              "is_discounted": false
+            }
+          ],
+          "name": ["Jillian Top"],
+          "id": 1096,
+          "stock": {
+            "qty": 0,
+            "status": true
+          },
+          "image": "/v/t/vt12-kh_main.jpg",
+          "score": 26
+        },
+        {
+          "sku": "VD01",
+          "price": [
+            {
+              "price": 98,
+              "original_price": 98,
+              "group_id": 0,
+              "is_discounted": false
+            },
+            {
+              "price": 98,
+              "original_price": 98,
+              "group_id": 1,
+              "is_discounted": false
+            },
+            {
+              "price": 98,
+              "original_price": 98,
+              "group_id": 2,
+              "is_discounted": false
+            },
+            {
+              "price": 98,
+              "original_price": 98,
+              "group_id": 3,
+              "is_discounted": false
+            }
+          ],
+          "name": ["Angelina Tank Dress"],
+          "id": 1155,
+          "stock": {
+            "qty": 0,
+            "status": true
+          },
+          "image": "/v/d/vd01-ll_main.jpg",
+          "score": 26
+        }
+      ],
+      "resultsAfter": [
+        {
+          "sku": "VSW10",
+          "price": [
+            {
+              "price": 108,
+              "original_price": 108,
+              "group_id": 0,
+              "is_discounted": false
+            },
+            {
+              "price": 108,
+              "original_price": 108,
+              "group_id": 1,
+              "is_discounted": false
+            },
+            {
+              "price": 108,
+              "original_price": 108,
+              "group_id": 2,
+              "is_discounted": false
+            },
+            {
+              "price": 108,
+              "original_price": 108,
+              "group_id": 3,
+              "is_discounted": false
+            }
+          ],
+          "name": ["Corina Lace-Back Sweater"],
+          "id": 1110,
+          "stock": {
+            "qty": 0,
+            "status": true
+          },
+          "image": "/v/s/vsw10-ly_main.jpg",
+          "score": 26
+        },
+        {
+          "sku": "VT05",
+          "price": [
+            {
+              "price": 108,
+              "original_price": 108,
+              "group_id": 0,
+              "is_discounted": false
+            },
+            {
+              "price": 108,
+              "original_price": 108,
+              "group_id": 1,
+              "is_discounted": false
+            },
+            {
+              "price": 108,
+              "original_price": 108,
+              "group_id": 2,
+              "is_discounted": false
+            },
+            {
+              "price": 108,
+              "original_price": 108,
+              "group_id": 3,
+              "is_discounted": false
+            }
+          ],
+          "name": ["Cora Open-Back Tank"],
+          "id": 1103,
+          "stock": {
+            "qty": 0,
+            "status": true
+          },
+          "image": "/v/t/vt05-pe_main.jpg",
+          "score": 26
+        },
+        {
+          "sku": "VSW12",
+          "price": [
+            {
+              "price": 98,
+              "original_price": 98,
+              "group_id": 0,
+              "is_discounted": false
+            },
+            {
+              "price": 98,
+              "original_price": 98,
+              "group_id": 1,
+              "is_discounted": false
+            },
+            {
+              "price": 98,
+              "original_price": 98,
+              "group_id": 2,
+              "is_discounted": false
+            },
+            {
+              "price": 98,
+              "original_price": 98,
+              "group_id": 3,
+              "is_discounted": false
+            }
+          ],
+          "name": ["Lorena Cardigan"],
+          "id": 1108,
+          "stock": {
+            "qty": 0,
+            "status": true
+          },
+          "image": "/v/s/vsw12-pe_main.jpg",
+          "score": 26
+        },
+        {
+          "sku": "VT04",
+          "price": [
+            {
+              "price": 88,
+              "original_price": 88,
+              "group_id": 0,
+              "is_discounted": false
+            },
+            {
+              "price": 88,
+              "original_price": 88,
+              "group_id": 1,
+              "is_discounted": false
+            },
+            {
+              "price": 88,
+              "original_price": 88,
+              "group_id": 2,
+              "is_discounted": false
+            },
+            {
+              "price": 88,
+              "original_price": 88,
+              "group_id": 3,
+              "is_discounted": false
+            }
+          ],
+          "name": ["Anna Draped Top"],
+          "id": 1104,
+          "stock": {
+            "qty": 0,
+            "status": true
+          },
+          "image": "/v/t/vt04-mt_main.jpg",
+          "score": 26
+        },
+        {
+          "sku": "VT09",
+          "price": [
+            {
+              "price": 78,
+              "original_price": 78,
+              "group_id": 0,
+              "is_discounted": false
+            },
+            {
+              "price": 78,
+              "original_price": 78,
+              "group_id": 1,
+              "is_discounted": false
+            },
+            {
+              "price": 78,
+              "original_price": 78,
+              "group_id": 2,
+              "is_discounted": false
+            },
+            {
+              "price": 78,
+              "original_price": 78,
+              "group_id": 3,
+              "is_discounted": false
+            }
+          ],
+          "name": ["Emilia Cropped Lace Top"],
+          "id": 1099,
+          "stock": {
+            "qty": 0,
+            "status": true
+          },
+          "image": "/v/t/vt09-ll_main.jpg",
+          "score": 26
+        },
+        {
+          "sku": "VD03",
+          "price": [
+            {
+              "price": 78,
+              "original_price": 78,
+              "group_id": 0,
+              "is_discounted": false
+            },
+            {
+              "price": 78,
+              "original_price": 78,
+              "group_id": 1,
+              "is_discounted": false
+            },
+            {
+              "price": 78,
+              "original_price": 78,
+              "group_id": 2,
+              "is_discounted": false
+            },
+            {
+              "price": 78,
+              "original_price": 78,
+              "group_id": 3,
+              "is_discounted": false
+            }
+          ],
+          "name": ["Karena Halter Dress"],
+          "id": 1153,
+          "stock": {
+            "qty": 0,
+            "status": true
+          },
+          "image": "/v/d/vd03-mt_main.jpg",
+          "score": 26
+        },
+        {
+          "sku": "VP12",
+          "price": [
+            {
+              "price": 98,
+              "original_price": 98,
+              "group_id": 0,
+              "is_discounted": false
+            },
+            {
+              "price": 98,
+              "original_price": 98,
+              "group_id": 1,
+              "is_discounted": false
+            },
+            {
+              "price": 98,
+              "original_price": 98,
+              "group_id": 2,
+              "is_discounted": false
+            },
+            {
+              "price": 98,
+              "original_price": 98,
+              "group_id": 3,
+              "is_discounted": false
+            }
+          ],
+          "name": ["Liana Lace Shorts"],
+          "id": 1132,
+          "stock": {
+            "qty": 0,
+            "status": true
+          },
+          "image": "/v/p/vp12-la_main.jpg",
+          "score": 26
+        },
+        {
+          "sku": "VD12",
+          "price": [
+            {
+              "price": 108,
+              "original_price": 108,
+              "group_id": 0,
+              "is_discounted": false
+            },
+            {
+              "price": 108,
+              "original_price": 108,
+              "group_id": 1,
+              "is_discounted": false
+            },
+            {
+              "price": 108,
+              "original_price": 108,
+              "group_id": 2,
+              "is_discounted": false
+            },
+            {
+              "price": 108,
+              "original_price": 108,
+              "group_id": 3,
+              "is_discounted": false
+            }
+          ],
+          "name": ["Petra Sundress"],
+          "id": 1144,
+          "stock": {
+            "qty": 0,
+            "status": true
+          },
+          "image": "/v/d/vd12-rn_main.jpg",
+          "score": 26
+        },
+        {
+          "sku": "VT12",
+          "price": [
+            {
+              "price": 58,
+              "original_price": 58,
+              "group_id": 0,
+              "is_discounted": false
+            },
+            {
+              "price": 58,
+              "original_price": 58,
+              "group_id": 1,
+              "is_discounted": false
+            },
+            {
+              "price": 58,
+              "original_price": 58,
+              "group_id": 2,
+              "is_discounted": false
+            },
+            {
+              "price": 58,
+              "original_price": 58,
+              "group_id": 3,
+              "is_discounted": false
+            }
+          ],
+          "name": ["Jillian Top"],
+          "id": 1096,
+          "stock": {
+            "qty": 0,
+            "status": true
+          },
+          "image": "/v/t/vt12-kh_main.jpg",
+          "score": 26
+        },
+        {
+          "sku": "VD01",
+          "price": [
+            {
+              "price": 98,
+              "original_price": 98,
+              "group_id": 0,
+              "is_discounted": false
+            },
+            {
+              "price": 98,
+              "original_price": 98,
+              "group_id": 1,
+              "is_discounted": false
+            },
+            {
+              "price": 98,
+              "original_price": 98,
+              "group_id": 2,
+              "is_discounted": false
+            },
+            {
+              "price": 98,
+              "original_price": 98,
+              "group_id": 3,
+              "is_discounted": false
+            }
+          ],
+          "name": ["Angelina Tank Dress"],
+          "id": 1155,
+          "stock": {
+            "qty": 0,
+            "status": true
+          },
+          "image": "/v/d/vd01-ll_main.jpg",
+          "score": 26
+        }
+      ]
+    }
+  }
+}

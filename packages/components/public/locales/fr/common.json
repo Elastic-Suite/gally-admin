@@ -63,5 +63,8 @@
   "All search terms": "Tous les termes de recherches",
   "Add": "Ajouter",
   "Thesaurus": "Thésaurus",
-  "Edit": "Éditer"
+  "results": "résultats",
+  "result_zero": "resultat",
+  "result_one": "{{count}} resultat",
+  "result_other": "{{count}} resultats"
 }
