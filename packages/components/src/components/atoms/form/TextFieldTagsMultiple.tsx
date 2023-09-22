@@ -188,18 +188,11 @@ function TextFieldTagsMultiple(
                     sx={{ marginBottom: 1 }}
                   />
                   <div style={{ position: 'relative' }}>
-                    <CustomCloseTagsByOperator
-                      onClick={(): void => updateValue(key, [])}
-                    >
-                      <IonIcon
-                        name="close"
-                        style={{ fontSize: 14, padding: '0px' }}
-                      />
-                    </CustomCloseTagsByOperator>
                     <TextFieldTags
                       fullWidth={fullWidth}
                       onChange={(value): void => updateValue(key, value)}
                       value={value}
+                      onRemoveItem={(): void => updateValue(key, [])}
                     />
                   </div>
                 </div>
