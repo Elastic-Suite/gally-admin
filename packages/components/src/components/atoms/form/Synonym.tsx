@@ -78,6 +78,11 @@ function Synonym(props: IProps): JSX.Element {
     helperText,
     helperIcon,
   } = props
+
+  if (value.length === 0) {
+    onChange([{ terms: [] }])
+  }
+
   const { t } = useTranslation('thesaurus')
   let lastExpansionId = 0
   const synonyms: ISynonymFormatted[] =
@@ -183,7 +188,7 @@ function Synonym(props: IProps): JSX.Element {
                   updateTerms(synonym.id, terms)
                 }}
                 value={synonym.terms}
-                placeholder={placeholder ?? t('add text')}
+                placeholder={placeholder}
                 onRemoveItem={(): void => emptyTerms(synonym.id)}
               />
               <IconButton
@@ -191,8 +196,8 @@ function Synonym(props: IProps): JSX.Element {
                 style={{ marginLeft: 8 }}
               >
                 <IonIcon
-                  style={{ fontSize: '20px', color: '#424880' }}
-                  name="close"
+                  style={{ fontSize: '18px', color: '#424880' }}
+                  name="trash-outline"
                 />
               </IconButton>
             </div>
