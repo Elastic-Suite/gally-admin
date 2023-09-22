@@ -58,6 +58,7 @@ exports[`Expansion match snapshot Expansion Full 1`] = `
                   <input
                     aria-invalid="false"
                     class="MuiInputBase-input css-ngazp5-MuiInputBase-input"
+                    placeholder="reference term"
                     type="text"
                     value="top"
                   />
@@ -78,7 +79,8 @@ exports[`Expansion match snapshot Expansion Full 1`] = `
                 </label>
               </div>
               <div
-                class="css-1o06ibg"
+                class="css-qb9qm0"
+                style="border-color: #e2e6f3;"
               >
                 <div
                   class="css-1r61l91"
@@ -173,8 +175,8 @@ exports[`Expansion match snapshot Expansion Full 1`] = `
             type="button"
           >
             <ion-icon
-              name="close"
-              style="font-size: 20px; color: rgb(66, 72, 128);"
+              name="trash-outline"
+              style="font-size: 18px; color: rgb(66, 72, 128);"
             />
             <span
               class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
@@ -205,6 +207,7 @@ exports[`Expansion match snapshot Expansion Full 1`] = `
                   <input
                     aria-invalid="false"
                     class="MuiInputBase-input css-ngazp5-MuiInputBase-input"
+                    placeholder="reference term"
                     type="text"
                     value="bottom"
                   />
@@ -225,7 +228,8 @@ exports[`Expansion match snapshot Expansion Full 1`] = `
                 </label>
               </div>
               <div
-                class="css-1o06ibg"
+                class="css-qb9qm0"
+                style="border-color: #e2e6f3;"
               >
                 <div
                   class="css-1r61l91"
@@ -320,8 +324,8 @@ exports[`Expansion match snapshot Expansion Full 1`] = `
             type="button"
           >
             <ion-icon
-              name="close"
-              style="font-size: 20px; color: rgb(66, 72, 128);"
+              name="trash-outline"
+              style="font-size: 18px; color: rgb(66, 72, 128);"
             />
             <span
               class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
