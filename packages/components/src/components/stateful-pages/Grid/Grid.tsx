@@ -48,14 +48,14 @@ function Grid(props: IProps): JSX.Element {
 
   return (
     <>
-      <PageTitle title={title ?? resourceName}>
+      <PageTitle title={title ?? t(resourceName)}>
         {hasNewLink ? (
           <Button {...propsButton}>
             <CustomAHref
               href={newLink ?? './create'}
               isIconInButton={Boolean(propsButton?.endIcon)}
             >
-              {t('create')} {title ?? resourceName}
+              {t('create')} {title ?? t(resourceName)}
             </CustomAHref>
           </Button>
         ) : null}

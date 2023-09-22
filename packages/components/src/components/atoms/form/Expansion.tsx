@@ -87,6 +87,10 @@ function Expansion(props: IProps): JSX.Element {
     helperIcon,
   } = props
 
+  if (value.length === 0) {
+    onChange([{ referenceTerm: '', terms: [] }])
+  }
+
   const { t } = useTranslation('thesaurus')
   let lastExpansionId = 0
   const expansions: IExpansionsFormatted[] =
@@ -194,6 +198,7 @@ function Expansion(props: IProps): JSX.Element {
               >
                 <InputText
                   label={t('reference term')}
+                  placeholder={t('reference term')}
                   value={expansion.referenceTerm}
                   onChange={(value): void => {
                     updateTerms(expansion.id, value as string, expansion.terms)
@@ -206,7 +211,7 @@ function Expansion(props: IProps): JSX.Element {
                     updateTerms(expansion.id, expansion.referenceTerm, terms)
                   }}
                   value={expansion.terms}
-                  placeholder={placeholder ?? t('add text')}
+                  placeholder={placeholder}
                   onRemoveItem={(): void => emptyTerms(expansion.id)}
                 />
               </div>
@@ -215,8 +220,8 @@ function Expansion(props: IProps): JSX.Element {
                 style={{ margin: '24px 0 0 8px' }}
               >
                 <IonIcon
-                  style={{ fontSize: '20px', color: '#424880' }}
-                  name="close"
+                  style={{ fontSize: '18px', color: '#424880' }}
+                  name="trash-outline"
                 />
               </IconButton>
             </div>

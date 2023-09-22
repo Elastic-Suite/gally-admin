@@ -1,6 +1,7 @@
 {
-  "title.update": "Modification d’un thesaurus",
-  "title.create": "Création d’un thesaurus",
+  "Thesaurus": "Thésaurus",
+  "title.update": "Modification d’un thésaurus",
+  "title.create": "Création d’un thésaurus",
   "reference term": "Terme de référence",
   "expansion terms": "Termes étendus",
   "expansions": "Expansions",
