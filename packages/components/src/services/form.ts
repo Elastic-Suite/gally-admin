@@ -66,13 +66,17 @@ export function useValue(
   data: unknown
 ): unknown | IRequestType {
   const [limitationTypeOptionsApi] = useApiList<ILimitationsTypes>(
-    (field as IFieldConfig)?.input === 'requestType'
+    field && (field as IFieldConfig)?.input === 'requestType'
       ? (field as IFieldConfig)?.requestTypeConfigurations
           ?.limitationTypeOptionsApi ?? 'boost_limitation_type_options'
-      : typeof field === 'string'
+      : field && typeof field === 'string'
       ? field
       : undefined
   )
+
+  if (!field) {
+    return null
+  }
 
   if (typeof field === 'string') {
     return getRequestTypeData(data, limitationTypeOptionsApi)

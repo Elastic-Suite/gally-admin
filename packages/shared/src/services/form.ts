@@ -4,7 +4,6 @@ import {
   IField,
   IRequestType,
   IRequestTypesOptions,
-  IRequestTypes,
   ISearchLimitations,
   ISynonyms,
 } from '../types'
@@ -67,28 +66,6 @@ export function isRequestTypeValid(
   t: TFunction
 ): boolean {
   return getRequestTypeErrorMessages(data, api, t)?.length === 0
-}
-
-export function isRequestTypeValid(
-  data?: Record<string, unknown> | IRequestType
-): boolean {
-  const searchLimitationsIsNullOrEmpty =
-    (data?.searchLimitations as unknown as ISearchLimitations[])?.length === 0
-
-  const searchLimitationsIsApplyToAll = (
-    data?.requestTypes as IRequestTypes[]
-  )?.find(
-    (itemRt) => itemRt?.requestType === 'product_search' && itemRt?.applyToAll
-  )
-
-  if (searchLimitationsIsNullOrEmpty || searchLimitationsIsApplyToAll) {
-    return true
-  }
-
-  return !(data?.searchLimitations as ISearchLimitations[])?.some(
-    (searchLimitation) =>
-      !searchLimitation?.queryText && searchLimitation?.operator
-  )
 }
 
 export function getSynonymsErrorMessages(synonyms: ISynonyms): string[] {
