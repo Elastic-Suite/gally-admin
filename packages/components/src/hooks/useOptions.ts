@@ -37,7 +37,7 @@ export function useOptions(): IOptionsContext {
             // static options
             const options = field.gally.options.values.map((option) => ({
               ...option,
-              label: option?.label ? t(String(option?.label)) : undefined,
+              label: option?.label,
             }))
             return options
           }
@@ -63,11 +63,17 @@ export function useOptions(): IOptionsContext {
         }
       })
     },
-    [api, fetch, t]
+    [api, fetch]
   )
 
-  return useMemo(
-    () => ({ fieldOptions: map, load, statuses }),
-    [load, map, statuses]
-  )
+  return useMemo(() => {
+    const mapTranslated = new Map(map)
+    mapTranslated.forEach((options) =>
+      options.forEach((option) => {
+        option.label = t(option.label)
+      })
+    )
+
+    return { fieldOptions: mapTranslated, load, statuses }
+  }, [load, map, statuses, t])
 }
