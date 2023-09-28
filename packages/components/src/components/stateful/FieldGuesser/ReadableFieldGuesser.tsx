@@ -25,7 +25,6 @@ const Image = styled('img')({
 })
 
 const Box = styled('div')({
-  height: 40,
   display: 'flex',
   alignItems: 'center',
   overflow: 'hidden',
