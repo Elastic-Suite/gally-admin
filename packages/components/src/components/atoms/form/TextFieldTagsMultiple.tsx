@@ -140,7 +140,10 @@ function TextFieldTagsMultiple(
   const [operatorValue, setOperatorValue] = useState<undefined | IOptionsTags>()
 
   useEffect(() => {
-    if (optionsListAvailable.filter((opt) => opt.disabled).length === 0) {
+    if (
+      !disabled &&
+      optionsListAvailable.filter((opt) => opt.disabled).length === 0
+    ) {
       addItem(optionsListAvailable.filter((opt) => !opt.disabled)[0].value)
     } else {
       setOperatorValue(
@@ -150,7 +153,7 @@ function TextFieldTagsMultiple(
           ) ?? optionsListAvailable.find((item) => !item?.disabled)
       )
     }
-  }, [optionsListAvailable, addItem])
+  }, [optionsListAvailable, addItem, disabled])
 
   return (
     <FormControl error={error} fullWidth={fullWidth} margin={margin}>
