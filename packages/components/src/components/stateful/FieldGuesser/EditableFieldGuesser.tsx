@@ -76,6 +76,7 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
       if (optionConfig) {
         return onChange(optionConfig as IOption<string>, value, event)
       }
+      // Todo: Move this logic on DoubleDatePicker component after refactoring of error system
       if (name === 'doubleDatePicker') {
         const formatDate = {
           fromDate: (value as IDoubleDatePickerValues)?.from,
@@ -196,6 +197,7 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
     case DataContentType.REQUESTTYPE: {
       return (
         <RequestTypeManager
+          data={data}
           infoTooltip={infoTooltip}
           requestTypeConfigurations={requestTypeConfigurations}
           value={value as IRequestType}

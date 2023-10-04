@@ -10,8 +10,10 @@ import {
   getRequestTypeErrorMessages,
 } from '@elastic-suite/gally-admin-shared'
 import { useTranslation } from 'next-i18next'
+import { getRequestTypeData } from '../../../services'
 
 interface IProps {
+  data: Record<string, unknown>
   value: IRequestType
   onChange: (value: IRequestType) => void
   label?: string
@@ -27,7 +29,7 @@ interface IProps {
 }
 
 function RequestTypeManager(props: IProps): JSX.Element | null {
-  const { value, onChange, requestTypeConfigurations, ...args } = props
+  const { data, value, onChange, requestTypeConfigurations, ...args } = props
 
   const { t } = useTranslation('boost')
   const { t: tApi } = useTranslation('api')
@@ -64,6 +66,9 @@ function RequestTypeManager(props: IProps): JSX.Element | null {
     return null
   }
 
+  // Allows to add categoryLimitations, searchLimitations and XXXLimitations on value.
+  const requestTypeValue = getRequestTypeData(data, limitationTypeOptionsApi)
+
   const requestTypeValid = getRequestTypeErrorMessages(
     value,
     requestTypeOptions,
@@ -72,7 +77,7 @@ function RequestTypeManager(props: IProps): JSX.Element | null {
   return (
     <RequestType
       {...args}
-      value={value}
+      value={requestTypeValue}
       onChange={onChange}
       options={operatorOptions}
       limitationsTypes={limitationTypeOptions}
