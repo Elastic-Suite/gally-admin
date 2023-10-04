@@ -83,6 +83,7 @@ function ResourceForm(props: IProps): JSX.Element {
 
   const requestTypeOptions = requestTypeOptionsApi?.data?.['hydra:member']
 
+  // Todo: Move this logic on RequestTypeManager component after refactoring of error system
   const requestTypeData = useValue(
     listUrlRequestTypeConfigurations?.limitationTypeOptionsApi,
     data
