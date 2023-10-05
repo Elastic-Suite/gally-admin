@@ -1,4 +1,5 @@
 import {
+  addPrefixKeyObject,
   firstLetterLowercase,
   firstLetterUppercase,
   formatPrice,
@@ -49,6 +50,17 @@ describe('Format service', () => {
         'resources.metadata.fields.defaultLabel',
         'Default label',
       ])
+    })
+  })
+
+  describe('addPrefixKeyObject', () => {
+    it('Should add the prefix "category", on all keys of the object', () => {
+      expect(
+        addPrefixKeyObject(
+          { localizedCatalog: 'com_fr', search: 'bag' },
+          'category'
+        )
+      ).toEqual({ categoryLocalizedCatalog: 'com_fr', categorySearch: 'bag' })
     })
   })
 
