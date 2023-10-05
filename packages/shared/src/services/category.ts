@@ -1,4 +1,4 @@
-import { ITreeItem } from '../types'
+import { ICategory, ITreeItem } from '../types'
 
 export function flatTree(tree: ITreeItem[], flat: ITreeItem[]): void {
   tree.forEach((item) => {
@@ -7,4 +7,30 @@ export function flatTree(tree: ITreeItem[], flat: ITreeItem[]): void {
       flatTree(item.children, flat)
     }
   })
+}
+
+export function getCategoryPathLabel(
+  path: string[],
+  categories: ICategory[],
+  separator = ' / '
+): string {
+  let label = ''
+  if (path.length > 0) {
+    const category = categories.find(
+      (category: ICategory) => category.id === path[0]
+    )
+
+    if (category.level === 1) {
+      const [_parent, ...children] = path
+      return getCategoryPathLabel(children, category?.children ?? [], separator)
+    }
+
+    path.shift()
+    label =
+      category?.name +
+      (category?.children?.length > 0 && path.length > 0 ? separator : '') +
+      getCategoryPathLabel(path, category?.children ?? [], separator)
+  }
+
+  return label
 }

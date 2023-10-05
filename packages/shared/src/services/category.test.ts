@@ -1,7 +1,7 @@
 import categories from '../mocks/static/categories.json'
 import { ITreeItem } from '../types'
 
-import { flatTree } from './category'
+import { flatTree, getCategoryPathLabel } from './category'
 
 describe('Category service', () => {
   describe('flatTree', () => {
@@ -45,6 +45,31 @@ describe('Category service', () => {
           isVirtual: false,
         },
       ])
+    })
+  })
+
+  describe('getCategoryPathLabel', () => {
+    it('should replace category path with ids by category path with names (category level 2)', () => {
+      const pathLabel: string = getCategoryPathLabel(
+        ['one', 'three'],
+        categories.categories
+      )
+      expect(pathLabel).toEqual('Catégorie Trois')
+    })
+    it('should replace category path with ids by category path with names (category level 3)', () => {
+      const pathLabel: string = getCategoryPathLabel(
+        ['one', 'three', 'five'],
+        categories.categories
+      )
+      expect(pathLabel).toEqual('Catégorie Trois / Catégorie Cinq')
+    })
+    it('should replace category path with ids by category path with names (category level 3 + "@" separator)', () => {
+      const pathLabel: string = getCategoryPathLabel(
+        ['one', 'three', 'five'],
+        categories.categories,
+        ' @ '
+      )
+      expect(pathLabel).toEqual('Catégorie Trois @ Catégorie Cinq')
     })
   })
 })

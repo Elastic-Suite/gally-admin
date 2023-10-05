@@ -1,4 +1,5 @@
 import { IJsonldBase } from './jsonld'
+import { IGraphqlSearchDocument } from './documents'
 
 export interface ICategory {
   id: string
@@ -18,4 +19,8 @@ export interface ICategories extends IJsonldBase {
 
 export interface IGraphqlCategories {
   getCategoryTree: Partial<ICategories>
+}
+
+export interface IGraphqlSearchCategories {
+  categories: IGraphqlSearchDocument
 }

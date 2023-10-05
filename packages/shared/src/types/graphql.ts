@@ -47,3 +47,9 @@ export type IGraphqlApi = <T extends object>(
   variables?: Record<string, unknown>,
   options?: RequestInit
 ) => Promise<T | IError>
+
+export interface IGraphqlQueryContent {
+  variables?: Record<string, unknown>
+  args?: Record<string, unknown>
+  fields: Record<string, unknown>
+}

@@ -35,6 +35,15 @@ export function isObjectEmpty(obj: Record<string, unknown>): boolean {
   return Object.keys(obj).length === 0
 }
 
+export function addPrefixKeyObject(obj: object, prefix: string): object {
+  return Object.entries(obj).reduce((acc, [key, value]) => {
+    return {
+      ...acc,
+      [prefix + firstLetterUppercase(key)]: value,
+    }
+  }, {})
+}
+
 export function concatenateValuesWithLineBreaks(global: string[]): string {
   return global.join('\n')
 }
