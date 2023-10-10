@@ -1,3 +1,52 @@
+### 1.2.0.1 (2023-10-10)
+
+##### Documentation Changes
+
+- update CHANGELOG files ([00c623b5](https://github.com/Elastic-Suite/gally-admin/commit/00c623b52e19abf6c18d29503508d34e5c483749))
+
+##### New Features
+
+- [#1246177](https://github.com/Elastic-Suite/gally-admin/pull/1246177) explain query details components ([976f9cd9](https://github.com/Elastic-Suite/gally-admin/commit/976f9cd9bc7cba3485b3b62d2ac945c682c4d6b1))
+- [#1244769](https://github.com/Elastic-Suite/gally-admin/pull/1244769) ReadOnlyTable and Matches Table Components ([aabb797c](https://github.com/Elastic-Suite/gally-admin/commit/aabb797c796d138658958a45f50f8d098ef8d576))
+- [#1245157](https://github.com/Elastic-Suite/gally-admin/pull/1245157) requestTypes ameliorations ([6241b924](https://github.com/Elastic-Suite/gally-admin/commit/6241b924418467f54b80573c47a69908838c4efa))
+- [#1246727](https://github.com/Elastic-Suite/gally-admin/pull/1246727) add tags of textFieldTags when user lost focus in input ([6f7ec70e](https://github.com/Elastic-Suite/gally-admin/commit/6f7ec70e6ee658b285d92228cca8946b5b661e90))
+- [#1246621](https://github.com/Elastic-Suite/gally-admin/pull/1246621) create and integrate in resourceForm the composant back to other page ([1f47f9e5](https://github.com/Elastic-Suite/gally-admin/commit/1f47f9e5b7a745c3070ea2f936823759c727589a))
+- [#1244263](https://github.com/Elastic-Suite/gally-admin/pull/1244263) create function isRequestTypeValid ([5371afeb](https://github.com/Elastic-Suite/gally-admin/commit/5371afeb9cae7055f40b23817e540b5c6bde95fe))
+- [#1244235](https://github.com/Elastic-Suite/gally-admin/pull/1244235) pouvoir agrandir la largeur du ruleEngige ([cfb4cf4b](https://github.com/Elastic-Suite/gally-admin/commit/cfb4cf4b2c5c54b153c59fff79bb7a39189a5615))
+- [#1234598](https://github.com/Elastic-Suite/gally-admin/pull/1234598) refacto limitations ([a8ccfe6a](https://github.com/Elastic-Suite/gally-admin/commit/a8ccfe6a8632f68aeaeff99611bc84a85f4e5f6b))
+
+##### Bug Fixes
+
+- [#1255785](https://github.com/Elastic-Suite/gally-admin/pull/1255785) requestTypedata not loaded correctly because of limitationTypeOptionsApi not done ([d23d1460](https://github.com/Elastic-Suite/gally-admin/commit/d23d14607f17313fd2749d25a208371666e25903))
+- [#1255246](https://github.com/Elastic-Suite/gally-admin/pull/1255246) add edit translation ([11d962ef](https://github.com/Elastic-Suite/gally-admin/commit/11d962ef2afe61c5739791f38a23220838b377eb))
+- [#1255246](https://github.com/Elastic-Suite/gally-admin/pull/1255246) avoid to init searchLimitation value if TextFieldTagsMultiple is disabled ([0d1a239c](https://github.com/Elastic-Suite/gally-admin/commit/0d1a239ce960b83dc1ff3a88242dc4b3e04b9555))
+- dropdown list options not translated ([038df000](https://github.com/Elastic-Suite/gally-admin/commit/038df000c73d14d7dbc1570fa15263e3d916cebf))
+- [#1255169](https://github.com/Elastic-Suite/gally-admin/pull/1255169) fix style on row tables ([f92b3404](https://github.com/Elastic-Suite/gally-admin/commit/f92b3404f25e09c2c89d264e325cb69e9c36c369))
+- [#1200553](https://github.com/Elastic-Suite/gally-admin/pull/1200553) Expired Token stack message ([eb543ef8](https://github.com/Elastic-Suite/gally-admin/commit/eb543ef8939c78598ca76b1e9db8f6ac657dc2ed))
+- [#1246648](https://github.com/Elastic-Suite/gally-admin/pull/1246648) Replace dayjs by date-fns, and fix bug on I18nProvider ([62f2eda5](https://github.com/Elastic-Suite/gally-admin/commit/62f2eda5760b67f214f396dc7e6142b21cb92291))
+- fix translations on boost and category pages ([0f707052](https://github.com/Elastic-Suite/gally-admin/commit/0f70705293b41a3eb9d3133de51f304b9dc5d6f6))
+- [#1207517](https://github.com/Elastic-Suite/gally-admin/pull/1207517) use currentCategoryId instead of filters argument on products query to pass cat id ([d7ce7bdd](https://github.com/Elastic-Suite/gally-admin/commit/d7ce7bdde52676ca32bedb747c6c1c762ddf2239))
+- [#1251499](https://github.com/Elastic-Suite/gally-admin/pull/1251499) add traductions for placeholder in formBuilder and change min width for dropdown ([f6052348](https://github.com/Elastic-Suite/gally-admin/commit/f60523488eb6088c788c21e48b280e2c7db5d6ff))
+- [#1250484](https://github.com/Elastic-Suite/gally-admin/pull/1250484) textFieldTags ameliorations style ([82af44a0](https://github.com/Elastic-Suite/gally-admin/commit/82af44a05f19f8e9c16900fcbe6a627df601ddb1))
+- [#1246725](https://github.com/Elastic-Suite/gally-admin/pull/1246725) error when change attributs ([406c5c9f](https://github.com/Elastic-Suite/gally-admin/commit/406c5c9f960cb976b77329045af4f59e82b35a78))
+- [#1246196](https://github.com/Elastic-Suite/gally-admin/pull/1246196) make messages error for requestType ([2b97b2df](https://github.com/Elastic-Suite/gally-admin/commit/2b97b2df5f83a1f4c2f7afdeff104d02f66821ff))
+- [#1246638](https://github.com/Elastic-Suite/gally-admin/pull/1246638) reset limitations when change apply to all in requestType ([201d3e86](https://github.com/Elastic-Suite/gally-admin/commit/201d3e860b7e3b03d1816f1da58cf9badd1be70b))
+- [#1246644](https://github.com/Elastic-Suite/gally-admin/pull/1246644) make width auto for inputs in rules ([992757d2](https://github.com/Elastic-Suite/gally-admin/commit/992757d2e727f851927b6d3bc7f149df754c2122))
+- gestion of key when multiple same tags in TextFieldTags ([c28bf0fc](https://github.com/Elastic-Suite/gally-admin/commit/c28bf0fcc21c4827433d61505d362ee5e683cc63))
+- [#1246612](https://github.com/Elastic-Suite/gally-admin/pull/1246612) Height of resourceForm was bug cause to zIndex title ([ed090571](https://github.com/Elastic-Suite/gally-admin/commit/ed090571c60eb290c4b7bd42d2f171da365d11b8))
+- [#1244830](https://github.com/Elastic-Suite/gally-admin/pull/1244830) Fix product identifier type ([43924f06](https://github.com/Elastic-Suite/gally-admin/commit/43924f060b74c0c70ce24464b2f730a95ecba56a))
+- [#1195632](https://github.com/Elastic-Suite/gally-admin/pull/1195632) upgrade version of browserslist to fix storybook ([0a62ed55](https://github.com/Elastic-Suite/gally-admin/commit/0a62ed559b3447ea4b07815102192621732267e1))
+- [#125897](https://github.com/Elastic-Suite/gally-admin/pull/125897) height in <a href> in button ([e0849f24](https://github.com/Elastic-Suite/gally-admin/commit/e0849f240c29da431c0d2b74a5e18af79bed9822))
+- [#1244589](https://github.com/Elastic-Suite/gally-admin/pull/1244589) make isApplyToAll true by default for limitations in requestType ([ed85930c](https://github.com/Elastic-Suite/gally-admin/commit/ed85930c8a7c37a4569a2b91f101d71b2b270518))
+- [#1244668](https://github.com/Elastic-Suite/gally-admin/pull/1244668) lorsqu'on supprime un rt de la dropDown, l'effacer egalement dans l'objet ([b28e5b23](https://github.com/Elastic-Suite/gally-admin/commit/b28e5b23e0ad9fc685e3e21570900857742d4484))
+- [#1242220](https://github.com/Elastic-Suite/gally-admin/pull/1242220) tracuctions ([634e36b7](https://github.com/Elastic-Suite/gally-admin/commit/634e36b7b82f2d6b7f6d15e8526a7998f3c5e7b9))
+- [#1244668](https://github.com/Elastic-Suite/gally-admin/pull/1244668) lorsqu'on supprime un rt de la dropDown, l'effacer egalement dans l'objet ([bb0f96df](https://github.com/Elastic-Suite/gally-admin/commit/bb0f96df7ca562b81c09de8d5217f227c862bd89))
+- [#1244380](https://github.com/Elastic-Suite/gally-admin/pull/1244380) message erreur dans la page categories ([09544a24](https://github.com/Elastic-Suite/gally-admin/commit/09544a24a32b63fc8c7c2535eaffe0685d852a0f))
+- [#1244207](https://github.com/Elastic-Suite/gally-admin/pull/1244207) supprimer le dernier caractère dans un inputText ([eb40a3bd](https://github.com/Elastic-Suite/gally-admin/commit/eb40a3bdadb4c945171fc1f7a64c0d9801a7e97e))
+- [#1244237](https://github.com/Elastic-Suite/gally-admin/pull/1244237) gerer probleme de zIndex dans ressourceForm ([a9b422fb](https://github.com/Elastic-Suite/gally-admin/commit/a9b422fb9df2c1dc3679a3f73c4cf10d9fd70283))
+- [#1242521](https://github.com/Elastic-Suite/gally-admin/pull/1242521) add litle ameliorations for example icon in buttons, label on doubleDatePicker ([15b98ee3](https://github.com/Elastic-Suite/gally-admin/commit/15b98ee3285fefdc970c63ca1939014e2cbe1452))
+- [#1234983](https://github.com/Elastic-Suite/gally-admin/pull/1234983) error when we try to call onError but he can be undefined ([311606b6](https://github.com/Elastic-Suite/gally-admin/commit/311606b643a69737a64746b1679badfcc4a884e3))
+
 #### 1.0.2 (2023-08-18)
 
 ##### Bug Fixes
