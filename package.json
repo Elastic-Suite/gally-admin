@@ -26,6 +26,9 @@
     "release:major": "yarn --cwd ./packages/shared changelog -- -M && yarn --cwd ./packages/components changelog -- -M && yarn bumpAndPublish",
     "release:minor": "yarn --cwd ./packages/shared changelog -- -m && yarn --cwd ./packages/components changelog -- -m && yarn bumpAndPublish",
     "release:patch": "yarn --cwd ./packages/shared changelog -- -p && yarn --cwd ./packages/components changelog -- -p && yarn bumpAndPublish",
+    "release:beta:major": "lerna publish --canary major --no-private --force-publish",
+    "release:beta:minor": "lerna publish --canary minor --no-private --force-publish",
+    "release:beta:patch": "lerna publish --canary patch --no-private --force-publish",
     "bumpAndPublish": "yarn prettier && git add . && git commit -m 'docs: update CHANGELOG files' && lerna publish --no-private"
   },
   "devDependencies": {
