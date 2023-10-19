@@ -4,7 +4,7 @@ import { withAuth, withOptions } from '../../../../hocs'
 import { useRouter } from 'next/router'
 import { breadcrumbContext } from '../../../../contexts'
 
-const pagesSlug = ['merchandize', 'thesaurus']
+const pagesSlug = ['search', 'thesaurus']
 
 const propsButton = {
   endIcon: <ion-icon name="add-circle-outline" />,
