@@ -64,7 +64,7 @@ function DropDown<T>(props: IDropDownProps<T>): JSX.Element {
             ? optionMap.get(val[objectKeyValue as keyof object] as T)
             : optionMap.get(val)
         })
-      : value instanceof Object
+      : value instanceof Object && objectKeyValue
       ? optionMap.get(value[objectKeyValue as keyof object] as T) ?? null
       : optionMap.get(value as T) ?? null
 
