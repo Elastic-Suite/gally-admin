@@ -78,7 +78,9 @@ function TableGuesser<T extends IHydraMember>(props: IProps<T>): JSX.Element {
   const [selectedValue, setSelectedValue] = useState<boolean | ''>('')
   const [selectedRows, setSelectedRows] = useState<(string | number)[]>([])
 
-  const withSelection = selectedRows?.length !== undefined
+  const withSelection =
+    selectedRows?.length !== undefined &&
+    tableHeaders.some((header) => header?.editable)
   const activeRows = tableRows.filter(
     (_, index) => !(tableConfigs?.[index]?.selection.disabled ?? false)
   )
