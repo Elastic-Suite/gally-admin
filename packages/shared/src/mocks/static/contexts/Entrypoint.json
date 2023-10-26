@@ -65,8 +65,8 @@
       "@type": "@id"
     },
     "categoryTree": { "@id": "Entrypoint/categoryTree", "@type": "@id" },
-    "categorySortingOption": {
-      "@id": "Entrypoint/categorySortingOption",
+    "productSortingOption": {
+      "@id": "Entrypoint/productSortingOption",
       "@type": "@id"
     },
     "configuration": { "@id": "Entrypoint/configuration", "@type": "@id" },

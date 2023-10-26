@@ -10,11 +10,11 @@ import { useTranslation } from 'next-i18next'
 
 import {
   ICategory,
-  ICategorySortingOption,
   IGraphqlProductPosition,
   IParsedCategoryConfiguration,
   IProductFieldFilterInput,
   IProductPositions,
+  ISortingOption,
   LoadStatus,
   getProductPosition,
 } from '@elastic-suite/gally-admin-shared'
@@ -110,12 +110,12 @@ function ProductsContainer(props: IProps): JSX.Element {
     setBottomSelectedRows([])
   }
 
-  const resourceName = 'CategorySortingOption'
+  const resourceName = 'ProductSortingOption'
   const resourceSortingOption = useResource(resourceName)
-  const [{ data }] = useApiList<ICategorySortingOption>(resourceSortingOption)
+  const [{ data }] = useApiList<ISortingOption>(resourceSortingOption)
 
   const sortOption = data
-    ? data[`hydra:member`].map((obj: ICategorySortingOption) => ({
+    ? data[`hydra:member`].map((obj: ISortingOption) => ({
         value: obj.code,
         ...obj,
       }))
