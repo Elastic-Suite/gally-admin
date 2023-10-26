@@ -2545,7 +2545,7 @@ export const expandedDocs = {
       'http://www.w3.org/2000/01/rdf-schema#label': [{ '@value': 'Category' }],
     },
     {
-      '@id': 'https://localhost/docs.jsonld#CategorySortingOption',
+      '@id': 'https://localhost/docs.jsonld#ProductSortingOption',
       '@type': ['http://www.w3.org/ns/hydra/core#Class'],
       'http://www.w3.org/ns/hydra/core#supportedOperation': [],
       'http://www.w3.org/ns/hydra/core#supportedProperty': [
@@ -2553,12 +2553,11 @@ export const expandedDocs = {
           '@type': ['http://www.w3.org/ns/hydra/core#SupportedProperty'],
           'http://www.w3.org/ns/hydra/core#property': [
             {
-              '@id':
-                'https://localhost/docs.jsonld#CategorySortingOption/label',
+              '@id': 'https://localhost/docs.jsonld#ProductSortingOption/label',
               '@type': ['http://www.w3.org/1999/02/22-rdf-syntax-ns#Property'],
               'http://www.w3.org/2000/01/rdf-schema#domain': [
                 {
-                  '@id': 'https://localhost/docs.jsonld#CategorySortingOption',
+                  '@id': 'https://localhost/docs.jsonld#ProductSortingOption',
                 },
               ],
               'http://www.w3.org/2000/01/rdf-schema#range': [
@@ -2578,11 +2577,11 @@ export const expandedDocs = {
           '@type': ['http://www.w3.org/ns/hydra/core#SupportedProperty'],
           'http://www.w3.org/ns/hydra/core#property': [
             {
-              '@id': 'https://localhost/docs.jsonld#CategorySortingOption/code',
+              '@id': 'https://localhost/docs.jsonld#ProductSortingOption/code',
               '@type': ['http://www.w3.org/1999/02/22-rdf-syntax-ns#Property'],
               'http://www.w3.org/2000/01/rdf-schema#domain': [
                 {
-                  '@id': 'https://localhost/docs.jsonld#CategorySortingOption',
+                  '@id': 'https://localhost/docs.jsonld#ProductSortingOption',
                 },
               ],
               'http://www.w3.org/2000/01/rdf-schema#range': [
@@ -2600,10 +2599,10 @@ export const expandedDocs = {
         },
       ],
       'http://www.w3.org/ns/hydra/core#title': [
-        { '@value': 'CategorySortingOption' },
+        { '@value': 'ProductSortingOption' },
       ],
       'http://www.w3.org/2000/01/rdf-schema#label': [
-        { '@value': 'CategorySortingOption' },
+        { '@value': 'ProductSortingOption' },
       ],
     },
     {
@@ -4470,7 +4469,7 @@ export const expandedDocs = {
           'http://www.w3.org/ns/hydra/core#property': [
             {
               '@id':
-                'https://localhost/docs.jsonld#Entrypoint/categorySortingOption',
+                'https://localhost/docs.jsonld#Entrypoint/productSortingOption',
               '@type': ['http://www.w3.org/ns/hydra/core#Link'],
               'http://www.w3.org/2000/01/rdf-schema#domain': [
                 { '@id': 'https://localhost/docs.jsonld#Entrypoint' },
@@ -4487,13 +4486,13 @@ export const expandedDocs = {
                   'http://www.w3.org/ns/hydra/core#title': [
                     {
                       '@value':
-                        'Retrieves the collection of CategorySortingOption resources.',
+                        'Retrieves the collection of ProductSortingOption resources.',
                     },
                   ],
                   'http://www.w3.org/2000/01/rdf-schema#label': [
                     {
                       '@value':
-                        'Retrieves the collection of CategorySortingOption resources.',
+                        'Retrieves the collection of ProductSortingOption resources.',
                     },
                   ],
                   'http://www.w3.org/ns/hydra/core#returns': [
@@ -4503,7 +4502,7 @@ export const expandedDocs = {
               ],
               'http://www.w3.org/2000/01/rdf-schema#label': [
                 {
-                  '@value': 'The collection of CategorySortingOption resources',
+                  '@value': 'The collection of ProductSortingOption resources',
                 },
               ],
               'http://www.w3.org/2000/01/rdf-schema#range': [
@@ -4514,7 +4513,7 @@ export const expandedDocs = {
                       'http://www.w3.org/2002/07/owl#allValuesFrom': [
                         {
                           '@id':
-                            'https://localhost/docs.jsonld#CategorySortingOption',
+                            'https://localhost/docs.jsonld#ProductSortingOption',
                         },
                       ],
                       'http://www.w3.org/2002/07/owl#onProperty': [
@@ -4528,7 +4527,7 @@ export const expandedDocs = {
           ],
           'http://www.w3.org/ns/hydra/core#readable': [{ '@value': true }],
           'http://www.w3.org/ns/hydra/core#title': [
-            { '@value': 'The collection of CategorySortingOption resources' },
+            { '@value': 'The collection of ProductSortingOption resources' },
           ],
           'http://www.w3.org/ns/hydra/core#writeable': [{ '@value': false }],
         },
