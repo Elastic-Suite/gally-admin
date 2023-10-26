@@ -1,21 +1,13 @@
-import { SortOrder } from './categorySortingOption'
-import { ISearchParameters } from './fetch'
+import { SortOrder } from './sortingOption'
+import { IGraphqlAggregation } from './aggregation'
 export interface IGraphqlSearchDocumentsVariables {
   entityType: string
   localizedCatalog: string
-  currentCategoryId?: string
   currentPage?: number
   filter?: IDocumentFieldFilterInput[] | IDocumentFieldFilterInput
   pageSize?: number
   search?: string
-  sort?: Record<string, SortOrder>
-}
-
-export enum AggregationType {
-  CATEGORY = 'category',
-  CHECKBOX = 'checkbox',
-  SLIDER = 'slider',
-  BOOLEAN = 'boolean',
+  sort?: IGraphqlDocumentSort
 }
 
 export interface IGraphqlSearchDocuments {
@@ -26,7 +18,7 @@ export interface IGraphqlSearchDocument {
   collection: IGraphqlDocument[]
   paginationInfo: IGraphqlDocumentPaginationInfo
   sortInfo: IGraphqlDocumentSortInfo
-  aggregations?: IGraphqlDocumentAggregation[]
+  aggregations?: IGraphqlAggregation[]
 }
 
 export interface IGraphqlDocument {
@@ -40,6 +32,10 @@ export interface IGraphqlDocumentPaginationInfo {
   totalCount: number
 }
 
+export interface IGraphqlDocumentSort {
+  field: string
+  direction: SortOrder
+}
 export interface IGraphqlDocumentSortInfo {
   current: IGraphqlDocumentSortInfoCurrent[]
 }
@@ -49,26 +45,6 @@ export interface IGraphqlDocumentSortInfoCurrent {
   direction: SortOrder
 }
 
-export interface IGraphqlDocumentAggregation {
-  count: number
-  field: string
-  label: string
-  type: AggregationType
-  options: IGraphqlDocumentAggregationOption[]
-  hasMore: boolean | null
-}
-
-export interface IGraphqlDocumentAggregationOption {
-  count: number
-  label: string
-  value: string
-}
-
-export interface IFetchParams {
-  options: RequestInit
-  searchParameters: ISearchParameters
-}
-
 export interface IDocumentBoolFilterInput {
   _must?: IDocumentFieldFilterInput[]
   _should?: IDocumentFieldFilterInput[]
@@ -76,18 +52,18 @@ export interface IDocumentBoolFilterInput {
 }
 
 export interface IDocumentEqualFilterInput {
-  field?: string
-  eq: string
-  in: string[]
+  field: string
+  eq?: string
+  in?: string[]
 }
 
 export interface IDocumentMatchFilterInput {
-  field?: string
-  match?: string
+  field: string
+  match: string
 }
 
 export interface IDocumentRangeFilterInput {
-  field?: string
+  field: string
   gte?: string
   gt?: string
   lt?: string
@@ -95,9 +71,13 @@ export interface IDocumentRangeFilterInput {
 }
 
 export interface IDocumentExistFilterInput {
-  field?: string
+  field: string
 }
 
 export interface IDocumentFieldFilterInput {
   boolFilter?: IDocumentBoolFilterInput
+  equalFilter?: IDocumentEqualFilterInput
+  matchFilter?: IDocumentMatchFilterInput
+  rangeFilter?: IDocumentRangeFilterInput
+  existFilter?: IDocumentExistFilterInput
 }

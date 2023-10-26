@@ -1,7 +1,7 @@
 import { api } from '@elastic-suite/gally-admin-shared/src/mocks'
 
 import catalog from '@elastic-suite/gally-admin-shared/src/mocks/static/catalog.json'
-import categorySortingOptions from '@elastic-suite/gally-admin-shared/src/mocks/static/category_sorting_options.json'
+import productSortingOptions from '@elastic-suite/gally-admin-shared/src/mocks/static/product_sorting_options.json'
 import docs from '@elastic-suite/gally-admin-shared/src/mocks/static/docs.json'
 import entrypoint from '@elastic-suite/gally-admin-shared/src/mocks/static/index.json'
 import graphql from '@elastic-suite/gally-admin-shared/src/mocks/static/graphql.json'
@@ -46,9 +46,9 @@ fetchApi.mockImplementation((_, resource) => {
     data = { ...metadata }
   } else if (
     typeof resource === 'string' &&
-    resource.endsWith('category_sorting_options')
+    resource.endsWith('product_sorting_options')
   ) {
-    data = { ...categorySortingOptions }
+    data = { ...productSortingOptions }
   } else if (
     (typeof resource !== 'string' &&
       resource.title.toLowerCase() === 'source_field_option_label') ||

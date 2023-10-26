@@ -1129,8 +1129,8 @@
           "gally": {
             "input": "select",
             "options": {
-              "api_rest": "/category_sorting_options",
-              "api_graphql": "categorySortingOptions"
+              "api_rest": "/product_sorting_options",
+              "api_graphql": "productSortingOptions"
             }
           }
         },
@@ -2320,18 +2320,18 @@
       ]
     },
     {
-      "@id": "#CategorySortingOption",
+      "@id": "#ProductSortingOption",
       "@type": "hydra:Class",
-      "rdfs:label": "CategorySortingOption",
-      "hydra:title": "CategorySortingOption",
+      "rdfs:label": "ProductSortingOption",
+      "hydra:title": "ProductSortingOption",
       "hydra:supportedProperty": [
         {
           "@type": "hydra:SupportedProperty",
           "hydra:property": {
-            "@id": "#CategorySortingOption/code",
+            "@id": "#ProductSortingOption/code",
             "@type": "rdf:Property",
             "rdfs:label": "code",
-            "domain": "#CategorySortingOption",
+            "domain": "#ProductSortingOption",
             "range": "xmls:string"
           },
           "hydra:title": "code",
@@ -2342,10 +2342,10 @@
         {
           "@type": "hydra:SupportedProperty",
           "hydra:property": {
-            "@id": "#CategorySortingOption/label",
+            "@id": "#ProductSortingOption/label",
             "@type": "rdf:Property",
             "rdfs:label": "label",
-            "domain": "#CategorySortingOption",
+            "domain": "#ProductSortingOption",
             "range": "xmls:string"
           },
           "hydra:title": "label",
@@ -3624,16 +3624,16 @@
         {
           "@type": "hydra:SupportedProperty",
           "hydra:property": {
-            "@id": "#Entrypoint/categorySortingOption",
+            "@id": "#Entrypoint/productSortingOption",
             "@type": "hydra:Link",
             "domain": "#Entrypoint",
-            "rdfs:label": "The collection of CategorySortingOption resources",
+            "rdfs:label": "The collection of ProductSortingOption resources",
             "rdfs:range": [
               { "@id": "hydra:Collection" },
               {
                 "owl:equivalentClass": {
                   "owl:onProperty": { "@id": "hydra:member" },
-                  "owl:allValuesFrom": { "@id": "#CategorySortingOption" }
+                  "owl:allValuesFrom": { "@id": "#ProductSortingOption" }
                 }
               }
             ],
@@ -3641,13 +3641,13 @@
               {
                 "@type": ["hydra:Operation", "schema:FindAction"],
                 "hydra:method": "GET",
-                "hydra:title": "Retrieves the collection of CategorySortingOption resources.",
-                "rdfs:label": "Retrieves the collection of CategorySortingOption resources.",
+                "hydra:title": "Retrieves the collection of ProductSortingOption resources.",
+                "rdfs:label": "Retrieves the collection of ProductSortingOption resources.",
                 "returns": "hydra:Collection"
               }
             ]
           },
-          "hydra:title": "The collection of CategorySortingOption resources",
+          "hydra:title": "The collection of ProductSortingOption resources",
           "hydra:readable": true,
           "hydra:writeable": false
         },
