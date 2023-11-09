@@ -1,4 +1,4 @@
-import productSortingOptions from '../mocks/static/product_sorting_options.json'
+import categorySortingOptions from '../mocks/static/category_sorting_options.json'
 import metadata from '../mocks/static/metadata.json'
 import sourceFieldOptions from '../mocks/static/source_field_options.json'
 import sourceFieldOptionLabels from '../mocks/static/source_field_option_labels.json'
@@ -440,7 +440,7 @@ describe('Hydra service', () => {
 
   describe('getOptionsFromApiSchema', () => {
     it('Should return the options', () => {
-      expect(getOptionsFromApiSchema(productSortingOptions)).toEqual([
+      expect(getOptionsFromApiSchema(categorySortingOptions)).toEqual([
         {
           label: 'Position',
           value: 'position',

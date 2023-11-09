@@ -2,7 +2,6 @@ import { VariableType, jsonToGraphQLQuery } from 'json-to-graphql-query'
 
 import { IGraphqlQueryContent, IProductFieldFilterInput } from '../types'
 import { IDocumentFieldFilterInput } from '../types/documents'
-import { categoryEntityType } from './category'
 
 export function getSearchProductsQuery(
   filter: IProductFieldFilterInput | IProductFieldFilterInput[] = null,
@@ -99,34 +98,7 @@ export function getSearchCategoryQueryContent(
   filter: IDocumentFieldFilterInput | IDocumentFieldFilterInput[] = null,
   withAggregations = false
 ): IGraphqlQueryContent {
-  return getSearchDocumentQueryContent(
-    filter,
-    withAggregations,
-    categoryEntityType
-  )
-}
-
-export function getSearchDocumentsQuery(
-  entityType: string,
-  filter: IDocumentFieldFilterInput | IDocumentFieldFilterInput[] = null,
-  withAggregations = false
-): string {
-  const documentQueryContent = getSearchDocumentQueryContent(
-    filter,
-    withAggregations,
-    entityType
-  )
-  return jsonToGraphQLQuery({
-    query: {
-      __name: 'getDocuments',
-      __variables: { ...documentQueryContent.variables },
-      documents: {
-        __aliasFor: 'documents',
-        __args: { ...documentQueryContent.args },
-        ...documentQueryContent.fields,
-      },
-    },
-  })
+  return getSearchDocumentQueryContent(filter, withAggregations, 'category')
 }
 
 export function getSearchDocumentQueryContent(
@@ -190,18 +162,15 @@ export function getSearchDocumentQueryContent(
 }
 
 export function getAutoCompleteSearchQuery(
-  productFilter: IProductFieldFilterInput | IProductFieldFilterInput[] = null,
-  categoryFilter:
-    | IDocumentFieldFilterInput
-    | IDocumentFieldFilterInput[] = null,
+  filter: IProductFieldFilterInput | IProductFieldFilterInput[] = null,
   withAggregations = false
 ): string {
   const productQueryContent = getSearchProductsQueryContent(
-    productFilter,
+    filter,
     withAggregations
   )
   const categoryQueryContent = getSearchCategoryQueryContent(
-    categoryFilter,
+    filter,
     withAggregations
   )
   return jsonToGraphQLQuery({
@@ -226,35 +195,6 @@ export function getAutoCompleteSearchQuery(
 }
 
 export function getMoreFacetOptionsQuery(
-  filter: IDocumentFieldFilterInput | IDocumentFieldFilterInput[] = null
-): string {
-  return jsonToGraphQLQuery({
-    query: {
-      __name: 'viewMoreFacetOptions',
-      __variables: {
-        entityType: 'String!',
-        localizedCatalog: 'String!',
-        aggregation: 'String!',
-        search: 'String',
-      },
-      viewMoreFacetOptions: {
-        __args: {
-          entityType: new VariableType('entityType'),
-          localizedCatalog: new VariableType('localizedCatalog'),
-          aggregation: new VariableType('aggregation'),
-          search: new VariableType('search'),
-          filter,
-        },
-        id: true,
-        value: true,
-        label: true,
-        count: true,
-      },
-    },
-  })
-}
-
-export function getMoreFacetProductOptionsQuery(
   filter: IProductFieldFilterInput | IProductFieldFilterInput[] = null
 ): string {
   return jsonToGraphQLQuery({

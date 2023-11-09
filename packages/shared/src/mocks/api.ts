@@ -99,7 +99,7 @@ export const fieldDropdownWithApiOptions = {
   gally: {
     input: 'select',
     options: {
-      api_rest: '/product_sorting_options',
+      api_rest: '/category_sorting_options',
     },
     editable: false,
     position: 10,
@@ -1806,7 +1806,7 @@ export const resources = [
     url: 'https://localhost/categories',
   },
   {
-    '@id': 'https://localhost/docs.jsonld#ProductSortingOption',
+    '@id': 'https://localhost/docs.jsonld#CategorySortingOption',
     '@type': 'http://www.w3.org/ns/hydra/core#Class',
     supportedOperation: {
       '@type': [
@@ -1814,18 +1814,18 @@ export const resources = [
         'http://schema.org/FindAction',
       ],
       method: 'GET',
-      title: 'Retrieves the collection of ProductSortingOption resources.',
-      label: 'Retrieves the collection of ProductSortingOption resources.',
+      title: 'Retrieves the collection of CategorySortingOption resources.',
+      label: 'Retrieves the collection of CategorySortingOption resources.',
       returns: { '@id': 'http://www.w3.org/ns/hydra/core#Collection' },
     },
     supportedProperty: [
       {
         '@type': 'http://www.w3.org/ns/hydra/core#SupportedProperty',
         property: {
-          '@id': 'https://localhost/docs.jsonld#ProductSortingOption/label',
+          '@id': 'https://localhost/docs.jsonld#CategorySortingOption/label',
           '@type': 'http://www.w3.org/1999/02/22-rdf-syntax-ns#Property',
           domain: {
-            '@id': 'https://localhost/docs.jsonld#ProductSortingOption',
+            '@id': 'https://localhost/docs.jsonld#CategorySortingOption',
           },
           range: { '@id': 'http://www.w3.org/2001/XMLSchema#string' },
           label: 'label',
@@ -1838,10 +1838,10 @@ export const resources = [
       {
         '@type': 'http://www.w3.org/ns/hydra/core#SupportedProperty',
         property: {
-          '@id': 'https://localhost/docs.jsonld#ProductSortingOption/code',
+          '@id': 'https://localhost/docs.jsonld#CategorySortingOption/code',
           '@type': 'http://www.w3.org/1999/02/22-rdf-syntax-ns#Property',
           domain: {
-            '@id': 'https://localhost/docs.jsonld#ProductSortingOption',
+            '@id': 'https://localhost/docs.jsonld#CategorySortingOption',
           },
           range: { '@id': 'http://www.w3.org/2001/XMLSchema#string' },
           label: 'code',
@@ -1852,9 +1852,9 @@ export const resources = [
         writeable: true,
       },
     ],
-    title: 'ProductSortingOption',
-    label: 'ProductSortingOption',
-    url: 'https://localhost/product_sorting_options',
+    title: 'CategorySortingOption',
+    label: 'CategorySortingOption',
+    url: 'https://localhost/category_sorting_options',
   },
   {
     '@id': 'https://localhost/docs.jsonld#CategoryConfiguration',
