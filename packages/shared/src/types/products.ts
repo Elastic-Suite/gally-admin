@@ -1,11 +1,6 @@
-import { ISortingOption, SortOrder } from './sortingOption'
+import { SortOrder } from './categorySortingOption'
 import { IPrice, IStock } from './customTables'
 import { ISearchParameters } from './fetch'
-import { IGraphqlAggregation } from './aggregation'
-import {
-  IGraphqlViewMoreFacetOption,
-  IGraphqlViewMoreFacetOptionsVariables,
-} from './facet'
 
 export enum ProductRequestType {
   CATALOG = 'product_catalog',
@@ -24,6 +19,13 @@ export interface IGraphqlSearchProductsVariables {
   sort?: Record<string, SortOrder>
 }
 
+export enum AggregationType {
+  CATEGORY = 'category',
+  CHECKBOX = 'checkbox',
+  SLIDER = 'slider',
+  BOOLEAN = 'boolean',
+}
+
 export interface IGraphqlSearchProducts {
   products: IGraphqlSearchProduct
 }
@@ -32,7 +34,7 @@ export interface IGraphqlSearchProduct {
   collection: IGraphqlProduct[]
   paginationInfo: IGraphqlProductPaginationInfo
   sortInfo: IGraphqlProductSortInfo
-  aggregations?: IGraphqlAggregation[]
+  aggregations?: IGraphqlProductAggregation[]
 }
 
 export interface IGraphqlProduct {
@@ -57,6 +59,21 @@ export interface IGraphqlProductSortInfo {
 export interface IGraphqlProductSortInfoCurrent {
   field: string
   direction: SortOrder
+}
+
+export interface IGraphqlProductAggregation {
+  count: number
+  field: string
+  label: string
+  type: AggregationType
+  options: IGraphqlProductAggregationOption[]
+  hasMore: boolean | null
+}
+
+export interface IGraphqlProductAggregationOption {
+  count: number
+  label: string
+  value: string
 }
 
 export interface IFetchParams {
@@ -113,16 +130,21 @@ export interface IProductFieldFilterInput {
   [key: string]: ITypeFilterInput
 }
 
-export interface IGraphqlViewMoreProductFacetOptionsVariables
-  extends Omit<IGraphqlViewMoreFacetOptionsVariables, 'entityType'> {
+export interface IGraphqlViewMoreFacetOption {
+  id: string
+  value: string
+  label: string
+  count: number
+}
+
+export interface IGraphqlViewMoreFacetOptionsVariables {
+  aggregation: string
+  localizedCatalog: string
   currentCategoryId?: string
   filter?: IProductFieldFilterInput[] | IProductFieldFilterInput
+  search?: string
 }
 
-export interface IGraphqlViewMoreProductFacetOptions {
+export interface IGraphqlViewMoreFacetOptions {
   viewMoreProductFacetOptions: IGraphqlViewMoreFacetOption[]
-}
-
-export interface IGraphqlProductSortingOptions {
-  productSortingOptions: ISortingOption[]
 }

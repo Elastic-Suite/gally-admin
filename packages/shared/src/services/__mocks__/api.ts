@@ -1,4 +1,4 @@
-import productSortingOptions from '../../mocks/static/product_sorting_options.json'
+import categorySortingOptions from '../../mocks/static/category_sorting_options.json'
 import metadata from '../../mocks/static/metadata.json'
 import sourceFieldOptionLabels from '../../mocks/static/source_field_option_labels.json'
 import { IResource, ISearchParameters } from '../../types'
@@ -18,9 +18,9 @@ export const fetchApi = jest.fn(
       data = { ...metadata }
     } else if (
       typeof resource === 'string' &&
-      resource.endsWith('product_sorting_options')
+      resource.endsWith('category_sorting_options')
     ) {
-      data = { ...productSortingOptions }
+      data = { ...categorySortingOptions }
     } else if (
       (typeof resource !== 'string' &&
         resource.title.toLowerCase() === 'source_field_option_label') ||

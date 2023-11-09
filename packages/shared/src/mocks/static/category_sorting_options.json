@@ -1,6 +1,6 @@
 {
-  "@context": "/contexts/ProductSortingOption",
-  "@id": "/product_sorting_options",
+  "@context": "/contexts/CategorySortingOption",
+  "@id": "/category_sorting_options",
   "@type": "hydra:Collection",
   "hydra:member": [
     {
