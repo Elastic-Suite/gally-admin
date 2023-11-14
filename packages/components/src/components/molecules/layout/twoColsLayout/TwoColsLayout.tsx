@@ -6,7 +6,7 @@ const Sentinel = styled('div')({
   top: 0,
   left: 0,
   right: 0,
-  height: '64px',
+  height: '84px',
 })
 
 const CustomRoot = styled('div')({
@@ -35,7 +35,7 @@ const Sticky = styled(CustomBorder)(({ theme }) => ({
   top: '100px',
   alignSelf: 'flex-start',
   width: 402,
-  maxHeight: 'calc(100vh - 100px)',
+  maxHeight: 'calc(100vh - 115px)',
   boxSizing: 'border-box',
   '&.fixed': {
     position: 'fixed',
