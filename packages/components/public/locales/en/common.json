@@ -57,6 +57,6 @@
   "date.placeholder": "MM/DD/YYYY",
   "error.format": "Wrong or incomplet format",
   "placeholder.requestType.search": "Selection of categories",
-  "back": "Retour",
+  "back": "Back",
   "placeholder.default.textFieldTags": "Add text"
 }
