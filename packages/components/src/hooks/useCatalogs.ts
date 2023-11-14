@@ -37,7 +37,9 @@ export function useCatalogs(catalogs: IHydraCatalog[]): ICatalogContext {
       localizedCatalog,
       localizedCatalogId,
       localizedCatalogWithDefault,
-      localizedCatalogIdWithDefault: String(localizedCatalogWithDefault?.id),
+      localizedCatalogIdWithDefault: localizedCatalogWithDefault
+        ? String(localizedCatalogWithDefault?.id)
+        : '',
       setCatalogId,
       setLocalizedCatalogId,
     }),
