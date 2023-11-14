@@ -3,7 +3,7 @@
 exports[`StickyBar should match snapshot 1`] = `
 <div>
   <div
-    class="MuiBox-root css-n81syr"
+    class="MuiBox-root css-1mk22to"
     data-testid="sticky-bar"
     style="left: 0px;"
   >

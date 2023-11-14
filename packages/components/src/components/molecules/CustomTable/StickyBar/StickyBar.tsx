@@ -9,7 +9,7 @@ const StickyContainer = styled(Box)({
   bottom: '0',
   background:
     'linear-gradient(0deg, rgba(21, 26, 71, 0.1) 0%, rgba(21, 26, 71, 0) 110.27%)',
-  zIndex: '2',
+  zIndex: '4',
   height: '112px',
   width: '100%',
 })
