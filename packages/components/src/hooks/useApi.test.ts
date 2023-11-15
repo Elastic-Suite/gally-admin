@@ -389,5 +389,25 @@ describe('useApi', () => {
         true
       )
     })
+
+    it('should call the API (massReplace)', async () => {
+      const { result } = renderHookWithProviders(() =>
+        useApiEditableList<ITest>(resource)
+      )
+      await waitFor(() =>
+        expect(result.current[0].data['hydra:member'].length).toEqual(2)
+      )
+      ;(fetchApi as jest.Mock).mockClear()
+      await act(() =>
+        result.current[1].massReplace([1], { id: 1, hello: 'world' })
+      )
+      expect(fetchApi).toHaveBeenCalledWith(
+        'en',
+        'https://localhost/metadata/1',
+        undefined,
+        { body: '{"id":1,"hello":"world"}', method: 'PUT' },
+        true
+      )
+    })
   })
 })

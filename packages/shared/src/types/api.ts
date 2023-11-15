@@ -63,6 +63,10 @@ export type IResourceEditableMassUpdate<T> = (
   ids: (string | number)[],
   item: Partial<T>
 ) => Promise<void>
+export type IResourceEditableMassReplace<T> = (
+  ids: (string | number)[],
+  item: Omit<T, '@id' | '@type'>
+) => Promise<void>
 export type IResourceEditableRemove = (id: string | number) => Promise<void>
 export type IResourceEditableReplace<T> = (
   item: Omit<T, '@id' | '@type'>
@@ -75,6 +79,7 @@ export type IResourceEditableUpdate<T> = (
 export interface IResourceEditableOperations<T> {
   create?: IResourceEditableCreate<T>
   massUpdate?: IResourceEditableMassUpdate<T>
+  massReplace?: IResourceEditableMassReplace<T>
   remove?: IResourceEditableRemove
   replace?: IResourceEditableReplace<T>
   update?: IResourceEditableUpdate<T>

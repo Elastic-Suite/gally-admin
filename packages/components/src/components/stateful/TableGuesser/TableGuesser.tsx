@@ -11,6 +11,7 @@ import {
   IFieldGuesserProps,
   IHydraMember,
   IResource,
+  IResourceEditableMassReplace,
   IResourceEditableMassUpdate,
   ITableConfig,
   ITableRow,
@@ -31,6 +32,7 @@ interface IProps<T extends IHydraMember> {
   currentPage?: number
   diffRows?: ITableRow[]
   onMassupdate: IResourceEditableMassUpdate<T>
+  onMassreplace: IResourceEditableMassReplace<T>
   onPageChange: (page: number) => void
   onRowUpdate?: (
     id: string | number,
@@ -58,6 +60,7 @@ function TableGuesser<T extends IHydraMember>(props: IProps<T>): JSX.Element {
     currentPage,
     diffRows,
     onMassupdate,
+    onMassreplace,
     onPageChange,
     onRowUpdate,
     resource,
@@ -112,10 +115,16 @@ function TableGuesser<T extends IHydraMember>(props: IProps<T>): JSX.Element {
   }
 
   function handleApply(): void {
-    if (onMassupdate && selectedField !== '') {
-      onMassupdate(selectedRows, {
-        [selectedField.title]: selectedValue,
-      } as unknown as Partial<T>)
+    if (selectedField !== '') {
+      if (onMassupdate) {
+        onMassupdate(selectedRows, {
+          [selectedField.title]: selectedValue,
+        } as unknown as Partial<T>)
+      } else if (onMassreplace) {
+        onMassreplace(selectedRows, {
+          [selectedField.title]: selectedValue,
+        } as unknown as Omit<T, '@id' | '@type'>)
+      }
     }
   }
 
