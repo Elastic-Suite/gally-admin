@@ -127,7 +127,7 @@ function ResourceTable(props: IResourceTable): JSX.Element {
   const rowsPerPageOptions = defaultRowsPerPageOptions
   const [rowsPerPage, setRowsPerPage] = useState<number>(defaultPageSize)
 
-  const [resourceData, { massUpdate, replace, update }] =
+  const [resourceData, { massUpdate, massReplace, replace, update }] =
     useApiEditableList<ISourceField>(
       resource,
       page,
@@ -199,6 +199,8 @@ function ResourceTable(props: IResourceTable): JSX.Element {
   ): void {
     if (update) {
       update(id, { [name]: value })
+    } else if (replace) {
+      replace({ id, [name]: value } as unknown as ISourceField)
     }
   }
 
@@ -278,6 +280,7 @@ function ResourceTable(props: IResourceTable): JSX.Element {
           filterOrSearchAreUp
         }
         onMassupdate={massUpdate}
+        onMassreplace={massReplace}
         onPageChange={handlePageChange}
         onRowUpdate={handleRowChange}
         onRowsPerPageChange={onRowsPerPageChange}

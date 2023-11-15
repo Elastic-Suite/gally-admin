@@ -215,6 +215,29 @@ export function useApiEditableList<T extends IHydraMember>(
     [load, searchParameters, searchValue, update, updateList]
   )
 
+  const massEditableReplace = useCallback(
+    async (
+      ids: (string | number)[],
+      updatedItem: Omit<T, '@id' | '@type'>
+    ): Promise<void> => {
+      updateList((items) =>
+        items.map((item) =>
+          ids.includes(item.id) ? { ...item, ...updatedItem } : item
+        )
+      )
+      const promises = ids.map((id) =>
+        replace({ id, ...updatedItem } as unknown as T)
+      )
+      const responses = await Promise.all(promises)
+      const hasError = responses.some((response) => isError(response))
+      if (hasError || searchParameters || searchValue) {
+        // reload if error or if any filter is applied
+        load()
+      }
+    },
+    [load, searchParameters, searchValue, replace, updateList]
+  )
+
   const editableCreate = useCallback(
     async (item: Omit<T, 'id' | '@id' | '@type'>): Promise<void> => {
       const createResponse = await create(item)
@@ -272,6 +295,7 @@ export function useApiEditableList<T extends IHydraMember>(
     }
     if (replace) {
       operations.replace = editableReplace
+      operations.massReplace = massEditableReplace
     }
     if (remove) {
       operations.remove = editableRemove
@@ -284,6 +308,7 @@ export function useApiEditableList<T extends IHydraMember>(
     editableReplace,
     editableUpdate,
     massEditableUpdate,
+    massEditableReplace,
     remove,
     replace,
     update,
