@@ -10,13 +10,17 @@ import {
   IConfigurations,
   IGraphqlProductPosition,
   IGraphqlSearchProducts,
+  IParsedCategoryConfiguration,
   IProductFieldFilterInput,
   IProductPositions,
+  IRuleEngineOperators,
   ITableRow,
   LoadStatus,
   ProductRequestType,
-  getSearchProductsQuery,
+  cleanBeforeSaveCatConf,
+  getSearchPreviewProductsQuery,
   productTableheader,
+  serializeCatConf,
 } from '@elastic-suite/gally-admin-shared'
 
 import { catalogContext } from '../../../contexts'
@@ -37,6 +41,8 @@ interface IProps {
   configuration: IConfigurations
   searchValue: string
   setNbTopRows: (value: number) => void
+  catConf: IParsedCategoryConfiguration
+  ruleOperators: IRuleEngineOperators
   hasEditLink?: boolean
   editLink?: string
 }
@@ -54,6 +60,8 @@ function TopTable(props: IProps): JSX.Element {
     configuration,
     searchValue,
     setNbTopRows,
+    catConf,
+    ruleOperators,
     hasEditLink,
     editLink,
   } = props
@@ -64,8 +72,13 @@ function TopTable(props: IProps): JSX.Element {
       currentCategoryId: category?.id,
       localizedCatalog: localizedCatalogIdWithDefault,
       requestType: ProductRequestType.CATALOG,
+      currentCategoryConfiguration: catConf
+        ? JSON.stringify(
+            cleanBeforeSaveCatConf(serializeCatConf(catConf, ruleOperators))
+          )
+        : undefined,
     }),
-    [category, localizedCatalogIdWithDefault]
+    [category, localizedCatalogIdWithDefault, catConf, ruleOperators]
   )
   const filters = productGraphqlFilters ? [productGraphqlFilters] : []
   if (topProductsIds.length > 0) {
@@ -86,7 +99,7 @@ function TopTable(props: IProps): JSX.Element {
   }
 
   const [products] = useGraphqlApi<IGraphqlSearchProducts>(
-    getSearchProductsQuery(filters),
+    getSearchPreviewProductsQuery(filters),
     variables
   )
 

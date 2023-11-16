@@ -8,6 +8,7 @@ import {
 } from '../types'
 
 import {
+  cleanBeforeSaveCatConf,
   isAttributeRule,
   isCombinationRule,
   isRuleValid,
@@ -188,6 +189,21 @@ describe('Rules service', () => {
       ).toEqual(
         expect.objectContaining({
           virtualRule,
+        })
+      )
+    })
+  })
+
+  describe('cleanBeforeSaveCatConf', () => {
+    it('should remove useless data on category configuration before save', () => {
+      const newCatConf = {
+        ...catConf,
+        id: 0,
+        '@id': '/category_configurations/0',
+      }
+      expect(cleanBeforeSaveCatConf(newCatConf)).toEqual(
+        expect.not.objectContaining({
+          '@id': '/category_configurations/0',
         })
       )
     })

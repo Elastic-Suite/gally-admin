@@ -12,13 +12,17 @@ import {
   ICategory,
   IConfigurations,
   IGraphqlSearchProducts,
+  IParsedCategoryConfiguration,
   IProductFieldFilterInput,
+  IRuleEngineOperators,
   ITableRow,
   ProductRequestType,
+  cleanBeforeSaveCatConf,
   defaultPageSize,
   defaultRowsPerPageOptions,
-  getSearchProductsQuery,
+  getSearchPreviewProductsQuery,
   productTableheader,
+  serializeCatConf,
 } from '@elastic-suite/gally-admin-shared'
 
 import { catalogContext } from '../../../contexts'
@@ -40,6 +44,8 @@ interface IProps {
   searchValue: string
   configuration: IConfigurations
   nbTopProducts: number
+  catConf: IParsedCategoryConfiguration
+  ruleOperators: IRuleEngineOperators
   hasEditLink?: boolean
   editLink?: string
 }
@@ -59,6 +65,8 @@ function BottomTable(
     searchValue,
     configuration,
     nbTopProducts,
+    catConf,
+    ruleOperators,
     hasEditLink,
     editLink,
   } = props
@@ -78,6 +86,11 @@ function BottomTable(
         sortValue && sortValue !== 'category__position'
           ? { [sortValue]: 'asc' }
           : {},
+      currentCategoryConfiguration: catConf
+        ? JSON.stringify(
+            cleanBeforeSaveCatConf(serializeCatConf(catConf, ruleOperators))
+          )
+        : undefined,
     }),
     [
       category,
@@ -85,6 +98,8 @@ function BottomTable(
       localizedCatalogIdWithDefault,
       rowsPerPage,
       sortValue,
+      catConf,
+      ruleOperators,
     ]
   )
   const filters = productGraphqlFilters ? [productGraphqlFilters] : []
@@ -108,7 +123,7 @@ function BottomTable(
   }
 
   const [products] = useGraphqlApi<IGraphqlSearchProducts>(
-    getSearchProductsQuery(filters),
+    getSearchPreviewProductsQuery(filters),
     variables
   )
 

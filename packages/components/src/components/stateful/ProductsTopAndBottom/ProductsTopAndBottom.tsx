@@ -10,8 +10,10 @@ import { useTranslation } from 'next-i18next'
 import {
   ICategory,
   IGraphqlProductPosition,
+  IParsedCategoryConfiguration,
   IProductFieldFilterInput,
   IProductPositions,
+  IRuleEngineOperators,
 } from '@elastic-suite/gally-admin-shared'
 
 import { selectConfiguration, useAppSelector } from '../../../store'
@@ -41,6 +43,8 @@ interface IProps {
   sortValue: string
   searchValue: string
   nbTopProducts: number
+  catConf: IParsedCategoryConfiguration
+  ruleOperators: IRuleEngineOperators
   hasEditLink?: boolean
   editLink?: string
 }
@@ -63,6 +67,8 @@ function ProductsTopAndBottom(
     sortValue,
     searchValue,
     nbTopProducts,
+    catConf,
+    ruleOperators,
     hasEditLink,
     editLink,
   } = props
@@ -90,6 +96,8 @@ function ProductsTopAndBottom(
               searchValue={searchValue}
               configuration={configuration}
               setNbTopRows={setNbTopRows}
+              catConf={catConf}
+              ruleOperators={ruleOperators}
               hasEditLink={hasEditLink}
               editLink={editLink}
             />
@@ -106,6 +114,8 @@ function ProductsTopAndBottom(
             searchValue={searchValue}
             configuration={configuration}
             nbTopProducts={nbTopProducts}
+            catConf={catConf}
+            ruleOperators={ruleOperators}
             hasEditLink={hasEditLink}
             editLink={editLink}
           />

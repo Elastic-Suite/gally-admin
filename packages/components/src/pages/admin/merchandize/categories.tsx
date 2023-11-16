@@ -25,7 +25,6 @@ import {
   useFetchApi,
   useResource,
   useResourceOperations,
-  useRuleEngineGraphqlFilters,
   useRuleOperators,
 } from '../../../hooks'
 import { findCategory } from '../../../services'
@@ -124,10 +123,6 @@ function AdminMerchandizeCategories(): JSX.Element {
 
   const isValid = !catConf?.isVirtual || isRuleValid(catConf?.virtualRule)
 
-  // Rule engine graphql filters
-  const [productGraphqlFilters, setRuleEngineGraphqlFilters] =
-    useRuleEngineGraphqlFilters(catConf, ruleOperators)
-
   // Product positions
   const prevProductPositions = useRef<string>('')
 
@@ -142,7 +137,6 @@ function AdminMerchandizeCategories(): JSX.Element {
   function handleSelectCategory(category: ICategory): void {
     setSelectedCategoryItem(category)
     setCatConf(null)
-    setRuleEngineGraphqlFilters(null)
   }
 
   const graphqlApi = useApiGraphql()
@@ -238,13 +232,13 @@ function AdminMerchandizeCategories(): JSX.Element {
           <Placeholder placeholder={t('placeholder')}>
             <ProductsContainer
               catConf={catConf}
+              ruleOperators={ruleOperators}
               category={selectedCategoryItem}
               isValid={isValid}
               onChange={handleUpdateCat}
               onSave={onSave}
               prevCatConf={prevCatConf}
               prevProductPositions={prevProductPositions}
-              productGraphqlFilters={productGraphqlFilters}
               isLoading={isLoading}
               localizedCatalogIdWithDefault={localizedCatalogIdWithDefault}
             />

@@ -25,6 +25,35 @@ export function getSearchProductsQuery(
   })
 }
 
+export function getSearchPreviewProductsQuery(
+  filter: IProductFieldFilterInput | IProductFieldFilterInput[] = null,
+  withAggregations = false
+): string {
+  const productQueryContent = getSearchProductsQueryContent(
+    filter,
+    withAggregations
+  )
+  return jsonToGraphQLQuery({
+    query: {
+      __name: 'getPreviewProducts',
+      __variables: {
+        ...productQueryContent.variables,
+        currentCategoryConfiguration: 'String',
+      },
+      products: {
+        __aliasFor: 'previewProducts',
+        __args: {
+          ...productQueryContent.args,
+          currentCategoryConfiguration: new VariableType(
+            'currentCategoryConfiguration'
+          ),
+        },
+        ...productQueryContent.fields,
+      },
+    },
+  })
+}
+
 function getSearchProductsQueryContent(
   filter: IProductFieldFilterInput | IProductFieldFilterInput[] = null,
   withAggregations = false
