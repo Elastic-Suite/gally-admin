@@ -14,6 +14,7 @@ import {
   IParsedCategoryConfiguration,
   IProductFieldFilterInput,
   IProductPositions,
+  IRuleEngineOperators,
   ISortingOption,
   LoadStatus,
   getProductPosition,
@@ -52,15 +53,17 @@ interface IProps {
   onSave: (result: string) => void
   prevCatConf: MutableRefObject<IParsedCategoryConfiguration>
   prevProductPositions: MutableRefObject<string>
-  productGraphqlFilters: IProductFieldFilterInput
+  productGraphqlFilters?: IProductFieldFilterInput
   hasEditLink?: boolean
   editLink?: string
   localizedCatalogIdWithDefault: string
+  ruleOperators: IRuleEngineOperators
 }
 
 function ProductsContainer(props: IProps): JSX.Element {
   const {
     catConf,
+    ruleOperators,
     category,
     isLoading,
     isValid,
@@ -232,10 +235,7 @@ function ProductsContainer(props: IProps): JSX.Element {
           onValSearchOnChange={onValSearchOnChange}
           isInputAdornmentClickable
         />
-        {Boolean(
-          catConf &&
-            (!catConf.virtualRule || productGraphqlFilters || category?.id)
-        ) && (
+        {Boolean(catConf && (!catConf.virtualRule || category?.id)) && (
           <ProductsTopAndBottom
             ref={tableRef}
             category={category}
@@ -251,6 +251,8 @@ function ProductsContainer(props: IProps): JSX.Element {
             sortValue={defaultSorting}
             searchValue={search}
             nbTopProducts={nbTopRows}
+            catConf={catConf}
+            ruleOperators={ruleOperators}
             hasEditLink={hasEditLink}
             editLink={editLink}
           />

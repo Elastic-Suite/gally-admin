@@ -107,6 +107,18 @@ export function serializeCatConf(
   }
 }
 
+export function cleanBeforeSaveCatConf(
+  catConf: ICategoryConfiguration | IParsedCategoryConfiguration
+): ICategoryConfiguration | IParsedCategoryConfiguration {
+  const catConfCleaned = { ...catConf }
+  if (!catConf.id) {
+    delete catConfCleaned['@id']
+    delete catConfCleaned.id
+  }
+
+  return catConfCleaned
+}
+
 export function isRuleValid(rule?: IRule): boolean {
   if (!rule) {
     return true
