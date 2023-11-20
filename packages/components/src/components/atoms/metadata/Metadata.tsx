@@ -33,10 +33,11 @@ interface IProps {
   metadatas: IMetadata[]
   fixedFilters: string
   setFixedFilters: (val: Record<string, string>) => void
+  filterField?: string
 }
 
 function Metadata(props: IProps): JSX.Element {
-  const { metadatas, fixedFilters, setFixedFilters } = props
+  const { metadatas, fixedFilters, setFixedFilters, filterField } = props
   const { t } = useTranslation('common')
 
   const metadataOptions = metadatas?.map((item) => ({
@@ -49,9 +50,11 @@ function Metadata(props: IProps): JSX.Element {
       <DropDown
         options={metadataOptions}
         value={fixedFilters}
-        onChange={(e: string): void =>
-          setFixedFilters({ 'metadata.entity': e })
-        }
+        onChange={(e: string): void => {
+          const filters: Record<string, string> = {}
+          filters[filterField ? filterField : 'metadata.entity'] = e
+          setFixedFilters(filters)
+        }}
       />
     </CustomBlocEntity>
   )
