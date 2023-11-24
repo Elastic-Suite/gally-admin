@@ -28,9 +28,20 @@ export function useResource(
     const resource = getResource(api, resourceName)
     return {
       ...resource,
-      supportedProperty: resource?.supportedProperty.map((field) =>
-        updatePropertiesAccordingToPath(field, pathname, mainContext)
-      ),
+      supportedProperty:
+        resource?.supportedProperty instanceof Array
+          ? resource?.supportedProperty.map((field) =>
+              updatePropertiesAccordingToPath(field, pathname, mainContext)
+            )
+          : resource?.supportedProperty
+          ? [
+              updatePropertiesAccordingToPath(
+                resource.supportedProperty,
+                pathname,
+                mainContext
+              ),
+            ]
+          : resource?.supportedProperty,
     }
   }, [api, pathname, mainContext, resourceName])
 }
