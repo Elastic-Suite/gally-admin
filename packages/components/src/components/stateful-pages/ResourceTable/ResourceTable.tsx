@@ -70,6 +70,13 @@ function getProps(resourceName: string, t: TFunction): INoAttributesProps {
         btnHref: './create',
         absolutLink: false,
       }
+    case 'Thesaurus':
+      return {
+        title: t('thesaurus.none'),
+        btnTitle: t('thesaurus.none.btn'),
+        btnHref: './create',
+        absolutLink: false,
+      }
   }
 }
 
