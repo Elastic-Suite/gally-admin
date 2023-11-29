@@ -1,3 +1,4 @@
+export { default as AdminAnalyzeCatalogStructure } from './admin/analyze/CatalogStructure'
 export { default as AdminMerchandizeCategories } from './admin/merchandize/categories'
 export { default as AdminBoostGrid } from './admin/merchandize/boost/Grid'
 export { default as AdminBoostCreate } from './admin/merchandize/boost/Create'

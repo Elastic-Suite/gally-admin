@@ -25,6 +25,7 @@
   "Localized catalog": "Catalogue localisé",
   "Rule engine": "Règle virtuelle",
   "Add request type": "Ajouter un type de requête",
+  "Select a request type": "Sélectionnez un type de requête",
   "Model": "Modèle",
   "Boost value (%)": "Valeur du boost (%)",
   "Request type": "Type de requête",
@@ -51,5 +52,12 @@
   "contains": "contient",
   "ends with": "se termine par",
   "Synonym": "Synonyme",
-  "Context": "Contexte"
+  "Context": "Contexte",
+  "Category": "Catégorie",
+  "Select a category": "Sélectionnez une catégorie",
+  "Explain": "Explication",
+  "Select the localized catalog where the explain will be applied": "Sélection du catalogue localisé sur lequel l'explication' sera appliqué",
+  "Indicate a term": "Indiquez un terme",
+  "Search term": "Terme de recherche",
+  "Explain and compare": "Explication et comparaison"
 }
