@@ -12,6 +12,8 @@
   "catalog.dropdown.label": "Choisir un catalogue",
   "localizedCatalog.dropdown.label": "Choisir une langue",
   "searchBar.title": "Produits dans la catégorie",
+  "merchandise.singular.title": "Produit correspondant",
+  "merchandise.plural.title": "Produits correspondants",
   "searchBar.results_one": "produit",
   "searchBar.results_zero": "produit",
   "searchBar.results_other": "produits",

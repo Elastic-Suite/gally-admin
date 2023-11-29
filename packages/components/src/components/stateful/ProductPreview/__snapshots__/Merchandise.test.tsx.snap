@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MerchandiseBar match snapshot MerchandiseBar 1`] = `
+<div>
+  <div
+    class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded css-1m4bt7v-MuiPaper-root"
+  >
+    <div
+      class="MuiGrid-root MuiGrid-container MuiGrid-direction-xs-column css-jddpo1-MuiGrid-root"
+    >
+      <div
+        class="MuiGrid-root css-1pan2h9-MuiGrid-root"
+      >
+        searchBar.title
+      </div>
+      <div
+        class="MuiGrid-root css-1bhfatf-MuiGrid-root"
+      >
+        searchBarResult
+         
+         (searchBarResult)
+      </div>
+    </div>
+  </div>
+</div>
+`;

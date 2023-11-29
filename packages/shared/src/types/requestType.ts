@@ -1,5 +1,10 @@
 import { ISearchLimitations } from './textFieldTagsMultiple'
 
+export enum LimitationType {
+  SEARCH = 'search',
+  CATEGORY = 'category',
+}
+
 export interface ILimitationsTypes {
   label: string
   id?: string
