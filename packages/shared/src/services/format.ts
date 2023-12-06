@@ -116,3 +116,7 @@ export function removeFirstCharIfExist(
   }
   return name
 }
+
+export function getIdFromIri(iri: string): string {
+  return iri.split('/').pop()
+}
