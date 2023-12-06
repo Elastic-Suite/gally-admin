@@ -5,6 +5,7 @@ import {
   formatPrice,
   getFieldLabelTranslationArgs,
   getHeadTitle,
+  getIdFromIri,
   getNameFromDefault,
   humanize,
 } from './format'
@@ -68,6 +69,13 @@ describe('Format service', () => {
     it('Should format price', () => {
       expect(formatPrice(100, 'USD', 'fr-FR')).toContain('100,00')
       expect(formatPrice(100, 'USD', 'fr-FR')).toContain('$US')
+    })
+  })
+
+  describe('getIdFromIri', () => {
+    it('Should get the id from the iri', () => {
+      expect(getIdFromIri('/localized_catalog/1')).toEqual('1')
+      expect(getIdFromIri('/localized_catalog/random/10')).toEqual('10')
     })
   })
 })
