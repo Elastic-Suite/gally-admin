@@ -7,7 +7,7 @@ import Boost from './Boost'
 describe('Boost', () => {
   it('Should match snapschot', () => {
     const infos = {
-      type: 'down' as 'up' | 'down' | 'no boost',
+      type: 'down' as 'up' | 'down' | 'straight',
       boostNumber: 1,
       boostMultiplicator: 1.1,
     }

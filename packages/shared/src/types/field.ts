@@ -1,4 +1,4 @@
-import { SyntheticEvent } from 'react'
+import { CSSProperties, SyntheticEvent } from 'react'
 
 import { IField } from './api'
 import { DataContentType, ITableRow } from './customTables'
@@ -38,6 +38,8 @@ export interface IFieldConfig extends IFieldState {
   defaultValue?: unknown
   helperText?: string
   error?: boolean
+  headerStyle?: CSSProperties
+  cellsStyle?: CSSProperties
 }
 
 export interface IFieldConfigFormWithFieldset {

@@ -42,6 +42,7 @@ interface IProps {
   tableRow: ITableRow
   withSelection: boolean
   configuration: IConfigurations
+  withoutDragableColumn?: boolean
 }
 
 function NonDraggableRow(props: IProps): JSX.Element {
@@ -59,6 +60,7 @@ function NonDraggableRow(props: IProps): JSX.Element {
     tableRow,
     withSelection,
     configuration,
+    withoutDragableColumn,
   } = props
   const stickyHeaders: ITableHeaderSticky[] = manageStickyHeaders(tableHeaders)
   const nonStickyHeaders = tableHeaders.filter((header) => !header.sticky)
@@ -78,21 +80,23 @@ function NonDraggableRow(props: IProps): JSX.Element {
 
   return (
     <TableRow key={tableRow.id}>
-      <StickyTableCell
-        sx={{
-          borderBottomColor: 'colors.neutral.300',
-          '&:hover': {
-            color: 'colors.neutral.500',
-            cursor: 'default',
-          },
-          ...draggableColumnStyle(
-            isOnlyDraggable,
-            cssLeftValues[0],
-            isHorizontalOverflow,
-            shadow
-          ),
-        }}
-      />
+      {Boolean(!withoutDragableColumn || withSelection) && (
+        <StickyTableCell
+          sx={{
+            borderBottomColor: 'colors.neutral.300',
+            '&:hover': {
+              color: 'colors.neutral.500',
+              cursor: 'default',
+            },
+            ...draggableColumnStyle(
+              isOnlyDraggable,
+              cssLeftValues[0],
+              isHorizontalOverflow,
+              shadow
+            ),
+          }}
+        />
+      )}
 
       {Boolean(withSelection) && (
         <StickyTableCell
@@ -116,12 +120,15 @@ function NonDraggableRow(props: IProps): JSX.Element {
         return (
           <StickyTableCell
             key={stickyHeader.name}
-            sx={stickyStyle(
-              cssLeftValues[i + 1 + Number(withSelection)],
-              shadow,
-              stickyHeader.isLastSticky,
-              stickyHeader.type
-            )}
+            sx={{
+              ...stickyStyle(
+                cssLeftValues[i + 1 + Number(withSelection)],
+                shadow,
+                stickyHeader.isLastSticky,
+                stickyHeader.type
+              ),
+              ...stickyHeader.cellsStyle,
+            }}
           >
             <Field
               {...stickyHeader}
@@ -152,7 +159,10 @@ function NonDraggableRow(props: IProps): JSX.Element {
             : tableRow[header.name]
 
         return (
-          <BaseTableCell sx={nonStickyStyle(header.type)} key={header.name}>
+          <BaseTableCell
+            sx={{ ...nonStickyStyle(header.type), ...header.cellsStyle }}
+            key={header.name}
+          >
             <Field
               {...header}
               diffValue={diffRow ? diffRow[header.name] ?? null : undefined}

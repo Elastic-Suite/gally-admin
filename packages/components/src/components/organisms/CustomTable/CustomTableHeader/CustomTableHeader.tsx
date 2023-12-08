@@ -23,6 +23,7 @@ interface IProps {
   shadow: boolean
   tableHeaders: ITableHeader[]
   withSelection: boolean
+  withoutDragableColumn?: boolean
 }
 
 function CustomTableHeader(props: IProps): JSX.Element {
@@ -35,6 +36,7 @@ function CustomTableHeader(props: IProps): JSX.Element {
     shadow,
     tableHeaders,
     withSelection,
+    withoutDragableColumn,
   } = props
 
   const stickyHeaders: ITableHeaderSticky[] = manageStickyHeaders(tableHeaders)
@@ -48,25 +50,27 @@ function CustomTableHeader(props: IProps): JSX.Element {
           backgroundColor: 'neutral.light',
         }}
       >
-        <StickyTableCell
-          sx={{
-            minWidth: `${reorderingColumnWidth}px`,
-            width: `${reorderingColumnWidth}px`,
-            borderBottomColor: 'colors.neutral.300',
-            borderTopColor: 'colors.neutral.300',
-            borderTopWidth: '1px',
-            borderTopStyle: 'solid',
-            backgroundColor: 'neutral.light',
-            ...(!isOnlyDraggable && { borderRight: 'none' }),
-            ...(isOnlyDraggable &&
-              isHorizontalOverflow &&
-              stickyBorderStyle(shadow)),
-            left: `${cssLeftValues[0]}px`,
-            zIndex: 3,
-          }}
-        >
-          &nbsp;
-        </StickyTableCell>
+        {Boolean(!withoutDragableColumn || withSelection) && (
+          <StickyTableCell
+            sx={{
+              minWidth: `${reorderingColumnWidth}px`,
+              width: `${reorderingColumnWidth}px`,
+              borderBottomColor: 'colors.neutral.300',
+              borderTopColor: 'colors.neutral.300',
+              borderTopWidth: '1px',
+              borderTopStyle: 'solid',
+              backgroundColor: 'neutral.light',
+              ...(!isOnlyDraggable && { borderRight: 'none' }),
+              ...(isOnlyDraggable &&
+                isHorizontalOverflow &&
+                stickyBorderStyle(shadow)),
+              left: `${cssLeftValues[0]}px`,
+              zIndex: 3,
+            }}
+          >
+            &nbsp;
+          </StickyTableCell>
+        )}
 
         {Boolean(withSelection) && (
           <StickyTableCell
@@ -135,6 +139,7 @@ function CustomTableHeader(props: IProps): JSX.Element {
                 ...(header.type === DataContentType.STRING && {
                   maxWidth: 'fit-content',
                 }),
+                ...header.headerStyle,
               }}
             >
               {t(header.label)}

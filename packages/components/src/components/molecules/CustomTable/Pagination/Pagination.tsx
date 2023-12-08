@@ -1,4 +1,4 @@
-import React, { ChangeEvent, MouseEvent, ReactNode } from 'react'
+import React, { CSSProperties, ChangeEvent, MouseEvent, ReactNode } from 'react'
 import {
   Box,
   IconButtonProps,
@@ -28,7 +28,18 @@ const PaginationTextContainer = styled('span')({
   ...paginationStyle,
 })
 
+const StyledParagraph = styled('p')({
+  fontFamily: 'Inter',
+  fontSize: '12px',
+  fontWeight: 400,
+  color: '#424880',
+  lineHeight: '18px',
+  margin: 0,
+})
+
 interface IProps {
+  style?: CSSProperties
+  withResults?: boolean
   isBottom?: boolean
   count: number
   currentPage: number
@@ -42,6 +53,8 @@ interface IProps {
 
 function Pagination(props: IProps): JSX.Element {
   const {
+    style,
+    withResults,
     isBottom,
     count,
     currentPage,
@@ -101,8 +114,21 @@ function Pagination(props: IProps): JSX.Element {
           borderRadius: '8px 8px 0 0',
         }),
         bgcolor: 'colors.white',
+        ...(withResults && {
+          display: 'flex',
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          backgroundColor: '#fff',
+          border: '1px solid #E2E6F3',
+          padding: '0 22px',
+        }),
+        ...style,
       }}
     >
+      {Boolean(withResults) && (
+        <StyledParagraph>{t(`result`, { count })}</StyledParagraph>
+      )}
       <TablePagination
         rowsPerPageOptions={rowsPerPageOptions}
         component="div"

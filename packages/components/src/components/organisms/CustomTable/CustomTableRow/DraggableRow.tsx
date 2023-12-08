@@ -132,12 +132,15 @@ function DraggableRow(props: IProps): JSX.Element {
       {stickyHeaders.map((stickyHeader, i) => (
         <StickyTableCell
           key={stickyHeader.name}
-          sx={stickyStyle(
-            cssLeftValues[i + 1 + Number(withSelection)],
-            shadow,
-            stickyHeader.isLastSticky,
-            stickyHeader.type
-          )}
+          sx={{
+            ...stickyStyle(
+              cssLeftValues[i + 1 + Number(withSelection)],
+              shadow,
+              stickyHeader.isLastSticky,
+              stickyHeader.type
+            ),
+            ...stickyHeader.cellsStyle,
+          }}
         >
           <Field
             {...stickyHeader}
@@ -165,7 +168,10 @@ function DraggableRow(props: IProps): JSX.Element {
             : tableRow[header.name]
 
         return (
-          <BaseTableCell sx={nonStickyStyle(header.type)} key={header.name}>
+          <BaseTableCell
+            sx={{ ...nonStickyStyle(header.type), ...header.cellsStyle }}
+            key={header.name}
+          >
             <Field
               {...header}
               diffValue={diffRow ? diffRow[header.name] ?? null : undefined}

@@ -58,5 +58,9 @@
   "error.format": "Wrong or incomplet format",
   "placeholder.requestType.search": "Selection of categories",
   "back": "Back",
-  "placeholder.default.textFieldTags": "Add text"
+  "placeholder.default.textFieldTags": "Add text",
+  "result_zero": "result",
+  "results": "results",
+  "result_one": "{{count}} result",
+  "result_other": "{{count}} results"
 }

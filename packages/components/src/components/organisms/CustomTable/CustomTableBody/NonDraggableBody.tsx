@@ -31,6 +31,7 @@ interface IProps {
   configuration: IConfigurations
   hasEditLink?: boolean
   editLink?: string
+  withoutDragableColumn?: boolean
 }
 
 function NonDraggableBody(props: IProps): JSX.Element {
@@ -50,6 +51,7 @@ function NonDraggableBody(props: IProps): JSX.Element {
     configuration,
     hasEditLink,
     editLink,
+    withoutDragableColumn,
   } = props
 
   const newTableRows = hasEditLink
@@ -79,6 +81,7 @@ function NonDraggableBody(props: IProps): JSX.Element {
           tableRow={tableRow}
           withSelection={withSelection}
           configuration={configuration}
+          withoutDragableColumn={withoutDragableColumn}
         />
       ))}
     </TableBody>

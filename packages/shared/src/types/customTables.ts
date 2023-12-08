@@ -27,6 +27,7 @@ export enum DataContentType {
   MULTIPLEINPUT = 'multipleInput',
   SYNONYM = 'synonym',
   EXPANSION = 'expansion',
+  PRODUCTINFO = 'productInfo',
 }
 
 export interface ITableHeader extends IFieldConfig {
@@ -70,7 +71,14 @@ export interface IStickyBorderStyle {
 
 export interface ITableRow {
   id: string | number
-  [key: string]: string | boolean | number | IScore | IStock | IPrice[]
+  [key: string]:
+    | string
+    | boolean
+    | number
+    | IScore
+    | IStock
+    | IPrice[]
+    | IProductInfo
 }
 
 export interface IHorizontalOverflow {
@@ -84,7 +92,7 @@ export interface ITableHeaderSticky extends ITableHeader {
 
 export type ITableConfig = Record<string, IFieldState>
 
-export type BoostType = 'up' | 'down' | 'no boost'
+export type BoostType = 'up' | 'down' | 'straight'
 
 export interface IBoost {
   type: BoostType
@@ -104,4 +112,10 @@ export interface IScore {
 
 export interface IPrice {
   price: number
+}
+
+export interface IProductInfo {
+  productName: string
+  price: IPrice['price']
+  stockStatus: IStock['status']
 }

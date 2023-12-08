@@ -5,6 +5,7 @@ import {
   DataContentType,
   IFieldGuesserProps,
   IPrice,
+  IProductInfo,
   IScore,
   IStock,
 } from '@elastic-suite/gally-admin-shared'
@@ -42,7 +43,6 @@ function ReadableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
   const { t } = useTranslation('common')
   const language = useAppSelector(selectLanguage)
   const { localizedCatalogWithDefault } = useContext(catalogContext)
-
   if (value === undefined || value === null) {
     return null
   }
@@ -61,8 +61,10 @@ function ReadableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
     }
 
     case DataContentType.SCORE: {
-      const score = { scoreValue: value } as IScore
-      return <Score scoreValue={score.scoreValue} />
+      const score = (
+        typeof value === 'number' ? { scoreValue: value } : value
+      ) as IScore
+      return <Score scoreValue={score.scoreValue} {...score.boostInfos} />
     }
 
     case DataContentType.STOCK: {
@@ -104,6 +106,26 @@ function ReadableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
             <CustomA>{t('Edit')}</CustomA>
           </Link>
         </Box>
+      )
+    }
+
+    case DataContentType.PRODUCTINFO: {
+      if (!value) {
+        return null
+      }
+      const { price, stockStatus, productName } = value as IProductInfo
+      return (
+        <>
+          <p style={{ margin: 0 }}> {productName} </p>
+          <div style={{ margin: '4px 0' }}>
+            <Price
+              price={price}
+              countryCode={language}
+              currency={localizedCatalogWithDefault.currency}
+            />
+          </div>
+          <Stock stockStatus={stockStatus} />
+        </>
       )
     }
 
