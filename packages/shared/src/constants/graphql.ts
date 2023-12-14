@@ -170,6 +170,29 @@ export function getSearchDocumentsQuery(
   })
 }
 
+export function getVectorSearchDocumentsQuery(
+  entityType: string,
+  filter: IDocumentFieldFilterInput | IDocumentFieldFilterInput[] = null,
+  withAggregations = false
+): string {
+  const documentQueryContent = getSearchDocumentQueryContent(
+    filter,
+    withAggregations,
+    entityType
+  )
+  return jsonToGraphQLQuery({
+    query: {
+      __name: 'getVectorSearchDocuments',
+      __variables: { ...documentQueryContent.variables },
+      vectorSearchDocuments: {
+        __aliasFor: 'vectorSearchDocuments',
+        __args: { ...documentQueryContent.args },
+        ...documentQueryContent.fields,
+      },
+    },
+  })
+}
+
 export function getSearchDocumentQueryContent(
   filter: IDocumentFieldFilterInput | IDocumentFieldFilterInput[] = null,
   withAggregations = false,
