@@ -14,6 +14,10 @@ export interface IGraphqlSearchDocuments {
   documents: IGraphqlSearchDocument
 }
 
+export interface IGraphqlVectorSearchDocuments {
+  vectorSearchDocuments: IGraphqlSearchDocument
+}
+
 export interface IGraphqlSearchDocument {
   collection: IGraphqlDocument[]
   paginationInfo: IGraphqlDocumentPaginationInfo
