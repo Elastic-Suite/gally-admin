@@ -1,3 +1,31 @@
+#### 1.2.1.1 (2023-12-11)
+
+##### New Features
+
+- [#1244236](https://github.com/Elastic-Suite/gally-admin/pull/1244236) add 'Displayed in autocomplete' translation ([54e8c624](https://github.com/Elastic-Suite/gally-admin/commit/54e8c6249db9f3cd0eb4c436a512094687bd523a))
+- [#1259178](https://github.com/Elastic-Suite/gally-admin/pull/1259178) call to previewProducts instead of products in category page ([85d5b67c](https://github.com/Elastic-Suite/gally-admin/commit/85d5b67c314a68342b5ce594158a8ee38fafa706))
+- [#1230533](https://github.com/Elastic-Suite/gally-admin/pull/1230533) fallback on replace or massReplace if PATCH method is not available for an entity ([02dd1c9f](https://github.com/Elastic-Suite/gally-admin/commit/02dd1c9fe346ef12f5808c646a024b0224b3733a))
+- [#1214071](https://github.com/Elastic-Suite/gally-admin/pull/1214071) add/update GQL queries getSearchDocumentsQuery, getMoreFacetOptionsQuery and getMoreFacetProductOptionsQuery and the related types ([8017fc24](https://github.com/Elastic-Suite/gally-admin/commit/8017fc246505a3671126ee54717366c0545fae75))
+- [#1214071](https://github.com/Elastic-Suite/gally-admin/pull/1214071) add/update GQL queries getSearchDocumentsQuery, getMoreFacetOptionsQuery and getMoreFacetProductOptionsQuery and the related types ([811de733](https://github.com/Elastic-Suite/gally-admin/commit/811de733622ba04c39bf04d101cec60bb8959a9a))
+- [#1243475](https://github.com/Elastic-Suite/gally-admin/pull/1243475) [#1244616](https://github.com/Elastic-Suite/gally-admin/pull/1244616) Refactor GrapQl queries and add getAutoCompleteSearchQuery ([2992a51a](https://github.com/Elastic-Suite/gally-admin/commit/2992a51ab30c25887c4972e8e0ef8dc9f36a4409))
+
+##### Bug Fixes
+
+- [#1265834](https://github.com/Elastic-Suite/gally-admin/pull/1265834) 'thesaurus.none.btn' translation ([b4a956d1](https://github.com/Elastic-Suite/gally-admin/commit/b4a956d1302503c3333fd3fbbd4a6e0348518903))
+- [#1191270](https://github.com/Elastic-Suite/gally-admin/pull/1191270) display message when thesaurus grid is empty ([4da498a1](https://github.com/Elastic-Suite/gally-admin/commit/4da498a1ad63389a26da6007bde9f69eea94c74f))
+- [#1260343](https://github.com/Elastic-Suite/gally-admin/pull/1260343) infinite scroll loop on category page ([9f07b6dc](https://github.com/Elastic-Suite/gally-admin/commit/9f07b6dceb2a612b8645b1e36039dddb1cee765b))
+- [#1259975](https://github.com/Elastic-Suite/gally-admin/pull/1259975) localizedCatalog empty when we get product positions ([54f8ce6f](https://github.com/Elastic-Suite/gally-admin/commit/54f8ce6ff696990ccddd7bd62543e1d229189af8))
+- [#1259185](https://github.com/Elastic-Suite/gally-admin/pull/1259185) z-index on StickyBar ([4b857a20](https://github.com/Elastic-Suite/gally-admin/commit/4b857a2059bc1a2c02c4904ad283a76b206d5df1))
+- [#1260332](https://github.com/Elastic-Suite/gally-admin/pull/1260332) fix "back" translation ([3956b6e7](https://github.com/Elastic-Suite/gally-admin/commit/3956b6e77c7530a64d90673b85d2bd264acd210e))
+- breadcrumb on thesaurus grid page ([dd17f2f9](https://github.com/Elastic-Suite/gally-admin/commit/dd17f2f9f5787624050c92ce60adad7efc520375))
+- table without editable fields should not display checkboxes to select rows ([530b0586](https://github.com/Elastic-Suite/gally-admin/commit/530b0586b3cb19d5fc0ab215d7a14176eba3c993))
+- the options of dropdowns without objectKeyValue can be object ([224c73bd](https://github.com/Elastic-Suite/gally-admin/commit/224c73bd2321221ad9903752f412e50066e2bb0b))
+
+##### Other Changes
+
+- [#1214071](https://github.com/Elastic-Suite/gally-admin/pull/1214071) add/update GQL queries getSearchDocumentsQuery, getMoreFacetOptionsQuery and getMoreFacetProductOptionsQuery and the related types" ([006a67e4](https://github.com/Elastic-Suite/gally-admin/commit/006a67e4013808ca798df66afd7e78add8265d2b))
+- XXX commands ([5b96efd1](https://github.com/Elastic-Suite/gally-admin/commit/5b96efd1ae90c439f19aacdc4df2731ba1e5eb3e))
+
 ### 1.1.0 (2023-10-10)
 
 ##### Documentation Changes
