@@ -73,7 +73,8 @@ export function useFetchApi<T extends object>(
   resource: IResource | string,
   searchParameters?: ISearchParameters,
   options?: RequestInit,
-  secure = true
+  secure = true,
+  conditions = true
 ): [IFetch<T>, Dispatch<SetStateAction<T>>, ILoadResource] {
   const fetchApi = useApiFetch(secure)
   const [response, setResponse] = useState<IFetch<T>>({
@@ -88,21 +89,23 @@ export function useFetchApi<T extends object>(
   }, [])
 
   const load = useCallback(() => {
-    setResponse((prevState) => ({
-      data: prevState.data,
-      status: LoadStatus.LOADING,
-    }))
-    if (!resource) {
-      return setResponse({ data: null, status: LoadStatus.SUCCEEDED })
-    }
-    fetchApi<T>(resource, searchParameters, options).then((json) => {
-      if (isError(json)) {
-        setResponse({ error: json.error, status: LoadStatus.FAILED })
-      } else {
-        setResponse({ data: json, status: LoadStatus.SUCCEEDED })
+    if (conditions) {
+      setResponse((prevState) => ({
+        data: prevState.data,
+        status: LoadStatus.LOADING,
+      }))
+      if (!resource) {
+        return setResponse({ data: null, status: LoadStatus.SUCCEEDED })
       }
-    })
-  }, [fetchApi, options, resource, searchParameters])
+      fetchApi<T>(resource, searchParameters, options).then((json) => {
+        if (isError(json)) {
+          setResponse({ error: json.error, status: LoadStatus.FAILED })
+        } else {
+          setResponse({ data: json, status: LoadStatus.SUCCEEDED })
+        }
+      })
+    }
+  }, [conditions, fetchApi, options, resource, searchParameters])
 
   useLayoutEffect(() => {
     load()

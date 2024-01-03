@@ -21,6 +21,8 @@ import Link from 'next/link'
 import ReadableDropDownGuesser from './ReadableDropDownGuesser'
 import FormatRowArray from '../../molecules/format/FormatRowArray'
 
+import PreviewGridBoostConfiguration from '../../atoms/form/PreviewGridBoostConfiguration/PreviewGridBoostConfiguration'
+
 const Image = styled('img')({
   height: 80,
   width: 80,
@@ -39,7 +41,7 @@ const CustomA = styled('a')(({ theme }) => ({
 }))
 
 function ReadableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
-  const { input, value, field, options, multipleValueFormat } = props
+  const { input, value, field, options, multipleValueFormat, data } = props
   const { t } = useTranslation('common')
   const language = useAppSelector(selectLanguage)
   const { localizedCatalogWithDefault } = useContext(catalogContext)
@@ -127,6 +129,10 @@ function ReadableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
           <Stock stockStatus={stockStatus} />
         </>
       )
+    }
+
+    case DataContentType.BOOSTPREVIEW: {
+      return <PreviewGridBoostConfiguration currentBoost={data} />
     }
 
     default: {

@@ -35,7 +35,7 @@ import {
   TreePopper,
 } from './TreeSelector.styled'
 
-interface IProps<Multiple extends boolean | undefined>
+export interface ITreeSelectorProps<Multiple extends boolean | undefined>
   extends Omit<IInputTextProps, 'onChange' | 'value' | 'ref'> {
   data: ITreeItem[]
   limitTags?: number
@@ -47,7 +47,7 @@ interface IProps<Multiple extends boolean | undefined>
 }
 
 function TreeSelector<Multiple extends boolean | undefined>(
-  props: IProps<Multiple>
+  props: ITreeSelectorProps<Multiple>
 ): JSX.Element {
   const {
     data,

@@ -59,8 +59,11 @@
   "placeholder.requestType.search": "Selection of categories",
   "back": "Back",
   "placeholder.default.textFieldTags": "Add text",
-  "result_zero": "result",
+  "result_zero": "0 result",
   "results": "results",
-  "result_one": "{{count}} result",
-  "result_other": "{{count}} results"
+  "result_one": "1 result",
+  "result_other": "{{count}} results",
+  "category": "Category",
+  "localizedCatalog": "Localized catalog",
+  "localizedCatalog.placeholder": "Select a catalog"
 }

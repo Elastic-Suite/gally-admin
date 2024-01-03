@@ -17,6 +17,5 @@
   "search": "Recherche",
   "termSearch": "Rechercher un terme",
   "selectCategory": "Sélectionner une catégorie",
-  "emptyCategoryMessage": "Aucune catégorie n’a été sélectionnée, veuillez en ajouter une ci-dessous",
-  "emptySearchMessage": "Aucun terme de recherche n’a été renseigné, veuillez en ajouter un ci-dessous"
+  "missingRequiredFieldMessage": "Veuillez remplir les champs requis"
 }

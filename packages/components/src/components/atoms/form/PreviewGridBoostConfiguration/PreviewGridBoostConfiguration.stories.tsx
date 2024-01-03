@@ -10,7 +10,7 @@ export default {
 const Template: ComponentStory<
   typeof PreviewGridBoostConfigurationComponent
 > = () => {
-  return <PreviewGridBoostConfigurationComponent />
+  return <PreviewGridBoostConfigurationComponent currentBoost={{}} />
 }
 
 export const PreviewGridBoostConfiguration = Template.bind({})

@@ -16,6 +16,40 @@ export const getPreviewBoost = `query preview($localizedCatalog: String!, $searc
     }
   }`
 
+export function getPreviewBoostQuery(): string {
+  return jsonToGraphQLQuery({
+    query: {
+      __name: 'getPreview',
+      __variables: {
+        localizedCatalog: 'String!',
+        requestType: 'ProductRequestTypeEnum!',
+        currentBoost: 'String!',
+        search: 'String',
+        category: 'String',
+        currentPage: 'Int',
+        pageSize: 'Int',
+      },
+      previewBoost: {
+        __args: {
+          localizedCatalog: new VariableType('localizedCatalog'),
+          requestType: new VariableType('requestType'),
+          currentBoost: new VariableType('currentBoost'),
+          search: new VariableType('search'),
+          currentCategoryId: new VariableType('category'),
+          currentPage: new VariableType('currentPage'),
+          pageSize: new VariableType('pageSize'),
+        },
+        id: true,
+        resultsBefore: true,
+        resultsAfter: true,
+        lastPage: true,
+        itemsPerPage: true,
+        totalItems: true,
+      },
+    },
+  })
+}
+
 export function getSearchProductsQuery(
   filter: IProductFieldFilterInput | IProductFieldFilterInput[] = null,
   withAggregations = false
