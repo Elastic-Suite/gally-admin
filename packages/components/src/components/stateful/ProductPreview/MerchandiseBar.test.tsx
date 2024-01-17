@@ -11,4 +11,10 @@ describe('MerchandiseBar match snapshot', () => {
     )
     expect(container).toMatchSnapshot()
   })
+  it('MerchandiseBar with 0 product', () => {
+    const { container } = renderWithProviders(
+      <MerchandiseBar nbResults={0} nbTopProducts={0} />
+    )
+    expect(container).toMatchSnapshot()
+  })
 })

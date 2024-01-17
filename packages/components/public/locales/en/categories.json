@@ -12,6 +12,8 @@
   "catalog.dropdown.label": "Choose a catalog",
   "localizedCatalog.dropdown.label": "Choose a locale",
   "searchBar.title": "Products in category",
+  "merchandise.singular.title": "Matching product",
+  "merchandise.plural.title": "Matching products",
   "searchBar.results_one": "product",
   "searchBar.results_zero": "product",
   "searchBar.results_other": "products",
