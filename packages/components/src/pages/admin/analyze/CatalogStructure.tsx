@@ -209,7 +209,6 @@ function AdminAnalyzeCatalogStructure(): JSX.Element {
 
           {limitationType === 'search' && (
             <InputTextError
-              infoTooltip={t('Search term')}
               label={t('Search term')}
               name="search"
               onChange={handleChange}

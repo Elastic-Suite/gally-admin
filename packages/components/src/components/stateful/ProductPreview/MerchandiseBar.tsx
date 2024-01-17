@@ -42,7 +42,13 @@ export default function MerchandiseBar(props: IProps): JSX.Element {
   return (
     <PaperStyled variant="outlined">
       <GridStyled container direction="column">
-        <SearchTitle>{t('searchBar.title')}</SearchTitle>
+        <SearchTitle>
+          {t(
+            nbTopProducts + nbResults === 1
+              ? 'merchandise.singular.title'
+              : 'merchandise.plural.title'
+          )}
+        </SearchTitle>
         <SearchResult>
           {!hasProduct ? (
             <CustomNoTopProduct>{t('noProductSearch')}</CustomNoTopProduct>
