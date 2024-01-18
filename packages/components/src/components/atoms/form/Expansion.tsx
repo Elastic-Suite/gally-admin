@@ -30,7 +30,7 @@ const CustomRoot = styled('div', {
   borderColor: error
     ? theme.palette.colors.primary[700]
     : theme.palette.colors.neutral[300],
-  marginTop: theme.spacing(3),
+  marginTop: theme.spacing(0.5),
   width: 'fit-content',
   '& .MuiFormLabel-root': {
     fontWeight: 500,

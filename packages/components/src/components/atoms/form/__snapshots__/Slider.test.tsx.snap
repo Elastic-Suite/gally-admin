@@ -3,7 +3,7 @@
 exports[`Slider match snapshot Slider Full 1`] = `
 <div>
   <div
-    class="MuiFormControl-root MuiFormControl-marginDense css-6vyugz-MuiFormControl-root"
+    class="MuiFormControl-root MuiFormControl-marginDense css-1r8gdn-MuiFormControl-root"
   >
     <label
       class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard MuiFormLabel-colorPrimary Mui-required css-rnc4nv-MuiFormLabel-root-MuiInputLabel-root"
@@ -30,7 +30,7 @@ exports[`Slider match snapshot Slider Full 1`] = `
       </span>
     </label>
     <div
-      class="MuiBox-root css-15j7md6"
+      class="MuiBox-root css-iiyk08"
     >
       <div
         class="css-q0vrqn"
@@ -107,7 +107,7 @@ exports[`Slider match snapshot Slider Full 1`] = `
 exports[`Slider match snapshot Slider Min 1`] = `
 <div>
   <div
-    class="MuiFormControl-root css-x8sez7-MuiFormControl-root"
+    class="MuiFormControl-root css-hh3vi8-MuiFormControl-root"
   >
     <div
       class="MuiBox-root css-plopzj"

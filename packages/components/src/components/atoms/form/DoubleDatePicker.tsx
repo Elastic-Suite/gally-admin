@@ -94,7 +94,7 @@ function DoubleDatePicker(props: IDoubleDatePickerProps): JSX.Element {
         justifyContent="flex-start"
         alignItems="center"
         container
-        sx={{ marginTop: label ? '24px' : '0px' }}
+        sx={{ marginTop: label ? '4px' : '0px' }}
       >
         <CustomBox sx={{ paddingRight: '20px' }}> {t('form.from')} </CustomBox>
         <Grid item xs>

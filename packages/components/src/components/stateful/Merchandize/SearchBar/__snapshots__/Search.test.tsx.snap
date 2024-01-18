@@ -32,10 +32,10 @@ exports[`SearchBar match snapshot SearchBar 1`] = `
           </div>
           <form>
             <div
-              class="MuiFormControl-root css-x8sez7-MuiFormControl-root"
+              class="MuiFormControl-root css-hh3vi8-MuiFormControl-root"
             >
               <div
-                class="InputText__Wrapper css-newnfq"
+                class="InputText__Wrapper css-17fp4jk"
               >
                 <div
                   class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedEnd css-33c5sc-MuiInputBase-root"

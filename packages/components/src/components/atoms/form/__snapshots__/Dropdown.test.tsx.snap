@@ -9,7 +9,7 @@ exports[`DropDown match snapshot BadgeArrayObjectValue 1`] = `
       class="MuiAutocomplete-root MuiAutocomplete-hasClearIcon MuiAutocomplete-hasPopupIcon css-1qqsdnr-MuiAutocomplete-root"
     >
       <div
-        class="MuiFormControl-root css-x8sez7-MuiFormControl-root"
+        class="MuiFormControl-root css-hh3vi8-MuiFormControl-root"
       >
         <label
           class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard MuiFormLabel-colorPrimary css-rnc4nv-MuiFormLabel-root-MuiInputLabel-root"
@@ -19,7 +19,7 @@ exports[`DropDown match snapshot BadgeArrayObjectValue 1`] = `
           Label
         </label>
         <div
-          class="InputText__Wrapper css-newnfq"
+          class="InputText__Wrapper css-17fp4jk"
         >
           <div
             class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedStart MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-33c5sc-MuiInputBase-root"
@@ -136,10 +136,10 @@ exports[`DropDown match snapshot BadgeDisabledFalse 1`] = `
       class="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-1qqsdnr-MuiAutocomplete-root"
     >
       <div
-        class="MuiFormControl-root css-x8sez7-MuiFormControl-root"
+        class="MuiFormControl-root css-hh3vi8-MuiFormControl-root"
       >
         <div
-          class="InputText__Wrapper css-newnfq"
+          class="InputText__Wrapper css-17fp4jk"
         >
           <div
             class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-33c5sc-MuiInputBase-root"
@@ -192,10 +192,10 @@ exports[`DropDown match snapshot BadgeDisabledTrue 1`] = `
       class="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-1qqsdnr-MuiAutocomplete-root"
     >
       <div
-        class="MuiFormControl-root css-x8sez7-MuiFormControl-root"
+        class="MuiFormControl-root css-hh3vi8-MuiFormControl-root"
       >
         <div
-          class="InputText__Wrapper css-newnfq"
+          class="InputText__Wrapper css-17fp4jk"
         >
           <div
             class="MuiInputBase-root MuiInputBase-colorPrimary Mui-disabled MuiInputBase-formControl MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-33c5sc-MuiInputBase-root"
@@ -247,7 +247,7 @@ exports[`DropDown match snapshot BadgeLabel 1`] = `
       class="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-1qqsdnr-MuiAutocomplete-root"
     >
       <div
-        class="MuiFormControl-root css-x8sez7-MuiFormControl-root"
+        class="MuiFormControl-root css-hh3vi8-MuiFormControl-root"
       >
         <label
           class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard MuiFormLabel-colorPrimary css-rnc4nv-MuiFormLabel-root-MuiInputLabel-root"
@@ -257,7 +257,7 @@ exports[`DropDown match snapshot BadgeLabel 1`] = `
           Label
         </label>
         <div
-          class="InputText__Wrapper css-newnfq"
+          class="InputText__Wrapper css-17fp4jk"
         >
           <div
             class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-33c5sc-MuiInputBase-root"
@@ -310,7 +310,7 @@ exports[`DropDown match snapshot BadgeMultiple 1`] = `
       class="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-1qqsdnr-MuiAutocomplete-root"
     >
       <div
-        class="MuiFormControl-root css-x8sez7-MuiFormControl-root"
+        class="MuiFormControl-root css-hh3vi8-MuiFormControl-root"
       >
         <label
           class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard MuiFormLabel-colorPrimary css-rnc4nv-MuiFormLabel-root-MuiInputLabel-root"
@@ -320,7 +320,7 @@ exports[`DropDown match snapshot BadgeMultiple 1`] = `
           Label
         </label>
         <div
-          class="InputText__Wrapper css-newnfq"
+          class="InputText__Wrapper css-17fp4jk"
         >
           <div
             class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-33c5sc-MuiInputBase-root"
@@ -373,7 +373,7 @@ exports[`DropDown match snapshot BadgeObjectValue 1`] = `
       class="MuiAutocomplete-root MuiAutocomplete-hasClearIcon MuiAutocomplete-hasPopupIcon css-1qqsdnr-MuiAutocomplete-root"
     >
       <div
-        class="MuiFormControl-root css-x8sez7-MuiFormControl-root"
+        class="MuiFormControl-root css-hh3vi8-MuiFormControl-root"
       >
         <label
           class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard MuiFormLabel-colorPrimary MuiFormLabel-filled css-rnc4nv-MuiFormLabel-root-MuiInputLabel-root"
@@ -383,7 +383,7 @@ exports[`DropDown match snapshot BadgeObjectValue 1`] = `
           Label
         </label>
         <div
-          class="InputText__Wrapper css-newnfq"
+          class="InputText__Wrapper css-17fp4jk"
         >
           <div
             class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-33c5sc-MuiInputBase-root"
@@ -450,10 +450,10 @@ exports[`DropDown match snapshot BadgeRequiredFalse 1`] = `
       class="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-1qqsdnr-MuiAutocomplete-root"
     >
       <div
-        class="MuiFormControl-root css-x8sez7-MuiFormControl-root"
+        class="MuiFormControl-root css-hh3vi8-MuiFormControl-root"
       >
         <div
-          class="InputText__Wrapper css-newnfq"
+          class="InputText__Wrapper css-17fp4jk"
         >
           <div
             class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-33c5sc-MuiInputBase-root"
@@ -506,10 +506,10 @@ exports[`DropDown match snapshot BadgeRequiredTrue 1`] = `
       class="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-1qqsdnr-MuiAutocomplete-root"
     >
       <div
-        class="MuiFormControl-root css-x8sez7-MuiFormControl-root"
+        class="MuiFormControl-root css-hh3vi8-MuiFormControl-root"
       >
         <div
-          class="InputText__Wrapper css-newnfq"
+          class="InputText__Wrapper css-17fp4jk"
         >
           <div
             class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-33c5sc-MuiInputBase-root"
