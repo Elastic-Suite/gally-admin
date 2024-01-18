@@ -17,6 +17,9 @@ export const StyledFormControl = styled(FormControl)(
     '& .MuiFormLabel-root.Mui-error': {
       color: theme.palette.colors.neutral[900],
     },
+    '& label': {
+      position: 'relative',
+    },
     ...(fullWidth && {
       '.MuiInputBase-root': {
         width: '100%',
@@ -168,7 +171,7 @@ export const Wrapper = styled('div')(({ theme }) => ({
   alignItems: 'center',
   display: 'flex',
   'label + &': {
-    marginTop: theme.spacing(3),
+    marginTop: theme.spacing(0.5),
   },
 }))
 

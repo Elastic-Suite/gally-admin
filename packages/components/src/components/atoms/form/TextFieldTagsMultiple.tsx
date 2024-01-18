@@ -145,7 +145,7 @@ function TextFieldTagsMultiple(
   return (
     <FormControl error={error} fullWidth={fullWidth} margin={margin}>
       {Boolean(label || infoTooltip) && (
-        <div style={{ marginBottom: '24px' }}>
+        <div style={{ marginBottom: '4px' }}>
           <InputLabel shrink required={required}>
             {label}
             {infoTooltip ? <InfoTooltip title={infoTooltip} /> : null}

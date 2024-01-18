@@ -6,10 +6,10 @@ exports[`TreeSelector should match snapshot 1`] = `
     class="css-1b4s9jn"
   >
     <div
-      class="MuiFormControl-root css-x8sez7-MuiFormControl-root"
+      class="MuiFormControl-root css-hh3vi8-MuiFormControl-root"
     >
       <div
-        class="InputText__Wrapper css-newnfq"
+        class="InputText__Wrapper css-17fp4jk"
       >
         <div
           class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedStart MuiInputBase-adornedEnd  css-4g1i97-MuiInputBase-root"

@@ -19,7 +19,7 @@ export const CustomRoot = styled(CustomRootItem, {
     ? theme.palette.colors.primary[700]
     : theme.palette.colors.neutral[300],
   borderRadius: theme.spacing(1),
-  marginTop: theme.spacing(3),
+  marginTop: theme.spacing(0.5),
 }))
 
 const CustomProp = ['uniqueLine']

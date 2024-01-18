@@ -27,7 +27,7 @@ export default styled('div')<IProps>(({ fullWidth, margin, theme }) => ({
     overflow: 'hidden',
     textOverflow: 'ellipsis',
     maxWidth: '133%',
-    position: 'absolute',
+    position: 'relative',
     left: 0,
     top: 0,
     transform: 'none',

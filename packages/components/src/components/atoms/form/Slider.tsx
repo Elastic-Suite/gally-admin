@@ -60,7 +60,7 @@ function Slider(props: ISliderProps): JSX.Element {
       )}
       <Box
         width={!fullWidth ? width : undefined}
-        sx={{ marginTop: label ? '24px' : 0 }}
+        sx={{ marginTop: label ? '4px' : 0 }}
       >
         <CustomIndicatorsNumber>
           {indicatorNumber.map((item) => (

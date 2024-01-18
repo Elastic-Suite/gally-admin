@@ -3,7 +3,7 @@
 exports[`Expansion match snapshot Expansion Full 1`] = `
 <div>
   <div
-    class="MuiFormControl-root MuiFormControl-marginNormal css-7kt75n-MuiFormControl-root"
+    class="MuiFormControl-root MuiFormControl-marginNormal css-1r71j8d-MuiFormControl-root"
   >
     <label
       class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard MuiFormLabel-colorPrimary Mui-error Mui-required css-1cpkhc9-MuiFormLabel-root-MuiInputLabel-root"
@@ -29,7 +29,7 @@ exports[`Expansion match snapshot Expansion Full 1`] = `
       </span>
     </label>
     <div
-      class="css-1qq0bhe"
+      class="css-cl0y5k"
     >
       <div
         style="display: flex; gap: 8px; flex-direction: column; margin-bottom: 24px;"
@@ -41,7 +41,7 @@ exports[`Expansion match snapshot Expansion Full 1`] = `
             style="position: relative; display: flex; gap: 32px;"
           >
             <div
-              class="MuiFormControl-root css-x8sez7-MuiFormControl-root"
+              class="MuiFormControl-root css-hh3vi8-MuiFormControl-root"
             >
               <label
                 class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard MuiFormLabel-colorPrimary MuiFormLabel-filled css-rnc4nv-MuiFormLabel-root-MuiInputLabel-root"
@@ -50,7 +50,7 @@ exports[`Expansion match snapshot Expansion Full 1`] = `
                 reference term
               </label>
               <div
-                class="InputText__Wrapper css-newnfq"
+                class="InputText__Wrapper css-17fp4jk"
               >
                 <div
                   class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-1jf161a-MuiInputBase-root"
@@ -66,10 +66,10 @@ exports[`Expansion match snapshot Expansion Full 1`] = `
               </div>
             </div>
             <div
-              class="css-1vpcrzk"
+              class="css-vaijrj"
             >
               <div
-                style="margin-bottom: 24px;"
+                style="margin-bottom: 4px;"
               >
                 <label
                   class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard MuiFormLabel-colorPrimary Mui-error css-rnc4nv-MuiFormLabel-root-MuiInputLabel-root"
@@ -145,10 +145,10 @@ exports[`Expansion match snapshot Expansion Full 1`] = `
                     class="css-u4p24i"
                   >
                     <div
-                      class="MuiFormControl-root css-x8sez7-MuiFormControl-root"
+                      class="MuiFormControl-root css-hh3vi8-MuiFormControl-root"
                     >
                       <div
-                        class="InputText__Wrapper css-newnfq"
+                        class="InputText__Wrapper css-17fp4jk"
                       >
                         <div
                           class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-z54rnl-MuiInputBase-root"
@@ -190,7 +190,7 @@ exports[`Expansion match snapshot Expansion Full 1`] = `
             style="position: relative; display: flex; gap: 32px;"
           >
             <div
-              class="MuiFormControl-root css-x8sez7-MuiFormControl-root"
+              class="MuiFormControl-root css-hh3vi8-MuiFormControl-root"
             >
               <label
                 class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard MuiFormLabel-colorPrimary MuiFormLabel-filled css-rnc4nv-MuiFormLabel-root-MuiInputLabel-root"
@@ -199,7 +199,7 @@ exports[`Expansion match snapshot Expansion Full 1`] = `
                 reference term
               </label>
               <div
-                class="InputText__Wrapper css-newnfq"
+                class="InputText__Wrapper css-17fp4jk"
               >
                 <div
                   class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-1jf161a-MuiInputBase-root"
@@ -215,10 +215,10 @@ exports[`Expansion match snapshot Expansion Full 1`] = `
               </div>
             </div>
             <div
-              class="css-1vpcrzk"
+              class="css-vaijrj"
             >
               <div
-                style="margin-bottom: 24px;"
+                style="margin-bottom: 4px;"
               >
                 <label
                   class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard MuiFormLabel-colorPrimary Mui-error css-rnc4nv-MuiFormLabel-root-MuiInputLabel-root"
@@ -294,10 +294,10 @@ exports[`Expansion match snapshot Expansion Full 1`] = `
                     class="css-u4p24i"
                   >
                     <div
-                      class="MuiFormControl-root css-x8sez7-MuiFormControl-root"
+                      class="MuiFormControl-root css-hh3vi8-MuiFormControl-root"
                     >
                       <div
-                        class="InputText__Wrapper css-newnfq"
+                        class="InputText__Wrapper css-17fp4jk"
                       >
                         <div
                           class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-z54rnl-MuiInputBase-root"

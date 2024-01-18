@@ -3,7 +3,7 @@
 exports[`InputText match snapshot BadgeDisabledFalse 1`] = `
 <div>
   <div
-    class="MuiFormControl-root css-x8sez7-MuiFormControl-root"
+    class="MuiFormControl-root css-hh3vi8-MuiFormControl-root"
   >
     <label
       class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard MuiFormLabel-colorPrimary MuiFormLabel-filled css-rnc4nv-MuiFormLabel-root-MuiInputLabel-root"
@@ -13,7 +13,7 @@ exports[`InputText match snapshot BadgeDisabledFalse 1`] = `
       Label
     </label>
     <div
-      class="InputText__Wrapper css-newnfq"
+      class="InputText__Wrapper css-17fp4jk"
     >
       <div
         class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-1jf161a-MuiInputBase-root"
@@ -35,7 +35,7 @@ exports[`InputText match snapshot BadgeDisabledFalse 1`] = `
 exports[`InputText match snapshot BadgeDisabledFalseRequired 1`] = `
 <div>
   <div
-    class="MuiFormControl-root css-x8sez7-MuiFormControl-root"
+    class="MuiFormControl-root css-hh3vi8-MuiFormControl-root"
   >
     <label
       class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard MuiFormLabel-colorPrimary MuiFormLabel-filled Mui-required css-rnc4nv-MuiFormLabel-root-MuiInputLabel-root"
@@ -52,7 +52,7 @@ exports[`InputText match snapshot BadgeDisabledFalseRequired 1`] = `
       </span>
     </label>
     <div
-      class="InputText__Wrapper css-newnfq"
+      class="InputText__Wrapper css-17fp4jk"
     >
       <div
         class="MuiInputBase-root MuiInputBase-colorPrimary Mui-disabled MuiInputBase-formControl css-1jf161a-MuiInputBase-root"

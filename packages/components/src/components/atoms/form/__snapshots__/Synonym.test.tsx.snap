@@ -3,7 +3,7 @@
 exports[`Synonym match snapshot Synonym Full 1`] = `
 <div>
   <div
-    class="MuiFormControl-root MuiFormControl-marginNormal css-7kt75n-MuiFormControl-root"
+    class="MuiFormControl-root MuiFormControl-marginNormal css-1r71j8d-MuiFormControl-root"
   >
     <label
       class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard MuiFormLabel-colorPrimary Mui-error Mui-required css-1cpkhc9-MuiFormLabel-root-MuiInputLabel-root"
@@ -29,7 +29,7 @@ exports[`Synonym match snapshot Synonym Full 1`] = `
       </span>
     </label>
     <div
-      class="css-11z21y1"
+      class="css-143l6yl"
     >
       <div
         style="display: flex; gap: 24px; flex-direction: column; margin-bottom: 24px;"
@@ -39,7 +39,7 @@ exports[`Synonym match snapshot Synonym Full 1`] = `
           style="position: relative; display: flex; align-items: center;"
         >
           <div
-            class="css-1vpcrzk"
+            class="css-vaijrj"
           >
             <div
               class="css-qb9qm0"
@@ -108,10 +108,10 @@ exports[`Synonym match snapshot Synonym Full 1`] = `
                   class="css-u4p24i"
                 >
                   <div
-                    class="MuiFormControl-root css-x8sez7-MuiFormControl-root"
+                    class="MuiFormControl-root css-hh3vi8-MuiFormControl-root"
                   >
                     <div
-                      class="InputText__Wrapper css-newnfq"
+                      class="InputText__Wrapper css-17fp4jk"
                     >
                       <div
                         class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-z54rnl-MuiInputBase-root"
@@ -150,7 +150,7 @@ exports[`Synonym match snapshot Synonym Full 1`] = `
           style="position: relative; display: flex; align-items: center;"
         >
           <div
-            class="css-1vpcrzk"
+            class="css-vaijrj"
           >
             <div
               class="css-qb9qm0"
@@ -219,10 +219,10 @@ exports[`Synonym match snapshot Synonym Full 1`] = `
                   class="css-u4p24i"
                 >
                   <div
-                    class="MuiFormControl-root css-x8sez7-MuiFormControl-root"
+                    class="MuiFormControl-root css-hh3vi8-MuiFormControl-root"
                   >
                     <div
-                      class="InputText__Wrapper css-newnfq"
+                      class="InputText__Wrapper css-17fp4jk"
                     >
                       <div
                         class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-z54rnl-MuiInputBase-root"
