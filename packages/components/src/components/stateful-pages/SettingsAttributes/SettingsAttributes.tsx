@@ -39,6 +39,7 @@ function SettingsAttributes(props: ITabContentProps): JSX.Element {
       selection: { disabled: Boolean(row.isSystem) },
       isSortable: { disabled: Boolean(row.isSystem) },
       isUsedForRules: { disabled: Boolean(row.isSystem) },
+      isUsedInAutocomplete: { disabled: Boolean(row.isSystem) },
     }))
   }
 
