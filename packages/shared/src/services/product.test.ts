@@ -94,12 +94,14 @@ describe('Product service', () => {
             value: ProductRequestType.CATALOG,
             limitationType: LimitationType.CATEGORY,
             label: 'Catalog product view',
+            previewLabel: 'Preview Catalog Label',
           },
           {
             id: ProductRequestType.SEARCH,
             value: ProductRequestType.SEARCH,
             limitationType: LimitationType.SEARCH,
             label: 'Search Items',
+            previewLabel: 'Preview Search Label',
           },
         ])
       ).toEqual(LimitationType.CATEGORY)
@@ -110,12 +112,14 @@ describe('Product service', () => {
             value: ProductRequestType.CATALOG,
             limitationType: LimitationType.CATEGORY,
             label: 'Catalog product view',
+            previewLabel: 'Preview Catalog Label',
           },
           {
             id: ProductRequestType.SEARCH,
             value: ProductRequestType.SEARCH,
             limitationType: LimitationType.SEARCH,
             label: 'Search Items',
+            previewLabel: 'Preview Search Label',
           },
         ])
       ).toEqual(LimitationType.SEARCH)
@@ -126,12 +130,14 @@ describe('Product service', () => {
             value: ProductRequestType.CATALOG,
             limitationType: LimitationType.CATEGORY,
             label: 'Catalog product view',
+            previewLabel: 'Preview Catalog Label',
           },
           {
             id: ProductRequestType.SEARCH,
             value: ProductRequestType.SEARCH,
             limitationType: LimitationType.SEARCH,
             label: 'Search Items',
+            previewLabel: 'Preview Search Label',
           },
         ])
       ).toEqual(undefined)

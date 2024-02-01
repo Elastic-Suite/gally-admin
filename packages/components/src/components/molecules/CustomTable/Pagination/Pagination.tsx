@@ -29,7 +29,7 @@ const PaginationTextContainer = styled('span')({
 })
 
 const StyledParagraph = styled('p')({
-  fontFamily: 'Inter',
+  fontFamily: 'var(--gally-font)',
   fontSize: '12px',
   fontWeight: 400,
   color: '#424880',

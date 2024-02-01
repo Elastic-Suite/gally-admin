@@ -64,7 +64,10 @@
   "Add": "Ajouter",
   "Thesaurus": "Thésaurus",
   "results": "résultats",
-  "result_zero": "resultat",
-  "result_one": "{{count}} resultat",
-  "result_other": "{{count}} resultats"
+  "result_zero": "0 resultat",
+  "result_one": "1 resultat",
+  "result_other": "{{count}} resultats",
+  "category": "Catégorie",
+  "localizedCatalog": "Catalogue localisé",
+  "localizedCatalog.placeholder": "Sélectionnez un catalogue"
 }

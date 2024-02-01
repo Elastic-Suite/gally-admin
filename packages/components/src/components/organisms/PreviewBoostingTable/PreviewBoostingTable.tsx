@@ -1,16 +1,28 @@
 import React from 'react'
 import {
-  IPrice,
-  IScore,
-  IStock,
+  IPreviewBoostingProducts,
+  IPreviewProduct,
   ITableHeader,
   ITableRow,
 } from '@elastic-suite/gally-admin-shared'
 import CustomTable from '../CustomTable/CustomTable'
 import FieldGuesser from '../../stateful/FieldGuesser/FieldGuesser'
 import NoAttributes from '../../atoms/noAttributes/NoAttributes'
-import { useTranslation } from 'react-i18next'
-import { styled } from '@mui/material'
+import { useTranslation } from 'next-i18next'
+import { CircularProgress, styled } from '@mui/material'
+
+const CustomRoot = styled('div')(({ theme }) => ({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '40px',
+  padding: theme.spacing(8),
+  border: '1px solid',
+  borderColor: theme.palette.colors.neutral['300'],
+  borderRadius: theme.spacing(1),
+  background: theme.palette.colors.white,
+  textAlign: 'center',
+  alignItems: 'center',
+}))
 
 const TableContainer = styled('div')(({ theme }) => ({
   '.tableTitles': {
@@ -19,7 +31,7 @@ const TableContainer = styled('div')(({ theme }) => ({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-around',
-    fontFamily: 'Inter',
+    fontFamily: 'var(--gally-font)',
     p: {
       fontSize: '14px',
       lineHeight: '20px',
@@ -33,7 +45,7 @@ const TableContainer = styled('div')(({ theme }) => ({
   table: {
     'th, td': {
       fontSize: '14px',
-      fontFamily: 'Inter',
+      fontFamily: 'var(--gally-font)',
       lineHeight: '20px',
     },
     th: {
@@ -47,23 +59,9 @@ const TableContainer = styled('div')(({ theme }) => ({
   },
 }))
 
-interface IProduct {
-  id: string | number
-  image: string
-  name: string[]
-  price: IPrice[]
-  stock: IStock
-  score: IScore | number
-}
-
-interface IBoostingProducts {
-  productsBefore: IProduct[]
-  productsAfter: IProduct[]
-}
-
 const convertProductToRow = (
-  productsBefore: IProduct[],
-  productsAfter: IProduct[]
+  productsBefore: IPreviewProduct[],
+  productsAfter: IPreviewProduct[]
 ): ITableRow[] => {
   const dataInfo =
     productsBefore.length >= productsAfter.length
@@ -86,16 +84,16 @@ const convertProductToRow = (
 
     return {
       id: product.id,
-      beforeImage: beforeProduct.image,
+      beforeImage: `/media/catalog/product${beforeProduct.image}`,
       beforeInfo: {
-        productName: beforeProduct?.name[0],
+        productName: beforeProduct?.name,
         stockStatus: beforeProduct?.stock.status,
         price: beforeProduct?.price[0]?.price,
       },
       beforeScore: beforeProduct.score,
-      afterImage: afterProduct?.image,
+      afterImage: `/media/catalog/product${afterProduct?.image}`,
       afterInfo: {
-        productName: afterProduct?.name[0],
+        productName: afterProduct?.name,
         stockStatus: afterProduct?.stock.status,
         price: afterProduct?.price[0]?.price,
       },
@@ -183,11 +181,19 @@ const tableHeaders = [
 ] as ITableHeader[]
 
 function PreviewBoostingTable({
-  productsBefore,
-  productsAfter,
-}: IBoostingProducts): JSX.Element {
+  resultsBefore,
+  resultsAfter,
+  loading,
+}: IPreviewBoostingProducts & { loading?: boolean }): JSX.Element {
   const { t } = useTranslation('boost')
-  const products = convertProductToRow(productsBefore, productsAfter)
+  const products = convertProductToRow(resultsBefore, resultsAfter)
+
+  if (loading)
+    return (
+      <CustomRoot>
+        <CircularProgress color="inherit" size="25px" />
+      </CustomRoot>
+    )
 
   if (products.length === 0)
     return <NoAttributes title={t('noProductSearch')} />

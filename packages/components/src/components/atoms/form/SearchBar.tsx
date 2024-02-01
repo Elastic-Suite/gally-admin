@@ -1,18 +1,20 @@
-import InputText from './InputText'
 import { InputAdornment } from '@mui/material'
 import IonIcon from '../IonIcon/IonIcon'
 import React, { FormEvent } from 'react'
+import InputTextError from './InputTextError'
 
 export default function SearchBar({
   value,
   onChange,
   onResearch,
   placeholder,
+  label,
 }: {
   value: string
   onChange: (value: string) => void
   onResearch: () => void
   placeholder: string
+  label: string
 }): JSX.Element {
   const handleSubmit = (event: FormEvent): void => {
     event.preventDefault()
@@ -21,7 +23,8 @@ export default function SearchBar({
 
   return (
     <form onSubmit={handleSubmit}>
-      <InputText
+      <InputTextError
+        label={label}
         value={value}
         onChange={(value: string | number): void => onChange(value.toString())}
         placeholder={placeholder}
@@ -34,6 +37,8 @@ export default function SearchBar({
             <IonIcon name="search" />
           </InputAdornment>
         }
+        showError
+        required
       />
     </form>
   )

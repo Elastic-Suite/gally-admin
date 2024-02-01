@@ -17,6 +17,5 @@
   "search": "Search",
   "termSearch": "Search a term",
   "selectCategory": "Select a category",
-  "emptyCategoryMessage": "No categories have been selected, please add one below",
-  "emptySearchMessage": "No search terms have been entered, please add one below"
+  "missingRequiredFieldMessage": "Please complete the required fields"
 }

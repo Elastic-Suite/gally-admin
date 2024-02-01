@@ -14,6 +14,7 @@ export interface ILimitationsTypes {
 
 export interface IRequestTypesOptions {
   label: string
+  previewLabel: string
   limitationType: string
   id: string
   value: string

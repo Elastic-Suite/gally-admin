@@ -28,6 +28,7 @@ export enum DataContentType {
   SYNONYM = 'synonym',
   EXPANSION = 'expansion',
   PRODUCTINFO = 'productInfo',
+  BOOSTPREVIEW = 'boostPreview',
 }
 
 export interface ITableHeader extends IFieldConfig {

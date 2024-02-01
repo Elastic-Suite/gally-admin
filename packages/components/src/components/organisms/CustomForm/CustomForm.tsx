@@ -39,7 +39,6 @@ function CustomForm(props: IProps): JSX.Element {
     }
     return onChange({ ...data, ...response })
   }
-
   return (
     <MainSectionFieldSet>
       {headers.map((fieldset: IFieldConfigFormWithFieldset) => {

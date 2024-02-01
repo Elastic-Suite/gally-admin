@@ -59,7 +59,8 @@ export function useApiGraphql(secure = true): IGraphqlApi {
 export function useGraphqlApi<T extends object>(
   query: string,
   variables?: Record<string, unknown>,
-  options?: RequestInit
+  options?: RequestInit,
+  conditions = true
 ): [IFetch<T>, Dispatch<SetStateAction<T>>, ILoadResource] {
   const graphqlApi = useApiGraphql()
   const [response, setResponse] = useState<IFetch<T>>({
@@ -74,18 +75,20 @@ export function useGraphqlApi<T extends object>(
   }, [])
 
   const load = useCallback(() => {
-    setResponse((prevState) => ({
-      data: prevState.data,
-      status: LoadStatus.LOADING,
-    }))
-    graphqlApi<T>(query, variables, options).then((json) => {
-      if (isError(json)) {
-        setResponse({ error: json.error, status: LoadStatus.FAILED })
-      } else {
-        setResponse({ data: json, status: LoadStatus.SUCCEEDED })
-      }
-    })
-  }, [graphqlApi, options, query, variables])
+    if (conditions) {
+      setResponse((prevState) => ({
+        data: prevState.data,
+        status: LoadStatus.LOADING,
+      }))
+      graphqlApi<T>(query, variables, options).then((json) => {
+        if (isError(json)) {
+          setResponse({ error: json.error, status: LoadStatus.FAILED })
+        } else {
+          setResponse({ data: json, status: LoadStatus.SUCCEEDED })
+        }
+      })
+    }
+  }, [conditions, graphqlApi, options, query, variables])
 
   useEffect(() => {
     load()
