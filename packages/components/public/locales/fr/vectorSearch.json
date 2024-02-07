@@ -1,4 +1,3 @@
 {
-  "vector": "Recherche vectorielle",
-  "vectorSearch.alert": "Seuls les attributs de type texte et select sont affichés ici"
+  "vector": "Recherche vectorielle"
 }

@@ -8,14 +8,11 @@ import { useFilters, useResource } from '../../../hooks'
 
 import ResourceTable from '../../../components/stateful-pages/ResourceTable/ResourceTable'
 import PageTitle from '../../../components/atoms/PageTitle/PageTitle'
-import Alert from '../../../components/atoms/Alert/Alert'
 import Metadata from '../../../components/atoms/metadata/Metadata'
 
 const pagesSlug = ['search', 'vector']
 
 function AdminSearchVector(): JSX.Element {
-  const [isVisibleAlertAttributes, setIsVisibleAlertAttributes] = useState(true)
-
   const router = useRouter()
   const [, setBreadcrumb] = useContext(breadcrumbContext)
   const { t } = useTranslation('vectorSearch')
@@ -39,12 +36,6 @@ function AdminSearchVector(): JSX.Element {
   return (
     <>
       <PageTitle title={t(pagesSlug.at(-1))} sx={{ marginBottom: '32px' }} />
-      {Boolean(isVisibleAlertAttributes) && (
-        <Alert
-          message={t('vectorSearch.alert')}
-          onShut={(): void => setIsVisibleAlertAttributes(false)}
-        />
-      )}
       <Metadata
         setFixedFilters={setFixedFilters}
         fixedFilters={fixedFilters['sourceField.metadata.entity']}
