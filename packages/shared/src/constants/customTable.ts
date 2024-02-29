@@ -28,10 +28,10 @@ export const productTableheader: ITableHeader[] = [
   },
   {
     id: 'score',
-    input: DataContentType.NUMBER,
+    input: DataContentType.SCORE,
     name: 'score',
     label: 'Score',
-    type: DataContentType.NUMBER,
+    type: DataContentType.SCORE,
   },
   {
     id: 'stock',

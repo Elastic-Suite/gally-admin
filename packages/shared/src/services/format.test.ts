@@ -8,6 +8,7 @@ import {
   getIdFromIri,
   getNameFromDefault,
   humanize,
+  roundNumber,
 } from './format'
 
 describe('Format service', () => {
@@ -76,6 +77,14 @@ describe('Format service', () => {
     it('Should get the id from the iri', () => {
       expect(getIdFromIri('/localized_catalog/1')).toEqual('1')
       expect(getIdFromIri('/localized_catalog/random/10')).toEqual('10')
+    })
+  })
+
+  describe('roundNumber', () => {
+    it('Should round the number to the decimal given', () => {
+      expect(typeof roundNumber(1, 4)).toEqual('number')
+      expect(roundNumber(1, 4)).toEqual(1)
+      expect(roundNumber(1.005, 2)).toEqual(1.01)
     })
   })
 })
