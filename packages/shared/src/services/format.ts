@@ -120,3 +120,8 @@ export function removeFirstCharIfExist(
 export function getIdFromIri(iri: string): string {
   return iri.split('/').pop()
 }
+
+export function roundNumber(value: number, decimal: number): number {
+  // We use the calculation below because it allows us to obtain better rounding to the decimal point compared to if we use the toFixed() method.
+  return Math.round((value + Number.EPSILON) * 10 ** decimal) / 10 ** decimal
+}
