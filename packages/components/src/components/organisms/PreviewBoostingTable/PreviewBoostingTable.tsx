@@ -97,7 +97,20 @@ const convertProductToRow = (
         stockStatus: afterProduct?.stock.status,
         price: afterProduct?.price[0]?.price,
       },
-      afterScore: afterProduct?.score,
+      afterScore: {
+        scoreValue:
+          typeof afterProduct?.score === 'number'
+            ? afterProduct?.score
+            : afterProduct?.score.scoreValue,
+        boostInfos: {
+          type:
+            afterProduct?.effect === 0
+              ? 'straight'
+              : afterProduct?.effect === 1
+              ? 'up'
+              : 'down',
+        },
+      },
     }
   })
 }
