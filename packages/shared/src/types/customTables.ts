@@ -97,8 +97,8 @@ export type BoostType = 'up' | 'down' | 'straight'
 
 export interface IBoost {
   type: BoostType
-  boostNumber: number
-  boostMultiplicator: number
+  boostNumber?: number
+  boostMultiplicator?: number
 }
 
 export interface IStock {

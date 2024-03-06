@@ -7,6 +7,7 @@ export interface IPreviewProduct {
   price: IPrice[]
   stock: IStock
   score: IScore | number
+  effect?: -1 | 0 | 1
 }
 
 export interface IPreviewBoostingProducts {
