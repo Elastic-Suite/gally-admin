@@ -131,6 +131,7 @@ function getSearchProductsQueryContent(
           id: true,
           sku: true,
           name: true,
+          description: true,
           score: true,
           image: true,
 
@@ -212,8 +213,10 @@ export function getVectorSearchDocumentsQuery(
   const documentQueryContent = getSearchDocumentQueryContent(
     filter,
     withAggregations,
-    entityType
+    entityType,
+    'VectorDocument'
   )
+
   return jsonToGraphQLQuery({
     query: {
       __name: 'getVectorSearchDocuments',
@@ -230,7 +233,8 @@ export function getVectorSearchDocumentsQuery(
 export function getSearchDocumentQueryContent(
   filter: IDocumentFieldFilterInput | IDocumentFieldFilterInput[] = null,
   withAggregations = false,
-  variablePrefix = 'document'
+  variablePrefix = 'document',
+  collectionEntityType = 'Document'
 ): IGraphqlQueryContent {
   return {
     variables: {
@@ -253,7 +257,7 @@ export function getSearchDocumentQueryContent(
     fields: {
       collection: {
         __on: {
-          __typeName: 'Document',
+          __typeName: collectionEntityType,
           id: true,
           score: true,
           source: true,
