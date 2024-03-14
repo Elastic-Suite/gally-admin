@@ -1,30 +1,29 @@
-import React, {useRef} from 'react'
+import React from 'react'
 
-import { useFormError } from '../../../hooks'
+import { IFieldErrorProps, useFormError } from '../../../hooks'
 
 import Dropdown, { IDropDownProps } from './DropDown'
 
-// export function dropDownValidator(value: unknown): string | null {
-//   console.log('value', value)
-//   if(props.mult){
-
-//   }
-//   return ''
-// }
-
-interface IDropDownErrorProps<T> extends IDropDownProps<T> {
-  showError?: boolean,
-}
+interface IDropDownErrorProps<T> extends IFieldErrorProps, IDropDownProps<T> {}
 
 function DropdownError<T>(props: IDropDownErrorProps<T>): JSX.Element {
-  const ref = useRef(null)
-  const { onChange, showError, disabled, ...inputProps } = props
-  const [formErrorProps] = useFormError(onChange, showError, (value) => {
-    if(props.required){
-      return !value || value.length === 0 ? 'valueMissing' : ''
-    }
-    return ''
-  }, ref, disabled)
+  const { onChange, showError, additionalValidator, ...inputProps } = props
+  const [{ ref, ...formErrorProps }] = useFormError(
+    onChange,
+    inputProps.value,
+    showError,
+    (value, event) => {
+      if (
+        inputProps.required &&
+        (!value || (value as unknown[]).length === 0)
+      ) {
+        return 'valueMissing'
+      }
+      if (additionalValidator) return additionalValidator(value, event)
+      return ''
+    },
+    inputProps.disabled
+  )
   return (
     <Dropdown
       {...inputProps}

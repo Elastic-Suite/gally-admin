@@ -4,7 +4,6 @@ import { ComponentMeta, ComponentStory } from '@storybook/react'
 import TextFieldTagsComponent from './TextFieldTags'
 import TextFieldTagsErrorComponent from './TextFieldTagsError'
 
-
 export default {
   title: 'Atoms/Form/TextFieldTags',
   helperIcon: {
@@ -40,7 +39,9 @@ Default.args = {
 
 const TemplateError: ComponentStory<typeof TextFieldTagsComponent> = (args) => {
   const [value, setValue] = useState<string[]>([])
-  return <TextFieldTagsErrorComponent {...args} value={value} onChange={setValue} />
+  return (
+    <TextFieldTagsErrorComponent {...args} value={value} onChange={setValue} />
+  )
 }
 
 export const WithError = TemplateError.bind({})
@@ -54,5 +55,5 @@ WithError.args = {
   size: 'small',
   disabledValue: 'DisabledValue',
   placeholder: 'Placeholder',
-  showError: true
+  showError: true,
 }

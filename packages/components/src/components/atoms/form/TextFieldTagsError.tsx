@@ -1,30 +1,27 @@
-import React, { ForwardedRef, forwardRef, useRef } from 'react'
+import React from 'react'
 
-import { useFormError } from '../../../hooks'
+import { IFieldErrorProps, useFormError } from '../../../hooks'
 
 import TextFieldTags, { ITextFieldTag } from './TextFieldTags'
 
-interface ITextFieldTagErrorProps extends ITextFieldTag {
-  showError?: boolean
-}
+interface ITextFieldTagErrorProps extends IFieldErrorProps, ITextFieldTag {}
 
-function TextFieldTagsError(
-  props: ITextFieldTagErrorProps
-  // ref: ForwardedRef<HTMLDivElement>
-): JSX.Element {
-  const { onChange, showError, ...inputProps } = props
-  const ref = useRef(null)
-  const [formErrorProps] = useFormError(
+function TextFieldTagsError(props: ITextFieldTagErrorProps): JSX.Element {
+  const { onChange, showError, additionalValidator, ...inputProps } = props
+  const [{ ref, ...formErrorProps }] = useFormError(
     onChange,
     inputProps.value,
     showError,
-    (value: string[]): string => {
-      if (inputProps.required) {
-        return value.length === 0 ? 'valueMissing' : ''
+    (value: string[], event): string => {
+      if (inputProps.required && (value.length === 0 || value[0] === null)) {
+        return 'valueMissing'
+      }
+      if (additionalValidator) {
+        return additionalValidator(value, event)
       }
       return ''
     },
-    ref
+    inputProps.disabled
   )
   return (
     <TextFieldTags
@@ -38,4 +35,4 @@ function TextFieldTagsError(
   )
 }
 
-export default forwardRef(TextFieldTagsError)
+export default TextFieldTagsError

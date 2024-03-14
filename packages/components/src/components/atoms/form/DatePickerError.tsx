@@ -1,21 +1,24 @@
-import React, { useRef } from 'react'
+import React, { SyntheticEvent } from 'react'
 import { DateValidationError } from '@mui/x-date-pickers/internals/hooks/validation/useDateValidation'
 import { isValid } from 'date-fns'
 
-import { useFormError } from '../../../hooks'
+import { IFieldErrorProps, useFormError } from '../../../hooks'
 
 import DatePicker, { IDatePickerProps } from './DatePicker'
 
-interface IDatePickerErrorProps extends IDatePickerProps {
-  showError?: boolean
-}
+interface IDatePickerErrorProps extends IFieldErrorProps, IDatePickerProps {}
 
 export function dateValidator(
   value: Date | null,
-  required?: boolean
+  event?: SyntheticEvent,
+  required?: boolean,
+  additionalValidator?: IDatePickerErrorProps['additionalValidator']
 ): string | null {
-  if (!value) {
-    return required ? 'valueMissing' : ''
+  if (!value && required) {
+    return 'valueMissing'
+  }
+  if (additionalValidator) {
+    return additionalValidator(value, event)
   }
   if (isValid(value)) {
     return ''
@@ -24,16 +27,20 @@ export function dateValidator(
 }
 
 function DatePickerError(props: IDatePickerErrorProps): JSX.Element {
-  const ref = useRef(null)
-  const { onChange, showError, ...inputProps } = props
-  const [formErrorProps, setError] = useFormError(
+  const { onChange, showError, additionalValidator, ...inputProps } = props
+  const [{ ref, ...formErrorProps }, setError] = useFormError(
     onChange,
     inputProps.value,
     showError,
-    (value) => {
-      return dateValidator(value as Date, inputProps.required)
+    (value, event) => {
+      return dateValidator(
+        value as Date,
+        event,
+        inputProps.required,
+        additionalValidator
+      )
     },
-    ref
+    inputProps.disabled
   )
 
   function handleError(reason: DateValidationError): void {

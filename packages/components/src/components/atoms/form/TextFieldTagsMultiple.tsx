@@ -33,6 +33,7 @@ export interface ITextFieldTagsMultipleProps
   extends Omit<ITextFieldTagsForm, 'size' | 'placeholder'> {
   value: ISearchLimitations[]
   onChange: (value: ISearchLimitations[]) => void
+  showError?: boolean
 }
 
 function TextFieldTagsMultiple(
@@ -52,6 +53,7 @@ function TextFieldTagsMultiple(
     margin,
     infoTooltip,
     options,
+    showError,
   } = props
 
   const { t } = useTranslation('common')
@@ -142,10 +144,6 @@ function TextFieldTagsMultiple(
     }
   }, [optionsListAvailable, addItem, disabled])
 
-  useEffect(() => {
-    console.log(modifiedValue)
-    console.log(Object.entries(modifiedValue))
-  },[modifiedValue])
   return (
     <FormControl error={error} fullWidth={fullWidth} margin={margin}>
       {Boolean(label || infoTooltip) && (
@@ -158,7 +156,11 @@ function TextFieldTagsMultiple(
       )}
       <CustomMultipleTextFieldsTags>
         {disabled ? (
-          <TextFieldTagsError value={[]} disabledValue={disabledValue} disabled />
+          <TextFieldTagsError
+            value={[]}
+            disabledValue={disabledValue}
+            disabled
+          />
         ) : (
           Object.entries(modifiedValue).map(([key, value]) => {
             const option = options.find((it) => it.value === key)
@@ -192,15 +194,14 @@ function TextFieldTagsMultiple(
                     options={newOptionsList}
                     sx={{ marginBottom: 1 }}
                   />
-                    <TextFieldTagsError
-                      required
-                      showError
-                      withCleanButton
-                      fullWidth={fullWidth}
-                      onChange={(value): void => updateValue(key, value)}
-                      value={value}
-                      onRemoveItem={(): void => updateValue(key, [])}
-                    />
+                  <TextFieldTagsError
+                    required
+                    showError={showError}
+                    withCleanButton
+                    fullWidth={fullWidth}
+                    onChange={(value): void => updateValue(key, value)}
+                    value={value}
+                  />
                 </div>
                 {optionsListAvailable.filter((opt) => opt.disabled).length >
                   1 && (

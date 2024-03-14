@@ -7,7 +7,6 @@ import React, {
   useCallback,
   useMemo,
   useState,
-  useEffect,
 } from 'react'
 import {
   AutocompleteValue,
@@ -51,12 +50,12 @@ export interface ITreeSelectorProps<Multiple extends boolean | undefined>
 
 function TreeSelector<Multiple extends boolean | undefined>(
   props: ITreeSelectorProps<Multiple>,
-  ref: ForwardedRef<HTMLInputElement>
+  ref?: ForwardedRef<HTMLInputElement>
 ): JSX.Element {
   const {
     data,
     fullWidth,
-    limitTags,
+    limitTags = 2,
     onChange: onChangeProps,
     style,
     value: valueProps,
@@ -204,12 +203,6 @@ function TreeSelector<Multiple extends boolean | undefined>(
     }
   }
 
-  useEffect(() => {
-    if (!disabled && value.length === 0 && props.required && ref) {
-      ref.current?.setCustomValidity('valueMissing')
-    }
-  }, [disabled])
-
   return (
     <Root
       {...getRootProps()}
@@ -245,11 +238,9 @@ function TreeSelector<Multiple extends boolean | undefined>(
         }
         fullWidth={fullWidth}
         id={id}
-        inputProps={{
-          ...getInputProps(),
-          required: false,
-          requiredLabel: props.required,
-        }}
+        inputProps={getInputProps()}
+        required={false}
+        requiredLabel={other.required}
         ref={setAnchorEl}
         startAdornment={startAdornment}
       />
@@ -280,10 +271,6 @@ function TreeSelector<Multiple extends boolean | undefined>(
       )}
     </Root>
   )
-}
-
-TreeSelector.defaultProps = {
-  limitTags: 2,
 }
 
 export default forwardRef(TreeSelector)

@@ -1,26 +1,19 @@
-import React, { forwardRef, useRef } from 'react'
+import React from 'react'
 
-import { useFormError } from '../../../hooks'
+import { IFieldErrorProps, useFormError } from '../../../hooks'
 
 import InputText, { IInputTextProps } from './InputText'
 
-interface IInputTextErrorProps extends IInputTextProps {
-  showError?: boolean
-  displayError?: boolean
-}
+interface IInputTextErrorProps extends IFieldErrorProps, IInputTextProps {}
 
-function InputTextError(
-  props: IInputTextErrorProps
-): JSX.Element {
-  const ref = useRef(null)
-  const { onChange, showError, ...inputProps } = props
-  const [formErrorProps] = useFormError(
+function InputTextError(props: IInputTextErrorProps): JSX.Element {
+  const { onChange, showError, additionalValidator, ...inputProps } = props
+  const [{ ref, ...formErrorProps }] = useFormError(
     onChange,
     inputProps.value,
     showError,
-    undefined,
-    ref,
-    undefined,
+    additionalValidator,
+    inputProps.disabled
   )
   return (
     <InputText

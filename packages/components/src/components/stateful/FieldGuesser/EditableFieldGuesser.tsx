@@ -30,7 +30,6 @@ import RulesManager from '../RulesManager/RulesManager'
 import Slider from '../../atoms/form/Slider'
 import Synonym from '../../atoms/form/Synonym'
 import Expansion from '../../atoms/form/Expansion'
-import DoubleDatePickerError from '../../atoms/form/DoubleDatePickerError'
 
 function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
   const {
@@ -83,6 +82,7 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
       if (optionConfig) {
         return onChange(optionConfig as IOption<string>, value, event)
       }
+      // eslint-disable-next-line no-warning-comments
       // Todo: Move this logic on DoubleDatePicker component after refactoring of error system
       if (name === 'doubleDatePicker') {
         const formatDate = {
@@ -172,8 +172,8 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
     case DataContentType.RANGEDATE: {
       return (
         <Box>
-          <DoubleDatePickerError
-           {...props}
+          <DoubleDatePicker
+            {...props}
             placeholder={placeholder}
             infoTooltip={infoTooltip}
             value={value as IDoubleDatePickerValues}
@@ -181,7 +181,6 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
             error={error}
             helperText={helperText}
             label={label}
-            showError
           />
         </Box>
       )

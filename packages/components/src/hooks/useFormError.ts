@@ -6,6 +6,7 @@ import {
   useCallback,
   useEffect,
   useMemo,
+  useRef,
   useState,
 } from 'react'
 import { useTranslation } from 'next-i18next'
@@ -17,11 +18,16 @@ export type IValidator = (
   event?: SyntheticEvent
 ) => string | null
 
+export interface IFieldErrorProps {
+  showError?: boolean
+  additionalValidator?: IValidator
+}
 export interface IFormErrorProps {
   error: boolean
   helperIcon?: string
   helperText?: string
   onChange: IOnChange
+  ref?: ForwardedRef<HTMLInputElement>
 }
 
 export function useFormError(
@@ -29,22 +35,25 @@ export function useFormError(
   value: unknown,
   showError = false,
   validator?: IValidator,
-  ref?: ForwardedRef<HTMLInputElement>,
-  disabled = false,
+  disabled = false
 ): [IFormErrorProps, Dispatch<SetStateAction<string>>] {
   const [error, setError] = useState('')
+  const ref = useRef<HTMLInputElement>(null)
   const { t } = useTranslation('common')
 
   const validate = useCallback(
-    (value: unknown, event?: SyntheticEvent): boolean => {
+    (value: unknown, event?: SyntheticEvent, targetRef?: boolean): boolean => {
       let error = null
       if (validator) {
         error = validator(value, event)
         ref.current?.setCustomValidity(error)
       }
-      if (error === null && (event?.target || ref.current)) {
-        const { validity } = event ? event.target as HTMLInputElement : ref.current
-        if (!validity.valid) {
+      if ((error === null || error === '') && (event?.target || targetRef)) {
+        const validity =
+          targetRef && ref.current
+            ? ref.current.validity
+            : (event?.target as HTMLInputElement)?.validity
+        if (!validity?.valid) {
           error = getFormValidityError(validity)
         }
       }
@@ -59,8 +68,8 @@ export function useFormError(
   )
 
   useEffect(() => {
-    validate(value, undefined)
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    validate(value, undefined, true)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [validate])
 
   const handleChange = useCallback(
@@ -77,15 +86,21 @@ export function useFormError(
     const props: IFormErrorProps = {
       error: showError ? Boolean(error) : false,
       onChange: handleChange,
+      ref,
     }
-    if(disabled){
-        props.helperIcon = ''
-        props.helperText = ''
-      }
-    else if (error && showError) {
+    if (disabled) {
+      props.helperIcon = ''
+      props.helperText = ''
+    } else if (error && showError) {
       props.helperIcon = 'close'
       props.helperText = t(`formError.${error}`)
     }
-    return [props, setError]
+    return [
+      props,
+      (error: string): void => {
+        setError(error)
+        ref.current?.setCustomValidity(error)
+      },
+    ]
   }, [error, handleChange, t, disabled, showError])
 }

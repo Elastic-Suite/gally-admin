@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import {
   useApiFetch,
@@ -66,6 +66,7 @@ function ResourceForm(props: IProps): JSX.Element {
   const { resourceName, id, title } = props
   const { t } = useTranslation('resourceForm')
   const resource = useResource(resourceName, IMainContext.FORM)
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { replace, create, remove } = useResourceOperations<any>(resource)
   const [errors, setErrors] = useState<IErrorsForm>()
 
@@ -87,6 +88,7 @@ function ResourceForm(props: IProps): JSX.Element {
 
   const requestTypeOptions = requestTypeOptionsApi?.data?.['hydra:member']
 
+  // eslint-disable-next-line no-warning-comments
   // Todo: Move this logic on RequestTypeManager component after refactoring of error system
   const requestTypeData = useValue(
     listUrlRequestTypeConfigurations?.limitationTypeOptionsApi,
@@ -186,7 +188,7 @@ function ResourceForm(props: IProps): JSX.Element {
     }
   }
 
-  async function sendingData(): Promise<any> {
+  async function sendingData(): Promise<unknown> {
     setIsLoading(true)
     let sendingToApi
     if (id) {
@@ -255,21 +257,9 @@ function ResourceForm(props: IProps): JSX.Element {
     setIsLoading(false)
   }
 
-  const ref = useRef()
-  console.log('ref?.current?.checkValidity', ref?.current?.checkValidity())
-
-  const a =
-    ref?.current &&
-    Object.values(ref?.current).map((item) => {
-      return item?.placeholder + ' : ' + item?.validity?.valid
-    })
-  console.log('ref?.current,', ref?.current)
-  console.log('Object.entries', a)
-
-  function handleSubmit() {
-    const isValidForm = ref?.current?.checkValidity()
+  function handleSubmit(): void {
     if (isValidForm) {
-      return sendingData()
+      sendingData()
     }
     // return ref?.current?.reportValidity()
   }
@@ -319,7 +309,7 @@ function ResourceForm(props: IProps): JSX.Element {
           </CustomDoubleButtonSticky>
         </PageTitle>
       ) : null}
-      <form ref={ref}>
+      <form>
         <CustomForm
           data={data}
           onChange={setData}

@@ -1,11 +1,10 @@
 import React, {
   CSSProperties,
-  ForwardedRef,
   HTMLAttributes,
   ReactNode,
+  RefObject,
   SyntheticEvent,
   forwardRef,
-  useEffect,
   useMemo,
   useRef,
 } from 'react'
@@ -38,7 +37,10 @@ export interface IDropDownProps<T>
   objectKeyValue?: string
 }
 
-function DropDown<T>(props: IDropDownProps<T>, ref?: ForwardedRef<HTMLInputElement>): JSX.Element {
+function DropDown<T>(
+  props: IDropDownProps<T>,
+  ref?: RefObject<HTMLInputElement>
+): JSX.Element {
   const {
     disabled,
     fullWidth,
@@ -54,7 +56,7 @@ function DropDown<T>(props: IDropDownProps<T>, ref?: ForwardedRef<HTMLInputEleme
   } = props
   const { required, small } = otherProps
   const { t } = useTranslation('common')
-  const inputRef = ref || useRef()
+  const inputRef = useRef(null)
   const optionMap = useMemo(
     () => new Map(options.map((option) => [option.value, option])),
     [options]
@@ -75,7 +77,7 @@ function DropDown<T>(props: IDropDownProps<T>, ref?: ForwardedRef<HTMLInputEleme
     event: SyntheticEvent,
     option: IOption<T> | IOption<T>[]
   ): void {
-    const dropdownEvent = { ...event, target: inputRef.current }
+    const dropdownEvent = { ...event, target: (ref || inputRef).current }
     setTimeout(() => {
       if (!option && !required) {
         onChange(null, dropdownEvent)
@@ -130,12 +132,6 @@ function DropDown<T>(props: IDropDownProps<T>, ref?: ForwardedRef<HTMLInputEleme
         ))
   }
 
-  useEffect(() => {
-    if(multiple && value.length === 0 && required) {
-      inputRef.current?.setCustomValidity('valueMissing')
-    }
-  }, [])
-
   return (
     <FormControl fullWidth={fullWidth} variant="standard">
       <Autocomplete
@@ -168,12 +164,12 @@ function DropDown<T>(props: IDropDownProps<T>, ref?: ForwardedRef<HTMLInputEleme
           const { InputLabelProps, InputProps, ...inputProps } = params
           return (
             <InputText
-              {...{...otherProps, required: multiple ? false : required}}
+              {...{ ...otherProps, required: multiple ? false : required }}
               {...inputProps}
               {...InputProps}
               fullWidth={fullWidth}
-              inputRef={inputRef}
-              requiredLabel={multiple && required}
+              inputRef={ref || inputRef}
+              requiredLabel={multiple === true && required === true}
             />
           )
         }}

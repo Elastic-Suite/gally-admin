@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 import {
   ILimitationsTypes,
@@ -29,9 +29,10 @@ export interface IProps {
   margin?: 'none' | 'dense' | 'normal'
   infoTooltip?: string
   placeholder?: string
-  // error?: boolean
+  error?: boolean
   helperText?: string | string[]
   helperIcon?: string
+  showError?: boolean
 }
 
 function RequestType(props: IProps): JSX.Element {
@@ -48,11 +49,11 @@ function RequestType(props: IProps): JSX.Element {
     margin,
     infoTooltip,
     placeholder,
-    // error,
+    error,
     helperText,
     helperIcon,
+    showError,
   } = props
-  const [error, setError] = useState(false)
   function updateSelectedDropDown(list: string[] | string): void {
     const newData = (list as string[]).map((item) => {
       const existingRequestType = value.requestTypes.some((it) => {
@@ -102,8 +103,8 @@ function RequestType(props: IProps): JSX.Element {
       ) : undefined}
       <CustomRoot error={error}>
         <DropDownError
-          showError
-          required={props.required}
+          showError={showError}
+          required={required}
           placeholder={value.requestTypes.length !== 0 ? '' : placeholder}
           multiple
           onChange={updateSelectedDropDown}
@@ -112,6 +113,7 @@ function RequestType(props: IProps): JSX.Element {
         />
         <RequestTypeItem
           value={value}
+          showError={showError}
           onChange={onChange}
           limitationsTypes={limitationsTypes}
           options={options}

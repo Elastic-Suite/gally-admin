@@ -1,4 +1,4 @@
-import React, { forwardRef, ReactNode } from 'react'
+import React, { ReactNode, RefObject, forwardRef } from 'react'
 import { Box, FormHelperText, Grid, InputLabel } from '@mui/material'
 import { DateValidationError } from '@mui/x-date-pickers/internals/hooks/validation/useDateValidation'
 import { useTranslation } from 'next-i18next'
@@ -44,7 +44,7 @@ export interface IDoubleDatePickerProps
 
 function DoubleDatePicker(
   props: IDoubleDatePickerProps,
-  ref: any
+  ref: RefObject<HTMLInputElement>
 ): JSX.Element {
   const {
     value,

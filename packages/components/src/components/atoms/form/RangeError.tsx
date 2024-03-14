@@ -1,16 +1,20 @@
 import React from 'react'
 
-import { useFormError } from '../../../hooks'
+import { IFieldErrorProps, useFormError } from '../../../hooks'
 
 import Range, { IRangeProps } from './Range'
 
-interface IRangeErrorProps extends IRangeProps {
-  showError?: boolean
-}
+interface IRangeErrorProps extends IFieldErrorProps, IRangeProps {}
 
 function RangeError(props: IRangeErrorProps): JSX.Element {
-  const { onChange, showError, ...inputProps } = props
-  const [formErrorProps] = useFormError(onChange, showError)
+  const { onChange, showError, additionalValidator, ...inputProps } = props
+  const [{ ref, ...formErrorProps }] = useFormError(
+    onChange,
+    inputProps.value,
+    showError,
+    additionalValidator,
+    inputProps.disabled
+  )
   return (
     <Range
       {...inputProps}
@@ -18,6 +22,7 @@ function RangeError(props: IRangeErrorProps): JSX.Element {
       error={inputProps?.error || formErrorProps?.error}
       helperIcon={inputProps?.helperIcon || formErrorProps?.helperIcon}
       helperText={inputProps?.helperText || formErrorProps?.helperText}
+      ref={ref}
     />
   )
 }

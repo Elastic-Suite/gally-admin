@@ -1,42 +1,39 @@
-import React, { useRef } from 'react'
+import React from 'react'
 
-import { useFormError } from '../../../hooks'
+import { IFieldErrorProps, useFormError } from '../../../hooks'
 
 import TreeSelector, { ITreeSelectorProps } from './TreeSelector'
-import { ITreeItem } from '@elastic-suite/gally-admin-shared'
-
-interface ITreeSelectorErrorProps<Multiple extends boolean | undefined> extends ITreeSelectorProps<Multiple>{
-  showError?: boolean,
-}
+interface ITreeSelectorErrorProps<Multiple extends boolean | undefined>
+  extends IFieldErrorProps,
+    ITreeSelectorProps<Multiple> {}
 
 function TreeSelectorError<Multiple extends boolean | undefined>(
-  props: ITreeSelectorErrorProps<Multiple>,
+  props: ITreeSelectorErrorProps<Multiple>
 ): JSX.Element {
-  const { onChange, showError, disabled, ...inputProps } = props
-  const ref = useRef(null)
-  const [formErrorProps] = useFormError(
+  const { onChange, showError, additionalValidator, ...inputProps } = props
+  const [{ ref, ...formErrorProps }] = useFormError(
     onChange,
+    inputProps.value,
     showError,
-    (value: ITreeItem[]) => {
-      if(props.multiple){
-        if(props.required && value.length === 0) {
+    (value: unknown, event) => {
+      if (inputProps.multiple) {
+        if (inputProps.required && (value as unknown[]).length === 0) {
           return 'valueMissing'
         }
-      } else {
-        if(props.required && !value) {
-          return 'valueMissing'
-        }
+      } else if (inputProps.required && !value) {
+        return 'valueMissing'
+      }
+      if (additionalValidator) {
+        return additionalValidator(value, event)
       }
       return ''
     },
-    ref,
-    disabled,
+    inputProps.disabled
   )
 
   return (
     <TreeSelector
       {...inputProps}
-      disabled={disabled}
       {...formErrorProps}
       error={inputProps?.error || formErrorProps?.error}
       helperIcon={inputProps?.helperIcon || formErrorProps?.helperIcon}

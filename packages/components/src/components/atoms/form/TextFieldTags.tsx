@@ -97,12 +97,13 @@ export interface ITextFieldTag extends Omit<ITextFieldTagsForm, 'options'> {
 }
 
 const colorOfBorderTextFieldTagsInputInit = '#e2e6f3'
+const colorOfBorderTextFieldTagsInputError = '#A02213'
 const colorOfBorderTextFieldTagsInputHover = '#b5b9d9'
 const colorOfBorderTextFieldTagsInputFocus = '#424880'
 
 function TextFieldTags(
   props: ITextFieldTag,
-  ref: ForwardedRef<HTMLInputElement>
+  ref?: ForwardedRef<HTMLInputElement>
 ): JSX.Element {
   const {
     value,
@@ -129,7 +130,10 @@ function TextFieldTags(
 
   function manageTags(
     key?: number,
-    event?: FormEvent<HTMLFormElement> | FocusEvent<HTMLInputElement, Element>
+    event?:
+      | FormEvent<HTMLFormElement>
+      | FocusEvent<HTMLInputElement, Element>
+      | React.KeyboardEvent<HTMLInputElement>
   ): void | null {
     if (!value || !onChange) {
       return null
@@ -148,10 +152,6 @@ function TextFieldTags(
     return onChange(newTags)
   }
 
-  useEffect(() => {
-    console.log('CAHNAfzefzefze')
-  }, [value])
-
   const [colorOfBorderTextFieldTagsInput, setColorOfBorderTextFieldTagsInput] =
     useState<string>(colorOfBorderTextFieldTagsInputInit)
 
@@ -162,12 +162,19 @@ function TextFieldTags(
     setColorOfBorderTextFieldTagsInput(colorOfBorderTextFieldTagsInputInit)
   }
 
+  useEffect(() => {
+    if (error) {
+      setColorOfBorderTextFieldTagsInput(colorOfBorderTextFieldTagsInputError)
+    } else {
+      setColorOfBorderTextFieldTagsInput(colorOfBorderTextFieldTagsInputInit)
+    }
+  }, [error])
+
   return (
     <div style={{ position: 'relative' }}>
-      {withCleanButton && (
+      {withCleanButton === true && (
         <CustomCloseTagsByOperator
           onClick={(): void => {
-            console.log('VALUE =====>', value)
             if (value.length > 0 && value[0] != null) {
               onChange([])
             }
@@ -188,22 +195,26 @@ function TextFieldTags(
         )}
         <CustomRootTextFieldTags
           disabled={disabled}
-          onMouseOver={(): void =>
-            setColorOfBorderTextFieldTagsInput((color) => {
-              if (color !== colorOfBorderTextFieldTagsInputFocus) {
-                return colorOfBorderTextFieldTagsInputHover
-              }
-              return color
-            })
-          }
-          onMouseOut={(): void =>
-            setColorOfBorderTextFieldTagsInput((color) => {
-              if (color !== colorOfBorderTextFieldTagsInputFocus) {
-                return colorOfBorderTextFieldTagsInputInit
-              }
-              return color
-            })
-          }
+          onMouseOver={(): void => {
+            if (!error) {
+              setColorOfBorderTextFieldTagsInput((color) => {
+                if (color !== colorOfBorderTextFieldTagsInputFocus) {
+                  return colorOfBorderTextFieldTagsInputHover
+                }
+                return color
+              })
+            }
+          }}
+          onMouseOut={(): void => {
+            if (!error) {
+              setColorOfBorderTextFieldTagsInput((color) => {
+                if (color !== colorOfBorderTextFieldTagsInputFocus) {
+                  return colorOfBorderTextFieldTagsInputInit
+                }
+                return color
+              })
+            }
+          }}
           style={{ borderColor: colorOfBorderTextFieldTagsInput }}
         >
           {onRemoveItem ? (
@@ -232,15 +243,15 @@ function TextFieldTags(
                 })
             )}
             {!disabled && (
-              <CustomFormTextFieldTags
-              // onSubmit={(e): void | null => manageTags(undefined, e)}
-              >
+              <CustomFormTextFieldTags>
                 <CustomInputTextTextFieldTags
-                  onFocus={(): void =>
-                    setColorOfBorderTextFieldTagsInput(
-                      colorOfBorderTextFieldTagsInputFocus
-                    )
-                  }
+                  onFocus={(): void => {
+                    if (!error) {
+                      setColorOfBorderTextFieldTagsInput(
+                        colorOfBorderTextFieldTagsInputFocus
+                      )
+                    }
+                  }}
                   onBlur={(e): void => onBlurInputTextFieldTags(e)}
                   value={val}
                   size={size}
@@ -248,7 +259,7 @@ function TextFieldTags(
                     placeholder ?? t('placeholder.default.textFieldTags')
                   }
                   onChange={(value): void => setVal(value as string)}
-                  onKeyDown={(event) => {
+                  onKeyDown={(event): void => {
                     if (event.code === 'Enter') manageTags(undefined, event)
                   }}
                   inputRef={ref}
