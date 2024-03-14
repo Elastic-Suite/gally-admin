@@ -82,6 +82,7 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
       if (optionConfig) {
         return onChange(optionConfig as IOption<string>, value, event)
       }
+      // eslint-disable-next-line no-warning-comments
       // Todo: Move this logic on DoubleDatePicker component after refactoring of error system
       if (name === 'doubleDatePicker') {
         const formatDate = {
@@ -172,6 +173,7 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
       return (
         <Box>
           <DoubleDatePicker
+            {...props}
             placeholder={placeholder}
             infoTooltip={infoTooltip}
             value={value as IDoubleDatePickerValues}

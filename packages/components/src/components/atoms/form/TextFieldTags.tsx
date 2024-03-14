@@ -1,4 +1,11 @@
-import React, { FocusEvent, FormEvent, useState } from 'react'
+import React, {
+  FocusEvent,
+  FormEvent,
+  ForwardedRef,
+  forwardRef,
+  useEffect,
+  useState,
+} from 'react'
 import { styled } from '@mui/system'
 import Chip from '../Chip/Chip'
 import InputText from './InputText'
@@ -55,7 +62,7 @@ const CustomTags = styled('div')(({ theme }) => ({
   alignItems: 'center',
 }))
 
-const CustomFormTextFieldTags = styled('form')({
+const CustomFormTextFieldTags = styled('div')({
   display: 'flex',
   flexDirection: 'row',
   alignItems: 'center',
@@ -84,15 +91,20 @@ const CustomCloseTagsByOperator = styled('div')(({ theme }) => ({
 
 export interface ITextFieldTag extends Omit<ITextFieldTagsForm, 'options'> {
   value?: string[]
+  withCleanButton?: boolean
   onChange?: (value: string[]) => void
   onRemoveItem?: () => void
 }
 
 const colorOfBorderTextFieldTagsInputInit = '#e2e6f3'
+const colorOfBorderTextFieldTagsInputError = '#A02213'
 const colorOfBorderTextFieldTagsInputHover = '#b5b9d9'
 const colorOfBorderTextFieldTagsInputFocus = '#424880'
 
-function TextFieldTags(props: ITextFieldTag): JSX.Element {
+function TextFieldTags(
+  props: ITextFieldTag,
+  ref?: ForwardedRef<HTMLInputElement>
+): JSX.Element {
   const {
     value,
     onChange,
@@ -109,6 +121,7 @@ function TextFieldTags(props: ITextFieldTag): JSX.Element {
     placeholder,
     size,
     disabledValue,
+    withCleanButton,
   } = props
 
   const { t } = useTranslation('common')
@@ -117,7 +130,10 @@ function TextFieldTags(props: ITextFieldTag): JSX.Element {
 
   function manageTags(
     key?: number,
-    event?: FormEvent<HTMLFormElement> | FocusEvent<HTMLInputElement, Element>
+    event?:
+      | FormEvent<HTMLFormElement>
+      | FocusEvent<HTMLInputElement, Element>
+      | React.KeyboardEvent<HTMLInputElement>
   ): void | null {
     if (!value || !onChange) {
       return null
@@ -146,96 +162,126 @@ function TextFieldTags(props: ITextFieldTag): JSX.Element {
     setColorOfBorderTextFieldTagsInput(colorOfBorderTextFieldTagsInputInit)
   }
 
+  useEffect(() => {
+    if (error) {
+      setColorOfBorderTextFieldTagsInput(colorOfBorderTextFieldTagsInputError)
+    } else {
+      setColorOfBorderTextFieldTagsInput(colorOfBorderTextFieldTagsInputInit)
+    }
+  }, [error])
+
   return (
-    <FormControl error={error} fullWidth={fullWidth} margin={margin}>
-      {Boolean(label || infoTooltip) && (
-        <div style={{ marginBottom: '4px' }}>
-          <InputLabel shrink required={required}>
-            {label}
-            {infoTooltip ? <InfoTooltip title={infoTooltip} /> : null}
-          </InputLabel>
-        </div>
+    <div style={{ position: 'relative' }}>
+      {withCleanButton === true && (
+        <CustomCloseTagsByOperator
+          onClick={(): void => {
+            if (value.length > 0 && value[0] != null) {
+              onChange([])
+            }
+          }}
+        >
+          <IonIcon name="close" style={{ fontSize: 14, padding: '0px' }} />
+        </CustomCloseTagsByOperator>
       )}
-      <CustomRootTextFieldTags
-        disabled={disabled}
-        onMouseOver={(): void =>
-          setColorOfBorderTextFieldTagsInput((color) => {
-            if (color !== colorOfBorderTextFieldTagsInputFocus) {
-              return colorOfBorderTextFieldTagsInputHover
-            }
-            return color
-          })
-        }
-        onMouseOut={(): void =>
-          setColorOfBorderTextFieldTagsInput((color) => {
-            if (color !== colorOfBorderTextFieldTagsInputFocus) {
-              return colorOfBorderTextFieldTagsInputInit
-            }
-            return color
-          })
-        }
-        style={{ borderColor: colorOfBorderTextFieldTagsInput }}
-      >
-        {onRemoveItem ? (
-          <CustomCloseTagsByOperator onClick={onRemoveItem}>
-            <IonIcon name="close" style={{ fontSize: 14, padding: '0px' }} />
-          </CustomCloseTagsByOperator>
-        ) : null}
-        <CustomTags>
-          {disabled || !value ? (
-            <Chip disabled label={disabledValue} />
-          ) : (
-            value
-              .filter((it) => it)
-              .map((item: string, key: number) => {
-                return disabled ? (
-                  // eslint-disable-next-line react/no-array-index-key
-                  <Chip disabled key={key} label={disabledValue} />
-                ) : (
-                  <Chip
-                    // eslint-disable-next-line react/no-array-index-key
-                    key={key}
-                    label={item}
-                    onDelete={(): void | null => manageTags(key)}
-                  />
-                )
+
+      <FormControl error={error} fullWidth={fullWidth} margin={margin}>
+        {Boolean(label || infoTooltip) && (
+          <div style={{ marginBottom: '4px' }}>
+            <InputLabel shrink required={required}>
+              {label}
+              {infoTooltip ? <InfoTooltip title={infoTooltip} /> : null}
+            </InputLabel>
+          </div>
+        )}
+        <CustomRootTextFieldTags
+          disabled={disabled}
+          onMouseOver={(): void => {
+            if (!error) {
+              setColorOfBorderTextFieldTagsInput((color) => {
+                if (color !== colorOfBorderTextFieldTagsInputFocus) {
+                  return colorOfBorderTextFieldTagsInputHover
+                }
+                return color
               })
-          )}
-          {!disabled && (
-            <CustomFormTextFieldTags
-              onSubmit={(e): void | null => manageTags(undefined, e)}
-            >
-              <CustomInputTextTextFieldTags
-                onFocus={(): void =>
-                  setColorOfBorderTextFieldTagsInput(
-                    colorOfBorderTextFieldTagsInputFocus
+            }
+          }}
+          onMouseOut={(): void => {
+            if (!error) {
+              setColorOfBorderTextFieldTagsInput((color) => {
+                if (color !== colorOfBorderTextFieldTagsInputFocus) {
+                  return colorOfBorderTextFieldTagsInputInit
+                }
+                return color
+              })
+            }
+          }}
+          style={{ borderColor: colorOfBorderTextFieldTagsInput }}
+        >
+          {onRemoveItem ? (
+            <CustomCloseTagsByOperator onClick={onRemoveItem}>
+              <IonIcon name="close" style={{ fontSize: 14, padding: '0px' }} />
+            </CustomCloseTagsByOperator>
+          ) : null}
+          <CustomTags>
+            {disabled || !value ? (
+              <Chip disabled label={disabledValue} />
+            ) : (
+              value
+                .filter((it) => it)
+                .map((item: string, key: number) => {
+                  return disabled ? (
+                    // eslint-disable-next-line react/no-array-index-key
+                    <Chip disabled key={key} label={disabledValue} />
+                  ) : (
+                    <Chip
+                      // eslint-disable-next-line react/no-array-index-key
+                      key={key}
+                      label={item}
+                      onDelete={(): void | null => manageTags(key)}
+                    />
                   )
-                }
-                onBlur={(e): void => onBlurInputTextFieldTags(e)}
-                value={val}
-                size={size}
-                placeholder={
-                  placeholder ?? t('placeholder.default.textFieldTags')
-                }
-                onChange={(value): void => setVal(value as string)}
+                })
+            )}
+            {!disabled && (
+              <CustomFormTextFieldTags>
+                <CustomInputTextTextFieldTags
+                  onFocus={(): void => {
+                    if (!error) {
+                      setColorOfBorderTextFieldTagsInput(
+                        colorOfBorderTextFieldTagsInputFocus
+                      )
+                    }
+                  }}
+                  onBlur={(e): void => onBlurInputTextFieldTags(e)}
+                  value={val}
+                  size={size}
+                  placeholder={
+                    placeholder ?? t('placeholder.default.textFieldTags')
+                  }
+                  onChange={(value): void => setVal(value as string)}
+                  onKeyDown={(event): void => {
+                    if (event.code === 'Enter') manageTags(undefined, event)
+                  }}
+                  inputRef={ref}
+                />
+              </CustomFormTextFieldTags>
+            )}
+          </CustomTags>
+        </CustomRootTextFieldTags>
+        {Boolean(helperText) && (
+          <FormHelperText error={error}>
+            {Boolean(helperIcon) && (
+              <IonIcon
+                name={helperIcon as string}
+                style={{ fontSize: 18, marginRight: 2 }}
               />
-            </CustomFormTextFieldTags>
-          )}
-        </CustomTags>
-      </CustomRootTextFieldTags>
-      {Boolean(helperText) && (
-        <FormHelperText error={error}>
-          {Boolean(helperIcon) && (
-            <IonIcon
-              name={helperIcon as string}
-              style={{ fontSize: 18, marginRight: 2 }}
-            />
-          )}
-          {helperText}
-        </FormHelperText>
-      )}
-    </FormControl>
+            )}
+            {helperText}
+          </FormHelperText>
+        )}
+      </FormControl>
+    </div>
   )
 }
 
-export default TextFieldTags
+export default forwardRef<HTMLInputElement, ITextFieldTag>(TextFieldTags)

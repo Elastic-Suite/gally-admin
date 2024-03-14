@@ -1,4 +1,10 @@
-import React, { ChangeEvent, ComponentType, Ref, SyntheticEvent } from 'react'
+import React, {
+  ChangeEvent,
+  ComponentType,
+  Ref,
+  SyntheticEvent,
+  forwardRef,
+} from 'react'
 import { DatePicker as MuiDatePicker } from '@mui/x-date-pickers/DatePicker'
 import {
   PickersDay,
@@ -41,6 +47,7 @@ function EndIcon(): JSX.Element {
     <IonIcon name="calendar-outline" style={{ fontSize: 18, padding: '0px' }} />
   )
 }
+
 function ShowIcon(): JSX.Element {
   return (
     <IonIcon
@@ -50,7 +57,7 @@ function ShowIcon(): JSX.Element {
   )
 }
 
-function DatePicker(props: IDatePickerProps): JSX.Element {
+function DatePicker(props: IDatePickerProps, ref: any): JSX.Element {
   const { t } = useTranslation('common')
   const { value, onChange, onError, ...args } = props
 
@@ -88,6 +95,7 @@ function DatePicker(props: IDatePickerProps): JSX.Element {
             ref={params.ref as Ref<HTMLDivElement>}
             type={type}
             value={value}
+            inputRef={ref}
           />
         )
       }}
@@ -95,4 +103,4 @@ function DatePicker(props: IDatePickerProps): JSX.Element {
   )
 }
 
-export default DatePicker
+export default forwardRef(DatePicker)

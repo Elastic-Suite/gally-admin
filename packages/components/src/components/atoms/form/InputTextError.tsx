@@ -1,19 +1,20 @@
-import React, { ForwardedRef, forwardRef } from 'react'
+import React from 'react'
 
-import { useFormError } from '../../../hooks'
+import { IFieldErrorProps, useFormError } from '../../../hooks'
 
 import InputText, { IInputTextProps } from './InputText'
 
-interface IInputTextErrorProps extends IInputTextProps {
-  showError?: boolean
-}
+interface IInputTextErrorProps extends IFieldErrorProps, IInputTextProps {}
 
-function InputTextError(
-  props: IInputTextErrorProps,
-  ref: ForwardedRef<HTMLDivElement>
-): JSX.Element {
-  const { onChange, showError, ...inputProps } = props
-  const [formErrorProps] = useFormError(onChange, showError)
+function InputTextError(props: IInputTextErrorProps): JSX.Element {
+  const { onChange, showError, additionalValidator, ...inputProps } = props
+  const [{ ref, ...formErrorProps }] = useFormError(
+    onChange,
+    inputProps.value,
+    showError,
+    additionalValidator,
+    inputProps.disabled
+  )
   return (
     <InputText
       {...inputProps}
@@ -21,9 +22,10 @@ function InputTextError(
       error={inputProps?.error || formErrorProps?.error}
       helperIcon={inputProps?.helperIcon || formErrorProps?.helperIcon}
       helperText={inputProps?.helperText || formErrorProps?.helperText}
-      ref={ref}
+      inputRef={ref}
+      ref={null}
     />
   )
 }
 
-export default forwardRef(InputTextError)
+export default InputTextError

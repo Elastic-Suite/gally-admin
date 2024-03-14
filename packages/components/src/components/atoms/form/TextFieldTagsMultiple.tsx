@@ -4,7 +4,7 @@ import { FormHelperText, IconButton, InputLabel } from '@mui/material'
 import IonIcon from '../IonIcon/IonIcon'
 import InfoTooltip from './InfoTooltip'
 import FormControl from './FormControl'
-import TextFieldTags from './TextFieldTags'
+import TextFieldTagsError from './TextFieldTagsError'
 import Button from '../buttons/Button'
 
 import {
@@ -33,6 +33,7 @@ export interface ITextFieldTagsMultipleProps
   extends Omit<ITextFieldTagsForm, 'size' | 'placeholder'> {
   value: ISearchLimitations[]
   onChange: (value: ISearchLimitations[]) => void
+  showError?: boolean
 }
 
 function TextFieldTagsMultiple(
@@ -52,6 +53,7 @@ function TextFieldTagsMultiple(
     margin,
     infoTooltip,
     options,
+    showError,
   } = props
 
   const { t } = useTranslation('common')
@@ -154,7 +156,11 @@ function TextFieldTagsMultiple(
       )}
       <CustomMultipleTextFieldsTags>
         {disabled ? (
-          <TextFieldTags disabledValue={disabledValue} disabled />
+          <TextFieldTagsError
+            value={[]}
+            disabledValue={disabledValue}
+            disabled
+          />
         ) : (
           Object.entries(modifiedValue).map(([key, value]) => {
             const option = options.find((it) => it.value === key)
@@ -180,6 +186,7 @@ function TextFieldTagsMultiple(
                   }}
                 >
                   <DropDown
+                    required
                     onChange={(newOption): void =>
                       updateOperator(key, newOption as string)
                     }
@@ -187,14 +194,14 @@ function TextFieldTagsMultiple(
                     options={newOptionsList}
                     sx={{ marginBottom: 1 }}
                   />
-                  <div style={{ position: 'relative' }}>
-                    <TextFieldTags
-                      fullWidth={fullWidth}
-                      onChange={(value): void => updateValue(key, value)}
-                      value={value}
-                      onRemoveItem={(): void => updateValue(key, [])}
-                    />
-                  </div>
+                  <TextFieldTagsError
+                    required
+                    showError={showError}
+                    withCleanButton
+                    fullWidth={fullWidth}
+                    onChange={(value): void => updateValue(key, value)}
+                    value={value}
+                  />
                 </div>
                 {optionsListAvailable.filter((opt) => opt.disabled).length >
                   1 && (

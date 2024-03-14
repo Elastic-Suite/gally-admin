@@ -66,6 +66,7 @@ function ResourceForm(props: IProps): JSX.Element {
   const { resourceName, id, title } = props
   const { t } = useTranslation('resourceForm')
   const resource = useResource(resourceName, IMainContext.FORM)
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { replace, create, remove } = useResourceOperations<any>(resource)
   const [errors, setErrors] = useState<IErrorsForm>()
 
@@ -87,6 +88,7 @@ function ResourceForm(props: IProps): JSX.Element {
 
   const requestTypeOptions = requestTypeOptionsApi?.data?.['hydra:member']
 
+  // eslint-disable-next-line no-warning-comments
   // Todo: Move this logic on RequestTypeManager component after refactoring of error system
   const requestTypeData = useValue(
     listUrlRequestTypeConfigurations?.limitationTypeOptionsApi,
@@ -186,7 +188,7 @@ function ResourceForm(props: IProps): JSX.Element {
     }
   }
 
-  async function sendingData(): Promise<any> {
+  async function sendingData(): Promise<unknown> {
     setIsLoading(true)
     let sendingToApi
     if (id) {
@@ -255,6 +257,13 @@ function ResourceForm(props: IProps): JSX.Element {
     setIsLoading(false)
   }
 
+  function handleSubmit(): void {
+    if (isValidForm) {
+      sendingData()
+    }
+    // return ref?.current?.reportValidity()
+  }
+
   return (
     <CustomRoot>
       {title ? (
@@ -283,8 +292,8 @@ function ResourceForm(props: IProps): JSX.Element {
             ) : null}
             <Box>
               <Button
-                disabled={!isValidForm}
-                onClick={sendingData}
+                //   disabled={!isValidForm}
+                onClick={handleSubmit}
                 loading={isLoading}
                 endIcon={
                   id ? (
@@ -300,12 +309,14 @@ function ResourceForm(props: IProps): JSX.Element {
           </CustomDoubleButtonSticky>
         </PageTitle>
       ) : null}
-      <CustomForm
-        data={data}
-        onChange={setData}
-        resource={resource}
-        errors={errors}
-      />
+      <form>
+        <CustomForm
+          data={data}
+          onChange={setData}
+          resource={resource}
+          errors={errors}
+        />
+      </form>
     </CustomRoot>
   )
 }

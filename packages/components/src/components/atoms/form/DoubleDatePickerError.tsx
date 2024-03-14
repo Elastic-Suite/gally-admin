@@ -1,17 +1,27 @@
-import React from 'react'
 import { differenceInSeconds } from 'date-fns'
-import { useFormError } from '../../../hooks'
+import React, { SyntheticEvent } from 'react'
+import { IFieldErrorProps, useFormError } from '../../../hooks'
 
 import { dateValidator } from './DatePickerError'
-import DoubleDatePicker, {
-  IDoubleDatePickerErrors,
-  IDoubleDatePickerProps,
-} from './DoubleDatePicker'
+import DoubleDatePicker, { IDoubleDatePickerProps } from './DoubleDatePicker'
 
-export function doubleDateValidator(value: {
+interface IDate {
   from: Date | null
   to: Date | null
-}): string | null {
+}
+interface IDoubleDatePickerErrorProps
+  extends IFieldErrorProps,
+    IDoubleDatePickerProps {}
+
+export function doubleDateValidator(
+  value: IDate,
+  event?: SyntheticEvent,
+  required?: boolean,
+  additionalValidator?: IDoubleDatePickerErrorProps['additionalValidator']
+): string | null {
+  if (required && (!value.from || !value.to)) {
+    return 'valueMissing'
+  }
   const fromError = dateValidator(value.from)
   if (fromError) {
     return fromError
@@ -20,44 +30,34 @@ export function doubleDateValidator(value: {
   if (toError) {
     return toError
   }
-  if (!value.from || !value.to) {
-    return null
+  if (additionalValidator) {
+    return additionalValidator(value, event)
   }
   if (differenceInSeconds(value.to, value.from) >= 0) {
-    return null
+    return ''
   }
   return 'doubleDatePickerRange'
 }
-
-interface IDoubleDatePickerErrorProps extends IDoubleDatePickerProps {
-  showError?: boolean
-}
-
 function DoubleDatePickerError(
   props: IDoubleDatePickerErrorProps
 ): JSX.Element {
-  const { onChange, showError, ...inputProps } = props
-  const [formErrorProps, setError] = useFormError(
+  const { onChange, showError, additionalValidator, ...inputProps } = props
+  const [{ ref, ...formErrorProps }] = useFormError(
     onChange,
+    inputProps.value,
     showError,
-    doubleDateValidator
+    (value: IDate, event) => {
+      return doubleDateValidator(
+        value,
+        event,
+        inputProps.required,
+        additionalValidator
+      )
+    },
+    inputProps.disabled
   )
 
-  function handleError(reason: IDoubleDatePickerErrors): void {
-    if (reason.from) {
-      setError(reason.from)
-    } else {
-      setError(reason.to)
-    }
-  }
-
-  return (
-    <DoubleDatePicker
-      {...inputProps}
-      {...formErrorProps}
-      onError={handleError}
-    />
-  )
+  return <DoubleDatePicker {...inputProps} {...formErrorProps} ref={ref} />
 }
 
 export default DoubleDatePickerError

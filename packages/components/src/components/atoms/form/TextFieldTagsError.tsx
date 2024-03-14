@@ -2,30 +2,29 @@ import React from 'react'
 
 import { IFieldErrorProps, useFormError } from '../../../hooks'
 
-import Dropdown, { IDropDownProps } from './DropDown'
+import TextFieldTags, { ITextFieldTag } from './TextFieldTags'
 
-interface IDropDownErrorProps<T> extends IFieldErrorProps, IDropDownProps<T> {}
+interface ITextFieldTagErrorProps extends IFieldErrorProps, ITextFieldTag {}
 
-function DropdownError<T>(props: IDropDownErrorProps<T>): JSX.Element {
+function TextFieldTagsError(props: ITextFieldTagErrorProps): JSX.Element {
   const { onChange, showError, additionalValidator, ...inputProps } = props
   const [{ ref, ...formErrorProps }] = useFormError(
     onChange,
     inputProps.value,
     showError,
-    (value, event) => {
-      if (
-        inputProps.required &&
-        (!value || (value as unknown[]).length === 0)
-      ) {
+    (value: string[], event): string => {
+      if (inputProps.required && (value.length === 0 || value[0] === null)) {
         return 'valueMissing'
       }
-      if (additionalValidator) return additionalValidator(value, event)
+      if (additionalValidator) {
+        return additionalValidator(value, event)
+      }
       return ''
     },
     inputProps.disabled
   )
   return (
-    <Dropdown
+    <TextFieldTags
       {...inputProps}
       {...formErrorProps}
       error={inputProps?.error || formErrorProps?.error}
@@ -36,4 +35,4 @@ function DropdownError<T>(props: IDropDownErrorProps<T>): JSX.Element {
   )
 }
 
-export default DropdownError
+export default TextFieldTagsError
