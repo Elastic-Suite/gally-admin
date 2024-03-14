@@ -1,17 +1,14 @@
 import React from 'react'
 
-import {
-  ISynonyms,
-  getSynonymsErrorMessages,
-} from '@elastic-suite/gally-admin-shared'
-import { FormHelperText, IconButton, InputLabel } from '@mui/material'
+import { ISynonyms } from '@elastic-suite/gally-admin-shared'
+import { IconButton, InputLabel } from '@mui/material'
 import InfoTooltip from './InfoTooltip'
 import IonIcon from '../IonIcon/IonIcon'
 import { StyledFormControl } from './InputText.styled'
 import Button from '../buttons/Button'
-import TextFieldTags from './TextFieldTags'
 import { styled } from '@mui/system'
 import { useTranslation } from 'next-i18next'
+import TextFieldTagsError from './TextFieldTagsError'
 
 const CustomPropError = ['error']
 const CustomRoot = styled('div', {
@@ -42,8 +39,7 @@ export interface IProps {
   infoTooltip?: string
   placeholder?: string
   error?: boolean
-  helperText?: string
-  helperIcon?: string
+  showError?: boolean
 }
 
 interface ISynonymFormatted {
@@ -75,8 +71,7 @@ function Synonym(props: IProps): JSX.Element {
     infoTooltip,
     placeholder,
     error,
-    helperText,
-    helperIcon,
+    showError,
   } = props
 
   if (value.length === 0) {
@@ -135,21 +130,6 @@ function Synonym(props: IProps): JSX.Element {
     return onChange(iSynonymsFormattedToISynonyms(synonymsUpdated))
   }
 
-  function emptyTerms(synonymId: string | number): void {
-    const synonymsUpdated = [...synonyms]
-    const index = synonymsUpdated.findIndex(
-      (synonym) => synonym.id === synonymId
-    )
-
-    if (index >= 0) {
-      synonymsUpdated[index].terms = []
-    }
-
-    return onChange(iSynonymsFormattedToISynonyms(synonymsUpdated))
-  }
-
-  const errorMessages = getSynonymsErrorMessages(value)
-
   return (
     <StyledFormControl
       fullWidth={fullWidth}
@@ -163,7 +143,7 @@ function Synonym(props: IProps): JSX.Element {
           {infoTooltip ? <InfoTooltip title={infoTooltip} /> : null}
         </InputLabel>
       ) : undefined}
-      <CustomRoot error={errorMessages.length > 0}>
+      <CustomRoot error={false}>
         <div
           style={{
             display: 'flex',
@@ -182,14 +162,27 @@ function Synonym(props: IProps): JSX.Element {
               key={synonym.id}
               className="synonym"
             >
-              <TextFieldTags
+              <TextFieldTagsError
                 fullWidth={fullWidth}
+                showError={showError}
+                required
+                withCleanButton
                 onChange={(terms): void => {
                   updateTerms(synonym.id, terms)
                 }}
                 value={synonym.terms}
                 placeholder={placeholder}
-                onRemoveItem={(): void => emptyTerms(synonym.id)}
+                additionalValidator={(value): string => {
+                  const terms = value as string[]
+                  if (terms.length < 2) return 'synonymTermsSizeInvalid'
+                  else if (
+                    terms.find((term) => term === undefined || term === '')
+                  )
+                    return 'synonymTermsSizeInvalid'
+                  if (terms.length !== [...new Set(terms)].length)
+                    return 'synonymTermsDuplicate'
+                  return ''
+                }}
               />
               <IconButton
                 onClick={(): void => removeTerms(synonym.id)}
@@ -216,25 +209,6 @@ function Synonym(props: IProps): JSX.Element {
           </Button>
         </div>
       </CustomRoot>
-      {errorMessages.length > 0 && (
-        <FormHelperText error style={{ flexDirection: 'column' }}>
-          {errorMessages.map((errorMessage, key) => (
-            // eslint-disable-next-line react/no-array-index-key
-            <span key={key}>{t(errorMessage)}</span>
-          ))}
-        </FormHelperText>
-      )}
-      {Boolean(helperText) && (
-        <FormHelperText>
-          {Boolean(helperIcon) && (
-            <IonIcon
-              name={helperIcon}
-              style={{ fontSize: 18, marginRight: 2 }}
-            />
-          )}
-          {helperText}
-        </FormHelperText>
-      )}
     </StyledFormControl>
   )
 }

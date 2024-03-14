@@ -12,8 +12,12 @@ import textOperatorOptions from '../../../../public/mocks/boost_query_text_opera
 import {
   IRequestType,
   IRequestTypesOptions,
+  ISynonyms,
 } from '@elastic-suite/gally-admin-shared'
 import { action } from '@storybook/addon-actions'
+import Synonym from './Synonym'
+import ThesaurusSynonym from '../../../../public/mocks/thesaurus_synonym.json'
+
 export default {
   title: 'Atoms/Form/Form',
   helperIcon: {
@@ -41,6 +45,7 @@ const Template = (): JSX.Element => {
     to: null,
   })
   const [requestType, setRequestType] = useState<IRequestType>(dataGeneralBoost)
+  const [synonym, setSynonym] = useState<ISynonyms>(ThesaurusSynonym.synonyms)
 
   return (
     <Form
@@ -81,6 +86,14 @@ const Template = (): JSX.Element => {
         label="Double date picker requis"
         value={doubleDate}
         onChange={setDoubleDate}
+      />
+
+      <Synonym
+        required
+        showError={showAllErrors}
+        value={synonym}
+        label="Synoyms"
+        onChange={setSynonym}
       />
     </Form>
   )
