@@ -66,7 +66,9 @@ function ReadableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
       const score = (
         typeof value === 'number' ? { scoreValue: value } : value
       ) as IScore
-      return <Score scoreValue={score.scoreValue} {...score.boostInfos} />
+      return (
+        <Score scoreValue={score.scoreValue} rounded {...score.boostInfos} />
+      )
     }
 
     case DataContentType.STOCK: {

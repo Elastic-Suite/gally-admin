@@ -5,8 +5,8 @@ import IonIcon from '../IonIcon/IonIcon'
 
 interface IProps {
   type: 'up' | 'down' | 'straight'
-  boostNumber: number
-  boostMultiplicator: number
+  boostNumber?: number
+  boostMultiplicator?: number
 }
 interface IBoostDetails {
   boostText: string
@@ -73,17 +73,19 @@ function Boost(props: IProps): JSX.Element {
           }
         />
       </Box>
-      <Box
-        sx={{
-          color: boostDetail.boostTextColor,
-          fontFamily: 'var(--gally-font)',
-          fontWeight: '500',
-          fontSize: '12px',
-          lineHeight: '18px',
-        }}
-      >
-        {boostDetail.boostText}
-      </Box>
+      {boostNumber !== undefined && boostMultiplicator !== undefined && (
+        <Box
+          sx={{
+            color: boostDetail.boostTextColor,
+            fontFamily: 'var(--gally-font)',
+            fontWeight: '500',
+            fontSize: '12px',
+            lineHeight: '18px',
+          }}
+        >
+          {boostDetail.boostText}
+        </Box>
+      )}
     </Box>
   )
 }

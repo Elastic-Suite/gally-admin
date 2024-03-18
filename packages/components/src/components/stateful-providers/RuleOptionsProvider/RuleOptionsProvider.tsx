@@ -152,21 +152,47 @@ function RuleOptionsProvider(props: IProps): JSX.Element {
               sourceField: `/source_fields/${field.id}`,
             }
 
-            // optionLabelFilters.catalog = `/localized_catalogs/${localizedCatalogId}`
-            const optionsResponse = await fetchApi<
-              IHydraResponse<ISourceFieldOption>
-            >(
-              sourceFieldOptionResource,
-              getListApiParameters(false, undefined, optionLabelFilters)
-            )
+            let currentPage = 0
+            const limit = 200
+            const promises = []
+            let options: IOptions<string | number> = []
 
-            if (!isError(optionsResponse)) {
-              return getOptionsFromOptionResource(
-                optionsResponse,
-                localizedCatalogId
+            const getOptionsData = async (
+              page: number
+            ): Promise<{
+              totalItems: number
+              options: IOptions<string | number>
+            }> => {
+              const optionsResponse = await fetchApi<
+                IHydraResponse<ISourceFieldOption>
+              >(
+                sourceFieldOptionResource,
+                getListApiParameters(page, limit, optionLabelFilters)
               )
+              if (!isError(optionsResponse)) {
+                const options = getOptionsFromOptionResource(
+                  optionsResponse,
+                  localizedCatalogId
+                )
+                const totalItems = optionsResponse['hydra:totalItems']
+                return { totalItems, options }
+              }
+              throw new Error('error')
             }
-            throw new Error('error')
+
+            const { totalItems, options: newOptions } = await getOptionsData(
+              currentPage
+            )
+            options = newOptions
+            for (; totalItems > (currentPage + 1) * limit; currentPage++) {
+              promises.push(getOptionsData(currentPage + 1))
+            }
+            const otherOptions = await Promise.all(promises)
+            options = [
+              ...options,
+              ...otherOptions.map(({ options }) => options).flat(),
+            ]
+            return options
           }
         )
       }
@@ -174,22 +200,21 @@ function RuleOptionsProvider(props: IProps): JSX.Element {
     [catalogId, fetch, fields, localizedCatalogId, sourceFieldOptionResource]
   )
 
-  const context = useMemo(
-    () => ({
+  const context = useMemo(() => {
+    return {
       getAttributeOperatorOptions,
       getAttributeType,
       loadAttributeValueOptions,
       operatorsValueType,
       options: map,
-    }),
-    [
-      getAttributeOperatorOptions,
-      getAttributeType,
-      loadAttributeValueOptions,
-      map,
-      operatorsValueType,
-    ]
-  )
+    }
+  }, [
+    getAttributeOperatorOptions,
+    getAttributeType,
+    loadAttributeValueOptions,
+    map,
+    operatorsValueType,
+  ])
 
   return (
     <ruleOptionsContext.Provider value={context}>
