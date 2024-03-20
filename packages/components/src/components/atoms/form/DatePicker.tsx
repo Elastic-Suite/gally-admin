@@ -54,6 +54,16 @@ function DatePicker(props: IDatePickerProps): JSX.Element {
   const { t } = useTranslation('common')
   const { value, onChange, onError, ...args } = props
 
+  function onChangeDatePicker(date: Date | string): void {
+    let utcDate = date
+    if (date instanceof Date) {
+      utcDate = new Date(
+        Date.UTC(date.getFullYear(), date.getMonth(), date.getDate())
+      )
+    }
+    onChange(utcDate)
+  }
+
   const renderWeekPickerDay = (
     _: string,
     __: Array<Date | null>,
@@ -65,7 +75,7 @@ function DatePicker(props: IDatePickerProps): JSX.Element {
   return (
     <MuiDatePicker
       value={value}
-      onChange={onChange}
+      onChange={onChangeDatePicker}
       onError={onError}
       renderDay={renderWeekPickerDay}
       components={{
