@@ -52,7 +52,7 @@ export interface IResponseError {
 export interface IResourceOperations<T> {
   create?: (item: Omit<T, 'id' | '@id' | '@type'>) => Promise<T | IError>
   remove?: (id: string | number) => Promise<T | IError>
-  replace?: (item: Omit<T, '@id' | '@type'>) => Promise<T | IError>
+  replace?: (item: Partial<T>) => Promise<T | IError>
   update?: (id: string | number, item: Partial<T>) => Promise<T | IError>
 }
 
@@ -68,9 +68,7 @@ export type IResourceEditableMassReplace<T> = (
   item: Omit<T, '@id' | '@type'>
 ) => Promise<void>
 export type IResourceEditableRemove = (id: string | number) => Promise<void>
-export type IResourceEditableReplace<T> = (
-  item: Omit<T, '@id' | '@type'>
-) => Promise<void>
+export type IResourceEditableReplace<T> = (item: Partial<T>) => void
 export type IResourceEditableUpdate<T> = (
   id: string | number,
   item: Partial<T>
