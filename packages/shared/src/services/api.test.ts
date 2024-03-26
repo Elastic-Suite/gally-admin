@@ -7,6 +7,7 @@ import {
   fetchApi,
   getApiFilters,
   getApiUrl,
+  hasRealFilterApplied,
   isApiError,
   removeEmptyParameters,
 } from './api'
@@ -166,6 +167,23 @@ describe('Api service', () => {
         'size[lte]': 12,
         display: 'auto',
       })
+    })
+  })
+
+  describe('hasRealFilterApplied', () => {
+    it('should', () => {
+      expect(hasRealFilterApplied({}, {})).toEqual(false)
+      expect(hasRealFilterApplied({ filer_A: false }, {})).toEqual(true)
+      expect(hasRealFilterApplied({}, { filer_A: false })).toEqual(false)
+      expect(
+        hasRealFilterApplied({ filer_A: false }, { filer_A: false })
+      ).toEqual(false)
+      expect(
+        hasRealFilterApplied(
+          { filer_A: false, filer_b: true },
+          { filer_A: false }
+        )
+      ).toEqual(true)
     })
   })
 })

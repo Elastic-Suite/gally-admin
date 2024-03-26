@@ -13,6 +13,7 @@ import ruleEngineOperators from '@elastic-suite/gally-admin-shared/src/mocks/sta
 export * from '@elastic-suite/gally-admin-shared/src/constants'
 export * from '@elastic-suite/gally-admin-shared/src/contexts'
 export * from '@elastic-suite/gally-admin-shared/src/mocks'
+export * from '@elastic-suite/gally-admin-shared/src/services/api'
 export * from '@elastic-suite/gally-admin-shared/src/services/breadcrumb'
 export * from '@elastic-suite/gally-admin-shared/src/services/catalog'
 export * from '@elastic-suite/gally-admin-shared/src/services/category'

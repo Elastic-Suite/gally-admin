@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 
+import { defaultRowsPerPageOptions } from '@elastic-suite/gally-admin-shared'
 import { breadcrumbContext, metadataContext } from '../../../contexts'
 import { withAuth, withOptions } from '../../../hocs'
 import { useFilters, useResource } from '../../../hooks'
@@ -48,6 +49,7 @@ function AdminSearchVector(): JSX.Element {
         resourceName="VectorConfiguration"
         setActiveFilters={setActiveFilters}
         showSearch
+        rowsPerPage={defaultRowsPerPageOptions[1]}
       />
     </>
   )

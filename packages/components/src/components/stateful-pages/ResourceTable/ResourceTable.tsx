@@ -96,6 +96,7 @@ export interface IResourceTable {
   showSearch?: boolean
   hasEditLink?: boolean
   editLink?: string
+  rowsPerPage?: number
 }
 
 const listOfDefaultFacets = [
@@ -123,6 +124,7 @@ function ResourceTable(props: IResourceTable): JSX.Element {
     showSearch,
     hasEditLink,
     editLink,
+    rowsPerPage: rowsPerPageValue,
   } = props
 
   const resource = useResource(resourceName)
@@ -132,7 +134,9 @@ function ResourceTable(props: IResourceTable): JSX.Element {
   useFiltersRedirect(page, activeFilters, searchValue, active)
 
   const rowsPerPageOptions = defaultRowsPerPageOptions
-  const [rowsPerPage, setRowsPerPage] = useState<number>(defaultPageSize)
+  const [rowsPerPage, setRowsPerPage] = useState<number>(
+    rowsPerPageValue ?? defaultPageSize
+  )
 
   const [resourceData, { massUpdate, massReplace, replace, update }] =
     useApiEditableList<ISourceField>(
@@ -140,6 +144,7 @@ function ResourceTable(props: IResourceTable): JSX.Element {
       page,
       rowsPerPage,
       parameters,
+      filters,
       searchValue,
       urlParams ? `${resource.url}${urlParams}` : null
     )
