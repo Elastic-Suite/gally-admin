@@ -1,6 +1,10 @@
 import { IHydraCatalog } from '../types'
 
-import { getDefaultCatalog, getLocalizedCatalog } from './catalog'
+import {
+  getDefaultCatalog,
+  getLocalizedCatalog,
+  getLocalizedCatalogFromCatalogs,
+} from './catalog'
 
 const defaultCatalog = {
   '@type': 'test',
@@ -166,6 +170,19 @@ describe('Catalog service', () => {
         isDefault: false,
         localName: 'test11',
       })
+    })
+  })
+
+  describe('getLocalizedCatalogFromCatalogs', () => {
+    it('should find localized catalog with id "11"', () => {
+      expect(getLocalizedCatalogFromCatalogs(mockCatalogs, 11)).toEqual(
+        defaultCatalog
+      )
+    })
+    it('should not find localized catalog with id "fake_id"', () => {
+      expect(getLocalizedCatalogFromCatalogs(mockCatalogs, 'fake_id')).toEqual(
+        undefined
+      )
     })
   })
 })

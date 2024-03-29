@@ -121,7 +121,14 @@ export function getIdFromIri(iri: string): string {
   return iri.split('/').pop()
 }
 
-export function roundNumber(value: number, decimal: number): number {
+export function roundNumber(
+  value: number,
+  decimal: number,
+  forceDecimalDisplay = false
+): number | string {
   // We use the calculation below because it allows us to obtain better rounding to the decimal point compared to if we use the toFixed() method.
-  return Math.round((value + Number.EPSILON) * 10 ** decimal) / 10 ** decimal
+  const rounded =
+    Math.round((value + Number.EPSILON) * 10 ** decimal) / 10 ** decimal
+
+  return forceDecimalDisplay ? rounded.toFixed(decimal) : rounded
 }

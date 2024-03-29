@@ -5,7 +5,7 @@ import {
   fieldString,
   resourceWithRef,
 } from '../mocks'
-import { DataContentType } from '../types'
+import { DataContentType, IImage } from '../types'
 import sourceFields from '../mocks/static/source_fields.json'
 
 import {
@@ -13,7 +13,10 @@ import {
   getFieldHeader,
   getFilter,
   getFilterType,
+  getImagePath,
+  getImageValue,
   getMappings,
+  isIImage,
 } from './table'
 
 describe('Table service', () => {
@@ -154,6 +157,39 @@ describe('Table service', () => {
         field: fieldBoolean,
         multiple: false,
       })
+    })
+  })
+
+  describe('getImagePath', () => {
+    it('should return the image path', () => {
+      expect(getImagePath('image/myImage.png')).toEqual('image/myImage.png')
+      expect(getImagePath({ path: 'image/myImage.png', icons: [] })).toEqual(
+        'image/myImage.png'
+      )
+    })
+  })
+
+  describe('isIImage', () => {
+    it('should return if the object is an instance of IImage', () => {
+      expect(isIImage({ path: 'image/myImage.png', icons: [] })).toEqual(true)
+      expect(isIImage({ id: 25 } as unknown as IImage)).toEqual(false)
+      expect(isIImage('image/myImage.png')).toEqual(false)
+    })
+  })
+
+  describe('getImageValue', () => {
+    it('should return if the object is an instance of IImage', () => {
+      expect(
+        getImageValue('https://example.test', {
+          path: 'image/myImage.png',
+          icons: [],
+        })
+      ).toEqual({ path: 'https://example.test/image/myImage.png', icons: [] })
+      expect(
+        getImageValue('https://example.test/', 'image/myImage.png')
+      ).toEqual('https://example.test/image/myImage.png')
+      expect(isIImage({ id: 25 } as unknown as IImage)).toEqual(false)
+      expect(isIImage('image/myImage.png')).toEqual(false)
     })
   })
 })

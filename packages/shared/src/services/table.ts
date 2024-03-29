@@ -8,10 +8,11 @@ import {
   IHydraMapping,
   IHydraMember,
   IHydraResponse,
+  IImage,
   IResource,
 } from '../types'
 
-import { getFieldLabelTranslationArgs } from './format'
+import { getFieldLabelTranslationArgs, joinUrlPath } from './format'
 import { getField, getFieldType } from './hydra'
 
 interface IMapping extends IHydraMapping {
@@ -143,4 +144,28 @@ export function getMappings<T extends IHydraMember>(
         !arrayProperties.includes(mapping.property) || mapping.multiple
     )
     .sort((a, b) => a.field.gally?.position - b.field.gally?.position)
+}
+
+export function getImagePath(image: IImage | string): string {
+  return typeof image === 'object' && 'path' in image
+    ? image.path
+    : (image as string)
+}
+
+export function isIImage(image: IImage | string): boolean {
+  return typeof image === 'object' && 'path' in image && 'icons' in image
+}
+
+export function getImageValue(
+  baseUrl: string,
+  rowValue: string | IImage
+): string | IImage {
+  let image = rowValue
+  if (typeof image !== 'string' && isIImage(rowValue)) {
+    image = { ...image, path: joinUrlPath(baseUrl, image.path) }
+  } else {
+    image = joinUrlPath(baseUrl, getImagePath(image))
+  }
+
+  return image
 }

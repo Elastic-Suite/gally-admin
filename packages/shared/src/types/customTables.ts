@@ -1,4 +1,5 @@
 import { IFieldConfig, IFieldState } from './field'
+import { ICustomDialog } from './popin'
 
 export enum MassiveSelectionType {
   ALL = 'massiveselection.all',
@@ -72,14 +73,17 @@ export interface IStickyBorderStyle {
 
 export interface ITableRow {
   id: string | number
+  popIn?: ICustomDialog
   [key: string]:
     | string
     | boolean
     | number
     | IScore
+    | IImage
     | IStock
     | IPrice[]
     | IProductInfo
+    | ICustomDialog
 }
 
 export interface IHorizontalOverflow {
@@ -95,6 +99,10 @@ export type ITableConfig = Record<string, IFieldState>
 
 export type BoostType = 'up' | 'down' | 'straight'
 
+export enum ImageIcon {
+  PIN = 'trending-up-outline',
+}
+
 export interface IBoost {
   type: BoostType
   boostNumber?: number
@@ -109,6 +117,11 @@ export interface IStock {
 export interface IScore {
   scoreValue: number
   boostInfos?: IBoost
+}
+
+export interface IImage {
+  path: string
+  icons?: ImageIcon[]
 }
 
 export interface IPrice {

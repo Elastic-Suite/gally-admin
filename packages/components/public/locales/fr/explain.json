@@ -1,0 +1,18 @@
+{
+  "Weight": "Poids",
+  "Field": "Champ",
+  "Term": "Terme",
+  "Score": "Score",
+  "Code": "Code",
+  "Price": "Prix",
+  "Stock": "Stock",
+  "Matches": "Correspondances",
+  "Matches explanation": "Explication des correspondances",
+  "Details score": "Détails du score",
+  "General information": "Informations générales",
+  "Total score": "Score total",
+  "Score after application of the boosts": "Score après application des boosts",
+  "Copy request": "Copier la requête",
+  "query.popin.title": "Nom de l'index",
+  "query.popin.request": "Requête"
+}

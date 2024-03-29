@@ -20,7 +20,6 @@ function ProductsSearchPreview(props: IProps): JSX.Element {
     <ProductsPreviewBottom
       variables={variables}
       configuration={configuration}
-      topProducts={[]}
       onProductsLoaded={onProductsLoaded}
       limitationType={limitationType}
     />

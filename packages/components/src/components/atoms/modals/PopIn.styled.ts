@@ -1,63 +1,60 @@
-import { Dialog, DialogProps, styled } from '@mui/material'
-import React from 'react'
+import { Dialog, styled } from '@mui/material'
 
-interface ICustomDialogStyles {
-  paper?: React.CSSProperties
-  title?: React.CSSProperties
-  actions?: React.CSSProperties
-  content?: React.CSSProperties
-}
-export interface IPropsCustomDialog extends DialogProps {
-  position: 'left' | 'right' | 'center'
-  styles?: ICustomDialogStyles
-}
+import {
+  IPropsCustomDialog,
+  getCustomScrollBarStyles,
+} from '@elastic-suite/gally-admin-shared'
 
 const dialogProps = ['position', 'styles']
-export const CustomDialog = styled(Dialog, {
+export const CustomDialogStyled = styled(Dialog, {
   shouldForwardProp: (prop: string) => !dialogProps.includes(prop),
-})<IPropsCustomDialog>(({ position, theme, styles }) => ({
-  '& *': {
-    fontFamily: 'var(--gally-font)',
-  },
-  '& .MuiDialogContent-root, & .MuiDialogActions-root,  & .MuiDialogTitle-root':
-    {
+})<IPropsCustomDialog>(({ position, theme, styles }) => {
+  return {
+    '& *': {
+      fontFamily: 'var(--gally-font)',
+    },
+    '& .MuiDialogActions-root,  & .MuiDialogTitle-root': {
       padding: theme.spacing(4),
     },
-  '& .MuiDialog-container': {
-    justifyContent:
-      position === 'left'
-        ? 'flex-start'
-        : position === 'right'
-        ? 'flex-end'
-        : 'center',
-  },
-  '& .MuiDialogTitle-root': {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    borderBottom: '1px solid #E2E6F3',
-    color: '#151A47',
-    fontSize: '14px',
-    fontWeight: 600,
-    lineHeight: '20px',
-    ...styles?.title,
-  },
-  '& .MuiDialog-paper': {
-    minWidth: '200px',
-    padding: theme.spacing(0),
-    margin: theme.spacing(0),
-    ...styles?.paper,
-  },
-  '& .MuiDialogContent-root': {
-    display: 'flex',
-    flexDirection: 'Column',
-    ...styles?.content,
-  },
-  '& .MuiDialogActions-root': {
-    ...styles?.actions,
-  },
-}))
+    '& .MuiDialog-container': {
+      justifyContent:
+        position === 'left'
+          ? 'flex-start'
+          : position === 'right'
+          ? 'flex-end'
+          : 'center',
+    },
+    '& .MuiDialogTitle-root': {
+      display: 'flex',
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      borderBottom: '1px solid #E2E6F3',
+      color: '#151A47',
+      fontSize: '14px',
+      fontWeight: 600,
+      lineHeight: '20px',
+      ...styles?.title,
+    },
+    '& .MuiDialog-paper': {
+      minWidth: '200px',
+      padding: theme.spacing(0),
+      margin: theme.spacing(0),
+      ...styles?.paper,
+    },
+    '& .MuiDialogContent-root': {
+      display: 'flex',
+      flexDirection: 'Column',
+      ...styles?.content,
+      ...getCustomScrollBarStyles(theme),
+      margin: `${theme.spacing(4)} ${theme.spacing(0.5)}`,
+      padding: `${theme.spacing(0)} ${theme.spacing(3.5)}`,
+    },
+    '& .MuiDialogActions-root': {
+      ...styles?.actions,
+    },
+  }
+})
 
 export const CustomClose = styled('div')(({ theme }) => ({
   position: 'absolute',

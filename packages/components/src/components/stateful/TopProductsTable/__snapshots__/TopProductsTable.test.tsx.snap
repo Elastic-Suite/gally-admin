@@ -54,7 +54,7 @@ exports[`TopProductTable Should match snapschot 1`] = `
               Name
             </th>
             <th
-              class="MuiTableCell-root MuiTableCell-head MuiTableCell-stickyHeader MuiTableCell-sizeMedium css-1hcarba-MuiTableCell-root"
+              class="MuiTableCell-root MuiTableCell-head MuiTableCell-stickyHeader MuiTableCell-sizeMedium css-vavf5g-MuiTableCell-root"
               scope="col"
             >
               Score
@@ -66,7 +66,7 @@ exports[`TopProductTable Should match snapschot 1`] = `
               In stock
             </th>
             <th
-              class="MuiTableCell-root MuiTableCell-head MuiTableCell-stickyHeader MuiTableCell-sizeMedium css-1hcarba-MuiTableCell-root"
+              class="MuiTableCell-root MuiTableCell-head MuiTableCell-stickyHeader MuiTableCell-sizeMedium css-vavf5g-MuiTableCell-root"
               scope="col"
             >
               Price
@@ -118,11 +118,18 @@ exports[`TopProductTable Should match snapschot 1`] = `
             <td
               class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-7bmc7a-MuiTableCell-root"
             >
-              <img
-                alt="field.productImage"
-                class="css-1qpslqa"
-                src="https://localhost/media/catalog/product/static/media/assets/img/scarf_elastic.png"
-              />
+              <div
+                class="css-k008qs"
+              >
+                <img
+                  alt="field.productImage"
+                  class="css-1qpslqa"
+                  src="https://localhost/media/catalog/product/static/media/assets/img/scarf_elastic.png"
+                />
+                <div
+                  class="css-133d1dw"
+                />
+              </div>
             </td>
             <td
               class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-7bmc7a-MuiTableCell-root"
@@ -214,11 +221,18 @@ exports[`TopProductTable Should match snapschot 1`] = `
             <td
               class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-7bmc7a-MuiTableCell-root"
             >
-              <img
-                alt="field.productImage"
-                class="css-1qpslqa"
-                src="https://localhost/media/catalog/product/static/media/assets/img/scarf_elastic.png"
-              />
+              <div
+                class="css-k008qs"
+              >
+                <img
+                  alt="field.productImage"
+                  class="css-1qpslqa"
+                  src="https://localhost/media/catalog/product/static/media/assets/img/scarf_elastic.png"
+                />
+                <div
+                  class="css-133d1dw"
+                />
+              </div>
             </td>
             <td
               class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-7bmc7a-MuiTableCell-root"

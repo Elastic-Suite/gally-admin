@@ -40,3 +40,20 @@ export function getLocalizedCatalog(
   }
   return localizedCatalog
 }
+
+export function getLocalizedCatalogFromCatalogs(
+  catalogs: ICatalog[],
+  localizedCatalogId: string | number
+): ILocalizedCatalog | undefined {
+  let localizedCatalog
+
+  catalogs.some((catalog) => {
+    localizedCatalog = catalog?.localizedCatalogs.find(
+      (localizedCatalog) =>
+        String(localizedCatalog.id) === String(localizedCatalogId)
+    )
+    return localizedCatalog !== undefined
+  })
+
+  return localizedCatalog
+}
