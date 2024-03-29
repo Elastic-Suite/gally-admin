@@ -1,7 +1,8 @@
-import React, { FunctionComponent, SyntheticEvent } from 'react'
+import React, { FunctionComponent, SyntheticEvent, useState } from 'react'
 import { TableBody } from '@mui/material'
 import {
   IConfigurations,
+  ICustomDialog,
   IFieldGuesserProps,
   ITableConfig,
   ITableHeader,
@@ -9,6 +10,8 @@ import {
 } from '@elastic-suite/gally-admin-shared'
 
 import NonDraggableRow from '../CustomTableRow/NonDraggableRow'
+import { usePopIn } from '../../../../hooks/usePopin'
+import CustomDialog from '../../../atoms/modals/CustomDialog'
 
 interface IProps {
   Field: FunctionComponent<IFieldGuesserProps>
@@ -54,6 +57,9 @@ function NonDraggableBody(props: IProps): JSX.Element {
     withoutDragableColumn,
   } = props
 
+  const [open, handleClickOpen, handleClose] = usePopIn()
+  const [tableRowPopIn, setTableRowPopIn] = useState<ICustomDialog>()
+
   const newTableRows = hasEditLink
     ? tableRows.map((item) => {
         const link = editLink
@@ -62,6 +68,11 @@ function NonDraggableBody(props: IProps): JSX.Element {
         return { ...item, edit: link }
       })
     : tableRows
+
+  function handleClick(tableRowPopIn: ICustomDialog): void {
+    setTableRowPopIn(tableRowPopIn)
+    handleClickOpen()
+  }
 
   return (
     <TableBody>
@@ -82,8 +93,18 @@ function NonDraggableBody(props: IProps): JSX.Element {
           withSelection={withSelection}
           configuration={configuration}
           withoutDragableColumn={withoutDragableColumn}
+          onClick={
+            tableRow.popIn ? (): void => handleClick(tableRow.popIn) : undefined
+          }
         />
       ))}
+      {tableRowPopIn ? (
+        <CustomDialog
+          handleClose={handleClose}
+          open={open}
+          {...tableRowPopIn}
+        />
+      ) : null}
     </TableBody>
   )
 }

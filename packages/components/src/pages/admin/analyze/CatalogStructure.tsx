@@ -10,13 +10,13 @@ import {
   IHydraResponse,
   IRequestTypesOptions,
   ITreeItem,
-  LimitationType,
+  ProductRequestType,
   getLimitationType,
   getOptionsFromApiSchema,
   isGraphQLValidVariables,
 } from '@elastic-suite/gally-admin-shared'
 
-import { breadcrumbContext } from '../../../contexts'
+import { breadcrumbContext, catalogContext } from '../../../contexts'
 import { withAuth, withOptions } from '../../../hocs'
 import {
   useApiList,
@@ -27,11 +27,10 @@ import {
 import { selectConfiguration, useAppSelector } from '../../../store'
 
 import Button from '../../../components/atoms/buttons/Button'
-import ProductsSearchPreview from '../../../components/stateful/ProductPreview/ProductsSearchPreview'
-import ProductsCategoryPreview from '../../../components/stateful/ProductPreview/ProductsCategoryPreview'
 import MerchandiseBar from '../../../components/stateful/ProductPreview/MerchandiseBar'
 import { DropDownError, InputTextError, PageTitle } from '../../../components'
 import TreeSelectorError from '../../../components/atoms/form/TreeSelectorError'
+import ProductsPreviewBottom from '../../../components/stateful/ProductPreview/ProductsPreviewBottom'
 
 const WrapperBlock = styled('div')(({ theme }) => ({
   border: '1px solid',
@@ -62,6 +61,7 @@ function AdminAnalyzeCatalogStructure(): JSX.Element {
   const router = useRouter()
   const [, setBreadcrumb] = useContext(breadcrumbContext)
   const { formRef, formIsValid } = useFormValidation()
+  const { localizedCatalogWithDefault } = useContext(catalogContext)
 
   const [variables, setVariables] = useState<IExplainVariables>({})
   const [variableValid, setVariableValid] = useState(false)
@@ -143,11 +143,32 @@ function AdminAnalyzeCatalogStructure(): JSX.Element {
     }
   }
 
+  function setProductCounts(nbResults: number, nbTopProducts: number): void {
+    setNbResults(nbResults)
+    setNbTopProducts(nbTopProducts)
+  }
+
   if (!variables.requestType && requestTypeOptions[0]) {
+    const defaultRequestType = requestTypeOptions.find(
+      (option) => option.value === ProductRequestType.SEARCH
+    )
+    const defaultRequestTypeValue = defaultRequestType
+      ? defaultRequestType.value
+      : requestTypeOptions[0].value
+    const defaultLocalizedCatalog = localizedCatalogOptions.find(
+      (option) => String(option.value) === localizedCatalogWithDefault?.['@id']
+    )
+    const defaultLocalizedCatalogValue = defaultLocalizedCatalog
+      ? defaultLocalizedCatalog.value
+      : localizedCatalogOptions[0].value
+
     setVariables({
       ...variables,
-      requestType: requestTypeOptions[0].value
-        ? String(requestTypeOptions[0].value)
+      requestType: defaultRequestTypeValue
+        ? String(defaultRequestTypeValue)
+        : undefined,
+      localizedCatalog: defaultLocalizedCatalogValue
+        ? String(defaultLocalizedCatalogValue)
         : undefined,
     })
   }
@@ -247,23 +268,12 @@ function AdminAnalyzeCatalogStructure(): JSX.Element {
           sx={{ backgroundColor: 'colors.neutral.300', padding: 2 }}
         >
           <PreviewArea>{t('previewArea', { ns: 'categories' })}</PreviewArea>
-          {limitationType === LimitationType.SEARCH && (
-            <ProductsSearchPreview
-              variables={variables}
-              configuration={configuration}
-              limitationType={limitationType}
-              onProductsLoaded={setNbResults}
-            />
-          )}
-          {limitationType === LimitationType.CATEGORY && (
-            <ProductsCategoryPreview
-              variables={variables}
-              configuration={configuration}
-              limitationType={limitationType}
-              onProductsLoaded={setNbResults}
-              onTopProductsLoaded={setNbTopProducts}
-            />
-          )}
+          <ProductsPreviewBottom
+            variables={variables}
+            configuration={configuration}
+            onProductsLoaded={setProductCounts}
+            limitationType={limitationType}
+          />
         </Paper>
       ) : null}
     </>

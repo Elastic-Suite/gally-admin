@@ -1,4 +1,8 @@
-import { getLimitationType, sortProductCollection } from './product'
+import {
+  getLimitationType,
+  getStockStatusLabel,
+  sortProductCollection,
+} from './product'
 import { LimitationType, ProductRequestType } from '../types'
 
 describe('Product service', () => {
@@ -141,6 +145,13 @@ describe('Product service', () => {
           },
         ])
       ).toEqual(undefined)
+    })
+  })
+
+  describe('getStockStatusLabel', () => {
+    it('Should get the stock status label', () => {
+      expect(getStockStatusLabel(true)).toEqual('stock.inStock')
+      expect(getStockStatusLabel(false)).toEqual('stock.outOfStock')
     })
   })
 })

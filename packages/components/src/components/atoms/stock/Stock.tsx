@@ -2,6 +2,7 @@ import React from 'react'
 import { useTranslation } from 'next-i18next'
 
 import Chip from '../Chip/Chip'
+import { getStockStatusLabel } from '@elastic-suite/gally-admin-shared'
 
 interface IProps {
   stockStatus: boolean
@@ -10,7 +11,7 @@ interface IProps {
 function Stock(props: IProps): JSX.Element {
   const { stockStatus } = props
   const { t } = useTranslation('common')
-  const label = t(stockStatus ? 'stock.inStock' : 'stock.outOfStock')
+  const label = t(getStockStatusLabel(stockStatus))
 
   return <Chip color={stockStatus ? 'success' : 'error'} label={label} />
 }

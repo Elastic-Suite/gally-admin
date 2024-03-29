@@ -71,5 +71,6 @@
   "result_other": "{{count}} resultats",
   "category": "Catégorie",
   "localizedCatalog": "Catalogue localisé",
-  "localizedCatalog.placeholder": "Sélectionnez un catalogue"
+  "localizedCatalog.placeholder": "Sélectionnez un catalogue",
+  "Pinned": "Épinglé"
 }

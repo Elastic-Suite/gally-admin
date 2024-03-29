@@ -14,8 +14,8 @@ const Template: ComponentStory<typeof ExplainQueryDetailsComponent> = (
 export const ExplainQueryDetails = Template.bind({})
 
 ExplainQueryDetails.args = {
-  requestTitle: 'magento2_default_catalog_product',
-  request: {
+  index: 'magento2_default_catalog_product',
+  query: {
     object: {
       a: 1,
       b: 2,
