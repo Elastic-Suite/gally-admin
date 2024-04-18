@@ -2,9 +2,13 @@ import React, { useState } from 'react'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
 
 import TextFieldTagsComponentMultiple from './TextFieldTagsMultiple'
-import { IOptions, ISearchLimitations } from '@elastic-suite/gally-admin-shared'
 
-const textOperatorOptions: IOptions<string> = [
+import {
+  IOptionsTags,
+  ISearchLimitations,
+} from '@elastic-suite/gally-admin-shared'
+
+const textOperatorOptions: IOptionsTags[] = [
   {
     id: 'eq',
     value: 'eq',
@@ -83,6 +87,29 @@ const Template: ComponentStory<typeof TextFieldTagsComponentMultiple> = (
 export const Default = Template.bind({})
 Default.args = {
   disabled: false,
+  options: textOperatorOptions,
+  disabledValue: 'Disabled',
+}
+
+const TemplateError: ComponentStory<typeof TextFieldTagsComponentMultiple> = (
+  args
+) => {
+  const [value, setValue] = useState<ISearchLimitations[]>(searchLimitations)
+
+  return (
+    <TextFieldTagsComponentMultiple
+      {...args}
+      value={value}
+      onChange={setValue}
+      options={textOperatorOptions}
+    />
+  )
+}
+
+export const WithError = TemplateError.bind({})
+WithError.args = {
+  disabled: false,
+  showError: true,
   options: textOperatorOptions,
   disabledValue: 'Disabled',
 }

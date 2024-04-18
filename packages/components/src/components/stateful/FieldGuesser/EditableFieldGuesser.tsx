@@ -11,7 +11,7 @@ import {
   ISynonyms,
 } from '@elastic-suite/gally-admin-shared'
 
-import DropDown from '../../atoms/form/DropDown'
+import DropDownError from '../../atoms/form/DropDownError'
 import InputTextError from '../../atoms/form/InputTextError'
 import RangeError from '../../atoms/form/RangeError'
 import Switch from '../../atoms/form/Switch'
@@ -19,10 +19,8 @@ import Switch from '../../atoms/form/Switch'
 import ReadableFieldGuesser from './ReadableFieldGuesser'
 import EditableDropDownGuesser from './EditableDropDownGuesser'
 import EditableModelConfig from './EditableModelConfig'
-import DoubleDatePicker, {
-  IDoubleDatePickerValues,
-} from '../../atoms/form/DoubleDatePicker'
-
+import { IDoubleDatePickerValues } from '../../atoms/form/DoubleDatePicker'
+import DoubleDatePickerError from '../../atoms/form/DoubleDatePickerError'
 import { Box } from '@mui/material'
 import RequestTypeManager from '../../stateful/RequestTypeManager/RequestTypeManager'
 import { isHiddenDepends } from '../../../services'
@@ -81,14 +79,6 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
     if (onChange) {
       if (optionConfig) {
         return onChange(optionConfig as IOption<string>, value, event)
-      }
-      // Todo: Move this logic on DoubleDatePicker component after refactoring of error system
-      if (name === 'doubleDatePicker') {
-        const formatDate = {
-          fromDate: (value as IDoubleDatePickerValues)?.from,
-          toDate: (value as IDoubleDatePickerValues)?.to,
-        }
-        return onChange(name, formatDate, event)
       }
       return onChange(name, value, event)
     }
@@ -171,7 +161,8 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
     case DataContentType.RANGEDATE: {
       return (
         <Box>
-          <DoubleDatePicker
+          <DoubleDatePickerError
+            {...props}
             placeholder={placeholder}
             infoTooltip={infoTooltip}
             value={value as IDoubleDatePickerValues}
@@ -196,6 +187,7 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
           required={required}
           error={error}
           helperText={helperText}
+          showError={showError}
         />
       )
     }
@@ -213,6 +205,7 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
           placeholder={placeholder}
           error={error}
           helperText={helperText}
+          showError={showError}
         />
       )
     }
@@ -227,6 +220,7 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
           placeholder={placeholder}
           error={error}
           helperText={helperText}
+          showError={showError}
         />
       )
     }
@@ -242,6 +236,7 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
           placeholder={placeholder}
           error={error}
           helperText={helperText}
+          showError={showError}
         />
       )
     }
@@ -279,7 +274,7 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
     case DataContentType.BOOLEAN: {
       if (useDropdownBoolean) {
         return (
-          <DropDown
+          <DropDownError
             infoTooltip={infoTooltip}
             dirty={dirty}
             disabled={disabled}
@@ -299,6 +294,7 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
             onChange={handleChange}
             placeholder={placeholder}
             error={error}
+            showError={showError}
           />
         )
       }

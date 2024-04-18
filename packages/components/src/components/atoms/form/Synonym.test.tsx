@@ -61,29 +61,36 @@ describe('Synonym match snapshot', () => {
 
 describe('Synonym functional behavior', () => {
   it('Terms empty error', () => {
-    renderWithProviders(<Synonym value={[{ terms: [] }]} />)
-    expect(
-      screen.getByText('synonym.error_message.terms.size.invalid').textContent
-    ).toBe('synonym.error_message.terms.size.invalid')
+    renderWithProviders(<Synonym value={[{ terms: [] }]} showError />)
+    expect(screen.getByText('formError.valueMissing').textContent).toBe(
+      'formError.valueMissing'
+    )
   })
   it('Only one synonym error', () => {
-    renderWithProviders(<Synonym value={[{ terms: [{ term: 'pants' }] }]} />)
+    renderWithProviders(
+      <Synonym value={[{ terms: [{ term: 'pants' }] }]} showError />
+    )
     expect(
-      screen.getByText('synonym.error_message.terms.size.invalid').textContent
-    ).toBe('synonym.error_message.terms.size.invalid')
+      screen.getByText('formError.synonymTermsSizeInvalid').textContent
+    ).toBe('formError.synonymTermsSizeInvalid')
   })
   it('Synonym term empty error', () => {
-    renderWithProviders(<Synonym value={[{ terms: [{ term: '' }] }]} />)
+    renderWithProviders(
+      <Synonym value={[{ terms: [{ term: '' }] }]} showError />
+    )
     expect(
-      screen.getByText('synonym.error_message.terms.size.invalid').textContent
-    ).toBe('synonym.error_message.terms.size.invalid')
+      screen.getByText('formError.synonymTermsSizeInvalid').textContent
+    ).toBe('formError.synonymTermsSizeInvalid')
   })
   it('Duplicate synonym error', () => {
     renderWithProviders(
-      <Synonym value={[{ terms: [{ term: 'pants' }, { term: 'pants' }] }]} />
+      <Synonym
+        value={[{ terms: [{ term: 'pants' }, { term: 'pants' }] }]}
+        showError
+      />
     )
     expect(
-      screen.getByText('synonym.error_message.terms.duplicate').textContent
-    ).toBe('synonym.error_message.terms.duplicate')
+      screen.getByText('formError.synonymTermsDuplicate').textContent
+    ).toBe('formError.synonymTermsDuplicate')
   })
 })

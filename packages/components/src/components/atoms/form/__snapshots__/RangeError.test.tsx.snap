@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RangeError sould match snapshot 1`] = `
+<div>
+  <div
+    class="css-vaijrj"
+  >
+    <label
+      class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-animated MuiInputLabel-shrink MuiFormLabel-colorPrimary css-1j7os2p-MuiFormLabel-root-MuiInputLabel-root"
+      data-shrink="true"
+    >
+      Label
+    </label>
+    <div
+      class="InputText__Wrapper css-17fp4jk"
+    >
+      form.from
+      <div
+        class="MuiInputBase-root MuiInputBase-colorPrimary css-gf236j-MuiInputBase-root"
+      >
+        <input
+          aria-invalid="false"
+          class="MuiInputBase-input css-ngazp5-MuiInputBase-input"
+          max="3"
+          type="number"
+          value="1"
+        />
+      </div>
+      form.to
+      <div
+        class="MuiInputBase-root MuiInputBase-colorPrimary css-177teis-MuiInputBase-root"
+      >
+        <input
+          aria-invalid="false"
+          class="MuiInputBase-input css-ngazp5-MuiInputBase-input"
+          min="1"
+          type="number"
+          value="3"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;

@@ -37,7 +37,8 @@ export default {
 const Template: ComponentStory<typeof InputTextComponent> = (args) => {
   const { endAdornment, ...props } = args
   const [value, setValue] = useState('')
-  const handleChange = (value: string): void => setValue(value)
+  const handleChange = (value: string | number): void =>
+    setValue(value.toString())
   return (
     <InputTextComponent
       {...props}
@@ -100,7 +101,8 @@ Search.args = {
 
 const FormErrorTemplate: ComponentStory<typeof InputTextComponent> = (args) => {
   const [value, setValue] = useState('')
-  const handleChange = (value: string): void => setValue(value)
+  const handleChange = (value: string | number): void =>
+    setValue(value.toString())
   return <InputTextError {...args} value={value} onChange={handleChange} />
 }
 
@@ -117,7 +119,7 @@ WithError.args = {
   margin: 'none',
   placeholder: 'Name',
   required: true,
-  showError: false,
+  showError: true,
   small: false,
   suffix: '',
   transparent: false,

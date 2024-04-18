@@ -1,4 +1,9 @@
-import React from 'react'
+import React, {
+  ForwardedRef,
+  ReactNode,
+  SyntheticEvent,
+  forwardRef,
+} from 'react'
 import {
   FormControl,
   FormHelperText,
@@ -7,17 +12,25 @@ import {
 } from '@mui/material'
 import classNames from 'classnames'
 import { TextareaAutosizeProps } from '@mui/base/TextareaAutosize/TextareaAutosize'
+import IonIcon from '../IonIcon/IonIcon'
 
 //Example get here https://codesandbox.io/s/n4t82?file=/src/index.js:612-654
-interface IProps extends TextareaAutosizeProps {
+export interface ITextareaProps
+  extends Omit<TextareaAutosizeProps, 'onChange'> {
   error?: boolean
   fullWidth?: boolean
   label?: string
   margin?: 'none' | 'dense' | 'normal'
   resizable?: boolean
+  onChange?: (value: string, event: SyntheticEvent) => void
+  helperText?: ReactNode
+  helperIcon?: string
 }
 
-function Textarea(props: IProps): JSX.Element {
+function Textarea(
+  props: ITextareaProps,
+  ref?: ForwardedRef<HTMLTextAreaElement>
+): JSX.Element {
   const {
     error,
     fullWidth,
@@ -28,6 +41,9 @@ function Textarea(props: IProps): JSX.Element {
     required,
     resizable,
     value,
+    helperText,
+    helperIcon,
+    onChange,
     ...other
   } = props
   const maxLengthValue = maxLength ?? 250
@@ -54,12 +70,35 @@ function Textarea(props: IProps): JSX.Element {
           'textarea--error': error,
         })}
         value={valueString}
+        onChange={(event): void => {
+          onChange(event.target.value, event)
+        }}
+        ref={ref}
       />
-      <FormHelperText style={{ display: 'block', textAlign: 'right' }}>
-        {`${valueString.length}/${maxLengthValue}`}
-      </FormHelperText>
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: helperText ? 'space-between' : 'flex-end',
+        }}
+      >
+        {Boolean(helperText) && (
+          <FormHelperText error={error}>
+            {Boolean(helperIcon) && (
+              <IonIcon
+                name={helperIcon}
+                style={{ fontSize: 18, marginRight: 2 }}
+              />
+            )}
+            {helperText}
+          </FormHelperText>
+        )}
+        <FormHelperText style={{ display: 'block', textAlign: 'right' }}>
+          {`${valueString.length}/${maxLengthValue}`}
+        </FormHelperText>
+      </div>
     </FormControl>
   )
 }
 
-export default Textarea
+export default forwardRef<HTMLTextAreaElement, ITextareaProps>(Textarea)

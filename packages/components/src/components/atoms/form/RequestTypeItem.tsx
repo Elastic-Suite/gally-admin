@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react'
 import { styled } from '@mui/system'
-import TreeSelector from './TreeSelector'
+import TreeSelectorError from './TreeSelectorError'
 
 import {
   ICategoryLimitations,
@@ -54,6 +54,7 @@ export interface IRequestTypeItem {
   limitationsTypes: ILimitationsTypes[]
   requestTypesOptions: IRequestTypesOptions[]
   categoriesList: ITreeItem[]
+  showError?: boolean
 }
 
 interface IPropsComponent {
@@ -69,6 +70,7 @@ function RequestTypeItem(props: IRequestTypeItem): JSX.Element {
     limitationsTypes,
     requestTypesOptions,
     categoriesList,
+    showError,
   } = props
   const { t } = useTranslation('common')
 
@@ -203,6 +205,7 @@ function RequestTypeItem(props: IRequestTypeItem): JSX.Element {
                 {item.value === 'search' && (
                   <TextFieldTagsMultiple
                     {...propsLimitations}
+                    showError={showError}
                     disabledValue={t(item.labelAll)}
                     options={options}
                     value={limitationsData as ISearchLimitations[]}
@@ -210,7 +213,9 @@ function RequestTypeItem(props: IRequestTypeItem): JSX.Element {
                 )}
 
                 {item.value === 'category' && (
-                  <TreeSelector
+                  <TreeSelectorError
+                    required
+                    showError={showError}
                     {...propsLimitations}
                     value={isApplyToAll ? [] : treeSelectorValue}
                     placeholder={

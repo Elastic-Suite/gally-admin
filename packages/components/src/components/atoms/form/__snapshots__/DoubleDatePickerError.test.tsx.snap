@@ -1,0 +1,114 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RangeError sould match snapshot 1`] = `
+<div>
+  <div
+    class="css-vaijrj"
+  >
+    <label
+      class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-animated MuiInputLabel-shrink MuiFormLabel-colorPrimary css-1j7os2p-MuiFormLabel-root-MuiInputLabel-root"
+      data-shrink="true"
+    >
+      Label
+    </label>
+    <div
+      class="MuiGrid-root MuiGrid-container css-1v2wnak-MuiGrid-root"
+    >
+      <div
+        class="MuiBox-root css-1i75mai"
+      >
+         
+        form.from
+         
+      </div>
+      <div
+        class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-true css-1vd824g-MuiGrid-root"
+      >
+        <div
+          class="MuiFormControl-root css-hh3vi8-MuiFormControl-root"
+        >
+          <div
+            class="InputText__Wrapper css-17fp4jk"
+          >
+            <div
+              class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedEnd css-1jf161a-MuiInputBase-root"
+            >
+              <input
+                aria-invalid="false"
+                class="MuiInputBase-input MuiInputBase-inputAdornedEnd css-ngazp5-MuiInputBase-input"
+                placeholder="date.placeholder"
+                type="tel"
+                value="04/12/2024"
+              />
+              <div
+                class="MuiInputAdornment-root MuiInputAdornment-positionEnd MuiInputAdornment-standard MuiInputAdornment-sizeMedium css-1laqsz7-MuiInputAdornment-root"
+              >
+                <button
+                  aria-label="Choose date, selected date is Apr 12, 2024"
+                  class="MuiButtonBase-root MuiIconButton-root MuiIconButton-edgeEnd MuiIconButton-sizeMedium css-1yq5fb3-MuiButtonBase-root-MuiIconButton-root"
+                  tabindex="0"
+                  type="button"
+                >
+                  <ion-icon
+                    name="calendar-outline"
+                    style="font-size: 18px; padding: 0px;"
+                  />
+                  <span
+                    class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                  />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-ow4s8t"
+      >
+        form.to
+      </div>
+      <div
+        class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-true css-1vd824g-MuiGrid-root"
+      >
+        <div
+          class="MuiFormControl-root css-hh3vi8-MuiFormControl-root"
+        >
+          <div
+            class="InputText__Wrapper css-17fp4jk"
+          >
+            <div
+              class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedEnd css-1jf161a-MuiInputBase-root"
+            >
+              <input
+                aria-invalid="false"
+                class="MuiInputBase-input MuiInputBase-inputAdornedEnd css-ngazp5-MuiInputBase-input"
+                placeholder="date.placeholder"
+                type="tel"
+                value="04/12/2024"
+              />
+              <div
+                class="MuiInputAdornment-root MuiInputAdornment-positionEnd MuiInputAdornment-standard MuiInputAdornment-sizeMedium css-1laqsz7-MuiInputAdornment-root"
+              >
+                <button
+                  aria-label="Choose date, selected date is Apr 12, 2024"
+                  class="MuiButtonBase-root MuiIconButton-root MuiIconButton-edgeEnd MuiIconButton-sizeMedium css-1yq5fb3-MuiButtonBase-root-MuiIconButton-root"
+                  tabindex="0"
+                  type="button"
+                >
+                  <ion-icon
+                    name="calendar-outline"
+                    style="font-size: 18px; padding: 0px;"
+                  />
+                  <span
+                    class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                  />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

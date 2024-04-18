@@ -14,8 +14,9 @@ import {
 import { useApiFetch, useUser } from '../hooks'
 import { selectRequestedPath, useAppSelector } from '../store'
 
-import Button from '../components/atoms/buttons/Button'
-import InputText from '../components/atoms/form/InputText'
+import InputTextError from '../components/atoms/form/InputTextError'
+import Form from '../components/atoms/form/Form'
+
 import PageTitle from '../components/atoms/PageTitle/PageTitle'
 import Image from 'next/image'
 
@@ -64,18 +65,27 @@ function Login(): JSX.Element {
     }
   }, [redirectToRequestedPath, user])
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>): void {
+  const [showAllErrors, setShowAllErrors] = useState(false)
+
+  function handleSubmit(
+    event: FormEvent<HTMLFormElement>,
+    formIsValid: boolean
+  ): void {
     event.preventDefault()
-    fetchApi<ILogin>('/authentication_token', undefined, {
-      method: 'POST',
-      body: JSON.stringify({ email, password }),
-      headers: new Headers({ 'Content-Type': 'application/json' }),
-    }).then((json) => {
-      if (!isError(json)) {
-        storageSet(tokenStorageKey, json.token)
-        redirectToRequestedPath()
-      }
-    })
+    if (formIsValid) {
+      fetchApi<ILogin>('/authentication_token', undefined, {
+        method: 'POST',
+        body: JSON.stringify({ email, password }),
+        headers: new Headers({ 'Content-Type': 'application/json' }),
+      }).then((json) => {
+        if (!isError(json)) {
+          storageSet(tokenStorageKey, json.token)
+          redirectToRequestedPath()
+        }
+      })
+    } else {
+      setShowAllErrors(true)
+    }
   }
 
   const title = t('title.login')
@@ -95,16 +105,22 @@ function Login(): JSX.Element {
           />
         </CustomImg>
         <PageTitle title={title} />
-        <form onSubmit={handleSubmit}>
-          <InputText
+        <Form onSubmit={handleSubmit} submitButtonText={t('action.login')}>
+          <InputTextError
             autoComplete="email"
             fullWidth
             label={t('label.email')}
             margin="normal"
             onChange={(value: string): void => setEmail(value)}
             value={email}
+            showError={showAllErrors}
+            additionalValidator={(value: string): string => {
+              if (!value) return 'valueMissing'
+              const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+              return emailRegex.test(value) ? '' : 'patternMismatch'
+            }}
           />
-          <InputText
+          <InputTextError
             autoComplete="current-password"
             fullWidth
             label={t('label.password')}
@@ -112,11 +128,12 @@ function Login(): JSX.Element {
             onChange={(value: string): void => setPassword(value)}
             type="password"
             value={password}
+            showError={showAllErrors}
+            additionalValidator={(value: string): string => {
+              return !value ? 'valueMissing' : ''
+            }}
           />
-          <Button sx={{ marginTop: '8px' }} type="submit">
-            {t('action.login')}
-          </Button>
-        </form>
+        </Form>
       </CustomBloc>
     </CustomRoot>
   )

@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
 
 import TextFieldTagsComponent from './TextFieldTags'
+import TextFieldTagsErrorComponent from './TextFieldTagsError'
 
 export default {
   title: 'Atoms/Form/TextFieldTags',
@@ -34,4 +35,26 @@ Default.args = {
   size: 'small',
   disabledValue: 'DisabledValue',
   placeholder: 'Placeholder',
+}
+
+const TemplateError: ComponentStory<typeof TextFieldTagsComponent> = (args) => {
+  const [value, setValue] = useState<string[]>([])
+  return (
+    <TextFieldTagsErrorComponent {...args} value={value} onChange={setValue} />
+  )
+}
+
+export const WithError = TemplateError.bind({})
+WithError.args = {
+  margin: 'normal',
+  required: true,
+  label: 'Label',
+  disabled: false,
+  fullWidth: false,
+  infoTooltip: '',
+  size: 'small',
+  disabledValue: 'DisabledValue',
+  placeholder: 'Placeholder',
+  showError: true,
+  withCleanButton: true,
 }

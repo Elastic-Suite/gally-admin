@@ -1,7 +1,9 @@
 import React, {
   ChangeEvent,
+  ForwardedRef,
   HTMLAttributes,
   SyntheticEvent,
+  forwardRef,
   useCallback,
   useMemo,
   useState,
@@ -47,12 +49,13 @@ export interface ITreeSelectorProps<Multiple extends boolean | undefined>
 }
 
 function TreeSelector<Multiple extends boolean | undefined>(
-  props: ITreeSelectorProps<Multiple>
+  props: ITreeSelectorProps<Multiple>,
+  ref?: ForwardedRef<HTMLInputElement>
 ): JSX.Element {
   const {
     data,
     fullWidth,
-    limitTags,
+    limitTags = 2,
     onChange: onChangeProps,
     style,
     value: valueProps,
@@ -126,6 +129,9 @@ function TreeSelector<Multiple extends boolean | undefined>(
     onChange: handleChange,
     onInputChange,
     options,
+    isOptionEqualToValue: (option, value): boolean => {
+      return option.id === value.id
+    },
     value: valueProps as AutocompleteValue<ITreeItem, Multiple, false, false>,
   })
 
@@ -208,6 +214,7 @@ function TreeSelector<Multiple extends boolean | undefined>(
     >
       <Input
         {...other}
+        inputRef={ref}
         className={classNames({ focused, hasClearIcon })}
         endAdornment={
           <EndAdornment position="end">
@@ -235,6 +242,8 @@ function TreeSelector<Multiple extends boolean | undefined>(
         fullWidth={fullWidth}
         id={id}
         inputProps={getInputProps()}
+        required={false}
+        requiredLabel={other.required}
         ref={setAnchorEl}
         startAdornment={startAdornment}
       />
@@ -267,8 +276,4 @@ function TreeSelector<Multiple extends boolean | undefined>(
   )
 }
 
-TreeSelector.defaultProps = {
-  limitTags: 2,
-}
-
-export default TreeSelector
+export default forwardRef(TreeSelector)

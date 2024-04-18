@@ -1,7 +1,8 @@
-import React, { ChangeEvent, useState } from 'react'
+import React, { useState } from 'react'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
 
 import TextareaComponent from './Textarea'
+import TextareaErrorComponent from './TextareaError'
 
 export default {
   title: 'Atoms/Form',
@@ -13,9 +14,26 @@ export default {
 
 const Template: ComponentStory<typeof TextareaComponent> = (args) => {
   const [value, setValue] = useState('')
-  const handleChange = (event: ChangeEvent<HTMLTextAreaElement>): void =>
-    setValue(event.target.value)
-  return <TextareaComponent {...args} value={value} onChange={handleChange} />
+
+  return <TextareaComponent {...args} value={value} onChange={setValue} />
+}
+
+const FormErrorTemplate: ComponentStory<typeof TextareaComponent> = (args) => {
+  const [value, setValue] = useState('')
+
+  return (
+    <TextareaErrorComponent
+      {...args}
+      label="Textarea with error"
+      value={value}
+      onChange={setValue}
+      showError
+      required
+      additionalValidator={(value): string => {
+        return value === 'oui' ? 'erreur' : ''
+      }}
+    />
+  )
 }
 
 export const Textarea = Template.bind({})
@@ -31,3 +49,5 @@ Textarea.args = {
   required: false,
   resizable: false,
 }
+
+export const withError = FormErrorTemplate.bind({})
