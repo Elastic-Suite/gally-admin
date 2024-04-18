@@ -13,10 +13,12 @@ import {
 } from '@mui/material'
 import IonIcon from '../IonIcon/IonIcon'
 
-export interface ICheckboxProps extends Omit<CheckboxProps, 'onChange'> {
+export interface ICheckboxProps
+  extends Omit<CheckboxProps, 'onChange' | 'onClick'> {
   label?: ReactNode
   list?: boolean
   onChange?: (checked: boolean, event: SyntheticEvent) => void
+  onClick?: (event: SyntheticEvent) => void
   small?: boolean
   helperIcon?: string
   helperText?: ReactNode
@@ -35,6 +37,7 @@ function Checkbox(
     label,
     list,
     onChange,
+    onClick,
     small,
     ...checkboxProps
   } = props
@@ -67,6 +70,7 @@ function Checkbox(
           }}
         />
       }
+      onClick={onClick}
       disabled={disabled}
       label={
         <div>
