@@ -11,6 +11,7 @@ import {
 } from '@elastic-suite/gally-admin-shared'
 import { styled } from '@mui/material'
 import { IPreviewBoostFilter } from '../../molecules/FiltersPreviewBoostingTabs/FiltersPreviewBoostingTabs'
+import NoAttributes from '../../../components/atoms/noAttributes/NoAttributes'
 
 const PreviewContainer = styled('div')(({ theme }) => ({
   borderRadius: theme.shape.borderRadius,
@@ -101,7 +102,12 @@ export default function PreviewBoostingTableManager({
   }, [filter])
 
   if (!filterIsValid) {
-    return null
+    return (
+      <PreviewContainer>
+        <p className="previewArea">{t('previewArea')}</p>
+        <NoAttributes title={t('noFiltersPreviewMessage')} />
+      </PreviewContainer>
+    )
   }
 
   return (
