@@ -17,6 +17,5 @@
   "search": "Search",
   "termSearch": "Search a term",
   "selectCategory": "Select a category",
-  "missingRequiredFieldMessage": "Please complete the required fields",
-  "noFiltersPreviewMessage": "Please complete the preview form"
+  "missingRequiredFieldMessage": "Please complete the required fields"
 }

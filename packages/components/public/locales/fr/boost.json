@@ -17,6 +17,5 @@
   "search": "Recherche",
   "termSearch": "Rechercher un terme",
   "selectCategory": "Sélectionner une catégorie",
-  "missingRequiredFieldMessage": "Veuillez remplir les champs requis",
-  "noFiltersPreviewMessage": "Veuillez compléter le formulaire de la preview"
+  "missingRequiredFieldMessage": "Veuillez remplir les champs requis"
 }

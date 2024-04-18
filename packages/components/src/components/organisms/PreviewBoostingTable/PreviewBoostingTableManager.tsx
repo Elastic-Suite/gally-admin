@@ -11,7 +11,6 @@ import {
 } from '@elastic-suite/gally-admin-shared'
 import { styled } from '@mui/material'
 import { IPreviewBoostFilter } from '../../molecules/FiltersPreviewBoostingTabs/FiltersPreviewBoostingTabs'
-import NoAttributes from '../../../components/atoms/noAttributes/NoAttributes'
 
 const PreviewContainer = styled('div')(({ theme }) => ({
   borderRadius: theme.shape.borderRadius,
@@ -22,7 +21,7 @@ const PreviewContainer = styled('div')(({ theme }) => ({
   overflow: 'hidden',
 
   '.previewArea': {
-    margin: '0 0 5px 0',
+    margin: 0,
     padding: 0,
     fontSize: '12px',
     fontFamily: 'var(--gally-font)',
@@ -102,12 +101,7 @@ export default function PreviewBoostingTableManager({
   }, [filter])
 
   if (!filterIsValid) {
-    return (
-      <PreviewContainer>
-        <p className="previewArea">{t('previewArea')}</p>
-        <NoAttributes title={t('noFiltersPreviewMessage')} />
-      </PreviewContainer>
-    )
+    return null
   }
 
   return (
@@ -132,7 +126,6 @@ export default function PreviewBoostingTableManager({
           resultsAfter={productsAfter}
           loading={status === LoadStatus.LOADING}
         />
-
         <Pagination
           style={{ padding: '0 16px', border: 'none' }}
           currentPage={currentPage}
