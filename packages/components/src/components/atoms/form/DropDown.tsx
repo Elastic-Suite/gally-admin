@@ -114,7 +114,12 @@ function DropDown<T>(
     ): ReactNode => {
       return (
         <li {...props}>
-          <Checkbox checked={selected} label={label} list />
+          <Checkbox
+            checked={selected}
+            label={label}
+            list
+            onClick={(e): void => e.preventDefault()}
+          />
         </li>
       )
     }
@@ -175,7 +180,7 @@ function DropDown<T>(
         }}
         renderOption={renderOption}
         renderTags={renderTags}
-        style={style}
+        style={{ width: 'fit-content', ...style }}
         value={optionValue}
       />
     </FormControl>
