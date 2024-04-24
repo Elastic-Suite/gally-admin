@@ -182,6 +182,7 @@ function DropDown<T>(
         renderTags={renderTags}
         style={{ width: 'fit-content', ...style }}
         value={optionValue}
+        selectOnFocus={false}
       />
     </FormControl>
   )
