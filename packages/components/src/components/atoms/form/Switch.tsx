@@ -36,7 +36,12 @@ function Switch(props: IProps): JSX.Element {
   }
 
   return (
-    <StyleFormControl fullWidth variant="standard" margin={margin}>
+    <StyleFormControl
+      fullWidth
+      variant="standard"
+      margin={margin}
+      className="switch"
+    >
       {label || infoTooltip ? (
         <InputLabel sx={{ maxWidth: '90%' }} required={required} shrink>
           {label ? label : null}

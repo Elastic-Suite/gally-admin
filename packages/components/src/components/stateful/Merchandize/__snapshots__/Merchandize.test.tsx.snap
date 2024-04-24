@@ -13,7 +13,7 @@ exports[`Merchandize match snapshot testSelect 1`] = `
         class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6 css-1osj8n2-MuiGrid-root"
       >
         <div
-          class="MuiFormControl-root MuiFormControl-fullWidth css-e8gwa4-MuiFormControl-root"
+          class="MuiFormControl-root MuiFormControl-fullWidth switch css-e8gwa4-MuiFormControl-root"
         >
           <label
             class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard MuiFormLabel-colorPrimary css-1cpkhc9-MuiFormLabel-root-MuiInputLabel-root"
@@ -142,7 +142,7 @@ exports[`Merchandize match snapshot testSelect 1`] = `
         class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6 css-1osj8n2-MuiGrid-root"
       >
         <div
-          class="MuiFormControl-root MuiFormControl-fullWidth css-e8gwa4-MuiFormControl-root"
+          class="MuiFormControl-root MuiFormControl-fullWidth switch css-e8gwa4-MuiFormControl-root"
         >
           <label
             class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard MuiFormLabel-colorPrimary css-1cpkhc9-MuiFormLabel-root-MuiInputLabel-root"
