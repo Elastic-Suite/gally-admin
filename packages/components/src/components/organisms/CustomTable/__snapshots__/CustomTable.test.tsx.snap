@@ -65,7 +65,7 @@ exports[`CustomTable match snapshot with editable content 1`] = `
             class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-7bmc7a-MuiTableCell-root"
           >
             <div
-              class="MuiFormControl-root MuiFormControl-fullWidth css-e8gwa4-MuiFormControl-root"
+              class="MuiFormControl-root MuiFormControl-fullWidth switch css-e8gwa4-MuiFormControl-root"
             >
               <span
                 class="MuiSwitch-root MuiSwitch-sizeMedium css-tnsvld-MuiSwitch-root"

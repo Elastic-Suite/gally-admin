@@ -3,7 +3,7 @@
 exports[`SwitchLabel match snapshot testSwitchTrue 1`] = `
 <div>
   <div
-    class="MuiFormControl-root MuiFormControl-fullWidth css-e8gwa4-MuiFormControl-root"
+    class="MuiFormControl-root MuiFormControl-fullWidth switch css-e8gwa4-MuiFormControl-root"
   >
     <label
       class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard MuiFormLabel-colorPrimary css-1cpkhc9-MuiFormLabel-root-MuiInputLabel-root"
