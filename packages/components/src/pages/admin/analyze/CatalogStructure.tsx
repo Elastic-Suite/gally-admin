@@ -148,7 +148,11 @@ function AdminAnalyzeCatalogStructure(): JSX.Element {
     setNbTopProducts(nbTopProducts)
   }
 
-  if (!variables.requestType && requestTypeOptions[0]) {
+  if (
+    !variables.requestType &&
+    requestTypeOptions[0] &&
+    localizedCatalogOptions[0]
+  ) {
     const defaultRequestType = requestTypeOptions.find(
       (option) => option.value === ProductRequestType.SEARCH
     )

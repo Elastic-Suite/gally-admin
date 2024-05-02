@@ -22,7 +22,7 @@ function setBoostDetails(
   boostMultiplicator: number,
   t: TFunction
 ): IBoostDetails {
-  const boostText = boostNumber > 1 ? t('boosts') : t('boost')
+  const boostText = t('boost', { count: boostNumber })
   switch (type) {
     case 'up':
       return {

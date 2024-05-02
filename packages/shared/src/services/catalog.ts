@@ -48,11 +48,15 @@ export function getLocalizedCatalogFromCatalogs(
   let localizedCatalog
 
   catalogs.some((catalog) => {
-    localizedCatalog = catalog?.localizedCatalogs.find(
-      (localizedCatalog) =>
-        String(localizedCatalog.id) === String(localizedCatalogId)
+    const localizedCatalogMap = new Map(
+      catalog?.localizedCatalogs.map((localizedCatalog) => [
+        String(localizedCatalog.id),
+        localizedCatalog,
+      ])
     )
-    return localizedCatalog !== undefined
+    localizedCatalog = localizedCatalogMap.get(String(localizedCatalogId))
+
+    return localizedCatalog
   })
 
   return localizedCatalog

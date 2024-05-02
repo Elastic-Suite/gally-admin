@@ -18,5 +18,8 @@
   "termSearch": "Search a term",
   "selectCategory": "Select a category",
   "missingRequiredFieldMessage": "Please complete the required fields",
-  "noFiltersPreviewMessage": "Please complete the preview form"
+  "noFiltersPreviewMessage": "Please complete the preview form",
+  "boost_zero": "boost",
+  "boost_one": "boost",
+  "boost_other": "boosts"
 }
