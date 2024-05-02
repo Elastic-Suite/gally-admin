@@ -46,7 +46,7 @@ const customDialogStyles = {
   paper: {
     height: '100%',
     maxHeight: '100%',
-    width: '420px',
+    width: '33%',
     borderRadius: '0px',
     boxShadow: 'none',
   },
@@ -109,7 +109,7 @@ function ExplainQueryDetails({ index, query, boxStyle }: IProps): JSX.Element {
   return (
     <Popin
       triggerElement={codeSlashButton}
-      titlePopIn={t('Index Code')}
+      titlePopIn={t('Query details')}
       actions={ButtonCopyToClipBoard}
       styles={customDialogStyles}
       boxStyle={boxStyle}

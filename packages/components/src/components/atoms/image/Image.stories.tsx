@@ -16,7 +16,7 @@ const Template: ComponentStory<typeof ImageComponent> = (args) => (
 export const Image = Template.bind({})
 Image.args = {
   image: {
-    path: 'media/catalog/product/v/d/vd11-ly_main.jpg',
+    path: 'static/media/assets/img/scarf_elastic.png',
     icons: [ImageIcon.PIN],
   },
 }
