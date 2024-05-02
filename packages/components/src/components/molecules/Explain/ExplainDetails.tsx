@@ -146,13 +146,12 @@ function ExplainDetails(props: IProps): JSX.Element {
     const matches: IRow[] = Object.values(rows).map((match) => {
       match.cells[3].value = roundNumber(Number(match.cells[3].value), 2, true)
       if ('subRows' in match) {
-        match.subRows.map((subMatch) => {
+        match.subRows.forEach((subMatch) => {
           subMatch.cells[3].value = roundNumber(
             Number(subMatch.cells[3].value),
             2,
             true
           )
-          return subMatch
         })
       }
       return match
@@ -215,11 +214,7 @@ function ExplainDetails(props: IProps): JSX.Element {
       },
     ]
 
-    return (
-      <>
-        <ReadOnlyTable header={header} body={body} fullWidth />
-      </>
-    )
+    return <ReadOnlyTable header={header} body={body} fullWidth />
   }
 
   return (
