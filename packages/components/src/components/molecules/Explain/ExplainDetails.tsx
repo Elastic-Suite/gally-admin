@@ -26,7 +26,7 @@ function ExplainDetails(props: IProps): JSX.Element {
 
   const { catalogs } = useContext(catalogContext)
   const language = useAppSelector(selectLanguage)
-  const { t } = useTranslation('explain')
+  const { t } = useTranslation(['explain', 'common'])
 
   const localizedCatalog = getLocalizedCatalogFromCatalogs(
     catalogs,
@@ -233,7 +233,8 @@ function ExplainDetails(props: IProps): JSX.Element {
           language
         )}`}</span>
         <span>{`${t('Stock')}: ${t(
-          getStockStatusLabel(Boolean(explainProduct.stock.status))
+          getStockStatusLabel(Boolean(explainProduct.stock.status)),
+          { ns: 'common' }
         )}`}</span>
       </div>
       {explainProduct.matches.length > 0 && (

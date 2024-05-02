@@ -14,5 +14,6 @@
   "Score after application of the boosts": "Score après application des boosts",
   "Copy request": "Copier la requête",
   "query.popin.title": "Nom de l'index",
-  "query.popin.request": "Requête"
+  "query.popin.request": "Requête",
+  "Query details": "Détails de la requête"
 }
