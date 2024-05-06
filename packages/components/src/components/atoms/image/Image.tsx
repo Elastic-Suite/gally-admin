@@ -44,11 +44,13 @@ function Image(props: IProps): JSX.Element {
                 tooltip
                 title={t(imageIconLabels[iconName])}
                 style={{
-                  color: '#151A47',
-                  fontSize: '18px',
+                  width: '15px',
+                  height: '15px',
+                  color: '#0D1274',
+                  fontSize: '14px',
                   border: '1px solid #B5B9D9',
-                  borderRadius: '8px',
-                  padding: '3px',
+                  borderRadius: '5px',
+                  padding: '4px',
                 }}
               />
             ))

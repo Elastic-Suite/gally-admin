@@ -5,14 +5,14 @@ exports[`TopProductsBanner Should match snapschot 1`] = `
   <div
     class="MuiBox-root css-1ndjkvn"
   >
-    <ion-icon
-      name="trending-up-outline"
-    />
     <div
       class="MuiBox-root css-1uy8uh1"
     >
       hello
     </div>
+    <ion-icon
+      src="/images/push-pin.svg"
+    />
   </div>
 </div>
 `;

@@ -32,8 +32,8 @@ function TopProductsBanner(props: IProps): JSX.Element {
 
   return (
     <BannerContainer>
-      <IonIcon name="trending-up-outline" style={{ color: 'colors.white' }} />
       <BannerText>{bannerText}</BannerText>
+      <IonIcon name="push-pin" style={{ color: 'colors.white' }} />
     </BannerContainer>
   )
 }
