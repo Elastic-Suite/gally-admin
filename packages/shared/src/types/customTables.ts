@@ -100,7 +100,7 @@ export type ITableConfig = Record<string, IFieldState>
 export type BoostType = 'up' | 'down' | 'straight'
 
 export enum ImageIcon {
-  PIN = 'trending-up-outline',
+  PIN = 'push-pin',
 }
 
 export interface IBoost {

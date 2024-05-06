@@ -8,14 +8,14 @@ exports[`TopProductTable Should match snapschot 1`] = `
     <div
       class="MuiBox-root css-1ndjkvn"
     >
-      <ion-icon
-        name="trending-up-outline"
-      />
       <div
         class="MuiBox-root css-1uy8uh1"
       >
         searchResults.topProducts
       </div>
+      <ion-icon
+        src="/images/push-pin.svg"
+      />
     </div>
     <div
       class="MuiTableContainer-root css-vj1no2-MuiTableContainer-root"
