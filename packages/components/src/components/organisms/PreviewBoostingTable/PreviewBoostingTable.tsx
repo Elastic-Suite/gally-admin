@@ -102,14 +102,14 @@ const convertProductToRow = (
           typeof afterProduct?.score === 'number'
             ? afterProduct?.score
             : afterProduct?.score.scoreValue,
-        boostInfos: {
-          type:
-            afterProduct?.effect === 0
-              ? 'straight'
-              : afterProduct?.effect === 1
-              ? 'up'
-              : 'down',
-        },
+      },
+      afterPosition: {
+        type:
+          afterProduct?.effect === 0
+            ? 'straight'
+            : afterProduct?.effect === 1
+            ? 'up'
+            : 'down',
       },
     }
   })
@@ -121,6 +121,12 @@ const globalStyle = {
 
 const scoreFieldStyle = {
   borderLeft: '1px solid #E2E6F3',
+}
+
+const positionFieldStyle = {
+  borderLeft: '1px solid #E2E6F3',
+  textAlign: 'center ',
+  width: '5%',
 }
 
 const tableHeaders = [
@@ -190,6 +196,16 @@ const tableHeaders = [
     editable: false,
     sticky: false,
     cellsStyle: { ...globalStyle, ...scoreFieldStyle },
+  },
+  {
+    id: 'afterPosition',
+    name: 'afterPosition',
+    label: 'Position',
+    input: 'positionEffect',
+    editable: false,
+    sticky: false,
+    cellsStyle: { ...globalStyle, ...positionFieldStyle },
+    headerStyle: { textAlign: 'center' },
   },
 ] as ITableHeader[]
 
