@@ -160,11 +160,12 @@ function ProductsContainer(props: IProps): JSX.Element {
   function pinToTop(): void {
     if (bottomSelectedRows.length + topProducts.length > 25) return
     let maxPosition = Math.max(
-      ...topProducts.map((topProduct) => topProduct.position)
+      ...topProducts.map((topProduct) => topProduct.position),
+      0
     )
     const newTopProducts = bottomSelectedRows.map((row) => ({
       productId: row.split('/')[2],
-      position: topProducts.length === 0 ? 1 : ++maxPosition,
+      position: ++maxPosition,
     }))
     setProductPositions({
       getPositionsCategoryProductMerchandising: {
