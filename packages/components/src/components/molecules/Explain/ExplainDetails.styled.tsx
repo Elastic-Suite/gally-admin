@@ -28,6 +28,11 @@ export const ExplainDetailsStyled = styled('div')(({ theme }) => ({
         cursor: 'pointer',
       },
     },
+    '&.collapse ion-icon': {
+      fontSize: '18px',
+      marginBottom: '-4px',
+      float: 'right',
+    },
   },
   '& .general-information': {
     margin: '24px 0 0 0',
@@ -39,7 +44,7 @@ export const ExplainDetailsStyled = styled('div')(({ theme }) => ({
       color: theme.palette.colors.neutral[600],
     },
   },
-  '& .matches': {
+  '& .item': {
     margin: '48px 0 0 0',
   },
 }))
