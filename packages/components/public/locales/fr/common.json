@@ -72,5 +72,8 @@
   "category": "Catégorie",
   "localizedCatalog": "Catalogue localisé",
   "localizedCatalog.placeholder": "Sélectionnez un catalogue",
-  "Pinned": "Épinglé"
+  "Pinned": "Épinglé",
+  "Up": "Haut",
+  "Down": "Bas",
+  "Equal": "Égale"
 }

@@ -30,6 +30,7 @@ export enum DataContentType {
   EXPANSION = 'expansion',
   PRODUCTINFO = 'productInfo',
   BOOSTPREVIEW = 'boostPreview',
+  POSITIONEFFECT = 'positionEffect',
 }
 
 export interface ITableHeader extends IFieldConfig {
@@ -84,6 +85,7 @@ export interface ITableRow {
     | IPrice[]
     | IProductInfo
     | ICustomDialog
+    | IPositionEffect
 }
 
 export interface IHorizontalOverflow {
@@ -98,6 +100,8 @@ export interface ITableHeaderSticky extends ITableHeader {
 export type ITableConfig = Record<string, IFieldState>
 
 export type BoostType = 'up' | 'down' | 'straight'
+
+export type PositionEffectType = 'up' | 'down' | 'straight'
 
 export enum ImageIcon {
   PIN = 'trending-up-outline',
@@ -132,4 +136,8 @@ export interface IProductInfo {
   productName: string
   price: IPrice['price']
   stockStatus: IStock['status']
+}
+
+export interface IPositionEffect {
+  type: PositionEffectType
 }

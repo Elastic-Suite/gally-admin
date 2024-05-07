@@ -5,6 +5,7 @@ import {
   DataContentType,
   IFieldGuesserProps,
   IImage,
+  IPositionEffect,
   IPrice,
   IProductInfo,
   IScore,
@@ -24,6 +25,7 @@ import FormatRowArray from '../../molecules/format/FormatRowArray'
 
 import PreviewGridBoostConfiguration from '../../atoms/form/PreviewGridBoostConfiguration/PreviewGridBoostConfiguration'
 import Image from '../../atoms/image/Image'
+import PositionEffect from '../../atoms/positionEffect/PositionEffect'
 
 const Box = styled('div')({
   display: 'flex',
@@ -136,6 +138,10 @@ function ReadableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
 
     case DataContentType.BOOSTPREVIEW: {
       return <PreviewGridBoostConfiguration currentBoost={data} />
+    }
+
+    case DataContentType.POSITIONEFFECT: {
+      return <PositionEffect positionEffect={value as IPositionEffect} />
     }
 
     default: {
