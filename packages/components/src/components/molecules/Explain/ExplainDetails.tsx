@@ -1,4 +1,4 @@
-import React, { CSSProperties, ReactNode, useContext } from 'react'
+import React, { CSSProperties, ReactNode, useContext, useState } from 'react'
 import {
   IGraphqlExplainProduct,
   formatPrice,
@@ -15,6 +15,7 @@ import { AnalyzerLegends, ExplainDetailsStyled } from './ExplainDetails.styled'
 import { useTranslation } from 'next-i18next'
 import { selectLanguage, useAppSelector } from '../../../store'
 import { catalogContext } from '../../../contexts'
+import { Collapse } from '@mui/material'
 
 interface IProps {
   explainProduct: IGraphqlExplainProduct
@@ -24,6 +25,7 @@ interface IProps {
 function ExplainDetails(props: IProps): JSX.Element {
   const { explainProduct, localizedCatalogId } = props
 
+  const [open, setOpen] = useState(false)
   const { catalogs } = useContext(catalogContext)
   const language = useAppSelector(selectLanguage)
   const { t } = useTranslation(['explain', 'common'])
@@ -99,6 +101,10 @@ function ExplainDetails(props: IProps): JSX.Element {
         },
       ],
     }
+  }
+
+  function handleToggle(): void {
+    setOpen((curr) => !curr)
   }
 
   function getMatchTable(
@@ -217,6 +223,51 @@ function ExplainDetails(props: IProps): JSX.Element {
     return <ReadOnlyTable header={header} body={body} fullWidth />
   }
 
+  function getIndexedContentTable(
+    explainProduct: IGraphqlExplainProduct
+  ): ReactNode {
+    const header: IRow = {
+      cells: [
+        {
+          id: 'field',
+          value: t('Field'),
+          style: {
+            width: '344px',
+          },
+        },
+        {
+          id: 'source',
+          value: t('Source'),
+          style: {
+            width: '200px',
+          },
+        },
+      ],
+    }
+
+    const body: IRow[] = explainProduct?.highlights?.map((content) => ({
+      id: String(content?.field),
+      cells: [
+        {
+          id: `${String(content?.field)}-field`,
+          value: String(content?.field),
+        },
+        {
+          id: `${String(content?.field)}-source`,
+          value:
+            content?.value instanceof Array
+              ? content.value.join(', ')
+              : String(content?.value),
+          style: {
+            fontWeight: 'normal',
+            color: '#424880',
+          },
+        },
+      ],
+    }))
+    return <ReadOnlyTable header={header} body={body} fullWidth />
+  }
+
   return (
     <ExplainDetailsStyled>
       <div className="header">
@@ -238,7 +289,7 @@ function ExplainDetails(props: IProps): JSX.Element {
         )}`}</span>
       </div>
       {explainProduct.matches.length > 0 && (
-        <div className="matches">
+        <div className="item">
           <h6>
             {t('Matches')}
             <PopIn
@@ -263,6 +314,21 @@ function ExplainDetails(props: IProps): JSX.Element {
             </PopIn>
           </h6>
           {getMatchTable(header, explainProduct)}
+        </div>
+      )}
+
+      {explainProduct.highlights.length > 0 && (
+        <div className="item">
+          <h6 className="collapse">
+            {t('Indexed content')}
+            <IonIcon
+              onClick={handleToggle}
+              name={open ? 'remove-circle' : 'add-circle'}
+            />
+          </h6>
+          <Collapse in={open} timeout="auto">
+            {getIndexedContentTable(explainProduct)}
+          </Collapse>
         </div>
       )}
     </ExplainDetailsStyled>
