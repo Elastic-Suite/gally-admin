@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { FormEvent, useEffect, useState } from 'react'
 
 import {
   useApiFetch,
-  useFormValidation,
   useLog,
   useResource,
   useResourceOperations,
@@ -25,6 +24,7 @@ import { useRouter } from 'next/router'
 import PageTitle from '../../atoms/PageTitle/PageTitle'
 import PopIn from '../../atoms/modals/PopIn'
 import { styled } from '@mui/system'
+import Form from '../../atoms/form/Form'
 
 const CustomDoubleButtonSticky = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -42,12 +42,6 @@ interface IProps {
   resourceName: string
   title?: string
 }
-
-const CustomRoot = styled('div')(({ theme }) => ({
-  display: 'flex',
-  gap: theme.spacing(2),
-  flexDirection: 'column',
-}))
 
 function ResourceForm(props: IProps): JSX.Element {
   const { resourceName, id, title } = props
@@ -159,10 +153,13 @@ function ResourceForm(props: IProps): JSX.Element {
     )
     setIsLoading(false)
   }
-  const { formRef, formIsValid } = useFormValidation()
   const [showAllErrors, setShowAllErrors] = useState(false)
 
-  function handleSubmit(): void {
+  function handleSubmit(
+    event: FormEvent<HTMLFormElement>,
+    formIsValid: boolean
+  ): void {
+    event.preventDefault()
     if (formIsValid) {
       sendingData()
     } else {
@@ -171,7 +168,14 @@ function ResourceForm(props: IProps): JSX.Element {
   }
 
   return (
-    <CustomRoot>
+    <Form
+      onSubmit={handleSubmit}
+      style={{
+        display: 'flex',
+        gap: 16,
+        flexDirection: 'column',
+      }}
+    >
       {title ? (
         <PageTitle title={title} sx={{ marginBottom: '32px' }} sticky>
           <CustomDoubleButtonSticky>
@@ -198,7 +202,7 @@ function ResourceForm(props: IProps): JSX.Element {
             ) : null}
             <Box>
               <Button
-                onClick={handleSubmit}
+                type="submit"
                 loading={isLoading}
                 endIcon={
                   id ? (
@@ -214,16 +218,14 @@ function ResourceForm(props: IProps): JSX.Element {
           </CustomDoubleButtonSticky>
         </PageTitle>
       ) : null}
-      <form ref={formRef}>
-        <CustomForm
-          data={data}
-          showAllErrors={showAllErrors}
-          onChange={setData}
-          resource={resource}
-          errors={errors}
-        />
-      </form>
-    </CustomRoot>
+      <CustomForm
+        data={data}
+        showAllErrors={showAllErrors}
+        onChange={setData}
+        resource={resource}
+        errors={errors}
+      />
+    </Form>
   )
 }
 
