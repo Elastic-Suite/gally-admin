@@ -1,4 +1,10 @@
-import React, { SyntheticEvent, useContext, useEffect, useState } from 'react'
+import React, {
+  FormEvent,
+  SyntheticEvent,
+  useContext,
+  useEffect,
+  useState,
+} from 'react'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 import { Box, styled } from '@mui/system'
@@ -18,12 +24,7 @@ import {
 
 import { breadcrumbContext, catalogContext } from '../../../contexts'
 import { withAuth, withOptions } from '../../../hocs'
-import {
-  useApiList,
-  useFetchApi,
-  useFormValidation,
-  useResource,
-} from '../../../hooks'
+import { useApiList, useFetchApi, useResource } from '../../../hooks'
 import { selectConfiguration, useAppSelector } from '../../../store'
 
 import Button from '../../../components/atoms/buttons/Button'
@@ -31,6 +32,7 @@ import MerchandiseBar from '../../../components/stateful/ProductPreview/Merchand
 import { DropDownError, InputTextError, PageTitle } from '../../../components'
 import TreeSelectorError from '../../../components/atoms/form/TreeSelectorError'
 import ProductsPreviewBottom from '../../../components/stateful/ProductPreview/ProductsPreviewBottom'
+import Form from '../../../components/atoms/form/Form'
 
 const WrapperBlock = styled('div')(({ theme }) => ({
   border: '1px solid',
@@ -60,7 +62,6 @@ const INPUT_WIDTH = 296
 function AdminAnalyzeCatalogStructure(): JSX.Element {
   const router = useRouter()
   const [, setBreadcrumb] = useContext(breadcrumbContext)
-  const { formRef, formIsValid } = useFormValidation()
   const { localizedCatalogWithDefault } = useContext(catalogContext)
 
   const [variables, setVariables] = useState<IExplainVariables>({})
@@ -129,7 +130,11 @@ function AdminAnalyzeCatalogStructure(): JSX.Element {
     setVariableValid(false)
   }
 
-  function handleSubmit(): void {
+  function handleSubmit(
+    event: FormEvent<HTMLFormElement>,
+    formIsValid: boolean
+  ): void {
+    event.preventDefault()
     if (formIsValid) {
       if (isGraphQLValidVariables(variables, limitationType)) {
         setNbResults(0)
@@ -183,7 +188,7 @@ function AdminAnalyzeCatalogStructure(): JSX.Element {
         title={t('Explain and compare')}
         sx={{ marginBottom: '32px' }}
       />
-      <form ref={formRef}>
+      <Form onSubmit={handleSubmit}>
         {Boolean(
           localizedCatalogOptions && requestTypeOptions && categoriesList
         ) && (
@@ -248,17 +253,14 @@ function AdminAnalyzeCatalogStructure(): JSX.Element {
                 />
               )}
               {limitationType ? (
-                <Button
-                  sx={{ marginTop: '24px', height: 40 }}
-                  onClick={handleSubmit}
-                >
+                <Button sx={{ marginTop: '24px', height: 40 }} type="submit">
                   {t('Explain')}
                 </Button>
               ) : null}
             </WrapperBlock>
           </>
         )}
-      </form>
+      </Form>
 
       {variableValid ? (
         <Box sx={{ marginBottom: 2 }}>

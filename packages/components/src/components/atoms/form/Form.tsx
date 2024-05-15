@@ -9,7 +9,7 @@ import Button from '../buttons/Button'
 import { useFormValidation } from '../../../hooks/useFormValdation'
 interface IFormProps extends PropsWithChildren {
   onSubmit: (event: SyntheticEvent, formIsValid: boolean) => void
-  submitButtonText: string
+  submitButtonText?: string
   style?: CSSProperties
 }
 
@@ -26,12 +26,14 @@ function Form({
     onSubmit(event, formIsValid)
 
   return (
-    <form ref={formRef} style={style}>
+    <form ref={formRef} style={style} onSubmit={handleSubmit} noValidate>
       {children}
 
-      <Button sx={{ marginTop: '8px' }} type="submit" onClick={handleSubmit}>
-        {submitButtonText}
-      </Button>
+      {submitButtonText !== undefined && (
+        <Button style={{ marginTop: '8px' }} type="submit">
+          {submitButtonText}
+        </Button>
+      )}
     </form>
   )
 }
