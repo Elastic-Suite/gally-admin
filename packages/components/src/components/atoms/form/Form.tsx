@@ -3,7 +3,6 @@ import React, {
   PropsWithChildren,
   SyntheticEvent,
   createContext,
-  forwardRef,
 } from 'react'
 import Button from '../buttons/Button'
 import { useFormValidation } from '../../../hooks/useFormValdation'
@@ -36,4 +35,4 @@ function Form({
   )
 }
 
-export default forwardRef(Form)
+export default Form
