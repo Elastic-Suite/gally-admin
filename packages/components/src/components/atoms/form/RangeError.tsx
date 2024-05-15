@@ -12,10 +12,15 @@ function RangeError(props: IRangeErrorProps): JSX.Element {
   const validator = useCallback<IValidator>(
     (value: [number | string | null, number | string | null], event) => {
       if (additionalValidator) return additionalValidator(value, event)
-      if ((!value[0] && value[0] !== 0) || (!value[1] && value[1] !== 0))
+      if (
+        inputProps.required &&
+        ((!value[0] && value[0] !== 0) || (!value[1] && value[1] !== 0))
+      ) {
         return 'valueMissing'
+      }
+      return ''
     },
-    [additionalValidator]
+    [additionalValidator, inputProps.required]
   )
 
   const [{ ref, ...formErrorProps }] = useFormError(
