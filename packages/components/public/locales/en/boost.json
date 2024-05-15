@@ -15,10 +15,10 @@
   "navigationCatalog": "Navigation catalog",
   "autocompletionBox": "Autocompletion box",
   "search": "Search",
-  "termSearch": "Search a term",
+  "termSearch": "Search term",
   "selectCategory": "Select a category",
   "missingRequiredFieldMessage": "Please complete the required fields",
-  "noFiltersPreviewMessage": "Please complete the preview form",
+  "noFiltersPreviewMessage": "Please select the preview context.",
   "boost_zero": "boost",
   "boost_one": "boost",
   "boost_other": "boosts"
