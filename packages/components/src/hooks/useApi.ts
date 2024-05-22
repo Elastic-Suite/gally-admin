@@ -24,7 +24,6 @@ import {
   defaultPageSize,
   fetchApi,
   getListApiParameters,
-  hasRealFilterApplied,
   isError,
   storageRemove,
   tokenStorageKey,
@@ -156,7 +155,6 @@ export function useApiEditableList<T extends IHydraMember>(
   page: number | false = 0,
   rowsPerPage: number = defaultPageSize,
   searchParameters?: ISearchParameters,
-  filters?: ISearchParameters,
   searchValue?: string,
   url?: string
 ): [
@@ -184,14 +182,10 @@ export function useApiEditableList<T extends IHydraMember>(
           }
         )
 
-        const responses = await Promise.all(promises)
-        const hasError = responses.some((response) => isError(response))
-        if (hasError || searchParameters || searchValue) {
-          // reload if error or if any filter is applied
-          load()
-        }
+        await Promise.all(promises)
+        load()
       }, debounceDelay),
-    [load, searchParameters, searchValue, update]
+    [load, update]
   )
 
   const editableUpdate = useCallback(
@@ -226,18 +220,10 @@ export function useApiEditableList<T extends IHydraMember>(
         )
       )
       const promises = ids.map((id) => update(id, updatedItem))
-      const responses = await Promise.all(promises)
-      const hasError = responses.some((response) => isError(response))
-      if (
-        hasError ||
-        hasRealFilterApplied(searchParameters, filters) ||
-        searchValue
-      ) {
-        // reload if error or if any filter is applied
-        load()
-      }
+      await Promise.all(promises)
+      load()
     },
-    [load, searchParameters, filters, searchValue, update, updateList]
+    [load, update, updateList]
   )
 
   const massEditableReplace = useCallback(
@@ -253,14 +239,11 @@ export function useApiEditableList<T extends IHydraMember>(
       const promises = ids.map((id) =>
         replace({ id, ...updatedItem } as unknown as T)
       )
-      const responses = await Promise.all(promises)
-      const hasError = responses.some((response) => isError(response))
-      if (hasError || searchParameters || searchValue) {
-        // reload if error or if any filter is applied
-        load()
-      }
+
+      await Promise.all(promises)
+      load()
     },
-    [load, searchParameters, searchValue, replace, updateList]
+    [load, replace, updateList]
   )
 
   const editableCreate = useCallback(
@@ -287,18 +270,10 @@ export function useApiEditableList<T extends IHydraMember>(
           }
         )
 
-        const responses = await Promise.all(promises)
-        const hasError = responses.some((response) => isError(response))
-        if (
-          hasError ||
-          hasRealFilterApplied(searchParameters, filters) ||
-          searchValue
-        ) {
-          // reload if error or if any filter is applied
-          load()
-        }
+        await Promise.all(promises)
+        load()
       }, debounceDelay),
-    [load, searchParameters, filters, searchValue, replace]
+    [load, replace]
   )
 
   const editableReplace = useCallback(

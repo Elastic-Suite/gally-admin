@@ -144,7 +144,6 @@ function ResourceTable(props: IResourceTable): JSX.Element {
       page,
       rowsPerPage,
       parameters,
-      filters,
       searchValue,
       urlParams ? `${resource.url}${urlParams}` : null
     )
