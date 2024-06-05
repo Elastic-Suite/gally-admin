@@ -154,7 +154,7 @@ function NonDraggableRow(props: IProps): JSX.Element {
 
       {nonStickyHeaders.map((header) => {
         const value =
-          tableRow[header.name] && header.name === 'image'
+          tableRow[header.name] && header.input === 'image'
             ? getImageValue(
                 configuration['base_url/media'],
                 tableRow[header.name] as IImage | string
