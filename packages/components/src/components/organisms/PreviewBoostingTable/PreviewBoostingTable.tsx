@@ -10,6 +10,7 @@ import FieldGuesser from '../../stateful/FieldGuesser/FieldGuesser'
 import NoAttributes from '../../atoms/noAttributes/NoAttributes'
 import { useTranslation } from 'next-i18next'
 import { CircularProgress, styled } from '@mui/material'
+import { selectConfiguration, useAppSelector } from '../../../store'
 
 const CustomRoot = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -84,14 +85,14 @@ const convertProductToRow = (
 
     return {
       id: product.id,
-      beforeImage: `/media/catalog/product${beforeProduct.image}`,
+      beforeImage: beforeProduct.image,
       beforeInfo: {
         productName: beforeProduct?.name,
         stockStatus: beforeProduct?.stock.status,
         price: beforeProduct?.price[0]?.price,
       },
       beforeScore: beforeProduct.score,
-      afterImage: `/media/catalog/product${afterProduct?.image}`,
+      afterImage: afterProduct?.image,
       afterInfo: {
         productName: afterProduct?.name,
         stockStatus: afterProduct?.stock.status,
@@ -216,6 +217,7 @@ function PreviewBoostingTable({
 }: IPreviewBoostingProducts & { loading?: boolean }): JSX.Element {
   const { t } = useTranslation('boost')
   const products = convertProductToRow(resultsBefore, resultsAfter)
+  const configuration = useAppSelector(selectConfiguration)
 
   if (loading)
     return (
@@ -239,6 +241,7 @@ function PreviewBoostingTable({
           Field={FieldGuesser}
           tableHeaders={tableHeaders}
           tableRows={products}
+          configuration={configuration}
         />
       </TableContainer>
     </>
