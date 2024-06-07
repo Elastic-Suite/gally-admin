@@ -102,7 +102,7 @@ describe('Expansion functional behavior', () => {
       />
     )
     expect(
-      screen.getByText('formError.synonymTermsDuplicate').textContent
-    ).toBe('formError.synonymTermsDuplicate')
+      screen.getByText('formError.expansionTermsDuplicate').textContent
+    ).toBe('formError.expansionTermsDuplicate')
   })
 })

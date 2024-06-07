@@ -51,6 +51,7 @@
   "formError.maxDate": "La date n'est pas disponible",
   "formError.synonymTermsSizeInvalid": "Veuillez renseigner au moins deux valeurs dans tous les champs \"synonymes\".",
   "formError.synonymTermsDuplicate": "Il y a des doublons parmi les \"synonymes\", veuillez les retirer.",
+  "formError.expansionTermsDuplicate": "Il y a des doublons parmi les \"termes étendus\", veuillez les retirer.",
   "field.productImage": "Image produit",
   "default.undefined": "vide",
   "log.out": "Déconnexion",
