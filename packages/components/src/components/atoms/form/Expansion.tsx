@@ -201,10 +201,9 @@ function Expansion(props: IProps): JSX.Element {
                   placeholder={placeholder}
                   additionalValidator={(value: string[]): string => {
                     if (value.length !== [...new Set(value)].length)
-                      return 'synonymTermsDuplicate'
+                      return 'expansionTermsDuplicate'
                     return ''
                   }}
-                  // onRemoveItem={(): void => emptyTerms(expansion.id)}
                   showError={showError}
                 />
               </div>
