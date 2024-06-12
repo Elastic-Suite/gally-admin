@@ -1,11 +1,12 @@
 import { ITabContentProps } from '@elastic-suite/gally-admin-shared'
-import React, { PropsWithChildren, SyntheticEvent, createContext } from 'react'
+import React, { PropsWithChildren, createContext } from 'react'
 import {
   ColumnContainer,
   RowContainer,
 } from './FiltersPreviewBoostingTab.styled'
 import Button from '../../atoms/buttons/Button'
 import { useFormValidation } from '../../../hooks'
+import { useTranslation } from 'next-i18next'
 export interface IPropsFiltersPreviewBoostingTab
   extends PropsWithChildren,
     ITabContentProps {
@@ -17,23 +18,17 @@ function FiltersPreviewBoostingTab({
   children,
 }: IPropsFiltersPreviewBoostingTab): JSX.Element {
   const { formRef, formIsValid } = useFormValidation()
-
+  const { t } = useTranslation('boost')
   return (
     <ColumnContainer>
       <FormIsValidContext.Provider value={formIsValid}>
-        <RowContainer
-          ref={formRef}
-          onSubmit={(event: SyntheticEvent): void => {
-            event.preventDefault()
-            onSearch(formIsValid)
-          }}
-        >
+        <RowContainer ref={formRef}>
           {children}
           <Button
             sx={{ marginTop: '24px' }}
             onClick={(): void => onSearch(formIsValid)}
           >
-            Rechercher
+            {t('preview')}
           </Button>
         </RowContainer>
       </FormIsValidContext.Provider>

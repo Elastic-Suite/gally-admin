@@ -21,5 +21,6 @@
   "noFiltersPreviewMessage": "Veuillez selectionner le contexte de prévisualisation.",
   "boost_zero": "boost",
   "boost_one": "boost",
-  "boost_other": "boosts"
+  "boost_other": "boosts",
+  "preview": "Prévisualiser"
 }
