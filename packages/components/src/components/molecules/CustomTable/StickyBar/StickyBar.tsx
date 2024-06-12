@@ -19,7 +19,7 @@ const StickyActions = styled(Box)(({ theme }) => ({
   backgroundColor: theme.palette.colors.white,
   minHeight: '64px',
   width: '100%',
-  margin: '32px 16px 16px 16px',
+  margin: '0px 16px 16px 16px',
   border: 'solid',
   borderColor: theme.palette.colors.neutral[300],
   borderWidth: '1px',

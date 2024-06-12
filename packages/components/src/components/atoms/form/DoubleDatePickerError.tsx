@@ -47,7 +47,13 @@ export function doubleDateValidator(
 function DoubleDatePickerError(
   props: IDoubleDatePickerErrorProps
 ): JSX.Element {
-  const { onChange, showError, additionalValidator, ...inputProps } = props
+  const {
+    onChange,
+    showError,
+    additionalValidator,
+    replacementErrorsMessages,
+    ...inputProps
+  } = props
 
   const validator = useCallback<IValidator>(
     (value: IDoubleDatePickerValues, event) => {
@@ -66,7 +72,8 @@ function DoubleDatePickerError(
     inputProps.value,
     showError,
     validator,
-    inputProps.disabled
+    inputProps.disabled,
+    replacementErrorsMessages
   )
 
   return (

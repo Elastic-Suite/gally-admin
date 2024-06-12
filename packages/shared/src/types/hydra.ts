@@ -118,7 +118,7 @@ export interface IGallyProperty {
   position?: number
   required?: boolean
   type?: string
-  validation?: Record<string, string | number>
+  validation?: Record<string, string | number | boolean>
   visible?: boolean
   alias?: string
   multipleValueFormat?: IMultipleValueFormat
@@ -132,6 +132,7 @@ export interface IGallyProperty {
   multipleInputConfiguration?: IMultipleInputConfiguration
   placeholder?: string
   defaultValue?: unknown
+  showError?: boolean
 }
 export interface IDropdownOptions {
   objectKeyValue?: string

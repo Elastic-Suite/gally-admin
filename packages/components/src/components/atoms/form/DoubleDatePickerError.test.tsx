@@ -95,4 +95,19 @@ describe('RangeError', () => {
     )
     expect(screen.getByText('formError.erreur')).toBeInTheDocument()
   })
+
+  it('should display a replacement error message with replacementErrorsMessages prop when the field has an error', () => {
+    renderWithProviders(
+      <DoubleDatePickerError
+        label="Label"
+        required
+        showError
+        value={{ toDate: null, fromDate: null }}
+        replacementErrorsMessages={{
+          valueMissing: 'customError',
+        }}
+      />
+    )
+    expect(screen.getByText('formError.customError')).toBeInTheDocument()
+  })
 })

@@ -21,6 +21,7 @@ export type IValidator = (
 export interface IFieldErrorProps {
   showError?: boolean
   additionalValidator?: IValidator
+  replacementErrorsMessages?: Record<string, string>
 }
 export interface IFormErrorProps {
   error: boolean
@@ -35,7 +36,8 @@ export function useFormError(
   value: unknown,
   showError = false,
   validator?: IValidator,
-  disabled = false
+  disabled = false,
+  replacementErrorsMessages?: Record<string, string>
 ): [IFormErrorProps, Dispatch<SetStateAction<string>>] {
   const [error, setError] = useState('')
   const ref = useRef<HTMLInputElement | HTMLTextAreaElement>(null)
@@ -99,7 +101,9 @@ export function useFormError(
       props.helperText = ''
     } else if (error && showError) {
       props.helperIcon = 'close'
-      props.helperText = t(`formError.${error}`)
+      props.helperText = t(
+        `formError.${replacementErrorsMessages?.[error] || error}`
+      )
     }
     return [
       props,
@@ -108,5 +112,5 @@ export function useFormError(
         ref.current?.setCustomValidity(error)
       },
     ]
-  }, [error, handleChange, t, disabled, showError])
+  }, [error, handleChange, t, disabled, showError, replacementErrorsMessages])
 }

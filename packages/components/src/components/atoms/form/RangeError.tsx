@@ -7,7 +7,13 @@ import Range, { IRangeProps } from './Range'
 interface IRangeErrorProps extends IFieldErrorProps, IRangeProps {}
 
 function RangeError(props: IRangeErrorProps): JSX.Element {
-  const { onChange, showError, additionalValidator, ...inputProps } = props
+  const {
+    onChange,
+    showError,
+    additionalValidator,
+    replacementErrorsMessages,
+    ...inputProps
+  } = props
 
   const validator = useCallback<IValidator>(
     (value: [number | string | null, number | string | null], event) => {
@@ -28,7 +34,8 @@ function RangeError(props: IRangeErrorProps): JSX.Element {
     inputProps.value,
     showError,
     validator,
-    inputProps.disabled
+    inputProps.disabled,
+    replacementErrorsMessages
   )
 
   return (

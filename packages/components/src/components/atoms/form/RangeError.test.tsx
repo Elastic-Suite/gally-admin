@@ -42,11 +42,25 @@ describe('RangeError', () => {
         showError
         required
         value={[1, null]}
-        additionalValidator={(): string => {
-          return 'erreur'
-        }}
+        additionalValidator={(): string => 'erreur'}
       />
     )
     expect(screen.getByText('formError.erreur')).toBeInTheDocument()
+  })
+
+  it('should display a replacement error message with replacementErrorsMessages prop when the field has an error', () => {
+    renderWithProviders(
+      <RangeError
+        label="Label"
+        showError
+        required
+        value={[1, null]}
+        additionalValidator={(): string => 'erreur'}
+        replacementErrorsMessages={{
+          erreur: 'customError',
+        }}
+      />
+    )
+    expect(screen.getByText('formError.customError')).toBeInTheDocument()
   })
 })

@@ -54,6 +54,7 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
     placeholder,
     error,
     helperText,
+    replacementErrorsMessages,
   } = props
 
   const { t } = useTranslation('common')
@@ -120,6 +121,7 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
           type={input === DataContentType.NUMBER ? 'number' : 'text'}
           value={value as string | number | null}
           placeholder={placeholder}
+          replacementErrorsMessages={replacementErrorsMessages}
         />
       )
     }
@@ -141,6 +143,7 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
           showError={showError}
           suffix={suffix}
           value={value as (string | number | null)[]}
+          replacementErrorsMessages={replacementErrorsMessages}
         />
       )
     }
@@ -267,6 +270,7 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
           multiple={Boolean(value instanceof Array)}
           error={error}
           helperText={helperText}
+          replacementErrorsMessages={replacementErrorsMessages}
         />
       )
     }
@@ -295,6 +299,7 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
             placeholder={placeholder}
             error={error}
             showError={showError}
+            replacementErrorsMessages={replacementErrorsMessages}
           />
         )
       }

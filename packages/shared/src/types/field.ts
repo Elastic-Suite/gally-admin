@@ -40,6 +40,8 @@ export interface IFieldConfig extends IFieldState {
   error?: boolean
   headerStyle?: CSSProperties
   cellsStyle?: CSSProperties
+  showError?: boolean
+  replacementErrorsMessages?: Record<string, string>
 }
 
 export interface IFieldConfigFormWithFieldset {

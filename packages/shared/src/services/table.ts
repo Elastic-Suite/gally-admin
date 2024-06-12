@@ -47,14 +47,59 @@ export function getFieldInput(
   return fallback
 }
 
+const customValidations: Record<
+  string,
+  {
+    attribute: string
+    value: string | number
+    error: {
+      name: string
+      message: string
+    }
+  }
+> = {
+  prompt: {
+    attribute: 'pattern',
+    value: '^(?:(?!%)[\\s\\S])*%s(?:(?!%)[\\s\\S])*$',
+    error: {
+      name: 'patternMismatch',
+      message: 'prompt',
+    },
+  },
+}
+
 export function getFieldConfig(
   field: IField
-): Pick<IFieldConfig, 'depends' | 'field' | 'suffix' | 'validation'> {
+): Pick<
+  IFieldConfig,
+  | 'depends'
+  | 'field'
+  | 'suffix'
+  | 'validation'
+  | 'showError'
+  | 'replacementErrorsMessages'
+> {
+  const validation: Record<string, string | number> = {}
+  const replacementErrorsMessages: Record<string, string> = {}
+  let showError = false
+  Object.entries(field.gally?.validation || {}).forEach(([key, value]) => {
+    if (customValidations[key] && value) {
+      validation[customValidations[key].attribute] =
+        customValidations[key].value
+      replacementErrorsMessages[customValidations[key].error.name] =
+        customValidations[key].error.message
+      showError = true
+    } else if (!customValidations[key] && typeof value !== 'boolean') {
+      validation[key] = value
+    }
+  })
   return {
     depends: field.gally?.depends,
     field,
     suffix: field.gally?.input === 'percentage' ? '%' : '',
-    validation: field.gally?.validation,
+    validation,
+    showError,
+    replacementErrorsMessages,
   }
 }
 
@@ -63,7 +108,6 @@ export function getFieldHeader(field: IField, t: TFunction): IFieldConfig {
   const type = getFieldDataContentType(field)
   const id = field.title
   const input = getFieldInput(field, type)
-
   return {
     ...fieldConfig,
     editable: field.gally?.editable && field.writeable,

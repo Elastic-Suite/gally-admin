@@ -2,6 +2,7 @@ import React, {
   Dispatch,
   FunctionComponent,
   SetStateAction,
+  SyntheticEvent,
   useEffect,
   useMemo,
   useState,
@@ -216,12 +217,18 @@ function ResourceTable(props: IResourceTable): JSX.Element {
   function handleRowChange(
     id: string | number,
     name: string,
-    value: boolean | number | string
+    value: boolean | number | string,
+    event: SyntheticEvent,
+    showError: boolean
   ): void {
+    const validity = (event.target as HTMLInputElement)?.checkValidity()
     if (update) {
-      update(id, { [name]: value })
+      update(id, { [name]: value }, !showError || validity)
     } else if (replace) {
-      replace({ id, [name]: value } as unknown as ISourceField)
+      replace(
+        { id, [name]: value } as unknown as ISourceField,
+        !showError || validity
+      )
     }
   }
 

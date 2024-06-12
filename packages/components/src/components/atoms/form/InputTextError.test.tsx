@@ -78,4 +78,21 @@ describe('InputTextError', () => {
     )
     expect(screen.getByText('formError.erreur')).toBeInTheDocument()
   })
+
+  it('should display a replacement error message with replacementErrorsMessages prop when the field has an error', () => {
+    renderWithProviders(
+      <InputTextError
+        id="input-text"
+        label="Label"
+        placeholder="Name"
+        required
+        value=""
+        showError
+        replacementErrorsMessages={{
+          valueMissing: 'customError',
+        }}
+      />
+    )
+    expect(screen.getByText('formError.customError')).toBeInTheDocument()
+  })
 })

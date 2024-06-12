@@ -191,22 +191,24 @@ export function useApiEditableList<T extends IHydraMember>(
 
   const debouncedUpdate = useMemo(
     () =>
-      debounce(async (): Promise<void> => {
-        const promises = Object.entries(itemsToUpdate.current).map(
-          ([id, updatedItems]) => {
-            delete itemsToUpdate.current[id]
-            return update(id, updatedItems)
-          }
-        )
+      debounce(async (isValid = true): Promise<void> => {
+        if (isValid) {
+          const promises = Object.entries(itemsToUpdate.current).map(
+            ([id, updatedItems]) => {
+              delete itemsToUpdate.current[id]
+              return update(id, updatedItems)
+            }
+          )
 
-        await Promise.all(promises)
-        load()
+          await Promise.all(promises)
+          load()
+        }
       }, debounceDelay),
     [load, update]
   )
 
   const editableUpdate = useCallback(
-    (id: string | number, updatedItem: Partial<T>) => {
+    (id: string | number, updatedItem: Partial<T>, isValid = true) => {
       if (id in itemsToUpdate.current) {
         itemsToUpdate.current[id] = {
           ...itemsToUpdate.current[id],
@@ -221,7 +223,7 @@ export function useApiEditableList<T extends IHydraMember>(
           item.id === id ? { ...item, ...updatedItem } : item
         )
       )
-      debouncedUpdate()
+      debouncedUpdate(isValid)
     },
     [debouncedUpdate, updateList]
   )
@@ -279,22 +281,24 @@ export function useApiEditableList<T extends IHydraMember>(
 
   const debouncedReplace = useMemo(
     () =>
-      debounce(async (): Promise<void> => {
-        const promises = Object.entries(itemsToUpdate.current).map(
-          ([id, replacedItem]) => {
-            delete itemsToUpdate.current[id]
-            return replace(replacedItem)
-          }
-        )
+      debounce(async (isValid = true): Promise<void> => {
+        if (isValid) {
+          const promises = Object.entries(itemsToUpdate.current).map(
+            ([id, replacedItem]) => {
+              delete itemsToUpdate.current[id]
+              return replace(replacedItem)
+            }
+          )
 
-        await Promise.all(promises)
-        load()
+          await Promise.all(promises)
+          load()
+        }
       }, debounceDelay),
     [load, replace]
   )
 
   const editableReplace = useCallback(
-    (replacedItem: Partial<T>) => {
+    (replacedItem: Partial<T>, isValid = true) => {
       const id = replacedItem.id as string
       if (id in itemsToUpdate.current) {
         itemsToUpdate.current[id] = {
@@ -310,7 +314,7 @@ export function useApiEditableList<T extends IHydraMember>(
           item.id === replacedItem.id ? { ...item, ...replacedItem } : item
         )
       )
-      debouncedReplace()
+      debouncedReplace(isValid)
     },
     [debouncedReplace, updateList]
   )
