@@ -1,3 +1,35 @@
+#### 1.3.1 (2024-06-13)
+
+##### New Features
+
+- **1265620:**
+  - explain trotinette ([5bd6c0a2](https://github.com/Elastic-Suite/gally-admin/commit/5bd6c0a261b91b3e67abf15099ce449cfa829ef2))
+  - eplxain trotinette ([1b75d617](https://github.com/Elastic-Suite/gally-admin/commit/1b75d6178ba9bd07e4d7bd109bb252b0a1ccdeed))
+- **#1275390:** add AUTOCOMPLETE key to ProductRequestType enum ([a7a337b7](https://github.com/Elastic-Suite/gally-admin/commit/a7a337b759052bde5c5247b658b8c925276a1847))
+- **#1276798:** [Explain] Add indexed content table ([458d1710](https://github.com/Elastic-Suite/gally-admin/commit/458d1710e7dfaa0a582de85a552e729acc953a85))
+- **#1285902:**
+  - [Boost] update texts in the enlarge preview and in the search term field ([9e05d7c1](https://github.com/Elastic-Suite/gally-admin/commit/9e05d7c1ab4bc287c5bd3926bc3135e5130f2ecb))
+  - [Boost] Enlarge preview space by adding NoAttributes Component ([ef086c57](https://github.com/Elastic-Suite/gally-admin/commit/ef086c57365d6d48ec039bf4cd46ae1816f9f3dd))
+- **#1279420:** [Explain] pinned products ([6938b23e](https://github.com/Elastic-Suite/gally-admin/commit/6938b23e49ed7b2db26769eed9a91a5e723a0eb1))
+- **#1282987:** [Boost] add position effect column on boost preview ([1d2fd62e](https://github.com/Elastic-Suite/gally-admin/commit/1d2fd62ec8fe48eceae22e30c0939f0edc01a4b1))
+- **#1245803:** [Form] Manage form error validation for each field component ([828bb9cc](https://github.com/Elastic-Suite/gally-admin/commit/828bb9cc0f865095ec791669e2db6d3114ebe018))
+- **#1284197:** improve render of InputTexts on auto save grids ([76b87fdd](https://github.com/Elastic-Suite/gally-admin/commit/76b87fdd9c5482a7776d2646e7309c80d02b36c4))
+
+##### Bug Fixes
+
+- **#1298299:** [Boost Preview] Submit with "Enter" key does'nt work ([2655aecb](https://github.com/Elastic-Suite/gally-admin/commit/2655aecbe86fa3561c1c35537921d88bcab7773a))
+- **#1245803:** [Expansion] change error message when there is duplicate terms ([91f44438](https://github.com/Elastic-Suite/gally-admin/commit/91f44438652f0fe984bf8c9e205a65a42929407b))
+- **#1297180:** [Boost Preview] Wrong Media url ([ee2ddca1](https://github.com/Elastic-Suite/gally-admin/commit/ee2ddca177a9bd3e6f17e87760b942aebc6b6b32))
+- **#1295483:** after an edit from a grid make a GET to get values from back, because back can update several values after one change ([b2d2e9bf](https://github.com/Elastic-Suite/gally-admin/commit/b2d2e9bf8e72320aee2fd01dfcb09b5c968a9a59))
+- **#1294200:** [Form] not submitted when we press enter ([3ce2f170](https://github.com/Elastic-Suite/gally-admin/commit/3ce2f170888ac7f93d97fd0f022d83ee46ceb20a))
+- **#1294472:** Remove errors messages in the filter facets grid ([567aa3b8](https://github.com/Elastic-Suite/gally-admin/commit/567aa3b8426352364ed33d2200120bdbdc223c61))
+- **#1294367:** [Form] warning forwardRef ([12386cdf](https://github.com/Elastic-Suite/gally-admin/commit/12386cdfdd4490039b24a7332636f8bd370ee46a))
+- **#1255747:** [Boost] Gap between enable and name ([badcdca6](https://github.com/Elastic-Suite/gally-admin/commit/badcdca6b72ed9c7a8c0436275a20bc50a4164ac))
+- **#1265620:** [Explain] clean old componenets and fixes ([04be3ef4](https://github.com/Elastic-Suite/gally-admin/commit/04be3ef4409fa03288a7cebddfdd137dbbfd859c))
+- **#1279113:** [Category] product positions not correctly saved ([4e96e76b](https://github.com/Elastic-Suite/gally-admin/commit/4e96e76bbb332bf8355eb5f1f31384a7501b75b6))
+- **#1255766:** [Boost] Selection placeholder Dropdown ([53d5af36](https://github.com/Elastic-Suite/gally-admin/commit/53d5af3660c929e8f09fed938d0ccdd07bedced2))
+- **#1285907:** [Boost] UX Field Localized Catalog ([70c2ca0d](https://github.com/Elastic-Suite/gally-admin/commit/70c2ca0d0b4d783a9a742690860ba9c1794aa67b))
+
 #### 1.3.1.1 (2024-03-22)
 
 ### 1.2.0 (2023-12-11)
