@@ -1,12 +1,12 @@
 {
-  "alert.update": "Sauvegarde des données avec succès",
-  "alert.create": "Création du formulaire avec succès",
-  "alert.remove": "Le formulaire a été supprimé avec succès",
+  "alert.update": "Mise à jour de l'élément {{entity}} avec succès",
+  "alert.create": "Création de l'élément {{entity}} avec succès",
+  "alert.remove": "L'élément {{entity}} a été supprimé avec succès",
   "alert.error": "Une erreur s'est produite",
   "save": "Enregistrer",
   "create": "Créer",
   "delete": "Supprimer",
-  "confirmation.message.delete": "Confirmez-vous la suppression de ce formulaire ?",
+  "confirmation.message.delete": "Confirmez-vous la suppression de cet élément {{entity}} ?",
   "cancel": "Annuler",
   "confirm": "Confirmer",
   "error.form": "Erreur du formulaire"

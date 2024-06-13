@@ -14,6 +14,7 @@ import {
   IErrorsForm,
   IMainContext,
   concatenateValuesWithLineBreaks,
+  firstLetterUppercase,
   initResourceData,
   isError,
 } from '@elastic-suite/gally-admin-shared'
@@ -41,10 +42,12 @@ interface IProps {
   id?: string
   resourceName: string
   title?: string
+  entityLabel?: string
 }
 
 function ResourceForm(props: IProps): JSX.Element {
-  const { resourceName, id, title } = props
+  const { resourceName, id, title, entityLabel } = props
+  const entity = (entityLabel ?? resourceName).toLowerCase()
   const { t } = useTranslation('resourceForm')
   const resource = useResource(resourceName, IMainContext.FORM)
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -95,10 +98,13 @@ function ResourceForm(props: IProps): JSX.Element {
     }
     if (!isError(sendingToApi)) {
       setData(sendingToApi)
-      enqueueSnackbar(id ? t('alert.update') : t('alert.create'), {
-        onShut: closeSnackbar,
-        variant: 'success',
-      })
+      enqueueSnackbar(
+        id ? t('alert.update', { entity }) : t('alert.create', { entity }),
+        {
+          onShut: closeSnackbar,
+          variant: 'success',
+        }
+      )
       if (!id) {
         router.push('./grid')
         return
@@ -137,7 +143,7 @@ function ResourceForm(props: IProps): JSX.Element {
     setIsLoading(true)
     const sendingToApi = await remove(id)
     if (!isError(sendingToApi)) {
-      enqueueSnackbar(t('alert.remove'), {
+      enqueueSnackbar(firstLetterUppercase(t('alert.remove', { entity })), {
         onShut: closeSnackbar,
         variant: 'success',
       })
@@ -185,7 +191,7 @@ function ResourceForm(props: IProps): JSX.Element {
                 confirmationPopIn
                 position="center"
                 onConfirm={deleteData}
-                titlePopIn={t('confirmation.message.delete')}
+                titlePopIn={t('confirmation.message.delete', { entity })}
                 cancelName={t('cancel')}
                 confirmName={t('confirm')}
                 triggerElement={
