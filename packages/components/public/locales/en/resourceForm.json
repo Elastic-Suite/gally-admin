@@ -1,12 +1,12 @@
 {
   "save": "Save",
   "create": "Create",
-  "alert.update": "Updating of form with success",
-  "alert.create": "Creating of form with success",
-  "alert.remove": "Form has been deleted with success",
+  "alert.update": "Updating of the {{entity}} with success",
+  "alert.create": "Creating of the {{entity}} with success",
+  "alert.remove": "{{entity}} has been deleted with success",
   "alert.error": "Une erreur s'est produite",
   "delete": "Delete",
-  "confirmation.message.delete": "Do you confirm the deletion of this form ?",
+  "confirmation.message.delete": "Are you sure you wish to delete this {{entity}}?",
   "cancel": "Cancel",
   "confirm": "Confirm",
   "error.form": "Error of form"
