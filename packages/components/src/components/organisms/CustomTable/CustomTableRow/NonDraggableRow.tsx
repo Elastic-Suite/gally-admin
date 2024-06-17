@@ -4,12 +4,13 @@ import { Checkbox, TableRow } from '@mui/material'
 import {
   IConfigurations,
   IFieldGuesserProps,
+  IImage,
   ITableConfig,
   ITableHeader,
   ITableHeaderSticky,
   ITableRow,
   getFieldState,
-  joinUrlPath,
+  getImageValue,
 } from '@elastic-suite/gally-admin-shared'
 
 import {
@@ -43,6 +44,7 @@ interface IProps {
   withSelection: boolean
   configuration: IConfigurations
   withoutDragableColumn?: boolean
+  onClick?: () => void
 }
 
 function NonDraggableRow(props: IProps): JSX.Element {
@@ -61,6 +63,7 @@ function NonDraggableRow(props: IProps): JSX.Element {
     withSelection,
     configuration,
     withoutDragableColumn,
+    onClick,
   } = props
   const stickyHeaders: ITableHeaderSticky[] = manageStickyHeaders(tableHeaders)
   const nonStickyHeaders = tableHeaders.filter((header) => !header.sticky)
@@ -79,7 +82,7 @@ function NonDraggableRow(props: IProps): JSX.Element {
   }
 
   return (
-    <TableRow key={tableRow.id}>
+    <TableRow key={tableRow.id} onClick={onClick}>
       {Boolean(!withoutDragableColumn || withSelection) && (
         <StickyTableCell
           sx={{
@@ -151,13 +154,12 @@ function NonDraggableRow(props: IProps): JSX.Element {
 
       {nonStickyHeaders.map((header) => {
         const value =
-          tableRow[header.name] && header.name === 'image'
-            ? joinUrlPath(
+          tableRow[header.name] && header.input === 'image'
+            ? getImageValue(
                 configuration['base_url/media'],
-                tableRow[header.name] as string
+                tableRow[header.name] as IImage | string
               )
             : tableRow[header.name]
-
         return (
           <BaseTableCell
             sx={{ ...nonStickyStyle(header.type), ...header.cellsStyle }}

@@ -1,31 +1,54 @@
-import React from 'react'
+import React, { ForwardedRef, SyntheticEvent, useCallback } from 'react'
 import { DateValidationError } from '@mui/x-date-pickers/internals/hooks/validation/useDateValidation'
 import { isValid } from 'date-fns'
 
-import { useFormError } from '../../../hooks'
+import { IFieldErrorProps, IValidator, useFormError } from '../../../hooks'
 
 import DatePicker, { IDatePickerProps } from './DatePicker'
 
-interface IDatePickerErrorProps extends IDatePickerProps {
-  showError?: boolean
-}
+interface IDatePickerErrorProps extends IFieldErrorProps, IDatePickerProps {}
 
-export function dateValidator(value: Date | null): string | null {
-  if (!value) {
-    return null
+export function dateValidator(
+  value: Date | null,
+  event?: SyntheticEvent,
+  required?: boolean,
+  additionalValidator?: IDatePickerErrorProps['additionalValidator']
+): string | null {
+  if (additionalValidator) {
+    return additionalValidator(value, event)
   }
-  if (isValid(value)) {
-    return null
+
+  if (!value && required) {
+    return 'valueMissing'
+  }
+
+  if (!value || isValid(value)) {
+    return ''
   }
   return 'invalidDate'
 }
 
 function DatePickerError(props: IDatePickerErrorProps): JSX.Element {
-  const { onChange, showError, ...inputProps } = props
-  const [formErrorProps, setError] = useFormError(
+  const { onChange, showError, additionalValidator, ...inputProps } = props
+
+  const validator = useCallback<IValidator>(
+    (value, event) => {
+      return dateValidator(
+        value as Date,
+        event,
+        inputProps.required,
+        additionalValidator
+      )
+    },
+    [additionalValidator, inputProps.required]
+  )
+
+  const [{ ref, ...formErrorProps }, setError] = useFormError(
     onChange,
+    inputProps.value,
     showError,
-    dateValidator
+    validator,
+    inputProps.disabled
   )
 
   function handleError(reason: DateValidationError): void {
@@ -40,6 +63,7 @@ function DatePickerError(props: IDatePickerErrorProps): JSX.Element {
       helperIcon={inputProps?.helperIcon || formErrorProps?.helperIcon}
       helperText={inputProps?.helperText || formErrorProps?.helperText}
       onError={handleError}
+      ref={ref as ForwardedRef<HTMLInputElement>}
     />
   )
 }

@@ -1,4 +1,4 @@
-import React, { PropsWithChildren } from 'react'
+import React, { CSSProperties, PropsWithChildren } from 'react'
 import Button from '../../atoms/buttons/Button'
 import IonIcon from '../../atoms/IonIcon/IonIcon'
 import Popin from '../../atoms/modals/PopIn'
@@ -45,7 +45,8 @@ const sharedStyle = { padding: '16px' }
 const customDialogStyles = {
   paper: {
     height: '100%',
-    width: '420px',
+    maxHeight: '100%',
+    width: '33%',
     borderRadius: '0px',
     boxShadow: 'none',
   },
@@ -68,18 +69,21 @@ function TitleTypography({ children }: PropsWithChildren): JSX.Element {
 }
 
 interface IProps {
-  requestTitle: string
-  request: JSON
+  index: string
+  query: JSON
+  boxStyle?: CSSProperties
 }
 
-function ExplainQueryDetails({ requestTitle, request }: IProps): JSX.Element {
+function ExplainQueryDetails({ index, query, boxStyle }: IProps): JSX.Element {
+  const { t } = useTranslation('explain')
+
   const ButtonCopyToClipBoard = (
     <Button
       display="secondary"
-      onClick={(): void => copyToClipboard(JSON.stringify(request))}
+      onClick={(): void => copyToClipboard(JSON.stringify(query))}
     >
       <IonIcon name="copy-outline" style={{ fontSize: 24 }} />
-      <span style={{ marginLeft: 8 }}>Copy request</span>
+      <span style={{ marginLeft: 8 }}>{t('Copy request')}</span>
     </Button>
   )
   const codeSlashButton = (
@@ -102,14 +106,13 @@ function ExplainQueryDetails({ requestTitle, request }: IProps): JSX.Element {
     </IconButton>
   )
 
-  const { t } = useTranslation('resourceExplain')
-
   return (
     <Popin
       triggerElement={codeSlashButton}
-      titlePopIn="Index Code"
+      titlePopIn={t('Query details')}
       actions={ButtonCopyToClipBoard}
       styles={customDialogStyles}
+      boxStyle={boxStyle}
       position="right"
     >
       <TitleTypography>{t('query.popin.title')}</TitleTypography>
@@ -121,10 +124,18 @@ function ExplainQueryDetails({ requestTitle, request }: IProps): JSX.Element {
         lineHeight="20px"
         marginBottom="16px"
       >
-        {requestTitle}
+        {index}
       </Typography>
       <TitleTypography>{t('query.popin.request')}</TitleTypography>
-      {request ? <JSONTree data={request} theme={JSONTreeTheme} /> : null}
+      {query ? (
+        <div>
+          <JSONTree
+            data={query}
+            theme={JSONTreeTheme}
+            shouldExpandNodeInitially={(): boolean => true}
+          />
+        </div>
+      ) : null}
     </Popin>
   )
 }

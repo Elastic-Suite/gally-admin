@@ -20,11 +20,10 @@ import {
 import { ruleOptionsContext } from '../../../contexts'
 
 import IonIcon from '../IonIcon/IonIcon'
-import DropDown from '../form/DropDown'
-import InputText from '../form/InputText'
-import TreeSelector from '../form/TreeSelector'
-
 import { Close, CustomCombination, Root } from './Rule.styled'
+import DropDownError from '../form/DropDownError'
+import TreeSelectorError from '../form/TreeSelectorError'
+import InputTextError from '../form/InputTextError'
 
 function getInputType(valueType: RuleValueType): 'number' | 'text' {
   if (ruleValueNumberTypes.includes(valueType)) {
@@ -40,11 +39,19 @@ interface IProps {
   onDelete?: () => void
   rule: IRule
   small?: boolean
+  showError?: boolean
 }
 
 function Rule(props: IProps): JSX.Element {
-  const { catalogId, localizedCatalogId, onChange, onDelete, rule, small } =
-    props
+  const {
+    catalogId,
+    showError,
+    localizedCatalogId,
+    onChange,
+    onDelete,
+    rule,
+    small,
+  } = props
   const {
     getAttributeOperatorOptions,
     getAttributeType,
@@ -136,7 +143,8 @@ function Rule(props: IProps): JSX.Element {
 
     if (valueType === RuleValueType.BOOLEAN) {
       return (
-        <DropDown
+        <DropDownError
+          showError={showError}
           onChange={handleChange('value')}
           options={
             (options.get(`type-${RuleValueType.BOOLEAN}`) ??
@@ -149,7 +157,8 @@ function Rule(props: IProps): JSX.Element {
       )
     } else if (attribute_type === RuleAttributeType.SELECT) {
       return (
-        <DropDown
+        <DropDownError
+          showError={showError}
           multiple={multiple}
           onChange={handleChange('value')}
           options={
@@ -169,7 +178,8 @@ function Rule(props: IProps): JSX.Element {
             )
           : flatCategories.find((category) => value === category.id) ?? null
       return (
-        <TreeSelector
+        <TreeSelectorError
+          showError={showError}
           data={categories}
           multiple={multiple}
           onChange={handleCategoryChange}
@@ -181,7 +191,8 @@ function Rule(props: IProps): JSX.Element {
     }
 
     return (
-      <InputText
+      <InputTextError
+        showError={showError}
         onChange={handleInputChange(multiple)}
         required
         small={small}
@@ -200,7 +211,8 @@ function Rule(props: IProps): JSX.Element {
     const { operator, value } = rule
     content = (
       <>
-        <DropDown
+        <DropDownError
+          showError={showError}
           onChange={handleChange('operator')}
           options={
             (options.get(`${RuleType.COMBINATION}-operator`) ??
@@ -211,7 +223,8 @@ function Rule(props: IProps): JSX.Element {
           value={operator}
         />
         <CustomCombination>{t('conditionsAre')}</CustomCombination>
-        <DropDown
+        <DropDownError
+          showError={showError}
           onChange={handleChange('value')}
           options={
             (options.get(`type-${RuleValueType.BOOLEAN}`) ??
@@ -227,7 +240,8 @@ function Rule(props: IProps): JSX.Element {
     const { field, operator } = rule
     content = (
       <>
-        <DropDown
+        <DropDownError
+          showError={showError}
           onChange={handleFieldChange}
           options={
             (options.get(`${RuleType.ATTRIBUTE}-field`) ??
@@ -237,7 +251,8 @@ function Rule(props: IProps): JSX.Element {
           value={field}
           small={small}
         />
-        <DropDown
+        <DropDownError
+          showError={showError}
           onChange={handleOperatorChange}
           options={getAttributeOperatorOptions(field)}
           required

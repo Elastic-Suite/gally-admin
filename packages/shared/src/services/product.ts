@@ -26,3 +26,7 @@ export function getLimitationType(
 ): string | undefined {
   return options.find((option) => requestType === option.id)?.limitationType
 }
+
+export function getStockStatusLabel(stockStatus: boolean): string {
+  return stockStatus ? 'stock.inStock' : 'stock.outOfStock'
+}

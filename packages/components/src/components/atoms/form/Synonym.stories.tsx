@@ -24,4 +24,7 @@ const Template: ComponentStory<typeof Synonym> = (args) => {
 }
 
 export const Default = Template.bind({})
-Default.args = {}
+Default.args = {
+  showError: true,
+  required: true,
+}

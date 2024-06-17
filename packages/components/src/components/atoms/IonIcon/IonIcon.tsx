@@ -29,6 +29,7 @@ export const iconSrcMapping = {
   dashboard: '/images/home2.svg',
   arrow: '/images/arrow.svg',
   telescope: '/images/telescope-outline.svg',
+  'push-pin': '/images/push-pin.svg',
 }
 
 export const iconAliasMapping = {

@@ -16,27 +16,23 @@ import {
   IHydraResponse,
   IRequestTypesOptions,
   ITreeItem,
-  LimitationType,
+  ProductRequestType,
   getLimitationType,
   getOptionsFromApiSchema,
   isGraphQLValidVariables,
 } from '@elastic-suite/gally-admin-shared'
 
-import { breadcrumbContext } from '../../../contexts'
+import { breadcrumbContext, catalogContext } from '../../../contexts'
 import { withAuth, withOptions } from '../../../hocs'
 import { useApiList, useFetchApi, useResource } from '../../../hooks'
 import { selectConfiguration, useAppSelector } from '../../../store'
 
 import Button from '../../../components/atoms/buttons/Button'
-import ProductsSearchPreview from '../../../components/stateful/ProductPreview/ProductsSearchPreview'
-import ProductsCategoryPreview from '../../../components/stateful/ProductPreview/ProductsCategoryPreview'
 import MerchandiseBar from '../../../components/stateful/ProductPreview/MerchandiseBar'
-import {
-  DropDownError,
-  InputTextError,
-  PageTitle,
-  TreeSelector,
-} from '../../../components'
+import { DropDownError, InputTextError, PageTitle } from '../../../components'
+import TreeSelectorError from '../../../components/atoms/form/TreeSelectorError'
+import ProductsPreviewBottom from '../../../components/stateful/ProductPreview/ProductsPreviewBottom'
+import Form from '../../../components/atoms/form/Form'
 
 const WrapperBlock = styled('div')(({ theme }) => ({
   border: '1px solid',
@@ -66,11 +62,13 @@ const INPUT_WIDTH = 296
 function AdminAnalyzeCatalogStructure(): JSX.Element {
   const router = useRouter()
   const [, setBreadcrumb] = useContext(breadcrumbContext)
+  const { localizedCatalogWithDefault } = useContext(catalogContext)
 
   const [variables, setVariables] = useState<IExplainVariables>({})
   const [variableValid, setVariableValid] = useState(false)
   const [nbResults, setNbResults] = useState(0)
   const [nbTopProducts, setNbTopProducts] = useState(0)
+  const [showAllErrors, setShowAllErrors] = useState(false)
 
   const configuration = useAppSelector(selectConfiguration)
   const { t } = useTranslation(['api', 'categories'])
@@ -132,26 +130,54 @@ function AdminAnalyzeCatalogStructure(): JSX.Element {
     setVariableValid(false)
   }
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>): void {
+  function handleSubmit(
+    event: FormEvent<HTMLFormElement>,
+    formIsValid: boolean
+  ): void {
     event.preventDefault()
-    if (isGraphQLValidVariables(variables, limitationType)) {
-      setNbResults(0)
-      setNbTopProducts(0)
-      setVariableValid(true)
+    if (formIsValid) {
+      if (isGraphQLValidVariables(variables, limitationType)) {
+        setNbResults(0)
+        setNbTopProducts(0)
+        setVariableValid(true)
+      } else {
+        setVariableValid(false)
+      }
     } else {
-      setVariableValid(false)
+      setShowAllErrors(true)
     }
   }
 
-  if (!(localizedCatalogOptions && requestTypeOptions && categoriesList)) {
-    return null
+  function setProductCounts(nbResults: number, nbTopProducts: number): void {
+    setNbResults(nbResults)
+    setNbTopProducts(nbTopProducts)
   }
 
-  if (!variables.requestType && requestTypeOptions[0]) {
+  if (
+    !variables.requestType &&
+    requestTypeOptions[0] &&
+    localizedCatalogOptions[0]
+  ) {
+    const defaultRequestType = requestTypeOptions.find(
+      (option) => option.value === ProductRequestType.SEARCH
+    )
+    const defaultRequestTypeValue = defaultRequestType
+      ? defaultRequestType.value
+      : requestTypeOptions[0].value
+    const defaultLocalizedCatalog = localizedCatalogOptions.find(
+      (option) => String(option.value) === localizedCatalogWithDefault?.['@id']
+    )
+    const defaultLocalizedCatalogValue = defaultLocalizedCatalog
+      ? defaultLocalizedCatalog.value
+      : localizedCatalogOptions[0].value
+
     setVariables({
       ...variables,
-      requestType: requestTypeOptions[0].value
-        ? String(requestTypeOptions[0].value)
+      requestType: defaultRequestTypeValue
+        ? String(defaultRequestTypeValue)
+        : undefined,
+      localizedCatalog: defaultLocalizedCatalogValue
+        ? String(defaultLocalizedCatalogValue)
         : undefined,
     })
   }
@@ -162,70 +188,79 @@ function AdminAnalyzeCatalogStructure(): JSX.Element {
         title={t('Explain and compare')}
         sx={{ marginBottom: '32px' }}
       />
-      <form onSubmit={handleSubmit}>
-        <WrapperBlock>
-          <DropDownError
-            infoTooltip={t(
-              'Select the localized catalog where the explain will be applied'
-            )}
-            label={t('Localized catalog')}
-            name="localizedCatalog"
-            onChange={handleChange}
-            options={localizedCatalogOptions}
-            value={variables?.localizedCatalog}
-            useGroups
-            placeholder={t('Select a localized catalog')}
-            required
-            showError
-            sx={{ width: INPUT_WIDTH }}
-          />
-        </WrapperBlock>
+      <Form onSubmit={handleSubmit}>
+        {Boolean(
+          localizedCatalogOptions && requestTypeOptions && categoriesList
+        ) && (
+          <>
+            <WrapperBlock>
+              <DropDownError
+                infoTooltip={t(
+                  'Select the localized catalog where the explain will be applied'
+                )}
+                label={t('Localized catalog')}
+                name="localizedCatalog"
+                onChange={handleChange}
+                options={localizedCatalogOptions}
+                value={variables?.localizedCatalog}
+                useGroups
+                placeholder={t('Select a localized catalog')}
+                required
+                showError={showAllErrors}
+                sx={{ width: INPUT_WIDTH }}
+              />
+            </WrapperBlock>
 
-        <WrapperBlock>
-          <DropDownError
-            label={t('Request type')}
-            name="requestType"
-            onChange={handleChange}
-            options={requestTypeOptions}
-            value={variables?.requestType}
-            useGroups
-            placeholder={t('Select a request type')}
-            required
-            showError
-            sx={{ width: INPUT_WIDTH }}
-          />
-          {limitationType === 'category' && (
-            <TreeSelector
-              label={t('Category')}
-              name="category"
-              data={categoriesList}
-              onChange={handleCategoryChange}
-              value={variables?.category ?? null}
-              placeholder={t('Select a category')}
-              required
-              sx={{ width: INPUT_WIDTH }}
-            />
-          )}
+            <WrapperBlock>
+              <DropDownError
+                label={t('Request type')}
+                name="requestType"
+                onChange={handleChange}
+                options={requestTypeOptions}
+                value={variables?.requestType}
+                useGroups
+                placeholder={t('Select a request type')}
+                required
+                showError={showAllErrors}
+                sx={{ width: INPUT_WIDTH }}
+              />
+              {limitationType === 'category' && (
+                <TreeSelectorError
+                  label={t('Category')}
+                  name="category"
+                  data={categoriesList}
+                  onChange={handleCategoryChange}
+                  value={variables?.category ?? null}
+                  placeholder={t('Select a category')}
+                  required
+                  showError={showAllErrors}
+                  sx={{ width: INPUT_WIDTH }}
+                />
+              )}
 
-          {limitationType === 'search' && (
-            <InputTextError
-              label={t('Search term')}
-              name="search"
-              onChange={handleChange}
-              value={variables?.search ? String(variables.search) : undefined}
-              placeholder={t('Indicate a term')}
-              required
-              showError
-              sx={{ width: INPUT_WIDTH }}
-            />
-          )}
-          {limitationType ? (
-            <Button sx={{ marginTop: '24px', height: 40 }} type="submit">
-              {t('Explain')}
-            </Button>
-          ) : null}
-        </WrapperBlock>
-      </form>
+              {limitationType === 'search' && (
+                <InputTextError
+                  label={t('Search term')}
+                  name="search"
+                  onChange={handleChange}
+                  value={
+                    variables?.search ? String(variables.search) : undefined
+                  }
+                  placeholder={t('Indicate a term')}
+                  required
+                  showError={showAllErrors}
+                  sx={{ width: INPUT_WIDTH }}
+                />
+              )}
+              {limitationType ? (
+                <Button sx={{ marginTop: '24px', height: 40 }} type="submit">
+                  {t('Explain')}
+                </Button>
+              ) : null}
+            </WrapperBlock>
+          </>
+        )}
+      </Form>
 
       {variableValid ? (
         <Box sx={{ marginBottom: 2 }}>
@@ -239,23 +274,12 @@ function AdminAnalyzeCatalogStructure(): JSX.Element {
           sx={{ backgroundColor: 'colors.neutral.300', padding: 2 }}
         >
           <PreviewArea>{t('previewArea', { ns: 'categories' })}</PreviewArea>
-          {limitationType === LimitationType.SEARCH && (
-            <ProductsSearchPreview
-              variables={variables}
-              configuration={configuration}
-              limitationType={limitationType}
-              onProductsLoaded={setNbResults}
-            />
-          )}
-          {limitationType === LimitationType.CATEGORY && (
-            <ProductsCategoryPreview
-              variables={variables}
-              configuration={configuration}
-              limitationType={limitationType}
-              onProductsLoaded={setNbResults}
-              onTopProductsLoaded={setNbTopProducts}
-            />
-          )}
+          <ProductsPreviewBottom
+            variables={variables}
+            configuration={configuration}
+            onProductsLoaded={setProductCounts}
+            limitationType={limitationType}
+          />
         </Paper>
       ) : null}
     </>

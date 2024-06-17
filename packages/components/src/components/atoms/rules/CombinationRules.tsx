@@ -75,6 +75,7 @@ export interface ICombinationRulesProps {
   onDelete?: () => void
   rule?: IRuleCombination
   small?: boolean
+  showError?: boolean
 }
 
 function CombinationRules(props: ICombinationRulesProps): JSX.Element {
@@ -86,6 +87,7 @@ function CombinationRules(props: ICombinationRulesProps): JSX.Element {
     onDelete,
     rule,
     small,
+    showError,
   } = props
   const { t } = useTranslation('rules')
 
@@ -144,6 +146,7 @@ function CombinationRules(props: ICombinationRulesProps): JSX.Element {
           onDelete={onDelete}
           rule={rule}
           small={small}
+          showError={showError}
         />
       </RuleAndLinkContainer>
       {Boolean(children) && (
@@ -170,6 +173,7 @@ function CombinationRules(props: ICombinationRulesProps): JSX.Element {
                   onDelete={handleChildDelete(key)}
                   rule={item}
                   small={small}
+                  showError={showError}
                 />
               ) : isAttributeRule(item) ? (
                 <Rule
@@ -179,6 +183,7 @@ function CombinationRules(props: ICombinationRulesProps): JSX.Element {
                   onDelete={handleChildDelete(key)}
                   rule={item}
                   small={small}
+                  showError={showError}
                 />
               ) : null}
             </RuleAndLinkContainer>

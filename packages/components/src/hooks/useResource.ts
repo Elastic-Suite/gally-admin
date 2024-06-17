@@ -73,7 +73,7 @@ export function useResourceOperations<T extends IHydraMember>(
   )
 
   const replace = useCallback(
-    (item: Omit<T, '@id' | '@type'>): Promise<T | IError> =>
+    (item: Partial<T>): Promise<T | IError> =>
       fetchApi(`${apiUrl}/${item.id}`, undefined, {
         body: JSON.stringify(item),
         method: Method.PUT,

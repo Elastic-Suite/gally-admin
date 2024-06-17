@@ -3,22 +3,18 @@
 exports[`PopIn match snapshot PopIn simple 1`] = `
 <div>
   <div
-    style="position: relative;"
+    class="MuiBox-root css-0"
   >
-    <div
-      class="MuiBox-root css-0"
+    <button
+      class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge css-zwkw2d-MuiButtonBase-root-MuiButton-root"
+      tabindex="0"
+      type="button"
     >
-      <button
-        class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge css-zwkw2d-MuiButtonBase-root-MuiButton-root"
-        tabindex="0"
-        type="button"
-      >
-        Click on me !
-        <span
-          class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-        />
-      </button>
-    </div>
+      Click on me !
+      <span
+        class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+      />
+    </button>
   </div>
 </div>
 `;

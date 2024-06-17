@@ -28,6 +28,11 @@ exports[`Checkbox match snapshot CheckboxIndeterminateFalse 1`] = `
         class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
       />
     </span>
+    <span
+      class="MuiTypography-root MuiTypography-body2 MuiFormControlLabel-label css-18f5x04-MuiTypography-root"
+    >
+      <div />
+    </span>
   </label>
 </div>
 `;
@@ -59,6 +64,11 @@ exports[`Checkbox match snapshot CheckboxIndeterminateTrue 1`] = `
       <span
         class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
       />
+    </span>
+    <span
+      class="MuiTypography-root MuiTypography-body2 MuiFormControlLabel-label css-18f5x04-MuiTypography-root"
+    >
+      <div />
     </span>
   </label>
 </div>
@@ -95,7 +105,9 @@ exports[`Checkbox match snapshot CheckboxLabel 1`] = `
     <span
       class="MuiTypography-root MuiTypography-body2 MuiFormControlLabel-label css-18f5x04-MuiTypography-root"
     >
-      Label
+      <div>
+        Label
+      </div>
     </span>
   </label>
 </div>
@@ -132,7 +144,9 @@ exports[`Checkbox match snapshot CheckboxLabelAndList 1`] = `
     <span
       class="MuiTypography-root MuiTypography-caption MuiFormControlLabel-label css-bb9um2-MuiTypography-root"
     >
-      Label
+      <div>
+        Label
+      </div>
     </span>
   </label>
 </div>
@@ -166,6 +180,11 @@ exports[`Checkbox match snapshot CheckboxListFalse 1`] = `
         class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
       />
     </span>
+    <span
+      class="MuiTypography-root MuiTypography-body2 MuiFormControlLabel-label css-18f5x04-MuiTypography-root"
+    >
+      <div />
+    </span>
   </label>
 </div>
 `;
@@ -197,6 +216,11 @@ exports[`Checkbox match snapshot CheckboxListTrue 1`] = `
       <span
         class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
       />
+    </span>
+    <span
+      class="MuiTypography-root MuiTypography-caption MuiFormControlLabel-label css-bb9um2-MuiTypography-root"
+    >
+      <div />
     </span>
   </label>
 </div>

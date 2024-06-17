@@ -44,21 +44,30 @@ exports[`Expansion match snapshot Expansion Full 1`] = `
               class="MuiFormControl-root css-hh3vi8-MuiFormControl-root"
             >
               <label
-                class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard MuiFormLabel-colorPrimary MuiFormLabel-filled css-rnc4nv-MuiFormLabel-root-MuiInputLabel-root"
+                class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard MuiFormLabel-colorPrimary MuiFormLabel-filled Mui-required css-rnc4nv-MuiFormLabel-root-MuiInputLabel-root"
                 data-shrink="true"
               >
                 reference term
+                <span
+                  aria-hidden="true"
+                  class="MuiFormLabel-asterisk MuiInputLabel-asterisk css-1ufxisk-MuiFormLabel-asterisk"
+                >
+                   
+                  *
+                </span>
               </label>
               <div
                 class="InputText__Wrapper css-17fp4jk"
               >
                 <div
                   class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-1jf161a-MuiInputBase-root"
+                  required=""
                 >
                   <input
                     aria-invalid="false"
                     class="MuiInputBase-input css-ngazp5-MuiInputBase-input"
                     placeholder="reference term"
+                    required=""
                     type="text"
                     value="top"
                   />
@@ -66,104 +75,106 @@ exports[`Expansion match snapshot Expansion Full 1`] = `
               </div>
             </div>
             <div
-              class="css-vaijrj"
+              style="position: relative;"
             >
               <div
-                style="margin-bottom: 4px;"
-              >
-                <label
-                  class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard MuiFormLabel-colorPrimary Mui-error css-rnc4nv-MuiFormLabel-root-MuiInputLabel-root"
-                  data-shrink="true"
-                >
-                  expansion terms
-                </label>
-              </div>
-              <div
-                class="css-qb9qm0"
-                style="border-color: #e2e6f3;"
+                class="css-vaijrj"
               >
                 <div
-                  class="css-1r61l91"
+                  style="margin-bottom: 4px;"
                 >
-                  <ion-icon
-                    name="close"
-                    style="font-size: 14px; padding: 0px;"
-                  />
+                  <label
+                    class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard MuiFormLabel-colorPrimary Mui-error Mui-required css-rnc4nv-MuiFormLabel-root-MuiInputLabel-root"
+                    data-shrink="true"
+                  >
+                    expansion terms
+                    <span
+                      aria-hidden="true"
+                      class="MuiFormLabel-asterisk MuiInputLabel-asterisk Mui-error css-1ufxisk-MuiFormLabel-asterisk"
+                    >
+                       
+                      *
+                    </span>
+                  </label>
                 </div>
                 <div
-                  class="css-r1vopi"
+                  class="css-1mxyr7i"
                 >
                   <div
-                    class="MuiButtonBase-root MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-deletable MuiChip-deletableColorDefault MuiChip-filledDefault css-69f6vo-MuiButtonBase-root-MuiChip-root"
-                    role="button"
-                    style="opacity: 1;"
-                    tabindex="0"
-                  >
-                    <span
-                      class="MuiChip-label MuiChip-labelMedium css-6od3lo-MuiChip-label"
-                    >
-                      pants
-                    </span>
-                    <button
-                      class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiChip-deleteIcon MuiChip-deleteIconMedium MuiChip-deleteIconColorDefault MuiChip-deleteIconFilledColorDefault css-78trlr-MuiButtonBase-root-MuiIconButton-root"
-                      tabindex="0"
-                      type="button"
-                    >
-                      <ion-icon
-                        name="close"
-                      />
-                      <span
-                        class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                      />
-                    </button>
-                  </div>
-                  <div
-                    class="MuiButtonBase-root MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-deletable MuiChip-deletableColorDefault MuiChip-filledDefault css-69f6vo-MuiButtonBase-root-MuiChip-root"
-                    role="button"
-                    style="opacity: 1;"
-                    tabindex="0"
-                  >
-                    <span
-                      class="MuiChip-label MuiChip-labelMedium css-6od3lo-MuiChip-label"
-                    >
-                      trousers
-                    </span>
-                    <button
-                      class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiChip-deleteIcon MuiChip-deleteIconMedium MuiChip-deleteIconColorDefault MuiChip-deleteIconFilledColorDefault css-78trlr-MuiButtonBase-root-MuiIconButton-root"
-                      tabindex="0"
-                      type="button"
-                    >
-                      <ion-icon
-                        name="close"
-                      />
-                      <span
-                        class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                      />
-                    </button>
-                  </div>
-                  <form
-                    class="css-u4p24i"
+                    class="css-r1vopi"
                   >
                     <div
-                      class="MuiFormControl-root css-hh3vi8-MuiFormControl-root"
+                      class="MuiButtonBase-root MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-deletable MuiChip-deletableColorDefault MuiChip-filledDefault css-69f6vo-MuiButtonBase-root-MuiChip-root"
+                      role="button"
+                      style="opacity: 1;"
+                      tabindex="0"
+                    >
+                      <span
+                        class="MuiChip-label MuiChip-labelMedium css-6od3lo-MuiChip-label"
+                      >
+                        pants
+                      </span>
+                      <button
+                        class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiChip-deleteIcon MuiChip-deleteIconMedium MuiChip-deleteIconColorDefault MuiChip-deleteIconFilledColorDefault css-78trlr-MuiButtonBase-root-MuiIconButton-root"
+                        tabindex="0"
+                        type="button"
+                      >
+                        <ion-icon
+                          name="close"
+                        />
+                        <span
+                          class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                        />
+                      </button>
+                    </div>
+                    <div
+                      class="MuiButtonBase-root MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-deletable MuiChip-deletableColorDefault MuiChip-filledDefault css-69f6vo-MuiButtonBase-root-MuiChip-root"
+                      role="button"
+                      style="opacity: 1;"
+                      tabindex="0"
+                    >
+                      <span
+                        class="MuiChip-label MuiChip-labelMedium css-6od3lo-MuiChip-label"
+                      >
+                        trousers
+                      </span>
+                      <button
+                        class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiChip-deleteIcon MuiChip-deleteIconMedium MuiChip-deleteIconColorDefault MuiChip-deleteIconFilledColorDefault css-78trlr-MuiButtonBase-root-MuiIconButton-root"
+                        tabindex="0"
+                        type="button"
+                      >
+                        <ion-icon
+                          name="close"
+                        />
+                        <span
+                          class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                        />
+                      </button>
+                    </div>
+                    <div
+                      class="css-u4p24i"
                     >
                       <div
-                        class="InputText__Wrapper css-17fp4jk"
+                        class="MuiFormControl-root css-hh3vi8-MuiFormControl-root"
                       >
                         <div
-                          class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-z54rnl-MuiInputBase-root"
+                          class="InputText__Wrapper css-17fp4jk"
                         >
-                          <input
-                            aria-invalid="false"
-                            class="MuiInputBase-input css-ngazp5-MuiInputBase-input"
-                            placeholder="Add text"
-                            type="text"
-                            value=""
-                          />
+                          <div
+                            class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-z54rnl-MuiInputBase-root"
+                          >
+                            <input
+                              aria-invalid="false"
+                              class="MuiInputBase-input css-ngazp5-MuiInputBase-input"
+                              placeholder="Add text"
+                              type="text"
+                              value=""
+                            />
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </form>
+                  </div>
                 </div>
               </div>
             </div>
@@ -193,21 +204,30 @@ exports[`Expansion match snapshot Expansion Full 1`] = `
               class="MuiFormControl-root css-hh3vi8-MuiFormControl-root"
             >
               <label
-                class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard MuiFormLabel-colorPrimary MuiFormLabel-filled css-rnc4nv-MuiFormLabel-root-MuiInputLabel-root"
+                class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard MuiFormLabel-colorPrimary MuiFormLabel-filled Mui-required css-rnc4nv-MuiFormLabel-root-MuiInputLabel-root"
                 data-shrink="true"
               >
                 reference term
+                <span
+                  aria-hidden="true"
+                  class="MuiFormLabel-asterisk MuiInputLabel-asterisk css-1ufxisk-MuiFormLabel-asterisk"
+                >
+                   
+                  *
+                </span>
               </label>
               <div
                 class="InputText__Wrapper css-17fp4jk"
               >
                 <div
                   class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-1jf161a-MuiInputBase-root"
+                  required=""
                 >
                   <input
                     aria-invalid="false"
                     class="MuiInputBase-input css-ngazp5-MuiInputBase-input"
                     placeholder="reference term"
+                    required=""
                     type="text"
                     value="bottom"
                   />
@@ -215,104 +235,106 @@ exports[`Expansion match snapshot Expansion Full 1`] = `
               </div>
             </div>
             <div
-              class="css-vaijrj"
+              style="position: relative;"
             >
               <div
-                style="margin-bottom: 4px;"
-              >
-                <label
-                  class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard MuiFormLabel-colorPrimary Mui-error css-rnc4nv-MuiFormLabel-root-MuiInputLabel-root"
-                  data-shrink="true"
-                >
-                  expansion terms
-                </label>
-              </div>
-              <div
-                class="css-qb9qm0"
-                style="border-color: #e2e6f3;"
+                class="css-vaijrj"
               >
                 <div
-                  class="css-1r61l91"
+                  style="margin-bottom: 4px;"
                 >
-                  <ion-icon
-                    name="close"
-                    style="font-size: 14px; padding: 0px;"
-                  />
+                  <label
+                    class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard MuiFormLabel-colorPrimary Mui-error Mui-required css-rnc4nv-MuiFormLabel-root-MuiInputLabel-root"
+                    data-shrink="true"
+                  >
+                    expansion terms
+                    <span
+                      aria-hidden="true"
+                      class="MuiFormLabel-asterisk MuiInputLabel-asterisk Mui-error css-1ufxisk-MuiFormLabel-asterisk"
+                    >
+                       
+                      *
+                    </span>
+                  </label>
                 </div>
                 <div
-                  class="css-r1vopi"
+                  class="css-1mxyr7i"
                 >
                   <div
-                    class="MuiButtonBase-root MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-deletable MuiChip-deletableColorDefault MuiChip-filledDefault css-69f6vo-MuiButtonBase-root-MuiChip-root"
-                    role="button"
-                    style="opacity: 1;"
-                    tabindex="0"
-                  >
-                    <span
-                      class="MuiChip-label MuiChip-labelMedium css-6od3lo-MuiChip-label"
-                    >
-                      ankle socks
-                    </span>
-                    <button
-                      class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiChip-deleteIcon MuiChip-deleteIconMedium MuiChip-deleteIconColorDefault MuiChip-deleteIconFilledColorDefault css-78trlr-MuiButtonBase-root-MuiIconButton-root"
-                      tabindex="0"
-                      type="button"
-                    >
-                      <ion-icon
-                        name="close"
-                      />
-                      <span
-                        class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                      />
-                    </button>
-                  </div>
-                  <div
-                    class="MuiButtonBase-root MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-deletable MuiChip-deletableColorDefault MuiChip-filledDefault css-69f6vo-MuiButtonBase-root-MuiChip-root"
-                    role="button"
-                    style="opacity: 1;"
-                    tabindex="0"
-                  >
-                    <span
-                      class="MuiChip-label MuiChip-labelMedium css-6od3lo-MuiChip-label"
-                    >
-                      socks
-                    </span>
-                    <button
-                      class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiChip-deleteIcon MuiChip-deleteIconMedium MuiChip-deleteIconColorDefault MuiChip-deleteIconFilledColorDefault css-78trlr-MuiButtonBase-root-MuiIconButton-root"
-                      tabindex="0"
-                      type="button"
-                    >
-                      <ion-icon
-                        name="close"
-                      />
-                      <span
-                        class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                      />
-                    </button>
-                  </div>
-                  <form
-                    class="css-u4p24i"
+                    class="css-r1vopi"
                   >
                     <div
-                      class="MuiFormControl-root css-hh3vi8-MuiFormControl-root"
+                      class="MuiButtonBase-root MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-deletable MuiChip-deletableColorDefault MuiChip-filledDefault css-69f6vo-MuiButtonBase-root-MuiChip-root"
+                      role="button"
+                      style="opacity: 1;"
+                      tabindex="0"
+                    >
+                      <span
+                        class="MuiChip-label MuiChip-labelMedium css-6od3lo-MuiChip-label"
+                      >
+                        ankle socks
+                      </span>
+                      <button
+                        class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiChip-deleteIcon MuiChip-deleteIconMedium MuiChip-deleteIconColorDefault MuiChip-deleteIconFilledColorDefault css-78trlr-MuiButtonBase-root-MuiIconButton-root"
+                        tabindex="0"
+                        type="button"
+                      >
+                        <ion-icon
+                          name="close"
+                        />
+                        <span
+                          class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                        />
+                      </button>
+                    </div>
+                    <div
+                      class="MuiButtonBase-root MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-deletable MuiChip-deletableColorDefault MuiChip-filledDefault css-69f6vo-MuiButtonBase-root-MuiChip-root"
+                      role="button"
+                      style="opacity: 1;"
+                      tabindex="0"
+                    >
+                      <span
+                        class="MuiChip-label MuiChip-labelMedium css-6od3lo-MuiChip-label"
+                      >
+                        socks
+                      </span>
+                      <button
+                        class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiChip-deleteIcon MuiChip-deleteIconMedium MuiChip-deleteIconColorDefault MuiChip-deleteIconFilledColorDefault css-78trlr-MuiButtonBase-root-MuiIconButton-root"
+                        tabindex="0"
+                        type="button"
+                      >
+                        <ion-icon
+                          name="close"
+                        />
+                        <span
+                          class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                        />
+                      </button>
+                    </div>
+                    <div
+                      class="css-u4p24i"
                     >
                       <div
-                        class="InputText__Wrapper css-17fp4jk"
+                        class="MuiFormControl-root css-hh3vi8-MuiFormControl-root"
                       >
                         <div
-                          class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-z54rnl-MuiInputBase-root"
+                          class="InputText__Wrapper css-17fp4jk"
                         >
-                          <input
-                            aria-invalid="false"
-                            class="MuiInputBase-input css-ngazp5-MuiInputBase-input"
-                            placeholder="Add text"
-                            type="text"
-                            value=""
-                          />
+                          <div
+                            class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-z54rnl-MuiInputBase-root"
+                          >
+                            <input
+                              aria-invalid="false"
+                              class="MuiInputBase-input css-ngazp5-MuiInputBase-input"
+                              placeholder="Add text"
+                              type="text"
+                              value=""
+                            />
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </form>
+                  </div>
                 </div>
               </div>
             </div>

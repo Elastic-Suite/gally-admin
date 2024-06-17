@@ -4,6 +4,8 @@ import { useTranslation } from 'next-i18next'
 import {
   DataContentType,
   IFieldGuesserProps,
+  IImage,
+  IPositionEffect,
   IPrice,
   IProductInfo,
   IScore,
@@ -22,11 +24,8 @@ import ReadableDropDownGuesser from './ReadableDropDownGuesser'
 import FormatRowArray from '../../molecules/format/FormatRowArray'
 
 import PreviewGridBoostConfiguration from '../../atoms/form/PreviewGridBoostConfiguration/PreviewGridBoostConfiguration'
-
-const Image = styled('img')({
-  height: 80,
-  width: 80,
-})
+import Image from '../../atoms/image/Image'
+import PositionEffect from '../../atoms/positionEffect/PositionEffect'
 
 const Box = styled('div')({
   display: 'flex',
@@ -59,7 +58,11 @@ function ReadableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
     }
 
     case DataContentType.IMAGE: {
-      return <Image alt={t('field.productImage')} src={value as string} />
+      const image = (
+        typeof value === 'string' ? { path: value } : value
+      ) as IImage
+
+      return <Image image={image} />
     }
 
     case DataContentType.SCORE: {
@@ -135,6 +138,10 @@ function ReadableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
 
     case DataContentType.BOOSTPREVIEW: {
       return <PreviewGridBoostConfiguration currentBoost={data} />
+    }
+
+    case DataContentType.POSITIONEFFECT: {
+      return <PositionEffect positionEffect={value as IPositionEffect} />
     }
 
     default: {

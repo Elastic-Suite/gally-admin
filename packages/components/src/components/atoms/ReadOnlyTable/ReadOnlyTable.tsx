@@ -1,14 +1,19 @@
 import React from 'react'
 import { IRow, ReadOnlyTableRow, StyledTable } from './ReadOnlyTable.styled'
 
-interface IReadOnlyTable {
+export interface IReadOnlyTable {
   header: IRow
   body: IRow[]
+  fullWidth?: boolean
 }
 
-function ReadOnlyTable({ header, body }: IReadOnlyTable): JSX.Element {
+function ReadOnlyTable({
+  header,
+  body,
+  fullWidth,
+}: IReadOnlyTable): JSX.Element {
   return (
-    <StyledTable>
+    <StyledTable sx={fullWidth ? { width: '100%' } : null}>
       <thead>
         <ReadOnlyTableRow row={header} />
       </thead>

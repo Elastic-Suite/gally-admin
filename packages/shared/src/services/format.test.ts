@@ -85,6 +85,7 @@ describe('Format service', () => {
       expect(typeof roundNumber(1, 4)).toEqual('number')
       expect(roundNumber(1, 4)).toEqual(1)
       expect(roundNumber(1.005, 2)).toEqual(1.01)
+      expect(roundNumber(1, 4, true)).toEqual('1.0000')
     })
   })
 })

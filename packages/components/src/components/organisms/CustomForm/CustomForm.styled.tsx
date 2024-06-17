@@ -15,6 +15,9 @@ export const SectionFieldSet = styled('div')(({ theme }) => ({
   borderColor: theme.palette.colors.neutral[300],
   borderRadius: theme.spacing(1),
   padding: theme.spacing(4),
+  '.switch': {
+    marginBottom: '-10px',
+  },
 }))
 
 export const ListItemForm = styled('div')(({ theme }) => ({

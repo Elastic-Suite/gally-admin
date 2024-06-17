@@ -4,6 +4,7 @@ import {
   useCallback,
   useLayoutEffect,
   useMemo,
+  useRef,
   useState,
 } from 'react'
 import Router from 'next/router'
@@ -31,7 +32,7 @@ import {
 import { useLog } from './useLog'
 import { useResourceOperations } from './useResource'
 
-const debounceDelay = 200
+const debounceDelay = 1000
 
 export function useApiFetch(secure = true): IFetchApi {
   const { i18n } = useTranslation('common')
@@ -169,30 +170,41 @@ export function useApiEditableList<T extends IHydraMember>(
     searchValue
   )
   const { create, remove, replace, update } = useResourceOperations<T>(resource)
+  const itemsToUpdate = useRef<Record<string, Partial<T>>>({})
 
   const debouncedUpdate = useMemo(
     () =>
-      debounce(
-        async (id: string | number, updatedItem: Partial<T>): Promise<void> => {
-          const updateResponse = await update(id, updatedItem)
-          if (isError(updateResponse) || searchParameters || searchValue) {
-            // reload if error or if any filter is applied
-            load()
+      debounce(async (): Promise<void> => {
+        const promises = Object.entries(itemsToUpdate.current).map(
+          ([id, updatedItems]) => {
+            delete itemsToUpdate.current[id]
+            return update(id, updatedItems)
           }
-        },
-        debounceDelay
-      ),
-    [load, searchParameters, searchValue, update]
+        )
+
+        await Promise.all(promises)
+        load()
+      }, debounceDelay),
+    [load, update]
   )
 
   const editableUpdate = useCallback(
-    (id: string | number, updatedItem: Partial<T>): void => {
+    (id: string | number, updatedItem: Partial<T>) => {
+      if (id in itemsToUpdate.current) {
+        itemsToUpdate.current[id] = {
+          ...itemsToUpdate.current[id],
+          ...updatedItem,
+        }
+      } else {
+        itemsToUpdate.current[id] = updatedItem
+      }
+
       updateList((items) =>
         items.map((item) =>
           item.id === id ? { ...item, ...updatedItem } : item
         )
       )
-      debouncedUpdate(id, updatedItem)
+      debouncedUpdate()
     },
     [debouncedUpdate, updateList]
   )
@@ -208,14 +220,10 @@ export function useApiEditableList<T extends IHydraMember>(
         )
       )
       const promises = ids.map((id) => update(id, updatedItem))
-      const responses = await Promise.all(promises)
-      const hasError = responses.some((response) => isError(response))
-      if (hasError || searchParameters || searchValue) {
-        // reload if error or if any filter is applied
-        load()
-      }
+      await Promise.all(promises)
+      load()
     },
-    [load, searchParameters, searchValue, update, updateList]
+    [load, update, updateList]
   )
 
   const massEditableReplace = useCallback(
@@ -231,14 +239,11 @@ export function useApiEditableList<T extends IHydraMember>(
       const promises = ids.map((id) =>
         replace({ id, ...updatedItem } as unknown as T)
       )
-      const responses = await Promise.all(promises)
-      const hasError = responses.some((response) => isError(response))
-      if (hasError || searchParameters || searchValue) {
-        // reload if error or if any filter is applied
-        load()
-      }
+
+      await Promise.all(promises)
+      load()
     },
-    [load, searchParameters, searchValue, replace, updateList]
+    [load, replace, updateList]
   )
 
   const editableCreate = useCallback(
@@ -255,20 +260,42 @@ export function useApiEditableList<T extends IHydraMember>(
     [create, load, response, rowsPerPage]
   )
 
+  const debouncedReplace = useMemo(
+    () =>
+      debounce(async (): Promise<void> => {
+        const promises = Object.entries(itemsToUpdate.current).map(
+          ([id, replacedItem]) => {
+            delete itemsToUpdate.current[id]
+            return replace(replacedItem)
+          }
+        )
+
+        await Promise.all(promises)
+        load()
+      }, debounceDelay),
+    [load, replace]
+  )
+
   const editableReplace = useCallback(
-    async (replacedItem: Omit<T, '@id' | '@type'>): Promise<void> => {
+    (replacedItem: Partial<T>) => {
+      const id = replacedItem.id as string
+      if (id in itemsToUpdate.current) {
+        itemsToUpdate.current[id] = {
+          ...itemsToUpdate.current[id],
+          ...replacedItem,
+        }
+      } else {
+        itemsToUpdate.current[id] = replacedItem
+      }
+
       updateList((items) =>
         items.map((item) =>
           item.id === replacedItem.id ? { ...item, ...replacedItem } : item
         )
       )
-      const response = await replace(replacedItem)
-      if (isError(response) || searchParameters || searchValue) {
-        // reload if error or if any filter is applied
-        load()
-      }
+      debouncedReplace()
     },
-    [load, replace, searchParameters, searchValue, updateList]
+    [debouncedReplace, updateList]
   )
 
   const editableRemove = useCallback(

@@ -103,3 +103,30 @@ export function getApiFilters(
     }, [])
   )
 }
+
+/**
+ * Check if filters are applied in addition to fixed filters.
+ */
+export function hasRealFilterApplied(
+  searchParameters: ISearchParameters,
+  fixedFilters: ISearchParameters
+): boolean {
+  if (
+    (!searchParameters && !fixedFilters) ||
+    (!searchParameters && fixedFilters)
+  ) {
+    return false
+  }
+  if (searchParameters && !fixedFilters) {
+    return true
+  }
+
+  const searchParametersCleaned = { ...searchParameters }
+  Object.keys(searchParametersCleaned).forEach((key) => {
+    if (key in fixedFilters) {
+      delete searchParametersCleaned[key]
+    }
+  })
+
+  return Object.keys(searchParametersCleaned).length > 0
+}

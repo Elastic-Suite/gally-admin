@@ -2,7 +2,9 @@ import React, {
   CSSProperties,
   HTMLAttributes,
   ReactNode,
+  RefObject,
   SyntheticEvent,
+  forwardRef,
   useMemo,
   useRef,
 } from 'react'
@@ -35,7 +37,10 @@ export interface IDropDownProps<T>
   objectKeyValue?: string
 }
 
-function DropDown<T>(props: IDropDownProps<T>): JSX.Element {
+function DropDown<T>(
+  props: IDropDownProps<T>,
+  ref?: RefObject<HTMLInputElement>
+): JSX.Element {
   const {
     disabled,
     fullWidth,
@@ -51,7 +56,7 @@ function DropDown<T>(props: IDropDownProps<T>): JSX.Element {
   } = props
   const { required, small } = otherProps
   const { t } = useTranslation('common')
-  const inputRef = useRef()
+  const inputRef = useRef(null)
   const optionMap = useMemo(
     () => new Map(options.map((option) => [option.value, option])),
     [options]
@@ -72,7 +77,7 @@ function DropDown<T>(props: IDropDownProps<T>): JSX.Element {
     event: SyntheticEvent,
     option: IOption<T> | IOption<T>[]
   ): void {
-    const dropdownEvent = { ...event, target: inputRef.current }
+    const dropdownEvent = { ...event, target: (ref || inputRef).current }
     setTimeout(() => {
       if (!option && !required) {
         onChange(null, dropdownEvent)
@@ -109,7 +114,12 @@ function DropDown<T>(props: IDropDownProps<T>): JSX.Element {
     ): ReactNode => {
       return (
         <li {...props}>
-          <Checkbox checked={selected} label={label} list />
+          <Checkbox
+            checked={selected}
+            label={label}
+            list
+            onClick={(e): void => e.preventDefault()}
+          />
         </li>
       )
     }
@@ -159,21 +169,23 @@ function DropDown<T>(props: IDropDownProps<T>): JSX.Element {
           const { InputLabelProps, InputProps, ...inputProps } = params
           return (
             <InputText
-              {...otherProps}
+              {...{ ...otherProps, required: false }}
               {...inputProps}
               {...InputProps}
               fullWidth={fullWidth}
-              inputRef={inputRef}
+              inputRef={ref || inputRef}
+              requiredLabel={required}
             />
           )
         }}
         renderOption={renderOption}
         renderTags={renderTags}
-        style={style}
+        style={{ width: 'fit-content', ...style }}
         value={optionValue}
+        selectOnFocus={false}
       />
     </FormControl>
   )
 }
 
-export default DropDown
+export default forwardRef(DropDown)

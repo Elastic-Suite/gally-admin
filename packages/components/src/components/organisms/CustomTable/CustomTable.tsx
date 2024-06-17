@@ -56,6 +56,7 @@ export interface ICustomTableProps {
   hasEditLink?: boolean
   editLink?: string
   withoutDragableColumn?: boolean
+  hoverableLine?: boolean
 }
 
 function CustomTable(
@@ -81,6 +82,7 @@ function CustomTable(
     hasEditLink,
     editLink,
     withoutDragableColumn,
+    hoverableLine,
   } = props
 
   const [scrollLength, setScrollLength] = useState<number>(0)
@@ -189,7 +191,19 @@ function CustomTable(
             ...styles,
           }}
         >
-          <StyledTable stickyHeader>
+          <StyledTable
+            stickyHeader
+            sx={
+              hoverableLine
+                ? {
+                    '& tr:hover td': {
+                      backgroundColor: '#F4F7FF',
+                      cursor: 'pointer',
+                    },
+                  }
+                : {}
+            }
+          >
             <CustomTableHeader
               cssLeftValues={cssLeftValues}
               isHorizontalOverflow={isOverflow}

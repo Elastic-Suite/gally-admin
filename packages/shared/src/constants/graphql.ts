@@ -102,7 +102,10 @@ export function getSearchPreviewProductsQuery(
 
 function getSearchProductsQueryContent(
   filter: IProductFieldFilterInput | IProductFieldFilterInput[] = null,
-  withAggregations = false
+  withAggregations = false,
+  collectionEntityType = 'Product',
+  collectionExtraFields = {},
+  extraFields = {}
 ): IGraphqlQueryContent {
   return {
     variables: {
@@ -127,7 +130,7 @@ function getSearchProductsQueryContent(
     fields: {
       collection: {
         __on: {
-          __typeName: 'Product',
+          __typeName: collectionEntityType,
           id: true,
           sku: true,
           name: true,
@@ -141,6 +144,7 @@ function getSearchProductsQueryContent(
           price: {
             price: true,
           },
+          ...collectionExtraFields,
         },
       },
       paginationInfo: {
@@ -167,6 +171,7 @@ function getSearchProductsQueryContent(
           hasMore: true,
         },
       }),
+      ...extraFields,
     },
   }
 }
@@ -402,3 +407,44 @@ export const savePositions = `mutation savePositionsCategoryProductMerchandising
     {categoryProductMerchandising {result}}
 }
 `
+
+export function getSearchExplainProductsQuery(
+  filter: IProductFieldFilterInput | IProductFieldFilterInput[] = null,
+  withAggregations = false
+): string {
+  const productQueryContent = getSearchProductsQueryContent(
+    filter,
+    withAggregations,
+    'ExplainProduct',
+    {
+      explanation: true,
+      sort: true,
+      boosts: true,
+      matches: true,
+      highlights: true,
+      legends: true,
+      fieldHighlights: true,
+    },
+    {
+      explainData: {
+        elasticSearchQuery: {
+          index: true,
+          query: true,
+        },
+        isSpellchecked: true,
+        extraData: true,
+      },
+    }
+  )
+  return jsonToGraphQLQuery({
+    query: {
+      __name: 'getExplainProducts',
+      __variables: { ...productQueryContent.variables },
+      explain: {
+        __aliasFor: 'explain',
+        __args: { ...productQueryContent.args },
+        ...productQueryContent.fields,
+      },
+    },
+  })
+}

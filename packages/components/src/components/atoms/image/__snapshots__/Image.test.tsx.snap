@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Score Should match snapschot 1`] = `
+<div>
+  <div
+    class="css-k008qs"
+  >
+    <img
+      alt="field.productImage"
+      class="css-1qpslqa"
+      src="media/catalog/product/v/d/vd11-ly_main.jpg"
+    />
+    <div
+      class="css-133d1dw"
+    >
+      <ion-icon
+        src="/images/push-pin.svg"
+        style="color: rgb(13, 18, 116); width: 15px; height: 15px; display: flex; font-size: 14px; border: 1px solid #b5b9d9; border-radius: 5px; padding: 4px;"
+        title="Pinned"
+      />
+    </div>
+  </div>
+</div>
+`;

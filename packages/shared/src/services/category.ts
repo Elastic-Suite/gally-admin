@@ -20,6 +20,12 @@ export function getCategoryPathLabel(
       (category: ICategory) => category.id === path[0]
     )
 
+    if (!category) {
+      // eslint-disable-next-line no-console
+      console.error(`Wrong path ${path.join('/')}`)
+      return `/${path.join('/')}`
+    }
+
     if (category.level === 1) {
       const [_parent, ...children] = path
       return getCategoryPathLabel(children, category?.children ?? [], separator)

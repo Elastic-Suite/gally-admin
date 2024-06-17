@@ -4,12 +4,13 @@ import { DraggableProvided } from 'react-beautiful-dnd'
 import {
   IConfigurations,
   IFieldGuesserProps,
+  IImage,
   ITableConfig,
   ITableHeader,
   ITableHeaderSticky,
   ITableRow,
   getFieldState,
-  joinUrlPath,
+  getImageValue,
 } from '@elastic-suite/gally-admin-shared'
 
 import {
@@ -160,10 +161,10 @@ function DraggableRow(props: IProps): JSX.Element {
 
       {nonStickyHeaders.map((header) => {
         const value =
-          tableRow[header.name] && header.name === 'image'
-            ? joinUrlPath(
+          tableRow[header.name] && header.input === 'image'
+            ? getImageValue(
                 configuration['base_url/media'],
-                tableRow[header.name] as string
+                tableRow[header.name] as IImage | string
               )
             : tableRow[header.name]
 

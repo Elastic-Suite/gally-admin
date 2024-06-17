@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { FormEvent, useEffect, useState } from 'react'
 
 import {
   useApiFetch,
-  useApiList,
   useLog,
   useResource,
   useResourceOperations,
@@ -12,23 +11,11 @@ import CustomForm from '../../organisms/CustomForm/CustomForm'
 import Button from '../../atoms/buttons/Button'
 import BackToLastPage from '../../atoms/backToLastPage/BackToLastPage'
 import {
-  DataContentType,
   IErrorsForm,
-  IExpansions,
   IMainContext,
-  IRequestType,
-  IRequestTypesOptions,
-  IResource,
-  IRule,
-  ISynonyms,
-  areExpansionsValid,
-  areSynonymsValid,
   concatenateValuesWithLineBreaks,
   initResourceData,
-  isDependsField,
   isError,
-  isRequestTypeValid,
-  isRuleValid,
 } from '@elastic-suite/gally-admin-shared'
 import { closeSnackbar, enqueueSnackbar } from 'notistack'
 import { useTranslation } from 'next-i18next'
@@ -37,7 +24,7 @@ import { useRouter } from 'next/router'
 import PageTitle from '../../atoms/PageTitle/PageTitle'
 import PopIn from '../../atoms/modals/PopIn'
 import { styled } from '@mui/system'
-import { useValue } from '../../../services'
+import Form from '../../atoms/form/Form'
 
 const CustomDoubleButtonSticky = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -56,16 +43,11 @@ interface IProps {
   title?: string
 }
 
-const CustomRoot = styled('div')(({ theme }) => ({
-  display: 'flex',
-  gap: theme.spacing(2),
-  flexDirection: 'column',
-}))
-
 function ResourceForm(props: IProps): JSX.Element {
   const { resourceName, id, title } = props
   const { t } = useTranslation('resourceForm')
   const resource = useResource(resourceName, IMainContext.FORM)
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { replace, create, remove } = useResourceOperations<any>(resource)
   const [errors, setErrors] = useState<IErrorsForm>()
 
@@ -75,89 +57,6 @@ function ResourceForm(props: IProps): JSX.Element {
   const [data, setData] = useState<Record<string, unknown>>(
     id ? {} : initResourceData(resource)
   )
-
-  const listUrlRequestTypeConfigurations: Record<string, string> | null =
-    resource.supportedProperty.find(
-      (item) => item?.gally?.input === 'requestType'
-    )?.gally?.requestTypeConfigurations
-
-  const [requestTypeOptionsApi] = useApiList<IRequestTypesOptions>(
-    listUrlRequestTypeConfigurations?.requestTypeOptionsApi
-  )
-
-  const requestTypeOptions = requestTypeOptionsApi?.data?.['hydra:member']
-
-  // Todo: Move this logic on RequestTypeManager component after refactoring of error system
-  const requestTypeData = useValue(
-    listUrlRequestTypeConfigurations?.limitationTypeOptionsApi,
-    data
-  ) as IRequestType
-
-  const isValidRequestType =
-    !data?.searchLimitations ||
-    isRequestTypeValid(requestTypeData, requestTypeOptions, t)
-
-  const isValidRules =
-    !data?.conditionRule ||
-    isRuleValid(JSON.parse(data?.conditionRule as string) as IRule)
-
-  function checkSynonymsValidity(
-    resource: IResource,
-    data: Record<string, unknown>
-  ): boolean {
-    const synonymFields = resource.supportedProperty.filter(
-      (property) =>
-        property?.gally?.input === DataContentType.SYNONYM &&
-        isDependsField(property, data)
-    )
-
-    return !synonymFields.some(
-      (field) =>
-        field.title in data && !areSynonymsValid(data[field.title] as ISynonyms)
-    )
-  }
-
-  function checkExpansionsValidity(
-    resource: IResource,
-    data: Record<string, unknown>
-  ): boolean {
-    const expansionFields = resource.supportedProperty.filter(
-      (property) =>
-        property?.gally?.input === DataContentType.EXPANSION &&
-        isDependsField(property, data)
-    )
-
-    return !expansionFields.some(
-      (field) =>
-        field.title in data &&
-        !areExpansionsValid(data[field.title] as IExpansions)
-    )
-  }
-
-  function checkRequiredFields(
-    resource: IResource,
-    data: Record<string, unknown>
-  ): boolean {
-    const requiredFields = resource.supportedProperty.filter(
-      (property) =>
-        property.required &&
-        property?.gally?.visible &&
-        isDependsField(property, data)
-    )
-
-    return !requiredFields.some((it) =>
-      typeof data?.[it.title] === 'string'
-        ? !data?.[it.title as string]
-        : (data?.[it.title] as unknown[])?.length === 0
-    )
-  }
-
-  const isValidForm =
-    checkRequiredFields(resource, data) &&
-    checkSynonymsValidity(resource, data) &&
-    checkExpansionsValidity(resource, data) &&
-    isValidRules &&
-    isValidRequestType
 
   const fetchApi = useApiFetch()
   const log = useLog()
@@ -186,7 +85,7 @@ function ResourceForm(props: IProps): JSX.Element {
     }
   }
 
-  async function sendingData(): Promise<any> {
+  async function sendingData(): Promise<unknown> {
     setIsLoading(true)
     let sendingToApi
     if (id) {
@@ -254,9 +153,29 @@ function ResourceForm(props: IProps): JSX.Element {
     )
     setIsLoading(false)
   }
+  const [showAllErrors, setShowAllErrors] = useState(false)
+
+  function handleSubmit(
+    event: FormEvent<HTMLFormElement>,
+    formIsValid: boolean
+  ): void {
+    event.preventDefault()
+    if (formIsValid) {
+      sendingData()
+    } else {
+      setShowAllErrors(true)
+    }
+  }
 
   return (
-    <CustomRoot>
+    <Form
+      onSubmit={handleSubmit}
+      style={{
+        display: 'flex',
+        gap: 16,
+        flexDirection: 'column',
+      }}
+    >
       {title ? (
         <PageTitle title={title} sx={{ marginBottom: '32px' }} sticky>
           <CustomDoubleButtonSticky>
@@ -283,8 +202,7 @@ function ResourceForm(props: IProps): JSX.Element {
             ) : null}
             <Box>
               <Button
-                disabled={!isValidForm}
-                onClick={sendingData}
+                type="submit"
                 loading={isLoading}
                 endIcon={
                   id ? (
@@ -302,11 +220,12 @@ function ResourceForm(props: IProps): JSX.Element {
       ) : null}
       <CustomForm
         data={data}
+        showAllErrors={showAllErrors}
         onChange={setData}
         resource={resource}
         errors={errors}
       />
-    </CustomRoot>
+    </Form>
   )
 }
 

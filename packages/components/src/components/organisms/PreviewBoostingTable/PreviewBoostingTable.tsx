@@ -10,6 +10,7 @@ import FieldGuesser from '../../stateful/FieldGuesser/FieldGuesser'
 import NoAttributes from '../../atoms/noAttributes/NoAttributes'
 import { useTranslation } from 'next-i18next'
 import { CircularProgress, styled } from '@mui/material'
+import { selectConfiguration, useAppSelector } from '../../../store'
 
 const CustomRoot = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -84,14 +85,14 @@ const convertProductToRow = (
 
     return {
       id: product.id,
-      beforeImage: `/media/catalog/product${beforeProduct.image}`,
+      beforeImage: beforeProduct.image,
       beforeInfo: {
         productName: beforeProduct?.name,
         stockStatus: beforeProduct?.stock.status,
         price: beforeProduct?.price[0]?.price,
       },
       beforeScore: beforeProduct.score,
-      afterImage: `/media/catalog/product${afterProduct?.image}`,
+      afterImage: afterProduct?.image,
       afterInfo: {
         productName: afterProduct?.name,
         stockStatus: afterProduct?.stock.status,
@@ -102,14 +103,14 @@ const convertProductToRow = (
           typeof afterProduct?.score === 'number'
             ? afterProduct?.score
             : afterProduct?.score.scoreValue,
-        boostInfos: {
-          type:
-            afterProduct?.effect === 0
-              ? 'straight'
-              : afterProduct?.effect === 1
-              ? 'up'
-              : 'down',
-        },
+      },
+      afterPosition: {
+        type:
+          afterProduct?.effect === 0
+            ? 'straight'
+            : afterProduct?.effect === 1
+            ? 'up'
+            : 'down',
       },
     }
   })
@@ -121,6 +122,12 @@ const globalStyle = {
 
 const scoreFieldStyle = {
   borderLeft: '1px solid #E2E6F3',
+}
+
+const positionFieldStyle = {
+  borderLeft: '1px solid #E2E6F3',
+  textAlign: 'center ',
+  width: '5%',
 }
 
 const tableHeaders = [
@@ -191,6 +198,16 @@ const tableHeaders = [
     sticky: false,
     cellsStyle: { ...globalStyle, ...scoreFieldStyle },
   },
+  {
+    id: 'afterPosition',
+    name: 'afterPosition',
+    label: 'Position',
+    input: 'positionEffect',
+    editable: false,
+    sticky: false,
+    cellsStyle: { ...globalStyle, ...positionFieldStyle },
+    headerStyle: { textAlign: 'center' },
+  },
 ] as ITableHeader[]
 
 function PreviewBoostingTable({
@@ -200,6 +217,7 @@ function PreviewBoostingTable({
 }: IPreviewBoostingProducts & { loading?: boolean }): JSX.Element {
   const { t } = useTranslation('boost')
   const products = convertProductToRow(resultsBefore, resultsAfter)
+  const configuration = useAppSelector(selectConfiguration)
 
   if (loading)
     return (
@@ -223,6 +241,7 @@ function PreviewBoostingTable({
           Field={FieldGuesser}
           tableHeaders={tableHeaders}
           tableRows={products}
+          configuration={configuration}
         />
       </TableContainer>
     </>

@@ -13,6 +13,7 @@ import ruleEngineOperators from '@elastic-suite/gally-admin-shared/src/mocks/sta
 export * from '@elastic-suite/gally-admin-shared/src/constants'
 export * from '@elastic-suite/gally-admin-shared/src/contexts'
 export * from '@elastic-suite/gally-admin-shared/src/mocks'
+export * from '@elastic-suite/gally-admin-shared/src/services/api'
 export * from '@elastic-suite/gally-admin-shared/src/services/breadcrumb'
 export * from '@elastic-suite/gally-admin-shared/src/services/catalog'
 export * from '@elastic-suite/gally-admin-shared/src/services/category'
@@ -22,6 +23,7 @@ export * from '@elastic-suite/gally-admin-shared/src/services/format'
 export * from '@elastic-suite/gally-admin-shared/src/services/hydra'
 export * from '@elastic-suite/gally-admin-shared/src/services/local'
 export * from '@elastic-suite/gally-admin-shared/src/services/options'
+export * from '@elastic-suite/gally-admin-shared/src/services/product'
 export * from '@elastic-suite/gally-admin-shared/src/services/network'
 export * from '@elastic-suite/gally-admin-shared/src/services/rules'
 export * from '@elastic-suite/gally-admin-shared/src/services/style'
@@ -116,10 +118,6 @@ export const fetchJson = jest.fn((url) => {
       })
   }
 })
-
-/* form */
-
-export const getFormValidityError = jest.fn(() => 'test')
 
 /* graphql */
 export const fetchGraphql = jest.fn(() => {

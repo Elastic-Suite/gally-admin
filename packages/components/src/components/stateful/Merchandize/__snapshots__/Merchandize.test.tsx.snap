@@ -13,7 +13,7 @@ exports[`Merchandize match snapshot testSelect 1`] = `
         class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6 css-1osj8n2-MuiGrid-root"
       >
         <div
-          class="MuiFormControl-root MuiFormControl-fullWidth css-e8gwa4-MuiFormControl-root"
+          class="MuiFormControl-root MuiFormControl-fullWidth switch css-e8gwa4-MuiFormControl-root"
         >
           <label
             class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard MuiFormLabel-colorPrimary css-1cpkhc9-MuiFormLabel-root-MuiInputLabel-root"
@@ -99,7 +99,6 @@ exports[`Merchandize match snapshot testSelect 1`] = `
               >
                 <div
                   class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-33c5sc-MuiInputBase-root"
-                  required=""
                 >
                   <input
                     aria-autocomplete="list"
@@ -110,7 +109,6 @@ exports[`Merchandize match snapshot testSelect 1`] = `
                     class="MuiInputBase-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-ngazp5-MuiInputBase-input"
                     id=":r1:"
                     name="defaultSorting"
-                    required=""
                     role="combobox"
                     spellcheck="false"
                     type="text"
@@ -144,7 +142,7 @@ exports[`Merchandize match snapshot testSelect 1`] = `
         class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6 css-1osj8n2-MuiGrid-root"
       >
         <div
-          class="MuiFormControl-root MuiFormControl-fullWidth css-e8gwa4-MuiFormControl-root"
+          class="MuiFormControl-root MuiFormControl-fullWidth switch css-e8gwa4-MuiFormControl-root"
         >
           <label
             class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard MuiFormLabel-colorPrimary css-1cpkhc9-MuiFormLabel-root-MuiInputLabel-root"

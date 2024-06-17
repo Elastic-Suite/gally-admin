@@ -2,6 +2,7 @@ import React from 'react'
 import { Box } from '@mui/system'
 
 import IonIcon from '../IonIcon/IonIcon'
+import { TFunction, useTranslation } from 'next-i18next'
 
 interface IProps {
   type: 'up' | 'down' | 'straight'
@@ -18,19 +19,21 @@ interface IBoostDetails {
 function setBoostDetails(
   type: 'up' | 'down' | 'straight',
   boostNumber: number,
-  boostMultiplicator: number
+  boostMultiplicator: number,
+  t: TFunction
 ): IBoostDetails {
+  const boostText = t('boost', { count: boostNumber })
   switch (type) {
     case 'up':
       return {
-        boostText: ` x${boostMultiplicator} ( ${boostNumber} boost) `,
+        boostText: ` x${boostMultiplicator} ( ${boostNumber} ${boostText}) `,
         boostColor: 'success.light',
         boostTextColor: 'success.main',
         boostIconName: 'trending-up-outline',
       }
     case 'down':
       return {
-        boostText: ` x${boostMultiplicator} ( ${boostNumber} boost) `,
+        boostText: ` x${boostMultiplicator} ( ${boostNumber} ${boostText}) `,
         boostColor: 'error.light',
         boostTextColor: 'error.main',
         boostIconName: 'trending-down-outline',
@@ -48,7 +51,8 @@ function setBoostDetails(
 function Boost(props: IProps): JSX.Element {
   const { type, boostNumber, boostMultiplicator } = props
 
-  const boostDetail = setBoostDetails(type, boostNumber, boostMultiplicator)
+  const { t } = useTranslation('boost')
+  const boostDetail = setBoostDetails(type, boostNumber, boostMultiplicator, t)
 
   return (
     <Box sx={{ display: 'flex', gap: '4px' }}>

@@ -11,6 +11,7 @@ export enum ProductRequestType {
   CATALOG = 'product_catalog',
   SEARCH = 'product_search',
   COVERAGE_RATE = 'product_coverage_rate',
+  AUTOCOMPLETE = 'product_autocomplete',
 }
 
 export interface IGraphqlSearchProductsVariables {

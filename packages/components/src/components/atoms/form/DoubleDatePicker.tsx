@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react'
+import React, { ReactNode, RefObject, forwardRef } from 'react'
 import { Box, FormHelperText, Grid, InputLabel } from '@mui/material'
 import { DateValidationError } from '@mui/x-date-pickers/internals/hooks/validation/useDateValidation'
 import { useTranslation } from 'next-i18next'
@@ -19,8 +19,8 @@ const CustomBox = styled(Box)(({ theme }) => ({
 }))
 
 export interface IDoubleDatePickerValues {
-  from: Date | string | null
-  to: Date | string | null
+  fromDate: Date | string | null
+  toDate: Date | string | null
 }
 export interface IDoubleDatePickerErrors {
   from: DateValidationError
@@ -28,7 +28,7 @@ export interface IDoubleDatePickerErrors {
 }
 
 export interface IDoubleDatePickerProps
-  extends Omit<IDatePickerProps, 'value' | 'onChange' | 'onError'> {
+  extends Omit<IDatePickerProps, 'value' | 'onChange' | 'onError' | 'ref'> {
   value?: IDoubleDatePickerValues
   onChange?: (values: IDoubleDatePickerValues) => void
   onError?: (reasons: IDoubleDatePickerErrors) => void
@@ -42,7 +42,10 @@ export interface IDoubleDatePickerProps
   helperIcon?: string
 }
 
-function DoubleDatePicker(props: IDoubleDatePickerProps): JSX.Element {
+function DoubleDatePicker(
+  props: IDoubleDatePickerProps,
+  ref?: RefObject<HTMLInputElement>
+): JSX.Element {
   const {
     value,
     error,
@@ -63,11 +66,11 @@ function DoubleDatePicker(props: IDoubleDatePickerProps): JSX.Element {
   const { t } = useTranslation('common')
 
   function onChangeFrom(date: Date | string): void {
-    onChange({ ...value, from: date })
+    onChange({ ...value, fromDate: date })
   }
 
   function onChangeTo(date: Date | string): void {
-    onChange({ ...value, to: date })
+    onChange({ ...value, toDate: date })
   }
 
   function onErrorFrom(reason: DateValidationError): void {
@@ -100,12 +103,14 @@ function DoubleDatePicker(props: IDoubleDatePickerProps): JSX.Element {
         <Grid item xs>
           <DatePicker
             {...args}
+            required={required}
             error={error}
             fullWidth={fullWidth}
             inputProps={inputProps}
-            value={value?.from}
+            value={value?.fromDate}
             onChange={onChangeFrom}
             onError={onErrorFrom}
+            ref={ref}
           />
         </Grid>
         <CustomBox sx={{ paddingRight: '20px', paddingLeft: '20px' }}>
@@ -114,10 +119,11 @@ function DoubleDatePicker(props: IDoubleDatePickerProps): JSX.Element {
         <Grid item xs>
           <DatePicker
             {...args}
+            required={required}
             error={error}
             fullWidth={fullWidth}
             inputProps={inputProps}
-            value={value?.to}
+            value={value?.toDate}
             onChange={onChangeTo}
             onError={onErrorTo}
           />
@@ -138,4 +144,4 @@ function DoubleDatePicker(props: IDoubleDatePickerProps): JSX.Element {
   )
 }
 
-export default DoubleDatePicker
+export default forwardRef(DoubleDatePicker)

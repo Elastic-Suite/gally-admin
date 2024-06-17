@@ -1,4 +1,5 @@
 import { IFieldConfig, IFieldState } from './field'
+import { ICustomDialog } from './popin'
 
 export enum MassiveSelectionType {
   ALL = 'massiveselection.all',
@@ -29,6 +30,7 @@ export enum DataContentType {
   EXPANSION = 'expansion',
   PRODUCTINFO = 'productInfo',
   BOOSTPREVIEW = 'boostPreview',
+  POSITIONEFFECT = 'positionEffect',
 }
 
 export interface ITableHeader extends IFieldConfig {
@@ -72,14 +74,18 @@ export interface IStickyBorderStyle {
 
 export interface ITableRow {
   id: string | number
+  popIn?: ICustomDialog
   [key: string]:
     | string
     | boolean
     | number
     | IScore
+    | IImage
     | IStock
     | IPrice[]
     | IProductInfo
+    | ICustomDialog
+    | IPositionEffect
 }
 
 export interface IHorizontalOverflow {
@@ -94,6 +100,12 @@ export interface ITableHeaderSticky extends ITableHeader {
 export type ITableConfig = Record<string, IFieldState>
 
 export type BoostType = 'up' | 'down' | 'straight'
+
+export type PositionEffectType = 'up' | 'down' | 'straight'
+
+export enum ImageIcon {
+  PIN = 'push-pin',
+}
 
 export interface IBoost {
   type: BoostType
@@ -111,6 +123,11 @@ export interface IScore {
   boostInfos?: IBoost
 }
 
+export interface IImage {
+  path: string
+  icons?: ImageIcon[]
+}
+
 export interface IPrice {
   price: number
 }
@@ -119,4 +136,8 @@ export interface IProductInfo {
   productName: string
   price: IPrice['price']
   stockStatus: IStock['status']
+}
+
+export interface IPositionEffect {
+  type: PositionEffectType
 }

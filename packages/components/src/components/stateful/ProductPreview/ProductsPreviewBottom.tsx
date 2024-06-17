@@ -2,16 +2,15 @@ import React, { useEffect, useMemo, useState } from 'react'
 import {
   IConfigurations,
   IExplainVariables,
-  IGraphqlSearchProducts,
-  IProductFieldFilterInput,
-  IProductPositions,
+  IGraphqlSearchExplainProducts,
   ITableRow,
+  ImageIcon,
   LoadStatus,
   cleanExplainGraphQLVariables,
   defaultPageSize,
   defaultRowsPerPageOptions,
   getIdFromIri,
-  getSearchProductsQuery,
+  getSearchExplainProductsQuery,
   productTableheader,
 } from '@elastic-suite/gally-admin-shared'
 
@@ -20,23 +19,18 @@ import FieldGuesser from '../FieldGuesser/FieldGuesser'
 import PagerTable from '../../organisms/PagerTable/PagerTable'
 import NoAttributes from '../../atoms/noAttributes/NoAttributes'
 import { useTranslation } from 'next-i18next'
+import ExplainQueryDetails from '../../molecules/Explain/ExplainQueryDetails'
+import ExplainDetails from '../../molecules/Explain/ExplainDetails'
 
 interface IProps {
   variables: IExplainVariables
   configuration: IConfigurations
-  topProducts: IProductPositions
   limitationType: string
-  onProductsLoaded?: (nbResults: number) => void
+  onProductsLoaded?: (nbResults: number, nbTopProducts: number) => void
 }
 
 function ProductsPreviewBottom(props: IProps): JSX.Element {
-  const {
-    variables,
-    configuration,
-    topProducts,
-    limitationType,
-    onProductsLoaded,
-  } = props
+  const { variables, configuration, limitationType, onProductsLoaded } = props
   const [currentPage, setCurrentPage] = useState<number>(1)
   const [rowsPerPage, setRowsPerPage] = useState<number>(defaultPageSize)
   const { t } = useTranslation('categories')
@@ -56,30 +50,66 @@ function ProductsPreviewBottom(props: IProps): JSX.Element {
     }
   }, [variables, currentPage, rowsPerPage, limitationType])
 
-  const filters: IProductFieldFilterInput[] = []
-  if (topProducts.length > 0) {
-    filters.push({
-      boolFilter: {
-        _not: [{ id: { in: topProducts.map((product) => product.productId) } }],
-      },
-    })
-  }
-
-  const [products] = useGraphqlApi<IGraphqlSearchProducts>(
-    getSearchProductsQuery(filters),
+  const [explain] = useGraphqlApi<IGraphqlSearchExplainProducts>(
+    getSearchExplainProductsQuery(),
     variablesFormatted
   )
-  const tableRows =
-    (products?.data?.products?.collection as unknown as ITableRow[]) ?? []
+
+  const positions = explain?.data?.explain?.explainData?.extraData
+    ?.positions as Record<string, number | string>[]
+
+  const tableRows = (explain?.data?.explain?.collection
+    ? explain?.data?.explain?.collection.map((explainProduct) => {
+        return {
+          ...explainProduct,
+          score: {
+            scoreValue: explainProduct.score,
+            boostInfos: {
+              type:
+                explainProduct.boosts?.weight &&
+                explainProduct.boosts?.weight !== 1
+                  ? explainProduct.boosts?.weight > 1
+                    ? 'up'
+                    : 'down'
+                  : '',
+              boostNumber: explainProduct.boosts?.total,
+              boostMultiplicator: explainProduct.boosts?.weight,
+            },
+          },
+          image: {
+            path: explainProduct.image,
+            icons: positions?.some(
+              (position) =>
+                String(position.productId) === getIdFromIri(explainProduct.id)
+            )
+              ? [ImageIcon.PIN]
+              : [],
+          },
+          popIn: {
+            children: (
+              <ExplainDetails
+                explainProduct={explainProduct}
+                localizedCatalogId={variablesFormatted.localizedCatalog}
+              />
+            ),
+            styles: { paper: { minWidth: '835px' } },
+          },
+        }
+      })
+    : []) as unknown as ITableRow[]
 
   useEffect(() => {
     if (
       typeof onProductsLoaded === 'function' &&
-      products.status === LoadStatus.SUCCEEDED
+      explain.status === LoadStatus.SUCCEEDED
     ) {
-      onProductsLoaded(products.data.products.paginationInfo.totalCount)
+      const positions = explain.data.explain.explainData.extraData?.positions
+      onProductsLoaded(
+        explain.data.explain.paginationInfo.totalCount,
+        positions instanceof Array ? positions.length : 0
+      )
     }
-  }, [products, onProductsLoaded])
+  }, [explain, onProductsLoaded])
 
   const onRowsPerPageChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -95,22 +125,35 @@ function ProductsPreviewBottom(props: IProps): JSX.Element {
   return (
     <>
       {tableRows.length > 0 ? (
-        <PagerTable
-          Field={FieldGuesser}
-          count={products.data.products.paginationInfo.totalCount}
-          currentPage={
-            (currentPage - 1 >= 0 ? currentPage - 1 : currentPage) ?? 0
-          }
-          onPageChange={onPageChange}
-          onRowsPerPageChange={onRowsPerPageChange}
-          rowsPerPage={rowsPerPage}
-          rowsPerPageOptions={defaultRowsPerPageOptions ?? []}
-          tableHeaders={productTableheader}
-          tableRows={
-            products.data.products.collection as unknown as ITableRow[]
-          }
-          configuration={configuration}
-        />
+        <>
+          <PagerTable
+            Field={FieldGuesser}
+            count={explain.data.explain.paginationInfo.totalCount}
+            currentPage={
+              (currentPage - 1 >= 0 ? currentPage - 1 : currentPage) ?? 0
+            }
+            onPageChange={onPageChange}
+            onRowsPerPageChange={onRowsPerPageChange}
+            rowsPerPage={rowsPerPage}
+            rowsPerPageOptions={defaultRowsPerPageOptions ?? []}
+            tableHeaders={productTableheader}
+            tableRows={tableRows}
+            configuration={configuration}
+            hoverableLine
+          />
+          <ExplainQueryDetails
+            index={explain.data.explain.explainData.elasticSearchQuery.index}
+            query={JSON.parse(
+              explain.data.explain.explainData.elasticSearchQuery.query
+            )}
+            boxStyle={{
+              position: 'fixed',
+              bottom: '5%',
+              right: '2%',
+              zIndex: 4,
+            }}
+          />
+        </>
       ) : (
         <NoAttributes title={t('noProductSearch')} />
       )}

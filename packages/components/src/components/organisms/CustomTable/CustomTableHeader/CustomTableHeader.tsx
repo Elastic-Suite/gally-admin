@@ -134,7 +134,7 @@ function CustomTableHeader(props: IProps): JSX.Element {
                 backgroundColor: 'neutral.light',
                 whiteSpace: 'nowrap',
                 ...((header.type === DataContentType.SCORE ||
-                  header.type === DataContentType.PRICE) && { width: '5%' }),
+                  header.type === DataContentType.PRICE) && { width: '10%' }),
                 ...(header.type === DataContentType.STOCK && { width: '15%' }),
                 ...(header.type === DataContentType.STRING && {
                   maxWidth: 'fit-content',

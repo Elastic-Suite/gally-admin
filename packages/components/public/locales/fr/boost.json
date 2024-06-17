@@ -15,7 +15,12 @@
   "navigationCatalog": "Navigation catalogue",
   "autocompletionBox": "Autocompletion box",
   "search": "Recherche",
-  "termSearch": "Rechercher un terme",
+  "termSearch": "Terme de recherche",
   "selectCategory": "Sélectionner une catégorie",
-  "missingRequiredFieldMessage": "Veuillez remplir les champs requis"
+  "missingRequiredFieldMessage": "Veuillez remplir les champs requis",
+  "noFiltersPreviewMessage": "Veuillez selectionner le contexte de prévisualisation.",
+  "boost_zero": "boost",
+  "boost_one": "boost",
+  "boost_other": "boosts",
+  "preview": "Prévisualiser"
 }

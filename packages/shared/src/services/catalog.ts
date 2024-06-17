@@ -40,3 +40,24 @@ export function getLocalizedCatalog(
   }
   return localizedCatalog
 }
+
+export function getLocalizedCatalogFromCatalogs(
+  catalogs: ICatalog[],
+  localizedCatalogId: string | number
+): ILocalizedCatalog | undefined {
+  let localizedCatalog
+
+  catalogs.some((catalog) => {
+    const localizedCatalogMap = new Map(
+      catalog?.localizedCatalogs.map((localizedCatalog) => [
+        String(localizedCatalog.id),
+        localizedCatalog,
+      ])
+    )
+    localizedCatalog = localizedCatalogMap.get(String(localizedCatalogId))
+
+    return localizedCatalog
+  })
+
+  return localizedCatalog
+}

@@ -26,7 +26,7 @@ export function getFormValue(value: string, props: IProps): string | number {
 export function getDoubleDatePickerValue(
   data: Record<string, Date>
 ): IDoubleDatePickerValues {
-  return { from: data?.fromDate, to: data?.toDate }
+  return { fromDate: data?.fromDate, toDate: data?.toDate }
 }
 
 export function isHiddenDepends(
