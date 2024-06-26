@@ -163,6 +163,8 @@ function getSearchProductsQueryContent(
           field: true,
           label: true,
           type: true,
+          date_format: true,
+          date_range_interval: true,
           options: {
             count: true,
             label: true,
@@ -284,6 +286,8 @@ export function getSearchDocumentQueryContent(
           field: true,
           label: true,
           type: true,
+          date_format: true,
+          date_range_interval: true,
           options: {
             count: true,
             label: true,
