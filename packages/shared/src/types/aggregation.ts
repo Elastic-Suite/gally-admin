@@ -3,6 +3,7 @@ export enum AggregationType {
   CHECKBOX = 'checkbox',
   SLIDER = 'slider',
   BOOLEAN = 'boolean',
+  HISTOGRAM = 'histogram',
 }
 export interface IGraphqlAggregation {
   count: number
