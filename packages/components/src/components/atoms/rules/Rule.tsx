@@ -24,6 +24,7 @@ import { Close, CustomCombination, Root } from './Rule.styled'
 import DropDownError from '../form/DropDownError'
 import TreeSelectorError from '../form/TreeSelectorError'
 import InputTextError from '../form/InputTextError'
+import DatePickerError from '../form/DatePickerError'
 
 function getInputType(valueType: RuleValueType): 'number' | 'text' {
   if (ruleValueNumberTypes.includes(valueType)) {
@@ -186,6 +187,20 @@ function Rule(props: IProps): JSX.Element {
           required
           small={small}
           value={treeSelectorValue}
+        />
+      )
+    } else if (attribute_type === RuleAttributeType.DATE) {
+      const datePickerValue =
+        (typeof value === 'string' && value) || value instanceof Date
+          ? new Date(value)
+          : null
+
+      return (
+        <DatePickerError
+          showError={showError}
+          value={datePickerValue}
+          required
+          onChange={handleChange('value')}
         />
       )
     }
