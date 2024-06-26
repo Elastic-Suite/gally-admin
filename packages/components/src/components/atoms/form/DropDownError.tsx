@@ -7,7 +7,13 @@ import Dropdown, { IDropDownProps } from './DropDown'
 interface IDropDownErrorProps<T> extends IFieldErrorProps, IDropDownProps<T> {}
 
 function DropdownError<T>(props: IDropDownErrorProps<T>): JSX.Element {
-  const { onChange, showError, additionalValidator, ...inputProps } = props
+  const {
+    onChange,
+    showError,
+    additionalValidator,
+    replacementErrorsMessages,
+    ...inputProps
+  } = props
 
   const validator = useCallback<IValidator>(
     (value, event) => {
@@ -30,7 +36,8 @@ function DropdownError<T>(props: IDropDownErrorProps<T>): JSX.Element {
     inputProps.value,
     showError,
     validator,
-    inputProps.disabled
+    inputProps.disabled,
+    replacementErrorsMessages
   )
 
   return (

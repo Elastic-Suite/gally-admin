@@ -64,4 +64,19 @@ describe('DropDownError', () => {
     )
     expect(screen.getByText('formError.erreur')).toBeInTheDocument()
   })
+
+  it('should display a replacement error message with replacementErrorsMessages prop when the field has an error', () => {
+    renderWithProviders(
+      <DropDownError
+        options={options}
+        required
+        showError
+        additionalValidator={(): string => 'erreur'}
+        replacementErrorsMessages={{
+          erreur: 'customError',
+        }}
+      />
+    )
+    expect(screen.getByText('formError.customError')).toBeInTheDocument()
+  })
 })

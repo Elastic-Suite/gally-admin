@@ -52,6 +52,7 @@
   "formError.synonymTermsSizeInvalid": "Please provide at least two values in all \"synonyms\" fields.",
   "formError.synonymTermsDuplicate": "There are duplicates among the \"synonyms\", please remove them.",
   "formError.expansionTermsDuplicate": "There are duplicates among the \"expansion terms\", please remove them.",
+  "formError.prompt": "The prompt must contain a single occurrence of \"%s\".",
   "field.productImage": "Product image",
   "default.undefined": "empty",
   "log.out": "Log out",

@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FormEvent } from 'react'
+import React, { ChangeEvent, FormEvent, useState } from 'react'
 import { useTranslation } from 'next-i18next'
 import { Box, Checkbox } from '@mui/material'
 import { styled } from '@mui/system'
@@ -13,16 +13,17 @@ import Button from '../../atoms/buttons/Button'
 import Dropdown from '../../atoms/form/DropDown'
 
 import FieldGuesser from '../FieldGuesser/FieldGuesser'
+import Form from '../../atoms/form/Form'
 
 const ActionsButtonsContainer = styled(Box)({
   marginLeft: 'auto',
 })
 
-const Form = styled('form')({
-  display: 'flex',
-  alignItems: 'center',
-  flex: 1,
-})
+// const Form = styled('form')({
+//   display: 'flex',
+//   alignItems: 'center',
+//   flex: 1,
+// })
 
 interface IProps {
   field: IField | ''
@@ -56,9 +57,13 @@ function TableStickyBar(props: IProps): JSX.Element {
   const { t: tApi } = useTranslation('api')
   const header = field ? getFieldHeader(field, tApi) : null
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>): void {
+  function handleSubmit(
+    event: FormEvent<HTMLFormElement>,
+    formIsValid: boolean
+  ): void {
     event.preventDefault()
-    onApply()
+    if (!formIsValid) setShowError(true)
+    else onApply()
   }
 
   function handleSelection(event: ChangeEvent<HTMLInputElement>): void {
@@ -69,8 +74,17 @@ function TableStickyBar(props: IProps): JSX.Element {
     onSelection(false)
   }
 
+  const [showError, setShowError] = useState(false)
+
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form
+      onSubmit={handleSubmit}
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        flex: 1,
+      }}
+    >
       {Boolean(withSelection) && (
         <Checkbox
           indeterminate={massiveSelectionIndeterminate}
@@ -92,6 +106,7 @@ function TableStickyBar(props: IProps): JSX.Element {
           onChange={onChangeValue}
           useDropdownBoolean
           value={fieldValue}
+          showError={showError}
         />
       )}
       <ActionsButtonsContainer>

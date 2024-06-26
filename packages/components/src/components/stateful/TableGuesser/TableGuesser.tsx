@@ -38,7 +38,8 @@ interface IProps<T extends IHydraMember> {
     id: string | number,
     name: string,
     value: boolean | number | string,
-    event: SyntheticEvent
+    event: SyntheticEvent,
+    showError?: boolean
   ) => void
   resource: IResource
   rowsPerPage?: number
@@ -128,6 +129,15 @@ function TableGuesser<T extends IHydraMember>(props: IProps<T>): JSX.Element {
     }
   }
 
+  function handleRowUpdate(
+    id: string | number,
+    name: string,
+    value: boolean | number | string,
+    event: SyntheticEvent
+  ): void {
+    const field = tableHeaders.find((field) => field.name === name)
+    onRowUpdate(id, name, value, event, field?.showError)
+  }
   return (
     <>
       <PagerTable
@@ -138,7 +148,7 @@ function TableGuesser<T extends IHydraMember>(props: IProps<T>): JSX.Element {
         massiveSelectionState={massiveSelectionState}
         massiveSelectionIndeterminate={massiveSelectionIndeterminate}
         onPageChange={onPageChange}
-        onRowUpdate={onRowUpdate}
+        onRowUpdate={handleRowUpdate}
         onSelection={handleSelection}
         ref={tableRef}
         rowsPerPage={rowsPerPage ?? defaultPageSize}

@@ -7,7 +7,13 @@ import InputText, { IInputTextProps } from './InputText'
 interface IInputTextErrorProps extends IFieldErrorProps, IInputTextProps {}
 
 function InputTextError(props: IInputTextErrorProps): JSX.Element {
-  const { onChange, showError, additionalValidator, ...inputProps } = props
+  const {
+    onChange,
+    showError,
+    additionalValidator,
+    replacementErrorsMessages,
+    ...inputProps
+  } = props
   const validator = useCallback<IValidator>(
     (value, event) => {
       if (additionalValidator) return additionalValidator(value, event)
@@ -21,7 +27,8 @@ function InputTextError(props: IInputTextErrorProps): JSX.Element {
     inputProps.value,
     showError,
     validator,
-    inputProps.disabled
+    inputProps.disabled,
+    replacementErrorsMessages
   )
 
   return (

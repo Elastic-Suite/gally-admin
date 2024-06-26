@@ -39,6 +39,7 @@ function EditableDropDownGuesser(props: IProps): JSX.Element {
     helperText,
     helperIcon,
     showError,
+    replacementErrorsMessages,
   } = props
 
   const { t } = useTranslation('common')
@@ -94,6 +95,7 @@ function EditableDropDownGuesser(props: IProps): JSX.Element {
       }
       objectKeyValue={field?.gally?.options?.objectKeyValue}
       sx={{ minWidth: '230.667px' }}
+      replacementErrorsMessages={replacementErrorsMessages}
     />
   )
 }

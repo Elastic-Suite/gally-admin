@@ -55,7 +55,9 @@ describe('Table service', () => {
         type: DataContentType.STRING,
         editable: false,
         required: true,
-        validation: undefined,
+        validation: {},
+        replacementErrorsMessages: {},
+        showError: false,
       })
       expect(getFieldHeader(fieldDropdown, <T>(x: T): T => x)).toEqual({
         depends: undefined,
@@ -68,7 +70,9 @@ describe('Table service', () => {
         type: DataContentType.STRING,
         editable: false,
         required: true,
-        validation: undefined,
+        validation: {},
+        replacementErrorsMessages: {},
+        showError: false,
       })
     })
   })
@@ -133,7 +137,9 @@ describe('Table service', () => {
         required: false,
         suffix: '',
         type: DataContentType.STRING,
-        validation: undefined,
+        validation: {},
+        replacementErrorsMessages: {},
+        showError: false,
       })
     })
   })
