@@ -162,10 +162,17 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
     }
 
     case DataContentType.RANGEDATE: {
+      const {
+        multipleInputConfiguration,
+        multipleValueFormat,
+        requestTypeConfigurations,
+        ...doubleDatePickerProps
+      } = props
+
       return (
         <Box>
           <DoubleDatePickerError
-            {...props}
+            {...doubleDatePickerProps}
             placeholder={placeholder}
             infoTooltip={infoTooltip}
             value={value as IDoubleDatePickerValues}
