@@ -37,6 +37,13 @@ export const StyledTable = styled('table')(({ theme }) => ({
 
   '.subRows > td': {
     borderBottom: 'none',
+
+    table: {
+      display: 'block',
+      width: '100%',
+      borderCollapse: 'collapse',
+      border: 'none',
+    },
   },
 
   '.subRow': {
@@ -151,11 +158,15 @@ export function ReadOnlyTableRow({
         <tr className="subRows">
           <td style={{ padding: 0 }} colSpan={row.cells.length + 1}>
             <Collapse in={open} timeout="auto" unmountOnExit>
-              {row.subRows?.map(
-                (subRow): JSX.Element => (
-                  <ReadOnlyTableRow key={subRow?.id} row={subRow} subRow />
-                )
-              )}
+              <table>
+                <tbody>
+                  {row.subRows?.map(
+                    (subRow): JSX.Element => (
+                      <ReadOnlyTableRow key={subRow?.id} row={subRow} subRow />
+                    )
+                  )}
+                </tbody>
+              </table>
             </Collapse>
           </td>
         </tr>
