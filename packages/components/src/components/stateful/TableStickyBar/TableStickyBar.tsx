@@ -19,12 +19,6 @@ const ActionsButtonsContainer = styled(Box)({
   marginLeft: 'auto',
 })
 
-// const Form = styled('form')({
-//   display: 'flex',
-//   alignItems: 'center',
-//   flex: 1,
-// })
-
 interface IProps {
   field: IField | ''
   fieldOptions: IOptions<IField>

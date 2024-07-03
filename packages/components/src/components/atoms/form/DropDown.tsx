@@ -17,7 +17,7 @@ import { useTranslation } from 'next-i18next'
 
 import { IOption, IOptions } from '@elastic-suite/gally-admin-shared'
 
-import Checkbox from './Checkbox'
+import CheckboxWithoutError from './CheckboxWithoutError'
 import { SmallStyledPaper, StyledPaper } from './DropDown.styled'
 import InputText, { IInputTextProps } from './InputText'
 
@@ -114,7 +114,7 @@ function DropDown<T>(
     ): ReactNode => {
       return (
         <li {...props}>
-          <Checkbox
+          <CheckboxWithoutError
             checked={selected}
             label={label}
             list

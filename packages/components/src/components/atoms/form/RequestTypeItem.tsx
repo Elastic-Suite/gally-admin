@@ -17,7 +17,7 @@ import TextFieldTagsMultiple from './TextFieldTagsMultiple'
 
 import { useTranslation } from 'next-i18next'
 
-import Checkbox from './Checkbox'
+import Checkbox from './CheckboxWithoutError'
 import {
   CustomFirstSelectedItem,
   CustomRootItem,

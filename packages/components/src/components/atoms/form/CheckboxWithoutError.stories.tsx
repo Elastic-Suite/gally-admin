@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
 
-import CheckboxComponent from './Checkbox'
+import CheckboxComponent from './CheckboxWithoutError'
 
 export default {
   title: 'Atoms/Form',

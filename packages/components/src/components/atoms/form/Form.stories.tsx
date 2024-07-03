@@ -20,7 +20,7 @@ import Synonym from './Synonym'
 import ThesaurusSynonym from '../../../../public/mocks/thesaurus_synonym.json'
 import Expansion from './Expansion'
 import DropDownError from './DropDownError'
-import CheckboxError from './CheckboxError'
+import Checkbox from './Checkbox'
 import RadioGroupError from './RadioGroupError'
 
 export default {
@@ -69,7 +69,7 @@ const Template = (): JSX.Element => {
         alignItems: 'start',
       }}
     >
-      <CheckboxError
+      <Checkbox
         checked={checkbox}
         onChange={setCheckbox}
         showError={showAllErrors}

@@ -3,45 +3,41 @@ import React from 'react'
 import { renderWithProviders } from '../../../utils/tests'
 
 import Checkbox from './Checkbox'
+import { screen } from '@testing-library/react'
+import '@testing-library/jest-dom/extend-expect'
 
-describe('Checkbox match snapshot', () => {
-  it('CheckboxIndeterminateFalse', () => {
-    const { container } = renderWithProviders(
-      <Checkbox indeterminate={false} />
-    )
+describe('CheckboxError', () => {
+  it('sould match snapshot', () => {
+    const { container } = renderWithProviders(<Checkbox label="Label" value />)
     expect(container).toMatchSnapshot()
   })
 
-  it('CheckboxIndeterminateTrue', () => {
-    const { container } = renderWithProviders(<Checkbox indeterminate />)
-    expect(container).toMatchSnapshot()
+  it('should display error with showError prop when the field is required with missing value', () => {
+    renderWithProviders(<Checkbox label="Label" required showError />)
+    expect(screen.getByText('formError.valueMissing')).toBeInTheDocument()
   })
 
-  it('CheckboxLabelAndList', () => {
-    const { container } = renderWithProviders(
-      <Checkbox indeterminate label="Label" list />
-    )
-    expect(container).toMatchSnapshot()
+  it('should not display error without showError prop when the field is required with missing value', () => {
+    renderWithProviders(<Checkbox label="Label" required />)
+    expect(screen.queryByText('formError.erreur')).not.toBeInTheDocument()
   })
 
-  it('CheckboxLabel', () => {
-    const { container } = renderWithProviders(
-      <Checkbox indeterminate={false} label="Label" />
-    )
-    expect(container).toMatchSnapshot()
+  it('should not display error with showError prop when the field is required and disabled with missing value', () => {
+    renderWithProviders(<Checkbox label="Label" required showError disabled />)
+    expect(screen.queryByText('formError.valueMissing')).not.toBeInTheDocument()
   })
 
-  it('CheckboxListTrue', () => {
-    const { container } = renderWithProviders(
-      <Checkbox indeterminate={false} list />
+  it('shoud display error with showError prop when the field has additional validation rules', () => {
+    renderWithProviders(
+      <Checkbox
+        label="Label"
+        showError
+        required
+        additionalValidator={(): string => {
+          return 'erreur'
+        }}
+      />
     )
-    expect(container).toMatchSnapshot()
-  })
-
-  it('CheckboxListFalse', () => {
-    const { container } = renderWithProviders(
-      <Checkbox indeterminate={false} list={false} />
-    )
-    expect(container).toMatchSnapshot()
+    expect(screen.getByText('formError.erreur')).toBeInTheDocument()
   })
 })
