@@ -2,12 +2,12 @@ import React from 'react'
 
 import { renderWithProviders } from '../../../utils/tests'
 
-import DropDown from './DropDown'
+import DropDownWithoutError from './DropDownWithoutError'
 
 describe('DropDown match snapshot', () => {
   it('BadgeDisabledFalse', () => {
     const { container } = renderWithProviders(
-      <DropDown
+      <DropDownWithoutError
         disabled={false}
         options={[
           { label: 'Ten', value: 10 },
@@ -22,7 +22,7 @@ describe('DropDown match snapshot', () => {
 
   it('BadgeDisabledTrue', () => {
     const { container } = renderWithProviders(
-      <DropDown
+      <DropDownWithoutError
         disabled
         options={[
           { label: 'Ten', value: 10 },
@@ -37,7 +37,7 @@ describe('DropDown match snapshot', () => {
 
   it('BadgeLabel', () => {
     const { container } = renderWithProviders(
-      <DropDown
+      <DropDownWithoutError
         label="Label"
         options={[
           { label: 'Ten', value: 10 },
@@ -52,7 +52,7 @@ describe('DropDown match snapshot', () => {
 
   it('BadgeRequiredFalse', () => {
     const { container } = renderWithProviders(
-      <DropDown
+      <DropDownWithoutError
         required={false}
         options={[
           { label: 'Ten', value: 10 },
@@ -67,7 +67,7 @@ describe('DropDown match snapshot', () => {
 
   it('BadgeRequiredTrue', () => {
     const { container } = renderWithProviders(
-      <DropDown
+      <DropDownWithoutError
         required
         options={[
           { label: 'Ten', value: 10 },
@@ -82,7 +82,7 @@ describe('DropDown match snapshot', () => {
 
   it('BadgeMultiple', () => {
     const { container } = renderWithProviders(
-      <DropDown
+      <DropDownWithoutError
         value={[]}
         multiple
         disabled={false}
@@ -100,7 +100,7 @@ describe('DropDown match snapshot', () => {
 
   it('BadgeArrayObjectValue', () => {
     const { container } = renderWithProviders(
-      <DropDown
+      <DropDownWithoutError
         value={[
           { '@id': 1, locale: 'fr_FR' },
           { '@id': 2, locale: 'en_US' },
@@ -120,7 +120,7 @@ describe('DropDown match snapshot', () => {
   })
   it('BadgeObjectValue', () => {
     const { container } = renderWithProviders(
-      <DropDown
+      <DropDownWithoutError
         value={{ '@id': 1, locale: 'fr_FR' }}
         disabled={false}
         label="Label"

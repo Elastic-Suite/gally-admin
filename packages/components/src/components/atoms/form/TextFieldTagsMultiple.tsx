@@ -13,7 +13,7 @@ import {
   ITextFieldTagsForm,
   ITransformedLimitations,
 } from '@elastic-suite/gally-admin-shared'
-import DropDown from './DropDown'
+import DropDownWithoutError from './DropDownWithoutError'
 import { useTranslation } from 'next-i18next'
 
 const CustomMultipleTextFieldsTags = styled('div')(({ theme }) => ({
@@ -187,7 +187,7 @@ function TextFieldTagsMultiple(
                     gap: '8px',
                   }}
                 >
-                  <DropDown
+                  <DropDownWithoutError
                     required
                     onChange={(newOption): void =>
                       updateOperator(key, newOption as string)

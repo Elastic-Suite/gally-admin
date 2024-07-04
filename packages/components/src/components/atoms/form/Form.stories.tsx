@@ -19,7 +19,7 @@ import { action } from '@storybook/addon-actions'
 import Synonym from './Synonym'
 import ThesaurusSynonym from '../../../../public/mocks/thesaurus_synonym.json'
 import Expansion from './Expansion'
-import DropDownError from './DropDownError'
+import DropDown from './DropDown'
 import Checkbox from './Checkbox'
 import RadioGroupError from './RadioGroupError'
 
@@ -121,7 +121,7 @@ const Template = (): JSX.Element => {
         onChange={setExpansion}
       />
 
-      <DropDownError
+      <DropDown
         value={dropdown}
         onChange={setDropdown}
         showError={showAllErrors}

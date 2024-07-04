@@ -11,7 +11,7 @@ import {
   ISynonyms,
 } from '@elastic-suite/gally-admin-shared'
 
-import DropDownError from '../../atoms/form/DropDownError'
+import DropDown from '../../atoms/form/DropDown'
 import InputTextError from '../../atoms/form/InputTextError'
 import RangeError from '../../atoms/form/RangeError'
 import Switch from '../../atoms/form/Switch'
@@ -285,7 +285,7 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
     case DataContentType.BOOLEAN: {
       if (useDropdownBoolean) {
         return (
-          <DropDownError
+          <DropDown
             infoTooltip={infoTooltip}
             dirty={dirty}
             disabled={disabled}

@@ -11,7 +11,7 @@ import FiltersPreviewBoostingTab, {
   IPropsFiltersPreviewBoostingTab,
 } from './FiltersPreviewBoostingTab'
 import SearchBar from '../../atoms/form/SearchBar'
-import DropdownError from '../../atoms/form/DropDownError'
+import DropDown from '../../atoms/form/DropDown'
 import TreeSelectorError from '../../atoms/form/TreeSelectorError'
 export interface IPreviewBoostFilter {
   type: string
@@ -52,7 +52,7 @@ function FiltersPreviewBoostingTabs({
   const [showAllErrors, setShowAllErrors] = useState(false)
 
   const DrowDownLocalizedCatalog = (
-    <DropdownError
+    <DropDown
       onChange={(value: string): void => {
         onLocalizedCatalogChange(value)
         setCategory(null)

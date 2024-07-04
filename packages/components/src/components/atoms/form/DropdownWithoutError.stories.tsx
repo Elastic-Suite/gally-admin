@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
 
-import DropDownComponent from './DropDown'
-import DropDownError from './DropDownError'
+import DropDownWithoutErrorComponent from './DropDownWithoutError'
+import DropDown from './DropDown'
 
 export default {
   title: 'Atoms/Form/Dropdown',
-  component: DropDownComponent,
+  component: DropDownWithoutErrorComponent,
   argTypes: {
     color: {
       options: ['none', 'success', 'error'],
@@ -28,12 +28,20 @@ export default {
       control: 'text',
     },
   },
-} as ComponentMeta<typeof DropDownComponent>
+} as ComponentMeta<typeof DropDownWithoutErrorComponent>
 
-export const Simple: ComponentStory<typeof DropDownComponent> = (args) => {
+export const Simple: ComponentStory<typeof DropDownWithoutErrorComponent> = (
+  args
+) => {
   const [value, setValue] = useState('')
   const handleChange = (value: string): void => setValue(value)
-  return <DropDownComponent {...args} onChange={handleChange} value={value} />
+  return (
+    <DropDownWithoutErrorComponent
+      {...args}
+      onChange={handleChange}
+      value={value}
+    />
+  )
 }
 Simple.args = {
   color: 'primary',
@@ -58,13 +66,13 @@ Simple.args = {
   transparent: false,
 }
 
-export const Multiple: ComponentStory<typeof DropDownComponent> = (
+export const Multiple: ComponentStory<typeof DropDownWithoutErrorComponent> = (
   args
 ): JSX.Element => {
   const [multiValue, setMultiValue] = useState([])
   const handleChange = (value: string[]): void => setMultiValue(value)
   return (
-    <DropDownComponent
+    <DropDownWithoutErrorComponent
       {...args}
       multiple
       onChange={handleChange}
@@ -96,10 +104,10 @@ Multiple.args = {
   transparent: false,
 }
 
-export const WithError: ComponentStory<typeof DropDownError> = (args) => {
+export const WithError: ComponentStory<typeof DropDown> = (args) => {
   const [value, setValue] = useState('')
   const handleChange = (value: string): void => setValue(value)
-  return <DropDownError {...args} onChange={handleChange} value={value} />
+  return <DropDown {...args} onChange={handleChange} value={value} />
 }
 WithError.args = {
   color: 'primary',
