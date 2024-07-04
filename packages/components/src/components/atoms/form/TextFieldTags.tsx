@@ -8,7 +8,7 @@ import React, {
 } from 'react'
 import { styled } from '@mui/system'
 import Chip from '../Chip/Chip'
-import InputText from './InputText'
+import InputTextWithoutError from './InputTextWithoutError'
 import { FormHelperText, InputLabel } from '@mui/material'
 import IonIcon from '../IonIcon/IonIcon'
 import InfoTooltip from './InfoTooltip'
@@ -86,7 +86,7 @@ const CustomFormTextFieldTags = styled('div')({
   alignItems: 'center',
 })
 
-const CustomInputTextTextFieldTags = styled(InputText)({
+const CustomInputTextTextFieldTags = styled(InputTextWithoutError)({
   minWidth: 'auto',
   width: '146px',
   border: 'none',

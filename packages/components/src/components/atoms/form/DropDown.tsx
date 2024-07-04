@@ -2,11 +2,11 @@ import React, { ForwardedRef, useCallback } from 'react'
 
 import { IFieldErrorProps, IValidator, useFormError } from '../../../hooks'
 
-import Dropdown, { IDropDownProps } from './DropDownWithoutError'
+import DropDownWithoutError, { IDropDownProps } from './DropDownWithoutError'
 
 interface IDropDownErrorProps<T> extends IFieldErrorProps, IDropDownProps<T> {}
 
-function DropdownError<T>(props: IDropDownErrorProps<T>): JSX.Element {
+function Dropdown<T>(props: IDropDownErrorProps<T>): JSX.Element {
   const {
     onChange,
     showError,
@@ -41,7 +41,7 @@ function DropdownError<T>(props: IDropDownErrorProps<T>): JSX.Element {
   )
 
   return (
-    <Dropdown
+    <DropDownWithoutError
       {...inputProps}
       {...formErrorProps}
       error={inputProps?.error || formErrorProps?.error}
@@ -52,4 +52,4 @@ function DropdownError<T>(props: IDropDownErrorProps<T>): JSX.Element {
   )
 }
 
-export default DropdownError
+export default Dropdown

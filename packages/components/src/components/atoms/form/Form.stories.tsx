@@ -1,5 +1,5 @@
 import React, { SyntheticEvent, useState } from 'react'
-import InputTextError from './InputTextError'
+import InputText from './InputText'
 import DoubleDatePicker from './DoubleDatePicker'
 import { IDoubleDatePickerValues } from './DoubleDatePickerWithoutError'
 import Form from './Form'
@@ -76,7 +76,7 @@ const Template = (): JSX.Element => {
         label="Label"
         required
       />
-      <InputTextError
+      <InputText
         showError={showAllErrors}
         required
         label="Champs non requis"

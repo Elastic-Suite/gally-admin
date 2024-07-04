@@ -23,7 +23,7 @@ import IonIcon from '../IonIcon/IonIcon'
 import { Close, CustomCombination, Root } from './Rule.styled'
 import DropDown from '../form/DropDown'
 import TreeSelectorError from '../form/TreeSelectorError'
-import InputTextError from '../form/InputTextError'
+import InputText from '../form/InputText'
 import DatePickerError from '../form/DatePicker'
 
 function getInputType(valueType: RuleValueType): 'number' | 'text' {
@@ -206,7 +206,7 @@ function Rule(props: IProps): JSX.Element {
     }
 
     return (
-      <InputTextError
+      <InputText
         showError={showError}
         onChange={handleInputChange(multiple)}
         required

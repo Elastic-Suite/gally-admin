@@ -2,7 +2,9 @@ import React, { FormEvent } from 'react'
 import { Grid, InputAdornment, Paper } from '@mui/material'
 import { useTranslation } from 'next-i18next'
 
-import InputText, { IInputTextProps } from '../../../atoms/form/InputText'
+import InputTextWithoutError, {
+  IInputTextProps,
+} from '../../../atoms/form/InputTextWithoutError'
 import IonIcon from '../../../atoms/IonIcon/IonIcon'
 
 import { CustomNoTopProduct, SearchResult, SearchTitle } from './Search.styled'
@@ -81,7 +83,7 @@ export default function SearchBar(props: IProps): JSX.Element {
               </SearchResult>
             </div>
             <form onSubmit={handleSubmit}>
-              <InputText
+              <InputTextWithoutError
                 id="input-text"
                 required={false}
                 disabled={false}

@@ -12,7 +12,7 @@ import {
 } from '@elastic-suite/gally-admin-shared'
 
 import DropDown from '../../atoms/form/DropDown'
-import InputTextError from '../../atoms/form/InputTextError'
+import InputText from '../../atoms/form/InputText'
 import RangeError from '../../atoms/form/RangeError'
 import Switch from '../../atoms/form/Switch'
 
@@ -100,7 +100,7 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
     case DataContentType.NUMBER:
     case DataContentType.STRING: {
       return (
-        <InputTextError
+        <InputText
           infoTooltip={infoTooltip}
           dirty={dirty}
           disabled={disabled}

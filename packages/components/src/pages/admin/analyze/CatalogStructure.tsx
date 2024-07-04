@@ -29,7 +29,7 @@ import { selectConfiguration, useAppSelector } from '../../../store'
 
 import Button from '../../../components/atoms/buttons/Button'
 import MerchandiseBar from '../../../components/stateful/ProductPreview/MerchandiseBar'
-import { DropDownError, InputTextError, PageTitle } from '../../../components'
+import { DropDown, InputText, PageTitle } from '../../../components'
 import TreeSelectorError from '../../../components/atoms/form/TreeSelectorError'
 import ProductsPreviewBottom from '../../../components/stateful/ProductPreview/ProductsPreviewBottom'
 import Form from '../../../components/atoms/form/Form'
@@ -194,7 +194,7 @@ function AdminAnalyzeCatalogStructure(): JSX.Element {
         ) && (
           <>
             <WrapperBlock>
-              <DropDownError
+              <DropDown
                 infoTooltip={t(
                   'Select the localized catalog where the explain will be applied'
                 )}
@@ -212,7 +212,7 @@ function AdminAnalyzeCatalogStructure(): JSX.Element {
             </WrapperBlock>
 
             <WrapperBlock>
-              <DropDownError
+              <DropDown
                 label={t('Request type')}
                 name="requestType"
                 onChange={handleChange}
@@ -239,7 +239,7 @@ function AdminAnalyzeCatalogStructure(): JSX.Element {
               )}
 
               {limitationType === 'search' && (
-                <InputTextError
+                <InputText
                   label={t('Search term')}
                   name="search"
                   onChange={handleChange}

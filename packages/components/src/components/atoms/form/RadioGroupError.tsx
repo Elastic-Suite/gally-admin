@@ -8,7 +8,7 @@ import {
 } from '../../../hooks'
 
 import RadioGroup, { IRadioGroupProps } from './RadioGroup'
-import InputText from './InputText'
+import InputTextWithoutError from './InputTextWithoutError'
 
 interface IRadioGroupErrorProps extends IFieldErrorProps, IRadioGroupProps {
   required?: boolean
@@ -42,7 +42,7 @@ function RadioGroupError(props: IRadioGroupErrorProps): JSX.Element {
         helperIcon={inputProps?.helperIcon || formErrorProps?.helperIcon}
         helperText={inputProps?.helperText || formErrorProps?.helperText}
       />
-      <InputText
+      <InputTextWithoutError
         style={{ display: 'none' }}
         inputRef={ref as ForwardedRef<HTMLInputElement>}
       />

@@ -25,7 +25,7 @@ import Chip from '../Chip/Chip'
 import Tree from '../tree/Tree'
 
 import { SmallStyledPaper, StyledPaper } from './DropDown.styled'
-import { IInputTextProps } from './InputText'
+import { IInputTextProps } from './InputTextWithoutError'
 import {
   AutocompleteClearIndicator,
   AutocompletePopupIndicator,

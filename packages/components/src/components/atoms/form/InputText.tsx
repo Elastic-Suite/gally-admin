@@ -1,116 +1,47 @@
-import React, {
-  ChangeEvent,
-  ForwardedRef,
-  HTMLAttributes,
-  ReactNode,
-  Ref,
-  SyntheticEvent,
-  forwardRef,
-} from 'react'
-import { FormHelperText, InputLabel } from '@mui/material'
+import React, { ForwardedRef, useCallback } from 'react'
 
-import { getFormValue } from '../../../services'
+import { IFieldErrorProps, IValidator, useFormError } from '../../../hooks'
 
-import IonIcon from '../IonIcon/IonIcon'
+import InputTextWithoutError, { IInputTextProps } from './InputTextWithoutError'
 
-import InfoTooltip from './InfoTooltip'
-import {
-  IUnstyledInputTextProps,
-  InputTextStyled,
-  StyledFormControl,
-  Suffix,
-  Wrapper,
-} from './InputText.styled'
+interface IInputTextErrorProps extends IFieldErrorProps, IInputTextProps {}
 
-export interface IInputTextProps
-  extends Omit<
-      IUnstyledInputTextProps,
-      'margin' | 'onChange' | 'onKeyUp' | 'onKeyDown' | 'onBlur' | 'onFocus'
-    >,
-    Pick<
-      HTMLAttributes<HTMLInputElement>,
-      'onKeyUp' | 'onKeyDown' | 'onBlur' | 'onFocus'
-    > {
-  error?: boolean
-  fullWidth?: boolean
-  infoTooltip?: string
-  inputRef?: Ref<HTMLInputElement>
-  label?: ReactNode
-  margin?: 'none' | 'dense' | 'normal'
-  helperText?: ReactNode
-  helperIcon?: string
-  onChange?: (value: string | number, event: SyntheticEvent) => void
-  suffix?: ReactNode
-  requiredLabel?: boolean
-}
-
-function InputText(
-  props: IInputTextProps,
-  ref?: ForwardedRef<HTMLDivElement>
-): JSX.Element {
+function InputText(props: IInputTextErrorProps): JSX.Element {
   const {
-    error,
-    fullWidth,
-    helperText,
-    helperIcon,
-    id,
-    infoTooltip,
-    label,
-    margin,
     onChange,
-    required,
-    suffix,
-    value,
-    requiredLabel,
-    ...InputProps
+    showError,
+    additionalValidator,
+    replacementErrorsMessages,
+    ...inputProps
   } = props
+  const validator = useCallback<IValidator>(
+    (value, event) => {
+      if (additionalValidator) return additionalValidator(value, event)
+      return ''
+    },
+    [additionalValidator]
+  )
 
-  function handleChange(
-    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ): void {
-    const { value } = event.target
-    if (onChange) {
-      onChange(getFormValue(value, props), event)
-    }
-  }
+  const [{ ref, ...formErrorProps }] = useFormError(
+    onChange,
+    inputProps.value,
+    showError,
+    validator,
+    inputProps.disabled,
+    replacementErrorsMessages
+  )
 
   return (
-    <StyledFormControl
-      error={error}
-      fullWidth={fullWidth}
-      margin={margin}
-      variant="standard"
-    >
-      {Boolean(label || infoTooltip) && (
-        <InputLabel shrink htmlFor={id} required={requiredLabel || required}>
-          {label}
-          {infoTooltip ? <InfoTooltip title={infoTooltip} /> : null}
-        </InputLabel>
-      )}
-      <Wrapper className="InputText__Wrapper">
-        <InputTextStyled
-          id={id}
-          onChange={handleChange}
-          required={required}
-          ref={ref}
-          value={(value ?? '').toString()}
-          {...InputProps}
-        />
-        {Boolean(suffix) && <Suffix>{suffix}</Suffix>}
-      </Wrapper>
-      {Boolean(helperText) && (
-        <FormHelperText>
-          {Boolean(helperIcon) && (
-            <IonIcon
-              name={helperIcon}
-              style={{ fontSize: 18, marginRight: 2 }}
-            />
-          )}
-          {helperText}
-        </FormHelperText>
-      )}
-    </StyledFormControl>
+    <InputTextWithoutError
+      {...inputProps}
+      {...formErrorProps}
+      error={inputProps?.error || formErrorProps?.error}
+      helperIcon={inputProps?.helperIcon || formErrorProps?.helperIcon}
+      helperText={inputProps?.helperText || formErrorProps?.helperText}
+      inputRef={ref as ForwardedRef<HTMLInputElement>}
+      ref={null}
+    />
   )
 }
 
-export default forwardRef<HTMLDivElement, IInputTextProps>(InputText)
+export default InputText

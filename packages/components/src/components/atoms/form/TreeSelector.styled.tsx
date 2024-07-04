@@ -7,13 +7,13 @@ import {
 } from '@mui/material'
 import { styled } from '@mui/system'
 
-import InputText from './InputText'
+import InputTextWithoutError from './InputTextWithoutError'
 
 export const Root = styled('div')(() => ({
   display: 'inline-block',
 }))
 
-export const Input = styled(InputText)(() => ({
+export const Input = styled(InputTextWithoutError)(() => ({
   paddingRight: '30px',
   flexWrap: 'wrap',
   maxWidth: '400px',

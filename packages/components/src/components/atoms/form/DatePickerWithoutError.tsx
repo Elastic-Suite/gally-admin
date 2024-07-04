@@ -17,7 +17,7 @@ import { styled } from '@mui/system'
 
 import IonIcon from '../IonIcon/IonIcon'
 
-import InputText, { IInputTextProps } from './InputText'
+import InputTextWithoutError, { IInputTextProps } from './InputTextWithoutError'
 
 import { useTranslation } from 'next-i18next'
 
@@ -98,7 +98,7 @@ function DatePicker(
         const { InputProps, inputProps, ...rest } = params
         const { onChange, readOnly, type, value } = inputProps
         return (
-          <InputText
+          <InputTextWithoutError
             {...InputProps}
             {...rest}
             {...args}

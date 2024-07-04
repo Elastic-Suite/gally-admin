@@ -1,7 +1,7 @@
 import { InputAdornment } from '@mui/material'
 import IonIcon from '../IonIcon/IonIcon'
 import React, { useContext } from 'react'
-import InputTextError from './InputTextError'
+import InputText from './InputText'
 import { FormIsValidContext } from '../../molecules/FiltersPreviewBoostingTabs/FiltersPreviewBoostingTab'
 
 export default function SearchBar({
@@ -22,7 +22,7 @@ export default function SearchBar({
   const formIsValid = useContext(FormIsValidContext)
 
   return (
-    <InputTextError
+    <InputText
       label={label}
       value={value}
       onChange={(value: string | number): void => onChange(value.toString())}

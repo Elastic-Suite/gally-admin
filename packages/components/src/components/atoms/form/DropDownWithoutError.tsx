@@ -19,7 +19,7 @@ import { IOption, IOptions } from '@elastic-suite/gally-admin-shared'
 
 import CheckboxWithoutError from './CheckboxWithoutError'
 import { SmallStyledPaper, StyledPaper } from './DropDown.styled'
-import InputText, { IInputTextProps } from './InputText'
+import InputTextWithoutError, { IInputTextProps } from './InputTextWithoutError'
 
 import IonIcon from '../IonIcon/IonIcon'
 import Chip from '../Chip/Chip'
@@ -168,7 +168,7 @@ function DropDownWithoutError<T>(
         renderInput={(params): JSX.Element => {
           const { InputLabelProps, InputProps, ...inputProps } = params
           return (
-            <InputText
+            <InputTextWithoutError
               {...{ ...otherProps, required: false }}
               {...inputProps}
               {...InputProps}

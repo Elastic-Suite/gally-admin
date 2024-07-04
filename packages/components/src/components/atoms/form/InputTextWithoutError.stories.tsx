@@ -4,12 +4,12 @@ import { InputAdornment } from '@mui/material'
 
 import IonIcon from '../IonIcon/IonIcon'
 
-import InputTextComponent from './InputText'
-import InputTextError from './InputTextError'
+import InputTextWithoutErrorComponent from './InputTextWithoutError'
+import InputText from './InputText'
 
 export default {
   title: 'Atoms/Form/InputText',
-  component: InputTextComponent,
+  component: InputTextWithoutErrorComponent,
   argTypes: {
     color: {
       options: ['none', 'success', 'error'],
@@ -32,15 +32,17 @@ export default {
       control: { type: 'select' },
     },
   },
-} as ComponentMeta<typeof InputTextComponent>
+} as ComponentMeta<typeof InputTextWithoutErrorComponent>
 
-const Template: ComponentStory<typeof InputTextComponent> = (args) => {
+const Template: ComponentStory<typeof InputTextWithoutErrorComponent> = (
+  args
+) => {
   const { endAdornment, ...props } = args
   const [value, setValue] = useState('')
   const handleChange = (value: string | number): void =>
     setValue(value.toString())
   return (
-    <InputTextComponent
+    <InputTextWithoutErrorComponent
       {...props}
       value={value}
       onChange={handleChange}
@@ -99,11 +101,13 @@ Search.args = {
   type: 'text',
 }
 
-const FormErrorTemplate: ComponentStory<typeof InputTextComponent> = (args) => {
+const FormErrorTemplate: ComponentStory<
+  typeof InputTextWithoutErrorComponent
+> = (args) => {
   const [value, setValue] = useState('')
   const handleChange = (value: string | number): void =>
     setValue(value.toString())
-  return <InputTextError {...args} value={value} onChange={handleChange} />
+  return <InputText {...args} value={value} onChange={handleChange} />
 }
 
 export const WithError = FormErrorTemplate.bind({})
