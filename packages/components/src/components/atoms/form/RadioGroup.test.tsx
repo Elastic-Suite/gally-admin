@@ -3,65 +3,51 @@ import React from 'react'
 import { renderWithProviders } from '../../../utils/tests'
 
 import RadioGroup from './RadioGroup'
+import { screen } from '@testing-library/react'
+import '@testing-library/jest-dom/extend-expect'
 
-describe('Switch match snapshot', () => {
-  it('Radio group defaultChecked true with default', () => {
+const options = [
+  {
+    label: 'Test 1',
+    value: 1,
+  },
+  {
+    label: 'Test 2',
+    value: 2,
+  },
+  {
+    label: 'Test 3',
+    value: 3,
+  },
+]
+
+describe('RadioGroupError', () => {
+  it('sould match snapshot', () => {
     const { container } = renderWithProviders(
-      <RadioGroup
-        name="radio-buttons-group"
-        defaultChecked
-        row
-        options={[
-          { value: 'male', label: 'Label One', disabled: true },
-          { value: 'female', label: 'Label Two', default: true },
-        ]}
-      />
+      <RadioGroup options={options} value={1} />
     )
     expect(container).toMatchSnapshot()
   })
 
-  it('Radio group defaultChecked true without default', () => {
-    const { container } = renderWithProviders(
-      <RadioGroup
-        name="radio-buttons-group"
-        defaultChecked
-        row
-        options={[
-          { value: 'male', label: 'Label One', disabled: true },
-          { value: 'female', label: 'Label Two' },
-        ]}
-      />
-    )
-    expect(container).toMatchSnapshot()
+  it('should display error with showError prop when the field is required with missing value', () => {
+    renderWithProviders(<RadioGroup options={options} required showError />)
+    expect(screen.getByText('formError.valueMissing')).toBeInTheDocument()
   })
 
-  it('Radio group defaultChecked False with default true', () => {
-    const { container } = renderWithProviders(
-      <RadioGroup
-        name="radio-buttons-group"
-        defaultChecked={false}
-        row
-        options={[
-          { value: 'male', label: 'Label One', disabled: true },
-          { value: 'female', label: 'Label Two', default: true },
-        ]}
-      />
-    )
-    expect(container).toMatchSnapshot()
+  it('should not display error without showError prop when the field is required with missing value', () => {
+    renderWithProviders(<RadioGroup options={options} required />)
+    expect(screen.queryByText('formError.valueMissing')).not.toBeInTheDocument()
   })
 
-  it('Radio group defaultChecked False without default', () => {
-    const { container } = renderWithProviders(
+  it('shoud display error with showError prop when the field has additional validation rules', () => {
+    renderWithProviders(
       <RadioGroup
-        name="radio-buttons-group"
-        defaultChecked={false}
-        row
-        options={[
-          { value: 'male', label: 'Label One', disabled: true },
-          { value: 'female', label: 'Label Two' },
-        ]}
+        options={options}
+        required
+        showError
+        additionalValidator={(): string => 'erreur'}
       />
     )
-    expect(container).toMatchSnapshot()
+    expect(screen.getByText('formError.erreur')).toBeInTheDocument()
   })
 })
