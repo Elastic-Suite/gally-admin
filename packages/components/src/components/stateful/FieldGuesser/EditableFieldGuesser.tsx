@@ -19,8 +19,8 @@ import Switch from '../../atoms/form/Switch'
 import ReadableFieldGuesser from './ReadableFieldGuesser'
 import EditableDropDownGuesser from './EditableDropDownGuesser'
 import EditableModelConfig from './EditableModelConfig'
-import { IDoubleDatePickerValues } from '../../atoms/form/DoubleDatePicker'
-import DoubleDatePickerError from '../../atoms/form/DoubleDatePickerError'
+import { IDoubleDatePickerValues } from '../../atoms/form/DoubleDatePickerWithoutError'
+import DoubleDatePicker from '../../atoms/form/DoubleDatePicker'
 import { Box } from '@mui/material'
 import RequestTypeManager from '../../stateful/RequestTypeManager/RequestTypeManager'
 import { isHiddenDepends } from '../../../services'
@@ -171,7 +171,7 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
 
       return (
         <Box>
-          <DoubleDatePickerError
+          <DoubleDatePicker
             {...doubleDatePickerProps}
             placeholder={placeholder}
             infoTooltip={infoTooltip}

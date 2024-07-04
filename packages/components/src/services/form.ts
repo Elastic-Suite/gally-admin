@@ -8,7 +8,7 @@ import {
 } from '@elastic-suite/gally-admin-shared'
 import { InputBaseProps } from '@mui/material'
 import { useApiList } from '../hooks'
-import { IDoubleDatePickerValues } from '../components/atoms/form/DoubleDatePicker'
+import { IDoubleDatePickerValues } from '../components/atoms/form/DoubleDatePickerWithoutError'
 
 export type IProps = Pick<InputBaseProps, 'required' | 'type'>
 

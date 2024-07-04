@@ -2,14 +2,14 @@ import React from 'react'
 
 import { renderWithProviders } from '../../../utils/tests'
 
-import DoubleDatePickerError from './DoubleDatePickerError'
+import DoubleDatePicker from './DoubleDatePicker'
 import { screen } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
 
 describe('RangeError', () => {
   it('sould match snapshot', () => {
     const { container } = renderWithProviders(
-      <DoubleDatePickerError
+      <DoubleDatePicker
         label="Label"
         value={{
           toDate: new Date('Fri, 12 Apr 2024 12:40:52 GMT'),
@@ -22,7 +22,7 @@ describe('RangeError', () => {
 
   it('should display error with showError prop when the field is required with missing value', () => {
     renderWithProviders(
-      <DoubleDatePickerError
+      <DoubleDatePicker
         label="Label"
         required
         showError
@@ -34,7 +34,7 @@ describe('RangeError', () => {
 
   it('should display error with showError prop when the field have an invalid value', () => {
     renderWithProviders(
-      <DoubleDatePickerError
+      <DoubleDatePicker
         label="Label"
         required
         showError
@@ -46,7 +46,7 @@ describe('RangeError', () => {
 
   it('should display error with showError prop when the first date is superior to the second date', () => {
     renderWithProviders(
-      <DoubleDatePickerError
+      <DoubleDatePicker
         label="Label"
         showError
         value={{ toDate: new Date(1680605116), fromDate: new Date() }}
@@ -59,7 +59,7 @@ describe('RangeError', () => {
 
   it('should not display error without showError prop when the field is required with missing value', () => {
     renderWithProviders(
-      <DoubleDatePickerError
+      <DoubleDatePicker
         label="Label"
         required
         value={{ toDate: null, fromDate: null }}
@@ -70,7 +70,7 @@ describe('RangeError', () => {
 
   it('should not display error with showError prop when the field is required and disabled with missing value', () => {
     renderWithProviders(
-      <DoubleDatePickerError
+      <DoubleDatePicker
         label="Label"
         required
         showError
@@ -83,7 +83,7 @@ describe('RangeError', () => {
 
   it('shoud display error with showError prop when the field has additional validation rules', () => {
     renderWithProviders(
-      <DoubleDatePickerError
+      <DoubleDatePicker
         label="Label"
         showError
         required
@@ -98,7 +98,7 @@ describe('RangeError', () => {
 
   it('should display a replacement error message with replacementErrorsMessages prop when the field has an error', () => {
     renderWithProviders(
-      <DoubleDatePickerError
+      <DoubleDatePicker
         label="Label"
         required
         showError

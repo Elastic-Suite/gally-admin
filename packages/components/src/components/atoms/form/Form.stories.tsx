@@ -1,7 +1,7 @@
 import React, { SyntheticEvent, useState } from 'react'
 import InputTextError from './InputTextError'
-import DoubleDatePickerError from './DoubleDatePickerError'
-import { IDoubleDatePickerValues } from './DoubleDatePicker'
+import DoubleDatePicker from './DoubleDatePicker'
+import { IDoubleDatePickerValues } from './DoubleDatePickerWithoutError'
 import Form from './Form'
 import categories from '../../../../public/mocks/categories.json'
 import RequestType from './RequestType'
@@ -97,7 +97,7 @@ const Template = (): JSX.Element => {
         categoriesList={categories.categories}
       />
 
-      <DoubleDatePickerError
+      <DoubleDatePicker
         showError={showAllErrors}
         required
         label="Double date picker requis"
