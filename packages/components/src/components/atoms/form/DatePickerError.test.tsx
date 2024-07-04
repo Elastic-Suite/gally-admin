@@ -2,14 +2,14 @@ import React from 'react'
 
 import { renderWithProviders } from '../../../utils/tests'
 
-import DatePickerError from './DatePickerError'
+import DatePicker from './DatePicker'
 import { screen } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
 
 describe('RangeError', () => {
   it('sould match snapshot', () => {
     const { container } = renderWithProviders(
-      <DatePickerError
+      <DatePicker
         label="Label"
         value={new Date('Fri, 12 Apr 2024 12:40:52 GMT')}
         onChange={(): void => {
@@ -22,7 +22,7 @@ describe('RangeError', () => {
 
   it('should display error with showError prop when the field is required with missing value', () => {
     renderWithProviders(
-      <DatePickerError
+      <DatePicker
         label="Label"
         required
         showError
@@ -37,7 +37,7 @@ describe('RangeError', () => {
 
   it('should display error with showError prop when the field have an invalid value', () => {
     renderWithProviders(
-      <DatePickerError
+      <DatePicker
         label="Label"
         required
         showError
@@ -52,7 +52,7 @@ describe('RangeError', () => {
 
   it('should not display error without showError prop when the field is required with missing value', () => {
     renderWithProviders(
-      <DatePickerError
+      <DatePicker
         label="Label"
         required
         value={null}
@@ -66,7 +66,7 @@ describe('RangeError', () => {
 
   it('should not display error with showError prop when the field is required and disabled with missing value', () => {
     renderWithProviders(
-      <DatePickerError
+      <DatePicker
         label="Label"
         required
         showError
@@ -82,7 +82,7 @@ describe('RangeError', () => {
 
   it('shoud display error with showError prop when the field has additional validation rules', () => {
     renderWithProviders(
-      <DatePickerError
+      <DatePicker
         label="Label"
         showError
         required

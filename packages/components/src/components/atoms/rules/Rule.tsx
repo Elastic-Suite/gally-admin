@@ -24,7 +24,7 @@ import { Close, CustomCombination, Root } from './Rule.styled'
 import DropDownError from '../form/DropDownError'
 import TreeSelectorError from '../form/TreeSelectorError'
 import InputTextError from '../form/InputTextError'
-import DatePickerError from '../form/DatePickerError'
+import DatePickerError from '../form/DatePicker'
 
 function getInputType(valueType: RuleValueType): 'number' | 'text' {
   if (ruleValueNumberTypes.includes(valueType)) {

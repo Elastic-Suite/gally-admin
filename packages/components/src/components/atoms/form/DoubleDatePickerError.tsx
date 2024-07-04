@@ -1,7 +1,7 @@
 import React, { ForwardedRef, SyntheticEvent, useCallback } from 'react'
 import { IFieldErrorProps, IValidator, useFormError } from '../../../hooks'
 
-import { dateValidator } from './DatePickerError'
+import { dateValidator } from './DatePicker'
 import DoubleDatePicker, {
   IDoubleDatePickerProps,
   IDoubleDatePickerValues,

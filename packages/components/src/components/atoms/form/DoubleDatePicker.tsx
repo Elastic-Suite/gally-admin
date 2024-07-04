@@ -6,7 +6,9 @@ import { styled } from '@mui/system'
 
 import IonIcon from '../IonIcon/IonIcon'
 
-import DatePicker, { IDatePickerProps } from './DatePicker'
+import DatePickerWithoutError, {
+  IDatePickerProps,
+} from './DatePickerWithoutError'
 import FormControl from './FormControl'
 import InfoTooltip from './InfoTooltip'
 
@@ -101,7 +103,7 @@ function DoubleDatePicker(
       >
         <CustomBox sx={{ paddingRight: '20px' }}> {t('form.from')} </CustomBox>
         <Grid item xs>
-          <DatePicker
+          <DatePickerWithoutError
             {...args}
             required={required}
             error={error}
@@ -117,7 +119,7 @@ function DoubleDatePicker(
           {t('form.to')}
         </CustomBox>
         <Grid item xs>
-          <DatePicker
+          <DatePickerWithoutError
             {...args}
             required={required}
             error={error}
