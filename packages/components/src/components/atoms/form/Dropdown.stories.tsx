@@ -30,9 +30,9 @@ export default {
   },
 } as ComponentMeta<typeof DropDownWithoutErrorComponent>
 
-export const Simple: ComponentStory<typeof DropDownWithoutErrorComponent> = (
-  args
-) => {
+export const SimpleWithoutError: ComponentStory<
+  typeof DropDownWithoutErrorComponent
+> = (args) => {
   const [value, setValue] = useState('')
   const handleChange = (value: string): void => setValue(value)
   return (
@@ -43,7 +43,7 @@ export const Simple: ComponentStory<typeof DropDownWithoutErrorComponent> = (
     />
   )
 }
-Simple.args = {
+SimpleWithoutError.args = {
   color: 'primary',
   dirty: false,
   disabled: false,
@@ -66,9 +66,9 @@ Simple.args = {
   transparent: false,
 }
 
-export const Multiple: ComponentStory<typeof DropDownWithoutErrorComponent> = (
-  args
-): JSX.Element => {
+export const MultipleWithoutError: ComponentStory<
+  typeof DropDownWithoutErrorComponent
+> = (args): JSX.Element => {
   const [multiValue, setMultiValue] = useState([])
   const handleChange = (value: string[]): void => setMultiValue(value)
   return (
@@ -80,7 +80,7 @@ export const Multiple: ComponentStory<typeof DropDownWithoutErrorComponent> = (
     />
   )
 }
-Multiple.args = {
+MultipleWithoutError.args = {
   color: 'primary',
   dirty: false,
   disabled: false,
@@ -104,12 +104,12 @@ Multiple.args = {
   transparent: false,
 }
 
-export const WithError: ComponentStory<typeof DropDown> = (args) => {
+export const Default: ComponentStory<typeof DropDown> = (args) => {
   const [value, setValue] = useState('')
   const handleChange = (value: string): void => setValue(value)
   return <DropDown {...args} onChange={handleChange} value={value} />
 }
-WithError.args = {
+Default.args = {
   color: 'primary',
   disabled: false,
   fullWidth: false,
@@ -124,7 +124,7 @@ WithError.args = {
     { label: 'Fifty', value: 50 },
   ],
   required: true,
-  showError: false,
+  showError: true,
   small: false,
   transparent: false,
 }

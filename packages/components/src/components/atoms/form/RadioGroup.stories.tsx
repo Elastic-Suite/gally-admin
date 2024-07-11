@@ -12,8 +12,8 @@ const Template: ComponentStory<typeof RadioGrpWithoutError> = (args) => (
   <RadioGrpWithoutError {...args} />
 )
 
-export const RadioGroup = Template.bind({})
-RadioGroup.args = {
+export const RadioGroupWithoutError = Template.bind({})
+RadioGroupWithoutError.args = {
   name: 'radio-buttons-group',
   defaultChecked: true,
   row: true,

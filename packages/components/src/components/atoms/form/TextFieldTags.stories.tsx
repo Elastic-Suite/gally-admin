@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
 
+import TextFieldTagsWithoutErrorComponent from './TextFieldTagsWithoutError'
 import TextFieldTagsComponent from './TextFieldTags'
-import TextFieldTagsErrorComponent from './TextFieldTagsError'
 
 export default {
   title: 'Atoms/Form/TextFieldTags',
@@ -13,16 +13,24 @@ export default {
   helperText: {
     control: 'text',
   },
-  component: TextFieldTagsComponent,
-} as ComponentMeta<typeof TextFieldTagsComponent>
+  component: TextFieldTagsWithoutErrorComponent,
+} as ComponentMeta<typeof TextFieldTagsWithoutErrorComponent>
 
-const Template: ComponentStory<typeof TextFieldTagsComponent> = (args) => {
+const Template: ComponentStory<typeof TextFieldTagsWithoutErrorComponent> = (
+  args
+) => {
   const [value, setValue] = useState<string[]>([])
-  return <TextFieldTagsComponent {...args} value={value} onChange={setValue} />
+  return (
+    <TextFieldTagsWithoutErrorComponent
+      {...args}
+      value={value}
+      onChange={setValue}
+    />
+  )
 }
 
-export const Default = Template.bind({})
-Default.args = {
+export const WithoutError = Template.bind({})
+WithoutError.args = {
   margin: 'normal',
   required: true,
   helperText: 'HelperText',
@@ -37,15 +45,15 @@ Default.args = {
   placeholder: 'Placeholder',
 }
 
-const TemplateError: ComponentStory<typeof TextFieldTagsComponent> = (args) => {
+const TemplateError: ComponentStory<
+  typeof TextFieldTagsWithoutErrorComponent
+> = (args) => {
   const [value, setValue] = useState<string[]>([])
-  return (
-    <TextFieldTagsErrorComponent {...args} value={value} onChange={setValue} />
-  )
+  return <TextFieldTagsComponent {...args} value={value} onChange={setValue} />
 }
 
-export const WithError = TemplateError.bind({})
-WithError.args = {
+export const Default = TemplateError.bind({})
+Default.args = {
   margin: 'normal',
   required: true,
   label: 'Label',

@@ -57,10 +57,10 @@ const Template: ComponentStory<typeof DoubleDatePickerWithoutErrorComponent> = (
 }
 
 // This intermediate component is necessary to avoid storybook to crash when typing a value...
-export const Default: ComponentStory<typeof DoubleDatePicker> = (
+export const WithoutError: ComponentStory<typeof DoubleDatePicker> = (
   args: Record<string, unknown>
 ) => <Template {...args} />
-Default.args = {
+WithoutError.args = {
   color: 'primary',
   disabled: false,
   error: false,
@@ -89,10 +89,10 @@ const FormErrorTemplate: ComponentStory<typeof DoubleDatePicker> = (args) => {
 }
 
 // This intermediate component is necessary to avoid storybook to crash when typing a value...
-export const WithError: ComponentStory<typeof DoubleDatePicker> = (
+export const Default: ComponentStory<typeof DoubleDatePicker> = (
   args: Record<string, unknown>
 ) => <FormErrorTemplate {...args} />
-WithError.args = {
+Default.args = {
   color: 'primary',
   disabled: false,
   error: false,
@@ -102,8 +102,8 @@ WithError.args = {
   infoTooltip: '',
   label: 'Label',
   margin: 'none',
-  required: false,
-  showError: false,
+  required: true,
+  showError: true,
   small: false,
   transparent: false,
 }

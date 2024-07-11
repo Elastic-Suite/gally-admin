@@ -51,8 +51,8 @@ const Template: ComponentStory<typeof InputTextWithoutErrorComponent> = (
   )
 }
 
-export const Default = Template.bind({})
-Default.args = {
+export const WithoutError = Template.bind({})
+WithoutError.args = {
   color: 'primary',
   dirty: false,
   disabled: false,
@@ -74,8 +74,8 @@ Default.args = {
   type: 'text',
 }
 
-export const Search = Template.bind({})
-Search.args = {
+export const SearchWithoutError = Template.bind({})
+SearchWithoutError.args = {
   color: 'primary',
   dirty: false,
   disabled: false,
@@ -110,8 +110,8 @@ const FormErrorTemplate: ComponentStory<
   return <InputText {...args} value={value} onChange={handleChange} />
 }
 
-export const WithError = FormErrorTemplate.bind({})
-WithError.args = {
+export const Default = FormErrorTemplate.bind({})
+Default.args = {
   color: 'primary',
   disabled: false,
   endAdornment: null,

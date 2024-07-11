@@ -12,7 +12,7 @@ import FiltersPreviewBoostingTab, {
 } from './FiltersPreviewBoostingTab'
 import SearchBar from '../../atoms/form/SearchBar'
 import DropDown from '../../atoms/form/DropDown'
-import TreeSelectorError from '../../atoms/form/TreeSelectorError'
+import TreeSelector from '../../atoms/form/TreeSelector'
 export interface IPreviewBoostFilter {
   type: string
   search?: string
@@ -89,7 +89,7 @@ function FiltersPreviewBoostingTabs({
               children: (
                 <>
                   {DrowDownLocalizedCatalog}
-                  <TreeSelectorError
+                  <TreeSelector
                     showError={showAllErrors}
                     sx={{
                       minWidth: '252.667px',

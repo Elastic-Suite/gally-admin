@@ -1,28 +1,38 @@
 import React, { useState } from 'react'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
 
+import TextareaWithoutErrorComponent from './TextareaWithoutError'
 import TextareaComponent from './Textarea'
-import TextareaErrorComponent from './TextareaError'
 
 export default {
-  title: 'Atoms/Form',
-  component: TextareaComponent,
+  title: 'Atoms/Form/Textarea',
+  component: TextareaWithoutErrorComponent,
   argTypes: {
     id: { table: { disable: true } },
   },
-} as ComponentMeta<typeof TextareaComponent>
+} as ComponentMeta<typeof TextareaWithoutErrorComponent>
 
-const Template: ComponentStory<typeof TextareaComponent> = (args) => {
-  const [value, setValue] = useState('')
-
-  return <TextareaComponent {...args} value={value} onChange={setValue} />
-}
-
-const FormErrorTemplate: ComponentStory<typeof TextareaComponent> = (args) => {
+const Template: ComponentStory<typeof TextareaWithoutErrorComponent> = (
+  args
+) => {
   const [value, setValue] = useState('')
 
   return (
-    <TextareaErrorComponent
+    <TextareaWithoutErrorComponent
+      {...args}
+      value={value}
+      onChange={setValue}
+    />
+  )
+}
+
+const FormErrorTemplate: ComponentStory<
+  typeof TextareaWithoutErrorComponent
+> = (args) => {
+  const [value, setValue] = useState('')
+
+  return (
+    <TextareaComponent
       {...args}
       label="Textarea with error"
       value={value}
@@ -36,8 +46,8 @@ const FormErrorTemplate: ComponentStory<typeof TextareaComponent> = (args) => {
   )
 }
 
-export const Textarea = Template.bind({})
-Textarea.args = {
+export const WithoutError = Template.bind({})
+WithoutError.args = {
   error: false,
   disabled: false,
   fullWidth: false,
@@ -50,4 +60,4 @@ Textarea.args = {
   resizable: false,
 }
 
-export const withError = FormErrorTemplate.bind({})
+export const Default = FormErrorTemplate.bind({})

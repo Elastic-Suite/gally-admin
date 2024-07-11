@@ -22,7 +22,7 @@ import { ruleOptionsContext } from '../../../contexts'
 import IonIcon from '../IonIcon/IonIcon'
 import { Close, CustomCombination, Root } from './Rule.styled'
 import DropDown from '../form/DropDown'
-import TreeSelectorError from '../form/TreeSelectorError'
+import TreeSelector from '../form/TreeSelector'
 import InputText from '../form/InputText'
 import DatePickerError from '../form/DatePicker'
 
@@ -179,7 +179,7 @@ function Rule(props: IProps): JSX.Element {
             )
           : flatCategories.find((category) => value === category.id) ?? null
       return (
-        <TreeSelectorError
+        <TreeSelector
           showError={showError}
           data={categories}
           multiple={multiple}

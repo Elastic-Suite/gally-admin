@@ -51,8 +51,8 @@ const Template: ComponentStory<typeof DatePickerWithoutErrorComponent> = (
   )
 }
 
-export const Default = Template.bind({})
-Default.args = {
+export const WithoutError = Template.bind({})
+WithoutError.args = {
   color: 'primary',
   disabled: false,
   error: false,
@@ -77,8 +77,8 @@ const FormErrorTemplate: ComponentStory<typeof DatePicker> = (args) => {
   return <DatePicker {...args} value={value} onChange={onChange} />
 }
 
-export const WithError = FormErrorTemplate.bind({})
-WithError.args = {
+export const Default = FormErrorTemplate.bind({})
+Default.args = {
   color: 'primary',
   disabled: false,
   error: false,
@@ -88,8 +88,8 @@ WithError.args = {
   infoTooltip: '',
   label: 'Label',
   margin: 'none',
-  required: false,
-  showError: false,
+  required: true,
+  showError: true,
   small: false,
   transparent: false,
 }

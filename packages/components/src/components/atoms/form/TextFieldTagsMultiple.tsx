@@ -4,7 +4,7 @@ import { FormHelperText, IconButton, InputLabel } from '@mui/material'
 import IonIcon from '../IonIcon/IonIcon'
 import InfoTooltip from './InfoTooltip'
 import FormControl from './FormControl'
-import TextFieldTagsError from './TextFieldTagsError'
+import TextFieldTags from './TextFieldTags'
 import Button from '../buttons/Button'
 
 import {
@@ -158,11 +158,7 @@ function TextFieldTagsMultiple(
       )}
       <CustomMultipleTextFieldsTags>
         {disabled ? (
-          <TextFieldTagsError
-            value={[]}
-            disabledValue={disabledValue}
-            disabled
-          />
+          <TextFieldTags value={[]} disabledValue={disabledValue} disabled />
         ) : (
           Object.entries(modifiedValue).map(([key, value]) => {
             const option = options.find((it) => it.value === key)
@@ -196,7 +192,7 @@ function TextFieldTagsMultiple(
                     options={newOptionsList}
                     sx={{ marginBottom: 1 }}
                   />
-                  <TextFieldTagsError
+                  <TextFieldTags
                     required
                     showError={showError}
                     withCleanButton

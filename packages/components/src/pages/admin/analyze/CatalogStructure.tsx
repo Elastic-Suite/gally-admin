@@ -30,7 +30,7 @@ import { selectConfiguration, useAppSelector } from '../../../store'
 import Button from '../../../components/atoms/buttons/Button'
 import MerchandiseBar from '../../../components/stateful/ProductPreview/MerchandiseBar'
 import { DropDown, InputText, PageTitle } from '../../../components'
-import TreeSelectorError from '../../../components/atoms/form/TreeSelectorError'
+import TreeSelector from '../../../components/atoms/form/TreeSelector'
 import ProductsPreviewBottom from '../../../components/stateful/ProductPreview/ProductsPreviewBottom'
 import Form from '../../../components/atoms/form/Form'
 
@@ -225,7 +225,7 @@ function AdminAnalyzeCatalogStructure(): JSX.Element {
                 sx={{ width: INPUT_WIDTH }}
               />
               {limitationType === 'category' && (
-                <TreeSelectorError
+                <TreeSelector
                   label={t('Category')}
                   name="category"
                   data={categoriesList}

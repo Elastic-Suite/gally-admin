@@ -84,8 +84,8 @@ const Template: ComponentStory<typeof TextFieldTagsComponentMultiple> = (
   )
 }
 
-export const Default = Template.bind({})
-Default.args = {
+export const WithoutError = Template.bind({})
+WithoutError.args = {
   disabled: false,
   options: textOperatorOptions,
   disabledValue: 'Disabled',
@@ -106,8 +106,8 @@ const TemplateError: ComponentStory<typeof TextFieldTagsComponentMultiple> = (
   )
 }
 
-export const WithError = TemplateError.bind({})
-WithError.args = {
+export const Default = TemplateError.bind({})
+Default.args = {
   disabled: false,
   showError: true,
   options: textOperatorOptions,

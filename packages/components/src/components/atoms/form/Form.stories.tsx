@@ -21,7 +21,7 @@ import ThesaurusSynonym from '../../../../public/mocks/thesaurus_synonym.json'
 import Expansion from './Expansion'
 import DropDown from './DropDown'
 import Checkbox from './Checkbox'
-import RadioGroupError from './RadioGroupError'
+import RadioGroup from './RadioGroup'
 
 export default {
   title: 'Atoms/Form/Form',
@@ -138,7 +138,7 @@ const Template = (): JSX.Element => {
         ]}
       />
 
-      <RadioGroupError
+      <RadioGroup
         value={radioGroup}
         onChange={setRadioGroup}
         required

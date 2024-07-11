@@ -2,12 +2,12 @@ import React from 'react'
 
 import { renderWithProviders } from '../../../utils/tests'
 
-import Textarea from './Textarea'
+import TextareaWithoutError from './TextareaWithoutError'
 
 describe('Textarea match snapshot', () => {
   it('TextareaAllFalse', () => {
     const { container } = renderWithProviders(
-      <Textarea
+      <TextareaWithoutError
         id="textarea"
         label="Label"
         placeholder="Describe your issue"
@@ -23,7 +23,7 @@ describe('Textarea match snapshot', () => {
 
   it('TextareaAllTrue', () => {
     const { container } = renderWithProviders(
-      <Textarea
+      <TextareaWithoutError
         id="textarea"
         label="Label"
         placeholder="Describe your issue"

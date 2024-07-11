@@ -13,7 +13,7 @@ import {
 
 import DropDown from '../../atoms/form/DropDown'
 import InputText from '../../atoms/form/InputText'
-import RangeError from '../../atoms/form/RangeError'
+import Range from '../../atoms/form/Range'
 import Switch from '../../atoms/form/Switch'
 
 import ReadableFieldGuesser from './ReadableFieldGuesser'
@@ -128,7 +128,7 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
 
     case DataContentType.RANGE: {
       return (
-        <RangeError
+        <Range
           infoTooltip={infoTooltip}
           dirty={dirty}
           disabled={disabled}

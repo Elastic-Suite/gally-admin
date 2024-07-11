@@ -8,7 +8,7 @@ import { StyledFormControl } from './InputText.styled'
 import Button from '../buttons/Button'
 import { styled } from '@mui/system'
 import { useTranslation } from 'next-i18next'
-import TextFieldTagsError from './TextFieldTagsError'
+import TextFieldTags from './TextFieldTags'
 
 const CustomPropError = ['error']
 const CustomRoot = styled('div', {
@@ -175,7 +175,7 @@ function Synonym(props: IProps): JSX.Element {
               key={synonym.id}
               className="synonym"
             >
-              <TextFieldTagsError
+              <TextFieldTags
                 fullWidth={fullWidth}
                 showError={showError}
                 required

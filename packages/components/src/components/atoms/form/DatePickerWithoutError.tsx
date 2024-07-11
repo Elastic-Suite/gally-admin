@@ -58,7 +58,7 @@ function ShowIcon(): JSX.Element {
   )
 }
 
-function DatePicker(
+function DatePickerWithoutError(
   props: IDatePickerProps,
   ref?: ForwardedRef<HTMLInputElement>
 ): JSX.Element {
@@ -117,4 +117,4 @@ function DatePicker(
   )
 }
 
-export default forwardRef(DatePicker)
+export default forwardRef(DatePickerWithoutError)

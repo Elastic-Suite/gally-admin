@@ -3,12 +3,12 @@ import { ComponentMeta, ComponentStory } from '@storybook/react'
 
 import categories from '../../../../public/mocks/categories.json'
 
+import TreeSelectorWithoutErrorComponent from './TreeSelectorWithoutError'
 import TreeSelectorComponent from './TreeSelector'
-import TreeSelectorErrorComponent from './TreeSelectorError'
 
 export default {
   title: 'Atoms/Form/TreeSelector',
-  component: TreeSelectorComponent,
+  component: TreeSelectorWithoutErrorComponent,
   argTypes: {
     helperIcon: {
       options: ['', 'information-circle', 'checkmark', 'close'],
@@ -21,12 +21,14 @@ export default {
       control: 'text',
     },
   },
-} as ComponentMeta<typeof TreeSelectorComponent>
+} as ComponentMeta<typeof TreeSelectorWithoutErrorComponent>
 
-export const Simple: ComponentStory<typeof TreeSelectorComponent> = (args) => {
+export const SimpleWithoutError: ComponentStory<
+  typeof TreeSelectorWithoutErrorComponent
+> = (args) => {
   const [value, setValue] = useState(null)
   return (
-    <TreeSelectorComponent
+    <TreeSelectorWithoutErrorComponent
       {...args}
       value={value}
       multiple={false}
@@ -34,11 +36,40 @@ export const Simple: ComponentStory<typeof TreeSelectorComponent> = (args) => {
     />
   )
 }
-Simple.args = {
+SimpleWithoutError.args = {
   data: categories.categories,
   label: 'Label',
   required: false,
   disabled: false,
+  small: false,
+  transparent: false,
+}
+
+export const MultipleWithoutError: ComponentStory<
+  typeof TreeSelectorWithoutErrorComponent
+> = (args) => {
+  const [value, setValue] = useState([])
+  return (
+    <TreeSelectorWithoutErrorComponent
+      {...args}
+      value={value}
+      multiple
+      onChange={setValue}
+    />
+  )
+}
+MultipleWithoutError.args = {
+  data: categories.categories,
+  disabled: false,
+  error: false,
+  fullWidth: false,
+  helperText: '',
+  helperIcon: '',
+  infoTooltip: '',
+  label: 'Label',
+  margin: 'none',
+  placeholder: '',
+  required: false,
   small: false,
   transparent: false,
 }
@@ -56,37 +87,8 @@ export const Multiple: ComponentStory<typeof TreeSelectorComponent> = (
     />
   )
 }
+
 Multiple.args = {
-  data: categories.categories,
-  disabled: false,
-  error: false,
-  fullWidth: false,
-  helperText: '',
-  helperIcon: '',
-  infoTooltip: '',
-  label: 'Label',
-  margin: 'none',
-  placeholder: '',
-  required: false,
-  small: false,
-  transparent: false,
-}
-
-export const MultipleWithError: ComponentStory<typeof TreeSelectorComponent> = (
-  args
-) => {
-  const [value, setValue] = useState([])
-  return (
-    <TreeSelectorErrorComponent
-      {...args}
-      value={value}
-      multiple
-      onChange={setValue}
-    />
-  )
-}
-
-MultipleWithError.args = {
   data: categories.categories,
   required: true,
   showError: true,
