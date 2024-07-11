@@ -50,6 +50,7 @@ export interface IFieldConfigFormWithFieldset {
   tooltip?: string
   code: string
   children: IFieldConfig[]
+  external?: boolean
 }
 
 export interface IFieldGuesserProps extends IFieldConfig {

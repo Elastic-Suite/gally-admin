@@ -26,9 +26,6 @@ export default function SearchBar({
       label={label}
       value={value}
       onChange={(value: string | number): void => onChange(value.toString())}
-      onKeyUp={(e): void => {
-        if (e.key === 'Enter') onResearch(formIsValid)
-      }}
       placeholder={placeholder}
       endAdornment={
         <InputAdornment

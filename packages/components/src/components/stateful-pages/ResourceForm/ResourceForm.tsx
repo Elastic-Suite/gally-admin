@@ -26,6 +26,7 @@ import PageTitle from '../../atoms/PageTitle/PageTitle'
 import PopIn from '../../atoms/modals/PopIn'
 import { styled } from '@mui/system'
 import Form from '../../atoms/form/Form'
+import { MainSectionFieldSet } from '../../organisms/CustomForm/CustomForm.styled'
 
 const CustomDoubleButtonSticky = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -174,64 +175,74 @@ function ResourceForm(props: IProps): JSX.Element {
   }
 
   return (
-    <Form
-      onSubmit={handleSubmit}
-      style={{
-        display: 'flex',
-        gap: 16,
-        flexDirection: 'column',
-      }}
-    >
-      {title ? (
-        <PageTitle title={title} sx={{ marginBottom: '32px' }} sticky>
-          <CustomDoubleButtonSticky>
-            <BackToLastPage urlRedirection="./grid" />
-            {id ? (
-              <PopIn
-                confirmationPopIn
-                position="center"
-                onConfirm={deleteData}
-                titlePopIn={t('confirmation.message.delete', { entity })}
-                cancelName={t('cancel')}
-                confirmName={t('confirm')}
-                triggerElement={
-                  <Button
-                    display="secondary"
-                    disabled={isLoading}
-                    endIcon={<ion-icon name="trash-outline" />}
-                  >
-                    {t('delete')}
-                  </Button>
-                }
-                loading={isLoading}
-              />
-            ) : null}
-            <Box>
-              <Button
-                type="submit"
-                loading={isLoading}
-                endIcon={
-                  id ? (
-                    <ion-icon name="save-outline" />
-                  ) : (
-                    <ion-icon name="add-circle-outline" />
-                  )
-                }
-              >
-                {id ? t('save') : t('create')}
-              </Button>
-            </Box>
-          </CustomDoubleButtonSticky>
-        </PageTitle>
-      ) : null}
+    <MainSectionFieldSet>
+      <Form
+        onSubmit={handleSubmit}
+        style={{
+          display: 'flex',
+          gap: 16,
+          flexDirection: 'column',
+        }}
+      >
+        {title ? (
+          <PageTitle title={title} sx={{ marginBottom: '32px' }} sticky>
+            <CustomDoubleButtonSticky>
+              <BackToLastPage urlRedirection="./grid" />
+              {id ? (
+                <PopIn
+                  confirmationPopIn
+                  position="center"
+                  onConfirm={deleteData}
+                  titlePopIn={t('confirmation.message.delete', { entity })}
+                  cancelName={t('cancel')}
+                  confirmName={t('confirm')}
+                  triggerElement={
+                    <Button
+                      display="secondary"
+                      disabled={isLoading}
+                      endIcon={<ion-icon name="trash-outline" />}
+                    >
+                      {t('delete')}
+                    </Button>
+                  }
+                  loading={isLoading}
+                />
+              ) : null}
+              <Box>
+                <Button
+                  type="submit"
+                  loading={isLoading}
+                  endIcon={
+                    id ? (
+                      <ion-icon name="save-outline" />
+                    ) : (
+                      <ion-icon name="add-circle-outline" />
+                    )
+                  }
+                >
+                  {id ? t('save') : t('create')}
+                </Button>
+              </Box>
+            </CustomDoubleButtonSticky>
+          </PageTitle>
+        ) : null}
+        <CustomForm
+          data={data}
+          showAllErrors={showAllErrors}
+          onChange={setData}
+          resource={resource}
+          errors={errors}
+        />
+      </Form>
       <CustomForm
         data={data}
         showAllErrors={showAllErrors}
         onChange={setData}
         resource={resource}
         errors={errors}
+        externalFieldSet
       />
-    </Form>
+    </MainSectionFieldSet>
   )
 }
 

@@ -23,10 +23,18 @@ interface IProps {
   resource: IResource
   errors?: IErrorsForm
   showAllErrors?: boolean
+  externalFieldSet?: boolean
 }
 
 function CustomForm(props: IProps): JSX.Element {
-  const { data, onChange, resource, errors, showAllErrors } = props
+  const {
+    data,
+    onChange,
+    resource,
+    errors,
+    showAllErrors,
+    externalFieldSet = false,
+  } = props
 
   const headers = useApiHeadersForm(resource)
   const { t } = useTranslation('api')
@@ -43,7 +51,11 @@ function CustomForm(props: IProps): JSX.Element {
   return (
     <MainSectionFieldSet>
       {headers.map((fieldset: IFieldConfigFormWithFieldset) => {
-        if (fieldset.children.length === 0) {
+        if (
+          (externalFieldSet && !fieldset.external) ||
+          (!externalFieldSet && fieldset.external) ||
+          fieldset.children.length === 0
+        ) {
           return null
         }
 
