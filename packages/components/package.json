@@ -83,7 +83,6 @@
     "browserslist": "4.21.10",
     "classnames": "2.3.2",
     "crypto-browserify": "3.12.0",
-    "dayjs": "1.11.6",
     "i18next": "22.4.6",
     "i18next-chained-backend": "4.2.0",
     "i18next-http-backend": "2.1.1",
