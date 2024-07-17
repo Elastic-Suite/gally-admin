@@ -77,5 +77,6 @@
   "Pinned": "Épinglé",
   "Up": "Haut",
   "Down": "Bas",
-  "Equal": "Égale"
+  "Equal": "Égale",
+  "formError.patternMismatchEmail": "Le format de l'adresse e-mail est invalide."
 }

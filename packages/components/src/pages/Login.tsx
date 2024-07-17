@@ -109,15 +109,22 @@ function Login(): JSX.Element {
           <InputTextError
             autoComplete="email"
             fullWidth
+            type="email"
             label={t('label.email')}
             margin="normal"
             onChange={(value: string): void => setEmail(value)}
             value={email}
             showError={showAllErrors}
+            inputProps={{
+              pattern: '^[a-z0-9\\._]+@[a-z0-9\\.\\-]+\\.[a-z]{2,4}$',
+            }}
             additionalValidator={(value: string): string => {
               if (!value) return 'valueMissing'
-              const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-              return emailRegex.test(value) ? '' : 'patternMismatch'
+              return ''
+            }}
+            replacementErrorsMessages={{
+              patternMismatch: 'patternMismatchEmail',
+              typeMismatch: 'patternMismatchEmail',
             }}
           />
           <InputTextError
