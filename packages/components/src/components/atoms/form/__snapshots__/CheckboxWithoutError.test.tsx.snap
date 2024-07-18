@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Checkbox match snapshot CheckboxIndeterminateFalse 1`] = `
+exports[`CheckboxWithoutError match snapshot CheckboxWithoutErrorIndeterminateFalse 1`] = `
 <div>
   <label
     class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-fbz9fk-MuiFormControlLabel-root"
@@ -37,7 +37,7 @@ exports[`Checkbox match snapshot CheckboxIndeterminateFalse 1`] = `
 </div>
 `;
 
-exports[`Checkbox match snapshot CheckboxIndeterminateTrue 1`] = `
+exports[`CheckboxWithoutError match snapshot CheckboxWithoutErrorIndeterminateTrue 1`] = `
 <div>
   <label
     class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-fbz9fk-MuiFormControlLabel-root"
@@ -74,7 +74,7 @@ exports[`Checkbox match snapshot CheckboxIndeterminateTrue 1`] = `
 </div>
 `;
 
-exports[`Checkbox match snapshot CheckboxLabel 1`] = `
+exports[`CheckboxWithoutError match snapshot CheckboxWithoutErrorLabel 1`] = `
 <div>
   <label
     class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-fbz9fk-MuiFormControlLabel-root"
@@ -113,7 +113,7 @@ exports[`Checkbox match snapshot CheckboxLabel 1`] = `
 </div>
 `;
 
-exports[`Checkbox match snapshot CheckboxLabelAndList 1`] = `
+exports[`CheckboxWithoutError match snapshot CheckboxWithoutErrorLabelAndList 1`] = `
 <div>
   <label
     class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-fbz9fk-MuiFormControlLabel-root"
@@ -152,7 +152,7 @@ exports[`Checkbox match snapshot CheckboxLabelAndList 1`] = `
 </div>
 `;
 
-exports[`Checkbox match snapshot CheckboxListFalse 1`] = `
+exports[`CheckboxWithoutError match snapshot CheckboxWithoutErrorListFalse 1`] = `
 <div>
   <label
     class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-fbz9fk-MuiFormControlLabel-root"
@@ -189,7 +189,7 @@ exports[`Checkbox match snapshot CheckboxListFalse 1`] = `
 </div>
 `;
 
-exports[`Checkbox match snapshot CheckboxListTrue 1`] = `
+exports[`CheckboxWithoutError match snapshot CheckboxWithoutErrorListTrue 1`] = `
 <div>
   <label
     class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-fbz9fk-MuiFormControlLabel-root"

@@ -4,8 +4,8 @@ import { renderWithProviders } from '../../../utils/tests'
 
 import TextareaWithoutError from './TextareaWithoutError'
 
-describe('Textarea match snapshot', () => {
-  it('TextareaAllFalse', () => {
+describe('TextareaWithoutError match snapshot', () => {
+  it('TextareaWithoutErrorAllFalse', () => {
     const { container } = renderWithProviders(
       <TextareaWithoutError
         id="textarea"
@@ -21,7 +21,7 @@ describe('Textarea match snapshot', () => {
     expect(container).toMatchSnapshot()
   })
 
-  it('TextareaAllTrue', () => {
+  it('TextareaWithoutErrorAllTrue', () => {
     const { container } = renderWithProviders(
       <TextareaWithoutError
         id="textarea"

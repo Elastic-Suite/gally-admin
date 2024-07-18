@@ -4,7 +4,7 @@ import { renderWithProviders } from '../../../utils/tests'
 
 import InputTextWithoutError from './InputTextWithoutError'
 
-describe('InputText match snapshot', () => {
+describe('InputTextWithoutError match snapshot', () => {
   it('BadgeDisabledFalse', () => {
     const { container } = renderWithProviders(
       <InputTextWithoutError

@@ -6,7 +6,7 @@ import InputText from './InputText'
 import { screen } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
 
-describe('InputTextError', () => {
+describe('InputText', () => {
   it('match snapshot', () => {
     const { container } = renderWithProviders(
       <InputText

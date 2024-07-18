@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`RangeError sould match snapshot 1`] = `
+exports[`DoubleDatePicker sould match snapshot 1`] = `
 <div>
   <div
     class="css-vaijrj"

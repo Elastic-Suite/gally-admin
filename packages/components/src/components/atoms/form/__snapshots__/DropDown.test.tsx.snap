@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`DropDownError sould match snapshot 1`] = `
+exports[`DropDown sould match snapshot 1`] = `
 <div>
   <div
     class="MuiFormControl-root css-1girsym-MuiFormControl-root"
@@ -70,7 +70,7 @@ exports[`DropDownError sould match snapshot 1`] = `
 </div>
 `;
 
-exports[`DropDownError sould match snapshot width multiple value 1`] = `
+exports[`DropDown sould match snapshot width multiple value 1`] = `
 <div>
   <div
     class="MuiFormControl-root css-1girsym-MuiFormControl-root"

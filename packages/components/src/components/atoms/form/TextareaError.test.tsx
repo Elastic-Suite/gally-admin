@@ -6,7 +6,7 @@ import Textarea from './Textarea'
 import { screen } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
 
-describe('TextareaError', () => {
+describe('Textarea', () => {
   it('sould match snapshot', () => {
     const { container } = renderWithProviders(
       <Textarea label="Label" value="Test" />

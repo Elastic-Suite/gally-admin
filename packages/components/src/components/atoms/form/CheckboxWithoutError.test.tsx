@@ -4,43 +4,43 @@ import { renderWithProviders } from '../../../utils/tests'
 
 import CheckboxWithoutError from './CheckboxWithoutError'
 
-describe('Checkbox match snapshot', () => {
-  it('CheckboxIndeterminateFalse', () => {
+describe('CheckboxWithoutError match snapshot', () => {
+  it('CheckboxWithoutErrorIndeterminateFalse', () => {
     const { container } = renderWithProviders(
       <CheckboxWithoutError indeterminate={false} />
     )
     expect(container).toMatchSnapshot()
   })
 
-  it('CheckboxIndeterminateTrue', () => {
+  it('CheckboxWithoutErrorIndeterminateTrue', () => {
     const { container } = renderWithProviders(
       <CheckboxWithoutError indeterminate />
     )
     expect(container).toMatchSnapshot()
   })
 
-  it('CheckboxLabelAndList', () => {
+  it('CheckboxWithoutErrorLabelAndList', () => {
     const { container } = renderWithProviders(
       <CheckboxWithoutError indeterminate label="Label" list />
     )
     expect(container).toMatchSnapshot()
   })
 
-  it('CheckboxLabel', () => {
+  it('CheckboxWithoutErrorLabel', () => {
     const { container } = renderWithProviders(
       <CheckboxWithoutError indeterminate={false} label="Label" />
     )
     expect(container).toMatchSnapshot()
   })
 
-  it('CheckboxListTrue', () => {
+  it('CheckboxWithoutErrorListTrue', () => {
     const { container } = renderWithProviders(
       <CheckboxWithoutError indeterminate={false} list />
     )
     expect(container).toMatchSnapshot()
   })
 
-  it('CheckboxListFalse', () => {
+  it('CheckboxWithoutErrorListFalse', () => {
     const { container } = renderWithProviders(
       <CheckboxWithoutError indeterminate={false} list={false} />
     )

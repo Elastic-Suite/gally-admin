@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`TextareaError sould match snapshot 1`] = `
+exports[`Textarea sould match snapshot 1`] = `
 <div>
   <div
     class="MuiFormControl-root css-1girsym-MuiFormControl-root"

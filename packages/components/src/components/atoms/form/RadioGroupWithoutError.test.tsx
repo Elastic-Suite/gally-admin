@@ -4,7 +4,7 @@ import { renderWithProviders } from '../../../utils/tests'
 
 import RadioGroupWithoutError from './RadioGroupWithoutError'
 
-describe('Switch match snapshot', () => {
+describe('RadioGroupWithoutError match snapshot', () => {
   it('Radio group defaultChecked true with default', () => {
     const { container } = renderWithProviders(
       <RadioGroupWithoutError
@@ -20,7 +20,7 @@ describe('Switch match snapshot', () => {
     expect(container).toMatchSnapshot()
   })
 
-  it('Radio group defaultChecked true without default', () => {
+  it('RadioGroupWithoutError defaultChecked true without default', () => {
     const { container } = renderWithProviders(
       <RadioGroupWithoutError
         name="radio-buttons-group"
@@ -35,7 +35,7 @@ describe('Switch match snapshot', () => {
     expect(container).toMatchSnapshot()
   })
 
-  it('Radio group defaultChecked False with default true', () => {
+  it('RadioGroupWithoutError defaultChecked False with default true', () => {
     const { container } = renderWithProviders(
       <RadioGroupWithoutError
         name="radio-buttons-group"
@@ -50,7 +50,7 @@ describe('Switch match snapshot', () => {
     expect(container).toMatchSnapshot()
   })
 
-  it('Radio group defaultChecked False without default', () => {
+  it('RadioGroupWithoutError defaultChecked False without default', () => {
     const { container } = renderWithProviders(
       <RadioGroupWithoutError
         name="radio-buttons-group"

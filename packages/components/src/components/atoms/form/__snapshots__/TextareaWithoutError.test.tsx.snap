@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Textarea match snapshot TextareaAllFalse 1`] = `
+exports[`TextareaWithoutError match snapshot TextareaWithoutErrorAllFalse 1`] = `
 <div>
   <div
     class="MuiFormControl-root css-1girsym-MuiFormControl-root"
@@ -41,7 +41,7 @@ exports[`Textarea match snapshot TextareaAllFalse 1`] = `
 </div>
 `;
 
-exports[`Textarea match snapshot TextareaAllTrue 1`] = `
+exports[`TextareaWithoutError match snapshot TextareaWithoutErrorAllTrue 1`] = `
 <div>
   <div
     class="MuiFormControl-root css-1girsym-MuiFormControl-root"

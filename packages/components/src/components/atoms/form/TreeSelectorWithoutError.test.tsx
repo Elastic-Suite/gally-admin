@@ -5,7 +5,7 @@ import categories from '../../../../public/mocks/categories.json'
 
 import TextFieldTagsWithoutError from './TreeSelectorWithoutError'
 
-describe('TreeSelector', () => {
+describe('TreeSelectorWithoutError', () => {
   it('should match snapshot', () => {
     const { container } = renderWithProviders(
       <TextFieldTagsWithoutError

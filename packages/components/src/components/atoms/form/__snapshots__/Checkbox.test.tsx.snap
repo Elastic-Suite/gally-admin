@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`CheckboxError sould match snapshot 1`] = `
+exports[`Checkbox sould match snapshot 1`] = `
 <div>
   <label
     class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-fbz9fk-MuiFormControlLabel-root"

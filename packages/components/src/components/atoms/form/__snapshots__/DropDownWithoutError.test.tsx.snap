@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`DropDown match snapshot BadgeArrayObjectValue 1`] = `
+exports[`DropDownWithoutError match snapshot BadgeArrayObjectValue 1`] = `
 <div>
   <div
     class="MuiFormControl-root css-1girsym-MuiFormControl-root"
@@ -127,7 +127,7 @@ exports[`DropDown match snapshot BadgeArrayObjectValue 1`] = `
 </div>
 `;
 
-exports[`DropDown match snapshot BadgeDisabledFalse 1`] = `
+exports[`DropDownWithoutError match snapshot BadgeDisabledFalse 1`] = `
 <div>
   <div
     class="MuiFormControl-root css-1girsym-MuiFormControl-root"
@@ -183,7 +183,7 @@ exports[`DropDown match snapshot BadgeDisabledFalse 1`] = `
 </div>
 `;
 
-exports[`DropDown match snapshot BadgeDisabledTrue 1`] = `
+exports[`DropDownWithoutError match snapshot BadgeDisabledTrue 1`] = `
 <div>
   <div
     class="MuiFormControl-root css-1girsym-MuiFormControl-root"
@@ -238,7 +238,7 @@ exports[`DropDown match snapshot BadgeDisabledTrue 1`] = `
 </div>
 `;
 
-exports[`DropDown match snapshot BadgeLabel 1`] = `
+exports[`DropDownWithoutError match snapshot BadgeLabel 1`] = `
 <div>
   <div
     class="MuiFormControl-root css-1girsym-MuiFormControl-root"
@@ -301,7 +301,7 @@ exports[`DropDown match snapshot BadgeLabel 1`] = `
 </div>
 `;
 
-exports[`DropDown match snapshot BadgeMultiple 1`] = `
+exports[`DropDownWithoutError match snapshot BadgeMultiple 1`] = `
 <div>
   <div
     class="MuiFormControl-root css-1girsym-MuiFormControl-root"
@@ -364,7 +364,7 @@ exports[`DropDown match snapshot BadgeMultiple 1`] = `
 </div>
 `;
 
-exports[`DropDown match snapshot BadgeObjectValue 1`] = `
+exports[`DropDownWithoutError match snapshot BadgeObjectValue 1`] = `
 <div>
   <div
     class="MuiFormControl-root css-1girsym-MuiFormControl-root"
@@ -441,7 +441,7 @@ exports[`DropDown match snapshot BadgeObjectValue 1`] = `
 </div>
 `;
 
-exports[`DropDown match snapshot BadgeRequiredFalse 1`] = `
+exports[`DropDownWithoutError match snapshot BadgeRequiredFalse 1`] = `
 <div>
   <div
     class="MuiFormControl-root css-1girsym-MuiFormControl-root"
@@ -497,7 +497,7 @@ exports[`DropDown match snapshot BadgeRequiredFalse 1`] = `
 </div>
 `;
 
-exports[`DropDown match snapshot BadgeRequiredTrue 1`] = `
+exports[`DropDownWithoutError match snapshot BadgeRequiredTrue 1`] = `
 <div>
   <div
     class="MuiFormControl-root css-1girsym-MuiFormControl-root"

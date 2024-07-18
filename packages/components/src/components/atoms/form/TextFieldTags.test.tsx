@@ -6,7 +6,7 @@ import TextFieldTags from './TextFieldTags'
 import { screen } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
 
-describe('TextFieldTagsError', () => {
+describe('TextFieldTags', () => {
   it('sould match snapshot', () => {
     const { container } = renderWithProviders(
       <TextFieldTags label="Label" value={['test']} />

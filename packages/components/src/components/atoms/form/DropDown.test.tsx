@@ -21,7 +21,7 @@ const options = [
   },
 ]
 
-describe('DropDownError', () => {
+describe('DropDown', () => {
   it('sould match snapshot', () => {
     const { container } = renderWithProviders(
       <DropDown options={options} value={1} />

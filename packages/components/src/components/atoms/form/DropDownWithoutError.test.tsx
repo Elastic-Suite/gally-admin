@@ -4,7 +4,7 @@ import { renderWithProviders } from '../../../utils/tests'
 
 import DropDownWithoutError from './DropDownWithoutError'
 
-describe('DropDown match snapshot', () => {
+describe('DropDownWithoutError match snapshot', () => {
   it('BadgeDisabledFalse', () => {
     const { container } = renderWithProviders(
       <DropDownWithoutError

@@ -6,7 +6,7 @@ import Range from './Range'
 import { screen } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
 
-describe('RangeError', () => {
+describe('Range', () => {
   it('sould match snapshot', () => {
     const { container } = renderWithProviders(
       <Range label="Label" value={[1, 3]} />

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`InputTextError match snapshot 1`] = `
+exports[`InputText match snapshot 1`] = `
 <div>
   <div
     class="MuiFormControl-root css-hh3vi8-MuiFormControl-root"

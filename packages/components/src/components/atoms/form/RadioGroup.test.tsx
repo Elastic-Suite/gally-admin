@@ -21,7 +21,7 @@ const options = [
   },
 ]
 
-describe('RadioGroupError', () => {
+describe('RadioGroup', () => {
   it('sould match snapshot', () => {
     const { container } = renderWithProviders(
       <RadioGroup options={options} value={1} />

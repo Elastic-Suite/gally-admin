@@ -8,7 +8,7 @@ import { categories } from '../../../../public/mocks/categories.json'
 import { screen } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
 
-describe('TreeSelectorError', () => {
+describe('TreeSelector', () => {
   it('sould match snapshot', () => {
     const { container } = renderWithProviders(
       <TreeSelector

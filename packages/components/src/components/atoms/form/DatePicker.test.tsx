@@ -6,7 +6,7 @@ import DatePicker from './DatePicker'
 import { screen } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
 
-describe('RangeError', () => {
+describe('DatePicker', () => {
   it('sould match snapshot', () => {
     const { container } = renderWithProviders(
       <DatePicker

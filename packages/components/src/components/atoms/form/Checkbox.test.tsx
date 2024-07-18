@@ -4,9 +4,8 @@ import { renderWithProviders } from '../../../utils/tests'
 
 import Checkbox from './Checkbox'
 import { screen } from '@testing-library/react'
-import '@testing-library/jest-dom/extend-expect'
 
-describe('CheckboxError', () => {
+describe('Checkbox', () => {
   it('sould match snapshot', () => {
     const { container } = renderWithProviders(<Checkbox label="Label" value />)
     expect(container).toMatchSnapshot()
