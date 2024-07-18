@@ -11,8 +11,8 @@ const Template: ComponentStory<typeof FormControlLabel> = (args) => (
   <FormControlLabel {...args} />
 )
 
-export const Radio = Template.bind({})
-Radio.args = {
+export const RadioWithoutError = Template.bind({})
+RadioWithoutError.args = {
   disabled: false,
   value: 'id_5',
   control: <RadioStorybook defaultChecked={false} />,

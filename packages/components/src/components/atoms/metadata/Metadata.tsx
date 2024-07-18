@@ -6,7 +6,7 @@ import {
 
 import { useTranslation } from 'next-i18next'
 
-import DropDown from '../form/DropDown'
+import DropDownWithoutError from '../form/DropDownWithoutError'
 import { styled } from '@mui/system'
 
 const CustomBlocEntity = styled('div')(({ theme }) => ({
@@ -47,7 +47,7 @@ function Metadata(props: IProps): JSX.Element {
   return (
     <CustomBlocEntity>
       <CustomNameBloc>{t('entity')}</CustomNameBloc>
-      <DropDown
+      <DropDownWithoutError
         options={metadataOptions}
         value={fixedFilters}
         onChange={(e: string): void => {

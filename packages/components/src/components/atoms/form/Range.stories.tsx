@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
 
+import RangeWithoutError from './RangeWithoutError'
 import Range from './Range'
-import RangeError from './RangeError'
 
 export default {
   title: 'Atoms/Form/Range',
-  component: Range,
+  component: RangeWithoutError,
   argTypes: {
     color: {
       options: ['none', 'success', 'error'],
@@ -28,16 +28,16 @@ export default {
       control: 'text',
     },
   },
-} as ComponentMeta<typeof Range>
+} as ComponentMeta<typeof RangeWithoutError>
 
-const Template: ComponentStory<typeof Range> = (args) => {
+const Template: ComponentStory<typeof RangeWithoutError> = (args) => {
   const [value, setValue] = useState<(number | string)[]>(['', ''])
   const handleChange = (value: (number | string)[]): void => setValue(value)
-  return <Range {...args} value={value} onChange={handleChange} />
+  return <RangeWithoutError {...args} value={value} onChange={handleChange} />
 }
 
-export const Default = Template.bind({})
-Default.args = {
+export const WithoutError = Template.bind({})
+WithoutError.args = {
   color: 'primary',
   dirty: false,
   disabled: false,
@@ -55,14 +55,14 @@ Default.args = {
   transparent: false,
 }
 
-const FormErrorTemplate: ComponentStory<typeof RangeError> = (args) => {
+const FormErrorTemplate: ComponentStory<typeof RangeWithoutError> = (args) => {
   const [value, setValue] = useState<(number | string)[]>(['', ''])
   const handleChange = (value: (number | string)[]): void => setValue(value)
-  return <RangeError {...args} value={value} onChange={handleChange} />
+  return <Range {...args} value={value} onChange={handleChange} />
 }
 
-export const WithError = FormErrorTemplate.bind({})
-WithError.args = {
+export const Default = FormErrorTemplate.bind({})
+Default.args = {
   color: 'primary',
   disabled: false,
   endAdornment: null,

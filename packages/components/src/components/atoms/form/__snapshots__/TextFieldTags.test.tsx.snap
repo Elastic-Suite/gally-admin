@@ -1,0 +1,79 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TextFieldTags sould match snapshot 1`] = `
+<div>
+  <div
+    style="position: relative;"
+  >
+    <div
+      class="css-vaijrj"
+    >
+      <div
+        style="margin-bottom: 4px;"
+      >
+        <label
+          class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-animated MuiInputLabel-shrink MuiFormLabel-colorPrimary css-1j7os2p-MuiFormLabel-root-MuiInputLabel-root"
+          data-shrink="true"
+        >
+          Label
+        </label>
+      </div>
+      <div
+        class="css-1mxyr7i"
+      >
+        <div
+          class="css-r1vopi"
+        >
+          <div
+            class="MuiButtonBase-root MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-deletable MuiChip-deletableColorDefault MuiChip-filledDefault css-69f6vo-MuiButtonBase-root-MuiChip-root"
+            role="button"
+            style="opacity: 1;"
+            tabindex="0"
+          >
+            <span
+              class="MuiChip-label MuiChip-labelMedium css-6od3lo-MuiChip-label"
+            >
+              test
+            </span>
+            <button
+              class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiChip-deleteIcon MuiChip-deleteIconMedium MuiChip-deleteIconColorDefault MuiChip-deleteIconFilledColorDefault css-78trlr-MuiButtonBase-root-MuiIconButton-root"
+              tabindex="0"
+              type="button"
+            >
+              <ion-icon
+                name="close"
+              />
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              />
+            </button>
+          </div>
+          <div
+            class="css-u4p24i"
+          >
+            <div
+              class="MuiFormControl-root css-hh3vi8-MuiFormControl-root"
+            >
+              <div
+                class="InputText__Wrapper css-17fp4jk"
+              >
+                <div
+                  class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-z54rnl-MuiInputBase-root"
+                >
+                  <input
+                    aria-invalid="false"
+                    class="MuiInputBase-input css-ngazp5-MuiInputBase-input"
+                    placeholder="placeholder.default.textFieldTags"
+                    type="text"
+                    value=""
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

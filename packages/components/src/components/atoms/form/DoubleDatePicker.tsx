@@ -1,147 +1,86 @@
-import React, { ReactNode, RefObject, forwardRef } from 'react'
-import { Box, FormHelperText, Grid, InputLabel } from '@mui/material'
-import { DateValidationError } from '@mui/x-date-pickers/internals/hooks/validation/useDateValidation'
-import { useTranslation } from 'next-i18next'
-import { styled } from '@mui/system'
+import React, { ForwardedRef, SyntheticEvent, useCallback } from 'react'
+import { IFieldErrorProps, IValidator, useFormError } from '../../../hooks'
 
-import IonIcon from '../IonIcon/IonIcon'
+import { dateValidator } from './DatePicker'
+import DoubleDatePickerWithoutError, {
+  IDoubleDatePickerProps,
+  IDoubleDatePickerValues,
+} from './DoubleDatePickerWithoutError'
+interface IDoubleDatePickerErrorProps
+  extends IFieldErrorProps,
+    IDoubleDatePickerProps {}
 
-import DatePicker, { IDatePickerProps } from './DatePicker'
-import FormControl from './FormControl'
-import InfoTooltip from './InfoTooltip'
+export function doubleDateValidator(
+  value: IDoubleDatePickerValues,
+  event?: SyntheticEvent,
+  required?: boolean,
+  additionalValidator?: IDoubleDatePickerErrorProps['additionalValidator']
+): string | null {
+  if (additionalValidator) {
+    return additionalValidator(value, event)
+  }
+  if (required && (!value.fromDate || !value.toDate)) {
+    return 'valueMissing'
+  }
+  const from =
+    typeof value.fromDate === 'string'
+      ? new Date(value.fromDate)
+      : value.fromDate
+  const to =
+    typeof value.toDate === 'string' ? new Date(value.toDate) : value.toDate
 
-const CustomBox = styled(Box)(({ theme }) => ({
-  fontWeight: 500,
-  fontFamily: 'var(--gally-font)',
-  fontSize: '14px',
-  lineHeight: '20px',
-  color: theme.palette.colors.neutral[600],
-}))
+  const fromError = dateValidator(from)
+  if (fromError) {
+    return fromError
+  }
+  const toError = dateValidator(to)
+  if (toError) {
+    return toError
+  }
 
-export interface IDoubleDatePickerValues {
-  fromDate: Date | string | null
-  toDate: Date | string | null
+  if (!value.toDate || !value.fromDate || from <= to) {
+    return ''
+  }
+  return 'doubleDatePickerRange'
 }
-export interface IDoubleDatePickerErrors {
-  from: DateValidationError
-  to: DateValidationError
-}
 
-export interface IDoubleDatePickerProps
-  extends Omit<IDatePickerProps, 'value' | 'onChange' | 'onError' | 'ref'> {
-  value?: IDoubleDatePickerValues
-  onChange?: (values: IDoubleDatePickerValues) => void
-  onError?: (reasons: IDoubleDatePickerErrors) => void
-  error?: boolean
-  errors?: IDoubleDatePickerErrors
-  fullWidth?: boolean
-  infoTooltip?: string
-  label?: ReactNode
-  margin?: 'none' | 'dense' | 'normal'
-  helperText?: ReactNode
-  helperIcon?: string
-}
-
-function DoubleDatePicker(
-  props: IDoubleDatePickerProps,
-  ref?: RefObject<HTMLInputElement>
-): JSX.Element {
+function DoubleDatePicker(props: IDoubleDatePickerErrorProps): JSX.Element {
   const {
-    value,
-    error,
-    errors,
-    fullWidth,
-    helperText,
-    helperIcon,
-    id,
-    infoTooltip,
-    inputProps,
-    label,
-    margin,
     onChange,
-    onError,
-    required,
-    ...args
+    showError,
+    additionalValidator,
+    replacementErrorsMessages,
+    ...inputProps
   } = props
-  const { t } = useTranslation('common')
 
-  function onChangeFrom(date: Date | string): void {
-    onChange({ ...value, fromDate: date })
-  }
+  const validator = useCallback<IValidator>(
+    (value: IDoubleDatePickerValues, event) => {
+      return doubleDateValidator(
+        value,
+        event,
+        inputProps.required,
+        additionalValidator
+      )
+    },
+    [additionalValidator, inputProps.required]
+  )
 
-  function onChangeTo(date: Date | string): void {
-    onChange({ ...value, toDate: date })
-  }
-
-  function onErrorFrom(reason: DateValidationError): void {
-    if (onError) {
-      onError({ ...errors, from: reason })
-    }
-  }
-
-  function onErrorTo(reason: DateValidationError): void {
-    if (onError) {
-      onError({ ...errors, to: reason })
-    }
-  }
+  const [{ ref, ...formErrorProps }] = useFormError(
+    onChange,
+    inputProps.value,
+    showError,
+    validator,
+    inputProps.disabled,
+    replacementErrorsMessages
+  )
 
   return (
-    <FormControl error={error} fullWidth={fullWidth} margin={margin}>
-      {Boolean(label || infoTooltip) && (
-        <InputLabel shrink htmlFor={id} required={required}>
-          {label}
-          {infoTooltip ? <InfoTooltip title={infoTooltip} /> : null}
-        </InputLabel>
-      )}
-      <Grid
-        justifyContent="flex-start"
-        alignItems="center"
-        container
-        sx={{ marginTop: label ? '4px' : '0px' }}
-      >
-        <CustomBox sx={{ paddingRight: '20px' }}> {t('form.from')} </CustomBox>
-        <Grid item xs>
-          <DatePicker
-            {...args}
-            required={required}
-            error={error}
-            fullWidth={fullWidth}
-            inputProps={inputProps}
-            value={value?.fromDate}
-            onChange={onChangeFrom}
-            onError={onErrorFrom}
-            ref={ref}
-          />
-        </Grid>
-        <CustomBox sx={{ paddingRight: '20px', paddingLeft: '20px' }}>
-          {t('form.to')}
-        </CustomBox>
-        <Grid item xs>
-          <DatePicker
-            {...args}
-            required={required}
-            error={error}
-            fullWidth={fullWidth}
-            inputProps={inputProps}
-            value={value?.toDate}
-            onChange={onChangeTo}
-            onError={onErrorTo}
-          />
-        </Grid>
-      </Grid>
-      {Boolean(helperText) && (
-        <FormHelperText error={error}>
-          {Boolean(helperIcon) && (
-            <IonIcon
-              name={helperIcon}
-              style={{ fontSize: 18, marginRight: 2 }}
-            />
-          )}
-          {helperText}
-        </FormHelperText>
-      )}
-    </FormControl>
+    <DoubleDatePickerWithoutError
+      {...inputProps}
+      {...formErrorProps}
+      ref={ref as ForwardedRef<HTMLInputElement>}
+    />
   )
 }
 
-export default forwardRef(DoubleDatePicker)
+export default DoubleDatePicker

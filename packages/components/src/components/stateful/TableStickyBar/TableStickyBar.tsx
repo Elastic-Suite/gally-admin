@@ -10,7 +10,7 @@ import {
 } from '@elastic-suite/gally-admin-shared'
 
 import Button from '../../atoms/buttons/Button'
-import Dropdown from '../../atoms/form/DropDown'
+import DropDownWithoutError from '../../atoms/form/DropDownWithoutError'
 
 import FieldGuesser from '../FieldGuesser/FieldGuesser'
 import Form from '../../atoms/form/Form'
@@ -18,12 +18,6 @@ import Form from '../../atoms/form/Form'
 const ActionsButtonsContainer = styled(Box)({
   marginLeft: 'auto',
 })
-
-// const Form = styled('form')({
-//   display: 'flex',
-//   alignItems: 'center',
-//   flex: 1,
-// })
 
 interface IProps {
   field: IField | ''
@@ -93,7 +87,7 @@ function TableStickyBar(props: IProps): JSX.Element {
         />
       )}
       {t('table.selected', { count: selectedRows.length })}
-      <Dropdown
+      <DropDownWithoutError
         onChange={onChangeField}
         options={fieldOptions}
         style={{ marginLeft: '32px', marginRight: '16px' }}

@@ -9,7 +9,7 @@ import {
 } from '@elastic-suite/gally-admin-shared'
 
 import { CustomRoot } from './RequestTypeItem.styled'
-import DropDownError from './DropDownError'
+import DropDown from './DropDown'
 import RequestTypeItem from './RequestTypeItem'
 import { FormHelperText, InputLabel } from '@mui/material'
 import InfoTooltip from './InfoTooltip'
@@ -102,7 +102,7 @@ function RequestType(props: IProps): JSX.Element {
         </InputLabel>
       ) : undefined}
       <CustomRoot error={error}>
-        <DropDownError
+        <DropDown
           showError={showError}
           required={required}
           placeholder={value.requestTypes.length !== 0 ? '' : placeholder}

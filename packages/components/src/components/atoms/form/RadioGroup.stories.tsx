@@ -1,19 +1,19 @@
 import React from 'react'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
 
-import RadioGrp from './RadioGroup'
+import RadioGrpWithoutError from './RadioGroupWithoutError'
 
 export default {
   title: 'Atoms/Form',
-  component: RadioGrp,
-} as ComponentMeta<typeof RadioGrp>
+  component: RadioGrpWithoutError,
+} as ComponentMeta<typeof RadioGrpWithoutError>
 
-const Template: ComponentStory<typeof RadioGrp> = (args) => (
-  <RadioGrp {...args} />
+const Template: ComponentStory<typeof RadioGrpWithoutError> = (args) => (
+  <RadioGrpWithoutError {...args} />
 )
 
-export const RadioGroup = Template.bind({})
-RadioGroup.args = {
+export const RadioGroupWithoutError = Template.bind({})
+RadioGroupWithoutError.args = {
   name: 'radio-buttons-group',
   defaultChecked: true,
   row: true,

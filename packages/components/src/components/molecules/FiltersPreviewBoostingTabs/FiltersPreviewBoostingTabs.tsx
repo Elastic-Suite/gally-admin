@@ -11,8 +11,8 @@ import FiltersPreviewBoostingTab, {
   IPropsFiltersPreviewBoostingTab,
 } from './FiltersPreviewBoostingTab'
 import SearchBar from '../../atoms/form/SearchBar'
-import DropdownError from '../../atoms/form/DropDownError'
-import TreeSelectorError from '../../atoms/form/TreeSelectorError'
+import DropDown from '../../atoms/form/DropDown'
+import TreeSelector from '../../atoms/form/TreeSelector'
 export interface IPreviewBoostFilter {
   type: string
   search?: string
@@ -52,7 +52,7 @@ function FiltersPreviewBoostingTabs({
   const [showAllErrors, setShowAllErrors] = useState(false)
 
   const DrowDownLocalizedCatalog = (
-    <DropdownError
+    <DropDown
       onChange={(value: string): void => {
         onLocalizedCatalogChange(value)
         setCategory(null)
@@ -89,7 +89,7 @@ function FiltersPreviewBoostingTabs({
               children: (
                 <>
                   {DrowDownLocalizedCatalog}
-                  <TreeSelectorError
+                  <TreeSelector
                     showError={showAllErrors}
                     sx={{
                       minWidth: '252.667px',

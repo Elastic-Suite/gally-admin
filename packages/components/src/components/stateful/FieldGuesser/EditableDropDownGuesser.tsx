@@ -7,7 +7,7 @@ import {
 
 import { optionsContext } from '../../../contexts'
 
-import DropDownError from '../../atoms/form/DropDownError'
+import DropDown from '../../atoms/form/DropDown'
 
 interface IProps extends Omit<IFieldGuesserProps, 'onChange'> {
   onChange: (
@@ -64,7 +64,7 @@ function EditableDropDownGuesser(props: IProps): JSX.Element {
   }
 
   return (
-    <DropDownError
+    <DropDown
       showError={showError}
       infoTooltip={infoTooltip}
       dirty={dirty}

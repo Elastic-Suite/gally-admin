@@ -13,7 +13,7 @@ import {
 import { useResource } from '../../../hooks'
 import { selectBundles, useAppSelector } from '../../../store'
 
-import DropDown from '../../atoms/form/DropDown'
+import DropDownWithoutError from '../../atoms/form/DropDownWithoutError'
 import Switch from '../../atoms/form/Switch'
 
 interface IProps {
@@ -67,7 +67,7 @@ function Merchandize({
           />
         </Grid>
         <Grid item xs={6}>
-          <DropDown
+          <DropDownWithoutError
             infoTooltip={t('select.tooltip')}
             label={t('select.label')}
             name="defaultSorting"

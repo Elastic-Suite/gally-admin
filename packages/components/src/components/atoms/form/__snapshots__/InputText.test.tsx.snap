@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`InputText match snapshot BadgeDisabledFalse 1`] = `
+exports[`InputText match snapshot 1`] = `
 <div>
   <div
     class="MuiFormControl-root css-hh3vi8-MuiFormControl-root"
@@ -23,48 +23,6 @@ exports[`InputText match snapshot BadgeDisabledFalse 1`] = `
           class="MuiInputBase-input css-ngazp5-MuiInputBase-input"
           id="input-text"
           placeholder="Name"
-          type="text"
-          value="hello world"
-        />
-      </div>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`InputText match snapshot BadgeDisabledFalseRequired 1`] = `
-<div>
-  <div
-    class="MuiFormControl-root css-hh3vi8-MuiFormControl-root"
-  >
-    <label
-      class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard MuiFormLabel-colorPrimary MuiFormLabel-filled Mui-required css-rnc4nv-MuiFormLabel-root-MuiInputLabel-root"
-      data-shrink="true"
-      for="input-text"
-    >
-      Label
-      <span
-        aria-hidden="true"
-        class="MuiFormLabel-asterisk MuiInputLabel-asterisk css-1ufxisk-MuiFormLabel-asterisk"
-      >
-         
-        *
-      </span>
-    </label>
-    <div
-      class="InputText__Wrapper css-17fp4jk"
-    >
-      <div
-        class="MuiInputBase-root MuiInputBase-colorPrimary Mui-disabled MuiInputBase-formControl css-1jf161a-MuiInputBase-root"
-        required=""
-      >
-        <input
-          aria-invalid="false"
-          class="MuiInputBase-input Mui-disabled css-ngazp5-MuiInputBase-input"
-          disabled=""
-          id="input-text"
-          placeholder="Name"
-          required=""
           type="text"
           value="hello world"
         />

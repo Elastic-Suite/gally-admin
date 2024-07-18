@@ -1,7 +1,7 @@
 import React, { SyntheticEvent, useState } from 'react'
-import InputTextError from './InputTextError'
-import DoubleDatePickerError from './DoubleDatePickerError'
-import { IDoubleDatePickerValues } from './DoubleDatePicker'
+import InputText from './InputText'
+import DoubleDatePicker from './DoubleDatePicker'
+import { IDoubleDatePickerValues } from './DoubleDatePickerWithoutError'
 import Form from './Form'
 import categories from '../../../../public/mocks/categories.json'
 import RequestType from './RequestType'
@@ -19,9 +19,9 @@ import { action } from '@storybook/addon-actions'
 import Synonym from './Synonym'
 import ThesaurusSynonym from '../../../../public/mocks/thesaurus_synonym.json'
 import Expansion from './Expansion'
-import DropDownError from './DropDownError'
-import CheckboxError from './CheckboxError'
-import RadioGroupError from './RadioGroupError'
+import DropDown from './DropDown'
+import Checkbox from './Checkbox'
+import RadioGroup from './RadioGroup'
 
 export default {
   title: 'Atoms/Form/Form',
@@ -69,14 +69,14 @@ const Template = (): JSX.Element => {
         alignItems: 'start',
       }}
     >
-      <CheckboxError
+      <Checkbox
         checked={checkbox}
         onChange={setCheckbox}
         showError={showAllErrors}
         label="Label"
         required
       />
-      <InputTextError
+      <InputText
         showError={showAllErrors}
         required
         label="Champs non requis"
@@ -97,7 +97,7 @@ const Template = (): JSX.Element => {
         categoriesList={categories.categories}
       />
 
-      <DoubleDatePickerError
+      <DoubleDatePicker
         showError={showAllErrors}
         required
         label="Double date picker requis"
@@ -121,7 +121,7 @@ const Template = (): JSX.Element => {
         onChange={setExpansion}
       />
 
-      <DropDownError
+      <DropDown
         value={dropdown}
         onChange={setDropdown}
         showError={showAllErrors}
@@ -138,7 +138,7 @@ const Template = (): JSX.Element => {
         ]}
       />
 
-      <RadioGroupError
+      <RadioGroup
         value={radioGroup}
         onChange={setRadioGroup}
         required

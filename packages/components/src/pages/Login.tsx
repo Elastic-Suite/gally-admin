@@ -14,7 +14,7 @@ import {
 import { useApiFetch, useUser } from '../hooks'
 import { selectRequestedPath, useAppSelector } from '../store'
 
-import InputTextError from '../components/atoms/form/InputTextError'
+import InputText from '../components/atoms/form/InputText'
 import Form from '../components/atoms/form/Form'
 
 import PageTitle from '../components/atoms/PageTitle/PageTitle'
@@ -106,7 +106,7 @@ function Login(): JSX.Element {
         </CustomImg>
         <PageTitle title={title} />
         <Form onSubmit={handleSubmit} submitButtonText={t('action.login')}>
-          <InputTextError
+          <InputText
             autoComplete="email"
             fullWidth
             label={t('label.email')}
@@ -120,7 +120,7 @@ function Login(): JSX.Element {
               return emailRegex.test(value) ? '' : 'patternMismatch'
             }}
           />
-          <InputTextError
+          <InputText
             autoComplete="current-password"
             fullWidth
             label={t('label.password')}

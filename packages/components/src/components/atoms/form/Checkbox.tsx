@@ -1,100 +1,49 @@
-import React, {
-  ChangeEvent,
-  ForwardedRef,
-  ReactNode,
-  SyntheticEvent,
-  forwardRef,
-} from 'react'
+import React, { ForwardedRef, useCallback } from 'react'
+
 import {
-  CheckboxProps,
-  FormControlLabel,
-  FormHelperText,
-  Checkbox as MuiCheckbox,
-} from '@mui/material'
-import IonIcon from '../IonIcon/IonIcon'
+  IFieldErrorProps,
+  IOnChange,
+  IValidator,
+  useFormError,
+} from '../../../hooks'
 
-export interface ICheckboxProps
-  extends Omit<CheckboxProps, 'onChange' | 'onClick'> {
-  label?: ReactNode
-  list?: boolean
-  onChange?: (checked: boolean, event: SyntheticEvent) => void
-  onClick?: (event: SyntheticEvent) => void
-  small?: boolean
-  helperIcon?: string
-  helperText?: ReactNode
-  error?: boolean
-}
+import CheckboxWithoutError, {
+  ICheckboxWithoutErrorProps,
+} from './CheckboxWithoutError'
 
-function Checkbox(
-  props: ICheckboxProps,
-  ref?: ForwardedRef<HTMLInputElement>
-): JSX.Element {
-  const {
-    error,
-    helperIcon,
-    helperText,
-    disabled,
-    label,
-    list,
-    onChange,
-    onClick,
-    small,
-    ...checkboxProps
-  } = props
+interface ICheckboxErrorProps
+  extends IFieldErrorProps,
+    ICheckboxWithoutErrorProps {}
 
-  function handleChange(event: ChangeEvent<HTMLInputElement>): void {
-    if (onChange) {
-      onChange(event.target.checked, event)
-    }
-  }
+function Checkbox(props: ICheckboxErrorProps): JSX.Element {
+  const { onChange, showError, additionalValidator, ...inputProps } = props
+
+  const validator = useCallback<IValidator>(
+    (value, event) => {
+      if (additionalValidator) return additionalValidator(value, event)
+      return ''
+    },
+    [additionalValidator]
+  )
+
+  const [{ ref, ...formErrorProps }] = useFormError(
+    onChange as IOnChange,
+    inputProps.checked,
+    showError,
+    validator,
+    inputProps.disabled
+  )
 
   return (
-    <FormControlLabel
-      componentsProps={{ typography: { variant: list ? 'caption' : 'body2' } }}
-      control={
-        <MuiCheckbox
-          {...checkboxProps}
-          inputRef={ref}
-          onChange={handleChange}
-          sx={{
-            ...(Boolean(list) && {
-              marginBottom: '-9px',
-              marginTop: '-9px',
-              fontSize: '12px',
-            }),
-            ...(Boolean(small) && {
-              padding: 0,
-              marginLeft: '6px',
-              marginRight: '6px',
-            }),
-          }}
-        />
-      }
-      onClick={onClick}
-      disabled={disabled}
-      label={
-        <div>
-          {label}
-          {Boolean(helperText) && (
-            <FormHelperText error={error}>
-              {Boolean(helperIcon) && (
-                <IonIcon
-                  name={helperIcon}
-                  style={{ fontSize: 18, marginRight: 2 }}
-                />
-              )}
-              {helperText}
-            </FormHelperText>
-          )}
-        </div>
-      }
-      sx={{
-        ...(Boolean(small) && {
-          marginLeft: '-6px',
-        }),
-      }}
+    <CheckboxWithoutError
+      {...inputProps}
+      {...formErrorProps}
+      error={inputProps?.error || formErrorProps?.error}
+      helperIcon={inputProps?.helperIcon || formErrorProps?.helperIcon}
+      helperText={inputProps?.helperText || formErrorProps?.helperText}
+      ref={ref as ForwardedRef<HTMLInputElement>}
     />
   )
 }
 
-export default forwardRef(Checkbox)
+export default Checkbox

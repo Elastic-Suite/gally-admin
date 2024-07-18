@@ -11,16 +11,16 @@ import {
   ISynonyms,
 } from '@elastic-suite/gally-admin-shared'
 
-import DropDownError from '../../atoms/form/DropDownError'
-import InputTextError from '../../atoms/form/InputTextError'
-import RangeError from '../../atoms/form/RangeError'
+import DropDown from '../../atoms/form/DropDown'
+import InputText from '../../atoms/form/InputText'
+import Range from '../../atoms/form/Range'
 import Switch from '../../atoms/form/Switch'
 
 import ReadableFieldGuesser from './ReadableFieldGuesser'
 import EditableDropDownGuesser from './EditableDropDownGuesser'
 import EditableModelConfig from './EditableModelConfig'
-import { IDoubleDatePickerValues } from '../../atoms/form/DoubleDatePicker'
-import DoubleDatePickerError from '../../atoms/form/DoubleDatePickerError'
+import { IDoubleDatePickerValues } from '../../atoms/form/DoubleDatePickerWithoutError'
+import DoubleDatePicker from '../../atoms/form/DoubleDatePicker'
 import { Box } from '@mui/material'
 import RequestTypeManager from '../../stateful/RequestTypeManager/RequestTypeManager'
 import { isHiddenDepends } from '../../../services'
@@ -100,7 +100,7 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
     case DataContentType.NUMBER:
     case DataContentType.STRING: {
       return (
-        <InputTextError
+        <InputText
           infoTooltip={infoTooltip}
           dirty={dirty}
           disabled={disabled}
@@ -128,7 +128,7 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
 
     case DataContentType.RANGE: {
       return (
-        <RangeError
+        <Range
           infoTooltip={infoTooltip}
           dirty={dirty}
           disabled={disabled}
@@ -171,7 +171,7 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
 
       return (
         <Box>
-          <DoubleDatePickerError
+          <DoubleDatePicker
             {...doubleDatePickerProps}
             placeholder={placeholder}
             infoTooltip={infoTooltip}
@@ -285,7 +285,7 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
     case DataContentType.BOOLEAN: {
       if (useDropdownBoolean) {
         return (
-          <DropDownError
+          <DropDown
             infoTooltip={infoTooltip}
             dirty={dirty}
             disabled={disabled}

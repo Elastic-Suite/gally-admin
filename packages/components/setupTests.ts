@@ -4,5 +4,6 @@
 // used for __tests__/testing-library.js
 // learn more: https://github.com/testing-library/jest-dom
 import '@inrupt/jest-jsdom-polyfills'
+import '@testing-library/jest-dom/extend-expect'
 // import '@testing-library/jest-dom/extend-expect'
 // import 'core-js/stable'
