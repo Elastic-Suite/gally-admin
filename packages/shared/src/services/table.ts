@@ -67,11 +67,11 @@ const customValidations: Record<
     },
   },
   email: {
-    attribute: 'pattern',
-    value: '^[a-z0-9\\._]+@[a-z0-9\\.\\-]+\\.[a-z]{2,4}$',
+    attribute: 'type',
+    value: 'email',
     error: {
-      name: 'patternMismatch',
-      message: 'patternMismatchEmail',
+      name: 'typeMismatch',
+      message: 'typeMismatchEmail',
     },
   },
 }

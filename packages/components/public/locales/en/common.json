@@ -70,5 +70,5 @@
   "category": "Category",
   "localizedCatalog": "Localized catalog",
   "localizedCatalog.placeholder": "Select a catalog",
-  "formError.patternMismatchEmail": "The email address format is invalid."
+  "formError.typeMismatchEmail": "The email address format is invalid."
 }
