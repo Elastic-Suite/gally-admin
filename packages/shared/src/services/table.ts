@@ -66,6 +66,14 @@ const customValidations: Record<
       message: 'prompt',
     },
   },
+  email: {
+    attribute: 'type',
+    value: 'email',
+    error: {
+      name: 'typeMismatch',
+      message: 'typeMismatchEmail',
+    },
+  },
 }
 
 export function getFieldConfig(

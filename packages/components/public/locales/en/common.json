@@ -69,5 +69,6 @@
   "result_other": "{{count}} results",
   "category": "Category",
   "localizedCatalog": "Localized catalog",
-  "localizedCatalog.placeholder": "Select a catalog"
+  "localizedCatalog.placeholder": "Select a catalog",
+  "formError.typeMismatchEmail": "The email address format is invalid."
 }
