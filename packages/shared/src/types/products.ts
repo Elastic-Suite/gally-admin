@@ -44,6 +44,15 @@ export interface IGraphqlProduct {
   brand?: string
   stock: IStock
   score: number
+  uri: string
+  file_type: string
+  document_type: string
+  publication_type: string
+  author: string
+  content: string
+  workspace: string
+  year: string
+  updated_at: string
 }
 
 export interface IGraphqlProductPaginationInfo {

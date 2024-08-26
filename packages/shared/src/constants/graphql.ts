@@ -137,13 +137,21 @@ function getSearchProductsQueryContent(
           description: true,
           score: true,
           image: true,
-
           stock: {
             status: true,
           },
           price: {
             price: true,
           },
+          uri: true,
+          file_type: true,
+          document_type: true,
+          publication_type: true,
+          author: true,
+          content: true,
+          workspace: true,
+          year: true,
+          updated_at: true,
           ...collectionExtraFields,
         },
       },
