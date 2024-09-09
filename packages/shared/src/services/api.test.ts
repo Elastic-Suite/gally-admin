@@ -27,7 +27,7 @@ describe('Api service', () => {
 
   describe('getApiUrl', () => {
     it('should return the api URL', () => {
-      expect(getApiUrl()).toEqual('http://localhost/')
+      expect(getApiUrl()).toEqual('http://localhost')
       expect(getApiUrl('/test')).toEqual('http://localhost/test')
       expect(getApiUrl('test')).toEqual('http://localhost/test')
       expect(getApiUrl('http://localhost/test')).toEqual(
