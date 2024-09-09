@@ -24,7 +24,7 @@ export function isApiError<T extends object>(
 
 export function getApiUrl(url = ''): string {
   if (!url.startsWith('http')) {
-    if (!url.startsWith('/')) {
+    if (url.length && !url.startsWith('/')) {
       url = `/${url}`
     }
     url = `${apiUrl}${url}`
