@@ -11,7 +11,6 @@ import {
   LoadStatus,
   isError,
   isRuleValid,
-  isVirtualCategoryEnabled,
   parseCatConf,
   savePositions,
   serializeCatConf,
@@ -28,7 +27,6 @@ import {
   useRuleOperators,
 } from '../../../hooks'
 import { findCategory } from '../../../services'
-import { selectBundles, useAppSelector } from '../../../store'
 
 import Placeholder from '../../../components/atoms/Placeholder/Placeholder'
 import TitleBlock from '../../../components/molecules/layout/TitleBlock/TitleBlock'
@@ -36,7 +34,6 @@ import TwoColsLayout from '../../../components/molecules/layout/twoColsLayout/Tw
 import CatalogSwitcher from '../../../components/stateful/CatalogSwitcher/CatalogSwitcher'
 import CategoryTree from '../../../components/stateful/CategoryTree/CategoryTree'
 import ProductsContainer from '../../../components/stateful/ProductsContainer/ProductsContainer'
-import RulesManager from '../../../components/stateful/RulesManager/RulesManager'
 
 const pagesSlug = ['merchandize', 'categories']
 
@@ -45,7 +42,6 @@ function AdminMerchandizeCategories(): JSX.Element {
   const fetchApi = useApiFetch()
   const { t } = useTranslation('categories')
   const [isLoading, setIsLoading] = useState(false)
-  const bundles = useAppSelector(selectBundles)
   const { catalogId, localizedCatalogId, localizedCatalogIdWithDefault } =
     useContext(catalogContext)
 
@@ -126,12 +122,11 @@ function AdminMerchandizeCategories(): JSX.Element {
   // Product positions
   const prevProductPositions = useRef<string>('')
 
-  function handleUpdateCat(name: string, val: boolean | string): void {
+  function handleUpdateCat(
+    name: string,
+    val: boolean | string | IRuleCombination
+  ): void {
     setCatConf((catConf) => ({ ...catConf, [name]: val }))
-  }
-
-  function handleUpdateRule(rule: IRuleCombination): void {
-    setCatConf((catConf) => ({ ...catConf, virtualRule: rule }))
   }
 
   function handleSelectCategory(category: ICategory): void {
@@ -200,33 +195,16 @@ function AdminMerchandizeCategories(): JSX.Element {
   return (
     <>
       <TwoColsLayout
-        left={[
+        left={
           <TitleBlock key="categories" title={t(pagesSlug.at(-1))}>
-            <>
-              <CatalogSwitcher />
-              <CategoryTree
-                categories={categories.data}
-                selectedItem={selectedCategoryItem}
-                onSelect={handleSelectCategory}
-              />
-            </>
-          </TitleBlock>,
-          isVirtualCategoryEnabled(bundles) && ruleOperators && (
-            <TitleBlock
-              key="virtualRule"
-              title={catConf?.isVirtual ? t('virtualRule.title') : ''}
-            >
-              <RulesManager
-                active={catConf?.isVirtual}
-                onChange={handleUpdateRule}
-                rule={catConf?.virtualRule}
-                ruleOperators={ruleOperators}
-                error={!isValid}
-                small
-              />
-            </TitleBlock>
-          ),
-        ]}
+            <CatalogSwitcher />
+            <CategoryTree
+              categories={categories.data}
+              selectedItem={selectedCategoryItem}
+              onSelect={handleSelectCategory}
+            />
+          </TitleBlock>
+        }
       >
         {Boolean(selectedCategoryItem?.id && localizedCatalogIdWithDefault) && (
           <Placeholder placeholder={t('placeholder')}>
