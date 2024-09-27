@@ -1,68 +1,54 @@
-import React, { ReactNode, SyntheticEvent } from 'react'
-import {
-  FormControlLabel,
-  FormHelperText,
-  Radio,
-  RadioGroupProps,
-  RadioGroup as RadioGrp,
-} from '@mui/material'
-import { IOption, IOptions } from '@elastic-suite/gally-admin-shared'
-import IonIcon from '../IonIcon/IonIcon'
+import React, { ForwardedRef, useCallback } from 'react'
 
-export interface IRadioGroupProps extends Omit<RadioGroupProps, 'onChange'> {
-  options: IOptions<unknown>
-  onChange?: (value: string, event: SyntheticEvent) => void
-  error?: boolean
-  helperText?: ReactNode
-  helperIcon?: string
+import {
+  IFieldErrorProps,
+  IOnChange,
+  IValidator,
+  useFormError,
+} from '../../../hooks'
+
+import RadioGroupWithoutError, {
+  IRadioGroupProps,
+} from './RadioGroupWithoutError'
+import InputTextWithoutError from './InputTextWithoutError'
+
+interface IRadioGroupErrorProps extends IFieldErrorProps, IRadioGroupProps {
+  required?: boolean
 }
 
-function RadioGroup(props: IRadioGroupProps): JSX.Element {
-  const {
-    error,
-    helperText,
-    helperIcon,
-    options,
-    onChange,
-    ...radioGroupProps
-  } = props
-  const foundNameDefaultValue = options.find((element) => element.default)
+function RadioGroup(props: IRadioGroupErrorProps): JSX.Element {
+  const { onChange, showError, additionalValidator, ...inputProps } = props
+
+  const validator = useCallback<IValidator>(
+    (value, event) => {
+      if (additionalValidator) return additionalValidator(value, event)
+      if (inputProps.required && !value) return 'valueMissing'
+      return ''
+    },
+    [additionalValidator, inputProps.required]
+  )
+
+  const [{ ref, ...formErrorProps }] = useFormError(
+    onChange as IOnChange,
+    inputProps.value,
+    showError,
+    validator
+  )
 
   return (
-    <div>
-      <RadioGrp
-        {...radioGroupProps}
-        onChange={(event, value): void => {
-          onChange(value, event)
-        }}
-        defaultValue={
-          radioGroupProps.defaultChecked ? foundNameDefaultValue?.value : null
-        }
-      >
-        {options.map((item: IOption<unknown>) => {
-          return (
-            <FormControlLabel
-              disabled={item.disabled}
-              key={item.label}
-              value={item.value}
-              control={<Radio />}
-              label={item.label}
-            />
-          )
-        })}
-      </RadioGrp>
-      {Boolean(helperText) && (
-        <FormHelperText error={error} sx={{ marginTop: '-5px' }}>
-          {Boolean(helperIcon) && (
-            <IonIcon
-              name={helperIcon}
-              style={{ fontSize: 18, marginRight: 2 }}
-            />
-          )}
-          {helperText}
-        </FormHelperText>
-      )}
-    </div>
+    <>
+      <RadioGroupWithoutError
+        {...inputProps}
+        {...formErrorProps}
+        error={inputProps?.error || formErrorProps?.error}
+        helperIcon={inputProps?.helperIcon || formErrorProps?.helperIcon}
+        helperText={inputProps?.helperText || formErrorProps?.helperText}
+      />
+      <InputTextWithoutError
+        style={{ display: 'none' }}
+        inputRef={ref as ForwardedRef<HTMLInputElement>}
+      />
+    </>
   )
 }
 

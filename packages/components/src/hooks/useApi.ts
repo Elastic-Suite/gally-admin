@@ -75,7 +75,8 @@ export function useFetchApi<T extends object>(
   searchParameters?: ISearchParameters,
   options?: RequestInit,
   secure = true,
-  conditions = true
+  conditions = true,
+  withDebounce = false
 ): [IFetch<T>, Dispatch<SetStateAction<T>>, ILoadResource] {
   const fetchApi = useApiFetch(secure)
   const [response, setResponse] = useState<IFetch<T>>({
@@ -108,9 +109,18 @@ export function useFetchApi<T extends object>(
     }
   }, [conditions, fetchApi, options, resource, searchParameters])
 
+  const customDebounce = useMemo(
+    () => debounce((func: () => void) => func(), debounceDelay),
+    []
+  )
+
   useLayoutEffect(() => {
-    load()
-  }, [load])
+    if (withDebounce) {
+      customDebounce(load)
+    } else {
+      load()
+    }
+  }, [load, customDebounce, withDebounce])
 
   return [response, updateResponse, load]
 }
@@ -120,7 +130,8 @@ export function useApiList<T extends object>(
   page: number | false = 0,
   rowsPerPage: number = defaultPageSize,
   searchParameters?: ISearchParameters,
-  searchValue?: string
+  searchValue?: string,
+  withDebounce = false
 ): [
   IFetch<IHydraResponse<T>> | null,
   Dispatch<SetStateAction<T[]>>?,
@@ -133,7 +144,11 @@ export function useApiList<T extends object>(
   )
   const [response, updateResponse, load] = useFetchApi<IHydraResponse<T>>(
     resource,
-    parameters
+    parameters,
+    undefined,
+    true,
+    true,
+    withDebounce
   )
 
   const updateList = useCallback(
@@ -156,7 +171,8 @@ export function useApiEditableList<T extends IHydraMember>(
   rowsPerPage: number = defaultPageSize,
   searchParameters?: ISearchParameters,
   searchValue?: string,
-  url?: string
+  url?: string,
+  withDebounce = false
 ): [
   IFetch<IHydraResponse<T>>,
   IResourceEditableOperations<T>,
@@ -167,29 +183,32 @@ export function useApiEditableList<T extends IHydraMember>(
     page,
     rowsPerPage,
     searchParameters,
-    searchValue
+    searchValue,
+    withDebounce
   )
   const { create, remove, replace, update } = useResourceOperations<T>(resource)
   const itemsToUpdate = useRef<Record<string, Partial<T>>>({})
 
   const debouncedUpdate = useMemo(
     () =>
-      debounce(async (): Promise<void> => {
-        const promises = Object.entries(itemsToUpdate.current).map(
-          ([id, updatedItems]) => {
-            delete itemsToUpdate.current[id]
-            return update(id, updatedItems)
-          }
-        )
+      debounce(async (isValid = true): Promise<void> => {
+        if (isValid) {
+          const promises = Object.entries(itemsToUpdate.current).map(
+            ([id, updatedItems]) => {
+              delete itemsToUpdate.current[id]
+              return update(id, updatedItems)
+            }
+          )
 
-        await Promise.all(promises)
-        load()
+          await Promise.all(promises)
+          load()
+        }
       }, debounceDelay),
     [load, update]
   )
 
   const editableUpdate = useCallback(
-    (id: string | number, updatedItem: Partial<T>) => {
+    (id: string | number, updatedItem: Partial<T>, isValid = true) => {
       if (id in itemsToUpdate.current) {
         itemsToUpdate.current[id] = {
           ...itemsToUpdate.current[id],
@@ -204,7 +223,7 @@ export function useApiEditableList<T extends IHydraMember>(
           item.id === id ? { ...item, ...updatedItem } : item
         )
       )
-      debouncedUpdate()
+      debouncedUpdate(isValid)
     },
     [debouncedUpdate, updateList]
   )
@@ -262,22 +281,24 @@ export function useApiEditableList<T extends IHydraMember>(
 
   const debouncedReplace = useMemo(
     () =>
-      debounce(async (): Promise<void> => {
-        const promises = Object.entries(itemsToUpdate.current).map(
-          ([id, replacedItem]) => {
-            delete itemsToUpdate.current[id]
-            return replace(replacedItem)
-          }
-        )
+      debounce(async (isValid = true): Promise<void> => {
+        if (isValid) {
+          const promises = Object.entries(itemsToUpdate.current).map(
+            ([id, replacedItem]) => {
+              delete itemsToUpdate.current[id]
+              return replace(replacedItem)
+            }
+          )
 
-        await Promise.all(promises)
-        load()
+          await Promise.all(promises)
+          load()
+        }
       }, debounceDelay),
     [load, replace]
   )
 
   const editableReplace = useCallback(
-    (replacedItem: Partial<T>) => {
+    (replacedItem: Partial<T>, isValid = true) => {
       const id = replacedItem.id as string
       if (id in itemsToUpdate.current) {
         itemsToUpdate.current[id] = {
@@ -293,7 +314,7 @@ export function useApiEditableList<T extends IHydraMember>(
           item.id === replacedItem.id ? { ...item, ...replacedItem } : item
         )
       )
-      debouncedReplace()
+      debouncedReplace(isValid)
     },
     [debouncedReplace, updateList]
   )

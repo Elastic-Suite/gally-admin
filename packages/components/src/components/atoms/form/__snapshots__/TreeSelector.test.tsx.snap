@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`TreeSelector should match snapshot 1`] = `
+exports[`TreeSelector sould match snapshot 1`] = `
 <div>
   <div
     class="css-1b4s9jn"
@@ -8,11 +8,18 @@ exports[`TreeSelector should match snapshot 1`] = `
     <div
       class="MuiFormControl-root css-hh3vi8-MuiFormControl-root"
     >
+      <label
+        class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard MuiFormLabel-colorPrimary MuiFormLabel-filled css-rnc4nv-MuiFormLabel-root-MuiInputLabel-root"
+        data-shrink="true"
+        for=":r0:"
+      >
+        Label
+      </label>
       <div
         class="InputText__Wrapper css-17fp4jk"
       >
         <div
-          class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedStart MuiInputBase-adornedEnd  css-4g1i97-MuiInputBase-root"
+          class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedEnd hasClearIcon css-4g1i97-MuiInputBase-root"
         >
           <input
             aria-autocomplete="list"
@@ -20,8 +27,106 @@ exports[`TreeSelector should match snapshot 1`] = `
             aria-invalid="false"
             autocapitalize="none"
             autocomplete="off"
-            class="MuiInputBase-input MuiInputBase-inputAdornedStart MuiInputBase-inputAdornedEnd css-ngazp5-MuiInputBase-input"
+            class="MuiInputBase-input MuiInputBase-inputAdornedEnd css-ngazp5-MuiInputBase-input"
             id=":r0:"
+            role="combobox"
+            spellcheck="false"
+            type="text"
+            value="Catégorie Deux"
+          />
+          <div
+            class="MuiInputAdornment-root MuiInputAdornment-positionEnd MuiInputAdornment-standard MuiInputAdornment-sizeMedium css-1uab8qk-MuiInputAdornment-root"
+          >
+            <button
+              aria-label="form.clear"
+              class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium AutocompleteClearIndicator css-3rozpy-MuiButtonBase-root-MuiIconButton-root"
+              tabindex="-1"
+              title="form.clear"
+              type="button"
+            >
+              <ion-icon
+                name="close"
+              />
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              />
+            </button>
+            <button
+              aria-label="form.open"
+              class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-1x878dy-MuiButtonBase-root-MuiIconButton-root"
+              tabindex="-1"
+              title="form.open"
+              type="button"
+            >
+              <ion-icon
+                name="chevron-down"
+              />
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              />
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`TreeSelector sould match snapshot width multiple value 1`] = `
+<div>
+  <div
+    class="css-1b4s9jn"
+  >
+    <div
+      class="MuiFormControl-root css-hh3vi8-MuiFormControl-root"
+    >
+      <label
+        class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard MuiFormLabel-colorPrimary css-rnc4nv-MuiFormLabel-root-MuiInputLabel-root"
+        data-shrink="true"
+        for=":r1:"
+      >
+        Label
+      </label>
+      <div
+        class="InputText__Wrapper css-17fp4jk"
+      >
+        <div
+          class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedStart MuiInputBase-adornedEnd hasClearIcon css-4g1i97-MuiInputBase-root"
+        >
+          <div
+            class="MuiButtonBase-root MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-deletable MuiChip-deletableColorDefault MuiChip-filledDefault css-69f6vo-MuiButtonBase-root-MuiChip-root"
+            data-tag-index="0"
+            role="button"
+            style="opacity: 1;"
+            tabindex="-1"
+          >
+            <span
+              class="MuiChip-label MuiChip-labelMedium css-6od3lo-MuiChip-label"
+            >
+              Catégorie Deux
+            </span>
+            <button
+              class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiChip-deleteIcon MuiChip-deleteIconMedium MuiChip-deleteIconColorDefault MuiChip-deleteIconFilledColorDefault css-78trlr-MuiButtonBase-root-MuiIconButton-root"
+              tabindex="0"
+              type="button"
+            >
+              <ion-icon
+                name="close"
+              />
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              />
+            </button>
+          </div>
+          <input
+            aria-autocomplete="list"
+            aria-expanded="false"
+            aria-invalid="false"
+            autocapitalize="none"
+            autocomplete="off"
+            class="MuiInputBase-input MuiInputBase-inputAdornedStart MuiInputBase-inputAdornedEnd css-ngazp5-MuiInputBase-input"
+            id=":r1:"
             role="combobox"
             spellcheck="false"
             type="text"
@@ -30,6 +135,20 @@ exports[`TreeSelector should match snapshot 1`] = `
           <div
             class="MuiInputAdornment-root MuiInputAdornment-positionEnd MuiInputAdornment-standard MuiInputAdornment-sizeMedium css-1uab8qk-MuiInputAdornment-root"
           >
+            <button
+              aria-label="form.clear"
+              class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium AutocompleteClearIndicator css-3rozpy-MuiButtonBase-root-MuiIconButton-root"
+              tabindex="-1"
+              title="form.clear"
+              type="button"
+            >
+              <ion-icon
+                name="close"
+              />
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              />
+            </button>
             <button
               aria-label="form.open"
               class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-1x878dy-MuiButtonBase-root-MuiIconButton-root"

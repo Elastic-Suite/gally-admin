@@ -1,120 +1,73 @@
-import React, {
-  ChangeEvent,
-  ComponentType,
-  ForwardedRef,
-  Ref,
-  SyntheticEvent,
-  forwardRef,
-} from 'react'
-import { DatePicker as MuiDatePicker } from '@mui/x-date-pickers/DatePicker'
-import {
-  PickersDay,
-  PickersDayProps,
-  pickersDayClasses,
-} from '@mui/x-date-pickers/PickersDay'
+import React, { ForwardedRef, SyntheticEvent, useCallback } from 'react'
 import { DateValidationError } from '@mui/x-date-pickers/internals/hooks/validation/useDateValidation'
-import { styled } from '@mui/system'
+import { isValid } from 'date-fns'
 
-import IonIcon from '../IonIcon/IonIcon'
+import { IFieldErrorProps, IValidator, useFormError } from '../../../hooks'
 
-import InputText, { IInputTextProps } from './InputText'
+import DatePickerWithoutError, {
+  IDatePickerProps,
+} from './DatePickerWithoutError'
 
-import { useTranslation } from 'next-i18next'
+interface IDatePickerErrorProps extends IFieldErrorProps, IDatePickerProps {}
 
-const CustomPickersDay = styled(PickersDay, {
-  shouldForwardProp: (prop) =>
-    prop !== 'dayIsBetween' && prop !== 'isFirstDay' && prop !== 'isLastDay',
-})<PickersDayProps<Date>>(({ theme }) => ({
-  fontWeight: 500,
-  [`&&.${pickersDayClasses.selected}`]: {
-    backgroundColor: theme.palette.colors.primary['400'],
-    color: 'white',
-  },
-  [`&&.${pickersDayClasses.selected}, &:hover, &:focus`]: {
-    backgroundColor: theme.palette.colors.primary['400'],
-    color: 'white',
-  },
-})) as ComponentType<PickersDayProps<Date>>
+export function dateValidator(
+  value: Date | null,
+  event?: SyntheticEvent,
+  required?: boolean,
+  additionalValidator?: IDatePickerErrorProps['additionalValidator']
+): string | null {
+  if (additionalValidator) {
+    return additionalValidator(value, event)
+  }
 
-export interface IDatePickerProps
-  extends Omit<IInputTextProps, 'value' | 'onChange' | 'onError'> {
-  value: Date | string | null
-  onChange: (value: Date | string | null) => void
-  onError?: (reason: DateValidationError, value: Date) => void
+  if (!value && required) {
+    return 'valueMissing'
+  }
+
+  if (!value || isValid(value)) {
+    return ''
+  }
+  return 'invalidDate'
 }
 
-function EndIcon(): JSX.Element {
-  return (
-    <IonIcon name="calendar-outline" style={{ fontSize: 18, padding: '0px' }} />
-  )
-}
+function DatePicker(props: IDatePickerErrorProps): JSX.Element {
+  const { onChange, showError, additionalValidator, ...inputProps } = props
 
-function ShowIcon(): JSX.Element {
-  return (
-    <IonIcon
-      name="chevron-down-outline"
-      style={{ fontSize: 18, padding: '0px' }}
-    />
-  )
-}
-
-function DatePicker(
-  props: IDatePickerProps,
-  ref?: ForwardedRef<HTMLInputElement>
-): JSX.Element {
-  const { t } = useTranslation('common')
-  const { value, onChange, onError, ...args } = props
-
-  function onChangeDatePicker(date: Date | string): void {
-    let utcDate = date
-    if (date instanceof Date) {
-      utcDate = new Date(
-        Date.UTC(date.getFullYear(), date.getMonth(), date.getDate())
+  const validator = useCallback<IValidator>(
+    (value, event) => {
+      return dateValidator(
+        value as Date,
+        event,
+        inputProps.required,
+        additionalValidator
       )
-    }
-    onChange(utcDate)
-  }
+    },
+    [additionalValidator, inputProps.required]
+  )
 
-  const renderWeekPickerDay = (
-    _: string,
-    __: Array<Date | null>,
-    pickersDayProps: PickersDayProps<Date>
-  ): JSX.Element => {
-    return <CustomPickersDay {...pickersDayProps} />
+  const [{ ref, ...formErrorProps }, setError] = useFormError(
+    onChange,
+    inputProps.value,
+    showError,
+    validator,
+    inputProps.disabled
+  )
+
+  function handleError(reason: DateValidationError): void {
+    setError(reason)
   }
 
   return (
-    <MuiDatePicker
-      value={value}
-      onChange={onChangeDatePicker}
-      onError={onError}
-      renderDay={renderWeekPickerDay}
-      components={{
-        OpenPickerIcon: EndIcon,
-        SwitchViewIcon: ShowIcon,
-      }}
-      inputRef={ref}
-      renderInput={(params): JSX.Element => {
-        const { InputProps, inputProps, ...rest } = params
-        const { onChange, readOnly, type, value } = inputProps
-        return (
-          <InputText
-            {...InputProps}
-            {...rest}
-            {...args}
-            onChange={(_: string | number, event: SyntheticEvent): void =>
-              onChange(event as ChangeEvent<HTMLInputElement>)
-            }
-            placeholder={t('date.placeholder')}
-            readOnly={readOnly}
-            ref={params.ref as Ref<HTMLDivElement>}
-            type={type}
-            value={value}
-          />
-        )
-      }}
+    <DatePickerWithoutError
+      {...inputProps}
+      {...formErrorProps}
+      error={inputProps?.error || formErrorProps?.error}
+      helperIcon={inputProps?.helperIcon || formErrorProps?.helperIcon}
+      helperText={inputProps?.helperText || formErrorProps?.helperText}
+      onError={handleError}
+      ref={ref as ForwardedRef<HTMLInputElement>}
     />
   )
 }
 
-export default forwardRef(DatePicker)
+export default DatePicker

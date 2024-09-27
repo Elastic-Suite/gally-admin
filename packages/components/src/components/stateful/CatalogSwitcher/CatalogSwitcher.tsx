@@ -5,7 +5,7 @@ import { IOptions } from '@elastic-suite/gally-admin-shared'
 
 import { catalogContext } from '../../../contexts'
 
-import DropDown from '../../atoms/form/DropDown'
+import DropDownWithoutError from '../../atoms/form/DropDownWithoutError'
 
 const SwitchersContainer = styled('div')({
   display: 'flex',
@@ -64,7 +64,7 @@ function CatalogSwitcher(): JSX.Element {
 
   return (
     <SwitchersContainer>
-      <DropDown
+      <DropDownWithoutError
         style={{ fontSize: '12px' }}
         onChange={onCatalogChange}
         value={catalogId}
@@ -72,7 +72,7 @@ function CatalogSwitcher(): JSX.Element {
         label={t('catalog.dropdown.label')}
       />
       {Boolean(catalogId) && catalogId !== -1 ? (
-        <DropDown
+        <DropDownWithoutError
           style={{ fontSize: '12px' }}
           onChange={onLocalizedCatalogChange}
           value={localizedCatalogId}

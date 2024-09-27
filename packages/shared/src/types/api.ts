@@ -68,10 +68,14 @@ export type IResourceEditableMassReplace<T> = (
   item: Omit<T, '@id' | '@type'>
 ) => Promise<void>
 export type IResourceEditableRemove = (id: string | number) => Promise<void>
-export type IResourceEditableReplace<T> = (item: Partial<T>) => void
+export type IResourceEditableReplace<T> = (
+  item: Partial<T>,
+  isValid?: boolean
+) => void
 export type IResourceEditableUpdate<T> = (
   id: string | number,
-  item: Partial<T>
+  item: Partial<T>,
+  isValid?: boolean
 ) => void
 
 export interface IResourceEditableOperations<T> {

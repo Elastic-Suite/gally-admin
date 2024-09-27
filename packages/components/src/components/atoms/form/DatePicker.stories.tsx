@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
 
-import DatePickerComponent from './DatePicker'
-import DatePickerError from './DatePickerError'
+import DatePickerWithoutErrorComponent from './DatePickerWithoutError'
+import DatePicker from './DatePicker'
 
 export default {
   title: 'Atoms/form/DatePicker',
-  component: DatePickerComponent,
+  component: DatePickerWithoutErrorComponent,
   argTypes: {
     color: {
       options: ['none', 'success', 'error'],
@@ -31,20 +31,28 @@ export default {
       control: 'hidden',
     },
   },
-} as ComponentMeta<typeof DatePickerComponent>
+} as ComponentMeta<typeof DatePickerWithoutErrorComponent>
 
-const Template: ComponentStory<typeof DatePickerComponent> = (args) => {
+const Template: ComponentStory<typeof DatePickerWithoutErrorComponent> = (
+  args
+) => {
   const [value, setValue] = useState<Date | null>(null)
 
   function onChange(value: Date | null): void {
     setValue(value)
   }
 
-  return <DatePickerComponent {...args} value={value} onChange={onChange} />
+  return (
+    <DatePickerWithoutErrorComponent
+      {...args}
+      value={value}
+      onChange={onChange}
+    />
+  )
 }
 
-export const Default = Template.bind({})
-Default.args = {
+export const WithoutError = Template.bind({})
+WithoutError.args = {
   color: 'primary',
   disabled: false,
   error: false,
@@ -59,18 +67,18 @@ Default.args = {
   transparent: false,
 }
 
-const FormErrorTemplate: ComponentStory<typeof DatePickerError> = (args) => {
+const FormErrorTemplate: ComponentStory<typeof DatePicker> = (args) => {
   const [value, setValue] = useState<Date | null>(null)
 
   function onChange(value: Date | null): void {
     setValue(value)
   }
 
-  return <DatePickerError {...args} value={value} onChange={onChange} />
+  return <DatePicker {...args} value={value} onChange={onChange} />
 }
 
-export const WithError = FormErrorTemplate.bind({})
-WithError.args = {
+export const Default = FormErrorTemplate.bind({})
+Default.args = {
   color: 'primary',
   disabled: false,
   error: false,
@@ -80,8 +88,8 @@ WithError.args = {
   infoTooltip: '',
   label: 'Label',
   margin: 'none',
-  required: false,
-  showError: false,
+  required: true,
+  showError: true,
   small: false,
   transparent: false,
 }

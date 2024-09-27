@@ -2,6 +2,8 @@ import React, {
   Dispatch,
   FunctionComponent,
   SetStateAction,
+  SyntheticEvent,
+  useEffect,
   useMemo,
   useState,
 } from 'react'
@@ -130,6 +132,7 @@ function ResourceTable(props: IResourceTable): JSX.Element {
   const resource = useResource(resourceName)
   const [page, setPage] = usePage()
   const [searchValue, setSearchValue] = useSearch()
+
   const parameters = useFilterParameters(activeFilters, filters)
   useFiltersRedirect(page, activeFilters, searchValue, active)
 
@@ -138,6 +141,8 @@ function ResourceTable(props: IResourceTable): JSX.Element {
     rowsPerPageValue ?? defaultPageSize
   )
 
+  const [withDebounce, setWithDebounce] = useState(false)
+
   const [resourceData, { massUpdate, massReplace, replace, update }] =
     useApiEditableList<ISourceField>(
       resource,
@@ -145,8 +150,14 @@ function ResourceTable(props: IResourceTable): JSX.Element {
       rowsPerPage,
       parameters,
       searchValue,
-      urlParams ? `${resource.url}${urlParams}` : null
+      urlParams ? `${resource.url}${urlParams}` : null,
+      searchValue.trim() === '' ? false : withDebounce
     )
+
+  useEffect(() => {
+    setWithDebounce(true)
+  }, [resourceData])
+
   const { data, error } = resourceData
 
   const tableRows = data?.['hydra:member'] as unknown as ITableRow[]
@@ -206,12 +217,18 @@ function ResourceTable(props: IResourceTable): JSX.Element {
   function handleRowChange(
     id: string | number,
     name: string,
-    value: boolean | number | string
+    value: boolean | number | string,
+    event: SyntheticEvent,
+    showError: boolean
   ): void {
+    const validity = (event.target as HTMLInputElement)?.checkValidity()
     if (update) {
-      update(id, { [name]: value })
+      update(id, { [name]: value }, !showError || validity)
     } else if (replace) {
-      replace({ id, [name]: value } as unknown as ISourceField)
+      replace(
+        { id, [name]: value } as unknown as ISourceField,
+        !showError || validity
+      )
     }
   }
 

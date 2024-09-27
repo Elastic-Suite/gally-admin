@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
 
-import DoubleDatePickerComponent, {
+import DoubleDatePickerWithoutErrorComponent, {
   IDoubleDatePickerValues,
-} from './DoubleDatePicker'
-import DoubleDatePickerError from './DoubleDatePickerError'
+} from './DoubleDatePickerWithoutError'
+import DoubleDatePicker from './DoubleDatePicker'
 
 export default {
   title: 'Atoms/form/DoubleDatePicker',
-  component: DoubleDatePickerComponent,
+  component: DoubleDatePickerWithoutErrorComponent,
   argTypes: {
     color: {
       options: ['none', 'success', 'error'],
@@ -33,9 +33,11 @@ export default {
       control: 'hidden',
     },
   },
-} as ComponentMeta<typeof DoubleDatePickerComponent>
+} as ComponentMeta<typeof DoubleDatePickerWithoutErrorComponent>
 
-const Template: ComponentStory<typeof DoubleDatePickerComponent> = (args) => {
+const Template: ComponentStory<typeof DoubleDatePickerWithoutErrorComponent> = (
+  args
+) => {
   const [value, setValue] = useState<IDoubleDatePickerValues>({
     fromDate: null,
     toDate: null,
@@ -46,7 +48,7 @@ const Template: ComponentStory<typeof DoubleDatePickerComponent> = (args) => {
   }
 
   return (
-    <DoubleDatePickerComponent
+    <DoubleDatePickerWithoutErrorComponent
       {...args}
       value={value as IDoubleDatePickerValues}
       onChange={onChange}
@@ -55,10 +57,10 @@ const Template: ComponentStory<typeof DoubleDatePickerComponent> = (args) => {
 }
 
 // This intermediate component is necessary to avoid storybook to crash when typing a value...
-export const Default: ComponentStory<typeof DoubleDatePickerError> = (
+export const WithoutError: ComponentStory<typeof DoubleDatePicker> = (
   args: Record<string, unknown>
 ) => <Template {...args} />
-Default.args = {
+WithoutError.args = {
   color: 'primary',
   disabled: false,
   error: false,
@@ -73,9 +75,7 @@ Default.args = {
   transparent: false,
 }
 
-const FormErrorTemplate: ComponentStory<typeof DoubleDatePickerError> = (
-  args
-) => {
+const FormErrorTemplate: ComponentStory<typeof DoubleDatePicker> = (args) => {
   const [value, setValue] = useState<IDoubleDatePickerValues>({
     fromDate: null,
     toDate: null,
@@ -85,14 +85,14 @@ const FormErrorTemplate: ComponentStory<typeof DoubleDatePickerError> = (
     setValue(value)
   }
 
-  return <DoubleDatePickerError {...args} value={value} onChange={onChange} />
+  return <DoubleDatePicker {...args} value={value} onChange={onChange} />
 }
 
 // This intermediate component is necessary to avoid storybook to crash when typing a value...
-export const WithError: ComponentStory<typeof DoubleDatePickerError> = (
+export const Default: ComponentStory<typeof DoubleDatePicker> = (
   args: Record<string, unknown>
 ) => <FormErrorTemplate {...args} />
-WithError.args = {
+Default.args = {
   color: 'primary',
   disabled: false,
   error: false,
@@ -102,8 +102,8 @@ WithError.args = {
   infoTooltip: '',
   label: 'Label',
   margin: 'none',
-  required: false,
-  showError: false,
+  required: true,
+  showError: true,
   small: false,
   transparent: false,
 }

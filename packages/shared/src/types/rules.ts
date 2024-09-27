@@ -15,6 +15,7 @@ export enum RuleAttributeType {
   REFERENCE = 'reference',
   SELECT = 'select',
   TEXT = 'text',
+  DATE = 'date',
 }
 
 export enum RuleValueType {

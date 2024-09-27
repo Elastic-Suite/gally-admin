@@ -53,6 +53,7 @@
   "formError.synonymTermsDuplicate": "Il y a des doublons parmi les \"synonymes\", veuillez les retirer.",
   "formError.expansionTermsDuplicate": "Il y a des doublons parmi les \"termes étendus\", veuillez les retirer.",
   "field.productImage": "Image produit",
+  "formError.prompt": "Le prompt doit contenir une seule occurrence de \"%s\".",
   "default.undefined": "vide",
   "log.out": "Déconnexion",
   "entity": "Entité",
@@ -76,5 +77,6 @@
   "Pinned": "Épinglé",
   "Up": "Haut",
   "Down": "Bas",
-  "Equal": "Égale"
+  "Equal": "Égale",
+  "formError.typeMismatchEmail": "Le format de l'adresse e-mail est invalide."
 }

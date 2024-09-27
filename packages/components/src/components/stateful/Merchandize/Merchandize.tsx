@@ -5,20 +5,26 @@ import {
   ICategory,
   IOptions,
   IParsedCategoryConfiguration,
+  IRuleCombination,
   getFieldConfig,
   getFieldState,
+  isRuleValid,
   isVirtualCategoryEnabled,
 } from '@elastic-suite/gally-admin-shared'
 
-import { useResource } from '../../../hooks'
+import { useResource, useRuleOperators } from '../../../hooks'
 import { selectBundles, useAppSelector } from '../../../store'
 
-import DropDown from '../../atoms/form/DropDown'
+import DropDownWithoutError from '../../atoms/form/DropDownWithoutError'
 import Switch from '../../atoms/form/Switch'
+import RulesManager from '../RulesManager/RulesManager'
 
 interface IProps {
   catConf: IParsedCategoryConfiguration
-  onChange?: (name: string, value: boolean | string) => void | Promise<void>
+  onChange?: (
+    name: string,
+    value: boolean | string | IRuleCombination
+  ) => void | Promise<void>
   sortOptions: IOptions<string>
   category: ICategory
 }
@@ -38,6 +44,11 @@ function Merchandize({
       getFieldConfig(field),
     ])
   )
+
+  // Rule engine operators
+  const ruleOperators = useRuleOperators()
+
+  const isValid = !catConf?.isVirtual || isRuleValid(catConf?.virtualRule)
 
   function handleChange(value: string | boolean, event: SyntheticEvent): void {
     onChange((event.target as HTMLInputElement).name, value)
@@ -67,7 +78,7 @@ function Merchandize({
           />
         </Grid>
         <Grid item xs={6}>
-          <DropDown
+          <DropDownWithoutError
             infoTooltip={t('select.tooltip')}
             label={t('select.label')}
             name="defaultSorting"
@@ -98,6 +109,30 @@ function Merchandize({
           </Grid>
         )}
       </Grid>
+      {isVirtualCategoryEnabled(bundles) &&
+      ruleOperators &&
+      catConf?.isVirtual ? (
+        <Grid
+          item
+          xs={6}
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '28px',
+          }}
+        >
+          <RulesManager
+            label={t('virtualRule.title')}
+            active={catConf?.isVirtual}
+            onChange={(value): void => {
+              onChange('virtualRule', value)
+            }}
+            rule={catConf?.virtualRule}
+            ruleOperators={ruleOperators}
+            error={!isValid}
+          />
+        </Grid>
+      ) : null}
     </Paper>
   )
 }

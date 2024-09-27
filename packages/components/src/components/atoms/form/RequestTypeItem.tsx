@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react'
 import { styled } from '@mui/system'
-import TreeSelectorError from './TreeSelectorError'
+import TreeSelector from './TreeSelector'
 
 import {
   ICategoryLimitations,
@@ -17,7 +17,7 @@ import TextFieldTagsMultiple from './TextFieldTagsMultiple'
 
 import { useTranslation } from 'next-i18next'
 
-import Checkbox from './Checkbox'
+import Checkbox from './CheckboxWithoutError'
 import {
   CustomFirstSelectedItem,
   CustomRootItem,
@@ -213,7 +213,7 @@ function RequestTypeItem(props: IRequestTypeItem): JSX.Element {
                 )}
 
                 {item.value === 'category' && (
-                  <TreeSelectorError
+                  <TreeSelector
                     required
                     showError={showError}
                     {...propsLimitations}

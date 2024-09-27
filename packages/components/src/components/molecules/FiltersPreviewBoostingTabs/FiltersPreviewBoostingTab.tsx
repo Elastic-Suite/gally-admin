@@ -1,12 +1,13 @@
 import { ITabContentProps } from '@elastic-suite/gally-admin-shared'
-import React, { PropsWithChildren, createContext } from 'react'
-import {
-  ColumnContainer,
-  RowContainer,
-} from './FiltersPreviewBoostingTab.styled'
+import React, {
+  PropsWithChildren,
+  SyntheticEvent,
+  createContext,
+  useState,
+} from 'react'
 import Button from '../../atoms/buttons/Button'
-import { useFormValidation } from '../../../hooks'
 import { useTranslation } from 'next-i18next'
+import Form from '../../atoms/form/Form'
 export interface IPropsFiltersPreviewBoostingTab
   extends PropsWithChildren,
     ITabContentProps {
@@ -17,22 +18,32 @@ function FiltersPreviewBoostingTab({
   onSearch,
   children,
 }: IPropsFiltersPreviewBoostingTab): JSX.Element {
-  const { formRef, formIsValid } = useFormValidation()
+  const [formIsValid, setFormIsValid] = useState(false)
+
   const { t } = useTranslation('boost')
+  function handleSubmit(e: SyntheticEvent, formIsValid: boolean): void {
+    e.preventDefault()
+    onSearch(formIsValid)
+    setFormIsValid(formIsValid)
+  }
+
   return (
-    <ColumnContainer>
-      <FormIsValidContext.Provider value={formIsValid}>
-        <RowContainer ref={formRef}>
-          {children}
-          <Button
-            sx={{ marginTop: '24px' }}
-            onClick={(): void => onSearch(formIsValid)}
-          >
-            {t('preview')}
-          </Button>
-        </RowContainer>
-      </FormIsValidContext.Provider>
-    </ColumnContainer>
+    <FormIsValidContext.Provider value={formIsValid}>
+      <Form
+        onSubmit={handleSubmit}
+        style={{
+          display: 'flex',
+          gap: '10px',
+          flexDirection: 'row',
+          alignItems: 'start',
+        }}
+      >
+        {children}
+        <Button sx={{ marginTop: '24px' }} type="submit">
+          {t('preview')}
+        </Button>
+      </Form>
+    </FormIsValidContext.Provider>
   )
 }
 

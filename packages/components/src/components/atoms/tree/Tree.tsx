@@ -7,7 +7,7 @@ import { useTranslation } from 'next-i18next'
 
 import { ITreeItem } from '@elastic-suite/gally-admin-shared'
 
-import Checkbox from '../form/Checkbox'
+import Checkbox from '../form/CheckboxWithoutError'
 import IonIcon from '../IonIcon/IonIcon'
 
 import {

@@ -4,7 +4,7 @@ import { FormHelperText, IconButton, InputLabel } from '@mui/material'
 import IonIcon from '../IonIcon/IonIcon'
 import InfoTooltip from './InfoTooltip'
 import FormControl from './FormControl'
-import TextFieldTagsError from './TextFieldTagsError'
+import TextFieldTags from './TextFieldTags'
 import Button from '../buttons/Button'
 
 import {
@@ -13,7 +13,7 @@ import {
   ITextFieldTagsForm,
   ITransformedLimitations,
 } from '@elastic-suite/gally-admin-shared'
-import DropDown from './DropDown'
+import DropDownWithoutError from './DropDownWithoutError'
 import { useTranslation } from 'next-i18next'
 
 const CustomMultipleTextFieldsTags = styled('div')(({ theme }) => ({
@@ -158,11 +158,7 @@ function TextFieldTagsMultiple(
       )}
       <CustomMultipleTextFieldsTags>
         {disabled ? (
-          <TextFieldTagsError
-            value={[]}
-            disabledValue={disabledValue}
-            disabled
-          />
+          <TextFieldTags value={[]} disabledValue={disabledValue} disabled />
         ) : (
           Object.entries(modifiedValue).map(([key, value]) => {
             const option = options.find((it) => it.value === key)
@@ -187,7 +183,7 @@ function TextFieldTagsMultiple(
                     gap: '8px',
                   }}
                 >
-                  <DropDown
+                  <DropDownWithoutError
                     required
                     onChange={(newOption): void =>
                       updateOperator(key, newOption as string)
@@ -196,7 +192,7 @@ function TextFieldTagsMultiple(
                     options={newOptionsList}
                     sx={{ marginBottom: 1 }}
                   />
-                  <TextFieldTagsError
+                  <TextFieldTags
                     required
                     showError={showError}
                     withCleanButton

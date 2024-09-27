@@ -37,9 +37,13 @@ export async function fetchDocs(apiUrl: string): Promise<{
   entrypoint: IExpandedEntrypoint
   entrypointUrl: string
 }> {
-  const { json: entrypoint, response } = await fetchJson<IEntrypoint>(apiUrl)
+  const { json: entrypoint, response } = await fetchJson<IEntrypoint>(apiUrl, {
+    headers: { 'Content-Type': 'application/ld+json' },
+  })
   const docsUrl = getDocumentationUrlFromHeaders(response.headers, apiUrl)
-  const { json: docs } = await fetchJson<JsonLdDocument>(docsUrl)
+  const { json: docs } = await fetchJson<JsonLdDocument>(docsUrl, {
+    headers: { 'Content-Type': 'application/ld+json' },
+  })
   const [expandedDoc, expandedEntrypoint] = await Promise.all([
     jsonld.expand(docs, { base: docsUrl }),
     jsonld.expand(entrypoint, { base: apiUrl }),

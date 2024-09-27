@@ -7,10 +7,10 @@ import InfoTooltip from './InfoTooltip'
 import IonIcon from '../IonIcon/IonIcon'
 import { StyledFormControl } from './InputText.styled'
 import Button from '../buttons/Button'
-import { InputTextError } from '../../index'
+import InputText from './InputText'
 import { styled } from '@mui/system'
 import { useTranslation } from 'next-i18next'
-import TextFieldTagsError from './TextFieldTagsError'
+import TextFieldTags from './TextFieldTags'
 
 const CustomPropError = ['error']
 const CustomRoot = styled('div', {
@@ -180,7 +180,7 @@ function Expansion(props: IProps): JSX.Element {
               <div
                 style={{ position: 'relative', display: 'flex', gap: '32px' }}
               >
-                <InputTextError
+                <InputText
                   required
                   label={t('reference term')}
                   placeholder={t('reference term')}
@@ -190,7 +190,7 @@ function Expansion(props: IProps): JSX.Element {
                   }}
                   showError={showError}
                 />
-                <TextFieldTagsError
+                <TextFieldTags
                   required
                   label={t('expansion terms')}
                   fullWidth={fullWidth}

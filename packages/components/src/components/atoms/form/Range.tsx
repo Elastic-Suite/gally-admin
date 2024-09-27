@@ -1,134 +1,53 @@
-import React, {
-  ChangeEvent,
-  ForwardedRef,
-  ReactNode,
-  Ref,
-  SyntheticEvent,
-  forwardRef,
-} from 'react'
-import { FormHelperText, InputLabel } from '@mui/material'
-import { useTranslation } from 'next-i18next'
+import React, { ForwardedRef, useCallback } from 'react'
 
-import { getFormValue } from '../../../services'
+import { IFieldErrorProps, IValidator, useFormError } from '../../../hooks'
 
-import IonIcon from '../IonIcon/IonIcon'
+import RangeWithoutError, { IRangeProps } from './RangeWithoutError'
 
-import FormControl from './FormControl'
-import InfoTooltip from './InfoTooltip'
-import { IUnstyledInputTextProps, Suffix, Wrapper } from './InputText.styled'
-import { FirstInput, SecondInput } from './Range.styled'
+interface IRangeErrorProps extends IFieldErrorProps, IRangeProps {}
 
-export interface IRangeProps
-  extends Omit<
-    IUnstyledInputTextProps,
-    'margin' | 'onChange' | 'placeholder' | 'value'
-  > {
-  error?: boolean
-  fullWidth?: boolean
-  infoTooltip?: string
-  inputRef?: Ref<HTMLInputElement>
-  helperText?: ReactNode
-  helperIcon?: string
-  label?: string
-  margin?: 'none' | 'dense' | 'normal'
-  placeholder?: string[]
-  onChange?: (value: (string | number)[], event: SyntheticEvent) => void
-  suffix?: ReactNode
-  value: (string | number | null)[]
-}
-
-function Range(
-  props: IRangeProps,
-  ref?: ForwardedRef<HTMLInputElement>
-): JSX.Element {
-  const { t } = useTranslation('common')
+function Range(props: IRangeErrorProps): JSX.Element {
   const {
-    error,
-    fullWidth,
-    helperText,
-    helperIcon,
-    id,
-    infoTooltip,
-    inputProps,
-    label,
-    margin = 'none',
     onChange,
-    placeholder = [],
-    required,
-    suffix,
-    value,
-    type = 'number',
-    ...InputProps
+    showError,
+    additionalValidator,
+    replacementErrorsMessages,
+    ...inputProps
   } = props
-  const [placeholderFrom, placeholderTo] = placeholder
-  const [valueFrom, valueTo] = value
 
-  function handleChangeFrom(
-    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ): void {
-    const { value } = event.target
-    if (onChange) {
-      onChange([getFormValue(value, props), valueTo], event)
-    }
-  }
+  const validator = useCallback<IValidator>(
+    (value: [number | string | null, number | string | null], event) => {
+      if (additionalValidator) return additionalValidator(value, event)
+      if (
+        inputProps.required &&
+        ((!value[0] && value[0] !== 0) || (!value[1] && value[1] !== 0))
+      ) {
+        return 'valueMissing'
+      }
+      return ''
+    },
+    [additionalValidator, inputProps.required]
+  )
 
-  function handleChangeTo(
-    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ): void {
-    const { value } = event.target
-    if (onChange) {
-      onChange([valueFrom, getFormValue(value, props)], event)
-    }
-  }
+  const [{ ref, ...formErrorProps }] = useFormError(
+    onChange,
+    inputProps.value,
+    showError,
+    validator,
+    inputProps.disabled,
+    replacementErrorsMessages
+  )
 
   return (
-    <FormControl fullWidth={fullWidth} margin={margin}>
-      {Boolean(label || infoTooltip) && (
-        <InputLabel shrink htmlFor={id} required={required}>
-          {label}
-          {infoTooltip ? <InfoTooltip title={infoTooltip} /> : null}
-        </InputLabel>
-      )}
-      <Wrapper className="InputText__Wrapper">
-        {t('form.from')}
-        <FirstInput
-          error={error}
-          id={id}
-          onChange={handleChangeFrom}
-          required={required}
-          {...InputProps}
-          type={type}
-          inputProps={{ ...inputProps, max: valueTo }}
-          placeholder={placeholderFrom}
-          value={valueFrom ? String(valueFrom) : ''}
-          inputRef={ref}
-        />
-        {t('form.to')}
-        <SecondInput
-          error={error}
-          onChange={handleChangeTo}
-          required={required}
-          {...InputProps}
-          type={type}
-          inputProps={{ ...inputProps, min: valueFrom }}
-          placeholder={placeholderTo}
-          value={valueTo ? String(valueTo) : ''}
-        />
-        {Boolean(suffix) && <Suffix>{suffix}</Suffix>}
-      </Wrapper>
-      {Boolean(helperText) && (
-        <FormHelperText error={error}>
-          {Boolean(helperIcon) && (
-            <IonIcon
-              name={helperIcon}
-              style={{ fontSize: 18, marginRight: 2 }}
-            />
-          )}
-          {helperText}
-        </FormHelperText>
-      )}
-    </FormControl>
+    <RangeWithoutError
+      {...inputProps}
+      {...formErrorProps}
+      error={inputProps?.error || formErrorProps?.error}
+      helperIcon={inputProps?.helperIcon || formErrorProps?.helperIcon}
+      helperText={inputProps?.helperText || formErrorProps?.helperText}
+      ref={ref as ForwardedRef<HTMLInputElement>}
+    />
   )
 }
 
-export default forwardRef<HTMLInputElement, IRangeProps>(Range)
+export default Range

@@ -12,7 +12,7 @@ import { optionsContext } from '../../../contexts'
 
 import Button from '../../atoms/buttons/Button'
 import Chip from '../../atoms/Chip/Chip'
-import InputText from '../../atoms/form/InputText'
+import InputTextWithoutError from '../../atoms/form/InputTextWithoutError'
 import IonIcon from '../../atoms/IonIcon/IonIcon'
 import FieldGuesser from '../../stateful/FieldGuesser/FieldGuesser'
 
@@ -176,7 +176,7 @@ function Filters(props: IProps): JSX.Element {
       <HeaderBox>
         {showSearch ? (
           <SearchBox>
-            <InputText
+            <InputTextWithoutError
               endAdornment={
                 <InputAdornment position="end">
                   <IonIcon name="search" />

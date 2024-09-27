@@ -94,10 +94,10 @@ export interface IEntityTextTypeFilterInput
 export interface IEntityIntegerTypeFilterInput {
   eq?: number
   in?: number[]
-  gte?: number
-  gt?: number
-  lt?: number
-  lte?: number
+  gte?: number | string
+  gt?: number | string
+  lt?: number | string
+  lte?: number | string
   exist?: boolean
 }
 
