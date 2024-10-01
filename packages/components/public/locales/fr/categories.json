@@ -38,5 +38,6 @@
   "pinned.results_zero": "épinglé",
   "pinned.results_other": "épinglés",
   "noProductSearch": "Aucun produit n'a été trouvé",
-  "tree.virtual": "virtuelle"
+  "tree.virtual": "virtuelle",
+  "virtualRule.conditions": "Condition(s)"
 }
