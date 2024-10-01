@@ -24,7 +24,7 @@ const CustomA = styled('a')({
 
 function HelpOver(): JSX.Element {
   return (
-    <CustomRoot>
+    <CustomRoot data-testid="helpOver">
       <Link href="https://elasticsuite.zendesk.com" legacyBehavior passHref>
         <CustomA>Helpdesk</CustomA>
       </Link>

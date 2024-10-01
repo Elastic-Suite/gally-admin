@@ -12,6 +12,8 @@ import {
   Autocomplete,
   AutocompleteRenderOptionState,
   FormControl,
+  ListItem,
+  ListSubheader,
 } from '@mui/material'
 import { useTranslation } from 'next-i18next'
 
@@ -35,6 +37,7 @@ export interface IDropDownProps<T>
   value?: T | T[] | object | object[]
   useGroups?: boolean
   objectKeyValue?: string
+  dataTestId?: string
 }
 
 function DropDownWithoutError<T>(
@@ -52,6 +55,7 @@ function DropDownWithoutError<T>(
     value,
     useGroups,
     objectKeyValue,
+    dataTestId,
     ...otherProps
   } = props
   const { required, small } = otherProps
@@ -112,6 +116,7 @@ function DropDownWithoutError<T>(
       { label }: IOption<T>,
       { selected }: AutocompleteRenderOptionState
     ): ReactNode => {
+      // data-testid={`option-${otherProps.inputProps["data-testid"]}`}
       return (
         <li {...props}>
           <CheckboxWithoutError
@@ -119,6 +124,7 @@ function DropDownWithoutError<T>(
             label={label}
             list
             onClick={(e): void => e.preventDefault()}
+            dataTestId={dataTestId && dataTestId + 'Checkbox'}
           />
         </li>
       )
@@ -133,6 +139,9 @@ function DropDownWithoutError<T>(
             label={option.label}
             size={small ? 'small' : 'medium'}
             {...getTagProps({ index })}
+            {...(dataTestId && {
+              'data-testid': dataTestId + 'Tag',
+            })}
           />
         ))
   }
@@ -164,9 +173,29 @@ function DropDownWithoutError<T>(
         getOptionLabel={
           useGroups ? (options: IOption<T>): string => options.label : undefined
         }
-        popupIcon={<IonIcon name="chevron-down" />}
+        popupIcon={
+          <IonIcon
+            {...(dataTestId && {
+              'data-testid': dataTestId + 'Button',
+            })}
+            name="chevron-down"
+          />
+        }
+        renderGroup={(params) => (
+          <li key={params.key}>
+            <ListSubheader
+              {...(dataTestId && {
+                'data-testid': dataTestId + 'GroupTitle',
+              })}
+            >
+              {params.group}
+            </ListSubheader>
+            <ul style={{ padding: 0 }}>{params.children}</ul>
+          </li>
+        )}
         renderInput={(params): JSX.Element => {
           const { InputLabelProps, InputProps, ...inputProps } = params
+
           return (
             <InputTextWithoutError
               {...{ ...otherProps, required: false }}
@@ -175,6 +204,7 @@ function DropDownWithoutError<T>(
               fullWidth={fullWidth}
               inputRef={ref || inputRef}
               requiredLabel={required}
+              dataTestId={dataTestId && dataTestId + 'InputText'}
             />
           )
         }}

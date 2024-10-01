@@ -87,6 +87,7 @@ function Sidebar(props: IProps): JSX.Element {
       orientation="horizontal"
       collapsedSize={sidebarState ? 278 : 66}
       timeout={sidebarState ? 0 : 200}
+      data-testid="sidebarMenu"
     >
       <CustomRoot style={sidebarState ? {} : { width: 'inherit' }}>
         <Link href="/admin/settings/scope/catalogs">

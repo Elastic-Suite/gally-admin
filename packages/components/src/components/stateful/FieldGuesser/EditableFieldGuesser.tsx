@@ -113,6 +113,7 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
               : helperText
           }
           inputProps={validation}
+          dataTestId={name}
           label={label}
           onChange={handleChange}
           required={required}
@@ -157,6 +158,7 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
           value={Number(value)}
           onChange={handleChange}
           helperText={helperText}
+          dataTestId={name}
         />
       )
     }
@@ -180,6 +182,7 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
             error={error}
             helperText={helperText}
             label={label}
+            dataTestId={name}
           />
         </Box>
       )
@@ -216,6 +219,7 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
           error={error}
           helperText={helperText}
           showError={showError}
+          dataTestId={name}
         />
       )
     }
@@ -278,6 +282,7 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
           error={error}
           helperText={helperText}
           replacementErrorsMessages={replacementErrorsMessages}
+          dataTestId={name}
         />
       )
     }
@@ -327,6 +332,7 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
           required={required}
           label={label}
           placeholder={placeholder}
+          data-testid={name}
         />
       )
     }

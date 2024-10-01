@@ -188,7 +188,7 @@ function MenuItemIcon(props: IProps): JSX.Element {
    */
   if (childPadding) {
     return (
-      <CustomClassNameStyleRoot lightStyle={!lightStyle}>
+      <CustomClassNameStyleRoot lightStyle={!lightStyle} data-testid="menuItemIcon">
         <IonIcon
           name={code}
           style={{
@@ -205,8 +205,9 @@ function MenuItemIcon(props: IProps): JSX.Element {
       </CustomClassNameStyleRoot>
     )
   }
+  console.log(href)
   return (
-    <CustomClassNameStyle lightStyle={!lightStyle} isActive={isActive}>
+    <CustomClassNameStyle lightStyle={!lightStyle} isActive={isActive} data-testid="menuItemIcon">
       <Link href={`/admin/${href}`} legacyBehavior passHref>
         <CustomNoChildHover sidebarState={sidebarState}>
           <IonIcon

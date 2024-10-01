@@ -55,6 +55,7 @@ export interface IRequestTypeItem {
   requestTypesOptions: IRequestTypesOptions[]
   categoriesList: ITreeItem[]
   showError?: boolean
+  dataTestId?: string
 }
 
 interface IPropsComponent {
@@ -71,6 +72,7 @@ function RequestTypeItem(props: IRequestTypeItem): JSX.Element {
     requestTypesOptions,
     categoriesList,
     showError,
+    dataTestId
   } = props
   const { t } = useTranslation('common')
 
@@ -199,6 +201,7 @@ function RequestTypeItem(props: IRequestTypeItem): JSX.Element {
                   onChange={(val: boolean): void =>
                     onChangeApplyToAll(requestTypeOption, val)
                   }
+                  dataTestId={dataTestId && dataTestId + "Checkbox"}
                 />
               </div>
               <CustomDataLimitations>
@@ -209,6 +212,7 @@ function RequestTypeItem(props: IRequestTypeItem): JSX.Element {
                     disabledValue={t(item.labelAll)}
                     options={options}
                     value={limitationsData as ISearchLimitations[]}
+                    dataTestId={dataTestId && dataTestId + "TextFieldTagsMultiple"}
                   />
                 )}
 

@@ -38,7 +38,7 @@ function Dropdown<T>(props: IDropDownErrorProps<T>): JSX.Element {
     validator,
     inputProps.disabled,
     replacementErrorsMessages
-  )
+  ) 
 
   return (
     <DropDownWithoutError
