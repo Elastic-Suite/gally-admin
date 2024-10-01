@@ -4,6 +4,7 @@ exports[`SideBar match snapshot SideBarStateFalse 1`] = `
 <div>
   <div
     class="MuiCollapse-root MuiCollapse-horizontal css-gvgdin-MuiCollapse-root"
+    data-testid="sidebarMenu"
     style="min-width: 66px;"
   >
     <div
@@ -61,9 +62,11 @@ exports[`SideBar match snapshot SideBarStateFalse 1`] = `
             >
               <div
                 class="css-hshm0p"
+                data-testid="menuGroup"
               >
                 <div
                   class="css-tfem9q"
+                  data-testid="menuItemIcon"
                 >
                   <a
                     class="css-11ylqoy"
@@ -82,13 +85,16 @@ exports[`SideBar match snapshot SideBarStateFalse 1`] = `
                 </div>
                 <div
                   class="css-dsnyvo"
+                  data-testid="menuGroupLinks"
                 />
               </div>
               <div
                 class="css-hshm0p"
+                data-testid="menuGroup"
               >
                 <div
                   class="css-jbglvz"
+                  data-testid="menuItemIcon"
                 >
                   <ion-icon
                     name="analytics"
@@ -102,6 +108,7 @@ exports[`SideBar match snapshot SideBarStateFalse 1`] = `
                 </div>
                 <div
                   class="css-dsnyvo"
+                  data-testid="menuGroupLinks"
                 >
                   <div>
                     <div
@@ -116,6 +123,7 @@ exports[`SideBar match snapshot SideBarStateFalse 1`] = `
                         >
                           <div
                             class="css-1ooj8e9"
+                            data-testid="menuLinkItem"
                           >
                             <a
                               class="css-1hn3xib"
@@ -144,6 +152,7 @@ exports[`SideBar match snapshot SideBarStateFalse 1`] = `
                         >
                           <div
                             class="css-1ylhpt2"
+                            data-testid="menuLinkItem"
                           >
                             <a
                               class="css-1hn3xib"
@@ -169,6 +178,7 @@ exports[`SideBar match snapshot SideBarStateFalse 1`] = `
                         >
                           <div
                             class="css-1ylhpt2"
+                            data-testid="menuLinkItem"
                           >
                             <a
                               class="css-1hn3xib"
@@ -185,9 +195,11 @@ exports[`SideBar match snapshot SideBarStateFalse 1`] = `
               </div>
               <div
                 class="css-hshm0p"
+                data-testid="menuGroup"
               >
                 <div
                   class="css-jbglvz"
+                  data-testid="menuItemIcon"
                 >
                   <ion-icon
                     name="funnel-outline"
@@ -201,6 +213,7 @@ exports[`SideBar match snapshot SideBarStateFalse 1`] = `
                 </div>
                 <div
                   class="css-dsnyvo"
+                  data-testid="menuGroupLinks"
                 >
                   <div>
                     <div
@@ -215,6 +228,7 @@ exports[`SideBar match snapshot SideBarStateFalse 1`] = `
                         >
                           <div
                             class="css-1ylhpt2"
+                            data-testid="menuLinkItem"
                           >
                             <a
                               class="css-1hn3xib"
@@ -240,6 +254,7 @@ exports[`SideBar match snapshot SideBarStateFalse 1`] = `
                         >
                           <div
                             class="css-1ylhpt2"
+                            data-testid="menuLinkItem"
                           >
                             <a
                               class="css-1hn3xib"
@@ -261,6 +276,7 @@ exports[`SideBar match snapshot SideBarStateFalse 1`] = `
                       >
                         <div
                           class="css-1oksv39"
+                          data-testid="subGroupMenu"
                           style="position: relative;"
                         >
                           <button
@@ -296,6 +312,7 @@ exports[`SideBar match snapshot SideBarStateFalse 1`] = `
                                   >
                                     <div
                                       class="css-1ylhpt2"
+                                      data-testid="menuLinkItem"
                                     >
                                       <a
                                         class="css-1hn3xib"
@@ -319,6 +336,7 @@ exports[`SideBar match snapshot SideBarStateFalse 1`] = `
                                   >
                                     <div
                                       class="css-1ylhpt2"
+                                      data-testid="menuLinkItem"
                                     >
                                       <a
                                         class="css-1hn3xib"
@@ -342,6 +360,7 @@ exports[`SideBar match snapshot SideBarStateFalse 1`] = `
                                   >
                                     <div
                                       class="css-1ylhpt2"
+                                      data-testid="menuLinkItem"
                                     >
                                       <a
                                         class="css-1hn3xib"
@@ -365,6 +384,7 @@ exports[`SideBar match snapshot SideBarStateFalse 1`] = `
                                   >
                                     <div
                                       class="css-1ylhpt2"
+                                      data-testid="menuLinkItem"
                                     >
                                       <a
                                         class="css-1hn3xib"
@@ -395,6 +415,7 @@ exports[`SideBar match snapshot SideBarStateFalse 1`] = `
                         >
                           <div
                             class="css-1ylhpt2"
+                            data-testid="menuLinkItem"
                           >
                             <a
                               class="css-1hn3xib"
@@ -411,9 +432,11 @@ exports[`SideBar match snapshot SideBarStateFalse 1`] = `
               </div>
               <div
                 class="css-hshm0p"
+                data-testid="menuGroup"
               >
                 <div
                   class="css-jbglvz"
+                  data-testid="menuItemIcon"
                 >
                   <ion-icon
                     name="search"
@@ -427,6 +450,7 @@ exports[`SideBar match snapshot SideBarStateFalse 1`] = `
                 </div>
                 <div
                   class="css-dsnyvo"
+                  data-testid="menuGroupLinks"
                 >
                   <div>
                     <div
@@ -437,6 +461,7 @@ exports[`SideBar match snapshot SideBarStateFalse 1`] = `
                       >
                         <div
                           class="css-1oksv39"
+                          data-testid="subGroupMenu"
                           style="position: relative;"
                         >
                           <button
@@ -472,6 +497,7 @@ exports[`SideBar match snapshot SideBarStateFalse 1`] = `
                                   >
                                     <div
                                       class="css-1ylhpt2"
+                                      data-testid="menuLinkItem"
                                     >
                                       <a
                                         class="css-1hn3xib"
@@ -495,6 +521,7 @@ exports[`SideBar match snapshot SideBarStateFalse 1`] = `
                                   >
                                     <div
                                       class="css-1ylhpt2"
+                                      data-testid="menuLinkItem"
                                     >
                                       <a
                                         class="css-1hn3xib"
@@ -518,6 +545,7 @@ exports[`SideBar match snapshot SideBarStateFalse 1`] = `
                                   >
                                     <div
                                       class="css-1ylhpt2"
+                                      data-testid="menuLinkItem"
                                     >
                                       <a
                                         class="css-1hn3xib"
@@ -548,6 +576,7 @@ exports[`SideBar match snapshot SideBarStateFalse 1`] = `
                         >
                           <div
                             class="css-1ylhpt2"
+                            data-testid="menuLinkItem"
                           >
                             <a
                               class="css-1hn3xib"
@@ -573,6 +602,7 @@ exports[`SideBar match snapshot SideBarStateFalse 1`] = `
                         >
                           <div
                             class="css-1ylhpt2"
+                            data-testid="menuLinkItem"
                           >
                             <a
                               class="css-1hn3xib"
@@ -587,9 +617,12 @@ exports[`SideBar match snapshot SideBarStateFalse 1`] = `
                   </div>
                 </div>
               </div>
-              <div>
+              <div
+                data-testid="menuGroup"
+              >
                 <div
                   class="css-19kw05j"
+                  data-testid="menuItemIcon"
                 >
                   <a
                     class="css-11ylqoy"
@@ -607,9 +640,12 @@ exports[`SideBar match snapshot SideBarStateFalse 1`] = `
                   </a>
                 </div>
               </div>
-              <div>
+              <div
+                data-testid="menuGroup"
+              >
                 <div
                   class="css-19kw05j"
+                  data-testid="menuItemIcon"
                 >
                   <a
                     class="css-11ylqoy"
@@ -640,6 +676,7 @@ exports[`SideBar match snapshot SideBarStateTrue 1`] = `
 <div>
   <div
     class="MuiCollapse-root MuiCollapse-horizontal MuiCollapse-entered css-r09iak-MuiCollapse-root"
+    data-testid="sidebarMenu"
     style="min-width: 278px;"
   >
     <div
@@ -696,9 +733,11 @@ exports[`SideBar match snapshot SideBarStateTrue 1`] = `
             >
               <div
                 class="css-hshm0p"
+                data-testid="menuGroup"
               >
                 <div
                   class="css-tfem9q"
+                  data-testid="menuItemIcon"
                 >
                   <a
                     class="css-bq1l1q"
@@ -717,13 +756,16 @@ exports[`SideBar match snapshot SideBarStateTrue 1`] = `
                 </div>
                 <div
                   class="css-dsnyvo"
+                  data-testid="menuGroupLinks"
                 />
               </div>
               <div
                 class="css-hshm0p"
+                data-testid="menuGroup"
               >
                 <div
                   class="css-jbglvz"
+                  data-testid="menuItemIcon"
                 >
                   <ion-icon
                     name="analytics"
@@ -737,6 +779,7 @@ exports[`SideBar match snapshot SideBarStateTrue 1`] = `
                 </div>
                 <div
                   class="css-dsnyvo"
+                  data-testid="menuGroupLinks"
                 >
                   <div>
                     <div
@@ -751,6 +794,7 @@ exports[`SideBar match snapshot SideBarStateTrue 1`] = `
                         >
                           <div
                             class="css-1ooj8e9"
+                            data-testid="menuLinkItem"
                           >
                             <a
                               class="css-1hn3xib"
@@ -779,6 +823,7 @@ exports[`SideBar match snapshot SideBarStateTrue 1`] = `
                         >
                           <div
                             class="css-1ylhpt2"
+                            data-testid="menuLinkItem"
                           >
                             <a
                               class="css-1hn3xib"
@@ -804,6 +849,7 @@ exports[`SideBar match snapshot SideBarStateTrue 1`] = `
                         >
                           <div
                             class="css-1ylhpt2"
+                            data-testid="menuLinkItem"
                           >
                             <a
                               class="css-1hn3xib"
@@ -820,9 +866,11 @@ exports[`SideBar match snapshot SideBarStateTrue 1`] = `
               </div>
               <div
                 class="css-hshm0p"
+                data-testid="menuGroup"
               >
                 <div
                   class="css-jbglvz"
+                  data-testid="menuItemIcon"
                 >
                   <ion-icon
                     name="funnel-outline"
@@ -836,6 +884,7 @@ exports[`SideBar match snapshot SideBarStateTrue 1`] = `
                 </div>
                 <div
                   class="css-dsnyvo"
+                  data-testid="menuGroupLinks"
                 >
                   <div>
                     <div
@@ -850,6 +899,7 @@ exports[`SideBar match snapshot SideBarStateTrue 1`] = `
                         >
                           <div
                             class="css-1ylhpt2"
+                            data-testid="menuLinkItem"
                           >
                             <a
                               class="css-1hn3xib"
@@ -875,6 +925,7 @@ exports[`SideBar match snapshot SideBarStateTrue 1`] = `
                         >
                           <div
                             class="css-1ylhpt2"
+                            data-testid="menuLinkItem"
                           >
                             <a
                               class="css-1hn3xib"
@@ -896,6 +947,7 @@ exports[`SideBar match snapshot SideBarStateTrue 1`] = `
                       >
                         <div
                           class="css-1oksv39"
+                          data-testid="subGroupMenu"
                           style="position: relative;"
                         >
                           <button
@@ -931,6 +983,7 @@ exports[`SideBar match snapshot SideBarStateTrue 1`] = `
                                   >
                                     <div
                                       class="css-1ylhpt2"
+                                      data-testid="menuLinkItem"
                                     >
                                       <a
                                         class="css-1hn3xib"
@@ -954,6 +1007,7 @@ exports[`SideBar match snapshot SideBarStateTrue 1`] = `
                                   >
                                     <div
                                       class="css-1ylhpt2"
+                                      data-testid="menuLinkItem"
                                     >
                                       <a
                                         class="css-1hn3xib"
@@ -977,6 +1031,7 @@ exports[`SideBar match snapshot SideBarStateTrue 1`] = `
                                   >
                                     <div
                                       class="css-1ylhpt2"
+                                      data-testid="menuLinkItem"
                                     >
                                       <a
                                         class="css-1hn3xib"
@@ -1000,6 +1055,7 @@ exports[`SideBar match snapshot SideBarStateTrue 1`] = `
                                   >
                                     <div
                                       class="css-1ylhpt2"
+                                      data-testid="menuLinkItem"
                                     >
                                       <a
                                         class="css-1hn3xib"
@@ -1030,6 +1086,7 @@ exports[`SideBar match snapshot SideBarStateTrue 1`] = `
                         >
                           <div
                             class="css-1ylhpt2"
+                            data-testid="menuLinkItem"
                           >
                             <a
                               class="css-1hn3xib"
@@ -1046,9 +1103,11 @@ exports[`SideBar match snapshot SideBarStateTrue 1`] = `
               </div>
               <div
                 class="css-hshm0p"
+                data-testid="menuGroup"
               >
                 <div
                   class="css-jbglvz"
+                  data-testid="menuItemIcon"
                 >
                   <ion-icon
                     name="search"
@@ -1062,6 +1121,7 @@ exports[`SideBar match snapshot SideBarStateTrue 1`] = `
                 </div>
                 <div
                   class="css-dsnyvo"
+                  data-testid="menuGroupLinks"
                 >
                   <div>
                     <div
@@ -1072,6 +1132,7 @@ exports[`SideBar match snapshot SideBarStateTrue 1`] = `
                       >
                         <div
                           class="css-1oksv39"
+                          data-testid="subGroupMenu"
                           style="position: relative;"
                         >
                           <button
@@ -1107,6 +1168,7 @@ exports[`SideBar match snapshot SideBarStateTrue 1`] = `
                                   >
                                     <div
                                       class="css-1ylhpt2"
+                                      data-testid="menuLinkItem"
                                     >
                                       <a
                                         class="css-1hn3xib"
@@ -1130,6 +1192,7 @@ exports[`SideBar match snapshot SideBarStateTrue 1`] = `
                                   >
                                     <div
                                       class="css-1ylhpt2"
+                                      data-testid="menuLinkItem"
                                     >
                                       <a
                                         class="css-1hn3xib"
@@ -1153,6 +1216,7 @@ exports[`SideBar match snapshot SideBarStateTrue 1`] = `
                                   >
                                     <div
                                       class="css-1ylhpt2"
+                                      data-testid="menuLinkItem"
                                     >
                                       <a
                                         class="css-1hn3xib"
@@ -1183,6 +1247,7 @@ exports[`SideBar match snapshot SideBarStateTrue 1`] = `
                         >
                           <div
                             class="css-1ylhpt2"
+                            data-testid="menuLinkItem"
                           >
                             <a
                               class="css-1hn3xib"
@@ -1208,6 +1273,7 @@ exports[`SideBar match snapshot SideBarStateTrue 1`] = `
                         >
                           <div
                             class="css-1ylhpt2"
+                            data-testid="menuLinkItem"
                           >
                             <a
                               class="css-1hn3xib"
@@ -1222,9 +1288,12 @@ exports[`SideBar match snapshot SideBarStateTrue 1`] = `
                   </div>
                 </div>
               </div>
-              <div>
+              <div
+                data-testid="menuGroup"
+              >
                 <div
                   class="css-19kw05j"
+                  data-testid="menuItemIcon"
                 >
                   <a
                     class="css-bq1l1q"
@@ -1242,9 +1311,12 @@ exports[`SideBar match snapshot SideBarStateTrue 1`] = `
                   </a>
                 </div>
               </div>
-              <div>
+              <div
+                data-testid="menuGroup"
+              >
                 <div
                   class="css-19kw05j"
+                  data-testid="menuItemIcon"
                 >
                   <a
                     class="css-bq1l1q"

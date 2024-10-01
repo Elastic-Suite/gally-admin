@@ -41,6 +41,7 @@ export interface IDatePickerProps
   value: Date | string | null
   onChange: (value: Date | string | null) => void
   onError?: (reason: DateValidationError, value: Date) => void
+  dataTestId?: string
 }
 
 function EndIcon(): JSX.Element {
@@ -63,7 +64,7 @@ function DatePickerWithoutError(
   ref?: ForwardedRef<HTMLInputElement>
 ): JSX.Element {
   const { t } = useTranslation('common')
-  const { value, onChange, onError, ...args } = props
+  const { value, onChange, onError, dataTestId, ...args } = props
 
   function onChangeDatePicker(date: Date | string): void {
     let utcDate = date
@@ -110,6 +111,7 @@ function DatePickerWithoutError(
             ref={params.ref as Ref<HTMLDivElement>}
             type={type}
             value={value}
+            dataTestId={dataTestId}
           />
         )
       }}

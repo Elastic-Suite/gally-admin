@@ -205,9 +205,12 @@ function MenuItem(props: IProps): JSX.Element {
   return (
     <CustomRoot>
       <Root>
-        <CustomLinePadding style={{ position: 'relative' }}>
+        <CustomLinePadding
+          style={{ position: 'relative' }}
+          {...(menuChildren && { 'data-testid': 'subGroupMenu' })}
+        >
           {!menuChildren && (
-            <Line>
+            <Line data-testid="menuLinkItem">
               <Link href={`/admin/${href}`} legacyBehavior passHref>
                 <CustomLineAHref>{label}</CustomLineAHref>
               </Link>

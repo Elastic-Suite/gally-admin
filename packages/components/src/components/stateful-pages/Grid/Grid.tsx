@@ -50,7 +50,7 @@ function Grid(props: IProps): JSX.Element {
     <>
       <PageTitle title={title ?? t(resourceName)}>
         {hasNewLink ? (
-          <Button {...propsButton}>
+          <Button {...propsButton} data-testid="createButtonResourceGrid">
             <CustomAHref
               href={newLink ?? './create'}
               isIconInButton={Boolean(propsButton?.endIcon)}

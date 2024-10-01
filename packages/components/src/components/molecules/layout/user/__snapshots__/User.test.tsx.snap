@@ -7,6 +7,7 @@ exports[`User match snapshot connected 1`] = `
   >
     <div
       class="MuiBox-root css-0"
+      data-testid="helpToolTip"
     >
       <div
         class="css-b5pm8o"
@@ -34,6 +35,7 @@ exports[`User match snapshot connected 1`] = `
               >
                 <div
                   class="css-r0i2lt"
+                  data-testid="helpOver"
                 >
                   <a
                     class="css-ytumd6"
@@ -56,6 +58,7 @@ exports[`User match snapshot connected 1`] = `
     </div>
     <div
       class="MuiBox-root css-0"
+      data-testid="userMenu"
     >
       <div
         class="css-1gbhtbv"
@@ -66,6 +69,7 @@ exports[`User match snapshot connected 1`] = `
         />
         <div
           class="css-14i4ulh"
+          data-testid="username"
         >
           Admin@example.com
         </div>
@@ -93,12 +97,14 @@ exports[`User match snapshot connected 1`] = `
             >
               <div
                 class="css-1vcaigq"
+                data-testid="userMenuContent"
               >
                 <div
                   class="css-7hkggi"
                 >
                   <div
                     class="css-3lsmy"
+                    data-testid="userEmail"
                   >
                     Admin@example.com
                   </div>
@@ -107,6 +113,7 @@ exports[`User match snapshot connected 1`] = `
                   />
                   <div
                     class="css-9vgysh"
+                    data-testid="logOutButton"
                   >
                     log.out
                   </div>

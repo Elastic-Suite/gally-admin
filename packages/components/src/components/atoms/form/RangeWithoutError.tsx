@@ -35,6 +35,7 @@ export interface IRangeProps
   onChange?: (value: (string | number)[], event: SyntheticEvent) => void
   suffix?: ReactNode
   value: (string | number | null)[]
+  dataTestId?: string
 }
 
 function RangeWithoutError(
@@ -58,6 +59,7 @@ function RangeWithoutError(
     suffix,
     value,
     type = 'number',
+    dataTestId,
     ...InputProps
   } = props
   const [placeholderFrom, placeholderTo] = placeholder
@@ -98,7 +100,11 @@ function RangeWithoutError(
           required={required}
           {...InputProps}
           type={type}
-          inputProps={{ ...inputProps, max: valueTo }}
+          inputProps={{
+            ...inputProps,
+            max: valueTo,
+            ...(dataTestId && { 'data-testid': `${dataTestId}First` }),
+          }}
           placeholder={placeholderFrom}
           value={valueFrom ? String(valueFrom) : ''}
           inputRef={ref}
@@ -110,14 +116,21 @@ function RangeWithoutError(
           required={required}
           {...InputProps}
           type={type}
-          inputProps={{ ...inputProps, min: valueFrom }}
+          inputProps={{
+            ...inputProps,
+            min: valueFrom,
+            ...(dataTestId && { 'data-testid': `${dataTestId}Second` }),
+          }}
           placeholder={placeholderTo}
           value={valueTo ? String(valueTo) : ''}
         />
         {Boolean(suffix) && <Suffix>{suffix}</Suffix>}
       </Wrapper>
       {Boolean(helperText) && (
-        <FormHelperText error={error}>
+        <FormHelperText
+          error={error}
+          {...(dataTestId && { 'data-testid': `${dataTestId}ErrorMessage` })}
+        >
           {Boolean(helperIcon) && (
             <IonIcon
               name={helperIcon}

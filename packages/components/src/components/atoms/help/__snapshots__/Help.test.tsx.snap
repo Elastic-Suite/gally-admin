@@ -4,6 +4,7 @@ exports[`Help match snapshot Help simple 1`] = `
 <div>
   <div
     class="MuiBox-root css-0"
+    data-testid="helpToolTip"
   >
     <div
       class="css-b5pm8o"
@@ -31,6 +32,7 @@ exports[`Help match snapshot Help simple 1`] = `
             >
               <div
                 class="css-r0i2lt"
+                data-testid="helpOver"
               >
                 <a
                   class="css-ytumd6"

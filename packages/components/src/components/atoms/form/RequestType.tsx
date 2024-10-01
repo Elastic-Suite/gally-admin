@@ -33,6 +33,7 @@ export interface IProps {
   helperText?: string | string[]
   helperIcon?: string
   showError?: boolean
+  dataTestId?: string
 }
 
 function RequestType(props: IProps): JSX.Element {
@@ -53,6 +54,7 @@ function RequestType(props: IProps): JSX.Element {
     helperText,
     helperIcon,
     showError,
+    dataTestId,
   } = props
   function updateSelectedDropDown(list: string[] | string): void {
     const newData = (list as string[]).map((item) => {
@@ -110,6 +112,7 @@ function RequestType(props: IProps): JSX.Element {
           onChange={updateSelectedDropDown}
           value={value.requestTypes.map((item) => item.requestType)}
           options={requestTypesOptions}
+          dataTestId={dataTestId ? `${dataTestId}Dropdown` : null}
         />
         <RequestTypeItem
           value={value}
@@ -119,6 +122,7 @@ function RequestType(props: IProps): JSX.Element {
           options={options}
           requestTypesOptions={requestTypesOptions}
           categoriesList={categoriesList}
+          dataTestId={dataTestId ? `${dataTestId}Item` : null}
         />
       </CustomRoot>
       {Boolean(helperText) && (

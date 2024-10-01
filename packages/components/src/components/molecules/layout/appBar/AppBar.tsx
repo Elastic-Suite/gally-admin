@@ -39,7 +39,7 @@ interface IProps {
 
 function AppBar({ slug, menu, isConnected }: IProps): JSX.Element {
   return (
-    <CustomRoot>
+    <CustomRoot data-testid="appBar">
       <Breadcrumbs slug={slug} menu={menu} />
       <User isConnected={isConnected} />
     </CustomRoot>

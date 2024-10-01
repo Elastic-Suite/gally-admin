@@ -112,6 +112,7 @@ export interface ITextFieldTag extends Omit<ITextFieldTagsForm, 'options'> {
   withCleanButton?: boolean
   onChange?: (value: string[]) => void
   onRemoveItem?: () => void
+  dataTestId?: string
 }
 
 function TextFieldTagsWithoutError(
@@ -135,6 +136,7 @@ function TextFieldTagsWithoutError(
     size,
     disabledValue,
     withCleanButton,
+    dataTestId,
   } = props
 
   const { t } = useTranslation('common')
@@ -183,6 +185,7 @@ function TextFieldTagsWithoutError(
     <div style={{ position: 'relative' }}>
       {withCleanButton === true && (
         <CustomCloseTagsByOperator
+          {...(dataTestId && { 'data-testid': `${dataTestId}CleanButton` })}
           onClick={(): void => {
             if (value.length > 0) {
               onChange([])
@@ -251,6 +254,7 @@ function TextFieldTagsWithoutError(
                     if (event.code === 'Enter') manageTags(undefined, event)
                   }}
                   inputRef={ref}
+                  dataTestId={dataTestId ? `${dataTestId}InputText` : null}
                 />
               </CustomFormTextFieldTags>
             )}

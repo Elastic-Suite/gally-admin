@@ -36,6 +36,7 @@ exports[`DoubleDatePicker sould match snapshot 1`] = `
               <input
                 aria-invalid="false"
                 class="MuiInputBase-input MuiInputBase-inputAdornedEnd css-ngazp5-MuiInputBase-input"
+                data-testid="undefinedStart"
                 placeholder="date.placeholder"
                 type="tel"
                 value="04/12/2024"
@@ -82,6 +83,7 @@ exports[`DoubleDatePicker sould match snapshot 1`] = `
               <input
                 aria-invalid="false"
                 class="MuiInputBase-input MuiInputBase-inputAdornedEnd css-ngazp5-MuiInputBase-input"
+                data-testid="undefinedEnd"
                 placeholder="date.placeholder"
                 type="tel"
                 value="04/12/2024"

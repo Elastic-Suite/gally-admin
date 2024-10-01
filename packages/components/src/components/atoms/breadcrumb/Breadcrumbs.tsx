@@ -32,6 +32,7 @@ function Breadcrumbs(props: IProps): JSX.Element {
     <MuiBreadcrumbs
       aria-label="breadcrumb"
       sx={{ color: 'colors.neutral.500' }}
+      data-testid="breadcrumbs"
     >
       {breadcrumbProps.map(({ key, ...props }) => (
         <Breadcrumb key={key} {...props} />

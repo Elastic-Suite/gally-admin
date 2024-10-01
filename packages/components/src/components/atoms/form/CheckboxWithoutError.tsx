@@ -23,6 +23,7 @@ export interface ICheckboxWithoutErrorProps
   helperIcon?: string
   helperText?: ReactNode
   error?: boolean
+  dataTestId?: string
 }
 
 function CheckboxWithoutError(
@@ -39,6 +40,7 @@ function CheckboxWithoutError(
     onChange,
     onClick,
     small,
+    dataTestId,
     ...checkboxProps
   } = props
 
@@ -93,6 +95,7 @@ function CheckboxWithoutError(
           marginLeft: '-6px',
         }),
       }}
+      {...(dataTestId && { 'data-testid': dataTestId })}
     />
   )
 }
