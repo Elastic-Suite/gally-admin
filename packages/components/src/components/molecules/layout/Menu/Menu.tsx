@@ -70,7 +70,7 @@ function Menu(props: IProps): JSX.Element {
 
           if (!itemRouterTabs[item.code]) {
             return (
-              <CustomBoldStyle key={item.code}>
+              <CustomBoldStyle key={item.code} data-testid="menuGroup">
                 <MenuItemIcon
                   code={item.code}
                   href={path ?? slugify(item.code, 0)}
@@ -82,7 +82,7 @@ function Menu(props: IProps): JSX.Element {
                   sidebarState={sidebarState}
                   sidebarStateTimeout={sidebarStateTimeout}
                 />
-                <CustomSecondItems>
+                <CustomSecondItems data-testid="menuGroupLinks">
                   {item.children?.map((item: IMenuChild) => {
                     path = removeFirstCharIfExist('/', item?.path)
 
@@ -113,7 +113,7 @@ function Menu(props: IProps): JSX.Element {
             )
           }
           return (
-            <div key={item.code}>
+            <div key={item.code} data-testid="menuGroup">
               <MenuItemIcon
                 code={item.code}
                 href={path ?? slugify(item.code, 0)}

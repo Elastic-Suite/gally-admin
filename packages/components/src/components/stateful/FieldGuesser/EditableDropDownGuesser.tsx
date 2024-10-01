@@ -19,6 +19,7 @@ interface IProps extends Omit<IFieldGuesserProps, 'onChange'> {
   error?: boolean
   helperText?: string
   helperIcon?: string
+  dataTestId?: string
 }
 
 function EditableDropDownGuesser(props: IProps): JSX.Element {
@@ -40,6 +41,7 @@ function EditableDropDownGuesser(props: IProps): JSX.Element {
     helperIcon,
     showError,
     replacementErrorsMessages,
+    dataTestId,
   } = props
 
   const { t } = useTranslation('common')
@@ -96,6 +98,7 @@ function EditableDropDownGuesser(props: IProps): JSX.Element {
       objectKeyValue={field?.gally?.options?.objectKeyValue}
       sx={{ minWidth: '230.667px' }}
       replacementErrorsMessages={replacementErrorsMessages}
+      dataTestId={dataTestId}
     />
   )
 }

@@ -47,6 +47,7 @@ function Help(): JSX.Element {
 
   return (
     <Box
+      data-testid="helpToolTip"
       onMouseOver={(): void => setHelpVisible(true)}
       onMouseLeave={(): void => setHelpVisible(false)}
       onFocus={(): void => setHelpVisible(true)}

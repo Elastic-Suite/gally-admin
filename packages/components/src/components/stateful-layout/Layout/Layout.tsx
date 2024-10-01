@@ -180,7 +180,10 @@ function Layout({ children }: IProps): JSX.Element {
             left: sidebarState ? '279px' : '67px',
           }}
         >
-          <Collapse onClick={collapseSidebar}>
+          <Collapse
+            onClick={collapseSidebar}
+            data-testid="sidebarMenuCollapseButton"
+          >
             <IonIcon name="code-outline" style={{ width: 18, height: 18 }} />
           </Collapse>
           <AppBar slug={breadcrumb} menu={menu} isConnected={isConnected} />

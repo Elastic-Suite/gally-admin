@@ -26,6 +26,7 @@ function BackToLastPage(props: IProps): JSX.Element {
     <Button
       display="tertiary"
       color="info"
+      data-testid="backButton"
       startIcon={<ion-icon name="arrow-back-outline" />}
       {...btnProps}
       onClick={handleRedirection}
