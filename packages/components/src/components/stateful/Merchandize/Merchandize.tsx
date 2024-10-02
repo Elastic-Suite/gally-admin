@@ -119,10 +119,11 @@ function Merchandize({
             display: 'flex',
             flexDirection: 'column',
             gap: '28px',
+            paddingTop: '16px',
           }}
         >
           <RulesManager
-            label={t('virtualRule.title')}
+            label={t('virtualRule.conditions')}
             active={catConf?.isVirtual}
             onChange={(value): void => {
               onChange('virtualRule', value)
