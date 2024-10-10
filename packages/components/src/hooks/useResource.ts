@@ -96,16 +96,19 @@ export function useResourceOperations<T extends IHydraMember>(
           acc.update = update
         } else if (
           operation['@type'] instanceof Array &&
-          operation['@type'].length === 2
+          operation['@type'].length === 2 &&
+          typeof operation['@type'][1] === 'string'
         ) {
-          if (operation['@type'][1] === 'http://schema.org/CreateAction') {
+          if (
+            operation['@type'][1].indexOf('//schema.org/CreateAction') !== -1
+          ) {
             acc.create = create
           } else if (
-            operation['@type'][1] === 'http://schema.org/ReplaceAction'
+            operation['@type'][1].indexOf('//schema.org/ReplaceAction') !== -1
           ) {
             acc.replace = replace
           } else if (
-            operation['@type'][1] === 'http://schema.org/DeleteAction'
+            operation['@type'][1].indexOf('//schema.org/DeleteAction') !== -1
           ) {
             acc.remove = remove
           }
