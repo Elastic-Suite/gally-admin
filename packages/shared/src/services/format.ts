@@ -121,6 +121,12 @@ export function getIdFromIri(iri: string): string {
   return iri.split('/').pop()
 }
 
+export function getIri(api: string, id: string | number): string {
+  return `/${
+    process.env.NEXT_PUBLIC_API_ROUTE_PREFIX ?? ''
+  }/${api}/${id}`.replace(/\/+/g, '/')
+}
+
 export function roundNumber(
   value: number,
   decimal: number,

@@ -2,6 +2,7 @@ import React, { ReactNode } from 'react'
 import {
   IRuleEngineOperators,
   RuleAttributeType,
+  getIri,
 } from '@elastic-suite/gally-admin-shared'
 
 import ruleEngineOperator from '../../public/mocks/rule_engine_operators.json'
@@ -22,7 +23,7 @@ const sourceFieldLabelsMap = new Map(
 )
 
 const fields = sourceFields['hydra:member'].map((field) => {
-  const label = sourceFieldLabelsMap.get(`/source_fields/${field.id}`)
+  const label = sourceFieldLabelsMap.get(getIri('source_fields', field.id))
   return {
     id: field.id,
     code: field.code,

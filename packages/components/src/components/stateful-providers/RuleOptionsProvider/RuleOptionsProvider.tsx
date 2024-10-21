@@ -15,6 +15,7 @@ import {
   RuleCombinationOperator,
   RuleType,
   RuleValueType,
+  getIri,
   getListApiParameters,
   getOptionsFromEnum,
   getOptionsFromOptionResource,
@@ -149,7 +150,7 @@ function RuleOptionsProvider(props: IProps): JSX.Element {
           async (fetchApi: IFetchApi) => {
             const optionLabelFilters = {
               'order[position]': 'asc',
-              sourceField: `/source_fields/${field.id}`,
+              sourceField: getIri('source_fields', field.id),
             }
 
             let currentPage = 0
