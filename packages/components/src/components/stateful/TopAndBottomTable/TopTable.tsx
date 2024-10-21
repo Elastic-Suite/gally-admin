@@ -18,6 +18,7 @@ import {
   LoadStatus,
   ProductRequestType,
   cleanBeforeSaveCatConf,
+  getIdFromIri,
   getSearchPreviewProductsQuery,
   productTableheader,
   serializeCatConf,
@@ -106,7 +107,7 @@ function TopTable(props: IProps): JSX.Element {
   function handleReorder(rows: ITableRow[]): void {
     let position = 0
     const positions = rows.map((row) => ({
-      productId: String(row.id).split('/')[2],
+      productId: getIdFromIri(String(row.id)),
       position: ++position,
     }))
     setProductPositions({
@@ -126,7 +127,7 @@ function TopTable(props: IProps): JSX.Element {
   const tableRows =
     (products.data?.products?.collection.sort(
       (a, b) =>
-        topProductsMap[a.id.split('/')[2]] - topProductsMap[b.id.split('/')[2]]
+        topProductsMap[getIdFromIri(a.id)] - topProductsMap[getIdFromIri(b.id)]
     ) as unknown as ITableRow[]) ?? []
   const withSelection = selectedRows?.length !== undefined
   const massiveSelectionState =

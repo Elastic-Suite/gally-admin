@@ -7,6 +7,7 @@ import {
   ISourceField,
   ISourceFieldLabel,
   RuleAttributeType,
+  getIri,
   parseRule,
   serializeRule,
 } from '@elastic-suite/gally-admin-shared'
@@ -101,7 +102,10 @@ function RulesManager(props: IProps): JSX.Element {
   const sourceFieldLabelFilters = useMemo(() => {
     const filters: { localizedCatalog?: string } = {}
     if (localizedCatalogId !== -1) {
-      filters.localizedCatalog = `/localized_catalogs/${localizedCatalogId}`
+      filters.localizedCatalog = getIri(
+        'localized_catalogs',
+        localizedCatalogId
+      )
     }
     return filters
   }, [localizedCatalogId])
@@ -124,7 +128,7 @@ function RulesManager(props: IProps): JSX.Element {
   )
 
   const fields = sourceFields.data['hydra:member'].map((field) => {
-    const label = sourceFieldLabelsMap.get(`/source_fields/${field.id}`)
+    const label = sourceFieldLabelsMap.get(getIri('source_fields', field.id))
     return {
       id: field.id,
       code: field.code,

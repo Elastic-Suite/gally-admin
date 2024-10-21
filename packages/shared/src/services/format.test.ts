@@ -6,6 +6,7 @@ import {
   getFieldLabelTranslationArgs,
   getHeadTitle,
   getIdFromIri,
+  getIri,
   getNameFromDefault,
   humanize,
   roundNumber,
@@ -77,6 +78,14 @@ describe('Format service', () => {
     it('Should get the id from the iri', () => {
       expect(getIdFromIri('/localized_catalog/1')).toEqual('1')
       expect(getIdFromIri('/localized_catalog/random/10')).toEqual('10')
+    })
+  })
+
+  describe('getIri', () => {
+    it('Should get iri', () => {
+      expect(getIri('localized_catalog', 1)).toEqual('/localized_catalog/1')
+      expect(getIri('localized_catalog', '1')).toEqual('/localized_catalog/1')
+      expect(getIri('/localized_catalog/', '1')).toEqual('/localized_catalog/1')
     })
   })
 

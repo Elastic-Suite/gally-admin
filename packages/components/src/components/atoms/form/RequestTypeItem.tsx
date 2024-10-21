@@ -11,6 +11,7 @@ import {
   ISearchLimitations,
   ITreeItem,
   flatTree,
+  getIri,
 } from '@elastic-suite/gally-admin-shared'
 
 import TextFieldTagsMultiple from './TextFieldTagsMultiple'
@@ -109,7 +110,7 @@ function RequestTypeItem(props: IRequestTypeItem): JSX.Element {
     if (idItem === 'categoryLimitations') {
       const newData = (val as ITreeItem[]).map((item) => {
         return {
-          category: `/categories/${item.id}`,
+          category: getIri('categories', item.id),
         }
       })
       return onChange({ ...value, [idItem]: newData })

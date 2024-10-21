@@ -17,6 +17,8 @@ import {
   IRuleEngineOperators,
   ISortingOption,
   LoadStatus,
+  getIdFromIri,
+  getIri,
   getProductPosition,
 } from '@elastic-suite/gally-admin-shared'
 
@@ -164,7 +166,7 @@ function ProductsContainer(props: IProps): JSX.Element {
       0
     )
     const newTopProducts = bottomSelectedRows.map((row) => ({
-      productId: row.split('/')[2],
+      productId: getIdFromIri(row),
       position: ++maxPosition,
     }))
     setProductPositions({
@@ -183,7 +185,7 @@ function ProductsContainer(props: IProps): JSX.Element {
         result: JSON.stringify(
           topProducts.filter(
             ({ productId }) =>
-              !topSelectedRows.includes(`/products/${productId}`)
+              !topSelectedRows.includes(getIri('products', productId))
           )
         ),
       },
