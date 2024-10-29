@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`KPIGroup match snapshot KPIGroup 1`] = `
+<div>
+  <div
+    class="css-1l3liia"
+  >
+    <div
+      class="css-4jtltt"
+    >
+      <h3
+        class="css-1xva16q"
+      >
+        Test 1
+      </h3>
+      <p
+        class="css-2384rf"
+      >
+        456
+      </p>
+    </div>
+    <div
+      class="css-4jtltt"
+    >
+      <h3
+        class="css-1xva16q"
+      >
+        Test 2
+      </h3>
+      <p
+        class="css-2384rf"
+      >
+        46,86%
+      </p>
+    </div>
+  </div>
+</div>
+`;
