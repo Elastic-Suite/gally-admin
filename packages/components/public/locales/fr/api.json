@@ -11,6 +11,7 @@
   "Sortable": "Triable",
   "Use in rule engine": "Utilisable dans les conditions",
   "Displayed in autocomplete": "Affiché dans l'autocomplete",
+  "Use for span queries": "Recherchable par proximité",
   "Display": "Affichage",
   "Coverage": "Taux de couverture",
   "Max size": "Taille max",
