@@ -65,7 +65,7 @@ function RulesManager(props: IProps): JSX.Element {
   const { t } = useTranslation('common')
   const { catalogId, localizedCatalogId } = useContext(catalogContext)
   const ruleOperators = useRuleOperators(ruleOperatorsDefault)
-
+  const rowsPerPage = 200
   const rule: IRuleCombination =
     typeof ruleProps.rule === 'string'
       ? parseRule(JSON.parse(ruleProps.rule))
@@ -93,8 +93,11 @@ function RulesManager(props: IProps): JSX.Element {
   const [sourceFields] = useApiList<ISourceField>(
     sourceFieldResource,
     false,
+    rowsPerPage,
+    filters,
     undefined,
-    filters
+    false,
+    true
   )
 
   // Source field labels
@@ -112,8 +115,11 @@ function RulesManager(props: IProps): JSX.Element {
   const [sourceFieldLabels] = useApiList<ISourceFieldLabel>(
     sourceFieldLabelResource,
     false,
+    rowsPerPage,
+    sourceFieldLabelFilters,
     undefined,
-    sourceFieldLabelFilters
+    false,
+    true
   )
 
   if (!sourceFields.data || !sourceFieldLabels.data || !ruleOperators) {
