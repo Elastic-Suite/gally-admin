@@ -23,6 +23,7 @@ import {
   LoadStatus,
   defaultPageSize,
   fetchApi,
+  fetchApiUsingPagination,
   getListApiParameters,
   isError,
   storageRemove,
@@ -76,7 +77,8 @@ export function useFetchApi<T extends object>(
   options?: RequestInit,
   secure = true,
   conditions = true,
-  withDebounce = false
+  withDebounce = false,
+  rowsPerPageWithPagination?: number
 ): [IFetch<T>, Dispatch<SetStateAction<T>>, ILoadResource] {
   const fetchApi = useApiFetch(secure)
   const [response, setResponse] = useState<IFetch<T>>({
@@ -99,15 +101,35 @@ export function useFetchApi<T extends object>(
       if (!resource) {
         return setResponse({ data: null, status: LoadStatus.SUCCEEDED })
       }
-      fetchApi<T>(resource, searchParameters, options).then((json) => {
-        if (isError(json)) {
-          setResponse({ error: json.error, status: LoadStatus.FAILED })
-        } else {
-          setResponse({ data: json, status: LoadStatus.SUCCEEDED })
-        }
-      })
+
+      if (rowsPerPageWithPagination) {
+        fetchApiUsingPagination<T>(
+          fetchApi,
+          resource,
+          searchParameters,
+          options,
+          rowsPerPageWithPagination
+        ).then((response) => {
+          setResponse(response)
+        })
+      } else {
+        fetchApi<T>(resource, searchParameters, options).then((json) => {
+          if (isError(json)) {
+            setResponse({ error: json.error, status: LoadStatus.FAILED })
+          } else {
+            setResponse({ data: json, status: LoadStatus.SUCCEEDED })
+          }
+        })
+      }
     }
-  }, [conditions, fetchApi, options, resource, searchParameters])
+  }, [
+    conditions,
+    fetchApi,
+    options,
+    resource,
+    searchParameters,
+    rowsPerPageWithPagination,
+  ])
 
   const customDebounce = useMemo(
     () => debounce((func: () => void) => func(), debounceDelay),
@@ -131,7 +153,8 @@ export function useApiList<T extends object>(
   rowsPerPage: number = defaultPageSize,
   searchParameters?: ISearchParameters,
   searchValue?: string,
-  withDebounce = false
+  withDebounce = false,
+  withPagination = false
 ): [
   IFetch<IHydraResponse<T>> | null,
   Dispatch<SetStateAction<T[]>>?,
@@ -148,7 +171,8 @@ export function useApiList<T extends object>(
     undefined,
     true,
     true,
-    withDebounce
+    withDebounce,
+    withPagination ? rowsPerPage : undefined
   )
 
   const updateList = useCallback(

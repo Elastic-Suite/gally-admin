@@ -3,16 +3,26 @@ import {
   authErrorCodes,
   authHeader,
   contentTypeHeader,
+  defaultPageSize,
   languageHeader,
   tokenStorageKey,
 } from '../constants'
-import { IResource, IResponseError, ISearchParameters } from '../types'
+import {
+  IError,
+  IFetch,
+  IFetchApi,
+  IHydraResponse,
+  IResource,
+  IResponseError,
+  ISearchParameters,
+  LoadStatus,
+} from '../types'
 
 import { fetchJson } from './fetch'
 import { HydraError, getFieldName, isHydraError, isJSonldType } from './hydra'
-import { AuthError } from './network'
+import { AuthError, isError } from './network'
 import { storageGet, storageRemove } from './storage'
-import { getUrl } from './url'
+import { getListApiParameters, getUrl } from './url'
 
 export class ApiError extends Error {}
 
@@ -129,4 +139,54 @@ export function hasRealFilterApplied(
   })
 
   return Object.keys(searchParametersCleaned).length > 0
+}
+
+export async function fetchApiUsingPagination<T extends object>(
+  fetchApi: IFetchApi,
+  resource: IResource | string,
+  searchParameters?: ISearchParameters,
+  options?: RequestInit,
+  rowsPerPage: number = defaultPageSize
+): Promise<IFetch<T>> {
+  let currentPage = 0
+  let newParameters = getListApiParameters(
+    currentPage,
+    rowsPerPage,
+    searchParameters
+  )
+  const firstResponse: IHydraResponse<T> | IError = await fetchApi<T>(
+    resource,
+    newParameters,
+    options
+  )
+
+  if (isError(firstResponse)) {
+    return { error: firstResponse.error, status: LoadStatus.FAILED }
+  }
+  const totalItems = (firstResponse as IHydraResponse<T>)['hydra:totalItems']
+  const promises: Promise<IHydraResponse<T> | IError>[] = []
+  for (; totalItems > (currentPage + 1) * rowsPerPage; currentPage++) {
+    newParameters = getListApiParameters(
+      currentPage + 1,
+      rowsPerPage,
+      searchParameters
+    )
+    promises.push(fetchApi<T>(resource, newParameters, options))
+  }
+  const otherResponses = await Promise.all(promises)
+  const errors: IError[] = []
+  const hydraMemberOtherResponses = otherResponses.flatMap((json) => {
+    if (isError(json)) {
+      errors.push(json)
+      return []
+    }
+    return (json as IHydraResponse<T>)['hydra:member']
+  })
+  if (errors.length > 0) {
+    return { error: errors[0].error, status: LoadStatus.FAILED }
+  }
+  ;(firstResponse as IHydraResponse<T>)['hydra:member'].push(
+    ...hydraMemberOtherResponses
+  )
+  return { data: firstResponse, status: LoadStatus.SUCCEEDED }
 }

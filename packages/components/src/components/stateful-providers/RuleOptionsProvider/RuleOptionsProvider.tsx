@@ -15,8 +15,8 @@ import {
   RuleCombinationOperator,
   RuleType,
   RuleValueType,
+  fetchApiUsingPagination,
   getIri,
-  getListApiParameters,
   getOptionsFromEnum,
   getOptionsFromOptionResource,
   isError,
@@ -148,52 +148,27 @@ function RuleOptionsProvider(props: IProps): JSX.Element {
         return fetch(
           `${field.code}-${localizedCatalogId}`,
           async (fetchApi: IFetchApi) => {
-            const optionLabelFilters = {
-              'order[position]': 'asc',
-              sourceField: getIri('source_fields', field.id),
-            }
-
-            let currentPage = 0
-            const limit = 200
-            const promises = []
-            let options: IOptions<string | number> = []
-
-            const getOptionsData = async (
-              page: number
-            ): Promise<{
-              totalItems: number
-              options: IOptions<string | number>
-            }> => {
-              const optionsResponse = await fetchApi<
-                IHydraResponse<ISourceFieldOption>
-              >(
-                sourceFieldOptionResource,
-                getListApiParameters(page, limit, optionLabelFilters)
-              )
-              if (!isError(optionsResponse)) {
-                const options = getOptionsFromOptionResource(
-                  optionsResponse,
-                  localizedCatalogId
-                )
-                const totalItems = optionsResponse['hydra:totalItems']
-                return { totalItems, options }
-              }
-              throw new Error('error')
-            }
-
-            const { totalItems, options: newOptions } = await getOptionsData(
-              currentPage
+            const response = await fetchApiUsingPagination<
+              IHydraResponse<ISourceFieldOption>
+            >(
+              fetchApi,
+              sourceFieldOptionResource,
+              {
+                'order[position]': 'asc',
+                sourceField: getIri('source_fields', field.id),
+              },
+              undefined,
+              200
             )
-            options = newOptions
-            for (; totalItems > (currentPage + 1) * limit; currentPage++) {
-              promises.push(getOptionsData(currentPage + 1))
+
+            if (response.error) {
+              throw new Error('soure_field_option request error')
+            } else {
+              return getOptionsFromOptionResource(
+                response.data,
+                localizedCatalogId
+              )
             }
-            const otherOptions = await Promise.all(promises)
-            options = [
-              ...options,
-              ...otherOptions.map(({ options }) => options).flat(),
-            ]
-            return options
           }
         )
       }
