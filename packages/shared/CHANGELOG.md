@@ -1,3 +1,9 @@
+## 3.0.0.0 (2024-12-03)
+
+##### Bug Fixes
+
+- **#1312959:** [Boosts] Rule engine filter only product attributes ([6a11e502](https://github.com/Elastic-Suite/gally-admin/commit/6a11e502e70d0734eed28eb29729b6538e5201cd))
+
 #### 1.3.1 (2024-06-13)
 
 ##### New Features
