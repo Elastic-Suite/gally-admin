@@ -28,7 +28,7 @@ const sourceFieldFixedFilters = {
   isUsedForRules: true,
 }
 
-interface IProps
+interface IRulesManagerWrapperProps
   extends Omit<
     ICombinationRulesProps,
     'catalogId' | 'localizedCatalogId' | 'rule' | 'onChange'
@@ -48,10 +48,26 @@ interface IProps
   showError?: boolean
 }
 
-function RulesManager(props: IProps): JSX.Element {
+function RulesManagerWrapper({
+  ruleOperators: defaultRuleOperators,
+  ...props
+}: IRulesManagerWrapperProps): JSX.Element {
+  const ruleOperators = useRuleOperators(defaultRuleOperators)
+
+  if (!ruleOperators) {
+    return null
+  }
+
+  return <RulesManager {...props} ruleOperators={ruleOperators} />
+}
+
+interface IRulesManagerProps extends IRulesManagerWrapperProps {
+  ruleOperators: IRuleEngineOperators
+}
+function RulesManager(props: IRulesManagerProps): JSX.Element {
   const {
     active,
-    ruleOperators: ruleOperatorsDefault,
+    ruleOperators,
     label,
     infoTooltip,
     required,
@@ -64,7 +80,6 @@ function RulesManager(props: IProps): JSX.Element {
   } = props
   const { t } = useTranslation('common')
   const { catalogId, localizedCatalogId } = useContext(catalogContext)
-  const ruleOperators = useRuleOperators(ruleOperatorsDefault)
   const rowsPerPage = 200
   const rule: IRuleCombination =
     typeof ruleProps.rule === 'string'
@@ -89,7 +104,7 @@ function RulesManager(props: IProps): JSX.Element {
         'type[]': Object.keys(ruleOperators.operatorsValueType),
       }
     }
-  }, [ruleOperators?.operatorsValueType])
+  }, [ruleOperators.operatorsValueType])
   const [sourceFields] = useApiList<ISourceField>(
     sourceFieldResource,
     false,
@@ -122,7 +137,7 @@ function RulesManager(props: IProps): JSX.Element {
     true
   )
 
-  if (!sourceFields.data || !sourceFieldLabels.data || !ruleOperators) {
+  if (!sourceFields.data || !sourceFieldLabels.data) {
     return null
   }
 
@@ -190,4 +205,4 @@ RulesManager.defaultProps = {
   small: false,
 }
 
-export default RulesManager
+export default RulesManagerWrapper
