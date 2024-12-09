@@ -233,6 +233,12 @@ export function inputInitializer(input: string): unknown {
     case 'ruleEngine':
       return '{"type":"combination","operator":"all","value":"true","children":[]}'
 
+    case 'rangeDate':
+      return {
+        fromDate: null,
+        toDate: null,
+      }
+
     default:
       return ''
   }
@@ -247,6 +253,7 @@ export function valueInitializer(type: string, input?: string): unknown {
     case 'select':
       return []
 
+    case 'number':
     case 'integer':
     case 'float':
     case 'slider':
