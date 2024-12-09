@@ -1,4 +1,4 @@
-## 3.0.0.0 (2024-12-03)
+## 2.0.0 (2024-12-03)
 
 ##### Bug Fixes
 
@@ -35,8 +35,6 @@
 - **#1279113:** [Category] product positions not correctly saved ([4e96e76b](https://github.com/Elastic-Suite/gally-admin/commit/4e96e76bbb332bf8355eb5f1f31384a7501b75b6))
 - **#1255766:** [Boost] Selection placeholder Dropdown ([53d5af36](https://github.com/Elastic-Suite/gally-admin/commit/53d5af3660c929e8f09fed938d0ccdd07bedced2))
 - **#1285907:** [Boost] UX Field Localized Catalog ([70c2ca0d](https://github.com/Elastic-Suite/gally-admin/commit/70c2ca0d0b4d783a9a742690860ba9c1794aa67b))
-
-#### 1.3.1.1 (2024-03-22)
 
 ### 1.2.0 (2023-12-11)
 
