@@ -22,5 +22,9 @@
   "boost_zero": "boost",
   "boost_one": "boost",
   "boost_other": "boosts",
-  "preview": "Preview"
+  "preview": "Preview",
+  "boostConfig.sourceField": "Source field",
+  "boostConfig.sourceField.placeholder": "Select a source field",
+  "boostConfig.boostImpact": "Boost impact",
+  "boostConfig.scaleFactor": "Scale factor"
 }

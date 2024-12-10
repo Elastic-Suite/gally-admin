@@ -239,6 +239,13 @@ export function inputInitializer(input: string): unknown {
         toDate: null,
       }
 
+    case 'proportionalToAttribute':
+      return {
+        source_field_code: undefined,
+        boost_impact: undefined,
+        scale_factor: 1,
+      }
+
     default:
       return ''
   }

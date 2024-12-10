@@ -28,7 +28,8 @@ import RulesManager from '../RulesManager/RulesManager'
 import Slider from '../../atoms/form/Slider'
 import Synonym from '../../atoms/form/Synonym'
 import Expansion from '../../atoms/form/Expansion'
-
+import { IProportionalToAttributesValue } from '../../molecules/ProportionalToAttributes/ProportionalToAttributes'
+import ProportionalToAttributesManager from '../../molecules/ProportionalToAttributes/ProportionalToAttributesManager'
 function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
   const {
     diffValue,
@@ -74,7 +75,8 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
       | IRequestType
       | IRuleCombination
       | ISynonyms
-      | IExpansions,
+      | IExpansions
+      | IProportionalToAttributesValue,
     event?: SyntheticEvent
   ): void {
     if (onChange) {
@@ -333,6 +335,16 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
           label={label}
           placeholder={placeholder}
           data-testid={name}
+        />
+      )
+    }
+
+    case DataContentType.PROPARTIONALTOATTRIBUTE: {
+      return (
+        <ProportionalToAttributesManager
+          value={value as IProportionalToAttributesValue}
+          onChange={handleChange}
+          showError={showError}
         />
       )
     }

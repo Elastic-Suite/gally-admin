@@ -2,7 +2,9 @@
 
 exports[`RadioGroup sould match snapshot 1`] = `
 <div>
-  <div>
+  <div
+    class="MuiFormControl-root MuiFormControl-marginNormal css-e5cteh-MuiFormControl-root"
+  >
     <div
       class="MuiFormGroup-root css-dmmspl-MuiFormGroup-root"
       role="radiogroup"

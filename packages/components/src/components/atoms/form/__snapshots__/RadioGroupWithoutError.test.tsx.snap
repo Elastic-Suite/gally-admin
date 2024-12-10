@@ -2,7 +2,9 @@
 
 exports[`RadioGroupWithoutError match snapshot Radio group defaultChecked true with default 1`] = `
 <div>
-  <div>
+  <div
+    class="MuiFormControl-root MuiFormControl-marginNormal css-e5cteh-MuiFormControl-root"
+  >
     <div
       class="MuiFormGroup-root MuiFormGroup-row css-qfz70r-MuiFormGroup-root"
       role="radiogroup"
@@ -111,7 +113,9 @@ exports[`RadioGroupWithoutError match snapshot Radio group defaultChecked true w
 
 exports[`RadioGroupWithoutError match snapshot RadioGroupWithoutError defaultChecked False with default true 1`] = `
 <div>
-  <div>
+  <div
+    class="MuiFormControl-root MuiFormControl-marginNormal css-e5cteh-MuiFormControl-root"
+  >
     <div
       class="MuiFormGroup-root MuiFormGroup-row css-qfz70r-MuiFormGroup-root"
       role="radiogroup"
@@ -219,7 +223,9 @@ exports[`RadioGroupWithoutError match snapshot RadioGroupWithoutError defaultChe
 
 exports[`RadioGroupWithoutError match snapshot RadioGroupWithoutError defaultChecked False without default 1`] = `
 <div>
-  <div>
+  <div
+    class="MuiFormControl-root MuiFormControl-marginNormal css-e5cteh-MuiFormControl-root"
+  >
     <div
       class="MuiFormGroup-root MuiFormGroup-row css-qfz70r-MuiFormGroup-root"
       role="radiogroup"
@@ -327,7 +333,9 @@ exports[`RadioGroupWithoutError match snapshot RadioGroupWithoutError defaultChe
 
 exports[`RadioGroupWithoutError match snapshot RadioGroupWithoutError defaultChecked true without default 1`] = `
 <div>
-  <div>
+  <div
+    class="MuiFormControl-root MuiFormControl-marginNormal css-e5cteh-MuiFormControl-root"
+  >
     <div
       class="MuiFormGroup-root MuiFormGroup-row css-qfz70r-MuiFormGroup-root"
       role="radiogroup"
