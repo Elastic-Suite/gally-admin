@@ -233,6 +233,13 @@ export function inputInitializer(input: string): unknown {
     case 'ruleEngine':
       return '{"type":"combination","operator":"all","value":"true","children":[]}'
 
+    case 'proportionalToAttribute':
+      return {
+        sourceField: undefined,
+        boostImpact: undefined,
+        scaleFactor: 0,
+      }
+
     default:
       return ''
   }

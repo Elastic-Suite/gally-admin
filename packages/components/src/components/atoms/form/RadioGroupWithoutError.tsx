@@ -1,13 +1,16 @@
 import React, { ReactNode, SyntheticEvent } from 'react'
 import {
+  FormControl,
   FormControlLabel,
   FormHelperText,
+  InputLabel,
   Radio,
   RadioGroupProps,
   RadioGroup as RadioGrp,
 } from '@mui/material'
 import { IOption, IOptions } from '@elastic-suite/gally-admin-shared'
 import IonIcon from '../IonIcon/IonIcon'
+import InfoTooltip from '../../atoms/form/InfoTooltip'
 
 export interface IRadioGroupProps extends Omit<RadioGroupProps, 'onChange'> {
   options: IOptions<unknown>
@@ -15,6 +18,9 @@ export interface IRadioGroupProps extends Omit<RadioGroupProps, 'onChange'> {
   error?: boolean
   helperText?: ReactNode
   helperIcon?: string
+  label?: string
+  infoTooltip?: string
+  required?: boolean
 }
 
 function RadioGroupWithoutError(props: IRadioGroupProps): JSX.Element {
@@ -24,12 +30,24 @@ function RadioGroupWithoutError(props: IRadioGroupProps): JSX.Element {
     helperIcon,
     options,
     onChange,
+    infoTooltip,
+    label,
     ...radioGroupProps
   } = props
   const foundNameDefaultValue = options.find((element) => element.default)
 
   return (
-    <div>
+    <FormControl variant="standard" margin="normal">
+      {Boolean(label || infoTooltip) && (
+        <InputLabel
+          shrink
+          style={{ position: 'relative' }}
+          required={radioGroupProps.required}
+        >
+          {label}
+          {infoTooltip ? <InfoTooltip title={infoTooltip} /> : null}
+        </InputLabel>
+      )}
       <RadioGrp
         {...radioGroupProps}
         onChange={(event, value): void => {
@@ -62,7 +80,7 @@ function RadioGroupWithoutError(props: IRadioGroupProps): JSX.Element {
           {helperText}
         </FormHelperText>
       )}
-    </div>
+    </FormControl>
   )
 }
 
