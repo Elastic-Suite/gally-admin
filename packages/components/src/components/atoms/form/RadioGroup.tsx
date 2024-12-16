@@ -17,7 +17,13 @@ interface IRadioGroupErrorProps extends IFieldErrorProps, IRadioGroupProps {
 }
 
 function RadioGroup(props: IRadioGroupErrorProps): JSX.Element {
-  const { onChange, showError, additionalValidator, ...inputProps } = props
+  const {
+    onChange,
+    showError,
+    additionalValidator,
+    replacementErrorsMessages,
+    ...inputProps
+  } = props
 
   const validator = useCallback<IValidator>(
     (value, event) => {
@@ -32,7 +38,9 @@ function RadioGroup(props: IRadioGroupErrorProps): JSX.Element {
     onChange as IOnChange,
     inputProps.value,
     showError,
-    validator
+    validator,
+    false,
+    replacementErrorsMessages
   )
 
   return (

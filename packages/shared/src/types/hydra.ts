@@ -11,7 +11,7 @@ import {
 } from './jsonld'
 import { IOptions } from './option'
 import { IHydraSimpleCatalog } from './catalog'
-// import { IFieldCondition } from './field'
+import { IFieldGuesserProps } from './field'
 
 export enum HydraType {
   ARRAY = 'array',
@@ -99,6 +99,7 @@ export interface IInputDependencies {
   value: string
   input: string
   jsonKeyValue: string
+  fieldProps: IFieldGuesserProps
 }
 export interface IMultipleInputConfiguration {
   inputDependencies: IInputDependencies[]
