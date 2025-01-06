@@ -7,11 +7,31 @@ interface IProps {
   title: string | NonNullable<React.ReactNode>
   children?: ReactNode
   noStyle?: boolean
+  withHTMLTitle?: boolean
 }
 
-function InfoTooltip({ title, children, noStyle }: IProps): JSX.Element {
+function InfoTooltip({
+  title,
+  children,
+  noStyle,
+  withHTMLTitle,
+}: IProps): JSX.Element {
   return (
-    <Tooltip title={title} placement="right">
+    <Tooltip
+      title={
+        typeof title === 'string' && withHTMLTitle ? (
+          <span
+            // eslint-disable-next-line react/no-danger
+            dangerouslySetInnerHTML={{
+              __html: title,
+            }}
+          />
+        ) : (
+          title
+        )
+      }
+      placement="right"
+    >
       <span
         style={{
           display: 'inline-block',

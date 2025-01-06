@@ -11,7 +11,7 @@ import {
 } from './jsonld'
 import { IOptions } from './option'
 import { IHydraSimpleCatalog } from './catalog'
-import { IFieldGuesserProps } from './field'
+import { IFieldDepends, IFieldGuesserProps } from './field'
 
 export enum HydraType {
   ARRAY = 'array',
@@ -112,7 +112,7 @@ export interface IMultipleValueFormat {
 
 export interface IGallyProperty {
   context?: Record<string, IGallyProperty>
-  depends?: any
+  depends?: IFieldDepends
   editable?: boolean
   input?: string
   options?: IDropdownOptions & (IDropdownStaticOptions | IDropdownApiOptions)
@@ -134,6 +134,7 @@ export interface IGallyProperty {
   placeholder?: string
   defaultValue?: unknown
   showError?: boolean
+  gridHeaderInfoTooltip?: string
 }
 export interface IDropdownOptions {
   objectKeyValue?: string

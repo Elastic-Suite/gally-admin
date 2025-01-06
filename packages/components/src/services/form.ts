@@ -1,5 +1,4 @@
 import {
-  IDependsForm,
   IFetch,
   IFieldConfig,
   IHydraResponse,
@@ -27,20 +26,6 @@ export function getDoubleDatePickerValue(
   data: Record<string, Date>
 ): IDoubleDatePickerValues {
   return { fromDate: data?.fromDate, toDate: data?.toDate }
-}
-
-export function isHiddenDepends(
-  dependsForm: IDependsForm[],
-  data: Record<string, unknown> | undefined
-): boolean {
-  return dependsForm.some((item) => {
-    const field = item?.field as string
-    const { value } = item
-    const fieldValue = data?.[field]
-    return (
-      fieldValue === undefined || (value !== fieldValue && value !== undefined)
-    )
-  })
 }
 
 export function getRequestTypeData(

@@ -5,17 +5,23 @@ import { DataContentType, ITableRow } from './customTables'
 import { IMultipleInputConfiguration, IMultipleValueFormat } from './hydra'
 import { IOption, IOptions } from './option'
 
-export interface IFieldCondition {
-  conditions: Record<string, unknown>
-  disabled?: boolean
-}
-
 export interface IFieldState {
   disabled?: boolean
+  visible?: boolean
+}
+
+export interface IFieldCondition {
+  field: string
+  value: any
+}
+
+export interface IFieldDepends {
+  type: 'enabled' | 'visible'
+  conditions: (IFieldCondition | IFieldCondition[])[] | IFieldCondition
 }
 
 export interface IFieldConfig extends IFieldState {
-  depends?: any
+  depends?: IFieldDepends
   editable?: boolean
   field?: IField
   fieldset?: string
@@ -42,6 +48,7 @@ export interface IFieldConfig extends IFieldState {
   cellsStyle?: CSSProperties
   showError?: boolean
   replacementErrorsMessages?: Record<string, string>
+  gridHeaderInfoTooltip?: string
 }
 
 export interface IFieldConfigFormWithFieldset {

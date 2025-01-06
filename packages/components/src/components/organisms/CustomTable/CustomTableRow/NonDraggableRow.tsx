@@ -9,8 +9,8 @@ import {
   ITableHeader,
   ITableHeaderSticky,
   ITableRow,
-  getFieldState,
   getImageValue,
+  getPropsFromFieldState,
 } from '@elastic-suite/gally-admin-shared'
 
 import {
@@ -119,40 +119,36 @@ function NonDraggableRow(props: IProps): JSX.Element {
         </StickyTableCell>
       )}
 
-      {stickyHeaders.map((stickyHeader, i) => {
-        return (
-          <StickyTableCell
-            key={stickyHeader.name}
-            sx={{
-              ...stickyStyle(
-                cssLeftValues[i + 1 + Number(withSelection)],
-                shadow,
-                stickyHeader.isLastSticky,
-                stickyHeader.type
-              ),
-              ...stickyHeader.cellsStyle,
-            }}
-          >
-            <Field
-              {...stickyHeader}
-              diffValue={
-                diffRow ? diffRow[stickyHeader.name] ?? null : undefined
-              }
-              label=""
-              onChange={handleChange}
-              row={tableRow}
-              value={tableRow[stickyHeader.name]}
-              {...getFieldState(
-                tableRow,
-                stickyHeader.depends,
-                tableConfig[stickyHeader.name]
-              )}
-            />
-          </StickyTableCell>
-        )
-      })}
+      {stickyHeaders.map(({ gridHeaderInfoTooltip, ...stickyHeader }, i) => (
+        <StickyTableCell
+          key={stickyHeader.name}
+          sx={{
+            ...stickyStyle(
+              cssLeftValues[i + 1 + Number(withSelection)],
+              shadow,
+              stickyHeader.isLastSticky,
+              stickyHeader.type
+            ),
+            ...stickyHeader.cellsStyle,
+          }}
+        >
+          <Field
+            {...stickyHeader}
+            diffValue={diffRow ? diffRow[stickyHeader.name] ?? null : undefined}
+            label=""
+            onChange={handleChange}
+            row={tableRow}
+            value={tableRow[stickyHeader.name]}
+            {...getPropsFromFieldState(
+              tableRow,
+              stickyHeader.depends,
+              tableConfig[stickyHeader.name]
+            )}
+          />
+        </StickyTableCell>
+      ))}
 
-      {nonStickyHeaders.map((header) => {
+      {nonStickyHeaders.map(({ gridHeaderInfoTooltip, ...header }) => {
         const value =
           tableRow[header.name] && header.input === 'image'
             ? getImageValue(
@@ -172,7 +168,7 @@ function NonDraggableRow(props: IProps): JSX.Element {
               onChange={handleChange}
               row={tableRow}
               value={value}
-              {...getFieldState(
+              {...getPropsFromFieldState(
                 tableRow,
                 header.depends,
                 tableConfig[header.name]
