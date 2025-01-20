@@ -115,7 +115,6 @@ function DropDownWithoutError<T>(
       { label }: IOption<T>,
       { selected }: AutocompleteRenderOptionState
     ): ReactNode => {
-      // data-testid={`option-${otherProps.inputProps["data-testid"]}`}
       return (
         <li {...props}>
           <CheckboxWithoutError
@@ -137,10 +136,8 @@ function DropDownWithoutError<T>(
             key={option.id ?? String(option.value)}
             label={option.label}
             size={small ? 'small' : 'medium'}
+            data-testid={dataTestId ? `${dataTestId}Tag` : null}
             {...getTagProps({ index })}
-            {...(dataTestId && {
-              'data-testid': `${dataTestId}Tag`,
-            })}
           />
         ))
   }
@@ -174,18 +171,14 @@ function DropDownWithoutError<T>(
         }
         popupIcon={
           <IonIcon
-            {...(dataTestId && {
-              'data-testid': `${dataTestId}Button`,
-            })}
+            data-testid={dataTestId ? `${dataTestId}Button` : null}
             name="chevron-down"
           />
         }
         renderGroup={(params): JSX.Element => (
           <li key={params.key}>
             <ListSubheader
-              {...(dataTestId && {
-                'data-testid': `${dataTestId}GroupTitle`,
-              })}
+              data-testid={dataTestId ? `${dataTestId}GroupTitle` : null}
             >
               {params.group}
             </ListSubheader>

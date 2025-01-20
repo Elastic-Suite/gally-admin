@@ -95,7 +95,7 @@ function CheckboxWithoutError(
           marginLeft: '-6px',
         }),
       }}
-      {...(dataTestId && { 'data-testid': dataTestId })}
+      data-testid={dataTestId}
     />
   )
 }

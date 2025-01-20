@@ -115,7 +115,7 @@ function DoubleDatePickerWithoutError(
             onChange={onChangeFrom}
             onError={onErrorFrom}
             ref={ref}
-            dataTestId={`${dataTestId}Start`}
+            dataTestId={dataTestId ? `${dataTestId}Start` : null}
           />
         </Grid>
         <CustomBox sx={{ paddingRight: '20px', paddingLeft: '20px' }}>
@@ -131,14 +131,14 @@ function DoubleDatePickerWithoutError(
             value={value?.toDate}
             onChange={onChangeTo}
             onError={onErrorTo}
-            dataTestId={`${dataTestId}End`}
+            dataTestId={dataTestId ? `${dataTestId}End` : null}
           />
         </Grid>
       </Grid>
       {Boolean(helperText) && (
         <FormHelperText
           error={error}
-          {...(dataTestId && { 'data-testid': `${dataTestId}ErrorMessage` })}
+          data-testid={dataTestId ? `${dataTestId}ErrorMessage` : null}
         >
           {Boolean(helperIcon) && (
             <IonIcon

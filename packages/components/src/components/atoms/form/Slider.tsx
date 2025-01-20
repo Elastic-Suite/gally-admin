@@ -83,7 +83,7 @@ function Slider(props: ISliderProps): JSX.Element {
               },
             },
           }}
-          {...(dataTestId && { 'data-testid': dataTestId })}
+          data-testid={dataTestId}
         />
       </Box>
       {Boolean(helperText) && (

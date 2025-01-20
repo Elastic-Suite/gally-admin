@@ -103,7 +103,7 @@ function RangeWithoutError(
           inputProps={{
             ...inputProps,
             max: valueTo,
-            ...(dataTestId && { 'data-testid': `${dataTestId}First` }),
+            'data-testid': dataTestId ? `${dataTestId}First` : null,
           }}
           placeholder={placeholderFrom}
           value={valueFrom ? String(valueFrom) : ''}
@@ -119,7 +119,7 @@ function RangeWithoutError(
           inputProps={{
             ...inputProps,
             min: valueFrom,
-            ...(dataTestId && { 'data-testid': `${dataTestId}Second` }),
+            'data-testid': dataTestId ? `${dataTestId}Second` : null,
           }}
           placeholder={placeholderTo}
           value={valueTo ? String(valueTo) : ''}
@@ -129,7 +129,7 @@ function RangeWithoutError(
       {Boolean(helperText) && (
         <FormHelperText
           error={error}
-          {...(dataTestId && { 'data-testid': `${dataTestId}ErrorMessage` })}
+          data-testid={dataTestId ? `${dataTestId}ErrorMessage` : null}
         >
           {Boolean(helperIcon) && (
             <IonIcon

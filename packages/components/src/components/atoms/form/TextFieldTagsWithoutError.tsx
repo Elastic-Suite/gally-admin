@@ -185,7 +185,7 @@ function TextFieldTagsWithoutError(
     <div style={{ position: 'relative' }}>
       {withCleanButton === true && (
         <CustomCloseTagsByOperator
-          {...(dataTestId && { 'data-testid': `${dataTestId}CleanButton` })}
+          data-testid={dataTestId ? `${dataTestId}CleanButton` : null}
           onClick={(): void => {
             if (value.length > 0) {
               onChange([])

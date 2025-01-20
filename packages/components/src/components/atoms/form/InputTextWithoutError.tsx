@@ -99,7 +99,7 @@ function InputTextWithoutError(
           value={(value ?? '').toString()}
           inputProps={{
             ...inputProps,
-            ...(dataTestId && { 'data-testid': dataTestId }),
+            'data-testid': dataTestId,
           }}
           {...InputProps}
         />
@@ -107,7 +107,7 @@ function InputTextWithoutError(
       </Wrapper>
       {Boolean(helperText) && (
         <FormHelperText
-          {...(dataTestId && { 'data-testid': `${dataTestId}ErrorMessage` })}
+          data-testid={dataTestId ? `${dataTestId}ErrorMessage` : null}
         >
           {Boolean(helperIcon) && (
             <IonIcon

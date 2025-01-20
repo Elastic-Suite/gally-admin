@@ -230,7 +230,7 @@ function TextFieldTagsMultiple(
                 )
               }
               endIcon={<IonIcon name="add" style={{ fontSize: 24 }} />}
-              {...(dataTestId && { 'data-testid': `${dataTestId}AddButton` })}
+              data-testid={dataTestId ? `${dataTestId}AddButton` : null}
             >
               {t('Add')}
             </Button>
