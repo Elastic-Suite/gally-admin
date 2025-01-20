@@ -12,6 +12,7 @@ import {
   Autocomplete,
   AutocompleteRenderOptionState,
   FormControl,
+  ListSubheader,
 } from '@mui/material'
 import { useTranslation } from 'next-i18next'
 
@@ -35,6 +36,7 @@ export interface IDropDownProps<T>
   value?: T | T[] | object | object[]
   useGroups?: boolean
   objectKeyValue?: string
+  dataTestId?: string
 }
 
 function DropDownWithoutError<T>(
@@ -52,6 +54,7 @@ function DropDownWithoutError<T>(
     value,
     useGroups,
     objectKeyValue,
+    dataTestId,
     ...otherProps
   } = props
   const { required, small } = otherProps
@@ -119,6 +122,7 @@ function DropDownWithoutError<T>(
             label={label}
             list
             onClick={(e): void => e.preventDefault()}
+            dataTestId={dataTestId ? `${dataTestId}Checkbox` : null}
           />
         </li>
       )
@@ -132,6 +136,7 @@ function DropDownWithoutError<T>(
             key={option.id ?? String(option.value)}
             label={option.label}
             size={small ? 'small' : 'medium'}
+            data-testid={dataTestId ? `${dataTestId}Tag` : null}
             {...getTagProps({ index })}
           />
         ))
@@ -164,9 +169,25 @@ function DropDownWithoutError<T>(
         getOptionLabel={
           useGroups ? (options: IOption<T>): string => options.label : undefined
         }
-        popupIcon={<IonIcon name="chevron-down" />}
+        popupIcon={
+          <IonIcon
+            data-testid={dataTestId ? `${dataTestId}Button` : null}
+            name="chevron-down"
+          />
+        }
+        renderGroup={(params): JSX.Element => (
+          <li key={params.key}>
+            <ListSubheader
+              data-testid={dataTestId ? `${dataTestId}GroupTitle` : null}
+            >
+              {params.group}
+            </ListSubheader>
+            <ul style={{ padding: 0 }}>{params.children}</ul>
+          </li>
+        )}
         renderInput={(params): JSX.Element => {
           const { InputLabelProps, InputProps, ...inputProps } = params
+
           return (
             <InputTextWithoutError
               {...{ ...otherProps, required: false }}
@@ -175,6 +196,7 @@ function DropDownWithoutError<T>(
               fullWidth={fullWidth}
               inputRef={ref || inputRef}
               requiredLabel={required}
+              dataTestId={dataTestId ? `${dataTestId}InputText` : null}
             />
           )
         }}

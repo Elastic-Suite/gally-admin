@@ -4,6 +4,7 @@ exports[`MenuItemIcon match snapshot 1`] = `
 <div>
   <div
     class="css-jbglvz"
+    data-testid="menuItemIcon"
   >
     <ion-icon
       name="analytics"

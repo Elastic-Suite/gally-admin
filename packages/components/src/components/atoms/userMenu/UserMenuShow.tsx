@@ -56,11 +56,13 @@ function UserMenuShow({ user }: IProps): JSX.Element {
 
   return (
     <CustomTypoTexte>
-      <CustomTypoEmail>
+      <CustomTypoEmail data-testid="userEmail">
         <FormatText name={user.username} toolTip firstLetterUpp />
       </CustomTypoEmail>
       <CustomHr />
-      <CustomTypoBasic onClick={handleLogOut}>{t('log.out')}</CustomTypoBasic>
+      <CustomTypoBasic onClick={handleLogOut} data-testid="logOutButton">
+        {t('log.out')}
+      </CustomTypoBasic>
     </CustomTypoTexte>
   )
 }

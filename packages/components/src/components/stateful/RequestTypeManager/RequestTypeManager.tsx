@@ -26,10 +26,18 @@ interface IProps {
   helperText?: string
   helperIcon?: string
   showError?: boolean
+  dataTestId?: string
 }
 
 function RequestTypeManager(props: IProps): JSX.Element | null {
-  const { data, value, onChange, requestTypeConfigurations, ...args } = props
+  const {
+    data,
+    value,
+    onChange,
+    requestTypeConfigurations,
+    dataTestId,
+    ...args
+  } = props
 
   const { t: tApi } = useTranslation('api')
 
@@ -77,6 +85,7 @@ function RequestTypeManager(props: IProps): JSX.Element | null {
       limitationsTypes={limitationTypeOptions}
       requestTypesOptions={requestTypeOptions}
       categoriesList={categoriesList}
+      dataTestId={dataTestId}
     />
   )
 }

@@ -21,6 +21,7 @@ export interface ISliderProps
   value: number
   width?: number
   required?: boolean
+  dataTestId?: string
 }
 
 const indicatorNumber = [-99, 0, 100]
@@ -38,6 +39,7 @@ function Slider(props: ISliderProps): JSX.Element {
     required,
     value,
     width,
+    dataTestId,
   } = props
 
   function handleChange(_: Event, value: number): void {
@@ -81,6 +83,7 @@ function Slider(props: ISliderProps): JSX.Element {
               },
             },
           }}
+          data-testid={dataTestId}
         />
       </Box>
       {Boolean(helperText) && (

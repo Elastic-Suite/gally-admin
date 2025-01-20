@@ -42,6 +42,7 @@ export interface IDoubleDatePickerProps
   margin?: 'none' | 'dense' | 'normal'
   helperText?: ReactNode
   helperIcon?: string
+  dataTestId?: string
 }
 
 function DoubleDatePickerWithoutError(
@@ -63,6 +64,7 @@ function DoubleDatePickerWithoutError(
     onChange,
     onError,
     required,
+    dataTestId,
     ...args
   } = props
   const { t } = useTranslation('common')
@@ -113,6 +115,7 @@ function DoubleDatePickerWithoutError(
             onChange={onChangeFrom}
             onError={onErrorFrom}
             ref={ref}
+            dataTestId={dataTestId ? `${dataTestId}Start` : null}
           />
         </Grid>
         <CustomBox sx={{ paddingRight: '20px', paddingLeft: '20px' }}>
@@ -128,11 +131,15 @@ function DoubleDatePickerWithoutError(
             value={value?.toDate}
             onChange={onChangeTo}
             onError={onErrorTo}
+            dataTestId={dataTestId ? `${dataTestId}End` : null}
           />
         </Grid>
       </Grid>
       {Boolean(helperText) && (
-        <FormHelperText error={error}>
+        <FormHelperText
+          error={error}
+          data-testid={dataTestId ? `${dataTestId}ErrorMessage` : null}
+        >
           {Boolean(helperIcon) && (
             <IonIcon
               name={helperIcon}

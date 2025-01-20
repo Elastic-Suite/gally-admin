@@ -29,7 +29,11 @@ function Form({
       {children}
 
       {submitButtonText !== undefined && (
-        <Button style={{ marginTop: '8px' }} type="submit">
+        <Button
+          style={{ marginTop: '8px' }}
+          type="submit"
+          data-testid="submitButton"
+        >
           {submitButtonText}
         </Button>
       )}

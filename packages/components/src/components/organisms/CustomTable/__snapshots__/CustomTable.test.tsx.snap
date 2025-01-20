@@ -72,6 +72,7 @@ exports[`CustomTable match snapshot with editable content 1`] = `
               >
                 <span
                   class="MuiButtonBase-root MuiSwitch-switchBase MuiSwitch-colorPrimary Mui-checked PrivateSwitchBase-root MuiSwitch-switchBase MuiSwitch-colorPrimary Mui-checked Mui-checked css-1vk7jze-MuiButtonBase-root-MuiSwitch-switchBase"
+                  data-testid="field"
                 >
                   <input
                     checked=""
@@ -116,6 +117,7 @@ exports[`CustomTable match snapshot with editable content 1`] = `
                         autocapitalize="none"
                         autocomplete="off"
                         class="MuiInputBase-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-ngazp5-MuiInputBase-input"
+                        data-testid="field2InputText"
                         id=":r0:"
                         role="combobox"
                         spellcheck="false"
@@ -133,6 +135,7 @@ exports[`CustomTable match snapshot with editable content 1`] = `
                           type="button"
                         >
                           <ion-icon
+                            data-testid="field2Button"
                             name="chevron-down"
                           />
                           <span

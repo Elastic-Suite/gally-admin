@@ -34,6 +34,7 @@ export interface ITextFieldTagsMultipleProps
   value: ISearchLimitations[]
   onChange?: (value: ISearchLimitations[]) => void
   showError?: boolean
+  dataTestId?: string
 }
 
 function TextFieldTagsMultiple(
@@ -54,6 +55,7 @@ function TextFieldTagsMultiple(
     infoTooltip,
     options,
     showError,
+    dataTestId,
   } = props
 
   const { t } = useTranslation('common')
@@ -191,6 +193,7 @@ function TextFieldTagsMultiple(
                     value={option?.value}
                     options={newOptionsList}
                     sx={{ marginBottom: 1 }}
+                    dataTestId={dataTestId ? `${dataTestId}DropDown` : null}
                   />
                   <TextFieldTags
                     required
@@ -227,6 +230,7 @@ function TextFieldTagsMultiple(
                 )
               }
               endIcon={<IonIcon name="add" style={{ fontSize: 24 }} />}
+              data-testid={dataTestId ? `${dataTestId}AddButton` : null}
             >
               {t('Add')}
             </Button>

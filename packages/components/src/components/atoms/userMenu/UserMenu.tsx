@@ -65,13 +65,13 @@ function UserMenu(): JSX.Element {
 
   return (
     <>
-      <Box>
+      <Box data-testid="userMenu">
         <CustomUser onClick={(): void => setOpenUserMenu(!openUserMenu)}>
           <IonIcon
             name="person-outline"
             style={{ fontSize: '15px', color: '#8187B9' }}
           />
-          <CustomUserName>
+          <CustomUserName data-testid="username">
             <FormatText name={user?.username} toolTip firstLetterUpp />
           </CustomUserName>
           <CustomArrow
@@ -85,7 +85,7 @@ function UserMenu(): JSX.Element {
         </CustomUser>
         <Box sx={{ position: 'relative' }}>
           <Collapse in={openUserMenu} sx={{ position: 'absolute', right: 0 }}>
-            <CustomUserMenu>
+            <CustomUserMenu data-testid="userMenuContent">
               <UserMenuShow user={user} />
             </CustomUserMenu>
           </Collapse>

@@ -5,6 +5,7 @@ exports[`Breadcrumbs match snapshot 1`] = `
   <nav
     aria-label="breadcrumb"
     class="MuiTypography-root MuiTypography-body1 MuiBreadcrumbs-root css-ayvqor-MuiTypography-root-MuiBreadcrumbs-root"
+    data-testid="breadcrumbs"
   >
     <ol
       class="MuiBreadcrumbs-ol css-4pdmu4-MuiBreadcrumbs-ol"

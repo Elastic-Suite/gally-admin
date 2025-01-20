@@ -33,7 +33,6 @@ function EditableModelConfig(props: IProps): JSX.Element {
     error,
     helperText,
   } = props
-
   function handleChange(optionConfig: IOption<string>, data?: unknown): void {
     return onChange(initOrUpdateModelConfigValue(optionConfig, data))
   }

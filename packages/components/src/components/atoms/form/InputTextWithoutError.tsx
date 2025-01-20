@@ -42,6 +42,7 @@ export interface IInputTextProps
   onChange?: (value: string | number, event: SyntheticEvent) => void
   suffix?: ReactNode
   requiredLabel?: boolean
+  dataTestId?: string
 }
 
 function InputTextWithoutError(
@@ -62,6 +63,8 @@ function InputTextWithoutError(
     suffix,
     value,
     requiredLabel,
+    dataTestId,
+    inputProps,
     ...InputProps
   } = props
 
@@ -94,12 +97,18 @@ function InputTextWithoutError(
           required={required}
           ref={ref}
           value={(value ?? '').toString()}
+          inputProps={{
+            ...inputProps,
+            'data-testid': dataTestId,
+          }}
           {...InputProps}
         />
         {Boolean(suffix) && <Suffix>{suffix}</Suffix>}
       </Wrapper>
       {Boolean(helperText) && (
-        <FormHelperText>
+        <FormHelperText
+          data-testid={dataTestId ? `${dataTestId}ErrorMessage` : null}
+        >
           {Boolean(helperIcon) && (
             <IonIcon
               name={helperIcon}
