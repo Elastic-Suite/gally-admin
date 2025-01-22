@@ -18,7 +18,7 @@ import Switch from '../../atoms/form/Switch'
 
 import ReadableFieldGuesser from './ReadableFieldGuesser'
 import EditableDropDownGuesser from './EditableDropDownGuesser'
-import EditableModelConfig from './EditableModelConfig'
+import MultipleInput from './MultipleInput'
 import { IDoubleDatePickerValues } from '../../atoms/form/DoubleDatePickerWithoutError'
 import DoubleDatePicker from '../../atoms/form/DoubleDatePicker'
 import { Box } from '@mui/material'
@@ -257,7 +257,7 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
 
     case DataContentType.MULTIPLEINPUT: {
       return (
-        <EditableModelConfig
+        <MultipleInput
           {...props}
           infoTooltip={infoTooltip}
           value={value as string}
