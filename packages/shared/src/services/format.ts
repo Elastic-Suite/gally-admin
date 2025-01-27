@@ -23,10 +23,12 @@ export function getHeadTitle(title: string): string {
 export function joinUrlPath(...parts: string[]): string {
   return parts
     .map((part) =>
-      part.slice(
-        Number(part.at(0) === '/'),
-        part.at(-1) === '/' ? -1 : undefined
-      )
+      part
+        ? part.slice(
+            Number(part.at(0) === '/'),
+            part.at(-1) === '/' ? -1 : undefined
+          )
+        : ''
     )
     .join('/')
 }
