@@ -9,6 +9,7 @@ import {
   getIri,
   getNameFromDefault,
   humanize,
+  joinUrlPath,
   roundNumber,
 } from './format'
 
@@ -40,6 +41,18 @@ describe('Format service', () => {
   describe('getHeadTitle', () => {
     it('Should add Gally at the end of string getHeadTitle', () => {
       expect(getHeadTitle('Catégories')).toEqual('Catégories - Gally')
+    })
+  })
+
+  describe('joinUrlPath', () => {
+    it('Should create an url from parts passed in arguments', () => {
+      expect(joinUrlPath('base_url', 'media_catalog')).toEqual(
+        'base_url/media_catalog'
+      )
+      expect(joinUrlPath('base_url', null)).toEqual('base_url/')
+      expect(joinUrlPath('base_url', null, 'media_catalog')).toEqual(
+        'base_url//media_catalog'
+      )
     })
   })
 
