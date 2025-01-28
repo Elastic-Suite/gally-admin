@@ -1,0 +1,11 @@
+{
+  "@context": "/api/contexts/BoostImpactOption",
+  "@id": "/api/boost_impact_options",
+  "@type": "hydra:Collection",
+  "hydra:totalItems": 3,
+  "hydra:member": [
+    { "id": "low", "value": "log1p", "label": "Bas" },
+    { "id": "medium", "value": "sqrt", "label": "Moyen" },
+    { "id": "high", "value": "none", "label": "Haut" }
+  ]
+}

@@ -12,9 +12,7 @@ import RadioGroupWithoutError, {
 } from './RadioGroupWithoutError'
 import InputTextWithoutError from './InputTextWithoutError'
 
-interface IRadioGroupErrorProps extends IFieldErrorProps, IRadioGroupProps {
-  required?: boolean
-}
+interface IRadioGroupErrorProps extends IFieldErrorProps, IRadioGroupProps {}
 
 function RadioGroup(props: IRadioGroupErrorProps): JSX.Element {
   const {

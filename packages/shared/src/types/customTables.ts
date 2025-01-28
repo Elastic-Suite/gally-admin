@@ -31,6 +31,7 @@ export enum DataContentType {
   PRODUCTINFO = 'productInfo',
   BOOSTPREVIEW = 'boostPreview',
   POSITIONEFFECT = 'positionEffect',
+  PROPARTIONALTOATTRIBUTE = 'proportionalToAttribute',
 }
 
 export interface ITableHeader extends IFieldConfig {

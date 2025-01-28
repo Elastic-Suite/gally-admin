@@ -52,6 +52,7 @@
   "formError.synonymTermsSizeInvalid": "Veuillez renseigner au moins deux valeurs dans tous les champs \"synonymes\".",
   "formError.synonymTermsDuplicate": "Il y a des doublons parmi les \"synonymes\", veuillez les retirer.",
   "formError.expansionTermsDuplicate": "Il y a des doublons parmi les \"termes étendus\", veuillez les retirer.",
+  "formError.scaleFactorWrongFormat": "Le scale factor doit être supérieur à 0",
   "field.productImage": "Image produit",
   "formError.prompt": "Le prompt doit contenir une seule occurrence de \"%s\".",
   "default.undefined": "vide",

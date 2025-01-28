@@ -33,8 +33,8 @@ function MultipleInput(props: IProps): JSX.Element {
       {fields.map((field) => {
         const value = otherProps.value
           ? JSON.parse(otherProps.value as string)?.[field.jsonKeyValue] ??
-            valueInitializer(field.input)
-          : valueInitializer(field.input)
+            valueInitializer(field.input, field.input)
+          : valueInitializer(field.input, field.input)
 
         function handleChange(
           _name: string,
