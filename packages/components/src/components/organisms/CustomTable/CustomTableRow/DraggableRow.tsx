@@ -9,8 +9,8 @@ import {
   ITableHeader,
   ITableHeaderSticky,
   ITableRow,
-  getFieldState,
   getImageValue,
+  getPropsFromFieldState,
 } from '@elastic-suite/gally-admin-shared'
 
 import {
@@ -130,7 +130,7 @@ function DraggableRow(props: IProps): JSX.Element {
         </StickyTableCell>
       )}
 
-      {stickyHeaders.map((stickyHeader, i) => (
+      {stickyHeaders.map(({ gridHeaderInfoTooltip, ...stickyHeader }, i) => (
         <StickyTableCell
           key={stickyHeader.name}
           sx={{
@@ -150,7 +150,7 @@ function DraggableRow(props: IProps): JSX.Element {
             onChange={handleChange}
             row={tableRow}
             value={tableRow[stickyHeader.name]}
-            {...getFieldState(
+            {...getPropsFromFieldState(
               tableRow,
               stickyHeader.depends,
               tableConfig[stickyHeader.name]
@@ -159,7 +159,7 @@ function DraggableRow(props: IProps): JSX.Element {
         </StickyTableCell>
       ))}
 
-      {nonStickyHeaders.map((header) => {
+      {nonStickyHeaders.map(({ gridHeaderInfoTooltip, ...header }) => {
         const value =
           tableRow[header.name] && header.input === 'image'
             ? getImageValue(
@@ -167,7 +167,6 @@ function DraggableRow(props: IProps): JSX.Element {
                 tableRow[header.name] as IImage | string
               )
             : tableRow[header.name]
-
         return (
           <BaseTableCell
             sx={{ ...nonStickyStyle(header.type), ...header.cellsStyle }}
@@ -180,7 +179,7 @@ function DraggableRow(props: IProps): JSX.Element {
               onChange={handleChange}
               row={tableRow}
               value={value}
-              {...getFieldState(
+              {...getPropsFromFieldState(
                 tableRow,
                 header.depends,
                 tableConfig[header.name]

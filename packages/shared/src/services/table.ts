@@ -120,6 +120,7 @@ export function getFieldHeader(field: IField, t: TFunction): IFieldConfig {
     ...fieldConfig,
     editable: field.gally?.editable && field.writeable,
     fieldset: field.gally?.fieldset,
+    gridHeaderInfoTooltip: field.gally?.gridHeaderInfoTooltip,
     id,
     input,
     infoTooltip: field.gally?.infoTooltip,

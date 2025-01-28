@@ -2,7 +2,6 @@ import React, { SyntheticEvent } from 'react'
 import { useTranslation } from 'next-i18next'
 import {
   DataContentType,
-  IDependsForm,
   IExpansions,
   IFieldGuesserProps,
   IOption,
@@ -23,7 +22,6 @@ import { IDoubleDatePickerValues } from '../../atoms/form/DoubleDatePickerWithou
 import DoubleDatePicker from '../../atoms/form/DoubleDatePicker'
 import { Box } from '@mui/material'
 import RequestTypeManager from '../../stateful/RequestTypeManager/RequestTypeManager'
-import { isHiddenDepends } from '../../../services'
 import RulesManager from '../RulesManager/RulesManager'
 import Slider from '../../atoms/form/Slider'
 import Synonym from '../../atoms/form/Synonym'
@@ -34,7 +32,6 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
   const {
     diffValue,
     input,
-    disabled,
     label,
     multiple,
     name,
@@ -47,7 +44,6 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
     suffix,
     type,
     validation,
-    depends,
     requestTypeConfigurations,
     data,
     optionConfig,
@@ -56,6 +52,7 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
     error,
     helperText,
     replacementErrorsMessages,
+    disabled,
   } = props
 
   const { t } = useTranslation('common')
@@ -84,17 +81,6 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
         return onChange(optionConfig as IOption<string>, value, event)
       }
       return onChange(name, value, event)
-    }
-  }
-
-  if (depends) {
-    const isHidden = isHiddenDepends(
-      depends instanceof Array ? (depends as IDependsForm[]) : [depends],
-      data
-    )
-
-    if (isHidden) {
-      return null
     }
   }
 

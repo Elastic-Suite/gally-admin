@@ -147,7 +147,7 @@ describe('Field service', () => {
       expect(
         getFieldState(
           { foo: 'bar', baz: true },
-          { conditions: { baz: true }, disabled: true }
+          { conditions: { field: 'baz', value: false }, type: 'enabled' }
         )
       ).toEqual({ disabled: true })
     })
@@ -159,7 +159,7 @@ describe('Field service', () => {
       expect(
         getFieldState(
           { foo: 'bar', baz: true },
-          { conditions: { baz: true }, disabled: true },
+          { conditions: { field: 'baz', value: true }, type: 'enabled' },
           { disabled: false }
         )
       ).toEqual({ disabled: false })

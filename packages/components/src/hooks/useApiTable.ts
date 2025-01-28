@@ -30,11 +30,12 @@ export function useApiHeadersForm(
   resource: IResource
 ): IFieldConfigFormWithFieldset[] {
   const apiHeaders = useApiHeaders(resource)
+
   return useMemo(() => {
     const apiHeaderMap = apiHeaders.reduce<
       Record<string, IFieldConfigFormWithFieldset>
     >(
-      (acc, header) => {
+      (acc, { gridHeaderInfoTooltip, ...header }) => {
         const fieldsetCode = header.fieldset
         const fieldset = resource.gally?.fieldset?.[fieldsetCode]
         if (fieldsetCode && fieldset) {

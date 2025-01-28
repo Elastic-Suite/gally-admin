@@ -13,6 +13,7 @@ import { useTranslation } from 'next-i18next'
 import { manageStickyHeaders, stickyBorderStyle } from '../../../../services'
 
 import { BaseTableCell, StickyTableCell } from '../CustomTable.styled'
+import InfoTooltip from '../../../atoms/form/InfoTooltip'
 
 interface IProps {
   cssLeftValues: number[]
@@ -116,6 +117,12 @@ function CustomTableHeader(props: IProps): JSX.Element {
             }}
           >
             {stickyHeader.label}
+            {stickyHeader.gridHeaderInfoTooltip?.trim() ? (
+              <InfoTooltip
+                title={t(stickyHeader.gridHeaderInfoTooltip)}
+                withHTMLTitle
+              />
+            ) : null}
           </StickyTableCell>
         ))}
 
@@ -135,7 +142,9 @@ function CustomTableHeader(props: IProps): JSX.Element {
                 whiteSpace: 'nowrap',
                 ...((header.type === DataContentType.SCORE ||
                   header.type === DataContentType.PRICE) && { width: '10%' }),
-                ...(header.type === DataContentType.STOCK && { width: '15%' }),
+                ...(header.type === DataContentType.STOCK && {
+                  width: '15%',
+                }),
                 ...(header.type === DataContentType.STRING && {
                   maxWidth: 'fit-content',
                 }),
@@ -143,6 +152,12 @@ function CustomTableHeader(props: IProps): JSX.Element {
               }}
             >
               {t(header.label)}
+              {header.gridHeaderInfoTooltip?.trim() ? (
+                <InfoTooltip
+                  title={t(header.gridHeaderInfoTooltip)}
+                  withHTMLTitle
+                />
+              ) : null}
             </BaseTableCell>
           ))}
       </TableRow>

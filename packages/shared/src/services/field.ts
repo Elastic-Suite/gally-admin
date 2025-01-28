@@ -5,6 +5,7 @@ import {
   IFieldCondition,
   IFieldConfig,
   IFieldConfigFormWithFieldset,
+  IFieldDepends,
   IFieldState,
 } from '../types'
 
@@ -59,22 +60,74 @@ export function isDropdownStaticOptions(
   return 'values' in options
 }
 
-export function getFieldState(
+/**
+ * It works like an "or" for the first level, but if we have an array at the second level then it works like an "and" (all conditions must be true)
+ */
+function isConditionActive(
   entity: Record<string, unknown>,
-  depends?: IFieldCondition,
+  conditions: (IFieldCondition | IFieldCondition[])[] | IFieldCondition
+): boolean {
+  if (!Array.isArray(conditions)) {
+    return entity[conditions.field] === conditions.value
+  }
+  let conditionActive = false
+  let index = 0
+  while (!conditionActive && index < conditions.length) {
+    const item = conditions[index]
+    if (Array.isArray(item)) {
+      conditionActive = item.every(
+        ({ field, value }) => entity[field] === value
+      )
+    } else {
+      const { field, value } = item
+      conditionActive = entity[field] === value
+    }
+    index++
+  }
+  return conditionActive
+}
+
+/**
+ * Allows to return a state based on conditions dependent on another field.
+ * The field [field name] depends on the condition [condition] to be [type].
+ */
+export function getFieldState(
+  entity?: Record<string, unknown>,
+  depends?: IFieldDepends,
   state: IFieldState = {}
 ): IFieldState {
+  if (!entity) return {}
   if (!depends?.conditions) {
     return state
   }
-  const { conditions, ...conditionalState } = depends
-  const conditionActive = Object.entries(conditions).every(
-    ([field, value]) => entity[field] === value
-  )
+  const { conditions, type } = depends
+
+  const newState: IFieldState = {}
+
+  switch (type) {
+    case 'visible':
+      newState.visible = isConditionActive(entity, conditions)
+      break
+    case 'enabled':
+      newState.disabled = !isConditionActive(entity, conditions)
+  }
+
   return {
-    ...(conditionActive && conditionalState),
+    ...newState,
     ...state,
   }
+}
+
+/**
+ * return fieldState without the states that are not field props like "visible"
+ */
+export function getPropsFromFieldState(
+  entity?: Record<string, unknown>,
+  depends?: IFieldDepends,
+  state: IFieldState = {}
+): Omit<IFieldState, 'visible'> {
+  const { visible, ...otherProps } = getFieldState(entity, depends, state)
+  return otherProps
 }
 
 export function isFieldConfigFormWithFieldset(

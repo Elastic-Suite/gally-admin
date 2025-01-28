@@ -1,7 +1,6 @@
 import { TFunction } from 'next-i18next'
 import {
   IExpansions,
-  IField,
   IRequestType,
   IRequestTypesOptions,
   ISearchLimitations,
@@ -137,15 +136,4 @@ export function getExpansionsErrorMessages(expansions: IExpansions): string[] {
 
 export function areExpansionsValid(expansions: IExpansions): boolean {
   return getExpansionsErrorMessages(expansions).length === 0
-}
-
-export function isDependsField(
-  field: IField,
-  data: Record<string, unknown>
-): boolean {
-  return (
-    !field?.gally?.depends ||
-    (field.gally.depends?.field in data &&
-      data[field.gally.depends.field] === field.gally.depends?.value)
-  )
 }
