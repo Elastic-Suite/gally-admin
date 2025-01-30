@@ -33,7 +33,7 @@ const Template: ComponentStory<typeof Sidebar> = (args) => {
 export const MenuWithSidebar = Template.bind({})
 MenuWithSidebar.args = {
   menu,
-  menuItemActive: 'analyze_catalog_structure',
+  menuItemActive: 'analyze_results',
   sidebarState: true,
   sidebarStateTimeout: false,
 }

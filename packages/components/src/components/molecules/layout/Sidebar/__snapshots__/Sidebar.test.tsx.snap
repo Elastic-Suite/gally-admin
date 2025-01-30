@@ -130,9 +130,9 @@ exports[`SideBar match snapshot SideBarStateFalse 1`] = `
                             <a
                               class="css-1hn3xib"
                               data-testid="labelMenuLinkItem"
-                              href="/admin/analyze/catalog_structure"
+                              href="/admin/analyze/results"
                             >
-                              Structure du catalogue
+                              Résultats
                             </a>
                             <div
                               class="css-ukifpj"
@@ -826,9 +826,9 @@ exports[`SideBar match snapshot SideBarStateTrue 1`] = `
                             <a
                               class="css-1hn3xib"
                               data-testid="labelMenuLinkItem"
-                              href="/admin/analyze/catalog_structure"
+                              href="/admin/analyze/results"
                             >
-                              Structure du catalogue
+                              Résultats
                             </a>
                             <div
                               class="css-ukifpj"

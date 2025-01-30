@@ -11,7 +11,7 @@ describe('SideBar match snapshot', () => {
     const { container } = renderWithProviders(
       <Sidebar
         menu={menu}
-        menuItemActive="analyze_catalog_structure"
+        menuItemActive="analyze_results"
         sidebarState
         sidebarStateTimeout={false}
         childrenState={{}}
@@ -24,7 +24,7 @@ describe('SideBar match snapshot', () => {
     const { container } = renderWithProviders(
       <Sidebar
         menu={menu}
-        menuItemActive="analyze_catalog_structure"
+        menuItemActive="analyze_results"
         sidebarState={false}
         sidebarStateTimeout={false}
         childrenState={{}}

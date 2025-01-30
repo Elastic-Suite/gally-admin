@@ -55,11 +55,11 @@ const PreviewArea = styled(Box)(({ theme }) => ({
   color: theme.palette.colors.neutral['600'],
 }))
 
-const pagesSlug = ['analyze', 'catalog_structure']
+const pagesSlug = ['analyze', 'results']
 
 const INPUT_WIDTH = 296
 
-function AdminAnalyzeCatalogStructure(): JSX.Element {
+function AdminAnalyzeResults(): JSX.Element {
   const router = useRouter()
   const [, setBreadcrumb] = useContext(breadcrumbContext)
   const { localizedCatalogWithDefault } = useContext(catalogContext)
@@ -184,10 +184,7 @@ function AdminAnalyzeCatalogStructure(): JSX.Element {
 
   return (
     <>
-      <PageTitle
-        title={t('Explain and compare')}
-        sx={{ marginBottom: '32px' }}
-      />
+      <PageTitle title={t('Results')} sx={{ marginBottom: '32px' }} />
       <Form onSubmit={handleSubmit}>
         {Boolean(
           localizedCatalogOptions && requestTypeOptions && categoriesList
@@ -286,4 +283,4 @@ function AdminAnalyzeCatalogStructure(): JSX.Element {
   )
 }
 
-export default withAuth(withOptions(AdminAnalyzeCatalogStructure))
+export default withAuth(withOptions(AdminAnalyzeResults))
