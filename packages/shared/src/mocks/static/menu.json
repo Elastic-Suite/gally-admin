@@ -15,8 +15,8 @@
       "order": 20,
       "children": [
         {
-          "code": "analyze_catalog_structure",
-          "label": "Structure du catalogue",
+          "code": "analyze_results",
+          "label": "Résultats",
           "order": 10
         },
         {

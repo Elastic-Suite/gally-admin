@@ -29,7 +29,7 @@ const Template: ComponentStory<typeof Menu> = (args) => {
 export const MenuOnly = Template.bind({})
 MenuOnly.args = {
   menu,
-  menuItemActive: 'analyze_catalog_structure',
+  menuItemActive: 'analyze_results',
   sidebarState: false,
   sidebarStateTimeout: false,
 }

@@ -60,7 +60,7 @@
   "Select the localized catalog where the explain will be applied": "Sélection du catalogue localisé sur lequel l'explication' sera appliqué",
   "Indicate a term": "Indiquez un terme",
   "Search term": "Terme de recherche",
-  "Explain and compare": "Explication et comparaison",
+  "Results": "Résultats",
   "Analyzer": "Analyseur",
   "standard: The textual attribute for searching with possible fuzziness support (if spellcheck = yes).<br />reference: SKU-like, a sequence of numbers or letters, no understandable text, and no deduction, exact matching... <br />standard_edge_ngram: standard + support for searching the beginnings of words regardless of the word's length.": "standard:  L'attribut textuel permettant une recherche avec un support possible pour les approximations (si spellcheck = yes).<br />reference:Type similaire à un SKU, une séquence de chiffres ou de lettres, sans texte compréhensible ni déduction, avec correspondance exacte ... <br />standard_edge_ngram: Standard + support pour rechercher les débuts de mots, quelle que soit la longueur du mot."
 }
