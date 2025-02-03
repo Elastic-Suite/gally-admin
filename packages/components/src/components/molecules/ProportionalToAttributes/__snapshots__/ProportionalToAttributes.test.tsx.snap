@@ -6,13 +6,13 @@ exports[`ProportionalToAttributes Should match snapschot 1`] = `
     class="css-1821gv5"
   >
     <div
-      class="MuiFormControl-root css-1girsym-MuiFormControl-root"
+      class="MuiFormControl-root MuiFormControl-fullWidth css-1wl9gy3-MuiFormControl-root"
     >
       <div
         class="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-1qqsdnr-MuiAutocomplete-root"
       >
         <div
-          class="MuiFormControl-root css-hh3vi8-MuiFormControl-root"
+          class="MuiFormControl-root MuiFormControl-fullWidth css-1w6fxiz-MuiFormControl-root"
         >
           <label
             class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard MuiFormLabel-colorPrimary Mui-required css-rnc4nv-MuiFormLabel-root-MuiInputLabel-root"
@@ -284,6 +284,7 @@ exports[`ProportionalToAttributes Should match snapschot 1`] = `
           <input
             aria-invalid="false"
             class="MuiInputBase-input css-ngazp5-MuiInputBase-input"
+            min="0"
             required=""
             step="any"
             type="number"

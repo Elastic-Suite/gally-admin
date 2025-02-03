@@ -149,7 +149,12 @@ function TextFieldTagsMultiple(
   }, [optionsListAvailable, addItem, disabled])
 
   return (
-    <FormControl error={error} fullWidth={fullWidth} margin={margin}>
+    <FormControl
+      error={error}
+      fullWidth={fullWidth}
+      margin={margin}
+      className="textFieldTagsMultiple"
+    >
       {Boolean(label || infoTooltip) && (
         <div style={{ marginBottom: '4px' }}>
           <InputLabel shrink required={required}>

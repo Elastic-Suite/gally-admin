@@ -96,6 +96,7 @@ function RequestType(props: IProps): JSX.Element {
       margin={margin}
       variant="standard"
       error={error}
+      className="requestType"
     >
       {label || infoTooltip ? (
         <InputLabel shrink sx={{ maxWidth: '90%' }} required={required}>

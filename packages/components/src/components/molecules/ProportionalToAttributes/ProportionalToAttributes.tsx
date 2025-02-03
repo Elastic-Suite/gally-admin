@@ -57,6 +57,7 @@ function ProportionalToAttributes({
         showError={showError}
         sx={{ minWidth: '230px' }}
         placeholder={t('boostConfig.sourceField.placeholder')}
+        fullWidth
       />
 
       <RadioGroup
@@ -74,6 +75,7 @@ function ProportionalToAttributes({
         required
         inputProps={{
           step: 'any',
+          min: 0,
         }}
         additionalValidator={(value: number): string => {
           if (value <= 0) {
