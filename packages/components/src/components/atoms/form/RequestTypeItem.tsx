@@ -233,6 +233,7 @@ function RequestTypeItem(props: IRequestTypeItem): JSX.Element {
                         : ''
                     }
                     data={categoriesList}
+                    sx={{ minWidth: 300 }}
                     multiple
                   />
                 )}

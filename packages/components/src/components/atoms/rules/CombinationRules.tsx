@@ -136,7 +136,7 @@ function CombinationRules(props: ICombinationRulesProps): JSX.Element {
   }
 
   return (
-    <Root>
+    <Root className="combinationRules">
       <RuleAndLinkContainer>
         <RuleLink label="if" />
         <Rule

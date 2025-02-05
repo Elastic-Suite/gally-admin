@@ -97,11 +97,21 @@ export default function PreviewGridBoostConfiguration({
     () =>
       Boolean((currentBoost?.requestTypes as [])?.length > 0) &&
       Boolean((currentBoost?.localizedCatalogs as [])?.length > 0) &&
-      Boolean(currentBoost.model),
+      Boolean(currentBoost.model) &&
+      Boolean(
+        currentBoost.model !== 'attribute_value' ||
+          (currentBoost.model === 'attribute_value' &&
+            currentBoost.modelConfig &&
+            Number(
+              JSON.parse(currentBoost.modelConfig as string)
+                .attribute_value_config.scale_factor
+            ) > 0)
+      ),
     [
       currentBoost.localizedCatalogs,
       currentBoost.model,
       currentBoost.requestTypes,
+      currentBoost.modelConfig,
     ]
   )
 

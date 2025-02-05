@@ -3,7 +3,7 @@
 exports[`TextFieldTagsMultiple sould match snapshot 1`] = `
 <div>
   <div
-    class="css-vaijrj"
+    class="textFieldTagsMultiple css-vaijrj"
   >
     <div
       style="margin-bottom: 4px;"

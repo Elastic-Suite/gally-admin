@@ -23,8 +23,8 @@
   "boost_one": "boost",
   "boost_other": "boosts",
   "preview": "Prévisualiser",
-  "boostConfig.sourceField": "Source field",
-  "boostConfig.sourceField.placeholder": "Sélectionnez un source field",
-  "boostConfig.boostImpact": "Impacte du Boost",
-  "boostConfig.scaleFactor": "Scale factor"
+  "boostConfig.sourceField": "Valeur d'attribut",
+  "boostConfig.sourceField.placeholder": "Sélectionnez une valeur d'attribut",
+  "boostConfig.boostImpact": "Impact du Boost",
+  "boostConfig.scaleFactor": "Multiplicateur"
 }
