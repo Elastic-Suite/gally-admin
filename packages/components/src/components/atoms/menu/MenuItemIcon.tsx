@@ -225,7 +225,7 @@ function MenuItemIcon(props: IProps): JSX.Element {
             }}
           />
 
-          <Label>{label}</Label>
+          <Label data-testid="labelMenuItemIcon">{label}</Label>
         </CustomNoChildHover>
       </Link>
       {isActive ? <IndicatorLineActive /> : null}

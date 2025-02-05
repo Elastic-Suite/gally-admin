@@ -12,6 +12,7 @@ import {
   Autocomplete,
   AutocompleteRenderOptionState,
   FormControl,
+  ListItem,
   ListSubheader,
 } from '@mui/material'
 import { useTranslation } from 'next-i18next'
@@ -116,7 +117,10 @@ function DropDownWithoutError<T>(
       { selected }: AutocompleteRenderOptionState
     ): ReactNode => {
       return (
-        <li {...props}>
+        <li
+          {...props}
+          data-testid={dataTestId ? `${dataTestId}DropdownOption` : null}
+        >
           <CheckboxWithoutError
             checked={selected}
             label={label}
@@ -140,6 +144,20 @@ function DropDownWithoutError<T>(
             {...getTagProps({ index })}
           />
         ))
+  } else {
+    renderOption = (
+      props: HTMLAttributes<HTMLLIElement>,
+      option: IOption<T>
+    ): ReactNode => {
+      return (
+        <ListItem
+          {...props}
+          data-testid={dataTestId ? `${dataTestId}DropdownOption` : null}
+        >
+          {option.label}
+        </ListItem>
+      )
+    }
   }
 
   return (
@@ -205,6 +223,7 @@ function DropDownWithoutError<T>(
         style={{ width: 'fit-content', ...style }}
         value={optionValue}
         selectOnFocus={false}
+        data-testid={dataTestId}
       />
     </FormControl>
   )

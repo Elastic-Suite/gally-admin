@@ -212,7 +212,9 @@ function MenuItem(props: IProps): JSX.Element {
           {!menuChildren && (
             <Line data-testid="menuLinkItem">
               <Link href={`/admin/${href}`} legacyBehavior passHref>
-                <CustomLineAHref>{label}</CustomLineAHref>
+                <CustomLineAHref data-testid="labelMenuLinkItem">
+                  {label}
+                </CustomLineAHref>
               </Link>
               {isActive ? <CustomIndicatorLineActive /> : null}
             </Line>
@@ -221,6 +223,7 @@ function MenuItem(props: IProps): JSX.Element {
             <CustomLineButton
               style={{ transition: 'all 500ms', position: 'relative' }}
               onClick={toggleChild}
+              data-testid="menuItemChildrenButton"
             >
               {label}
               <IonIcon
@@ -236,7 +239,7 @@ function MenuItem(props: IProps): JSX.Element {
           {!childState && isBoosts ? <CustomIndicatorLineActiveTwo /> : null}
         </CustomLinePadding>
         {Boolean(menuChildren) && (
-          <CustomChildren in={childState}>
+          <CustomChildren in={childState} data-testid="menuItemChildren">
             {menuChildren.map((item: IMenuChild) => (
               <MenuItem
                 key={item.code}
