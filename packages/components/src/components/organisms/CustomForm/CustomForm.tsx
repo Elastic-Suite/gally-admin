@@ -60,7 +60,10 @@ function CustomForm(props: IProps): JSX.Element {
         }
 
         return (
-          <SectionFieldSet key={fieldset?.position}>
+          <SectionFieldSet
+            key={fieldset?.position}
+            data-testid={`${fieldset.code}FieldSet`}
+          >
             {Boolean(fieldset.label) && (
               <LabelFieldSet>
                 {t(fieldset.label)}

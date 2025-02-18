@@ -116,7 +116,11 @@ export default function PreviewGridBoostConfiguration({
   )
 
   if (!boostIsValid) {
-    return <RequiredMessage>{t('missingRequiredFieldMessage')}</RequiredMessage>
+    return (
+      <RequiredMessage data-testid="previewRequiredMessage">
+        {t('missingRequiredFieldMessage')}
+      </RequiredMessage>
+    )
   }
 
   return (
