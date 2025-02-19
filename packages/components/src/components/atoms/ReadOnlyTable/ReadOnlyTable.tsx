@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import { IRow, ReadOnlyTableRow, StyledTable } from './ReadOnlyTable.styled'
 
 export interface IReadOnlyTable {
@@ -12,14 +12,22 @@ function ReadOnlyTable({
   body,
   fullWidth,
 }: IReadOnlyTable): JSX.Element {
+  const withoutSubRow = useMemo(() => {
+    return body.filter((row) => row.subRows).length === 0
+  }, [body])
+
   return (
     <StyledTable sx={fullWidth ? { width: '100%' } : null}>
       <thead>
-        <ReadOnlyTableRow row={header} />
+        <ReadOnlyTableRow row={header} withoutSubRow={withoutSubRow} />
       </thead>
       <tbody>
         {body.map((row) => (
-          <ReadOnlyTableRow key={row.id} row={row} />
+          <ReadOnlyTableRow
+            key={row.id}
+            row={row}
+            withoutSubRow={withoutSubRow}
+          />
         ))}
       </tbody>
     </StyledTable>

@@ -1,0 +1,76 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SearchTermsTable SearchTermsTable match snapshot 1`] = `
+<div>
+  <div>
+    <h3
+      class="css-gt3b1r"
+    >
+      searchTermsTableTitle
+      <span
+        aria-label="Infotooltip"
+        class=""
+        data-mui-internal-clone-element="true"
+        style="display: inline-block; padding-left: 10px; margin-bottom: -5px;"
+      >
+        <ion-icon
+          name="information-circle-outline"
+          style="color: rgb(129, 135, 185); width: 20px; height: 20px; display: flex;"
+        />
+      </span>
+    </h3>
+    <table
+      class="css-jzn12j"
+    >
+      <thead>
+        <tr
+          class=""
+        >
+          <td
+            style="width: 200px;"
+          >
+            Terms
+          </td>
+          <td
+            style="width: 200px;"
+          >
+            Sessions
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          class=""
+        >
+          <td>
+            Test 3
+          </td>
+          <td>
+            3
+          </td>
+        </tr>
+        <tr
+          class=""
+        >
+          <td>
+            Test 2
+          </td>
+          <td>
+            2
+          </td>
+        </tr>
+        <tr
+          class=""
+        >
+          <td>
+            Test 1
+          </td>
+          <td>
+            1
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+`;
