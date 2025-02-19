@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`KPI match snapshot KPI percentage 1`] = `
+<div>
+  <div
+    class="css-4jtltt"
+  >
+    <h3
+      class="css-1xva16q"
+    >
+      Test percentage value
+    </h3>
+    <p
+      class="css-2384rf"
+    >
+      49,98%
+    </p>
+  </div>
+</div>
+`;
+
+exports[`KPI match snapshot KPI simple 1`] = `
+<div>
+  <div
+    class="css-4jtltt"
+  >
+    <h3
+      class="css-1xva16q"
+    >
+      Test simple value
+    </h3>
+    <p
+      class="css-2384rf"
+    >
+      4 998
+    </p>
+  </div>
+</div>
+`;
