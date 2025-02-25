@@ -211,11 +211,13 @@ function MenuItem(props: IProps): JSX.Element {
         >
           {!menuChildren && (
             <Line data-testid="menuLinkItem">
-              <Link href={`/admin/${href}`} legacyBehavior passHref>
-                <CustomLineAHref data-testid="labelMenuLinkItem">
-                  {label}
-                </CustomLineAHref>
-              </Link>
+              {!sidebarStateTimeout && (
+                <Link href={`/admin/${href}`} legacyBehavior passHref>
+                  <CustomLineAHref data-testid="labelMenuLinkItem">
+                    {label}
+                  </CustomLineAHref>
+                </Link>
+              )}
               {isActive ? <CustomIndicatorLineActive /> : null}
             </Line>
           )}
