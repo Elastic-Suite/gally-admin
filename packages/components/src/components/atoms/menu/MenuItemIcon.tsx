@@ -204,7 +204,7 @@ function MenuItemIcon(props: IProps): JSX.Element {
           <CustomIndicatorLineActiveOpacityFullDeux />
         )}
 
-        <Label>{label}</Label>
+        <Label data-testid="labelMenuItemIcon">{label}</Label>
       </CustomClassNameStyleRoot>
     )
   }

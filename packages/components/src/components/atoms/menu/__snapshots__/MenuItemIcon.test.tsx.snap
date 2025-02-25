@@ -12,6 +12,7 @@ exports[`MenuItemIcon match snapshot 1`] = `
     />
     <span
       class="css-1skr4lk"
+      data-testid="labelMenuItemIcon"
     >
       Analyze
     </span>

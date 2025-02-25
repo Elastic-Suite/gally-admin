@@ -103,6 +103,7 @@ exports[`SideBar match snapshot SideBarStateFalse 1`] = `
                   />
                   <span
                     class="css-1skr4lk"
+                    data-testid="labelMenuItemIcon"
                   >
                     Analyse
                   </span>
@@ -211,6 +212,7 @@ exports[`SideBar match snapshot SideBarStateFalse 1`] = `
                   />
                   <span
                     class="css-1skr4lk"
+                    data-testid="labelMenuItemIcon"
                   >
                     Merchandising
                   </span>
@@ -457,6 +459,7 @@ exports[`SideBar match snapshot SideBarStateFalse 1`] = `
                   />
                   <span
                     class="css-1skr4lk"
+                    data-testid="labelMenuItemIcon"
                   >
                     Recherche
                   </span>
@@ -796,6 +799,7 @@ exports[`SideBar match snapshot SideBarStateTrue 1`] = `
                   />
                   <span
                     class="css-1skr4lk"
+                    data-testid="labelMenuItemIcon"
                   >
                     Analyse
                   </span>
@@ -904,6 +908,7 @@ exports[`SideBar match snapshot SideBarStateTrue 1`] = `
                   />
                   <span
                     class="css-1skr4lk"
+                    data-testid="labelMenuItemIcon"
                   >
                     Merchandising
                   </span>
@@ -1150,6 +1155,7 @@ exports[`SideBar match snapshot SideBarStateTrue 1`] = `
                   />
                   <span
                     class="css-1skr4lk"
+                    data-testid="labelMenuItemIcon"
                   >
                     Recherche
                   </span>
