@@ -20,7 +20,26 @@ exports[`Pagination should match snapshot for bottom pagination 1`] = `
           <span
             class="css-oo4ti7"
           >
-            6 - 10 pagination.of 10
+            <span
+              data-testid="from"
+            >
+              6
+            </span>
+             -
+             
+            <span
+              data-testid="to"
+            >
+              10
+            </span>
+             
+            pagination.of
+             
+            <span
+              data-testid="count"
+            >
+              10
+            </span>
           </span>
         </p>
         <div
@@ -95,7 +114,26 @@ exports[`Pagination should match snapshot for top pagination 1`] = `
           <span
             class="css-oo4ti7"
           >
-            6 - 10 pagination.of 10
+            <span
+              data-testid="from"
+            >
+              6
+            </span>
+             -
+             
+            <span
+              data-testid="to"
+            >
+              10
+            </span>
+             
+            pagination.of
+             
+            <span
+              data-testid="count"
+            >
+              10
+            </span>
           </span>
         </p>
         <div
