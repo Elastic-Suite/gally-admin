@@ -75,11 +75,14 @@ function ReadableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
     }
 
     case DataContentType.STOCK: {
+      if (!value || (value as IStock).status === null) {
+        return null
+      }
       return <Stock stockStatus={(value as IStock).status} />
     }
 
     case DataContentType.PRICE: {
-      if (!value) {
+      if (!value || (value instanceof Array && value.length < 1)) {
         return null
       }
       const [{ price }] = value as IPrice[]
