@@ -1,3 +1,5 @@
+export const defaultApiRootPrefix = 'api'
+
 let url =
   process.env.NODE_ENV === 'test'
     ? 'http://localhost/'
@@ -7,6 +9,8 @@ let url =
     ? process.env.REACT_APP_API_URL
     : `${typeof window !== 'undefined' ? window.location.origin : ''}/${
         process.env.NEXT_PUBLIC_API_ROUTE_PREFIX
+          ? process.env.NEXT_PUBLIC_API_ROUTE_PREFIX
+          : defaultApiRootPrefix
       }`
 
 if (url && String(url).endsWith('/')) {

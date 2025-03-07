@@ -1,4 +1,5 @@
 import inflection from 'inflection'
+import { defaultApiRootPrefix } from '../constants'
 
 export function firstLetterUppercase(item: string): string {
   return item[0].toUpperCase() + item.slice(1)
@@ -125,7 +126,9 @@ export function getIdFromIri(iri: string): string {
 
 export function getIri(api: string, id: string | number): string {
   return `/${
-    process.env.NEXT_PUBLIC_API_ROUTE_PREFIX ?? ''
+    process.env.NEXT_PUBLIC_API_ROUTE_PREFIX
+      ? process.env.NEXT_PUBLIC_API_ROUTE_PREFIX
+      : defaultApiRootPrefix
   }/${api}/${id}`.replace(/\/+/g, '/')
 }
 
