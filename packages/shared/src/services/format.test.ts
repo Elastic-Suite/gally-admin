@@ -12,6 +12,7 @@ import {
   joinUrlPath,
   roundNumber,
 } from './format'
+import { defaultApiRootPrefix } from '../constants'
 
 describe('Format service', () => {
   describe('firstLetterUppercase', () => {
@@ -96,9 +97,15 @@ describe('Format service', () => {
 
   describe('getIri', () => {
     it('Should get iri', () => {
-      expect(getIri('localized_catalog', 1)).toEqual('/localized_catalog/1')
-      expect(getIri('localized_catalog', '1')).toEqual('/localized_catalog/1')
-      expect(getIri('/localized_catalog/', '1')).toEqual('/localized_catalog/1')
+      expect(getIri('localized_catalog', 1)).toEqual(
+        `/${defaultApiRootPrefix}/localized_catalog/1`
+      )
+      expect(getIri('localized_catalog', '1')).toEqual(
+        `/${defaultApiRootPrefix}/localized_catalog/1`
+      )
+      expect(getIri('/localized_catalog/', '1')).toEqual(
+        `/${defaultApiRootPrefix}/localized_catalog/1`
+      )
     })
   })
 
