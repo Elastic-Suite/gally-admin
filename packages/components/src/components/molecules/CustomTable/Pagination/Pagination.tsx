@@ -45,6 +45,7 @@ interface IProps {
   currentPage: number
   rowsPerPage: number
   rowsPerPageOptions: number[]
+  dataTestId?: string
   onRowsPerPageChange?: (
     event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
   ) => void
@@ -62,6 +63,7 @@ function Pagination(props: IProps): JSX.Element {
     rowsPerPageOptions,
     onRowsPerPageChange,
     onPageChange,
+    dataTestId,
   } = props
 
   const { t } = useTranslation('common')
@@ -78,9 +80,9 @@ function Pagination(props: IProps): JSX.Element {
   ): ReactNode {
     return (
       <PaginationTextContainer>
-        {`${paginationInfo.from} - ${paginationInfo.to} ${t('pagination.of')} ${
-          paginationInfo.count
-        }`}
+        <span data-testid="from">{paginationInfo.from}</span> -{' '}
+        <span data-testid="to">{paginationInfo.to}</span> {t('pagination.of')}{' '}
+        <span data-testid="count">{paginationInfo.count}</span>
       </PaginationTextContainer>
     )
   }
@@ -125,6 +127,7 @@ function Pagination(props: IProps): JSX.Element {
         }),
         ...style,
       }}
+      data-testid={dataTestId}
     >
       {Boolean(withResults) && (
         <StyledParagraph>{t(`result`, { count })}</StyledParagraph>

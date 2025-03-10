@@ -319,6 +319,7 @@ function ResourceTable(props: IResourceTable): JSX.Element {
         tableRows={tableRows}
         hasEditLink={hasEditLink}
         editLink={editLink}
+        dataTestId={resourceName}
       />
     </>
   )
