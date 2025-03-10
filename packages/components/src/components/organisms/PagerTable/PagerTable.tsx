@@ -60,7 +60,11 @@ function PagerTable(
         rowsPerPageOptions={rowsPerPageOptions}
         count={count}
       />
-      <CustomTable {...tableProps} />
+
+      <CustomTable
+        {...tableProps}
+        dataTestId={dataTestId ? `${dataTestId}Table` : null}
+      />
       {noResult ? <CustomNoResult>{t('no.result')}</CustomNoResult> : null}
       <Pagination
         currentPage={currentPage}
