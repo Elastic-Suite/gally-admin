@@ -277,16 +277,19 @@ function ExplainDetails(props: IProps): JSX.Element {
 
       <div className="general-information">
         <h6>{t('General information')}</h6>
-        <span>{`${t('Code')}: ${explainProduct.sku}`}</span>
-        <span>{`${t('Price')}: ${formatPrice(
-          explainProduct.price[0].price,
-          currency,
-          language
-        )}`}</span>
-        <span>{`${t('Stock')}: ${t(
-          getStockStatusLabel(Boolean(explainProduct.stock.status)),
-          { ns: 'common' }
-        )}`}</span>
+        <span>{`${t('Code')}: ${explainProduct?.sku}`}</span>
+        <span>{`${t('Price')}: ${
+          explainProduct?.price[0]
+            ? formatPrice(explainProduct?.price[0]?.price, currency, language)
+            : ``
+        }`}</span>
+        <span>{`${t('Stock')}: ${
+          explainProduct?.stock?.status
+            ? t(getStockStatusLabel(Boolean(explainProduct.stock.status)), {
+                ns: 'common',
+              })
+            : ``
+        } `}</span>
       </div>
       {explainProduct.matches.length > 0 && (
         <div className="item">
