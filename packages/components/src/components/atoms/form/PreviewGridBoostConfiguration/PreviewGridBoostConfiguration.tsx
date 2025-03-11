@@ -104,7 +104,7 @@ export default function PreviewGridBoostConfiguration({
             currentBoost.modelConfig &&
             Number(
               JSON.parse(currentBoost.modelConfig as string)
-                .attribute_value_config.scale_factor
+                ?.attribute_value_config?.scale_factor
             ) > 0)
       ),
     [
