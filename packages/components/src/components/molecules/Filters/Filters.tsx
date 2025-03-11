@@ -47,6 +47,7 @@ interface IProps {
   onSearch: (value: string) => void
   searchValue?: string
   showSearch?: boolean
+  dataTestId?: string
 }
 
 function getActiveFilterLabel(
@@ -96,6 +97,7 @@ function Filters(props: IProps): JSX.Element {
     onSearch,
     searchValue,
     showSearch,
+    dataTestId,
   } = props
   const [open, setOpen] = useState(false)
   const { t } = useTranslation('api')
@@ -172,7 +174,7 @@ function Filters(props: IProps): JSX.Element {
   }
 
   return (
-    <FiltersPaper elevation={0}>
+    <FiltersPaper elevation={0} data-testid={dataTestId}>
       <HeaderBox>
         {showSearch ? (
           <SearchBox>
@@ -186,6 +188,7 @@ function Filters(props: IProps): JSX.Element {
               placeholder={t('filters.search')}
               style={{ width: '220px' }}
               value={searchValue}
+              dataTestId={dataTestId ? `${dataTestId}SearchBar` : undefined}
             />
           </SearchBox>
         ) : null}
@@ -193,22 +196,41 @@ function Filters(props: IProps): JSX.Element {
           <FilterSecondaryButton
             onClick={toggleFilters}
             endIcon={<IonIcon name="filter-outline" />}
+            data-testid={dataTestId ? `${dataTestId}ToggleButton` : undefined}
           >
-            {t('filters.filter')}
-            {activeFilters.length > 0 && ` (${activeFilters.length})`}
+            {t('filters.filter')}{' '}
+            {activeFilters.length > 0 && (
+              <>
+                (
+                <span
+                  data-testid={
+                    dataTestId ? `${dataTestId}ActiveFiltersCount` : undefined
+                  }
+                >
+                  {activeFilters.length}
+                </span>
+                )
+              </>
+            )}
           </FilterSecondaryButton>
-          <FacetteBox>
+          <FacetteBox
+            data-testid={dataTestId ? `${dataTestId}FacetteBox` : undefined}
+          >
             {activeFilters.map(({ filter, label, value }) => (
               <Chip
                 key={`${filter.id}${rangeSeparator}${value}`}
                 label={chipFilterLabelWithTraduction(label)}
                 onDelete={(): void => handleClear(filter, value)}
+                data-testid={
+                  dataTestId ? `${dataTestId}${filter.id}Chip` : undefined
+                }
               />
             ))}
           </FacetteBox>
           <FilterTertiaryButton
             onClick={onClearAll}
             endIcon={<IonIcon name="reload-outline" />}
+            data-testid={dataTestId ? `${dataTestId}ClearAllButton` : undefined}
           >
             {t('filters.clearAll')}
           </FilterTertiaryButton>
@@ -233,6 +255,7 @@ function Filters(props: IProps): JSX.Element {
             <Button
               type="submit"
               endIcon={<IonIcon name="checkmark-done-outline" />}
+              data-testid={dataTestId ? `${dataTestId}ApplyButton` : undefined}
             >
               {t('filters.apply')}
             </Button>
@@ -240,6 +263,9 @@ function Filters(props: IProps): JSX.Element {
               display="tertiary"
               onClick={onClearAll}
               endIcon={<IonIcon name="reload-outline" />}
+              data-testid={
+                dataTestId ? `${dataTestId}ClearAllButton` : undefined
+              }
             >
               {t('filters.clearAll')}
             </Button>
