@@ -279,7 +279,7 @@ function ExplainDetails(props: IProps): JSX.Element {
         <h6>{t('General information')}</h6>
         <span>{`${t('Code')}: ${explainProduct?.sku}`}</span>
         <span>{`${t('Price')}: ${
-          explainProduct?.price[0]
+          explainProduct?.price && explainProduct?.price[0]
             ? formatPrice(explainProduct?.price[0]?.price, currency, language)
             : ``
         }`}</span>
