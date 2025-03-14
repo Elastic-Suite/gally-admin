@@ -85,24 +85,24 @@ const convertProductToRow = (
 
     return {
       id: product.id,
-      beforeImage: beforeProduct.image,
+      beforeImage: beforeProduct?.image,
       beforeInfo: {
         productName: beforeProduct?.name,
-        stockStatus: beforeProduct?.stock.status,
-        price: beforeProduct?.price[0]?.price,
+        stockStatus: beforeProduct?.stock?.status,
+        price: beforeProduct?.price?.[0]?.price,
       },
       beforeScore: beforeProduct.score,
       afterImage: afterProduct?.image,
       afterInfo: {
         productName: afterProduct?.name,
-        stockStatus: afterProduct?.stock.status,
-        price: afterProduct?.price[0]?.price,
+        stockStatus: afterProduct?.stock?.status,
+        price: afterProduct?.price?.[0]?.price,
       },
       afterScore: {
         scoreValue:
           typeof afterProduct?.score === 'number'
             ? afterProduct?.score
-            : afterProduct?.score.scoreValue,
+            : afterProduct?.score?.scoreValue,
       },
       afterPosition: {
         type:
