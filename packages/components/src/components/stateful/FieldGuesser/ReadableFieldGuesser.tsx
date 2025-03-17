@@ -128,11 +128,13 @@ function ReadableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
         <>
           <p style={{ margin: 0 }}> {productName} </p>
           <div style={{ margin: '4px 0' }}>
-            <Price
-              price={price}
-              countryCode={language}
-              currency={localizedCatalogWithDefault.currency}
-            />
+            {price != null && typeof price !== 'undefined' && (
+              <Price
+                price={price}
+                countryCode={language}
+                currency={localizedCatalogWithDefault.currency}
+              />
+            )}
           </div>
           <Stock stockStatus={stockStatus} />
         </>
