@@ -5,8 +5,9 @@ import { useTranslation } from 'next-i18next'
 import PreviewBoostingTable from './PreviewBoostingTable'
 import {
   IGraphqlPreviewBoost,
+  IRequestTypesOptions,
+  LimitationType,
   LoadStatus,
-  ProductRequestType,
   getPreviewBoostQuery,
 } from '@elastic-suite/gally-admin-shared'
 import { styled } from '@mui/material'
@@ -35,10 +36,12 @@ export default function PreviewBoostingTableManager({
   filter,
   localizedCatalog,
   currentBoost,
+  requestTypes,
 }: {
   filter: IPreviewBoostFilter
   localizedCatalog: string
   currentBoost: Record<string, unknown>
+  requestTypes: IRequestTypesOptions[]
 }): JSX.Element | null {
   const [currentPage, setCurrentPage] = useState(0)
   const [totalItems, setTotalItems] = useState(0)
@@ -49,16 +52,31 @@ export default function PreviewBoostingTableManager({
 
   const { t } = useTranslation('boost')
 
+  const limitationTypes = useMemo(
+    () =>
+      new Map(
+        requestTypes.map((requestType) => [
+          requestType.value,
+          requestType.limitationType,
+        ])
+      ),
+    [requestTypes]
+  )
+
   const variables = useMemo(() => {
     const filterValue: {
       search?: string | number
       category?: string | number
     } = {}
 
-    if (filter.type === ProductRequestType.SEARCH)
-      filterValue.search = filter.search
-    else if (filter.type === ProductRequestType.CATALOG)
-      filterValue.category = filter.category
+    switch (limitationTypes.get(filter.type)) {
+      case LimitationType.CATEGORY:
+        filterValue.category = filter.category
+        break
+      case LimitationType.SEARCH:
+        filterValue.search = filter.search
+        break
+    }
 
     return {
       localizedCatalog,
@@ -68,19 +86,28 @@ export default function PreviewBoostingTableManager({
       currentPage: currentPage + 1,
       pageSize: rowsPerPage,
     }
-  }, [filter, localizedCatalog, currentBoost, currentPage, rowsPerPage])
+  }, [
+    filter,
+    localizedCatalog,
+    currentBoost,
+    currentPage,
+    rowsPerPage,
+    limitationTypes,
+  ])
 
   const filterIsValid = useMemo<boolean>(
     () =>
       Boolean(
-        filter.type === 'product_search' &&
+        limitationTypes.get(filter.type) === LimitationType.SEARCH &&
           filter.search.length > 0 &&
           localizedCatalog
       ) ||
       Boolean(
-        filter.type === 'product_catalog' && filter.category && localizedCatalog
+        limitationTypes.get(filter.type) === LimitationType.CATEGORY &&
+          filter.category &&
+          localizedCatalog
       ),
-    [filter, localizedCatalog]
+    [filter, localizedCatalog, limitationTypes]
   )
 
   const [{ data: previewBoostData, status }] =

@@ -5,6 +5,7 @@ import {
   IRequestTypesOptions,
   ITab,
   ITreeItem,
+  LimitationType,
 } from '@elastic-suite/gally-admin-shared'
 import { useTranslation } from 'next-i18next'
 import FiltersPreviewBoostingTab, {
@@ -79,7 +80,7 @@ function FiltersPreviewBoostingTabs({
   const tabs: ITab<IPropsFiltersPreviewBoostingTab>[] = requestTypes.map(
     (requestType, id) => {
       switch (requestType.limitationType) {
-        case 'category':
+        case LimitationType.CATEGORY:
           return {
             label: requestType.previewLabel,
             Component: FiltersPreviewBoostingTab,
@@ -107,7 +108,7 @@ function FiltersPreviewBoostingTabs({
               ),
             },
           }
-        case 'search':
+        case LimitationType.SEARCH:
           return {
             label: requestType.previewLabel,
             Component: FiltersPreviewBoostingTab,
