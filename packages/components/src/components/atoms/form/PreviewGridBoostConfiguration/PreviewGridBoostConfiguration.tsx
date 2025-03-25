@@ -7,6 +7,7 @@ import {
   IJsonldBase,
   IOptions,
   IRequestTypesOptions,
+  ProductRequestType,
   getIdFromIri,
 } from '@elastic-suite/gally-admin-shared'
 import { useFetchApi } from '../../../../hooks'
@@ -34,7 +35,7 @@ export default function PreviewGridBoostConfiguration({
   const { t } = useTranslation('boost')
 
   const [filter, setFilter] = useState<IPreviewBoostFilter>({
-    type: 'product_catalog',
+    type: ProductRequestType.CATALOG,
   })
 
   const [localizedCatalog, setLocalizedCatalog] = useState('')
@@ -50,7 +51,7 @@ export default function PreviewGridBoostConfiguration({
     categoriesParameters,
     undefined,
     true,
-    filter.type === 'product_catalog'
+    filter.type === ProductRequestType.CATALOG
   )
 
   const [requestTypesOptionsAPI] = useFetchApi<
@@ -137,6 +138,7 @@ export default function PreviewGridBoostConfiguration({
         filter={filter}
         localizedCatalog={localizedCatalog}
         currentBoost={currentBoost}
+        requestTypes={requestTypes}
       />
     </>
   )
