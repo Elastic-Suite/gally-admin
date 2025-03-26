@@ -7,6 +7,7 @@ import {
   IJsonldBase,
   IOptions,
   IRequestTypesOptions,
+  ISearchLimitations,
   ProductRequestType,
   getIdFromIri,
 } from '@elastic-suite/gally-admin-shared'
@@ -137,8 +138,15 @@ export default function PreviewGridBoostConfiguration({
       <PreviewBoostingTableManager
         filter={filter}
         localizedCatalog={localizedCatalog}
-        currentBoost={currentBoost}
         requestTypes={requestTypes}
+        currentBoost={{
+          ...currentBoost,
+          ...(currentBoost.searchLimitations && {
+            searchLimitations: (
+              currentBoost.searchLimitations as ISearchLimitations[]
+            ).filter((search) => search.queryText !== null),
+          }),
+        }}
       />
     </>
   )
