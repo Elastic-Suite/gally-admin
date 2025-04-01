@@ -120,7 +120,7 @@ function Login(): JSX.Element {
               return ''
             }}
             replacementErrorsMessages={{
-              typeMismatch: 'emailInput',
+              typeMismatch: 'typeMismatchEmail',
             }}
             dataTestId="emailInput"
           />
