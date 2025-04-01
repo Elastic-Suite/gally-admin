@@ -27,6 +27,7 @@ import PopIn from '../../atoms/modals/PopIn'
 import { styled } from '@mui/system'
 import Form from '../../atoms/form/Form'
 import { MainSectionFieldSet } from '../../organisms/CustomForm/CustomForm.styled'
+import IonIcon from '../../atoms/IonIcon/IonIcon'
 
 const CustomDoubleButtonSticky = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -201,7 +202,7 @@ function ResourceForm(props: IProps): JSX.Element {
                       display="secondary"
                       disabled={isLoading}
                       data-testid="deleteButtonResourceForm"
-                      endIcon={<ion-icon name="trash-outline" />}
+                      endIcon={<IonIcon name="trash-outline" />}
                     >
                       {t('delete')}
                     </Button>
@@ -216,9 +217,9 @@ function ResourceForm(props: IProps): JSX.Element {
                   loading={isLoading}
                   endIcon={
                     id ? (
-                      <ion-icon name="save-outline" />
+                      <IonIcon name="save-outline" />
                     ) : (
-                      <ion-icon name="add-circle-outline" />
+                      <IonIcon name="add-circle-outline" />
                     )
                   }
                 >

@@ -3,6 +3,11 @@ import React, { CSSProperties, MouseEvent } from 'react'
 import { JSX as IonIconJSX } from 'ionicons'
 import { JSXBase } from 'ionicons/dist/types/stencil-public-runtime'
 
+if (typeof window != 'undefined') {
+  // @ts-expect-error: ionicons don't have declaration type files.
+  import('ionicons/dist/cjs/ionicons.cjs')
+}
+
 export type IIonIconProps = Omit<
   IonIconJSX.IonIcon & JSXBase.HTMLAttributes<HTMLIonIconElement>,
   'style' | 'onClick'
@@ -26,10 +31,10 @@ interface IProps extends IIonIconProps {
 }
 
 export const iconSrcMapping = {
-  dashboard: '/images/home2.svg',
-  arrow: '/images/arrow.svg',
-  telescope: '/images/telescope-outline.svg',
-  'push-pin': '/images/push-pin.svg',
+  dashboard: 'home2',
+  arrow: 'arrow',
+  telescope: 'telescope-outline',
+  'push-pin': 'push-pin',
 }
 
 export const iconAliasMapping = {
@@ -53,6 +58,11 @@ export const customIcons = [
  *
  * Setup switch for special names that need svg or have another name in ion-icons
  */
+
+function getIonIconURL(iconName: string, custom?: boolean): string {
+  return `/images/ionicons/${custom ? 'custom/' : ''}${iconName}.svg`
+}
+
 function IonIcon(props: IProps): JSX.Element {
   const { name, tooltip, ...other } = props
   const style = tooltip
@@ -67,19 +77,24 @@ function IonIcon(props: IProps): JSX.Element {
   if (name in iconSrcMapping) {
     return (
       <ion-icon
-        src={iconSrcMapping[name as keyof typeof iconSrcMapping]}
+        src={getIonIconURL(
+          iconSrcMapping[name as keyof typeof iconSrcMapping],
+          true
+        )}
         {...iconProps}
       />
     )
   } else if (name in iconAliasMapping) {
     return (
       <ion-icon
-        name={iconAliasMapping[name as keyof typeof iconAliasMapping]}
+        src={getIonIconURL(
+          iconAliasMapping[name as keyof typeof iconAliasMapping]
+        )}
         {...iconProps}
       />
     )
   }
-  return <ion-icon name={name} {...iconProps} />
+  return <ion-icon src={getIonIconURL(name)} {...iconProps} />
 }
 
 export default IonIcon
