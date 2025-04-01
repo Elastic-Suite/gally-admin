@@ -38,7 +38,7 @@ exports[`TreeSelectorWithoutError should match snapshot 1`] = `
               type="button"
             >
               <ion-icon
-                name="chevron-down"
+                src="/images/ionicons/chevron-down.svg"
               />
               <span
                 class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"

@@ -10,7 +10,7 @@ exports[`UserMenu match snapshot UserMenu 1`] = `
       class="css-1gbhtbv"
     >
       <ion-icon
-        name="person-outline"
+        src="/images/ionicons/person-outline.svg"
         style="font-size: 15px; color: rgb(129, 135, 185);"
       />
       <div
@@ -23,7 +23,7 @@ exports[`UserMenu match snapshot UserMenu 1`] = `
         class="css-1tg3i43"
       >
         <ion-icon
-          name="chevron-down"
+          src="/images/ionicons/chevron-down.svg"
           style="font-size: 15px; color: rgb(129, 135, 185);"
         />
       </div>
