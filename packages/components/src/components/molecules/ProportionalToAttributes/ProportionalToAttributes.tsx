@@ -86,6 +86,7 @@ function ProportionalToAttributes({
         value={scaleFactor}
         onChange={(value: number): void => handleChange('scale_factor', value)}
         showError={showError}
+        infoTooltip={t('boostConfig.scaleFactorTooltip')}
       />
     </ProportionalToAttributesContainer>
   )

@@ -26,5 +26,6 @@
   "boostConfig.sourceField": "Valeur d'attribut",
   "boostConfig.sourceField.placeholder": "Sélectionnez une valeur d'attribut",
   "boostConfig.boostImpact": "Impact du Boost",
-  "boostConfig.scaleFactor": "Multiplicateur"
+  "boostConfig.scaleFactor": "Multiplicateur",
+  "boostConfig.scaleFactorTooltip": "Valeur par laquelle le champ sera multiplié avant de potentiellement limiter l'impact du boost"
 }
