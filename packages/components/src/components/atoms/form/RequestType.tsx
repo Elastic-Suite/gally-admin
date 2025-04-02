@@ -56,38 +56,50 @@ function RequestType(props: IProps): JSX.Element {
     showError,
     dataTestId,
   } = props
+
   function updateSelectedDropDown(list: string[] | string): void {
-    const newData = (list as string[]).map((item) => {
-      const existingRequestType = value.requestTypes.some((it) => {
-        return it.requestType === item
+    const selectedList = Array.isArray(list) ? list : [list]
+
+    const newRequestTypes = selectedList
+      .map((item) => {
+        const existingItem = value.requestTypes.find(
+          (r) => r.requestType === item
+        )
+        if (existingItem) return existingItem
+
+        const requestTypeOption = requestTypesOptions.find(
+          (opt) => opt.value === item
+        )
+        if (!requestTypeOption) return null
+
+        const { limitationType } = requestTypeOption
+        const linkedRequestTypes = requestTypesOptions.filter(
+          (opt) => opt.limitationType === limitationType
+        )
+
+        const applyToAll = value.requestTypes
+          .filter((r) =>
+            linkedRequestTypes.some((linked) => linked.value === r.requestType)
+          )
+          .every((r) => r.applyToAll)
+
+        return { requestType: item, applyToAll }
       })
-      if (existingRequestType) {
-        return value.requestTypes.find((it) => it.requestType === item)!
-      }
-      return {
-        requestType: item,
-        applyToAll: true,
-      }
-    })
+      .filter(Boolean)
 
     const newValue: Record<string, unknown> = {
-      requestTypes: newData,
-    } as Record<string, unknown>
-    requestTypesOptions.forEach((requestTypesOption) => {
-      const key =
-        `${requestTypesOption.limitationType}Limitations` as keyof IRequestType
+      ...value,
+      requestTypes: newRequestTypes,
+    }
 
-      if (
-        (list as string[])?.find(
-          (itemList) => itemList === requestTypesOption?.value
-        )
-      ) {
-        newValue[key] = value[key]
-      } else {
+    requestTypesOptions.forEach(({ value: optionValue, limitationType }) => {
+      const key = `${limitationType}Limitations` as keyof IRequestType
+      if (!selectedList.includes(optionValue) && !value[key]) {
         newValue[key] = []
       }
     })
-    return onChange(newValue as unknown as IRequestType)
+
+    onChange(newValue as unknown as IRequestType)
   }
 
   return (
