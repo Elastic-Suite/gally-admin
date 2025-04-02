@@ -26,5 +26,6 @@
   "boostConfig.sourceField": "Attribute value",
   "boostConfig.sourceField.placeholder": "Select an attribute value",
   "boostConfig.boostImpact": "Boost impact",
-  "boostConfig.scaleFactor": "Scale factor"
+  "boostConfig.scaleFactor": "Scale factor",
+  "boostConfig.scaleFactorTooltip": "Value the field will be multiplied by before potentially limiting the boost impact"
 }
