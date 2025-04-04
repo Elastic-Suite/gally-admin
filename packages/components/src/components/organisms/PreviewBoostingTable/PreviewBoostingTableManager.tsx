@@ -6,6 +6,7 @@ import PreviewBoostingTable from './PreviewBoostingTable'
 import {
   IGraphqlPreviewBoost,
   IRequestTypesOptions,
+  ISearchLimitations,
   LimitationType,
   LoadStatus,
   getPreviewBoostQuery,
@@ -81,7 +82,14 @@ export default function PreviewBoostingTableManager({
     return {
       localizedCatalog,
       requestType: filter.type,
-      currentBoost: JSON.stringify(currentBoost),
+      currentBoost: JSON.stringify({
+        ...currentBoost,
+        ...(currentBoost.searchLimitations && {
+          searchLimitations: (
+            currentBoost.searchLimitations as ISearchLimitations[]
+          ).filter((search) => search.queryText !== null),
+        }),
+      }),
       ...filterValue,
       currentPage: currentPage + 1,
       pageSize: rowsPerPage,

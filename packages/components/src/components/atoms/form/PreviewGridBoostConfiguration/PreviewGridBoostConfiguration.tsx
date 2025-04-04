@@ -1,4 +1,4 @@
-import React, { useContext, useMemo, useState } from 'react'
+import React, { useContext, useEffect, useMemo, useRef, useState } from 'react'
 import FiltersPreviewBoostingTabs, {
   IPreviewBoostFilter,
 } from '../../../molecules/FiltersPreviewBoostingTabs/FiltersPreviewBoostingTabs'
@@ -7,7 +7,6 @@ import {
   IJsonldBase,
   IOptions,
   IRequestTypesOptions,
-  ISearchLimitations,
   ProductRequestType,
   getIdFromIri,
 } from '@elastic-suite/gally-admin-shared'
@@ -26,6 +25,10 @@ const RequiredMessage = styled('p')(() => ({
   lineHeight: '28px',
 }))
 
+const defaultFilter: IPreviewBoostFilter = {
+  type: ProductRequestType.CATALOG,
+}
+
 interface IPreviewGridBoostConfigurationProps {
   currentBoost: Record<string, unknown>
 }
@@ -35,9 +38,7 @@ export default function PreviewGridBoostConfiguration({
 }: IPreviewGridBoostConfigurationProps): JSX.Element {
   const { t } = useTranslation('boost')
 
-  const [filter, setFilter] = useState<IPreviewBoostFilter>({
-    type: ProductRequestType.CATALOG,
-  })
+  const [filter, setFilter] = useState<IPreviewBoostFilter>(defaultFilter)
 
   const [localizedCatalog, setLocalizedCatalog] = useState('')
 
@@ -117,6 +118,13 @@ export default function PreviewGridBoostConfiguration({
     ]
   )
 
+  const currentBoostPrevRef =
+    useRef<IPreviewGridBoostConfigurationProps['currentBoost']>()
+  useEffect(() => {
+    currentBoostPrevRef.current = currentBoost
+    setFilter(defaultFilter)
+  }, [currentBoost])
+
   if (!boostIsValid) {
     return (
       <RequiredMessage data-testid="previewRequiredMessage">
@@ -136,17 +144,15 @@ export default function PreviewGridBoostConfiguration({
         requestTypes={requestTypes}
       />
       <PreviewBoostingTableManager
-        filter={filter}
+        filter={
+          currentBoostPrevRef.current !== undefined &&
+          currentBoostPrevRef.current !== currentBoost
+            ? defaultFilter
+            : filter
+        }
         localizedCatalog={localizedCatalog}
         requestTypes={requestTypes}
-        currentBoost={{
-          ...currentBoost,
-          ...(currentBoost.searchLimitations && {
-            searchLimitations: (
-              currentBoost.searchLimitations as ISearchLimitations[]
-            ).filter((search) => search.queryText !== null),
-          }),
-        }}
+        currentBoost={currentBoost}
       />
     </>
   )
