@@ -14,7 +14,11 @@ interface IProps {
 
 export default function CustomTabs(props: IProps): JSX.Element {
   const { defaultActiveId, onChange, tabs } = props
-  const [activeId, setActiveId] = useState(defaultActiveId ?? tabs[0].id)
+  const [activeId, setActiveId] = useState(defaultActiveId ?? tabs[0]?.id)
+  const activeTabExits = tabs.some((tab) => tab.id === activeId)
+  if (!activeTabExits) {
+    setActiveId(defaultActiveId ?? tabs[0]?.id)
+  }
 
   const handleChange = (event: SyntheticEvent, id: number): void => {
     event.preventDefault()
