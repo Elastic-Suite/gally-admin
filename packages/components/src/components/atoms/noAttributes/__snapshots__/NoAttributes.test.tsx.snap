@@ -6,7 +6,7 @@ exports[`NoAttributes NoAttributes with absolutLink 1`] = `
     class="css-1tomd0t"
   >
     <ion-icon
-      src="/images/telescope-outline.svg"
+      src="/images/ionicons/cutsom/telescope-outline.svg"
       style="color: rgb(129, 135, 185); width: 40px; height: 40px;"
     />
     <div
@@ -39,7 +39,7 @@ exports[`NoAttributes NoAttributes without absolutLink 1`] = `
     class="css-1tomd0t"
   >
     <ion-icon
-      src="/images/telescope-outline.svg"
+      src="/images/ionicons/cutsom/telescope-outline.svg"
       style="color: rgb(129, 135, 185); width: 40px; height: 40px;"
     />
     <div

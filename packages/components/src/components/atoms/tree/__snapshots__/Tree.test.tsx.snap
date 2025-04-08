@@ -17,7 +17,7 @@ exports[`Tree match snapshot 1`] = `
           class="css-1ne2h4j"
         >
           <ion-icon
-            name="add-circle"
+            src="/images/ionicons/add-circle.svg"
             style="font-size: 24px;"
           />
         </button>
@@ -72,7 +72,7 @@ exports[`Tree match snapshot with selected item 1`] = `
           class="css-1ne2h4j"
         >
           <ion-icon
-            name="add-circle"
+            src="/images/ionicons/add-circle.svg"
             style="font-size: 24px;"
           />
         </button>

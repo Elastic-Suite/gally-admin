@@ -36,7 +36,7 @@ exports[`Alert match snapshot 1`] = `
         type="button"
       >
         <ion-icon
-          name="close"
+          src="/images/ionicons/close.svg"
           style="font-size: 18px; padding: 0px;"
         />
         <span
