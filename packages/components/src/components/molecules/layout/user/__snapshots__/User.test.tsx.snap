@@ -13,7 +13,7 @@ exports[`User match snapshot connected 1`] = `
         class="css-b5pm8o"
       >
         <ion-icon
-          src="/images/ionicons/help-circle-outline.svg"
+          name="help-circle-outline"
           style="font-size: 18px; color: rgb(129, 135, 185);"
         />
       </div>
@@ -64,7 +64,7 @@ exports[`User match snapshot connected 1`] = `
         class="css-1gbhtbv"
       >
         <ion-icon
-          src="/images/ionicons/person-outline.svg"
+          name="person-outline"
           style="font-size: 15px; color: rgb(129, 135, 185);"
         />
         <div
@@ -77,7 +77,7 @@ exports[`User match snapshot connected 1`] = `
           class="css-1tg3i43"
         >
           <ion-icon
-            src="/images/ionicons/chevron-down.svg"
+            name="chevron-down"
             style="font-size: 15px; color: rgb(129, 135, 185);"
           />
         </div>

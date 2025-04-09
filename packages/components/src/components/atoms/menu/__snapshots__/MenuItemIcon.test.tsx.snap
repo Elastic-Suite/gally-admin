@@ -7,7 +7,7 @@ exports[`MenuItemIcon match snapshot 1`] = `
     data-testid="menuItemIcon"
   >
     <ion-icon
-      src="/images/ionicons/analytics.svg"
+      name="analytics"
       style="width: 18px; height: 18px;"
     />
     <span

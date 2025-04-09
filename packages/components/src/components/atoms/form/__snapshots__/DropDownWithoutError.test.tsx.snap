@@ -42,7 +42,7 @@ exports[`DropDownWithoutError match snapshot BadgeArrayObjectValue 1`] = `
                 type="button"
               >
                 <ion-icon
-                  src="/images/ionicons/close.svg"
+                  name="close"
                 />
                 <span
                   class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
@@ -67,7 +67,7 @@ exports[`DropDownWithoutError match snapshot BadgeArrayObjectValue 1`] = `
                 type="button"
               >
                 <ion-icon
-                  src="/images/ionicons/close.svg"
+                  name="close"
                 />
                 <span
                   class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
@@ -98,7 +98,7 @@ exports[`DropDownWithoutError match snapshot BadgeArrayObjectValue 1`] = `
                 type="button"
               >
                 <ion-icon
-                  src="/images/ionicons/close.svg"
+                  name="close"
                 />
                 <span
                   class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
@@ -112,7 +112,7 @@ exports[`DropDownWithoutError match snapshot BadgeArrayObjectValue 1`] = `
                 type="button"
               >
                 <ion-icon
-                  src="/images/ionicons/chevron-down.svg"
+                  name="chevron-down"
                 />
                 <span
                   class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
@@ -168,7 +168,7 @@ exports[`DropDownWithoutError match snapshot BadgeDisabledFalse 1`] = `
                 type="button"
               >
                 <ion-icon
-                  src="/images/ionicons/chevron-down.svg"
+                  name="chevron-down"
                 />
                 <span
                   class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
@@ -226,7 +226,7 @@ exports[`DropDownWithoutError match snapshot BadgeDisabledTrue 1`] = `
                 type="button"
               >
                 <ion-icon
-                  src="/images/ionicons/chevron-down.svg"
+                  name="chevron-down"
                 />
               </button>
             </div>
@@ -286,7 +286,7 @@ exports[`DropDownWithoutError match snapshot BadgeLabel 1`] = `
                 type="button"
               >
                 <ion-icon
-                  src="/images/ionicons/chevron-down.svg"
+                  name="chevron-down"
                 />
                 <span
                   class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
@@ -349,7 +349,7 @@ exports[`DropDownWithoutError match snapshot BadgeMultiple 1`] = `
                 type="button"
               >
                 <ion-icon
-                  src="/images/ionicons/chevron-down.svg"
+                  name="chevron-down"
                 />
                 <span
                   class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
@@ -412,7 +412,7 @@ exports[`DropDownWithoutError match snapshot BadgeObjectValue 1`] = `
                 type="button"
               >
                 <ion-icon
-                  src="/images/ionicons/close.svg"
+                  name="close"
                 />
                 <span
                   class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
@@ -426,7 +426,7 @@ exports[`DropDownWithoutError match snapshot BadgeObjectValue 1`] = `
                 type="button"
               >
                 <ion-icon
-                  src="/images/ionicons/chevron-down.svg"
+                  name="chevron-down"
                 />
                 <span
                   class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
@@ -482,7 +482,7 @@ exports[`DropDownWithoutError match snapshot BadgeRequiredFalse 1`] = `
                 type="button"
               >
                 <ion-icon
-                  src="/images/ionicons/chevron-down.svg"
+                  name="chevron-down"
                 />
                 <span
                   class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
@@ -538,7 +538,7 @@ exports[`DropDownWithoutError match snapshot BadgeRequiredTrue 1`] = `
                 type="button"
               >
                 <ion-icon
-                  src="/images/ionicons/chevron-down.svg"
+                  name="chevron-down"
                 />
                 <span
                   class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"

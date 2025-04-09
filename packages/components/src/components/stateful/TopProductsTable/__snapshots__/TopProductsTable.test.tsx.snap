@@ -14,7 +14,7 @@ exports[`TopProductTable Should match snapschot 1`] = `
         searchResults.topProducts
       </div>
       <ion-icon
-        src="/images/ionicons/cutsom/push-pin.svg"
+        src="/images/push-pin.svg"
       />
     </div>
     <div
@@ -102,7 +102,7 @@ exports[`TopProductTable Should match snapschot 1`] = `
                 class="MuiBox-root css-siks6p"
               >
                 <ion-icon
-                  src="/images/ionicons/reorder-two-outline.svg"
+                  name="reorder-two-outline"
                 />
               </div>
             </td>
@@ -205,7 +205,7 @@ exports[`TopProductTable Should match snapschot 1`] = `
                 class="MuiBox-root css-siks6p"
               >
                 <ion-icon
-                  src="/images/ionicons/reorder-two-outline.svg"
+                  name="reorder-two-outline"
                 />
               </div>
             </td>

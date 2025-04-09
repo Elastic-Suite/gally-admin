@@ -57,7 +57,7 @@ exports[`CustomTable match snapshot with editable content 1`] = `
               class="MuiBox-root css-siks6p"
             >
               <ion-icon
-                src="/images/ionicons/reorder-two-outline.svg"
+                name="reorder-two-outline"
               />
             </div>
           </td>
@@ -137,7 +137,7 @@ exports[`CustomTable match snapshot with editable content 1`] = `
                         >
                           <ion-icon
                             data-testid="field2Button"
-                            src="/images/ionicons/chevron-down.svg"
+                            name="chevron-down"
                           />
                           <span
                             class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
@@ -214,7 +214,7 @@ exports[`CustomTable match snapshot with selection, with draggable, with sticky 
               class="MuiBox-root css-siks6p"
             >
               <ion-icon
-                src="/images/ionicons/reorder-two-outline.svg"
+                name="reorder-two-outline"
               />
             </div>
           </td>
@@ -294,7 +294,7 @@ exports[`CustomTable match snapshot with selection, with draggable, without stic
               class="MuiBox-root css-siks6p"
             >
               <ion-icon
-                src="/images/ionicons/reorder-two-outline.svg"
+                name="reorder-two-outline"
               />
             </div>
           </td>

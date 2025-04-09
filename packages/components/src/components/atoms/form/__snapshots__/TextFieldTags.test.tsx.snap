@@ -41,7 +41,7 @@ exports[`TextFieldTags sould match snapshot 1`] = `
               type="button"
             >
               <ion-icon
-                src="/images/ionicons/close.svg"
+                name="close"
               />
               <span
                 class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"

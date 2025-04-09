@@ -192,7 +192,7 @@ function Filters(props: IProps): JSX.Element {
         <FilterBox>
           <FilterSecondaryButton
             onClick={toggleFilters}
-            endIcon={<IonIcon name="filter-outline" />}
+            endIcon={<ion-icon name="filter-outline" />}
           >
             {t('filters.filter')}
             {activeFilters.length > 0 && ` (${activeFilters.length})`}
@@ -208,7 +208,7 @@ function Filters(props: IProps): JSX.Element {
           </FacetteBox>
           <FilterTertiaryButton
             onClick={onClearAll}
-            endIcon={<IonIcon name="reload-outline" />}
+            endIcon={<ion-icon name="reload-outline" />}
           >
             {t('filters.clearAll')}
           </FilterTertiaryButton>
@@ -232,14 +232,14 @@ function Filters(props: IProps): JSX.Element {
           <Stack spacing={1} direction="row">
             <Button
               type="submit"
-              endIcon={<IonIcon name="checkmark-done-outline" />}
+              endIcon={<ion-icon name="checkmark-done-outline" />}
             >
               {t('filters.apply')}
             </Button>
             <Button
               display="tertiary"
               onClick={onClearAll}
-              endIcon={<IonIcon name="reload-outline" />}
+              endIcon={<ion-icon name="reload-outline" />}
             >
               {t('filters.clearAll')}
             </Button>
