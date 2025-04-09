@@ -3,12 +3,11 @@ import React, { useContext, useEffect } from 'react'
 import { withAuth, withOptions } from '../../../../hocs'
 import { useRouter } from 'next/router'
 import { breadcrumbContext } from '../../../../contexts'
-import IonIcon from '../../../../components/atoms/IonIcon/IonIcon'
 
 const pagesSlug = ['search', 'thesaurus']
 
 const propsButton = {
-  endIcon: <IonIcon name="add-circle-outline" />,
+  endIcon: <ion-icon name="add-circle-outline" />,
 }
 
 function AdminThesaurusGrid(): JSX.Element {

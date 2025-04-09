@@ -3,7 +3,7 @@
 exports[`PositionEffect Should match snapschot 1`] = `
 <div>
   <ion-icon
-    src="/images/ionicons/arrow-down-outline.svg"
+    name="arrow-down-outline"
     style="font-size: 18px; padding: 5px; border-radius: 50%; color: rgb(160, 34, 19); background-color: rgb(255, 231, 228);"
     title="Down"
   />

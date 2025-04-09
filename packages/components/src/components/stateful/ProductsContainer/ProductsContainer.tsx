@@ -215,7 +215,7 @@ function ProductsContainer(props: IProps): JSX.Element {
             disabled={disabled}
             onClick={handleSave}
             loading={isLoading}
-            endIcon={<IonIcon name="save-outline" />}
+            endIcon={<ion-icon name="save-outline" />}
           >
             {t('buttonSave')}
           </Button>

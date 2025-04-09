@@ -52,7 +52,7 @@ exports[`SearchBar match snapshot SearchBar 1`] = `
                     class="MuiInputAdornment-root MuiInputAdornment-positionEnd MuiInputAdornment-standard MuiInputAdornment-sizeMedium css-yxo68r-MuiInputAdornment-root"
                   >
                     <ion-icon
-                      src="/images/ionicons/search.svg"
+                      name="search"
                     />
                   </div>
                 </div>

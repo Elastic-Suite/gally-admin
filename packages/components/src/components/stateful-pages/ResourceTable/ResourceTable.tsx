@@ -37,7 +37,6 @@ import Button from '../../atoms/buttons/Button'
 import FieldGuesser from '../../stateful/FieldGuesser/FieldGuesser'
 import FiltersGuesser from '../../stateful/FiltersGuesser/FiltersGuesser'
 import TableGuesser from '../../stateful/TableGuesser/TableGuesser'
-import IonIcon from '../../atoms/IonIcon/IonIcon'
 
 const FitlerContent = styled('div')({
   display: 'flex',
@@ -283,7 +282,7 @@ function ResourceTable(props: IResourceTable): JSX.Element {
               disabled={diffCount === 0}
               display="secondary"
               onClick={handleReset}
-              endIcon={<IonIcon name="reload-outline" />}
+              endIcon={<ion-icon name="reload-outline" />}
             >
               {t('default.button')}
             </Button>

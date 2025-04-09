@@ -9,7 +9,7 @@ exports[`Boost Should match snapschot 1`] = `
       class="MuiBox-root css-12xvij6"
     >
       <ion-icon
-        src="/images/ionicons/trending-down-outline.svg"
+        name="trending-down-outline"
         style="width: 14px; height: 8px;"
       />
     </div>
