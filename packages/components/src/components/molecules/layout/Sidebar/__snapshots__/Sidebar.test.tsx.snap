@@ -73,7 +73,7 @@ exports[`SideBar match snapshot SideBarStateFalse 1`] = `
                     href="/admin/dashboard"
                   >
                     <ion-icon
-                      src="/images/ionicons/cutsom/home2.svg"
+                      src="/images/ionicons/custom/home2.svg"
                       style="width: 18px; height: 18px;"
                     />
                     <span
@@ -769,7 +769,7 @@ exports[`SideBar match snapshot SideBarStateTrue 1`] = `
                     href="/admin/dashboard"
                   >
                     <ion-icon
-                      src="/images/ionicons/cutsom/home2.svg"
+                      src="/images/ionicons/custom/home2.svg"
                       style="width: 18px; height: 18px;"
                     />
                     <span

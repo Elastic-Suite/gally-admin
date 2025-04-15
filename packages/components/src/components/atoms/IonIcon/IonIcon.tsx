@@ -2,7 +2,11 @@
 import React, { CSSProperties, MouseEvent } from 'react'
 import { JSX as IonIconJSX } from 'ionicons'
 import { JSXBase } from 'ionicons/dist/types/stencil-public-runtime'
-import 'ionicons/dist/cjs/ionicons.cjs'
+
+if (typeof window != 'undefined') {
+  // @ts-expect-error: ionicons don't have declaration type files.
+  import('ionicons/dist/cjs/ionicons.cjs')
+}
 
 export type IIonIconProps = Omit<
   IonIconJSX.IonIcon & JSXBase.HTMLAttributes<HTMLIonIconElement>,
@@ -56,7 +60,7 @@ export const customIcons = [
  */
 
 function getIonIconURL(iconName: string, custom?: boolean): string {
-  return `/images/ionicons/${custom ? 'cutsom/' : ''}${iconName}.svg`
+  return `/images/ionicons/${custom ? 'custom/' : ''}${iconName}.svg`
 }
 
 function IonIcon(props: IProps): JSX.Element {
