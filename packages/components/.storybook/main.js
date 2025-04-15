@@ -25,6 +25,7 @@ module.exports = {
       module: false,
       path: require.resolve('path-browserify'),
       stream: require.resolve('stream-browserify'),
+      zlib: require.resolve('browserify-zlib'),
       loadPath: '/locales/en/common.json',
     }
     config.module.rules.push({
