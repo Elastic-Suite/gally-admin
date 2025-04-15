@@ -24,6 +24,7 @@ module.exports = {
       net: false,
       module: false,
       path: require.resolve('path-browserify'),
+      stream: require.resolve('stream-browserify'),
       loadPath: '/locales/en/common.json',
     }
     config.module.rules.push({
