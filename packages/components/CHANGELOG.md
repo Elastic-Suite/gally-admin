@@ -1,3 +1,20 @@
+#### 2.1.1.1 (2025-04-15)
+
+##### New Features
+
+- **#1336345:** load IonIcon from Gally and not from a 'cdn' ([568632e1](https://github.com/Elastic-Suite/gally-admin/commit/568632e1efb7c20346d930a08fafb6fc8f59da3b))
+- **#1314737:** add tooltip to scale factor in the proportionnalToAttributes component ([e2a0913d](https://github.com/Elastic-Suite/gally-admin/commit/e2a0913da638e6adaf687b704cc77fe327bb25b7))
+
+##### Bug Fixes
+
+- **#1337145:** error on boost save after a preview on search request type ([47d3252e](https://github.com/Elastic-Suite/gally-admin/commit/47d3252e3ec2726aca5a931f9fc355cd32dd36f6))
+- **#1337148:** no default preview tabs selected ([cb467ce5](https://github.com/Elastic-Suite/gally-admin/commit/cb467ce5077513bd88aa4a5cb70451afa070f617))
+- **#1336097:** email format message error is not correct in login page ([d0b617c2](https://github.com/Elastic-Suite/gally-admin/commit/d0b617c272279e8c1837d988300f8d4045a192f4))
+- **#1336118:**
+  - Boost Preview does'nt work when we clear terms in the requestType result search ([0f4dbb1b](https://github.com/Elastic-Suite/gally-admin/commit/0f4dbb1be1a1457e0dad0dad53d39e27c34aa02c))
+  - Autocomplete clear terms when we select it in RequestType ([6f4c3994](https://github.com/Elastic-Suite/gally-admin/commit/6f4c399498e6e578c5c60732cee1454bdbd0e651))
+- **#1335198:** boosts are not applied to autocomplete ([1c32154f](https://github.com/Elastic-Suite/gally-admin/commit/1c32154f7bbd3dc8a09bf52e5b248b2bdc8af3e4))
+
 ## 2.0.0 (2024-12-03)
 
 ##### Bug Fixes
