@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import Button from '../buttons/Button'
 import { ButtonProps } from '@mui/material'
 import { useTranslation } from 'next-i18next'
+import IonIcon from '../IonIcon/IonIcon'
 
 interface IProps extends ButtonProps {
   urlRedirection?: string
@@ -27,7 +28,7 @@ function BackToLastPage(props: IProps): JSX.Element {
       display="tertiary"
       color="info"
       data-testid="backButton"
-      startIcon={<ion-icon name="arrow-back-outline" />}
+      startIcon={<IonIcon name="arrow-back-outline" />}
       {...btnProps}
       onClick={handleRedirection}
     >

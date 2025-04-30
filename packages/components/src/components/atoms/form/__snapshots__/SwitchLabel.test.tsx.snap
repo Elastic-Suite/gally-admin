@@ -17,7 +17,7 @@ exports[`SwitchLabel match snapshot testSwitchTrue 1`] = `
         style="display: inline-block; padding-left: 10px; margin-bottom: -5px;"
       >
         <ion-icon
-          name="information-circle-outline"
+          src="/images/ionicons/information-circle-outline.svg"
           style="color: rgb(129, 135, 185); width: 20px; height: 20px; display: flex;"
         />
       </span>
