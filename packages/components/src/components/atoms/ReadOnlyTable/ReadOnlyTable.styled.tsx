@@ -1,4 +1,4 @@
-import React, { CSSProperties, useState } from 'react'
+import React, { CSSProperties, ReactNode, useState } from 'react'
 import IonIcon from '../IonIcon/IonIcon'
 import { ToolTip } from '../modals/Tooltip.stories'
 import { Collapse, styled } from '@mui/material'
@@ -12,7 +12,7 @@ interface ICell {
     icon: string
     text: string
   }
-  value: string | number
+  value: string | number | ReactNode
   style?: CSSProperties
 }
 
@@ -94,9 +94,11 @@ export const StyledTable = styled('table')(({ theme }) => ({
 export function ReadOnlyTableRow({
   row,
   subRow,
+  withoutSubRow,
 }: {
   row: IRow
   subRow?: boolean
+  withoutSubRow?: boolean
 }): JSX.Element {
   const [open, setOpen] = useState(false)
 
@@ -144,17 +146,23 @@ export function ReadOnlyTableRow({
             </td>
           )
         })}
-        <td style={{ width: '48px' }}>
-          {row.subRows ? (
-            <IonIcon
-              onClick={handleToggle}
-              name={`${open ? 'remove' : 'add'}-circle`}
-              style={{ color: '#8187B9', fontSize: '16px', cursor: 'pointer' }}
-            />
-          ) : null}
-        </td>
+        {!withoutSubRow && (
+          <td style={{ width: '48px' }}>
+            {row.subRows ? (
+              <IonIcon
+                onClick={handleToggle}
+                name={`${open ? 'remove' : 'add'}-circle`}
+                style={{
+                  color: '#8187B9',
+                  fontSize: '16px',
+                  cursor: 'pointer',
+                }}
+              />
+            ) : null}
+          </td>
+        )}
       </tr>
-      {row.subRows ? (
+      {!withoutSubRow && row.subRows ? (
         <tr className="subRows">
           <td style={{ padding: 0 }} colSpan={row.cells.length + 1}>
             <Collapse in={open} timeout="auto" unmountOnExit>
