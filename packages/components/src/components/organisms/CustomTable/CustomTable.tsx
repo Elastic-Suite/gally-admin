@@ -57,6 +57,7 @@ export interface ICustomTableProps {
   editLink?: string
   withoutDragableColumn?: boolean
   hoverableLine?: boolean
+  dataTestId?: string
 }
 
 function CustomTable(
@@ -83,6 +84,7 @@ function CustomTable(
     editLink,
     withoutDragableColumn,
     hoverableLine,
+    dataTestId,
   } = props
 
   const [scrollLength, setScrollLength] = useState<number>(0)
@@ -190,6 +192,7 @@ function CustomTable(
             },
             ...styles,
           }}
+          data-testid={dataTestId}
         >
           <StyledTable
             stickyHeader
