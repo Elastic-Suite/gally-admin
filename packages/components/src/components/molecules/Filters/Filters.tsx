@@ -172,7 +172,7 @@ function Filters(props: IProps): JSX.Element {
   }
 
   return (
-    <FiltersPaper elevation={0}>
+    <FiltersPaper elevation={0} data-testid="filter">
       <HeaderBox>
         {showSearch ? (
           <SearchBox>
@@ -186,6 +186,7 @@ function Filters(props: IProps): JSX.Element {
               placeholder={t('filters.search')}
               style={{ width: '220px' }}
               value={searchValue}
+              dataTestId="searchBar"
             />
           </SearchBox>
         ) : null}
@@ -193,22 +194,33 @@ function Filters(props: IProps): JSX.Element {
           <FilterSecondaryButton
             onClick={toggleFilters}
             endIcon={<ion-icon name="filter-outline" />}
+            data-testid="filterButton"
           >
-            {t('filters.filter')}
-            {activeFilters.length > 0 && ` (${activeFilters.length})`}
+            {t('filters.filter')}{' '}
+            {activeFilters.length > 0 && (
+              <>
+                (
+                <span data-testid="activeFiltersCount">
+                  {activeFilters.length}
+                </span>
+                )
+              </>
+            )}
           </FilterSecondaryButton>
-          <FacetteBox>
+          <FacetteBox data-testid="facetteBox">
             {activeFilters.map(({ filter, label, value }) => (
               <Chip
                 key={`${filter.id}${rangeSeparator}${value}`}
                 label={chipFilterLabelWithTraduction(label)}
                 onDelete={(): void => handleClear(filter, value)}
+                data-testid={`${filter.id}Chip`}
               />
             ))}
           </FacetteBox>
           <FilterTertiaryButton
             onClick={onClearAll}
             endIcon={<ion-icon name="reload-outline" />}
+            data-testid="clearAllButton"
           >
             {t('filters.clearAll')}
           </FilterTertiaryButton>
@@ -233,6 +245,7 @@ function Filters(props: IProps): JSX.Element {
             <Button
               type="submit"
               endIcon={<ion-icon name="checkmark-done-outline" />}
+              data-testid="applyButton"
             >
               {t('filters.apply')}
             </Button>
@@ -240,6 +253,7 @@ function Filters(props: IProps): JSX.Element {
               display="tertiary"
               onClick={onClearAll}
               endIcon={<ion-icon name="reload-outline" />}
+              data-testid="clearAllButton"
             >
               {t('filters.clearAll')}
             </Button>

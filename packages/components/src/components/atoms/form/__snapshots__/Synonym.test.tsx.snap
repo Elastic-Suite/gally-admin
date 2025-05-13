@@ -71,6 +71,7 @@ exports[`Synonym match snapshot Synonym Full 1`] = `
                     </span>
                     <button
                       class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiChip-deleteIcon MuiChip-deleteIconMedium MuiChip-deleteIconColorDefault MuiChip-deleteIconFilledColorDefault css-78trlr-MuiButtonBase-root-MuiIconButton-root"
+                      data-testid="chipCloseButton"
                       tabindex="0"
                       type="button"
                     >
@@ -95,6 +96,7 @@ exports[`Synonym match snapshot Synonym Full 1`] = `
                     </span>
                     <button
                       class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiChip-deleteIcon MuiChip-deleteIconMedium MuiChip-deleteIconColorDefault MuiChip-deleteIconFilledColorDefault css-78trlr-MuiButtonBase-root-MuiIconButton-root"
+                      data-testid="chipCloseButton"
                       tabindex="0"
                       type="button"
                     >
@@ -185,6 +187,7 @@ exports[`Synonym match snapshot Synonym Full 1`] = `
                     </span>
                     <button
                       class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiChip-deleteIcon MuiChip-deleteIconMedium MuiChip-deleteIconColorDefault MuiChip-deleteIconFilledColorDefault css-78trlr-MuiButtonBase-root-MuiIconButton-root"
+                      data-testid="chipCloseButton"
                       tabindex="0"
                       type="button"
                     >
@@ -209,6 +212,7 @@ exports[`Synonym match snapshot Synonym Full 1`] = `
                     </span>
                     <button
                       class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiChip-deleteIcon MuiChip-deleteIconMedium MuiChip-deleteIconColorDefault MuiChip-deleteIconFilledColorDefault css-78trlr-MuiButtonBase-root-MuiIconButton-root"
+                      data-testid="chipCloseButton"
                       tabindex="0"
                       type="button"
                     >
