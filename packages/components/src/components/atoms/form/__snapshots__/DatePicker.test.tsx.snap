@@ -34,7 +34,7 @@ exports[`DatePicker sould match snapshot 1`] = `
             type="button"
           >
             <ion-icon
-              name="calendar-outline"
+              src="/images/ionicons/calendar-outline.svg"
               style="font-size: 18px; padding: 0px;"
             />
             <span

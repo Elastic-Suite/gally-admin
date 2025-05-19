@@ -16,7 +16,7 @@ exports[`Expansion match snapshot Expansion Full 1`] = `
         style="display: inline-block; padding-left: 10px; margin-bottom: -5px;"
       >
         <ion-icon
-          name="information-circle-outline"
+          src="/images/ionicons/information-circle-outline.svg"
           style="color: rgb(129, 135, 185); width: 20px; height: 20px; display: flex;"
         />
       </span>
@@ -120,7 +120,7 @@ exports[`Expansion match snapshot Expansion Full 1`] = `
                         type="button"
                       >
                         <ion-icon
-                          name="close"
+                          src="/images/ionicons/close.svg"
                         />
                         <span
                           class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
@@ -144,7 +144,7 @@ exports[`Expansion match snapshot Expansion Full 1`] = `
                         type="button"
                       >
                         <ion-icon
-                          name="close"
+                          src="/images/ionicons/close.svg"
                         />
                         <span
                           class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
@@ -186,7 +186,7 @@ exports[`Expansion match snapshot Expansion Full 1`] = `
             type="button"
           >
             <ion-icon
-              name="trash-outline"
+              src="/images/ionicons/trash-outline.svg"
               style="font-size: 18px; color: rgb(66, 72, 128);"
             />
             <span
@@ -280,7 +280,7 @@ exports[`Expansion match snapshot Expansion Full 1`] = `
                         type="button"
                       >
                         <ion-icon
-                          name="close"
+                          src="/images/ionicons/close.svg"
                         />
                         <span
                           class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
@@ -304,7 +304,7 @@ exports[`Expansion match snapshot Expansion Full 1`] = `
                         type="button"
                       >
                         <ion-icon
-                          name="close"
+                          src="/images/ionicons/close.svg"
                         />
                         <span
                           class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
@@ -346,7 +346,7 @@ exports[`Expansion match snapshot Expansion Full 1`] = `
             type="button"
           >
             <ion-icon
-              name="trash-outline"
+              src="/images/ionicons/trash-outline.svg"
               style="font-size: 18px; color: rgb(66, 72, 128);"
             />
             <span
@@ -368,7 +368,7 @@ exports[`Expansion match snapshot Expansion Full 1`] = `
             class="MuiButton-endIcon MuiButton-iconSizeLarge css-4egbtc-MuiButton-endIcon"
           >
             <ion-icon
-              name="add"
+              src="/images/ionicons/add.svg"
               style="font-size: 24px;"
             />
           </span>
@@ -382,7 +382,7 @@ exports[`Expansion match snapshot Expansion Full 1`] = `
       class="MuiFormHelperText-root Mui-error MuiFormHelperText-sizeMedium css-1kzozl2-MuiFormHelperText-root"
     >
       <ion-icon
-        name="close"
+        src="/images/ionicons/close.svg"
         style="font-size: 18px; margin-right: 2px;"
       />
       helperText

@@ -11,7 +11,7 @@ exports[`TopProductsBanner Should match snapschot 1`] = `
       hello
     </div>
     <ion-icon
-      src="/images/push-pin.svg"
+      src="/images/ionicons/custom/push-pin.svg"
     />
   </div>
 </div>
