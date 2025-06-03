@@ -1,0 +1,200 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ScopeSearchUsage match snapshot 1`] = `
+<div>
+  <div
+    class="css-1rm3cd2"
+    style="padding: 16px;"
+  >
+    <form
+      class="css-1dl9duh"
+      novalidate=""
+    >
+      <div
+        class="MuiFormControl-root css-1girsym-MuiFormControl-root"
+      >
+        <div
+          class="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-1qqsdnr-MuiAutocomplete-root"
+        >
+          <div
+            class="MuiFormControl-root css-hh3vi8-MuiFormControl-root"
+          >
+            <label
+              class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard MuiFormLabel-colorPrimary Mui-required css-rnc4nv-MuiFormLabel-root-MuiInputLabel-root"
+              data-shrink="true"
+              for=":r0:"
+            >
+              Scope
+              <span
+                aria-hidden="true"
+                class="MuiFormLabel-asterisk MuiInputLabel-asterisk css-1ufxisk-MuiFormLabel-asterisk"
+              >
+                 
+                *
+              </span>
+            </label>
+            <div
+              class="InputText__Wrapper css-17fp4jk"
+            >
+              <div
+                class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-jlza7d-MuiInputBase-root"
+              >
+                <input
+                  aria-autocomplete="list"
+                  aria-expanded="false"
+                  aria-invalid="false"
+                  autocapitalize="none"
+                  autocomplete="off"
+                  class="MuiInputBase-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-ngazp5-MuiInputBase-input"
+                  id=":r0:"
+                  placeholder="Select a localized catalog"
+                  role="combobox"
+                  spellcheck="false"
+                  type="text"
+                  value=""
+                />
+                <div
+                  class="MuiAutocomplete-endAdornment css-1q60rmi-MuiAutocomplete-endAdornment"
+                >
+                  <button
+                    aria-label="form.open"
+                    class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiAutocomplete-popupIndicator css-qzbt6i-MuiButtonBase-root-MuiIconButton-root-MuiAutocomplete-popupIndicator"
+                    tabindex="-1"
+                    title="form.open"
+                    type="button"
+                  >
+                    <ion-icon
+                      src="/images/ionicons/chevron-down.svg"
+                    />
+                    <span
+                      class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                    />
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="css-vaijrj"
+      >
+        <div
+          class="MuiGrid-root MuiGrid-container css-s405n1-MuiGrid-root"
+        >
+          <div
+            class="MuiBox-root css-1i75mai"
+          >
+             
+            form.from
+             
+          </div>
+          <div
+            class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-true css-1vd824g-MuiGrid-root"
+          >
+            <div
+              class="MuiFormControl-root css-hh3vi8-MuiFormControl-root"
+            >
+              <div
+                class="InputText__Wrapper css-17fp4jk"
+              >
+                <div
+                  class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedEnd css-33c5sc-MuiInputBase-root"
+                  required=""
+                >
+                  <input
+                    aria-invalid="false"
+                    class="MuiInputBase-input MuiInputBase-inputAdornedEnd css-ngazp5-MuiInputBase-input"
+                    placeholder="date.placeholder"
+                    required=""
+                    type="tel"
+                    value=""
+                  />
+                  <div
+                    class="MuiInputAdornment-root MuiInputAdornment-positionEnd MuiInputAdornment-standard MuiInputAdornment-sizeMedium css-1laqsz7-MuiInputAdornment-root"
+                  >
+                    <button
+                      aria-label="Choose date"
+                      class="MuiButtonBase-root MuiIconButton-root MuiIconButton-edgeEnd MuiIconButton-sizeMedium css-1yq5fb3-MuiButtonBase-root-MuiIconButton-root"
+                      tabindex="0"
+                      type="button"
+                    >
+                      <ion-icon
+                        src="/images/ionicons/calendar-outline.svg"
+                        style="font-size: 18px; padding: 0px;"
+                      />
+                      <span
+                        class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                      />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="MuiBox-root css-ow4s8t"
+          >
+            form.to
+          </div>
+          <div
+            class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-true css-1vd824g-MuiGrid-root"
+          >
+            <div
+              class="MuiFormControl-root css-hh3vi8-MuiFormControl-root"
+            >
+              <div
+                class="InputText__Wrapper css-17fp4jk"
+              >
+                <div
+                  class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedEnd css-33c5sc-MuiInputBase-root"
+                  required=""
+                >
+                  <input
+                    aria-invalid="false"
+                    class="MuiInputBase-input MuiInputBase-inputAdornedEnd css-ngazp5-MuiInputBase-input"
+                    placeholder="date.placeholder"
+                    required=""
+                    type="tel"
+                    value=""
+                  />
+                  <div
+                    class="MuiInputAdornment-root MuiInputAdornment-positionEnd MuiInputAdornment-standard MuiInputAdornment-sizeMedium css-1laqsz7-MuiInputAdornment-root"
+                  >
+                    <button
+                      aria-label="Choose date"
+                      class="MuiButtonBase-root MuiIconButton-root MuiIconButton-edgeEnd MuiIconButton-sizeMedium css-1yq5fb3-MuiButtonBase-root-MuiIconButton-root"
+                      tabindex="0"
+                      type="button"
+                    >
+                      <ion-icon
+                        src="/images/ionicons/calendar-outline.svg"
+                        style="font-size: 18px; padding: 0px;"
+                      />
+                      <span
+                        class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                      />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button
+        class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium css-1jv49re-MuiButtonBase-root-MuiButton-root"
+        data-testid="submitButton"
+        style="margin-top: 8px;"
+        tabindex="0"
+        type="submit"
+      >
+        Apply
+        <span
+          class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+        />
+      </button>
+    </form>
+  </div>
+</div>
+`;
