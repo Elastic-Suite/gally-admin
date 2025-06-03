@@ -1,5 +1,9 @@
 {
   "Scope": "Portée",
   "Select a localized catalog": "Sélectionnez un catalogue localisé",
-  "Apply": "Appliquer"
+  "Apply": "Appliquer",
+  "resultsSearchItems_one": "{{count}} résultat pour les éléments de recherche",
+  "resultsSearchItems_other": "{{count}} résultats pour les éléments de recherche",
+  "Terms": "Termes",
+  "Sessions": "Sessions"
 }

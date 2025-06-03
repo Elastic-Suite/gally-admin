@@ -1,0 +1,62 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SearchTermsTable SearchTermsTable match snapshot 1`] = `
+<div>
+  <div
+    style="width: 100%;"
+  >
+    <table
+      class="css-1k86jay"
+    >
+      <thead>
+        <tr
+          class=""
+        >
+          <td
+            style="width: 50%;"
+          >
+            Terms
+          </td>
+          <td
+            style="width: 50%;"
+          >
+            Sessions
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          class=""
+        >
+          <td>
+            Test 3
+          </td>
+          <td>
+            3
+          </td>
+        </tr>
+        <tr
+          class=""
+        >
+          <td>
+            Test 2
+          </td>
+          <td>
+            2
+          </td>
+        </tr>
+        <tr
+          class=""
+        >
+          <td>
+            Test 1
+          </td>
+          <td>
+            1
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+`;
