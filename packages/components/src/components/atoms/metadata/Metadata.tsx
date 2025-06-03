@@ -55,6 +55,7 @@ function Metadata(props: IProps): JSX.Element {
           filters[filterField ? filterField : 'metadata.entity'] = e
           setFixedFilters(filters)
         }}
+        dataTestId="entity"
       />
     </CustomBlocEntity>
   )
