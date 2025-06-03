@@ -61,7 +61,7 @@ function Chip(props: ChipProps): JSX.Element {
       {...props}
       style={{ opacity: 1 }}
       deleteIcon={
-        <IconButton>
+        <IconButton data-testid="chipCloseButton">
           <IonIcon name="close" />
         </IconButton>
       }

@@ -276,6 +276,7 @@ function ResourceTable(props: IResourceTable): JSX.Element {
         resource={resource}
         searchValue={searchValue}
         showSearch={showSearch}
+        dataTestId={`${resourceName}Filter`}
       >
         {Boolean(diffDefaultValues) && (
           <FitlerContent>

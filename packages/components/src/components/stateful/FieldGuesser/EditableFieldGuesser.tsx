@@ -300,6 +300,7 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
             error={error}
             showError={showError}
             replacementErrorsMessages={replacementErrorsMessages}
+            dataTestId={name}
           />
         )
       }
