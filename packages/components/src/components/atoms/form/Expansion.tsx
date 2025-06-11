@@ -48,6 +48,7 @@ export interface IProps {
   helperText?: string
   helperIcon?: string
   showError?: boolean
+  dataTestId?: string
 }
 
 interface IExpansionsFormatted {
@@ -84,6 +85,7 @@ function Expansion(props: IProps): JSX.Element {
     helperText,
     helperIcon,
     showError,
+    dataTestId,
   } = props
 
   if (value.length === 0) {
@@ -156,6 +158,7 @@ function Expansion(props: IProps): JSX.Element {
       margin={margin}
       variant="standard"
       error={error}
+      data-testid={dataTestId}
     >
       {label || infoTooltip ? (
         <InputLabel shrink sx={{ maxWidth: '90%' }} required={required}>
@@ -189,6 +192,7 @@ function Expansion(props: IProps): JSX.Element {
                     updateTerms(expansion.id, value as string, expansion.terms)
                   }}
                   showError={showError}
+                  dataTestId={dataTestId ? `${dataTestId}ReferenceTerm` : null}
                 />
                 <TextFieldTags
                   required
@@ -205,11 +209,13 @@ function Expansion(props: IProps): JSX.Element {
                     return ''
                   }}
                   showError={showError}
+                  dataTestId={dataTestId ? `${dataTestId}ExpansionTerms` : null}
                 />
               </div>
               <IconButton
                 onClick={(): void => removeTerms(expansion.id)}
                 style={{ margin: '24px 0 0 8px' }}
+                data-testid={dataTestId ? `${dataTestId}TrashButton` : null}
               >
                 <IonIcon
                   style={{ fontSize: '18px', color: '#424880' }}
@@ -227,13 +233,18 @@ function Expansion(props: IProps): JSX.Element {
             display="secondary"
             endIcon={<IonIcon name="add" style={{ fontSize: 24 }} />}
             onClick={(): void => addExpansion()}
+            data-testid={dataTestId ? `${dataTestId}AddButton` : null}
           >
             {t('add')}
           </Button>
         </div>
       </CustomRoot>
       {Boolean(helperText) && (
-        <FormHelperText>
+        <FormHelperText
+          data-testid={
+            error && Boolean(dataTestId) ? `${dataTestId}ErrorMessage` : null
+          }
+        >
           {Boolean(helperIcon) && (
             <IonIcon
               name={helperIcon}
