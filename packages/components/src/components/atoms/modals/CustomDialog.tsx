@@ -52,12 +52,22 @@ function CustomDialog({
           <CustomTitle> {titlePopIn} </CustomTitle>
           <DialogActions>
             <Box>
-              <Button onClick={handleClose} display="tertiary" size="large">
+              <Button
+                data-testid="cancelButton"
+                onClick={handleClose}
+                display="tertiary"
+                size="large"
+              >
                 {cancelName}
               </Button>
             </Box>
             <Box>
-              <Button onClick={handleConfirm} loading={loading} size="large">
+              <Button
+                data-testid="confirmButton"
+                onClick={handleConfirm}
+                loading={loading}
+                size="large"
+              >
                 {confirmName}
               </Button>
             </Box>
