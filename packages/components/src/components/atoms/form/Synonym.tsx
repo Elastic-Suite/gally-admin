@@ -51,6 +51,7 @@ export interface IProps {
   showError?: boolean
   helperText?: ReactNode
   helperIcon?: string
+  dataTestId?: string
 }
 
 interface ISynonymFormatted {
@@ -85,6 +86,7 @@ function Synonym(props: IProps): JSX.Element {
     showError,
     helperText,
     helperIcon,
+    dataTestId,
   } = props
 
   if (value.length === 0) {
@@ -149,6 +151,7 @@ function Synonym(props: IProps): JSX.Element {
       margin={margin}
       variant="standard"
       error={error}
+      data-testid={dataTestId}
     >
       {label || infoTooltip ? (
         <InputLabel shrink sx={{ maxWidth: '90%' }} required={required}>
@@ -186,8 +189,10 @@ function Synonym(props: IProps): JSX.Element {
                 value={synonym.terms}
                 placeholder={placeholder}
                 additionalValidator={synonymValidator}
+                dataTestId={dataTestId ? `${dataTestId}TextFieldTags` : null}
               />
               <IconButton
+                data-testid={dataTestId ? `${dataTestId}TrashButton` : null}
                 onClick={(): void => removeTerms(synonym.id)}
                 style={{ marginLeft: 8 }}
               >
@@ -207,13 +212,19 @@ function Synonym(props: IProps): JSX.Element {
             display="secondary"
             endIcon={<IonIcon name="add" style={{ fontSize: 24 }} />}
             onClick={(): void => addSynonym()}
+            data-testid={dataTestId ? `${dataTestId}AddButton` : null}
           >
             {t('add')}
           </Button>
         </div>
       </CustomRoot>
       {Boolean(helperText) && (
-        <FormHelperText error={error}>
+        <FormHelperText
+          error={error}
+          data-testid={
+            error && Boolean(dataTestId) ? `${dataTestId}ErrorMessage` : null
+          }
+        >
           {Boolean(helperIcon) && (
             <IonIcon
               name={helperIcon}

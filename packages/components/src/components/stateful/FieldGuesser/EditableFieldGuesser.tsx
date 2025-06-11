@@ -223,6 +223,7 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
           error={error}
           helperText={helperText}
           showError={showError}
+          dataTestId={name}
         />
       )
     }
@@ -239,6 +240,7 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
           error={error}
           helperText={helperText}
           showError={showError}
+          dataTestId={name}
         />
       )
     }

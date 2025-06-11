@@ -261,7 +261,12 @@ function TextFieldTagsWithoutError(
           </CustomTags>
         </CustomRootTextFieldTags>
         {Boolean(helperText) && (
-          <FormHelperText error={error}>
+          <FormHelperText
+            error={error}
+            data-testid={
+              error && Boolean(dataTestId) ? `${dataTestId}ErrorMessage` : null
+            }
+          >
             {Boolean(helperIcon) && (
               <IonIcon
                 name={helperIcon as string}
