@@ -17,4 +17,4 @@ function AdminDashboard(): JSX.Element {
   return <div>Dashboard</div>
 }
 
-export default withAuth(withOptions(AdminDashboard))
+export default withAuth()(withOptions(AdminDashboard))

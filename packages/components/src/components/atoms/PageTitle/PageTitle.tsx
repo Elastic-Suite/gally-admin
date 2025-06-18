@@ -41,11 +41,19 @@ interface IProps extends TypographyProps {
   children?: ReactNode
   sticky?: boolean
   title: string
+  hideTitle?: boolean
   componentId?: string
 }
 
 function PageTitle(props: IProps): JSX.Element {
-  const { children, sticky, title, componentId, ...typographyProps } = props
+  const {
+    children,
+    sticky,
+    title,
+    hideTitle,
+    componentId,
+    ...typographyProps
+  } = props
   const RootComponent = sticky ? StickyRoot : Root
 
   return (
@@ -56,10 +64,14 @@ function PageTitle(props: IProps): JSX.Element {
       <RootComponent
         data-testid={generateTestId(TestId.PAGE_TITLE, componentId)}
       >
-        {title ? (
+        {title && !hideTitle ? (
           <CustomTypography {...typographyProps}>{title}</CustomTypography>
         ) : null}
-        {Boolean(children) && <div>{children}</div>}
+        {Boolean(children) && (
+          <div style={hideTitle ? { width: '100%', display: 'flex' } : {}}>
+            {children}
+          </div>
+        )}
       </RootComponent>
     </>
   )

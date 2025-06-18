@@ -1,6 +1,16 @@
 {
-  "action.login": "Login",
-  "label.email": "Email",
-  "label.password": "Password",
-  "title.login": "Login"
+  "login.title": "Login",
+  "email.label": "Email",
+  "password.label": "Password",
+  "login.action": "Login",
+  "login.forgotPassword.link": "Forgot your password?",
+  "forgotPassword.title": "Forgotten password",
+  "forgotPassword.description": "Please enter your email address and we will send you a link to reset your password.",
+  "forgotPassword.action": "Send",
+  "forgotPassword.message.success": "We'll email you a link to reset your password.",
+  "resetPassword.title": "Reset password",
+  "resetPassword.action": "Save",
+  "resetPassword.token.error": "Token not found or expired.",
+  "resetPassword.message.success": "The password has been saved successfully.",
+  "resetPassword.message.error": "An error has occurred during the password update."
 }

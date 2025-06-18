@@ -54,6 +54,7 @@
   "formError.expansionTermsDuplicate": "There are duplicates among the \"expansion terms\", please remove them.",
   "formError.prompt": "The prompt must contain a single occurrence of \"%s\".",
   "formError.scaleFactorWrongFormat": "The scale factor must be greater than 0",
+  "formError.mismatchPassword": "Please make sure your passwords match.",
   "field.productImage": "Product image",
   "default.undefined": "empty",
   "log.out": "Log out",
@@ -71,5 +72,8 @@
   "category": "Category",
   "localizedCatalog": "Localized catalog",
   "localizedCatalog.placeholder": "Select a catalog",
-  "formError.typeMismatchEmail": "The email address format is invalid."
+  "formError.typeMismatchEmail": "The email address format is invalid.",
+  "newPassword.label": "New password",
+  "confirmPassword.label": "Confirm password",
+  "Edit": "Edit"
 }

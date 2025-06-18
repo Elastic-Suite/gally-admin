@@ -31,4 +31,4 @@ function AdminThesaurusEdit(): JSX.Element {
   )
 }
 
-export default withAuth(withOptions(AdminThesaurusEdit))
+export default withAuth()(withOptions(AdminThesaurusEdit))

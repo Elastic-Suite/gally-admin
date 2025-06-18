@@ -15,6 +15,7 @@ interface IProps
   hasNewLink?: boolean
   newLink?: string
   propsButton?: Record<string, any>
+  hideTitle?: boolean
 }
 
 const isIconInButton = ['isIconInButton', 'large']
@@ -40,6 +41,7 @@ function Grid(props: IProps): JSX.Element {
     newLink,
     hasNewLink,
     propsButton,
+    hideTitle,
     ...otherProps
   } = props
 
@@ -49,7 +51,7 @@ function Grid(props: IProps): JSX.Element {
 
   return (
     <>
-      <PageTitle title={title ?? t(resourceName)}>
+      <PageTitle title={title ?? t(resourceName)} hideTitle={hideTitle}>
         {hasNewLink ? (
           <Button
             {...propsButton}

@@ -228,4 +228,4 @@ function AdminMerchandizeCategories(): JSX.Element {
   )
 }
 
-export default withAuth(withOptions(AdminMerchandizeCategories))
+export default withAuth()(withOptions(AdminMerchandizeCategories))

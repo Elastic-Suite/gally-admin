@@ -64,4 +64,4 @@ function AdminSearchFacetsConfigurationAttributes(): JSX.Element {
   )
 }
 
-export default withAuth(withOptions(AdminSearchFacetsConfigurationAttributes))
+export default withAuth()(withOptions(AdminSearchFacetsConfigurationAttributes))
