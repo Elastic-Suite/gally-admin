@@ -1,0 +1,94 @@
+import React, { FormEvent, useCallback, useEffect, useState } from 'react'
+import { useTranslation } from 'next-i18next'
+import Router, { useRouter } from 'next/router'
+import {
+  ILogin,
+  isError,
+  isValidUser,
+  storageSet,
+  tokenStorageKey,
+} from '@elastic-suite/gally-admin-shared'
+
+import { useApiFetch, useUser } from '../hooks'
+import { selectRequestedPath, useAppSelector } from '../store'
+
+import InputText from '../components/atoms/form/InputText'
+import Form from '../components/atoms/form/Form'
+
+import PageTitle from '../components/atoms/PageTitle/PageTitle'
+import ConfirmPassword from "../components/atoms/form/ConfirmPassword";
+
+function ResetPassword(): JSX.Element {
+  const { t } = useTranslation('login')
+  const user = useUser()
+  const router = useRouter()
+  const requestedPath = useAppSelector(selectRequestedPath)
+
+  const fetchApi = useApiFetch(false)
+  const [confirmPassword, setConfirmPassword] = useState({password: '', confirmPassword: ''})
+  const [token, setToken] = useState<string>('')
+  const [showAllErrors, setShowAllErrors] = useState(false)
+
+  const redirectToRequestedPath = useCallback(
+    () => Router.push(requestedPath ?? '/login'),
+    [requestedPath]
+  )
+
+  useEffect(() => {
+    if (isValidUser(user)) {
+      redirectToRequestedPath()
+    }
+    const token = router?.query?.token as string
+    if (token) {
+      fetchApi<ILogin>(`/forgot_password/${token}`, undefined, {
+        method: 'GET',
+        headers: new Headers({ 'Content-Type': 'application/json' }),
+      }).then((json) => {
+        if (!isError(json)) {
+          setToken(token)
+        }
+      })
+    }
+  }, [redirectToRequestedPath, user, router.query, setToken])
+
+  function handleSubmit(
+    event: FormEvent<HTMLFormElement>,
+    formIsValid: boolean
+  ): void {
+    event.preventDefault()
+    if (formIsValid) {
+      fetchApi<ILogin>(`/forgot_password/${token}`, undefined, {
+        method: 'POST',
+        body: JSON.stringify({ password: confirmPassword.password }),
+        headers: new Headers({ 'Content-Type': 'application/json' }),
+      }).then((json) => {
+        if (!isError(json)) {
+          redirectToRequestedPath()
+        }
+      })
+    } else {
+      setShowAllErrors(true)
+    }
+  }
+
+  const title = t('resetPassword.title')
+
+  return (
+    <>
+      <PageTitle title={title} />
+      { Boolean(token) ?
+        <Form onSubmit={handleSubmit} submitButtonText={t('resetPassword.action')}>
+          <ConfirmPassword
+            value={confirmPassword}
+            onChange={(value): void => setConfirmPassword(value)}
+            showError={showAllErrors}
+
+          />
+        </Form>
+        : t('resetPassword.token.error')
+      }
+    </>
+  )
+}
+
+export default ResetPassword

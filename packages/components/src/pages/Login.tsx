@@ -1,8 +1,6 @@
 import React, { FormEvent, useCallback, useEffect, useState } from 'react'
 import { useTranslation } from 'next-i18next'
 import Router from 'next/router'
-import Head from 'next/head'
-import { styled } from '@mui/system'
 import {
   ILogin,
   isError,
@@ -18,32 +16,6 @@ import InputText from '../components/atoms/form/InputText'
 import Form from '../components/atoms/form/Form'
 
 import PageTitle from '../components/atoms/PageTitle/PageTitle'
-import Image from 'next/image'
-
-const CustomRoot = styled('div')({
-  width: '100vw',
-  height: '100vh',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  flexDirection: 'column',
-  background: 'rgb(250, 251, 254)',
-})
-
-const CustomImg = styled('div')({
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  marginBottom: '32px',
-})
-
-const CustomBloc = styled('div')({
-  padding: '32px',
-  marginBottom: '6%',
-  border: '1px solid rgb(226, 230, 243)',
-  borderRadius: '8px',
-  background: 'rgb(255, 255, 255)',
-})
 
 function Login(): JSX.Element {
   const { t } = useTranslation('login')
@@ -88,34 +60,23 @@ function Login(): JSX.Element {
     }
   }
 
-  const title = t('title.login')
+  const title = t('login.title')
 
   return (
-    <CustomRoot>
-      <Head>
-        <title>{title}</title>
-      </Head>
-      <CustomBloc>
-        <CustomImg>
-          <Image
-            src="/images/LogoBlinkExtended.svg"
-            alt="Logo"
-            width="150"
-            height="45"
-          />
-        </CustomImg>
+    <>
         <PageTitle title={title} />
-        <Form onSubmit={handleSubmit} submitButtonText={t('action.login')}>
+        <Form onSubmit={handleSubmit} submitButtonText={t('login.action')}>
           <InputText
             autoComplete="email"
             fullWidth
             type="email"
-            label={t('label.email')}
+            label={t('email.label')}
             margin="normal"
             onChange={(value: string): void => setEmail(value)}
             value={email}
             showError={showAllErrors}
             additionalValidator={(value: string): string => {
+              // Used instead of required props, to not display the "required red star" just after the label.
               if (!value) return 'valueMissing'
               return ''
             }}
@@ -127,20 +88,20 @@ function Login(): JSX.Element {
           <InputText
             autoComplete="current-password"
             fullWidth
-            label={t('label.password')}
+            label={t('password.label')}
             margin="normal"
             onChange={(value: string): void => setPassword(value)}
             type="password"
             value={password}
             showError={showAllErrors}
             additionalValidator={(value: string): string => {
+              // Used instead of required props, to not display the "required red star" just after the label.
               return !value ? 'valueMissing' : ''
             }}
             dataTestId="passwordInput"
           />
         </Form>
-      </CustomBloc>
-    </CustomRoot>
+    </>
   )
 }
 

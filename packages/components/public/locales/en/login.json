@@ -1,6 +1,13 @@
 {
-  "action.login": "Login",
-  "label.email": "Email",
-  "label.password": "Password",
-  "title.login": "Login"
+  "login.title": "Login",
+  "email.label": "Email",
+  "password.label": "Password",
+  "login.action": "Login",
+  "forgotPassword.title": "Forgotten password",
+  "forgotPassword.description": "Please enter your email address and we will send you a link to reset your password.",
+  "forgotPassword.action": "Request",
+  "forgotPassword.message.success": "forgotPassword.message.success",
+  "resetPassword.title": "Reset password",
+  "resetPassword.action": "Reset",
+  "resetPassword.token.error": "Token not found or expired."
 }

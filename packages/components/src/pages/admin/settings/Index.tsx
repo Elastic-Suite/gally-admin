@@ -15,6 +15,7 @@ import PageTitle from '../../../components/atoms/PageTitle/PageTitle'
 import CustomTabs from '../../../components/molecules/layout/tabs/CustomTabs'
 import SettingsAttributes from '../../../components/stateful-pages/SettingsAttributes/SettingsAttributes'
 import SettingsScope from '../../../components/stateful-pages/SettingsScope/SettingsScope'
+import AdminUserGrid from "../../../components/stateful-pages/SettingsUsers/Grid";
 
 const pageSlug = 'settings'
 
@@ -44,6 +45,12 @@ function AdminSettingsIndex(): JSX.Element {
         id: 1,
         label: t('tabs.attributes'),
         url: '/admin/settings/attributes',
+      },
+      {
+        Component: AdminUserGrid,
+        id: 2,
+        label: t('tabs.users'),
+        url: '/admin/settings/user/grid',
       },
     ],
     [t]
