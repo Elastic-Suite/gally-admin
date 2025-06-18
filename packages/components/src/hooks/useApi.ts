@@ -45,7 +45,8 @@ export function useApiFetch(secure = true): IFetchApi {
     async <T extends object>(
       resource: IResource | string,
       searchParameters?: ISearchParameters,
-      options?: RequestInit
+      options?: RequestInit,
+      outputLog?: boolean
     ) => {
       try {
         const json = await fetchApi<T>(
@@ -57,12 +58,14 @@ export function useApiFetch(secure = true): IFetchApi {
         )
         return json
       } catch (error) {
-        if (secure && error instanceof AuthError) {
-          storageRemove(tokenStorageKey)
-          Router.push('/login')
-          log(t('Expired JWT Token'))
-        } else {
-          log(error)
+        if (outputLog !== false) {
+          if (secure && error instanceof AuthError) {
+            storageRemove(tokenStorageKey)
+            Router.push('/login')
+            log(t('Expired JWT Token'))
+          } else {
+            log(error)
+          }
         }
         return { error }
       }

@@ -19,4 +19,4 @@ function AdminBoostCreate(): JSX.Element {
   return <ResourceForm title={t('title.create')} resourceName="Boost" />
 }
 
-export default withAuth(withOptions(AdminBoostCreate))
+export default withAuth()(withOptions(AdminBoostCreate))

@@ -4,17 +4,20 @@ import { useRouter } from 'next/router'
 
 import { breadcrumbContext } from '../../../contexts'
 import { withAuth, withOptions } from '../../../hocs'
-import { useTabs } from '../../../hooks'
+import { useTabs, useUser } from '../../../hooks'
 import { selectMenu, useAppSelector } from '../../../store'
 import {
   IRouterTab,
+  Role,
   findBreadcrumbLabel,
+  isValidRoleUser,
 } from '@elastic-suite/gally-admin-shared'
 
 import PageTitle from '../../../components/atoms/PageTitle/PageTitle'
 import CustomTabs from '../../../components/molecules/layout/tabs/CustomTabs'
 import SettingsAttributes from '../../../components/stateful-pages/SettingsAttributes/SettingsAttributes'
 import SettingsScope from '../../../components/stateful-pages/SettingsScope/SettingsScope'
+import AdminUserGrid from '../../../components/stateful-pages/SettingsUsers/Grid'
 
 const pageSlug = 'settings'
 
@@ -22,6 +25,7 @@ function AdminSettingsIndex(): JSX.Element {
   const { t } = useTranslation(pageSlug)
   const router = useRouter()
   const menu = useAppSelector(selectMenu)
+  const user = useUser()
   const [, setBreadcrumb] = useContext(breadcrumbContext)
 
   useEffect(() => {
@@ -29,8 +33,8 @@ function AdminSettingsIndex(): JSX.Element {
     setBreadcrumb([pageSlug, ...slug])
   }, [router.query, setBreadcrumb])
 
-  const routerTabs: IRouterTab[] = useMemo(
-    () => [
+  const routerTabs: IRouterTab[] = useMemo(() => {
+    return [
       {
         Component: SettingsScope,
         default: true,
@@ -45,9 +49,14 @@ function AdminSettingsIndex(): JSX.Element {
         label: t('tabs.attributes'),
         url: '/admin/settings/attributes',
       },
-    ],
-    [t]
-  )
+      isValidRoleUser(Role.ADMIN, user) && {
+        Component: AdminUserGrid,
+        id: 2,
+        label: t('tabs.users'),
+        url: '/admin/settings/user/grid',
+      },
+    ]
+  }, [t, user])
   const [activeTab, handleTabChange] = useTabs(routerTabs)
   const { actions, id } = activeTab
 
@@ -65,4 +74,4 @@ function AdminSettingsIndex(): JSX.Element {
   )
 }
 
-export default withAuth(withOptions(AdminSettingsIndex))
+export default withAuth()(withOptions(AdminSettingsIndex))

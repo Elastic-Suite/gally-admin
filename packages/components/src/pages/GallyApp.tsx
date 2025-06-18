@@ -11,6 +11,7 @@ import DataProvider from '../components/stateful-providers/DataProvider/DataProv
 import Layout from '../components/stateful-layout/Layout/Layout'
 import { useRouter } from 'next/router'
 import MetadataProvider from '../components/stateful-providers/MetadataProvider/MetadataProvider'
+import BlankLayout from '../components/stateful-layout/Layout/BlankLayout'
 
 const store = setupStore()
 
@@ -18,15 +19,17 @@ function GallyApp(props: AppProps): JSX.Element {
   const { Component, pageProps } = props
   const Cmp = Component
   const router = useRouter()
-  const isLoginPage = router.route === '/login'
+  const pageWithBlankLayout = ['/login', '/forgot-password', '/reset-password']
 
   return (
     <AppProvider store={store}>
       <DataProvider>
         <CatalogProvider>
           <MetadataProvider>
-            {isLoginPage ? (
-              <Cmp {...pageProps} />
+            {pageWithBlankLayout.includes(router.route) ? (
+              <BlankLayout>
+                <Cmp {...pageProps} />
+              </BlankLayout>
             ) : (
               <Layout>
                 <Cmp {...pageProps} />

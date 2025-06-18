@@ -62,5 +62,14 @@
   "Search term": "Terme de recherche",
   "Results": "Résultats",
   "Analyzer": "Analyseur",
-  "standard: The textual attribute for searching with possible fuzziness support (if spellcheck = yes).<br />reference: SKU-like, a sequence of numbers or letters, no understandable text, and no deduction, exact matching... <br />standard_edge_ngram: standard + support for searching the beginnings of words regardless of the word's length.": "standard:  L'attribut textuel permettant une recherche avec un support possible pour les approximations (si spellcheck = yes).<br />reference:Type similaire à un SKU, une séquence de chiffres ou de lettres, sans texte compréhensible ni déduction, avec correspondance exacte ... <br />standard_edge_ngram: Standard + support pour rechercher les débuts de mots, quelle que soit la longueur du mot."
+  "standard: The textual attribute for searching with possible fuzziness support (if spellcheck = yes).<br />reference: SKU-like, a sequence of numbers or letters, no understandable text, and no deduction, exact matching... <br />standard_edge_ngram: standard + support for searching the beginnings of words regardless of the word's length.": "standard:  L'attribut textuel permettant une recherche avec un support possible pour les approximations (si spellcheck = yes).<br />reference:Type similaire à un SKU, une séquence de chiffres ou de lettres, sans texte compréhensible ni déduction, avec correspondance exacte ... <br />standard_edge_ngram: Standard + support pour rechercher les débuts de mots, quelle que soit la longueur du mot.",
+  "First name": "Prénom",
+  "Last name": "Nom",
+  "E-mail": "E-mail",
+  "Password": "Mot de passe",
+  "Role(s)": "Rôle(s)",
+  "If you select the value ROLE_ADMIN, all roles will be selected automatically, because ROLE_ADMIN includes all roles.": "Si vous sélectionnez la valeur ROLE_ADMIN, tous les rôles seront sélectionnés automatiquement, car ROLE_ADMIN inclut tous les rôles.",
+  "An email will be sent to the user allowing them to set their password.": "Un e-mail sera envoyé à l'utilisateur pour qu'il puisse défnir son mot de passe.",
+  "Administrator": "Administrateur",
+  "Contributor": "Contributeur"
 }
