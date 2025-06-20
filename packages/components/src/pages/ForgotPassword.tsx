@@ -17,13 +17,14 @@ import PageTitle from '../components/atoms/PageTitle/PageTitle'
 import {closeSnackbar, enqueueSnackbar} from "notistack";
 
 function ForgotPassword(): JSX.Element {
-  const { t } = useTranslation('login')
+  const { i18n, t } = useTranslation('login')
   const user = useUser()
   const router = useRouter()
   const requestedPath = useAppSelector(selectRequestedPath)
 
   const fetchApi = useApiFetch(false)
   const [email, setEmail] = useState('')
+  const [requestSent, setRequestSent] = useState<boolean>(false)
 
   const redirectToRequestedPath = useCallback(
     () => Router.push(requestedPath ?? '/login'),
@@ -46,15 +47,11 @@ function ForgotPassword(): JSX.Element {
     if (formIsValid) {
       fetchApi<ILogin>('/forgot_password/', undefined, {
         method: 'POST',
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email, language: i18n.language}),
         headers: new Headers({ 'Content-Type': 'application/json' }),
       }).then((json) => {
         if (!isError(json)) {
-          enqueueSnackbar(t('forgotPassword.message.success'), {
-            onShut: closeSnackbar,
-            variant: 'success',
-            autoHideDuration: null,
-          })
+          setRequestSent(true)
         }
       })
     } else {
@@ -67,27 +64,32 @@ function ForgotPassword(): JSX.Element {
   return (
     <>
       <PageTitle title={title} />
-      <span>{t('forgotPassword.description')}</span>
-      <Form onSubmit={handleSubmit} submitButtonText={t('forgotPassword.action')}>
-        <InputText
-          autoComplete="email"
-          fullWidth
-          type="email"
-          label={t('email.label')}
-          margin="normal"
-          onChange={(value: string): void => setEmail(value)}
-          value={email}
-          showError={showAllErrors}
-          additionalValidator={(value: string): string => {
-            if (!value) return 'valueMissing'
-            return ''
-          }}
-          replacementErrorsMessages={{
-            typeMismatch: 'typeMismatchEmail',
-          }}
-          dataTestId="forgotPasswordEmailInput"
-        />
-      </Form>
+      {requestSent ?
+        <span>{t('forgotPassword.message.success')}</span>
+        : <>
+          <span>{t('forgotPassword.description')}</span>
+          <Form onSubmit={handleSubmit} submitButtonText={t('forgotPassword.action')}>
+            <InputText
+              autoComplete="email"
+              fullWidth
+              type="email"
+              label={t('email.label')}
+              margin="normal"
+              onChange={(value: string): void => setEmail(value)}
+              value={email}
+              showError={showAllErrors}
+              required
+              additionalValidator={(value: string): string => {
+                if (!value) return 'valueMissing'
+                return ''
+              }}
+              replacementErrorsMessages={{
+                typeMismatch: 'typeMismatchEmail',
+              }}
+              dataTestId="forgotPasswordEmailInput"
+            />
+          </Form>
+        </>}
     </>
   )
 }

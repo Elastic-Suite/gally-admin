@@ -1,5 +1,5 @@
-import React, { SyntheticEvent } from 'react'
-import { useTranslation } from 'next-i18next'
+import React, {SyntheticEvent} from 'react'
+import {useTranslation} from 'next-i18next'
 import {
   DataContentType,
   IExpansions,
@@ -18,16 +18,17 @@ import Switch from '../../atoms/form/Switch'
 import ReadableFieldGuesser from './ReadableFieldGuesser'
 import EditableDropDownGuesser from './EditableDropDownGuesser'
 import MultipleInput from './MultipleInput'
-import { IDoubleDatePickerValues } from '../../atoms/form/DoubleDatePickerWithoutError'
+import {IDoubleDatePickerValues} from '../../atoms/form/DoubleDatePickerWithoutError'
 import DoubleDatePicker from '../../atoms/form/DoubleDatePicker'
-import { Box } from '@mui/material'
+import {Box} from '@mui/material'
 import RequestTypeManager from '../../stateful/RequestTypeManager/RequestTypeManager'
 import RulesManager from '../RulesManager/RulesManager'
 import Slider from '../../atoms/form/Slider'
 import Synonym from '../../atoms/form/Synonym'
 import Expansion from '../../atoms/form/Expansion'
-import { IProportionalToAttributesValue } from '../../molecules/ProportionalToAttributes/ProportionalToAttributes'
+import {IProportionalToAttributesValue} from '../../molecules/ProportionalToAttributes/ProportionalToAttributes'
 import ProportionalToAttributesManager from '../../molecules/ProportionalToAttributes/ProportionalToAttributesManager'
+
 function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
   const {
     diffValue,
@@ -55,11 +56,11 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
     disabled,
   } = props
 
-  const { t } = useTranslation('common')
+  const {t} = useTranslation('common')
   const dirty = Boolean(
     diffValue !== undefined &&
-      ((diffValue !== null && diffValue !== value) ||
-        (diffValue === null && Boolean(value?.toString())))
+    ((diffValue !== null && diffValue !== value) ||
+      (diffValue === null && Boolean(value?.toString())))
   )
 
   function handleChange(
@@ -84,8 +85,11 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
     }
   }
 
-  switch (input ?? type) {
+  const inputType = input ?? type
+  switch (inputType) {
+    case DataContentType.PASSWORD:
     case DataContentType.NUMBER:
+    case DataContentType.EMAIL:
     case DataContentType.STRING: {
       return (
         <InputText
@@ -96,8 +100,8 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
           helperText={
             dirty
               ? t('form.defaultValue', {
-                  value: diffValue ? diffValue : t('default.undefined'),
-                })
+                value: diffValue ? diffValue : t('default.undefined'),
+              })
               : helperText
           }
           inputProps={validation}
@@ -107,7 +111,7 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
           required={required}
           showError={showError}
           suffix={suffix}
-          type={input === DataContentType.NUMBER ? 'number' : 'text'}
+          type={inputType == DataContentType.STRING ? 'text' : inputType }
           value={value as string | number | null}
           placeholder={placeholder}
           replacementErrorsMessages={replacementErrorsMessages}
@@ -122,7 +126,7 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
           dirty={dirty}
           disabled={disabled}
           helperText={
-            dirty ? t('form.defaultValue', { value: diffValue }) : helperText
+            dirty ? t('form.defaultValue', {value: diffValue}) : helperText
           }
           error={error}
           inputProps={validation}
@@ -265,7 +269,7 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
           {...props}
           infoTooltip={infoTooltip}
           onChange={handleChange}
-          useGroups={Boolean((input ?? type) === DataContentType.OPTGROUP)}
+          useGroups={Boolean(inputType === DataContentType.OPTGROUP)}
           multiple={Boolean(value instanceof Array)}
           error={error}
           helperText={helperText}
@@ -283,14 +287,14 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
             dirty={dirty}
             disabled={disabled}
             helperText={
-              dirty ? t('form.defaultValue', { value: diffValue }) : helperText
+              dirty ? t('form.defaultValue', {value: diffValue}) : helperText
             }
             label={label}
             multiple={multiple}
             options={
               options ?? [
-                { label: t('filter.yes'), value: true },
-                { label: t('filter.no'), value: false },
+                {label: t('filter.yes'), value: true},
+                {label: t('filter.no'), value: false},
               ]
             }
             required={required}
@@ -314,7 +318,7 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
           disabled={disabled}
           helperText={
             Boolean(dirty) &&
-            t('form.defaultValue', { value: t(`switch.${diffValue}`) })
+            t('form.defaultValue', {value: t(`switch.${diffValue}`)})
           }
           onChange={handleChange}
           required={required}
@@ -336,7 +340,7 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
     }
 
     default: {
-      return <ReadableFieldGuesser {...props} infoTooltip={infoTooltip} />
+      return <ReadableFieldGuesser {...props} infoTooltip={infoTooltip}/>
     }
   }
 }

@@ -16,9 +16,26 @@ import InputText from '../components/atoms/form/InputText'
 import Form from '../components/atoms/form/Form'
 
 import PageTitle from '../components/atoms/PageTitle/PageTitle'
+import {styled} from "@mui/system";
+
+
+const ForgoPasswordLink = styled('a')(({ theme }) => ({
+  // fontWeight: 500,
+  fontFamily: 'var(--gally-font)',
+  lineHeight: '18px',
+  fontSize: '12px',
+  border: 'none',
+  background: 'none',
+  padding: 0,
+  cursor: 'pointer',
+  color: theme.palette.colors.neutral[900],
+  display: 'block',
+  textDecoration: 'none',
+  marginBottom: '20px',
+}))
 
 function Login(): JSX.Element {
-  const { t } = useTranslation('login')
+  const { i18n, t } = useTranslation('login')
   const user = useUser()
   const requestedPath = useAppSelector(selectRequestedPath)
 
@@ -100,7 +117,9 @@ function Login(): JSX.Element {
             }}
             dataTestId="passwordInput"
           />
+          <ForgoPasswordLink href={`/${i18n.language}/forgot-password`}>{t('login.forgotPassword.link')}</ForgoPasswordLink>
         </Form>
+
     </>
   )
 }

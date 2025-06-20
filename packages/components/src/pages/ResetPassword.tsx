@@ -17,6 +17,7 @@ import Form from '../components/atoms/form/Form'
 
 import PageTitle from '../components/atoms/PageTitle/PageTitle'
 import ConfirmPassword from "../components/atoms/form/ConfirmPassword";
+import {closeSnackbar, enqueueSnackbar} from "notistack";
 
 function ResetPassword(): JSX.Element {
   const { t } = useTranslation('login')
@@ -43,7 +44,8 @@ function ResetPassword(): JSX.Element {
       fetchApi<ILogin>(`/forgot_password/${token}`, undefined, {
         method: 'GET',
         headers: new Headers({ 'Content-Type': 'application/json' }),
-      }).then((json) => {
+      }, false).then((json) => {
+        console.log('json', json)
         if (!isError(json)) {
           setToken(token)
         }
@@ -61,9 +63,20 @@ function ResetPassword(): JSX.Element {
         method: 'POST',
         body: JSON.stringify({ password: confirmPassword.password }),
         headers: new Headers({ 'Content-Type': 'application/json' }),
-      }).then((json) => {
+      }, false).then((json) => {
         if (!isError(json)) {
           redirectToRequestedPath()
+          enqueueSnackbar(t('resetPassword.message.success'), {
+            onShut: closeSnackbar,
+            variant: 'success',
+            autoHideDuration: null,
+          })
+        } else {
+          enqueueSnackbar(t('resetPassword.message.error'), {
+            onShut: closeSnackbar,
+            variant: 'error',
+            autoHideDuration: null,
+          })
         }
       })
     } else {

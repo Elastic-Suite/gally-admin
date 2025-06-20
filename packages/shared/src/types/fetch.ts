@@ -26,5 +26,6 @@ export type ISearchParameters = Record<
 export type IFetchApi = <T extends object>(
   resource: IResource | string,
   searchParameters?: ISearchParameters,
-  options?: RequestInit
+  options?: RequestInit,
+  outputLog?: boolean
 ) => Promise<T | IError>
