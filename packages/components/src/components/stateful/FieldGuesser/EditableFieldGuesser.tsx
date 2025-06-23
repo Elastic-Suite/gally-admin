@@ -264,6 +264,7 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
 
     case DataContentType.OPTGROUP:
     case DataContentType.SELECT: {
+      console.log('la value ' + name, value)
       return (
         <EditableDropDownGuesser
           {...props}

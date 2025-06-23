@@ -69,7 +69,6 @@ function ResetPassword(): JSX.Element {
           enqueueSnackbar(t('resetPassword.message.success'), {
             onShut: closeSnackbar,
             variant: 'success',
-            autoHideDuration: null,
           })
         } else {
           enqueueSnackbar(t('resetPassword.message.error'), {

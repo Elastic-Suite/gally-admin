@@ -1,26 +1,19 @@
 import Grid from '../Grid/Grid'
-import React, { useContext, useEffect } from 'react'
+import React from 'react'
 import { withAuth, withOptions } from '../../../hocs'
-import { useRouter } from 'next/router'
-import { breadcrumbContext } from '../../../contexts'
-
-const pagesSlug = ['search', 'thesaurus']
+import { useTranslation } from 'next-i18next'
 
 const propsButton = {
   endIcon: <ion-icon name="add-circle-outline" />,
 }
 
 function AdminUserGrid(): JSX.Element {
-  const router = useRouter()
-  const [, setBreadcrumb] = useContext(breadcrumbContext)
-
-  useEffect(() => {
-    setBreadcrumb(pagesSlug)
-  }, [router.query, setBreadcrumb])
+  const { t } = useTranslation('user')
 
   return (
     <Grid
       resourceName="User"
+      title={t('title.grid')}
       hasNewLink
       hasEditLink
       propsButton={propsButton}

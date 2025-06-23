@@ -280,6 +280,7 @@ export function initResourceData(resource: IResource): Record<string, unknown> {
     resource.supportedProperty
       .filter((property) => property?.gally?.visible)
       .map((item) => {
+        console.log(item)
         return [
           item.title,
           returnDefaultValue(

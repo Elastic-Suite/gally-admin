@@ -5,11 +5,11 @@ import { useRouter } from 'next/router'
 import { breadcrumbContext } from '../../../../contexts'
 import { useTranslation } from 'next-i18next'
 
-const pagesSlug = ['search', 'thesaurus']
+const pagesSlug = ['settings', 'users']
 
 function AdminUserEdit(): JSX.Element {
   const router = useRouter()
-  const { t } = useTranslation('thesaurus')
+  const { t } = useTranslation('user')
   const [, setBreadcrumb] = useContext(breadcrumbContext)
   const [idUpdate, setIdUpdate] = useState<string>('')
 
@@ -26,6 +26,7 @@ function AdminUserEdit(): JSX.Element {
     <ResourceForm
       title={t('title.update')}
       resourceName="User"
+      entityLabel={t('entityLabel')}
       id={idUpdate}
     />
   )

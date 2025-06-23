@@ -6,9 +6,10 @@
   "login.forgotPassword.link": "Forgot your password?",
   "forgotPassword.title": "Forgotten password",
   "forgotPassword.description": "Please enter your email address and we will send you a link to reset your password.",
-  "forgotPassword.action": "Request",
-  "forgotPassword.message.success": "forgotPassword.message.success",
+  "forgotPassword.action": "Send",
+  "forgotPassword.message.success": "We'll email you a link to reset your password.",
   "resetPassword.title": "Reset password",
-  "resetPassword.action": "Reset",
-  "resetPassword.token.error": "Token not found or expired."
+  "resetPassword.action": "Save",
+  "resetPassword.token.error": "Token not found or expired.",
+  "resetPassword.message.success": "The password has been saved successfully."
 }

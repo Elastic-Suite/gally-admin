@@ -5,18 +5,18 @@ import { useRouter } from 'next/router'
 import { breadcrumbContext } from '../../../../contexts'
 import { useTranslation } from 'next-i18next'
 
-const pagesSlug = ['search', 'thesaurus']
+const pagesSlug = ['settings', 'users']
 
 function AdminUserCreate(): JSX.Element {
   const router = useRouter()
-  const { t } = useTranslation('thesaurus')
+  const { t } = useTranslation('user')
   const [, setBreadcrumb] = useContext(breadcrumbContext)
 
   useEffect(() => {
     setBreadcrumb(pagesSlug)
   }, [router.query, setBreadcrumb])
 
-  return <ResourceForm title={t('title.create')} resourceName="User" />
+  return <ResourceForm title={t('title.create')} resourceName="User" entityLabel={t('user')}/>
 }
 
 export default withAuth(withOptions(AdminUserCreate))

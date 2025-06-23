@@ -43,7 +43,7 @@ function ConfirmPassword(
   return <>
     <InputText
       fullWidth
-      label={t(passwordLabel ?? 'password.label')}
+      label={t(passwordLabel ?? 'newPassword.label')}
       margin="normal"
       onChange={onChangePassword}
       type="password"
