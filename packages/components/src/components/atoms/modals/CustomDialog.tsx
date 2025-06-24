@@ -4,6 +4,7 @@ import { CustomClose, CustomDialogStyled, CustomTitle } from './PopIn.styled'
 import IonIcon from '../IonIcon/IonIcon'
 import Button from '../buttons/Button'
 import { ICustomDialog } from '@elastic-suite/gally-admin-shared'
+import { TestId, generateTestId } from '../../../utils/testIds'
 
 function CustomDialog({
   open,
@@ -18,6 +19,7 @@ function CustomDialog({
   cancelName,
   confirmName,
   loading,
+  componentId,
 }: PropsWithChildren<ICustomDialog>): JSX.Element {
   return (
     <CustomDialogStyled
@@ -37,14 +39,22 @@ function CustomDialog({
             }
           : styles
       }
+      data-testid={generateTestId(TestId.DIALOG)}
     >
-      <CustomClose onClick={handleClose}>
+      <CustomClose
+        onClick={handleClose}
+        data-testid={generateTestId(TestId.DIALOG_CLOSE_BUTTON, componentId)}
+      >
         <IonIcon name="close" style={{ fontSize: '17.85px' }} />
       </CustomClose>
       {!confirmationPopIn ? (
         <>
           {titlePopIn ? <DialogTitle> {titlePopIn} </DialogTitle> : null}
-          <DialogContent>{children}</DialogContent>
+          <DialogContent
+            data-testid={generateTestId(TestId.DIALOG_CONTENT, componentId)}
+          >
+            {children}
+          </DialogContent>
           {actions ? <DialogActions> {actions} </DialogActions> : null}
         </>
       ) : (
@@ -53,7 +63,10 @@ function CustomDialog({
           <DialogActions>
             <Box>
               <Button
-                data-testid="cancelButton"
+                data-testid={generateTestId(
+                  TestId.DIALOG_CANCEL_BUTTON,
+                  componentId
+                )}
                 onClick={handleClose}
                 display="tertiary"
                 size="large"
@@ -63,7 +76,10 @@ function CustomDialog({
             </Box>
             <Box>
               <Button
-                data-testid="confirmButton"
+                data-testid={generateTestId(
+                  TestId.DIALOG_CONFIRM_BUTTON,
+                  componentId
+                )}
                 onClick={handleConfirm}
                 loading={loading}
                 size="large"

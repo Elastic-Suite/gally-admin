@@ -4,6 +4,7 @@ exports[`Synonym match snapshot Synonym Full 1`] = `
 <div>
   <div
     class="MuiFormControl-root MuiFormControl-marginNormal css-1r71j8d-MuiFormControl-root"
+    data-testid="synonym"
   >
     <label
       class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard MuiFormLabel-colorPrimary Mui-error Mui-required css-1cpkhc9-MuiFormLabel-root-MuiInputLabel-root"
@@ -16,6 +17,7 @@ exports[`Synonym match snapshot Synonym Full 1`] = `
         style="display: inline-block; padding-left: 10px; margin-bottom: -5px;"
       >
         <ion-icon
+          data-testid="ionicon"
           src="/images/ionicons/information-circle-outline.svg"
           style="color: rgb(129, 135, 185); width: 20px; height: 20px; display: flex;"
         />
@@ -43,8 +45,10 @@ exports[`Synonym match snapshot Synonym Full 1`] = `
           >
             <div
               class="css-1r61l91"
+              data-testid="textFieldTagsCleanButton"
             >
               <ion-icon
+                data-testid="ionicon"
                 src="/images/ionicons/close.svg"
                 style="font-size: 14px; padding: 0px;"
               />
@@ -60,6 +64,7 @@ exports[`Synonym match snapshot Synonym Full 1`] = `
                 >
                   <div
                     class="MuiButtonBase-root MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-deletable MuiChip-deletableColorDefault MuiChip-filledDefault css-69f6vo-MuiButtonBase-root-MuiChip-root"
+                    data-testid="chip"
                     role="button"
                     style="opacity: 1;"
                     tabindex="0"
@@ -71,11 +76,11 @@ exports[`Synonym match snapshot Synonym Full 1`] = `
                     </span>
                     <button
                       class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiChip-deleteIcon MuiChip-deleteIconMedium MuiChip-deleteIconColorDefault MuiChip-deleteIconFilledColorDefault css-78trlr-MuiButtonBase-root-MuiIconButton-root"
-                      data-testid="chipCloseButton"
                       tabindex="0"
                       type="button"
                     >
                       <ion-icon
+                        data-testid="ionicon|chipDeleteIcon|chip"
                         src="/images/ionicons/close.svg"
                       />
                       <span
@@ -85,6 +90,7 @@ exports[`Synonym match snapshot Synonym Full 1`] = `
                   </div>
                   <div
                     class="MuiButtonBase-root MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-deletable MuiChip-deletableColorDefault MuiChip-filledDefault css-69f6vo-MuiButtonBase-root-MuiChip-root"
+                    data-testid="chip"
                     role="button"
                     style="opacity: 1;"
                     tabindex="0"
@@ -96,11 +102,11 @@ exports[`Synonym match snapshot Synonym Full 1`] = `
                     </span>
                     <button
                       class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiChip-deleteIcon MuiChip-deleteIconMedium MuiChip-deleteIconColorDefault MuiChip-deleteIconFilledColorDefault css-78trlr-MuiButtonBase-root-MuiIconButton-root"
-                      data-testid="chipCloseButton"
                       tabindex="0"
                       type="button"
                     >
                       <ion-icon
+                        data-testid="ionicon|chipDeleteIcon|chip"
                         src="/images/ionicons/close.svg"
                       />
                       <span
@@ -123,6 +129,7 @@ exports[`Synonym match snapshot Synonym Full 1`] = `
                           <input
                             aria-invalid="false"
                             class="MuiInputBase-input css-ngazp5-MuiInputBase-input"
+                            data-testid="inputText|textFieldTags"
                             placeholder="Add text"
                             type="text"
                             value=""
@@ -137,11 +144,13 @@ exports[`Synonym match snapshot Synonym Full 1`] = `
           </div>
           <button
             class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-78trlr-MuiButtonBase-root-MuiIconButton-root"
+            data-testid="synonymRemoveButton"
             style="margin-left: 8px;"
             tabindex="0"
             type="button"
           >
             <ion-icon
+              data-testid="ionicon"
               src="/images/ionicons/trash-outline.svg"
               style="font-size: 18px; color: rgb(66, 72, 128);"
             />
@@ -159,8 +168,10 @@ exports[`Synonym match snapshot Synonym Full 1`] = `
           >
             <div
               class="css-1r61l91"
+              data-testid="textFieldTagsCleanButton"
             >
               <ion-icon
+                data-testid="ionicon"
                 src="/images/ionicons/close.svg"
                 style="font-size: 14px; padding: 0px;"
               />
@@ -176,6 +187,7 @@ exports[`Synonym match snapshot Synonym Full 1`] = `
                 >
                   <div
                     class="MuiButtonBase-root MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-deletable MuiChip-deletableColorDefault MuiChip-filledDefault css-69f6vo-MuiButtonBase-root-MuiChip-root"
+                    data-testid="chip"
                     role="button"
                     style="opacity: 1;"
                     tabindex="0"
@@ -187,11 +199,11 @@ exports[`Synonym match snapshot Synonym Full 1`] = `
                     </span>
                     <button
                       class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiChip-deleteIcon MuiChip-deleteIconMedium MuiChip-deleteIconColorDefault MuiChip-deleteIconFilledColorDefault css-78trlr-MuiButtonBase-root-MuiIconButton-root"
-                      data-testid="chipCloseButton"
                       tabindex="0"
                       type="button"
                     >
                       <ion-icon
+                        data-testid="ionicon|chipDeleteIcon|chip"
                         src="/images/ionicons/close.svg"
                       />
                       <span
@@ -201,6 +213,7 @@ exports[`Synonym match snapshot Synonym Full 1`] = `
                   </div>
                   <div
                     class="MuiButtonBase-root MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-deletable MuiChip-deletableColorDefault MuiChip-filledDefault css-69f6vo-MuiButtonBase-root-MuiChip-root"
+                    data-testid="chip"
                     role="button"
                     style="opacity: 1;"
                     tabindex="0"
@@ -212,11 +225,11 @@ exports[`Synonym match snapshot Synonym Full 1`] = `
                     </span>
                     <button
                       class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiChip-deleteIcon MuiChip-deleteIconMedium MuiChip-deleteIconColorDefault MuiChip-deleteIconFilledColorDefault css-78trlr-MuiButtonBase-root-MuiIconButton-root"
-                      data-testid="chipCloseButton"
                       tabindex="0"
                       type="button"
                     >
                       <ion-icon
+                        data-testid="ionicon|chipDeleteIcon|chip"
                         src="/images/ionicons/close.svg"
                       />
                       <span
@@ -239,6 +252,7 @@ exports[`Synonym match snapshot Synonym Full 1`] = `
                           <input
                             aria-invalid="false"
                             class="MuiInputBase-input css-ngazp5-MuiInputBase-input"
+                            data-testid="inputText|textFieldTags"
                             placeholder="Add text"
                             type="text"
                             value=""
@@ -253,11 +267,13 @@ exports[`Synonym match snapshot Synonym Full 1`] = `
           </div>
           <button
             class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-78trlr-MuiButtonBase-root-MuiIconButton-root"
+            data-testid="synonymRemoveButton"
             style="margin-left: 8px;"
             tabindex="0"
             type="button"
           >
             <ion-icon
+              data-testid="ionicon"
               src="/images/ionicons/trash-outline.svg"
               style="font-size: 18px; color: rgb(66, 72, 128);"
             />
@@ -272,6 +288,7 @@ exports[`Synonym match snapshot Synonym Full 1`] = `
       >
         <button
           class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge css-156z0p6-MuiButtonBase-root-MuiButton-root"
+          data-testid="synonymAddButton"
           tabindex="0"
           type="button"
         >
@@ -280,6 +297,7 @@ exports[`Synonym match snapshot Synonym Full 1`] = `
             class="MuiButton-endIcon MuiButton-iconSizeLarge css-4egbtc-MuiButton-endIcon"
           >
             <ion-icon
+              data-testid="ionicon"
               src="/images/ionicons/add.svg"
               style="font-size: 24px;"
             />
@@ -292,8 +310,10 @@ exports[`Synonym match snapshot Synonym Full 1`] = `
     </div>
     <p
       class="MuiFormHelperText-root Mui-error MuiFormHelperText-sizeMedium css-1kzozl2-MuiFormHelperText-root"
+      data-testid="helperText"
     >
       <ion-icon
+        data-testid="ionicon"
         src="/images/ionicons/close.svg"
         style="font-size: 18px; margin-right: 2px;"
       />

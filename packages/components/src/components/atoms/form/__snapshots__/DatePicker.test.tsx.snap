@@ -20,6 +20,7 @@ exports[`DatePicker sould match snapshot 1`] = `
         <input
           aria-invalid="false"
           class="MuiInputBase-input MuiInputBase-inputAdornedEnd css-ngazp5-MuiInputBase-input"
+          data-testid="inputText"
           placeholder="date.placeholder"
           type="tel"
           value="04/12/2024"
@@ -34,6 +35,7 @@ exports[`DatePicker sould match snapshot 1`] = `
             type="button"
           >
             <ion-icon
+              data-testid="ionicon"
               src="/images/ionicons/calendar-outline.svg"
               style="font-size: 18px; padding: 0px;"
             />

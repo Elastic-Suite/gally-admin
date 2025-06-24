@@ -26,7 +26,7 @@ interface IProps {
   helperText?: string
   helperIcon?: string
   showError?: boolean
-  dataTestId?: string
+  componentId?: string
 }
 
 function RequestTypeManager(props: IProps): JSX.Element | null {
@@ -35,7 +35,7 @@ function RequestTypeManager(props: IProps): JSX.Element | null {
     value,
     onChange,
     requestTypeConfigurations,
-    dataTestId,
+    componentId,
     ...args
   } = props
 
@@ -85,7 +85,7 @@ function RequestTypeManager(props: IProps): JSX.Element | null {
       limitationsTypes={limitationTypeOptions}
       requestTypesOptions={requestTypeOptions}
       categoriesList={categoriesList}
-      dataTestId={dataTestId}
+      componentId={componentId}
     />
   )
 }

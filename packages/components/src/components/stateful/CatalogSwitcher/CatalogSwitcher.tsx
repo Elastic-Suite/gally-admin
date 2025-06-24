@@ -70,6 +70,7 @@ function CatalogSwitcher(): JSX.Element {
         value={catalogId}
         options={catalogs}
         label={t('catalog.dropdown.label')}
+        componentId="catalogSwitcher"
       />
       {Boolean(catalogId) && catalogId !== -1 ? (
         <DropDownWithoutError
@@ -78,6 +79,7 @@ function CatalogSwitcher(): JSX.Element {
           value={localizedCatalogId}
           options={localizedCatalogs(catalogId)}
           label={t('localizedCatalog.dropdown.label')}
+          componentId="localizedCatalogSwitcher"
         />
       ) : (
         <div style={{ width: 180 }} />

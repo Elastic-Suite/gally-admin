@@ -21,6 +21,7 @@ exports[`InputTextWithoutError match snapshot BadgeDisabledFalse 1`] = `
         <input
           aria-invalid="false"
           class="MuiInputBase-input css-ngazp5-MuiInputBase-input"
+          data-testid="inputText"
           id="input-text"
           placeholder="Name"
           type="text"
@@ -61,6 +62,7 @@ exports[`InputTextWithoutError match snapshot BadgeDisabledFalseRequired 1`] = `
         <input
           aria-invalid="false"
           class="MuiInputBase-input Mui-disabled css-ngazp5-MuiInputBase-input"
+          data-testid="inputText"
           disabled=""
           id="input-text"
           placeholder="Name"

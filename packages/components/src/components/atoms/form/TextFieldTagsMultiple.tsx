@@ -15,6 +15,7 @@ import {
 } from '@elastic-suite/gally-admin-shared'
 import DropDownWithoutError from './DropDownWithoutError'
 import { useTranslation } from 'next-i18next'
+import { TestId, generateTestId } from '../../../utils/testIds'
 
 const CustomMultipleTextFieldsTags = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -34,7 +35,7 @@ export interface ITextFieldTagsMultipleProps
   value: ISearchLimitations[]
   onChange?: (value: ISearchLimitations[]) => void
   showError?: boolean
-  dataTestId?: string
+  componentId?: string
 }
 
 function TextFieldTagsMultiple(
@@ -55,7 +56,7 @@ function TextFieldTagsMultiple(
     infoTooltip,
     options,
     showError,
-    dataTestId,
+    componentId,
   } = props
 
   const { t } = useTranslation('common')
@@ -154,6 +155,7 @@ function TextFieldTagsMultiple(
       fullWidth={fullWidth}
       margin={margin}
       className="textFieldTagsMultiple"
+      data-testid={generateTestId(TestId.TEXT_FIELD_TAGS_MULTIPLE, componentId)}
     >
       {Boolean(label || infoTooltip) && (
         <div style={{ marginBottom: '4px' }}>
@@ -198,7 +200,7 @@ function TextFieldTagsMultiple(
                     value={option?.value}
                     options={newOptionsList}
                     sx={{ marginBottom: 1 }}
-                    dataTestId={dataTestId ? `${dataTestId}DropDown` : null}
+                    componentId={componentId}
                   />
                   <TextFieldTags
                     required
@@ -207,6 +209,7 @@ function TextFieldTagsMultiple(
                     fullWidth={fullWidth}
                     onChange={(value): void => updateValue(key, value)}
                     value={value}
+                    componentId={componentId}
                   />
                 </div>
                 {optionsListAvailable.filter((opt) => opt.disabled).length >
@@ -235,7 +238,10 @@ function TextFieldTagsMultiple(
                 )
               }
               endIcon={<IonIcon name="add" style={{ fontSize: 24 }} />}
-              data-testid={dataTestId ? `${dataTestId}AddButton` : null}
+              data-testid={generateTestId(
+                TestId.TEXT_FIELD_TAGS_MULTIPLE_ADD_BUTTON,
+                componentId
+              )}
             >
               {t('Add')}
             </Button>
@@ -243,7 +249,10 @@ function TextFieldTagsMultiple(
         ) : null}
       </CustomMultipleTextFieldsTags>
       {Boolean(helperText) && (
-        <FormHelperText error={error}>
+        <FormHelperText
+          error={error}
+          data-testid={generateTestId(TestId.HELPER_TEXT, componentId)}
+        >
           {Boolean(helperIcon) && (
             <IonIcon
               name={helperIcon}

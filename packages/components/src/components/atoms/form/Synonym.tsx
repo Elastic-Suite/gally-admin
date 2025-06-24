@@ -9,6 +9,7 @@ import Button from '../buttons/Button'
 import { styled } from '@mui/system'
 import { useTranslation } from 'next-i18next'
 import TextFieldTags from './TextFieldTags'
+import { TestId, generateTestId } from '../../../utils/testIds'
 
 const CustomPropError = ['error']
 const CustomRoot = styled('div', {
@@ -51,7 +52,7 @@ export interface IProps {
   showError?: boolean
   helperText?: ReactNode
   helperIcon?: string
-  dataTestId?: string
+  componentId?: string
 }
 
 interface ISynonymFormatted {
@@ -86,7 +87,7 @@ function Synonym(props: IProps): JSX.Element {
     showError,
     helperText,
     helperIcon,
-    dataTestId,
+    componentId,
   } = props
 
   if (value.length === 0) {
@@ -145,6 +146,8 @@ function Synonym(props: IProps): JSX.Element {
     return onChange(iSynonymsFormattedToISynonyms(synonymsUpdated))
   }
 
+  const dataTestId = generateTestId(TestId.SYNONYM, componentId)
+
   return (
     <StyledFormControl
       fullWidth={fullWidth}
@@ -189,10 +192,13 @@ function Synonym(props: IProps): JSX.Element {
                 value={synonym.terms}
                 placeholder={placeholder}
                 additionalValidator={synonymValidator}
-                dataTestId={dataTestId ? `${dataTestId}TextFieldTags` : null}
+                componentId={componentId}
               />
               <IconButton
-                data-testid={dataTestId ? `${dataTestId}TrashButton` : null}
+                data-testid={generateTestId(
+                  TestId.SYNONYM_REMOVE_BUTTON,
+                  componentId
+                )}
                 onClick={(): void => removeTerms(synonym.id)}
                 style={{ marginLeft: 8 }}
               >
@@ -212,7 +218,7 @@ function Synonym(props: IProps): JSX.Element {
             display="secondary"
             endIcon={<IonIcon name="add" style={{ fontSize: 24 }} />}
             onClick={(): void => addSynonym()}
-            data-testid={dataTestId ? `${dataTestId}AddButton` : null}
+            data-testid={generateTestId(TestId.SYNONYM_ADD_BUTTON, componentId)}
           >
             {t('add')}
           </Button>
@@ -221,9 +227,7 @@ function Synonym(props: IProps): JSX.Element {
       {Boolean(helperText) && (
         <FormHelperText
           error={error}
-          data-testid={
-            error && Boolean(dataTestId) ? `${dataTestId}ErrorMessage` : null
-          }
+          data-testid={generateTestId(TestId.HELPER_TEXT, componentId)}
         >
           {Boolean(helperIcon) && (
             <IonIcon

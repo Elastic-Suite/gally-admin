@@ -26,6 +26,7 @@ import FormatRowArray from '../../molecules/format/FormatRowArray'
 import PreviewGridBoostConfiguration from '../../atoms/form/PreviewGridBoostConfiguration/PreviewGridBoostConfiguration'
 import Image from '../../atoms/image/Image'
 import PositionEffect from '../../atoms/positionEffect/PositionEffect'
+import { TestId, generateTestId } from '../../../utils/testIds'
 
 const Box = styled('div')({
   display: 'flex',
@@ -40,7 +41,8 @@ const CustomA = styled('a')(({ theme }) => ({
 }))
 
 function ReadableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
-  const { input, value, field, options, multipleValueFormat, data } = props
+  const { input, value, field, options, multipleValueFormat, data, name } =
+    props
   const { t } = useTranslation('common')
   const language = useAppSelector(selectLanguage)
   const { localizedCatalogWithDefault } = useContext(catalogContext)
@@ -70,7 +72,12 @@ function ReadableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
         typeof value === 'number' ? { scoreValue: value } : value
       ) as IScore
       return (
-        <Score scoreValue={score.scoreValue} rounded {...score.boostInfos} />
+        <Score
+          scoreValue={score.scoreValue}
+          rounded
+          {...score.boostInfos}
+          componentId={name}
+        />
       )
     }
 
@@ -78,7 +85,7 @@ function ReadableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
       if (!value || (value as IStock).status === null) {
         return null
       }
-      return <Stock stockStatus={(value as IStock).status} />
+      return <Stock stockStatus={(value as IStock).status} componentId={name} />
     }
 
     case DataContentType.PRICE: {
@@ -91,6 +98,7 @@ function ReadableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
           price={price}
           countryCode={language}
           currency={localizedCatalogWithDefault.currency}
+          componentId={name}
         />
       )
     }
@@ -156,7 +164,9 @@ function ReadableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
           multipleValueFormat={multipleValueFormat}
         />
       ) : (
-        <Box>{value as string}</Box>
+        <Box data-testid={generateTestId(TestId.OTHER_READABLE_FIELD, name)}>
+          {value as string}
+        </Box>
       )
     }
   }

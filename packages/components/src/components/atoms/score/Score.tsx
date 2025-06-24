@@ -4,6 +4,7 @@ import { styled } from '@mui/system'
 import { BoostType, roundNumber } from '@elastic-suite/gally-admin-shared'
 
 import Boost from '../boost/Boost'
+import { TestId, generateTestId } from '../../../utils/testIds'
 
 interface IProps {
   scoreValue: number
@@ -11,6 +12,7 @@ interface IProps {
   boostNumber?: number
   boostMultiplicator?: number
   rounded?: boolean
+  componentId?: string
 }
 
 const ScoreContainer = styled(Box)({
@@ -24,11 +26,20 @@ const ScoreContainer = styled(Box)({
 })
 
 function Score(props: IProps): JSX.Element {
-  const { rounded, scoreValue, type, boostNumber, boostMultiplicator } = props
+  const {
+    rounded,
+    scoreValue,
+    type,
+    boostNumber,
+    boostMultiplicator,
+    componentId,
+  } = props
 
   return (
-    <Box>
-      <ScoreContainer>
+    <Box data-testid={generateTestId(TestId.SCORE, componentId)}>
+      <ScoreContainer
+        data-testid={generateTestId(TestId.SCORE_CONTAINER, componentId)}
+      >
         {rounded ? roundNumber(scoreValue, 4) : scoreValue}
       </ScoreContainer>
       {Boolean(type) && (

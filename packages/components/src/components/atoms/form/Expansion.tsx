@@ -11,6 +11,7 @@ import InputText from './InputText'
 import { styled } from '@mui/system'
 import { useTranslation } from 'next-i18next'
 import TextFieldTags from './TextFieldTags'
+import { TestId, generateTestId } from '../../../utils/testIds'
 
 const CustomPropError = ['error']
 const CustomRoot = styled('div', {
@@ -48,7 +49,7 @@ export interface IProps {
   helperText?: string
   helperIcon?: string
   showError?: boolean
-  dataTestId?: string
+  componentId?: string
 }
 
 interface IExpansionsFormatted {
@@ -85,7 +86,7 @@ function Expansion(props: IProps): JSX.Element {
     helperText,
     helperIcon,
     showError,
-    dataTestId,
+    componentId,
   } = props
 
   if (value.length === 0) {
@@ -158,7 +159,7 @@ function Expansion(props: IProps): JSX.Element {
       margin={margin}
       variant="standard"
       error={error}
-      data-testid={dataTestId}
+      data-testid={generateTestId(TestId.EXPANSION, componentId)}
     >
       {label || infoTooltip ? (
         <InputLabel shrink sx={{ maxWidth: '90%' }} required={required}>
@@ -192,7 +193,10 @@ function Expansion(props: IProps): JSX.Element {
                     updateTerms(expansion.id, value as string, expansion.terms)
                   }}
                   showError={showError}
-                  dataTestId={dataTestId ? `${dataTestId}ReferenceTerm` : null}
+                  componentId={generateTestId(
+                    TestId.EXPANSION_REFERENCE_TERM,
+                    componentId
+                  )}
                 />
                 <TextFieldTags
                   required
@@ -209,13 +213,19 @@ function Expansion(props: IProps): JSX.Element {
                     return ''
                   }}
                   showError={showError}
-                  dataTestId={dataTestId ? `${dataTestId}ExpansionTerms` : null}
+                  componentId={generateTestId(
+                    TestId.EXPANSION_TERMS,
+                    componentId
+                  )}
                 />
               </div>
               <IconButton
                 onClick={(): void => removeTerms(expansion.id)}
                 style={{ margin: '24px 0 0 8px' }}
-                data-testid={dataTestId ? `${dataTestId}TrashButton` : null}
+                data-testid={generateTestId(
+                  TestId.EXPANSION_TRASH_BUTTON,
+                  componentId
+                )}
               >
                 <IonIcon
                   style={{ fontSize: '18px', color: '#424880' }}
@@ -233,7 +243,10 @@ function Expansion(props: IProps): JSX.Element {
             display="secondary"
             endIcon={<IonIcon name="add" style={{ fontSize: 24 }} />}
             onClick={(): void => addExpansion()}
-            data-testid={dataTestId ? `${dataTestId}AddButton` : null}
+            data-testid={generateTestId(
+              TestId.EXPANSION_ADD_BUTTON,
+              componentId
+            )}
           >
             {t('add')}
           </Button>
@@ -241,9 +254,7 @@ function Expansion(props: IProps): JSX.Element {
       </CustomRoot>
       {Boolean(helperText) && (
         <FormHelperText
-          data-testid={
-            error && Boolean(dataTestId) ? `${dataTestId}ErrorMessage` : null
-          }
+          data-testid={generateTestId(TestId.HELPER_TEXT, componentId)}
         >
           {Boolean(helperIcon) && (
             <IonIcon

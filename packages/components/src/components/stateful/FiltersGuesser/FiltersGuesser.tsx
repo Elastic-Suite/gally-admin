@@ -20,7 +20,7 @@ interface IProps<T extends IHydraMember> {
   resource: IResource
   searchValue: string
   showSearch?: boolean
-  dataTestId?: string
+  componentId?: string
 }
 
 function FiltersGuesser<T extends IHydraMember>(props: IProps<T>): JSX.Element {
@@ -33,7 +33,7 @@ function FiltersGuesser<T extends IHydraMember>(props: IProps<T>): JSX.Element {
     resource,
     searchValue,
     showSearch,
-    dataTestId,
+    componentId,
   } = props
   const filters: IFieldConfig[] = useApiFilters(apiData, resource)
 
@@ -96,7 +96,7 @@ function FiltersGuesser<T extends IHydraMember>(props: IProps<T>): JSX.Element {
       onSearch={onSearch}
       searchValue={searchValue}
       showSearch={showSearch}
-      dataTestId={dataTestId}
+      componentId={componentId}
     >
       {children}
     </Filters>

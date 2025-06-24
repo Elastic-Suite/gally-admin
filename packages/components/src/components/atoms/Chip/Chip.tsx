@@ -3,6 +3,7 @@ import { styled } from '@mui/system'
 import { ChipProps, IconButton, Chip as MuiChip } from '@mui/material'
 
 import IonIcon from '../IonIcon/IonIcon'
+import { TestId, generateTestId } from '../../../utils/testIds'
 
 const StyledChip = styled(MuiChip)(({ theme, disabled }) => ({
   display: 'inline-flex',
@@ -51,18 +52,25 @@ const StyledChip = styled(MuiChip)(({ theme, disabled }) => ({
     },
   },
 }))
+interface IChipProps extends ChipProps {
+  componentId?: string
+}
+function Chip(props: IChipProps): JSX.Element {
+  const { disabled, componentId } = props
 
-function Chip(props: ChipProps): JSX.Element {
-  const { disabled } = props
-
+  const dataTestId = generateTestId(TestId.CHIP, componentId)
   return (
     <StyledChip
       disabled={disabled}
+      data-testid={dataTestId}
       {...props}
       style={{ opacity: 1 }}
       deleteIcon={
-        <IconButton data-testid="chipCloseButton">
-          <IonIcon name="close" />
+        <IconButton>
+          <IonIcon
+            name="close"
+            componentId={generateTestId(TestId.CHIP_DELETE_ICON, dataTestId)}
+          />
         </IconButton>
       }
     />

@@ -24,6 +24,7 @@ import {
   CustomRootItem,
   CustomSelectedItem,
 } from './RequestTypeItem.styled'
+import { TestId, generateTestId } from '../../../utils/testIds'
 
 const CustomItem = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -56,7 +57,7 @@ export interface IRequestTypeItem {
   requestTypesOptions: IRequestTypesOptions[]
   categoriesList: ITreeItem[]
   showError?: boolean
-  dataTestId?: string
+  componentId?: string
 }
 
 interface IPropsComponent {
@@ -73,7 +74,7 @@ function RequestTypeItem(props: IRequestTypeItem): JSX.Element {
     requestTypesOptions,
     categoriesList,
     showError,
-    dataTestId,
+    componentId,
   } = props
   const { t } = useTranslation('common')
 
@@ -134,8 +135,10 @@ function RequestTypeItem(props: IRequestTypeItem): JSX.Element {
     {}
   )
 
+  const dataTestId = generateTestId(TestId.REQUEST_TYPE_ITEM, componentId)
+
   return (
-    <CustomRootItem>
+    <CustomRootItem data-testid={dataTestId}>
       {limitationsTypes.map((item, key) => {
         const uniqLimitationTypes = new Set(
           value.requestTypes.map((item) => limitationTypeMap[item.requestType])
@@ -202,7 +205,7 @@ function RequestTypeItem(props: IRequestTypeItem): JSX.Element {
                   onChange={(val: boolean): void =>
                     onChangeApplyToAll(requestTypeOption, val)
                   }
-                  dataTestId={dataTestId ? `${dataTestId}Checkbox` : null}
+                  componentId={dataTestId}
                 />
               </div>
               <CustomDataLimitations>
@@ -213,9 +216,7 @@ function RequestTypeItem(props: IRequestTypeItem): JSX.Element {
                     disabledValue={t(item.labelAll)}
                     options={options}
                     value={limitationsData as ISearchLimitations[]}
-                    dataTestId={
-                      dataTestId ? `${dataTestId}TextFieldTagsMultiple` : null
-                    }
+                    componentId={dataTestId}
                   />
                 )}
 
@@ -235,6 +236,7 @@ function RequestTypeItem(props: IRequestTypeItem): JSX.Element {
                     data={categoriesList}
                     sx={{ minWidth: 300 }}
                     multiple
+                    componentId={dataTestId}
                   />
                 )}
               </CustomDataLimitations>

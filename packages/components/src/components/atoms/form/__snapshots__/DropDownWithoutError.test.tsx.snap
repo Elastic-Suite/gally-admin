@@ -7,6 +7,7 @@ exports[`DropDownWithoutError match snapshot BadgeArrayObjectValue 1`] = `
   >
     <div
       class="MuiAutocomplete-root MuiAutocomplete-hasClearIcon MuiAutocomplete-hasPopupIcon css-1qqsdnr-MuiAutocomplete-root"
+      data-testid="dropdown"
     >
       <div
         class="MuiFormControl-root css-hh3vi8-MuiFormControl-root"
@@ -26,7 +27,9 @@ exports[`DropDownWithoutError match snapshot BadgeArrayObjectValue 1`] = `
           >
             <div
               class="MuiButtonBase-root MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-deletable MuiChip-deletableColorDefault MuiChip-filledDefault MuiAutocomplete-tag MuiAutocomplete-tagSizeMedium css-69f6vo-MuiButtonBase-root-MuiChip-root"
+              componentid="dropdown"
               data-tag-index="0"
+              data-testid="chip|dropdown"
               role="button"
               style="opacity: 1;"
               tabindex="-1"
@@ -38,11 +41,11 @@ exports[`DropDownWithoutError match snapshot BadgeArrayObjectValue 1`] = `
               </span>
               <button
                 class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiChip-deleteIcon MuiChip-deleteIconMedium MuiChip-deleteIconColorDefault MuiChip-deleteIconFilledColorDefault css-78trlr-MuiButtonBase-root-MuiIconButton-root"
-                data-testid="chipCloseButton"
                 tabindex="0"
                 type="button"
               >
                 <ion-icon
+                  data-testid="ionicon|chipDeleteIcon|chip|dropdown"
                   src="/images/ionicons/close.svg"
                 />
                 <span
@@ -52,7 +55,9 @@ exports[`DropDownWithoutError match snapshot BadgeArrayObjectValue 1`] = `
             </div>
             <div
               class="MuiButtonBase-root MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-deletable MuiChip-deletableColorDefault MuiChip-filledDefault MuiAutocomplete-tag MuiAutocomplete-tagSizeMedium css-69f6vo-MuiButtonBase-root-MuiChip-root"
+              componentid="dropdown"
               data-tag-index="1"
+              data-testid="chip|dropdown"
               role="button"
               style="opacity: 1;"
               tabindex="-1"
@@ -64,11 +69,11 @@ exports[`DropDownWithoutError match snapshot BadgeArrayObjectValue 1`] = `
               </span>
               <button
                 class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiChip-deleteIcon MuiChip-deleteIconMedium MuiChip-deleteIconColorDefault MuiChip-deleteIconFilledColorDefault css-78trlr-MuiButtonBase-root-MuiIconButton-root"
-                data-testid="chipCloseButton"
                 tabindex="0"
                 type="button"
               >
                 <ion-icon
+                  data-testid="ionicon|chipDeleteIcon|chip|dropdown"
                   src="/images/ionicons/close.svg"
                 />
                 <span
@@ -83,6 +88,7 @@ exports[`DropDownWithoutError match snapshot BadgeArrayObjectValue 1`] = `
               autocapitalize="none"
               autocomplete="off"
               class="MuiInputBase-input MuiInputBase-inputAdornedStart MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-ngazp5-MuiInputBase-input"
+              data-testid="inputText|dropdown"
               id=":r6:"
               role="combobox"
               spellcheck="false"
@@ -100,6 +106,7 @@ exports[`DropDownWithoutError match snapshot BadgeArrayObjectValue 1`] = `
                 type="button"
               >
                 <ion-icon
+                  data-testid="dropdownClearIcon|dropdown"
                   src="/images/ionicons/close.svg"
                 />
                 <span
@@ -114,6 +121,7 @@ exports[`DropDownWithoutError match snapshot BadgeArrayObjectValue 1`] = `
                 type="button"
               >
                 <ion-icon
+                  data-testid="ionicon|dropdownCollapsingIcon|dropdown"
                   src="/images/ionicons/chevron-down.svg"
                 />
                 <span
@@ -136,6 +144,7 @@ exports[`DropDownWithoutError match snapshot BadgeDisabledFalse 1`] = `
   >
     <div
       class="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-1qqsdnr-MuiAutocomplete-root"
+      data-testid="dropdown"
     >
       <div
         class="MuiFormControl-root css-hh3vi8-MuiFormControl-root"
@@ -153,6 +162,7 @@ exports[`DropDownWithoutError match snapshot BadgeDisabledFalse 1`] = `
               autocapitalize="none"
               autocomplete="off"
               class="MuiInputBase-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-ngazp5-MuiInputBase-input"
+              data-testid="inputText|dropdown"
               id=":r0:"
               role="combobox"
               spellcheck="false"
@@ -170,6 +180,7 @@ exports[`DropDownWithoutError match snapshot BadgeDisabledFalse 1`] = `
                 type="button"
               >
                 <ion-icon
+                  data-testid="ionicon|dropdownCollapsingIcon|dropdown"
                   src="/images/ionicons/chevron-down.svg"
                 />
                 <span
@@ -192,6 +203,7 @@ exports[`DropDownWithoutError match snapshot BadgeDisabledTrue 1`] = `
   >
     <div
       class="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-1qqsdnr-MuiAutocomplete-root"
+      data-testid="dropdown"
     >
       <div
         class="MuiFormControl-root css-hh3vi8-MuiFormControl-root"
@@ -209,6 +221,7 @@ exports[`DropDownWithoutError match snapshot BadgeDisabledTrue 1`] = `
               autocapitalize="none"
               autocomplete="off"
               class="MuiInputBase-input Mui-disabled MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-ngazp5-MuiInputBase-input"
+              data-testid="inputText|dropdown"
               disabled=""
               id=":r1:"
               role="combobox"
@@ -228,6 +241,7 @@ exports[`DropDownWithoutError match snapshot BadgeDisabledTrue 1`] = `
                 type="button"
               >
                 <ion-icon
+                  data-testid="ionicon|dropdownCollapsingIcon|dropdown"
                   src="/images/ionicons/chevron-down.svg"
                 />
               </button>
@@ -247,6 +261,7 @@ exports[`DropDownWithoutError match snapshot BadgeLabel 1`] = `
   >
     <div
       class="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-1qqsdnr-MuiAutocomplete-root"
+      data-testid="dropdown"
     >
       <div
         class="MuiFormControl-root css-hh3vi8-MuiFormControl-root"
@@ -271,6 +286,7 @@ exports[`DropDownWithoutError match snapshot BadgeLabel 1`] = `
               autocapitalize="none"
               autocomplete="off"
               class="MuiInputBase-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-ngazp5-MuiInputBase-input"
+              data-testid="inputText|dropdown"
               id=":r2:"
               role="combobox"
               spellcheck="false"
@@ -288,6 +304,7 @@ exports[`DropDownWithoutError match snapshot BadgeLabel 1`] = `
                 type="button"
               >
                 <ion-icon
+                  data-testid="ionicon|dropdownCollapsingIcon|dropdown"
                   src="/images/ionicons/chevron-down.svg"
                 />
                 <span
@@ -310,6 +327,7 @@ exports[`DropDownWithoutError match snapshot BadgeMultiple 1`] = `
   >
     <div
       class="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-1qqsdnr-MuiAutocomplete-root"
+      data-testid="dropdown"
     >
       <div
         class="MuiFormControl-root css-hh3vi8-MuiFormControl-root"
@@ -334,6 +352,7 @@ exports[`DropDownWithoutError match snapshot BadgeMultiple 1`] = `
               autocapitalize="none"
               autocomplete="off"
               class="MuiInputBase-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-ngazp5-MuiInputBase-input"
+              data-testid="inputText|dropdown"
               id=":r5:"
               role="combobox"
               spellcheck="false"
@@ -351,6 +370,7 @@ exports[`DropDownWithoutError match snapshot BadgeMultiple 1`] = `
                 type="button"
               >
                 <ion-icon
+                  data-testid="ionicon|dropdownCollapsingIcon|dropdown"
                   src="/images/ionicons/chevron-down.svg"
                 />
                 <span
@@ -373,6 +393,7 @@ exports[`DropDownWithoutError match snapshot BadgeObjectValue 1`] = `
   >
     <div
       class="MuiAutocomplete-root MuiAutocomplete-hasClearIcon MuiAutocomplete-hasPopupIcon css-1qqsdnr-MuiAutocomplete-root"
+      data-testid="dropdown"
     >
       <div
         class="MuiFormControl-root css-hh3vi8-MuiFormControl-root"
@@ -397,6 +418,7 @@ exports[`DropDownWithoutError match snapshot BadgeObjectValue 1`] = `
               autocapitalize="none"
               autocomplete="off"
               class="MuiInputBase-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-ngazp5-MuiInputBase-input"
+              data-testid="inputText|dropdown"
               id=":r7:"
               role="combobox"
               spellcheck="false"
@@ -414,6 +436,7 @@ exports[`DropDownWithoutError match snapshot BadgeObjectValue 1`] = `
                 type="button"
               >
                 <ion-icon
+                  data-testid="dropdownClearIcon|dropdown"
                   src="/images/ionicons/close.svg"
                 />
                 <span
@@ -428,6 +451,7 @@ exports[`DropDownWithoutError match snapshot BadgeObjectValue 1`] = `
                 type="button"
               >
                 <ion-icon
+                  data-testid="ionicon|dropdownCollapsingIcon|dropdown"
                   src="/images/ionicons/chevron-down.svg"
                 />
                 <span
@@ -450,6 +474,7 @@ exports[`DropDownWithoutError match snapshot BadgeRequiredFalse 1`] = `
   >
     <div
       class="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-1qqsdnr-MuiAutocomplete-root"
+      data-testid="dropdown"
     >
       <div
         class="MuiFormControl-root css-hh3vi8-MuiFormControl-root"
@@ -467,6 +492,7 @@ exports[`DropDownWithoutError match snapshot BadgeRequiredFalse 1`] = `
               autocapitalize="none"
               autocomplete="off"
               class="MuiInputBase-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-ngazp5-MuiInputBase-input"
+              data-testid="inputText|dropdown"
               id=":r3:"
               role="combobox"
               spellcheck="false"
@@ -484,6 +510,7 @@ exports[`DropDownWithoutError match snapshot BadgeRequiredFalse 1`] = `
                 type="button"
               >
                 <ion-icon
+                  data-testid="ionicon|dropdownCollapsingIcon|dropdown"
                   src="/images/ionicons/chevron-down.svg"
                 />
                 <span
@@ -506,6 +533,7 @@ exports[`DropDownWithoutError match snapshot BadgeRequiredTrue 1`] = `
   >
     <div
       class="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-1qqsdnr-MuiAutocomplete-root"
+      data-testid="dropdown"
     >
       <div
         class="MuiFormControl-root css-hh3vi8-MuiFormControl-root"
@@ -523,6 +551,7 @@ exports[`DropDownWithoutError match snapshot BadgeRequiredTrue 1`] = `
               autocapitalize="none"
               autocomplete="off"
               class="MuiInputBase-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-ngazp5-MuiInputBase-input"
+              data-testid="inputText|dropdown"
               id=":r4:"
               role="combobox"
               spellcheck="false"
@@ -540,6 +569,7 @@ exports[`DropDownWithoutError match snapshot BadgeRequiredTrue 1`] = `
                 type="button"
               >
                 <ion-icon
+                  data-testid="ionicon|dropdownCollapsingIcon|dropdown"
                   src="/images/ionicons/chevron-down.svg"
                 />
                 <span

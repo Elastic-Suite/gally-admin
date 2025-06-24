@@ -5,6 +5,7 @@ import { keyframes, styled } from '@mui/system'
 import { IMenuChild } from '@elastic-suite/gally-admin-shared'
 
 import IonIcon from '../IonIcon/IonIcon'
+import { TestId, generateTestId } from '../../../utils/testIds'
 
 /*
  * Create function to create path from code of the menu item
@@ -205,15 +206,14 @@ function MenuItem(props: IProps): JSX.Element {
   return (
     <CustomRoot>
       <Root>
-        <CustomLinePadding
-          style={{ position: 'relative' }}
-          {...(menuChildren && { 'data-testid': 'subGroupMenu' })}
-        >
+        <CustomLinePadding style={{ position: 'relative' }} {...menuChildren}>
           {!menuChildren && (
-            <Line data-testid="menuLinkItem">
+            <Line data-testid={generateTestId(TestId.MENU_ITEM_LINK)}>
               {!sidebarStateTimeout && (
                 <Link href={`/admin/${href}`} legacyBehavior passHref>
-                  <CustomLineAHref data-testid="labelMenuLinkItem">
+                  <CustomLineAHref
+                    data-testid={generateTestId(TestId.MENU_ITEM_LINK_LABEL)}
+                  >
                     {label}
                   </CustomLineAHref>
                 </Link>
@@ -225,7 +225,9 @@ function MenuItem(props: IProps): JSX.Element {
             <CustomLineButton
               style={{ transition: 'all 500ms', position: 'relative' }}
               onClick={toggleChild}
-              data-testid="menuItemChildrenButton"
+              data-testid={generateTestId(
+                TestId.MENU_ITEM_CHILDREN_COLLAPSING_BUTTON
+              )}
             >
               {label}
               <IonIcon
@@ -241,7 +243,10 @@ function MenuItem(props: IProps): JSX.Element {
           {!childState && isBoosts ? <CustomIndicatorLineActiveTwo /> : null}
         </CustomLinePadding>
         {Boolean(menuChildren) && (
-          <CustomChildren in={childState} data-testid="menuItemChildren">
+          <CustomChildren
+            in={childState}
+            data-testid={generateTestId(TestId.MENU_ITEM_CHILDREN)}
+          >
             {menuChildren.map((item: IMenuChild) => (
               <MenuItem
                 key={item.code}

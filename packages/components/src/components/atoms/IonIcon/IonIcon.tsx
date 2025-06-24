@@ -2,6 +2,7 @@
 import React, { CSSProperties, MouseEvent } from 'react'
 import { JSX as IonIconJSX } from 'ionicons'
 import { JSXBase } from 'ionicons/dist/types/stencil-public-runtime'
+import { TestId, generateTestId } from '../../../utils/testIds'
 
 if (typeof window != 'undefined') {
   // @ts-expect-error: ionicons don't have declaration type files.
@@ -28,6 +29,7 @@ declare global {
 interface IProps extends IIonIconProps {
   name: string
   tooltip?: boolean
+  componentId?: string
 }
 
 export const iconSrcMapping = {
@@ -64,7 +66,7 @@ function getIonIconURL(iconName: string, custom?: boolean): string {
 }
 
 function IonIcon(props: IProps): JSX.Element {
-  const { name, tooltip, ...other } = props
+  const { name, tooltip, componentId, ...other } = props
   const style = tooltip
     ? {
         color: '#8187B9',
@@ -81,6 +83,7 @@ function IonIcon(props: IProps): JSX.Element {
           iconSrcMapping[name as keyof typeof iconSrcMapping],
           true
         )}
+        data-testid={generateTestId(TestId.IONICON, componentId)}
         {...iconProps}
       />
     )
@@ -90,11 +93,18 @@ function IonIcon(props: IProps): JSX.Element {
         src={getIonIconURL(
           iconAliasMapping[name as keyof typeof iconAliasMapping]
         )}
+        data-testid={generateTestId(TestId.IONICON, componentId)}
         {...iconProps}
       />
     )
   }
-  return <ion-icon src={getIonIconURL(name)} {...iconProps} />
+  return (
+    <ion-icon
+      src={getIonIconURL(name)}
+      data-testid={generateTestId(TestId.IONICON, componentId)}
+      {...iconProps}
+    />
+  )
 }
 
 export default IonIcon

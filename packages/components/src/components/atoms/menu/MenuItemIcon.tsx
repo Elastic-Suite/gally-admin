@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { keyframes, styled } from '@mui/system'
 
 import IonIcon from '../IonIcon/IonIcon'
+import { TestId, generateTestId } from '../../../utils/testIds'
 
 const CustomIndicatorLineActiveTwo = styled('div')(({ theme }) => ({
   width: 3,
@@ -190,7 +191,7 @@ function MenuItemIcon(props: IProps): JSX.Element {
     return (
       <CustomClassNameStyleRoot
         lightStyle={!lightStyle}
-        data-testid="menuItemIcon"
+        data-testid={generateTestId(TestId.MENU_ITEM_ICON)}
       >
         <IonIcon
           name={code}
@@ -204,7 +205,9 @@ function MenuItemIcon(props: IProps): JSX.Element {
           <CustomIndicatorLineActiveOpacityFullDeux />
         )}
 
-        <Label data-testid="labelMenuItemIcon">{label}</Label>
+        <Label data-testid={generateTestId(TestId.LABEL_MENU_ITEM_ICON)}>
+          {label}
+        </Label>
       </CustomClassNameStyleRoot>
     )
   }
@@ -212,7 +215,7 @@ function MenuItemIcon(props: IProps): JSX.Element {
     <CustomClassNameStyle
       lightStyle={!lightStyle}
       isActive={isActive}
-      data-testid="menuItemIcon"
+      data-testid={generateTestId(TestId.MENU_ITEM_ICON)}
     >
       <Link href={`/admin/${href}`} legacyBehavior passHref>
         <CustomNoChildHover sidebarState={sidebarState}>
@@ -225,7 +228,9 @@ function MenuItemIcon(props: IProps): JSX.Element {
             }}
           />
 
-          <Label data-testid="labelMenuItemIcon">{label}</Label>
+          <Label data-testid={generateTestId(TestId.LABEL_MENU_ITEM_ICON)}>
+            {label}
+          </Label>
         </CustomNoChildHover>
       </Link>
       {isActive ? <IndicatorLineActive /> : null}

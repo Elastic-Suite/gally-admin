@@ -16,6 +16,7 @@ import {
   SectionFieldSet,
 } from './CustomForm.styled'
 import { useTranslation } from 'next-i18next'
+import { TestId, generateTestId } from '../../../utils/testIds'
 
 interface IProps {
   data?: Record<string, unknown>
@@ -62,7 +63,7 @@ function CustomForm(props: IProps): JSX.Element {
         return (
           <SectionFieldSet
             key={fieldset?.position}
-            data-testid={`${fieldset.code}FieldSet`}
+            data-testid={generateTestId(TestId.FIELD_SET, fieldset.code)}
           >
             {Boolean(fieldset.label) && (
               <LabelFieldSet>

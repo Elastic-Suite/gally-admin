@@ -24,6 +24,7 @@ function CategoryTree(props: IProps): JSX.Element {
       openItems={openItems}
       data={categories.categories}
       value={selectedItem}
+      componentId="category"
     />
   )
 }

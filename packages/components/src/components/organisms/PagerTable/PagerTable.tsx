@@ -32,7 +32,7 @@ interface IProps extends ICustomTableProps {
   ) => void
   rowsPerPage: number
   rowsPerPageOptions: number[]
-  dataTestId?: string
+  componentId?: string
 }
 
 function PagerTable(
@@ -47,7 +47,7 @@ function PagerTable(
     rowsPerPageOptions,
     count,
     noResult,
-    dataTestId,
+    componentId,
     ...tableProps
   } = props
   const { t } = useTranslation('common')
@@ -61,13 +61,10 @@ function PagerTable(
         rowsPerPage={rowsPerPage}
         rowsPerPageOptions={rowsPerPageOptions}
         count={count}
-        dataTestId={dataTestId ? `${dataTestId}TablePagination` : null}
+        componentId={componentId}
       />
 
-      <CustomTable
-        {...tableProps}
-        dataTestId={dataTestId ? `${dataTestId}Table` : null}
-      />
+      <CustomTable {...tableProps} componentId={componentId} />
       {noResult ? <CustomNoResult>{t('no.result')}</CustomNoResult> : null}
       <Pagination
         currentPage={currentPage}

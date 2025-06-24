@@ -48,6 +48,7 @@ interface IProps {
   ruleOperators: IRuleEngineOperators
   hasEditLink?: boolean
   editLink?: string
+  componentId?: string
 }
 
 function BottomTable(
@@ -69,6 +70,7 @@ function BottomTable(
     ruleOperators,
     hasEditLink,
     editLink,
+    componentId,
   } = props
   const { localizedCatalogIdWithDefault } = useContext(catalogContext)
 
@@ -203,6 +205,7 @@ function BottomTable(
                 configuration={configuration}
                 hasEditLink={hasEditLink}
                 editLink={editLink}
+                componentId={componentId}
               />
             </Box>
           )

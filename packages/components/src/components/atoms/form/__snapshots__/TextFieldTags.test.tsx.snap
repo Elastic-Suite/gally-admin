@@ -26,6 +26,7 @@ exports[`TextFieldTags sould match snapshot 1`] = `
         >
           <div
             class="MuiButtonBase-root MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-deletable MuiChip-deletableColorDefault MuiChip-filledDefault css-69f6vo-MuiButtonBase-root-MuiChip-root"
+            data-testid="chip"
             role="button"
             style="opacity: 1;"
             tabindex="0"
@@ -37,11 +38,11 @@ exports[`TextFieldTags sould match snapshot 1`] = `
             </span>
             <button
               class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiChip-deleteIcon MuiChip-deleteIconMedium MuiChip-deleteIconColorDefault MuiChip-deleteIconFilledColorDefault css-78trlr-MuiButtonBase-root-MuiIconButton-root"
-              data-testid="chipCloseButton"
               tabindex="0"
               type="button"
             >
               <ion-icon
+                data-testid="ionicon|chipDeleteIcon|chip"
                 src="/images/ionicons/close.svg"
               />
               <span
@@ -64,6 +65,7 @@ exports[`TextFieldTags sould match snapshot 1`] = `
                   <input
                     aria-invalid="false"
                     class="MuiInputBase-input css-ngazp5-MuiInputBase-input"
+                    data-testid="inputText|textFieldTags"
                     placeholder="placeholder.default.textFieldTags"
                     type="text"
                     value=""

@@ -4,6 +4,7 @@ exports[`Price Should match snapschot 1`] = `
 <div>
   <div
     class="MuiBox-root css-1ci6mhc"
+    data-testid="price"
   >
      
     100,00 €

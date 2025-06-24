@@ -28,6 +28,7 @@ import {
 import IonIcon from '../../atoms/IonIcon/IonIcon'
 import AppBar from '../../molecules/layout/appBar/AppBar'
 import Sidebar from '../../molecules/layout/Sidebar/Sidebar'
+import { TestId, generateTestId } from '../../../utils/testIds'
 
 /*
  * TODO: THIBO: Update AppBar
@@ -182,7 +183,7 @@ function Layout({ children }: IProps): JSX.Element {
         >
           <Collapse
             onClick={collapseSidebar}
-            data-testid="sidebarMenuCollapseButton"
+            data-testid={generateTestId(TestId.SIDE_BAR_COLLAPSING_BUTTON)}
           >
             <IonIcon name="code-outline" style={{ width: 18, height: 18 }} />
           </Collapse>

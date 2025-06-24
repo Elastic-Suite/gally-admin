@@ -36,6 +36,7 @@ import {
   TreeContainer,
   TreePopper,
 } from './TreeSelector.styled'
+import { TestId, generateTestId } from '../../../utils/testIds'
 
 export interface ITreeSelectorProps<Multiple extends boolean | undefined>
   extends Omit<IInputTextProps, 'onChange' | 'value' | 'ref'> {
@@ -46,6 +47,7 @@ export interface ITreeSelectorProps<Multiple extends boolean | undefined>
     ? (value: ITreeItem[], event: SyntheticEvent) => void
     : (value: ITreeItem, event: SyntheticEvent) => void
   value: Multiple extends true ? ITreeItem[] : ITreeItem
+  componentId?: string
 }
 
 function TreeSelectorWithoutError<Multiple extends boolean | undefined>(
@@ -59,6 +61,7 @@ function TreeSelectorWithoutError<Multiple extends boolean | undefined>(
     onChange: onChangeProps,
     style,
     value: valueProps,
+    componentId,
     ...other
   } = props
   const { t } = useTranslation('common')
@@ -206,11 +209,14 @@ function TreeSelectorWithoutError<Multiple extends boolean | undefined>(
     }
   }
 
+  const dataTestId = generateTestId(TestId.TREE_SELECTOR, componentId)
+
   return (
     <Root
       {...getRootProps()}
       style={style}
       sx={{ display: fullWidth ? 'block' : 'inline-block' }}
+      data-testid={dataTestId}
     >
       <Input
         {...other}
@@ -246,6 +252,7 @@ function TreeSelectorWithoutError<Multiple extends boolean | undefined>(
         requiredLabel={other.required}
         ref={setAnchorEl}
         startAdornment={startAdornment}
+        componentId={dataTestId}
       />
       {Boolean(anchorEl) && (
         <TreePopper

@@ -19,6 +19,7 @@ export interface ICustomDialog extends IPropsCustomDialog {
   cancelName?: string
   confirmName?: string
   loading?: boolean
+  componentId?: string
 }
 
 export interface IPropsPopIn
@@ -26,4 +27,5 @@ export interface IPropsPopIn
   triggerElement: ReactNode
   onConfirm?: () => void | Promise<void>
   boxStyle?: React.CSSProperties
+  componentId?: string
 }

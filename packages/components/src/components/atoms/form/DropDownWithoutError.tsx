@@ -25,6 +25,7 @@ import InputTextWithoutError, { IInputTextProps } from './InputTextWithoutError'
 
 import IonIcon from '../IonIcon/IonIcon'
 import Chip from '../Chip/Chip'
+import { TestId, generateTestId } from '../../../utils/testIds'
 
 export interface IDropDownProps<T>
   extends Omit<IInputTextProps, 'onChange' | 'value'> {
@@ -37,7 +38,7 @@ export interface IDropDownProps<T>
   value?: T | T[] | object | object[]
   useGroups?: boolean
   objectKeyValue?: string
-  dataTestId?: string
+  componentId?: string
 }
 
 function DropDownWithoutError<T>(
@@ -55,7 +56,7 @@ function DropDownWithoutError<T>(
     value,
     useGroups,
     objectKeyValue,
-    dataTestId,
+    componentId,
     ...otherProps
   } = props
   const { required, small } = otherProps
@@ -65,6 +66,7 @@ function DropDownWithoutError<T>(
     () => new Map(options.map((option) => [option.value, option])),
     [options]
   )
+  const dataTestId = generateTestId(TestId.DROPDOWN, componentId)
 
   const optionValue =
     value instanceof Array
@@ -119,14 +121,14 @@ function DropDownWithoutError<T>(
       return (
         <li
           {...props}
-          data-testid={dataTestId ? `${dataTestId}DropdownOption` : null}
+          data-testid={generateTestId(TestId.DROPDOWN_OPTION, dataTestId)}
         >
           <CheckboxWithoutError
             checked={selected}
             label={label}
             list
             onClick={(e): void => e.preventDefault()}
-            dataTestId={dataTestId ? `${dataTestId}Checkbox` : null}
+            componentId={generateTestId(TestId.DROPDOWN_OPTION, dataTestId)}
           />
         </li>
       )
@@ -140,7 +142,7 @@ function DropDownWithoutError<T>(
             key={option.id ?? String(option.value)}
             label={option.label}
             size={small ? 'small' : 'medium'}
-            data-testid={dataTestId ? `${dataTestId}Tag` : null}
+            componentId={dataTestId}
             {...getTagProps({ index })}
           />
         ))
@@ -152,7 +154,7 @@ function DropDownWithoutError<T>(
       return (
         <ListItem
           {...props}
-          data-testid={dataTestId ? `${dataTestId}DropdownOption` : null}
+          data-testid={generateTestId(TestId.DROPDOWN_OPTION, dataTestId)}
         >
           {option.label}
         </ListItem>
@@ -164,7 +166,12 @@ function DropDownWithoutError<T>(
     <FormControl fullWidth={fullWidth} variant="standard">
       <Autocomplete
         PaperComponent={small ? SmallStyledPaper : StyledPaper}
-        clearIcon={<IonIcon name="close" />}
+        clearIcon={
+          <IonIcon
+            data-testid={generateTestId(TestId.DROPDOWN_CLEAR_ICON, dataTestId)}
+            name="close"
+          />
+        }
         clearText={clearText}
         closeText={closeText}
         componentsProps={{ popper: { placement: 'bottom-start' } }}
@@ -189,14 +196,20 @@ function DropDownWithoutError<T>(
         }
         popupIcon={
           <IonIcon
-            data-testid={dataTestId ? `${dataTestId}Button` : null}
+            componentId={generateTestId(
+              TestId.DROPDOWN_COLLAPSING_ICON,
+              dataTestId
+            )}
             name="chevron-down"
           />
         }
         renderGroup={(params): JSX.Element => (
           <li key={params.key}>
             <ListSubheader
-              data-testid={dataTestId ? `${dataTestId}GroupTitle` : null}
+              data-testid={generateTestId(
+                TestId.DROPDOWN_OPTION_GROUP_TITLE,
+                dataTestId
+              )}
             >
               {params.group}
             </ListSubheader>
@@ -214,7 +227,7 @@ function DropDownWithoutError<T>(
               fullWidth={fullWidth}
               inputRef={ref || inputRef}
               requiredLabel={required}
-              dataTestId={dataTestId ? `${dataTestId}InputText` : null}
+              componentId={dataTestId}
             />
           )
         }}

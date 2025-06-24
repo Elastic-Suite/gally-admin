@@ -15,6 +15,7 @@ import InfoTooltip from './InfoTooltip'
 import FormControl from './FormControl'
 import { ITextFieldTagsForm } from '@elastic-suite/gally-admin-shared'
 import { useTranslation } from 'next-i18next'
+import { TestId, generateTestId } from '../../../utils/testIds'
 
 const colorOfBorderTextFieldTagsInputInit = '#e2e6f3'
 const colorOfBorderTextFieldTagsInputError = '#A02213'
@@ -112,7 +113,7 @@ export interface ITextFieldTag extends Omit<ITextFieldTagsForm, 'options'> {
   withCleanButton?: boolean
   onChange?: (value: string[]) => void
   onRemoveItem?: () => void
-  dataTestId?: string
+  componentId?: string
 }
 
 function TextFieldTagsWithoutError(
@@ -136,7 +137,7 @@ function TextFieldTagsWithoutError(
     size,
     disabledValue,
     withCleanButton,
-    dataTestId,
+    componentId,
   } = props
 
   const { t } = useTranslation('common')
@@ -185,7 +186,10 @@ function TextFieldTagsWithoutError(
     <div style={{ position: 'relative' }}>
       {withCleanButton === true && (
         <CustomCloseTagsByOperator
-          data-testid={dataTestId ? `${dataTestId}CleanButton` : null}
+          data-testid={generateTestId(
+            TestId.TEXT_FIELD_TAGS_CLEAN_BUTTON,
+            componentId
+          )}
           onClick={(): void => {
             if (value.length > 0) {
               onChange([])
@@ -254,7 +258,10 @@ function TextFieldTagsWithoutError(
                     if (event.code === 'Enter') manageTags(undefined, event)
                   }}
                   inputRef={ref}
-                  dataTestId={dataTestId ? `${dataTestId}InputText` : null}
+                  componentId={generateTestId(
+                    TestId.TEXT_FIELD_TAGS,
+                    componentId
+                  )}
                 />
               </CustomFormTextFieldTags>
             )}
@@ -263,9 +270,7 @@ function TextFieldTagsWithoutError(
         {Boolean(helperText) && (
           <FormHelperText
             error={error}
-            data-testid={
-              error && Boolean(dataTestId) ? `${dataTestId}ErrorMessage` : null
-            }
+            data-testid={generateTestId(TestId.HELPER_TEXT, componentId)}
           >
             {Boolean(helperIcon) && (
               <IonIcon

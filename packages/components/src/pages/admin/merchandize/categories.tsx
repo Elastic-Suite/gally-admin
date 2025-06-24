@@ -219,6 +219,7 @@ function AdminMerchandizeCategories(): JSX.Element {
               prevProductPositions={prevProductPositions}
               isLoading={isLoading}
               localizedCatalogIdWithDefault={localizedCatalogIdWithDefault}
+              componentId="categoriesProducts"
             />
           </Placeholder>
         )}

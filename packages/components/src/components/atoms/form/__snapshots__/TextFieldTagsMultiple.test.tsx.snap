@@ -4,6 +4,7 @@ exports[`TextFieldTagsMultiple sould match snapshot 1`] = `
 <div>
   <div
     class="textFieldTagsMultiple css-vaijrj"
+    data-testid="textFieldTagsMultiple"
   >
     <div
       style="margin-bottom: 4px;"
@@ -29,6 +30,7 @@ exports[`TextFieldTagsMultiple sould match snapshot 1`] = `
           >
             <div
               class="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-1qqsdnr-MuiAutocomplete-root"
+              data-testid="dropdown"
             >
               <div
                 class="MuiFormControl-root css-hh3vi8-MuiFormControl-root"
@@ -46,6 +48,7 @@ exports[`TextFieldTagsMultiple sould match snapshot 1`] = `
                       autocapitalize="none"
                       autocomplete="off"
                       class="MuiInputBase-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-ngazp5-MuiInputBase-input"
+                      data-testid="inputText|dropdown"
                       id=":r0:"
                       role="combobox"
                       spellcheck="false"
@@ -63,6 +66,7 @@ exports[`TextFieldTagsMultiple sould match snapshot 1`] = `
                         type="button"
                       >
                         <ion-icon
+                          data-testid="ionicon|dropdownCollapsingIcon|dropdown"
                           src="/images/ionicons/chevron-down.svg"
                         />
                         <span
@@ -80,8 +84,10 @@ exports[`TextFieldTagsMultiple sould match snapshot 1`] = `
           >
             <div
               class="css-1r61l91"
+              data-testid="textFieldTagsCleanButton"
             >
               <ion-icon
+                data-testid="ionicon"
                 src="/images/ionicons/close.svg"
                 style="font-size: 14px; padding: 0px;"
               />
@@ -97,6 +103,7 @@ exports[`TextFieldTagsMultiple sould match snapshot 1`] = `
                 >
                   <div
                     class="MuiButtonBase-root MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-deletable MuiChip-deletableColorDefault MuiChip-filledDefault css-69f6vo-MuiButtonBase-root-MuiChip-root"
+                    data-testid="chip"
                     role="button"
                     style="opacity: 1;"
                     tabindex="0"
@@ -108,11 +115,11 @@ exports[`TextFieldTagsMultiple sould match snapshot 1`] = `
                     </span>
                     <button
                       class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiChip-deleteIcon MuiChip-deleteIconMedium MuiChip-deleteIconColorDefault MuiChip-deleteIconFilledColorDefault css-78trlr-MuiButtonBase-root-MuiIconButton-root"
-                      data-testid="chipCloseButton"
                       tabindex="0"
                       type="button"
                     >
                       <ion-icon
+                        data-testid="ionicon|chipDeleteIcon|chip"
                         src="/images/ionicons/close.svg"
                       />
                       <span
@@ -122,6 +129,7 @@ exports[`TextFieldTagsMultiple sould match snapshot 1`] = `
                   </div>
                   <div
                     class="MuiButtonBase-root MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-deletable MuiChip-deletableColorDefault MuiChip-filledDefault css-69f6vo-MuiButtonBase-root-MuiChip-root"
+                    data-testid="chip"
                     role="button"
                     style="opacity: 1;"
                     tabindex="0"
@@ -133,11 +141,11 @@ exports[`TextFieldTagsMultiple sould match snapshot 1`] = `
                     </span>
                     <button
                       class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiChip-deleteIcon MuiChip-deleteIconMedium MuiChip-deleteIconColorDefault MuiChip-deleteIconFilledColorDefault css-78trlr-MuiButtonBase-root-MuiIconButton-root"
-                      data-testid="chipCloseButton"
                       tabindex="0"
                       type="button"
                     >
                       <ion-icon
+                        data-testid="ionicon|chipDeleteIcon|chip"
                         src="/images/ionicons/close.svg"
                       />
                       <span
@@ -160,6 +168,7 @@ exports[`TextFieldTagsMultiple sould match snapshot 1`] = `
                           <input
                             aria-invalid="false"
                             class="MuiInputBase-input css-ngazp5-MuiInputBase-input"
+                            data-testid="inputText|textFieldTags"
                             placeholder="placeholder.default.textFieldTags"
                             type="text"
                             value=""
@@ -182,6 +191,7 @@ exports[`TextFieldTagsMultiple sould match snapshot 1`] = `
             type="button"
           >
             <ion-icon
+              data-testid="ionicon"
               src="/images/ionicons/trash-outline.svg"
               style="font-size: 18px; color: rgb(66, 72, 128);"
             />
@@ -202,6 +212,7 @@ exports[`TextFieldTagsMultiple sould match snapshot 1`] = `
           >
             <div
               class="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-1qqsdnr-MuiAutocomplete-root"
+              data-testid="dropdown"
             >
               <div
                 class="MuiFormControl-root css-hh3vi8-MuiFormControl-root"
@@ -219,6 +230,7 @@ exports[`TextFieldTagsMultiple sould match snapshot 1`] = `
                       autocapitalize="none"
                       autocomplete="off"
                       class="MuiInputBase-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-ngazp5-MuiInputBase-input"
+                      data-testid="inputText|dropdown"
                       id=":r1:"
                       role="combobox"
                       spellcheck="false"
@@ -236,6 +248,7 @@ exports[`TextFieldTagsMultiple sould match snapshot 1`] = `
                         type="button"
                       >
                         <ion-icon
+                          data-testid="ionicon|dropdownCollapsingIcon|dropdown"
                           src="/images/ionicons/chevron-down.svg"
                         />
                         <span
@@ -253,8 +266,10 @@ exports[`TextFieldTagsMultiple sould match snapshot 1`] = `
           >
             <div
               class="css-1r61l91"
+              data-testid="textFieldTagsCleanButton"
             >
               <ion-icon
+                data-testid="ionicon"
                 src="/images/ionicons/close.svg"
                 style="font-size: 14px; padding: 0px;"
               />
@@ -270,6 +285,7 @@ exports[`TextFieldTagsMultiple sould match snapshot 1`] = `
                 >
                   <div
                     class="MuiButtonBase-root MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-deletable MuiChip-deletableColorDefault MuiChip-filledDefault css-69f6vo-MuiButtonBase-root-MuiChip-root"
+                    data-testid="chip"
                     role="button"
                     style="opacity: 1;"
                     tabindex="0"
@@ -281,11 +297,11 @@ exports[`TextFieldTagsMultiple sould match snapshot 1`] = `
                     </span>
                     <button
                       class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiChip-deleteIcon MuiChip-deleteIconMedium MuiChip-deleteIconColorDefault MuiChip-deleteIconFilledColorDefault css-78trlr-MuiButtonBase-root-MuiIconButton-root"
-                      data-testid="chipCloseButton"
                       tabindex="0"
                       type="button"
                     >
                       <ion-icon
+                        data-testid="ionicon|chipDeleteIcon|chip"
                         src="/images/ionicons/close.svg"
                       />
                       <span
@@ -308,6 +324,7 @@ exports[`TextFieldTagsMultiple sould match snapshot 1`] = `
                           <input
                             aria-invalid="false"
                             class="MuiInputBase-input css-ngazp5-MuiInputBase-input"
+                            data-testid="inputText|textFieldTags"
                             placeholder="placeholder.default.textFieldTags"
                             type="text"
                             value=""
@@ -330,6 +347,7 @@ exports[`TextFieldTagsMultiple sould match snapshot 1`] = `
             type="button"
           >
             <ion-icon
+              data-testid="ionicon"
               src="/images/ionicons/trash-outline.svg"
               style="font-size: 18px; color: rgb(66, 72, 128);"
             />
@@ -350,6 +368,7 @@ exports[`TextFieldTagsMultiple sould match snapshot 1`] = `
           >
             <div
               class="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-1qqsdnr-MuiAutocomplete-root"
+              data-testid="dropdown"
             >
               <div
                 class="MuiFormControl-root css-hh3vi8-MuiFormControl-root"
@@ -367,6 +386,7 @@ exports[`TextFieldTagsMultiple sould match snapshot 1`] = `
                       autocapitalize="none"
                       autocomplete="off"
                       class="MuiInputBase-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-ngazp5-MuiInputBase-input"
+                      data-testid="inputText|dropdown"
                       id=":r2:"
                       role="combobox"
                       spellcheck="false"
@@ -384,6 +404,7 @@ exports[`TextFieldTagsMultiple sould match snapshot 1`] = `
                         type="button"
                       >
                         <ion-icon
+                          data-testid="ionicon|dropdownCollapsingIcon|dropdown"
                           src="/images/ionicons/chevron-down.svg"
                         />
                         <span
@@ -401,8 +422,10 @@ exports[`TextFieldTagsMultiple sould match snapshot 1`] = `
           >
             <div
               class="css-1r61l91"
+              data-testid="textFieldTagsCleanButton"
             >
               <ion-icon
+                data-testid="ionicon"
                 src="/images/ionicons/close.svg"
                 style="font-size: 14px; padding: 0px;"
               />
@@ -418,6 +441,7 @@ exports[`TextFieldTagsMultiple sould match snapshot 1`] = `
                 >
                   <div
                     class="MuiButtonBase-root MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-deletable MuiChip-deletableColorDefault MuiChip-filledDefault css-69f6vo-MuiButtonBase-root-MuiChip-root"
+                    data-testid="chip"
                     role="button"
                     style="opacity: 1;"
                     tabindex="0"
@@ -429,11 +453,11 @@ exports[`TextFieldTagsMultiple sould match snapshot 1`] = `
                     </span>
                     <button
                       class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiChip-deleteIcon MuiChip-deleteIconMedium MuiChip-deleteIconColorDefault MuiChip-deleteIconFilledColorDefault css-78trlr-MuiButtonBase-root-MuiIconButton-root"
-                      data-testid="chipCloseButton"
                       tabindex="0"
                       type="button"
                     >
                       <ion-icon
+                        data-testid="ionicon|chipDeleteIcon|chip"
                         src="/images/ionicons/close.svg"
                       />
                       <span
@@ -456,6 +480,7 @@ exports[`TextFieldTagsMultiple sould match snapshot 1`] = `
                           <input
                             aria-invalid="false"
                             class="MuiInputBase-input css-ngazp5-MuiInputBase-input"
+                            data-testid="inputText|textFieldTags"
                             placeholder="placeholder.default.textFieldTags"
                             type="text"
                             value=""
@@ -478,6 +503,7 @@ exports[`TextFieldTagsMultiple sould match snapshot 1`] = `
             type="button"
           >
             <ion-icon
+              data-testid="ionicon"
               src="/images/ionicons/trash-outline.svg"
               style="font-size: 18px; color: rgb(66, 72, 128);"
             />
@@ -492,6 +518,7 @@ exports[`TextFieldTagsMultiple sould match snapshot 1`] = `
       >
         <button
           class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium css-6rpdpi-MuiButtonBase-root-MuiButton-root"
+          data-testid="textFieldTagsMultipleAddButton"
           tabindex="0"
           type="button"
         >
@@ -500,6 +527,7 @@ exports[`TextFieldTagsMultiple sould match snapshot 1`] = `
             class="MuiButton-endIcon MuiButton-iconSizeMedium css-1gnd1fd-MuiButton-endIcon"
           >
             <ion-icon
+              data-testid="ionicon"
               src="/images/ionicons/add.svg"
               style="font-size: 24px;"
             />

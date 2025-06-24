@@ -169,6 +169,7 @@ exports[`RadioGroup sould match snapshot 1`] = `
         <input
           aria-invalid="false"
           class="MuiInputBase-input css-ngazp5-MuiInputBase-input"
+          data-testid="inputText"
           type="text"
           value=""
         />

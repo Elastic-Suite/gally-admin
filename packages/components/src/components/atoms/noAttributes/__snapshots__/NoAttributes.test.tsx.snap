@@ -6,6 +6,7 @@ exports[`NoAttributes NoAttributes with absolutLink 1`] = `
     class="css-1tomd0t"
   >
     <ion-icon
+      data-testid="ionicon"
       src="/images/ionicons/custom/telescope-outline.svg"
       style="color: rgb(129, 135, 185); width: 40px; height: 40px;"
     />
@@ -16,6 +17,7 @@ exports[`NoAttributes NoAttributes with absolutLink 1`] = `
     </div>
     <button
       class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge css-zwkw2d-MuiButtonBase-root-MuiButton-root"
+      data-testid="button"
       tabindex="0"
       type="button"
     >
@@ -39,6 +41,7 @@ exports[`NoAttributes NoAttributes without absolutLink 1`] = `
     class="css-1tomd0t"
   >
     <ion-icon
+      data-testid="ionicon"
       src="/images/ionicons/custom/telescope-outline.svg"
       style="color: rgb(129, 135, 185); width: 40px; height: 40px;"
     />
@@ -49,6 +52,7 @@ exports[`NoAttributes NoAttributes without absolutLink 1`] = `
     </div>
     <button
       class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge css-zwkw2d-MuiButtonBase-root-MuiButton-root"
+      data-testid="button"
       tabindex="0"
       type="button"
     >

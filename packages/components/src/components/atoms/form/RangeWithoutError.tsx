@@ -17,6 +17,7 @@ import FormControl from './FormControl'
 import InfoTooltip from './InfoTooltip'
 import { IUnstyledInputTextProps, Suffix, Wrapper } from './InputText.styled'
 import { FirstInput, SecondInput } from './Range.styled'
+import { TestId, generateTestId } from '../../../utils/testIds'
 
 export interface IRangeProps
   extends Omit<
@@ -35,7 +36,7 @@ export interface IRangeProps
   onChange?: (value: (string | number)[], event: SyntheticEvent) => void
   suffix?: ReactNode
   value: (string | number | null)[]
-  dataTestId?: string
+  componentId?: string
 }
 
 function RangeWithoutError(
@@ -59,7 +60,7 @@ function RangeWithoutError(
     suffix,
     value,
     type = 'number',
-    dataTestId,
+    componentId,
     ...InputProps
   } = props
   const [placeholderFrom, placeholderTo] = placeholder
@@ -103,7 +104,7 @@ function RangeWithoutError(
           inputProps={{
             ...inputProps,
             max: valueTo,
-            'data-testid': dataTestId ? `${dataTestId}First` : null,
+            'data-testid': generateTestId(TestId.RANGE_FROM_INPUT, componentId),
           }}
           placeholder={placeholderFrom}
           value={valueFrom ? String(valueFrom) : ''}
@@ -119,7 +120,7 @@ function RangeWithoutError(
           inputProps={{
             ...inputProps,
             min: valueFrom,
-            'data-testid': dataTestId ? `${dataTestId}Second` : null,
+            'data-testid': generateTestId(TestId.RANGE_TO_INPUT, componentId),
           }}
           placeholder={placeholderTo}
           value={valueTo ? String(valueTo) : ''}
@@ -129,7 +130,7 @@ function RangeWithoutError(
       {Boolean(helperText) && (
         <FormHelperText
           error={error}
-          data-testid={dataTestId ? `${dataTestId}ErrorMessage` : null}
+          data-testid={generateTestId(TestId.HELPER_TEXT, componentId)}
         >
           {Boolean(helperIcon) && (
             <IonIcon

@@ -5,6 +5,7 @@ import { CustomContentProps, SnackbarKey } from 'notistack'
 import { useTranslation } from 'next-i18next'
 
 import IonIcon from '../IonIcon/IonIcon'
+import { TestId, generateTestId } from '../../../utils/testIds'
 
 const StyledAlert = styled(MuiAlert)(({ severity, theme }) => ({
   padding: `6px ${theme.spacing(2)}`,
@@ -72,6 +73,7 @@ function Alert(props: IProps, ref: ForwardedRef<HTMLDivElement>): JSX.Element {
       ref={ref}
       severity={variant as 'success' | 'info' | 'warning' | 'error'}
       sx={{ mb }}
+      data-testid={generateTestId(TestId.ALERT, variant)}
     >
       {t(message)}
     </StyledAlert>

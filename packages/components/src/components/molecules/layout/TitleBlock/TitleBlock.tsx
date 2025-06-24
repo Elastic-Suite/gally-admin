@@ -2,6 +2,7 @@ import React, { ReactNode } from 'react'
 import { styled } from '@mui/system'
 
 import { getCustomScrollBarStyles } from '@elastic-suite/gally-admin-shared'
+import { TestId, generateTestId } from '../../../../utils/testIds'
 
 const Title = styled('div')(({ theme }) => ({
   color: theme.palette.colors.neutral[900],
@@ -51,13 +52,18 @@ interface IProps {
   title?: string
   children?: ReactNode
   subtitle?: string
+  componentId?: string
 }
 
 function TitleBlock(props: IProps): JSX.Element {
-  const { title, children, subtitle } = props
+  const { title, children, subtitle, componentId } = props
   return (
     <>
-      {Boolean(title) && <Title>{title}</Title>}
+      {Boolean(title) && (
+        <Title data-testid={generateTestId(TestId.TITLE_BLOCK, componentId)}>
+          {title}
+        </Title>
+      )}
       {Boolean(children || subtitle) && (
         <Container>
           {Boolean(subtitle) && <Subtitle>{subtitle}</Subtitle>}

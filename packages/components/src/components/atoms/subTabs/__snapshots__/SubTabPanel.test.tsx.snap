@@ -7,6 +7,7 @@ exports[`SubTabPanel match snapshot SubTabPanel simple 1`] = `
   >
     <button
       class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium css-1jv49re-MuiButtonBase-root-MuiButton-root"
+      data-testid="button"
       tabindex="0"
       type="button"
     >

@@ -3,6 +3,7 @@ import IonIcon from '../IonIcon/IonIcon'
 import { ToolTip } from '../modals/Tooltip.stories'
 import { Collapse, styled } from '@mui/material'
 import classnames from 'classnames'
+import { TestId, generateTestId } from '../../../utils/testIds'
 
 interface ICell {
   id: string
@@ -95,10 +96,12 @@ export function ReadOnlyTableRow({
   row,
   highlightedBackground,
   displayCollapseButton,
+  componentId,
 }: {
   row: IRow
   highlightedBackground?: boolean
   displayCollapseButton?: boolean
+  componentId?: string
 }): JSX.Element {
   const [open, setOpen] = useState(false)
 
@@ -113,6 +116,12 @@ export function ReadOnlyTableRow({
           important: row.important,
           highlightedBackground,
         })}
+        data-testid={generateTestId(
+          row.important
+            ? TestId.READ_ONLY_TABLE_ROW_IMPORTANT
+            : TestId.READ_ONLY_TABLE_ROW,
+          componentId
+        )}
       >
         {row.cells.map((cell): JSX.Element => {
           return (
@@ -162,6 +171,10 @@ export function ReadOnlyTableRow({
                   fontSize: '16px',
                   cursor: 'pointer',
                 }}
+                data-testid={generateTestId(
+                  TestId.READ_ONLY_TABLE_COLLAPING_BUTTON,
+                  componentId
+                )}
               />
             ) : null}
           </td>
@@ -179,6 +192,7 @@ export function ReadOnlyTableRow({
                         key={subRow?.id}
                         row={subRow}
                         highlightedBackground
+                        componentId={componentId}
                       />
                     )
                   )}

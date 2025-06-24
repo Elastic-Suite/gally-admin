@@ -28,6 +28,7 @@ import {
   HeaderBox,
   SearchBox,
 } from './Filters.styled'
+import { TestId, generateTestId } from '../../../utils/testIds'
 
 interface IActiveFilter {
   filter: IFieldConfig
@@ -47,7 +48,7 @@ interface IProps {
   onSearch: (value: string) => void
   searchValue?: string
   showSearch?: boolean
-  dataTestId?: string
+  componentId?: string
 }
 
 function getActiveFilterLabel(
@@ -97,7 +98,7 @@ function Filters(props: IProps): JSX.Element {
     onSearch,
     searchValue,
     showSearch,
-    dataTestId,
+    componentId,
   } = props
   const [open, setOpen] = useState(false)
   const { t } = useTranslation('api')
@@ -173,6 +174,8 @@ function Filters(props: IProps): JSX.Element {
     return `${t(key)}: ${value}`
   }
 
+  const dataTestId = generateTestId(TestId.FILTER, componentId)
+
   return (
     <FiltersPaper elevation={0} data-testid={dataTestId}>
       <HeaderBox>
@@ -188,7 +191,7 @@ function Filters(props: IProps): JSX.Element {
               placeholder={t('filters.search')}
               style={{ width: '220px' }}
               value={searchValue}
-              dataTestId={dataTestId ? `${dataTestId}SearchBar` : undefined}
+              componentId={generateTestId(TestId.FILTER_SEARCH_BAR, dataTestId)}
             />
           </SearchBox>
         ) : null}
@@ -196,16 +199,20 @@ function Filters(props: IProps): JSX.Element {
           <FilterSecondaryButton
             onClick={toggleFilters}
             endIcon={<IonIcon name="filter-outline" />}
-            data-testid={dataTestId ? `${dataTestId}ToggleButton` : undefined}
+            data-testid={generateTestId(
+              TestId.FILTER_TOGGLE_BUTTON,
+              dataTestId
+            )}
           >
             {t('filters.filter')}{' '}
             {activeFilters.length > 0 && (
               <>
                 (
                 <span
-                  data-testid={
-                    dataTestId ? `${dataTestId}ActiveFiltersCount` : undefined
-                  }
+                  data-testid={generateTestId(
+                    TestId.FILTER_NB_ACTIVE_FILTERS,
+                    dataTestId
+                  )}
                 >
                   {activeFilters.length}
                 </span>
@@ -214,23 +221,21 @@ function Filters(props: IProps): JSX.Element {
             )}
           </FilterSecondaryButton>
           <FacetteBox
-            data-testid={dataTestId ? `${dataTestId}FacetteBox` : undefined}
+            data-testid={generateTestId(TestId.FILTER_CHIPS_BOX, dataTestId)}
           >
             {activeFilters.map(({ filter, label, value }) => (
               <Chip
                 key={`${filter.id}${rangeSeparator}${value}`}
                 label={chipFilterLabelWithTraduction(label)}
                 onDelete={(): void => handleClear(filter, value)}
-                data-testid={
-                  dataTestId ? `${dataTestId}${filter.id}Chip` : undefined
-                }
+                componentId={filter.id}
               />
             ))}
           </FacetteBox>
           <FilterTertiaryButton
             onClick={onClearAll}
             endIcon={<IonIcon name="reload-outline" />}
-            data-testid={dataTestId ? `${dataTestId}ClearAllButton` : undefined}
+            data-testid={generateTestId(TestId.FILTER_CLEAR_BUTTON, dataTestId)}
           >
             {t('filters.clearAll')}
           </FilterTertiaryButton>
@@ -255,7 +260,10 @@ function Filters(props: IProps): JSX.Element {
             <Button
               type="submit"
               endIcon={<IonIcon name="checkmark-done-outline" />}
-              data-testid={dataTestId ? `${dataTestId}ApplyButton` : undefined}
+              data-testid={generateTestId(
+                TestId.FILTER_APPLY_BUTTON,
+                dataTestId
+              )}
             >
               {t('filters.apply')}
             </Button>
@@ -263,9 +271,10 @@ function Filters(props: IProps): JSX.Element {
               display="tertiary"
               onClick={onClearAll}
               endIcon={<IonIcon name="reload-outline" />}
-              data-testid={
-                dataTestId ? `${dataTestId}ClearAllButton` : undefined
-              }
+              data-testid={generateTestId(
+                TestId.FILTER_CLEAR_BUTTON,
+                dataTestId
+              )}
             >
               {t('filters.clearAll')}
             </Button>

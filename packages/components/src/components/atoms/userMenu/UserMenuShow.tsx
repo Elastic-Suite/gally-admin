@@ -10,6 +10,7 @@ import {
 import FormatText from '../format/FormatText'
 
 import { useTranslation } from 'next-i18next'
+import { TestId, generateTestId } from '../../../utils/testIds'
 
 const CustomTypoTexte = styled('div')(({ theme }) => ({
   fontStyle: 'normal',
@@ -56,11 +57,14 @@ function UserMenuShow({ user }: IProps): JSX.Element {
 
   return (
     <CustomTypoTexte>
-      <CustomTypoEmail data-testid="userEmail">
+      <CustomTypoEmail data-testid={generateTestId(TestId.USER_EMAIL)}>
         <FormatText name={user.username} toolTip firstLetterUpp />
       </CustomTypoEmail>
       <CustomHr />
-      <CustomTypoBasic onClick={handleLogOut} data-testid="logOutButton">
+      <CustomTypoBasic
+        onClick={handleLogOut}
+        data-testid={generateTestId(TestId.LOG_OUT_BUTTON)}
+      >
         {t('log.out')}
       </CustomTypoBasic>
     </CustomTypoTexte>

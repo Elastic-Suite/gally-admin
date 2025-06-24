@@ -23,6 +23,7 @@ import {
   SmallCustomContainer,
   Underline,
 } from './Tree.styled'
+import { TestId, generateTestId } from '../../../utils/testIds'
 
 function highlight(label: string, search: string): JSX.Element[] {
   const matches = match(label, search)
@@ -55,6 +56,7 @@ interface IProps<Multiple extends boolean | undefined> {
   search?: string
   small?: boolean
   value?: Multiple extends true ? ITreeItem[] : ITreeItem
+  componentId?: string
 }
 
 function Tree<Multiple extends boolean | undefined>(
@@ -72,6 +74,7 @@ function Tree<Multiple extends boolean | undefined>(
     search,
     small,
     value,
+    componentId,
   } = props
 
   const { t } = useTranslation('categories')
@@ -115,10 +118,20 @@ function Tree<Multiple extends boolean | undefined>(
   }
 
   return (
-    <CustomRoot onClick={handleClick} {...(base && getListboxProps?.())}>
+    <CustomRoot
+      onClick={handleClick}
+      {...(base && getListboxProps?.())}
+      data-testid={generateTestId(TestId.TREE, componentId)}
+    >
       {data.map((item: ITreeItem) => {
         const title = (
-          <Title onClick={handleChecked(item)}>
+          <Title
+            data-testid={generateTestId(
+              TestId.TREE_ITEM_TITLE_BUTTON,
+              componentId
+            )}
+            onClick={handleChecked(item)}
+          >
             {search ? (
               highlight(item.name, search)
             ) : !(value instanceof Array) && value === item ? (
@@ -140,7 +153,13 @@ function Tree<Multiple extends boolean | undefined>(
               }}
             >
               {item.children ? (
-                <Button onClick={handleToggle(item)}>
+                <Button
+                  onClick={handleToggle(item)}
+                  data-testid={generateTestId(
+                    TestId.TREE_COLLAPSING_ITEM_LIST_BUTTON,
+                    componentId
+                  )}
+                >
                   <IonIcon
                     name={openItems[item.id] ? 'minus' : 'more'}
                     style={{ fontSize: small ? '15px' : '24px' }}
@@ -169,7 +188,12 @@ function Tree<Multiple extends boolean | undefined>(
               </CustomTitleContainer>
             </Container>
             {Boolean(openItems[item.id] && item.children) && (
-              <Tree {...props} base={false} data={item.children} />
+              <Tree
+                {...props}
+                base={false}
+                data={item.children}
+                componentId={componentId}
+              />
             )}
           </CustomLi>
         )

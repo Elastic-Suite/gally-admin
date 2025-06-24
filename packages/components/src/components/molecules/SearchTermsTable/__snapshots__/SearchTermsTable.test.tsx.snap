@@ -7,10 +7,12 @@ exports[`SearchTermsTable SearchTermsTable match snapshot 1`] = `
   >
     <table
       class="css-1k86jay"
+      data-testid="readOnlyTable"
     >
       <thead>
         <tr
           class=""
+          data-testid="readOnlyTableRow"
         >
           <td
             style="width: 50%;"
@@ -27,6 +29,7 @@ exports[`SearchTermsTable SearchTermsTable match snapshot 1`] = `
       <tbody>
         <tr
           class=""
+          data-testid="readOnlyTableRow"
         >
           <td>
             Test 3
@@ -37,6 +40,7 @@ exports[`SearchTermsTable SearchTermsTable match snapshot 1`] = `
         </tr>
         <tr
           class=""
+          data-testid="readOnlyTableRow"
         >
           <td>
             Test 2
@@ -47,6 +51,7 @@ exports[`SearchTermsTable SearchTermsTable match snapshot 1`] = `
         </tr>
         <tr
           class=""
+          data-testid="readOnlyTableRow"
         >
           <td>
             Test 1

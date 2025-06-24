@@ -3,6 +3,7 @@ import { Typography, TypographyProps } from '@mui/material'
 import { styled } from '@mui/system'
 import Head from 'next/head'
 import { getHeadTitle } from '@elastic-suite/gally-admin-shared'
+import { TestId, generateTestId } from '../../../utils/testIds'
 
 const Root = styled('div')(() => ({
   display: 'flex',
@@ -40,10 +41,11 @@ interface IProps extends TypographyProps {
   children?: ReactNode
   sticky?: boolean
   title: string
+  componentId?: string
 }
 
 function PageTitle(props: IProps): JSX.Element {
-  const { children, sticky, title, ...typographyProps } = props
+  const { children, sticky, title, componentId, ...typographyProps } = props
   const RootComponent = sticky ? StickyRoot : Root
 
   return (
@@ -51,7 +53,9 @@ function PageTitle(props: IProps): JSX.Element {
       <Head>
         <title>{getHeadTitle(title)}</title>
       </Head>
-      <RootComponent>
+      <RootComponent
+        data-testid={generateTestId(TestId.PAGE_TITLE, componentId)}
+      >
         {title ? (
           <CustomTypography {...typographyProps}>{title}</CustomTypography>
         ) : null}

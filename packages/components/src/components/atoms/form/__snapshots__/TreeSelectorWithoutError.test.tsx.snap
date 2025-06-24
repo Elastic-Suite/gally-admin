@@ -4,6 +4,7 @@ exports[`TreeSelectorWithoutError should match snapshot 1`] = `
 <div>
   <div
     class="css-1b4s9jn"
+    data-testid="treeSelector"
   >
     <div
       class="MuiFormControl-root css-hh3vi8-MuiFormControl-root"
@@ -21,6 +22,7 @@ exports[`TreeSelectorWithoutError should match snapshot 1`] = `
             autocapitalize="none"
             autocomplete="off"
             class="MuiInputBase-input MuiInputBase-inputAdornedStart MuiInputBase-inputAdornedEnd css-ngazp5-MuiInputBase-input"
+            data-testid="inputText|treeSelector"
             id=":r0:"
             role="combobox"
             spellcheck="false"
@@ -38,6 +40,7 @@ exports[`TreeSelectorWithoutError should match snapshot 1`] = `
               type="button"
             >
               <ion-icon
+                data-testid="ionicon"
                 src="/images/ionicons/chevron-down.svg"
               />
               <span

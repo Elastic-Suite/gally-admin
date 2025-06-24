@@ -4,6 +4,7 @@ exports[`PageTitle match snapshot PageTitle simple 1`] = `
 <div>
   <div
     class="css-k008qs"
+    data-testid="pageTitle"
   >
     <h1
       class="MuiTypography-root MuiTypography-h1 css-1hsqzsw-MuiTypography-root"
@@ -18,6 +19,7 @@ exports[`PageTitle match snapshot PageTitleH2 1`] = `
 <div>
   <div
     class="css-k008qs"
+    data-testid="pageTitle"
   >
     <h2
       class="MuiTypography-root MuiTypography-h2 css-1bgavle-MuiTypography-root"
@@ -32,6 +34,7 @@ exports[`PageTitle match snapshot PageTitleH3WithChildren 1`] = `
 <div>
   <div
     class="css-k008qs"
+    data-testid="pageTitle"
   >
     <h3
       class="MuiTypography-root MuiTypography-h3 css-1pl5bl0-MuiTypography-root"
@@ -41,6 +44,7 @@ exports[`PageTitle match snapshot PageTitleH3WithChildren 1`] = `
     <div>
       <button
         class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium css-1jv49re-MuiButtonBase-root-MuiButton-root"
+        data-testid="button"
         tabindex="0"
         type="button"
       >

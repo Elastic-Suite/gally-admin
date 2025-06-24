@@ -20,6 +20,7 @@ import { selectConfiguration, useAppSelector } from '../../../store'
 
 import BottomTable from '../TopAndBottomTable/BottomTable'
 import TopTable from '../TopAndBottomTable/TopTable'
+import { TestId, generateTestId } from '../../../utils/testIds'
 
 const PreviewArea = styled(Box)(({ theme }) => ({
   fontSize: '12px',
@@ -47,6 +48,7 @@ interface IProps {
   ruleOperators: IRuleEngineOperators
   hasEditLink?: boolean
   editLink?: string
+  componentId?: string
 }
 
 function ProductsTopAndBottom(
@@ -71,6 +73,7 @@ function ProductsTopAndBottom(
     ruleOperators,
     hasEditLink,
     editLink,
+    componentId,
   } = props
   const { t } = useTranslation('categories')
 
@@ -80,7 +83,11 @@ function ProductsTopAndBottom(
 
   return (
     configuration && (
-      <Paper variant="outlined" sx={{ backgroundColor: 'colors.neutral.300' }}>
+      <Paper
+        variant="outlined"
+        sx={{ backgroundColor: 'colors.neutral.300' }}
+        data-testid={generateTestId(TestId.TOP_AND_BOTTOM_TABLE, componentId)}
+      >
         <PreviewArea>{t('previewArea')}</PreviewArea>
         <Box sx={{ padding: '28px 16px 17px 16px' }}>
           {topProducts.length !== 0 && (
@@ -100,6 +107,7 @@ function ProductsTopAndBottom(
               ruleOperators={ruleOperators}
               hasEditLink={hasEditLink}
               editLink={editLink}
+              componentId={componentId}
             />
           )}
           <BottomTable
@@ -118,6 +126,7 @@ function ProductsTopAndBottom(
             ruleOperators={ruleOperators}
             hasEditLink={hasEditLink}
             editLink={editLink}
+            componentId={componentId}
           />
         </Box>
       </Paper>

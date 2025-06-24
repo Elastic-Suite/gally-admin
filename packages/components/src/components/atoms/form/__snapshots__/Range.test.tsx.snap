@@ -21,6 +21,7 @@ exports[`Range sould match snapshot 1`] = `
         <input
           aria-invalid="false"
           class="MuiInputBase-input css-ngazp5-MuiInputBase-input"
+          data-testid="rangeFromInput"
           max="3"
           type="number"
           value="1"
@@ -33,6 +34,7 @@ exports[`Range sould match snapshot 1`] = `
         <input
           aria-invalid="false"
           class="MuiInputBase-input css-ngazp5-MuiInputBase-input"
+          data-testid="rangeToInput"
           min="1"
           type="number"
           value="3"

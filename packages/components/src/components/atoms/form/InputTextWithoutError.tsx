@@ -22,6 +22,8 @@ import {
   Wrapper,
 } from './InputText.styled'
 
+import { TestId, generateTestId } from '../../../utils/testIds'
+
 export interface IInputTextProps
   extends Omit<
       IUnstyledInputTextProps,
@@ -42,7 +44,7 @@ export interface IInputTextProps
   onChange?: (value: string | number, event: SyntheticEvent) => void
   suffix?: ReactNode
   requiredLabel?: boolean
-  dataTestId?: string
+  componentId?: string
 }
 
 function InputTextWithoutError(
@@ -63,7 +65,7 @@ function InputTextWithoutError(
     suffix,
     value,
     requiredLabel,
-    dataTestId,
+    componentId,
     inputProps,
     ...InputProps
   } = props
@@ -98,8 +100,8 @@ function InputTextWithoutError(
           ref={ref}
           value={(value ?? '').toString()}
           inputProps={{
+            'data-testid': generateTestId(TestId.INPUT_TEXT, componentId),
             ...inputProps,
-            'data-testid': dataTestId,
           }}
           {...InputProps}
         />
@@ -107,7 +109,7 @@ function InputTextWithoutError(
       </Wrapper>
       {Boolean(helperText) && (
         <FormHelperText
-          data-testid={dataTestId ? `${dataTestId}ErrorMessage` : null}
+          data-testid={generateTestId(TestId.HELPER_TEXT, componentId)}
         >
           {Boolean(helperIcon) && (
             <IonIcon

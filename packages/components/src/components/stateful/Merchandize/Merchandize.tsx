@@ -75,6 +75,7 @@ function Merchandize({
               catConf as unknown as Record<string, unknown>,
               fieldConfigMap.get('useNameInProductSearch')?.depends
             )}
+            componentId="useNameInProductSearch"
           />
         </Grid>
         <Grid item xs={6}>
@@ -90,6 +91,7 @@ function Merchandize({
               catConf as unknown as Record<string, unknown>,
               fieldConfigMap.get('defaultSorting')?.depends
             )}
+            componentId="defaultSorting"
           />
         </Grid>
         {isVirtualCategoryEnabled(bundles) && (
@@ -101,6 +103,7 @@ function Merchandize({
               name="isVirtual"
               disabled={isRootCategory}
               onChange={handleChange}
+              componentId="isVirtual"
               {...getFieldState(
                 catConf as unknown as Record<string, unknown>,
                 fieldConfigMap.get('isVirtual')?.depends

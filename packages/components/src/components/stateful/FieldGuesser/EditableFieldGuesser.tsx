@@ -28,6 +28,7 @@ import Synonym from '../../atoms/form/Synonym'
 import Expansion from '../../atoms/form/Expansion'
 import { IProportionalToAttributesValue } from '../../molecules/ProportionalToAttributes/ProportionalToAttributes'
 import ProportionalToAttributesManager from '../../molecules/ProportionalToAttributes/ProportionalToAttributesManager'
+
 function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
   const {
     diffValue,
@@ -101,7 +102,7 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
               : helperText
           }
           inputProps={validation}
-          dataTestId={name}
+          componentId={name}
           label={label}
           onChange={handleChange}
           required={required}
@@ -133,6 +134,7 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
           suffix={suffix}
           value={value as (string | number | null)[]}
           replacementErrorsMessages={replacementErrorsMessages}
+          componentId={name}
         />
       )
     }
@@ -146,7 +148,7 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
           value={Number(value)}
           onChange={handleChange}
           helperText={helperText}
-          dataTestId={name}
+          componentId={name}
         />
       )
     }
@@ -158,6 +160,7 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
         requestTypeConfigurations,
         ...doubleDatePickerProps
       } = props
+      console.log(name)
 
       return (
         <Box>
@@ -170,7 +173,7 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
             error={error}
             helperText={helperText}
             label={label}
-            dataTestId={name}
+            componentId={name}
           />
         </Box>
       )
@@ -189,6 +192,7 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
           error={error}
           helperText={helperText}
           showError={showError}
+          componentId={name}
         />
       )
     }
@@ -207,7 +211,7 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
           error={error}
           helperText={helperText}
           showError={showError}
-          dataTestId={name}
+          componentId={name}
         />
       )
     }
@@ -223,7 +227,7 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
           error={error}
           helperText={helperText}
           showError={showError}
-          dataTestId={name}
+          componentId={name}
         />
       )
     }
@@ -240,7 +244,7 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
           error={error}
           helperText={helperText}
           showError={showError}
-          dataTestId={name}
+          componentId={name}
         />
       )
     }
@@ -272,7 +276,7 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
           error={error}
           helperText={helperText}
           replacementErrorsMessages={replacementErrorsMessages}
-          dataTestId={name}
+          componentId={name}
         />
       )
     }
@@ -302,7 +306,7 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
             error={error}
             showError={showError}
             replacementErrorsMessages={replacementErrorsMessages}
-            dataTestId={name}
+            componentId={name}
           />
         )
       }
@@ -323,7 +327,7 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
           required={required}
           label={label}
           placeholder={placeholder}
-          data-testid={name}
+          componentId={name}
         />
       )
     }

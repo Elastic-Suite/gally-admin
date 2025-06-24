@@ -4,6 +4,7 @@ exports[`Pagination should match snapshot for bottom pagination 1`] = `
 <div>
   <div
     class="MuiBox-root css-1a9aboo"
+    data-testid="pagination"
   >
     <div
       class="MuiTablePagination-root css-jtlhu6-MuiTablePagination-root"
@@ -21,14 +22,15 @@ exports[`Pagination should match snapshot for bottom pagination 1`] = `
             class="css-oo4ti7"
           >
             <span
-              data-testid="from"
+              data-testid="paginationFrom"
             >
               6
             </span>
-             -
+             
+            -
              
             <span
-              data-testid="to"
+              data-testid="paginationTo"
             >
               10
             </span>
@@ -36,7 +38,7 @@ exports[`Pagination should match snapshot for bottom pagination 1`] = `
             pagination.of
              
             <span
-              data-testid="count"
+              data-testid="paginationCount"
             >
               10
             </span>
@@ -98,6 +100,7 @@ exports[`Pagination should match snapshot for top pagination 1`] = `
 <div>
   <div
     class="MuiBox-root css-1puwm7n"
+    data-testid="pagination"
   >
     <div
       class="MuiTablePagination-root css-jtlhu6-MuiTablePagination-root"
@@ -115,14 +118,15 @@ exports[`Pagination should match snapshot for top pagination 1`] = `
             class="css-oo4ti7"
           >
             <span
-              data-testid="from"
+              data-testid="paginationFrom"
             >
               6
             </span>
-             -
+             
+            -
              
             <span
-              data-testid="to"
+              data-testid="paginationTo"
             >
               10
             </span>
@@ -130,7 +134,7 @@ exports[`Pagination should match snapshot for top pagination 1`] = `
             pagination.of
              
             <span
-              data-testid="count"
+              data-testid="paginationCount"
             >
               10
             </span>

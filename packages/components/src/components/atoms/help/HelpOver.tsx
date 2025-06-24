@@ -1,6 +1,7 @@
 import React from 'react'
 import { styled } from '@mui/system'
 import Link from 'next/link'
+import { TestId, generateTestId } from '../../../utils/testIds'
 
 const CustomRoot = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -24,7 +25,7 @@ const CustomA = styled('a')({
 
 function HelpOver(): JSX.Element {
   return (
-    <CustomRoot data-testid="helpOver">
+    <CustomRoot data-testid={generateTestId(TestId.HELP_OVER)}>
       <Link href="https://elasticsuite.zendesk.com" legacyBehavior passHref>
         <CustomA>Helpdesk</CustomA>
       </Link>

@@ -7,6 +7,7 @@ import ResourceTable, {
 import { useFilters, useResource } from '../../../hooks'
 import { useTranslation } from 'next-i18next'
 import { styled } from '@mui/system'
+import { TestId, generateTestId } from '../../../utils/testIds'
 
 interface IProps
   extends Omit<IResourceTable, 'activeFilters' | 'setActiveFilters'> {
@@ -50,7 +51,13 @@ function Grid(props: IProps): JSX.Element {
     <>
       <PageTitle title={title ?? t(resourceName)}>
         {hasNewLink ? (
-          <Button {...propsButton} data-testid="createButtonResourceGrid">
+          <Button
+            {...propsButton}
+            data-testid={generateTestId(
+              TestId.GRID_CREATE_BUTTON,
+              resourceName
+            )}
+          >
             <CustomAHref
               href={newLink ?? './create'}
               isIconInButton={Boolean(propsButton?.endIcon)}

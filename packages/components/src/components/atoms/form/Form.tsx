@@ -6,6 +6,7 @@ import React, {
 } from 'react'
 import Button from '../buttons/Button'
 import { useFormValidation } from '../../../hooks/useFormValdation'
+
 interface IFormProps extends Omit<ComponentProps<'form'>, 'onSubmit'> {
   onSubmit: (event: SyntheticEvent, formIsValid: boolean) => void
   submitButtonText?: string
@@ -39,7 +40,7 @@ function Form({
         <Button
           style={{ marginTop: '8px' }}
           type="submit"
-          data-testid="submitButton"
+          componentId="form-submit"
         >
           {submitButtonText}
         </Button>
