@@ -1,6 +1,7 @@
 import React from 'react'
 import { styled } from '@mui/system'
 import { useTranslation } from 'next-i18next'
+import { TestId, generateTestId } from '../../../utils/testIds'
 
 const CustomRoot = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -32,7 +33,7 @@ interface IProps {
 function NbActiveLocales({ number }: IProps): JSX.Element {
   const { t } = useTranslation('common')
   return (
-    <CustomRoot>
+    <CustomRoot data-testId={generateTestId(TestId.NB_ACTIVE_LOCALES)}>
       <CustomNbActiveLocales>{number}</CustomNbActiveLocales>
       <CustomTexteActiveLocales>
         {t('catalog.activeLocale', { count: number })}

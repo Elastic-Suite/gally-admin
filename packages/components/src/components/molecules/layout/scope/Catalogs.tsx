@@ -7,6 +7,7 @@ import {
   ITabContentProps,
   getUniqueLocalName,
 } from '@elastic-suite/gally-admin-shared'
+import { TestId, generateTestId } from '../../../../utils/testIds'
 
 import TitleScope from '../../../atoms/scope/TitleScope'
 import NbActiveLocales from '../../../atoms/scope/NbActiveLocales'
@@ -58,7 +59,10 @@ function Catalogs({ content }: IProps): JSX.Element {
       </CustomNbCatalogs>
       <CustomRoot>
         {content['hydra:member'].map((item: ICatalog, key: number) => (
-          <CustomCatalogs key={item.name}>
+          <CustomCatalogs
+            data-testId={generateTestId(TestId.CATALOGS, item.code)}
+            key={item.name}
+          >
             <TitleScope name={item.name} />
             <NbActiveLocales number={getUniqueLocalName(item).length} />
             <Language
