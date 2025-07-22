@@ -146,9 +146,9 @@
     "webpack": "5.74.0"
   },
   "peerDependencies": {
-    "next": "13.x",
-    "react": "18.x",
-    "react-dom": "18.x"
+    "next": "15.x",
+    "react": "19.x",
+    "react-dom": "19.x"
   },
   "browserslist": {
     "production": [
