@@ -79,7 +79,8 @@ function RulesManager(props: IRulesManagerProps): JSX.Element {
     ...ruleProps
   } = props
   const { t } = useTranslation('common')
-  const { catalogId, localizedCatalogId } = useContext(catalogContext)
+  const { catalogId, localizedCatalogId, localizedCatalogIdWithDefault } =
+    useContext(catalogContext)
   const rowsPerPage = 200
   const rule: IRuleCombination =
     typeof ruleProps.rule === 'string'
@@ -118,15 +119,28 @@ function RulesManager(props: IRulesManagerProps): JSX.Element {
   // Source field labels
   const sourceFieldLabelResource = useResource('SourceFieldLabel')
   const sourceFieldLabelFilters = useMemo(() => {
-    const filters: { localizedCatalog?: string } = {}
-    if (localizedCatalogId !== -1) {
-      filters.localizedCatalog = getIri(
-        'localized_catalogs',
-        localizedCatalogId
+    const filters: { localizedCatalog?: string; 'sourceField[]'?: string[] } =
+      {}
+    filters.localizedCatalog = getIri(
+      'localized_catalogs',
+      localizedCatalogId !== -1
+        ? localizedCatalogId
+        : localizedCatalogIdWithDefault
+    )
+
+    if (sourceFields?.data) {
+      filters['sourceField[]'] = sourceFields.data['hydra:member'].map((s) =>
+        s.id.toString()
       )
+    } else {
+      // Prevents the request from running if there are no source fields
+      // This is very important on very large catalogs
+      return undefined
     }
+
     return filters
-  }, [localizedCatalogId])
+  }, [localizedCatalogId, localizedCatalogIdWithDefault, sourceFields])
+
   const [sourceFieldLabels] = useApiList<ISourceFieldLabel>(
     sourceFieldLabelResource,
     false,
@@ -134,7 +148,8 @@ function RulesManager(props: IRulesManagerProps): JSX.Element {
     sourceFieldLabelFilters,
     undefined,
     false,
-    true
+    true,
+    sourceFieldLabelFilters !== undefined
   )
 
   if (!sourceFields.data || !sourceFieldLabels.data) {
