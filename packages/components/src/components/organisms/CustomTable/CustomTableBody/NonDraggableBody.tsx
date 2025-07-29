@@ -103,6 +103,7 @@ function NonDraggableBody(props: IProps): JSX.Element {
           handleClose={handleClose}
           open={open}
           {...tableRowPopIn}
+          componentId="tableRowPopIn"
         />
       ) : null}
     </TableBody>

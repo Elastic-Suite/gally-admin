@@ -10,12 +10,13 @@ exports[`UserMenu match snapshot UserMenu 1`] = `
       class="css-1gbhtbv"
     >
       <ion-icon
+        data-testid="ionicon"
         src="/images/ionicons/person-outline.svg"
         style="font-size: 15px; color: rgb(129, 135, 185);"
       />
       <div
         class="css-14i4ulh"
-        data-testid="username"
+        data-testid="userName"
       >
         Admin@example.com
       </div>
@@ -23,6 +24,7 @@ exports[`UserMenu match snapshot UserMenu 1`] = `
         class="css-1tg3i43"
       >
         <ion-icon
+          data-testid="ionicon"
           src="/images/ionicons/chevron-down.svg"
           style="font-size: 15px; color: rgb(129, 135, 185);"
         />

@@ -5,6 +5,7 @@ import Popin from '../../atoms/modals/PopIn'
 import { JSONTree } from 'react-json-tree'
 import { IconButton, Typography } from '@mui/material'
 import { useTranslation } from 'next-i18next'
+import { TestId, generateTestId } from '../../../utils/testIds'
 
 const JSONTreeTheme = {
   extend: {
@@ -80,6 +81,7 @@ function ExplainQueryDetails({ index, query, boxStyle }: IProps): JSX.Element {
   const ButtonCopyToClipBoard = (
     <Button
       display="secondary"
+      data-testid={generateTestId(TestId.BUTTON, 'copyExplainQueryToClipboard')}
       onClick={(): void => copyToClipboard(JSON.stringify(query))}
     >
       <IonIcon name="copy-outline" style={{ fontSize: 24 }} />
@@ -94,6 +96,7 @@ function ExplainQueryDetails({ index, query, boxStyle }: IProps): JSX.Element {
           '4px 4px 14px 0px rgba(255, 231, 228, 0.50), 0px 16px 16px 0px rgba(243, 151, 140, 0.20), 0px -8px 8px 0px rgba(255, 231, 228, 0.20)',
         padding: '12px',
       }}
+      data-testid={generateTestId(TestId.BUTTON, 'queryDetails')}
     >
       <IonIcon
         name="code-slash"
@@ -114,6 +117,7 @@ function ExplainQueryDetails({ index, query, boxStyle }: IProps): JSX.Element {
       styles={customDialogStyles}
       boxStyle={boxStyle}
       position="right"
+      componentId="explainQueryDetails"
     >
       <TitleTypography>{t('query.popin.title')}</TitleTypography>
       <Typography

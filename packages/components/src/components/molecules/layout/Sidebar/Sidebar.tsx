@@ -6,6 +6,7 @@ import Image from 'next/image'
 import { IMenu } from '@elastic-suite/gally-admin-shared'
 
 import Menu from '../Menu/Menu'
+import { TestId, generateTestId } from '../../../../utils/testIds'
 
 const CustomImgCollapse = styled('div')({
   position: 'absolute',
@@ -87,7 +88,7 @@ function Sidebar(props: IProps): JSX.Element {
       orientation="horizontal"
       collapsedSize={sidebarState ? 278 : 66}
       timeout={sidebarState ? 0 : 200}
-      data-testid="sidebarMenu"
+      data-testid={generateTestId(TestId.SIDE_BAR)}
     >
       <CustomRoot style={sidebarState ? {} : { width: 'inherit' }}>
         <Link href="/admin/settings/scope/catalogs">

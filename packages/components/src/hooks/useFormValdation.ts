@@ -18,7 +18,6 @@ export const useFormValidation = (): IFormValidation => {
       subtree: true,
       attributes: true,
     })
-
     return () => mutationObserver.disconnect()
   }, [formRef])
 

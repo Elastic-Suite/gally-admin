@@ -32,6 +32,7 @@ import StickyBar from '../../molecules/CustomTable/StickyBar/StickyBar'
 import ProductsTopAndBottom from '../ProductsTopAndBottom/ProductsTopAndBottom'
 import Merchandize from '../Merchandize/Merchandize'
 import SearchBar from '../Merchandize/SearchBar/SearchBar'
+import { TestId, generateTestId } from '../../../utils/testIds'
 
 const Layout = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -60,6 +61,7 @@ interface IProps {
   editLink?: string
   localizedCatalogIdWithDefault: string
   ruleOperators: IRuleEngineOperators
+  componentId?: string
 }
 
 function ProductsContainer(props: IProps): JSX.Element {
@@ -77,6 +79,7 @@ function ProductsContainer(props: IProps): JSX.Element {
     hasEditLink,
     editLink,
     localizedCatalogIdWithDefault,
+    componentId,
   } = props
   const tableRef = useRef<HTMLDivElement>()
   const [topSelectedRows, setTopSelectedRows] = useState<string[]>([])
@@ -204,18 +207,23 @@ function ProductsContainer(props: IProps): JSX.Element {
   }
 
   return (
-    <Box>
+    <Box data-testid={generateTestId(TestId.PRODUCTS_CONTAINER, componentId)}>
       <Layout>
         <PageTitle
           sticky
           sx={{ marginBottom: '12px' }}
           title={category?.name ? category?.name : category?.catalogName}
+          componentId={componentId}
         >
           <Button
             disabled={disabled}
             onClick={handleSave}
             loading={isLoading}
             endIcon={<IonIcon name="save-outline" />}
+            data-testid={generateTestId(
+              TestId.PRODUCTS_CONTAINER_SAVE_BUTTON,
+              componentId
+            )}
           >
             {t('buttonSave')}
           </Button>
@@ -237,6 +245,10 @@ function ProductsContainer(props: IProps): JSX.Element {
           searchValue={valSearchOnChange}
           onValSearchOnChange={onValSearchOnChange}
           isInputAdornmentClickable
+          componentId={generateTestId(
+            TestId.PRODUCTS_CONTAINER_SEARCH_BAR,
+            componentId
+          )}
         />
         {Boolean(catConf && (!catConf.virtualRule || category?.id)) && (
           <ProductsTopAndBottom
@@ -258,6 +270,7 @@ function ProductsContainer(props: IProps): JSX.Element {
             ruleOperators={ruleOperators}
             hasEditLink={hasEditLink}
             editLink={editLink}
+            componentId={generateTestId(TestId.PRODUCTS_CONTAINER, componentId)}
           />
         )}
       </Layout>

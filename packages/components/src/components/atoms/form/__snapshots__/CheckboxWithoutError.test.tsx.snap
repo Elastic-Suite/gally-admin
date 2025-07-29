@@ -4,6 +4,7 @@ exports[`CheckboxWithoutError match snapshot CheckboxWithoutErrorIndeterminateFa
 <div>
   <label
     class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-fbz9fk-MuiFormControlLabel-root"
+    data-testid="checkbox"
   >
     <span
       class="MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root MuiCheckbox-root MuiCheckbox-colorPrimary css-nnfn9j-MuiButtonBase-root-MuiCheckbox-root"
@@ -41,6 +42,7 @@ exports[`CheckboxWithoutError match snapshot CheckboxWithoutErrorIndeterminateTr
 <div>
   <label
     class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-fbz9fk-MuiFormControlLabel-root"
+    data-testid="checkbox"
   >
     <span
       class="MuiButtonBase-root MuiCheckbox-root MuiCheckbox-indeterminate MuiCheckbox-colorPrimary PrivateSwitchBase-root MuiCheckbox-root MuiCheckbox-indeterminate MuiCheckbox-colorPrimary css-nnfn9j-MuiButtonBase-root-MuiCheckbox-root"
@@ -78,6 +80,7 @@ exports[`CheckboxWithoutError match snapshot CheckboxWithoutErrorLabel 1`] = `
 <div>
   <label
     class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-fbz9fk-MuiFormControlLabel-root"
+    data-testid="checkbox"
   >
     <span
       class="MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root MuiCheckbox-root MuiCheckbox-colorPrimary css-nnfn9j-MuiButtonBase-root-MuiCheckbox-root"
@@ -117,6 +120,7 @@ exports[`CheckboxWithoutError match snapshot CheckboxWithoutErrorLabelAndList 1`
 <div>
   <label
     class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-fbz9fk-MuiFormControlLabel-root"
+    data-testid="checkbox"
   >
     <span
       class="MuiButtonBase-root MuiCheckbox-root MuiCheckbox-indeterminate MuiCheckbox-colorPrimary PrivateSwitchBase-root MuiCheckbox-root MuiCheckbox-indeterminate MuiCheckbox-colorPrimary css-b2ivi4-MuiButtonBase-root-MuiCheckbox-root"
@@ -156,6 +160,7 @@ exports[`CheckboxWithoutError match snapshot CheckboxWithoutErrorListFalse 1`] =
 <div>
   <label
     class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-fbz9fk-MuiFormControlLabel-root"
+    data-testid="checkbox"
   >
     <span
       class="MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root MuiCheckbox-root MuiCheckbox-colorPrimary css-nnfn9j-MuiButtonBase-root-MuiCheckbox-root"
@@ -193,6 +198,7 @@ exports[`CheckboxWithoutError match snapshot CheckboxWithoutErrorListTrue 1`] = 
 <div>
   <label
     class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-fbz9fk-MuiFormControlLabel-root"
+    data-testid="checkbox"
   >
     <span
       class="MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root MuiCheckbox-root MuiCheckbox-colorPrimary css-b2ivi4-MuiButtonBase-root-MuiCheckbox-root"

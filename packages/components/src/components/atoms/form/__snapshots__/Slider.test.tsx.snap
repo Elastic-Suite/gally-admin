@@ -17,6 +17,7 @@ exports[`Slider match snapshot Slider Full 1`] = `
         style="display: inline-block; padding-left: 10px; margin-bottom: -5px;"
       >
         <ion-icon
+          data-testid="ionicon"
           src="/images/ionicons/information-circle-outline.svg"
           style="color: rgb(129, 135, 185); width: 20px; height: 20px; display: flex;"
         />
@@ -47,6 +48,7 @@ exports[`Slider match snapshot Slider Full 1`] = `
       </div>
       <span
         class="MuiSlider-root MuiSlider-colorPrimary MuiSlider-sizeMedium css-3cy87h-MuiSlider-root"
+        data-testid="slider"
       >
         <span
           class="MuiSlider-rail css-14pt78w-MuiSlider-rail"
@@ -93,8 +95,10 @@ exports[`Slider match snapshot Slider Full 1`] = `
     </div>
     <p
       class="MuiFormHelperText-root MuiFormHelperText-sizeMedium css-1kzozl2-MuiFormHelperText-root"
+      data-testid="helperText"
     >
       <ion-icon
+        data-testid="ionicon"
         src="/images/ionicons/close.svg"
         style="font-size: 18px; margin-right: 2px;"
       />
@@ -127,6 +131,7 @@ exports[`Slider match snapshot Slider Min 1`] = `
       </div>
       <span
         class="MuiSlider-root MuiSlider-colorPrimary MuiSlider-sizeMedium css-3cy87h-MuiSlider-root"
+        data-testid="slider"
       >
         <span
           class="MuiSlider-rail css-14pt78w-MuiSlider-rail"

@@ -4,6 +4,7 @@ exports[`Chip match snapshot (color error) 1`] = `
 <div>
   <div
     class="MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorError MuiChip-filledError css-1gbpvzg-MuiChip-root"
+    data-testid="chip"
     style="opacity: 1;"
   >
     <span
@@ -19,6 +20,7 @@ exports[`Chip match snapshot (color success) 1`] = `
 <div>
   <div
     class="MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorSuccess MuiChip-filledSuccess css-18b01d5-MuiChip-root"
+    data-testid="chip"
     style="opacity: 1;"
   >
     <span
@@ -34,6 +36,7 @@ exports[`Chip match snapshot (color warning) 1`] = `
 <div>
   <div
     class="MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorWarning MuiChip-filledWarning css-i9s1jt-MuiChip-root"
+    data-testid="chip"
     style="opacity: 1;"
   >
     <span
@@ -49,6 +52,7 @@ exports[`Chip match snapshot 1`] = `
 <div>
   <div
     class="MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-filledDefault css-vgi086-MuiChip-root"
+    data-testid="chip"
     style="opacity: 1;"
   >
     <span

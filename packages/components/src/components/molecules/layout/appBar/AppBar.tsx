@@ -5,6 +5,7 @@ import { IMenu } from '@elastic-suite/gally-admin-shared'
 import Breadcrumbs from '../../../atoms/breadcrumb/Breadcrumbs'
 
 import User from '../../layout/user/User'
+import { TestId, generateTestId } from '../../../../utils/testIds'
 
 const CustomRoot = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -39,7 +40,7 @@ interface IProps {
 
 function AppBar({ slug, menu, isConnected }: IProps): JSX.Element {
   return (
-    <CustomRoot data-testid="appBar">
+    <CustomRoot data-testid={generateTestId(TestId.APP_BAR)}>
       <Breadcrumbs slug={slug} menu={menu} />
       <User isConnected={isConnected} />
     </CustomRoot>

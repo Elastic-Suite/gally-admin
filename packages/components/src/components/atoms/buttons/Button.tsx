@@ -9,6 +9,7 @@ import {
 import { IOptions } from '@elastic-suite/gally-admin-shared'
 
 import { PrimaryButton, SecondaryButton, TertiaryButton } from './Button.styled'
+import { TestId, generateTestId } from '../../../utils/testIds'
 
 declare module '@mui/material' {
   // eslint-disable-next-line @typescript-eslint/naming-convention
@@ -52,6 +53,7 @@ interface IProps extends ButtonProps {
   loading?: boolean
   onSelect?: (value: unknown) => void
   options?: IOptions<unknown>
+  componentId?: string
 }
 
 function Button(props: IProps): JSX.Element {
@@ -65,6 +67,7 @@ function Button(props: IProps): JSX.Element {
     onSelect,
     options,
     style,
+    componentId,
     ...buttonProps
   } = props
   const buttonRef = useRef<HTMLButtonElement>(null)
@@ -111,6 +114,7 @@ function Button(props: IProps): JSX.Element {
   return (
     <>
       <Component
+        data-testid={generateTestId(TestId.BUTTON, componentId)}
         {...buttonProps}
         disabled={disabled || loading}
         onClick={options ? handleOpen : onClick}

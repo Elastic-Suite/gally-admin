@@ -34,6 +34,7 @@ exports[`MassiveSelection should match snapshot with indeterminate state 1`] = `
     type="button"
   >
     <ion-icon
+      data-testid="ionicon"
       src="/images/ionicons/chevron-down-outline.svg"
     />
     <span
@@ -77,6 +78,7 @@ exports[`MassiveSelection should match snapshot without indeterminate state 1`] 
     type="button"
   >
     <ion-icon
+      data-testid="ionicon"
       src="/images/ionicons/chevron-down-outline.svg"
     />
     <span

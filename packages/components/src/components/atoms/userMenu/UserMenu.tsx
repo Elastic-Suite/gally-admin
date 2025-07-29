@@ -10,6 +10,7 @@ import IonIcon from '../IonIcon/IonIcon'
 import FormatText from '../format/FormatText'
 
 import UserMenuShow from './UserMenuShow'
+import { TestId, generateTestId } from '../../../utils/testIds'
 
 const CustomUser = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -65,13 +66,13 @@ function UserMenu(): JSX.Element {
 
   return (
     <>
-      <Box data-testid="userMenu">
+      <Box data-testid={generateTestId(TestId.USER_MENU)}>
         <CustomUser onClick={(): void => setOpenUserMenu(!openUserMenu)}>
           <IonIcon
             name="person-outline"
             style={{ fontSize: '15px', color: '#8187B9' }}
           />
-          <CustomUserName data-testid="username">
+          <CustomUserName data-testid={generateTestId(TestId.USER_NAME)}>
             <FormatText name={user?.username} toolTip firstLetterUpp />
           </CustomUserName>
           <CustomArrow
@@ -85,7 +86,9 @@ function UserMenu(): JSX.Element {
         </CustomUser>
         <Box sx={{ position: 'relative' }}>
           <Collapse in={openUserMenu} sx={{ position: 'absolute', right: 0 }}>
-            <CustomUserMenu data-testid="userMenuContent">
+            <CustomUserMenu
+              data-testid={generateTestId(TestId.USER_MENU_CONTENT)}
+            >
               <UserMenuShow user={user} />
             </CustomUserMenu>
           </Collapse>

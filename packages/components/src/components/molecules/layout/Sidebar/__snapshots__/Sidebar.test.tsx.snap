@@ -4,7 +4,7 @@ exports[`SideBar match snapshot SideBarStateFalse 1`] = `
 <div>
   <div
     class="MuiCollapse-root MuiCollapse-horizontal css-gvgdin-MuiCollapse-root"
-    data-testid="sidebarMenu"
+    data-testid="sidebar"
     style="min-width: 66px;"
   >
     <div
@@ -62,7 +62,6 @@ exports[`SideBar match snapshot SideBarStateFalse 1`] = `
             >
               <div
                 class="css-hshm0p"
-                data-testid="menuGroup"
               >
                 <div
                   class="css-tfem9q"
@@ -73,6 +72,7 @@ exports[`SideBar match snapshot SideBarStateFalse 1`] = `
                     href="/admin/dashboard"
                   >
                     <ion-icon
+                      data-testid="ionicon"
                       src="/images/ionicons/custom/home2.svg"
                       style="width: 18px; height: 18px;"
                     />
@@ -86,18 +86,17 @@ exports[`SideBar match snapshot SideBarStateFalse 1`] = `
                 </div>
                 <div
                   class="css-dsnyvo"
-                  data-testid="menuGroupLinks"
                 />
               </div>
               <div
                 class="css-hshm0p"
-                data-testid="menuGroup"
               >
                 <div
                   class="css-jbglvz"
                   data-testid="menuItemIcon"
                 >
                   <ion-icon
+                    data-testid="ionicon"
                     src="/images/ionicons/analytics.svg"
                     style="width: 18px; height: 18px;"
                   />
@@ -110,7 +109,6 @@ exports[`SideBar match snapshot SideBarStateFalse 1`] = `
                 </div>
                 <div
                   class="css-dsnyvo"
-                  data-testid="menuGroupLinks"
                 >
                   <div>
                     <div
@@ -125,11 +123,11 @@ exports[`SideBar match snapshot SideBarStateFalse 1`] = `
                         >
                           <div
                             class="css-1ooj8e9"
-                            data-testid="menuLinkItem"
+                            data-testid="menuItemLink"
                           >
                             <a
                               class="css-1hn3xib"
-                              data-testid="labelMenuLinkItem"
+                              data-testid="menuItemLinkLabel"
                               href="/admin/analyze/results"
                             >
                               Résultats
@@ -155,11 +153,11 @@ exports[`SideBar match snapshot SideBarStateFalse 1`] = `
                         >
                           <div
                             class="css-1ylhpt2"
-                            data-testid="menuLinkItem"
+                            data-testid="menuItemLink"
                           >
                             <a
                               class="css-1hn3xib"
-                              data-testid="labelMenuLinkItem"
+                              data-testid="menuItemLinkLabel"
                               href="/admin/analyze/search_usage"
                             >
                               Utilisation de la recherche
@@ -182,11 +180,11 @@ exports[`SideBar match snapshot SideBarStateFalse 1`] = `
                         >
                           <div
                             class="css-1ylhpt2"
-                            data-testid="menuLinkItem"
+                            data-testid="menuItemLink"
                           >
                             <a
                               class="css-1hn3xib"
-                              data-testid="labelMenuLinkItem"
+                              data-testid="menuItemLinkLabel"
                               href="/admin/analyze/ab_testing"
                             >
                               Tests A/B
@@ -200,13 +198,13 @@ exports[`SideBar match snapshot SideBarStateFalse 1`] = `
               </div>
               <div
                 class="css-hshm0p"
-                data-testid="menuGroup"
               >
                 <div
                   class="css-jbglvz"
                   data-testid="menuItemIcon"
                 >
                   <ion-icon
+                    data-testid="ionicon"
                     src="/images/ionicons/funnel-outline.svg"
                     style="width: 18px; height: 18px;"
                   />
@@ -219,7 +217,6 @@ exports[`SideBar match snapshot SideBarStateFalse 1`] = `
                 </div>
                 <div
                   class="css-dsnyvo"
-                  data-testid="menuGroupLinks"
                 >
                   <div>
                     <div
@@ -234,11 +231,11 @@ exports[`SideBar match snapshot SideBarStateFalse 1`] = `
                         >
                           <div
                             class="css-1ylhpt2"
-                            data-testid="menuLinkItem"
+                            data-testid="menuItemLink"
                           >
                             <a
                               class="css-1hn3xib"
-                              data-testid="labelMenuLinkItem"
+                              data-testid="menuItemLinkLabel"
                               href="/admin/merchandize/categories"
                             >
                               Catégories
@@ -261,11 +258,11 @@ exports[`SideBar match snapshot SideBarStateFalse 1`] = `
                         >
                           <div
                             class="css-1ylhpt2"
-                            data-testid="menuLinkItem"
+                            data-testid="menuItemLink"
                           >
                             <a
                               class="css-1hn3xib"
-                              data-testid="labelMenuLinkItem"
+                              data-testid="menuItemLinkLabel"
                               href="/admin/merchandize/search_results"
                             >
                               Résultats de recherche
@@ -284,16 +281,16 @@ exports[`SideBar match snapshot SideBarStateFalse 1`] = `
                       >
                         <div
                           class="css-1oksv39"
-                          data-testid="subGroupMenu"
                           style="position: relative;"
                         >
                           <button
                             class="css-i4yvhb"
-                            data-testid="menuItemChildrenButton"
+                            data-testid="menuItemChildrenCollapsingButton"
                             style="transition: all 500ms; position: relative;"
                           >
                             Recommendations
                             <ion-icon
+                              data-testid="ionicon"
                               src="/images/ionicons/chevron-down.svg"
                               style="transition: all 500ms;"
                             />
@@ -322,11 +319,11 @@ exports[`SideBar match snapshot SideBarStateFalse 1`] = `
                                   >
                                     <div
                                       class="css-1ylhpt2"
-                                      data-testid="menuLinkItem"
+                                      data-testid="menuItemLink"
                                     >
                                       <a
                                         class="css-1hn3xib"
-                                        data-testid="labelMenuLinkItem"
+                                        data-testid="menuItemLinkLabel"
                                         href="/admin/merchandize/recommender/configuration"
                                       >
                                         Configuration générale
@@ -347,11 +344,11 @@ exports[`SideBar match snapshot SideBarStateFalse 1`] = `
                                   >
                                     <div
                                       class="css-1ylhpt2"
-                                      data-testid="menuLinkItem"
+                                      data-testid="menuItemLink"
                                     >
                                       <a
                                         class="css-1hn3xib"
-                                        data-testid="labelMenuLinkItem"
+                                        data-testid="menuItemLinkLabel"
                                         href="/admin/merchandize/recommender/manual_recommenders"
                                       >
                                         Recommendations manuelles
@@ -372,11 +369,11 @@ exports[`SideBar match snapshot SideBarStateFalse 1`] = `
                                   >
                                     <div
                                       class="css-1ylhpt2"
-                                      data-testid="menuLinkItem"
+                                      data-testid="menuItemLink"
                                     >
                                       <a
                                         class="css-1hn3xib"
-                                        data-testid="labelMenuLinkItem"
+                                        data-testid="menuItemLinkLabel"
                                         href="/admin/merchandize/recommender/auto_recommenders"
                                       >
                                         Recommendations automatiques
@@ -397,11 +394,11 @@ exports[`SideBar match snapshot SideBarStateFalse 1`] = `
                                   >
                                     <div
                                       class="css-1ylhpt2"
-                                      data-testid="menuLinkItem"
+                                      data-testid="menuItemLink"
                                     >
                                       <a
                                         class="css-1hn3xib"
-                                        data-testid="labelMenuLinkItem"
+                                        data-testid="menuItemLinkLabel"
                                         href="/admin/merchandize/recommender/behavioral_recommenders"
                                       >
                                         Recommendations comportementales
@@ -429,11 +426,11 @@ exports[`SideBar match snapshot SideBarStateFalse 1`] = `
                         >
                           <div
                             class="css-1ylhpt2"
-                            data-testid="menuLinkItem"
+                            data-testid="menuItemLink"
                           >
                             <a
                               class="css-1hn3xib"
-                              data-testid="labelMenuLinkItem"
+                              data-testid="menuItemLinkLabel"
                               href="/admin/merchandize/recommender_boosts"
                             >
                               Boosts
@@ -447,13 +444,13 @@ exports[`SideBar match snapshot SideBarStateFalse 1`] = `
               </div>
               <div
                 class="css-hshm0p"
-                data-testid="menuGroup"
               >
                 <div
                   class="css-jbglvz"
                   data-testid="menuItemIcon"
                 >
                   <ion-icon
+                    data-testid="ionicon"
                     src="/images/ionicons/search.svg"
                     style="width: 18px; height: 18px;"
                   />
@@ -466,7 +463,6 @@ exports[`SideBar match snapshot SideBarStateFalse 1`] = `
                 </div>
                 <div
                   class="css-dsnyvo"
-                  data-testid="menuGroupLinks"
                 >
                   <div>
                     <div
@@ -477,16 +473,16 @@ exports[`SideBar match snapshot SideBarStateFalse 1`] = `
                       >
                         <div
                           class="css-1oksv39"
-                          data-testid="subGroupMenu"
                           style="position: relative;"
                         >
                           <button
                             class="css-i4yvhb"
-                            data-testid="menuItemChildrenButton"
+                            data-testid="menuItemChildrenCollapsingButton"
                             style="transition: all 500ms; position: relative;"
                           >
                             Configuration
                             <ion-icon
+                              data-testid="ionicon"
                               src="/images/ionicons/chevron-down.svg"
                               style="transition: all 500ms;"
                             />
@@ -515,11 +511,11 @@ exports[`SideBar match snapshot SideBarStateFalse 1`] = `
                                   >
                                     <div
                                       class="css-1ylhpt2"
-                                      data-testid="menuLinkItem"
+                                      data-testid="menuItemLink"
                                     >
                                       <a
                                         class="css-1hn3xib"
-                                        data-testid="labelMenuLinkItem"
+                                        data-testid="menuItemLinkLabel"
                                         href="/admin/search/configuration/relevance"
                                       >
                                         Pertinence
@@ -540,11 +536,11 @@ exports[`SideBar match snapshot SideBarStateFalse 1`] = `
                                   >
                                     <div
                                       class="css-1ylhpt2"
-                                      data-testid="menuLinkItem"
+                                      data-testid="menuItemLink"
                                     >
                                       <a
                                         class="css-1hn3xib"
-                                        data-testid="labelMenuLinkItem"
+                                        data-testid="menuItemLinkLabel"
                                         href="/admin/search/configuration/autocompletion"
                                       >
                                         Autocomplétion
@@ -565,11 +561,11 @@ exports[`SideBar match snapshot SideBarStateFalse 1`] = `
                                   >
                                     <div
                                       class="css-1ylhpt2"
-                                      data-testid="menuLinkItem"
+                                      data-testid="menuItemLink"
                                     >
                                       <a
                                         class="css-1hn3xib"
-                                        data-testid="labelMenuLinkItem"
+                                        data-testid="menuItemLinkLabel"
                                         href="/admin/search/configuration/attributes"
                                       >
                                         Attributs
@@ -597,11 +593,11 @@ exports[`SideBar match snapshot SideBarStateFalse 1`] = `
                         >
                           <div
                             class="css-1ylhpt2"
-                            data-testid="menuLinkItem"
+                            data-testid="menuItemLink"
                           >
                             <a
                               class="css-1hn3xib"
-                              data-testid="labelMenuLinkItem"
+                              data-testid="menuItemLinkLabel"
                               href="/admin/search/facets"
                             >
                               Facettes
@@ -624,11 +620,11 @@ exports[`SideBar match snapshot SideBarStateFalse 1`] = `
                         >
                           <div
                             class="css-1ylhpt2"
-                            data-testid="menuLinkItem"
+                            data-testid="menuItemLink"
                           >
                             <a
                               class="css-1hn3xib"
-                              data-testid="labelMenuLinkItem"
+                              data-testid="menuItemLinkLabel"
                               href="/admin/search/thesasurus"
                             >
                               Thésaurus
@@ -640,9 +636,7 @@ exports[`SideBar match snapshot SideBarStateFalse 1`] = `
                   </div>
                 </div>
               </div>
-              <div
-                data-testid="menuGroup"
-              >
+              <div>
                 <div
                   class="css-19kw05j"
                   data-testid="menuItemIcon"
@@ -652,6 +646,7 @@ exports[`SideBar match snapshot SideBarStateFalse 1`] = `
                     href="/admin/monitoring"
                   >
                     <ion-icon
+                      data-testid="ionicon"
                       src="/images/ionicons/list.svg"
                       style="width: 18px; height: 18px;"
                     />
@@ -664,9 +659,7 @@ exports[`SideBar match snapshot SideBarStateFalse 1`] = `
                   </a>
                 </div>
               </div>
-              <div
-                data-testid="menuGroup"
-              >
+              <div>
                 <div
                   class="css-19kw05j"
                   data-testid="menuItemIcon"
@@ -676,6 +669,7 @@ exports[`SideBar match snapshot SideBarStateFalse 1`] = `
                     href="/admin/settings"
                   >
                     <ion-icon
+                      data-testid="ionicon"
                       src="/images/ionicons/settings-outline.svg"
                       style="width: 18px; height: 18px;"
                     />
@@ -701,7 +695,7 @@ exports[`SideBar match snapshot SideBarStateTrue 1`] = `
 <div>
   <div
     class="MuiCollapse-root MuiCollapse-horizontal MuiCollapse-entered css-r09iak-MuiCollapse-root"
-    data-testid="sidebarMenu"
+    data-testid="sidebar"
     style="min-width: 278px;"
   >
     <div
@@ -758,7 +752,6 @@ exports[`SideBar match snapshot SideBarStateTrue 1`] = `
             >
               <div
                 class="css-hshm0p"
-                data-testid="menuGroup"
               >
                 <div
                   class="css-tfem9q"
@@ -769,6 +762,7 @@ exports[`SideBar match snapshot SideBarStateTrue 1`] = `
                     href="/admin/dashboard"
                   >
                     <ion-icon
+                      data-testid="ionicon"
                       src="/images/ionicons/custom/home2.svg"
                       style="width: 18px; height: 18px;"
                     />
@@ -782,18 +776,17 @@ exports[`SideBar match snapshot SideBarStateTrue 1`] = `
                 </div>
                 <div
                   class="css-dsnyvo"
-                  data-testid="menuGroupLinks"
                 />
               </div>
               <div
                 class="css-hshm0p"
-                data-testid="menuGroup"
               >
                 <div
                   class="css-jbglvz"
                   data-testid="menuItemIcon"
                 >
                   <ion-icon
+                    data-testid="ionicon"
                     src="/images/ionicons/analytics.svg"
                     style="width: 18px; height: 18px;"
                   />
@@ -806,7 +799,6 @@ exports[`SideBar match snapshot SideBarStateTrue 1`] = `
                 </div>
                 <div
                   class="css-dsnyvo"
-                  data-testid="menuGroupLinks"
                 >
                   <div>
                     <div
@@ -821,11 +813,11 @@ exports[`SideBar match snapshot SideBarStateTrue 1`] = `
                         >
                           <div
                             class="css-1ooj8e9"
-                            data-testid="menuLinkItem"
+                            data-testid="menuItemLink"
                           >
                             <a
                               class="css-1hn3xib"
-                              data-testid="labelMenuLinkItem"
+                              data-testid="menuItemLinkLabel"
                               href="/admin/analyze/results"
                             >
                               Résultats
@@ -851,11 +843,11 @@ exports[`SideBar match snapshot SideBarStateTrue 1`] = `
                         >
                           <div
                             class="css-1ylhpt2"
-                            data-testid="menuLinkItem"
+                            data-testid="menuItemLink"
                           >
                             <a
                               class="css-1hn3xib"
-                              data-testid="labelMenuLinkItem"
+                              data-testid="menuItemLinkLabel"
                               href="/admin/analyze/search_usage"
                             >
                               Utilisation de la recherche
@@ -878,11 +870,11 @@ exports[`SideBar match snapshot SideBarStateTrue 1`] = `
                         >
                           <div
                             class="css-1ylhpt2"
-                            data-testid="menuLinkItem"
+                            data-testid="menuItemLink"
                           >
                             <a
                               class="css-1hn3xib"
-                              data-testid="labelMenuLinkItem"
+                              data-testid="menuItemLinkLabel"
                               href="/admin/analyze/ab_testing"
                             >
                               Tests A/B
@@ -896,13 +888,13 @@ exports[`SideBar match snapshot SideBarStateTrue 1`] = `
               </div>
               <div
                 class="css-hshm0p"
-                data-testid="menuGroup"
               >
                 <div
                   class="css-jbglvz"
                   data-testid="menuItemIcon"
                 >
                   <ion-icon
+                    data-testid="ionicon"
                     src="/images/ionicons/funnel-outline.svg"
                     style="width: 18px; height: 18px;"
                   />
@@ -915,7 +907,6 @@ exports[`SideBar match snapshot SideBarStateTrue 1`] = `
                 </div>
                 <div
                   class="css-dsnyvo"
-                  data-testid="menuGroupLinks"
                 >
                   <div>
                     <div
@@ -930,11 +921,11 @@ exports[`SideBar match snapshot SideBarStateTrue 1`] = `
                         >
                           <div
                             class="css-1ylhpt2"
-                            data-testid="menuLinkItem"
+                            data-testid="menuItemLink"
                           >
                             <a
                               class="css-1hn3xib"
-                              data-testid="labelMenuLinkItem"
+                              data-testid="menuItemLinkLabel"
                               href="/admin/merchandize/categories"
                             >
                               Catégories
@@ -957,11 +948,11 @@ exports[`SideBar match snapshot SideBarStateTrue 1`] = `
                         >
                           <div
                             class="css-1ylhpt2"
-                            data-testid="menuLinkItem"
+                            data-testid="menuItemLink"
                           >
                             <a
                               class="css-1hn3xib"
-                              data-testid="labelMenuLinkItem"
+                              data-testid="menuItemLinkLabel"
                               href="/admin/merchandize/search_results"
                             >
                               Résultats de recherche
@@ -980,16 +971,16 @@ exports[`SideBar match snapshot SideBarStateTrue 1`] = `
                       >
                         <div
                           class="css-1oksv39"
-                          data-testid="subGroupMenu"
                           style="position: relative;"
                         >
                           <button
                             class="css-i4yvhb"
-                            data-testid="menuItemChildrenButton"
+                            data-testid="menuItemChildrenCollapsingButton"
                             style="transition: all 500ms; position: relative;"
                           >
                             Recommendations
                             <ion-icon
+                              data-testid="ionicon"
                               src="/images/ionicons/chevron-down.svg"
                               style="transition: all 500ms;"
                             />
@@ -1018,11 +1009,11 @@ exports[`SideBar match snapshot SideBarStateTrue 1`] = `
                                   >
                                     <div
                                       class="css-1ylhpt2"
-                                      data-testid="menuLinkItem"
+                                      data-testid="menuItemLink"
                                     >
                                       <a
                                         class="css-1hn3xib"
-                                        data-testid="labelMenuLinkItem"
+                                        data-testid="menuItemLinkLabel"
                                         href="/admin/merchandize/recommender/configuration"
                                       >
                                         Configuration générale
@@ -1043,11 +1034,11 @@ exports[`SideBar match snapshot SideBarStateTrue 1`] = `
                                   >
                                     <div
                                       class="css-1ylhpt2"
-                                      data-testid="menuLinkItem"
+                                      data-testid="menuItemLink"
                                     >
                                       <a
                                         class="css-1hn3xib"
-                                        data-testid="labelMenuLinkItem"
+                                        data-testid="menuItemLinkLabel"
                                         href="/admin/merchandize/recommender/manual_recommenders"
                                       >
                                         Recommendations manuelles
@@ -1068,11 +1059,11 @@ exports[`SideBar match snapshot SideBarStateTrue 1`] = `
                                   >
                                     <div
                                       class="css-1ylhpt2"
-                                      data-testid="menuLinkItem"
+                                      data-testid="menuItemLink"
                                     >
                                       <a
                                         class="css-1hn3xib"
-                                        data-testid="labelMenuLinkItem"
+                                        data-testid="menuItemLinkLabel"
                                         href="/admin/merchandize/recommender/auto_recommenders"
                                       >
                                         Recommendations automatiques
@@ -1093,11 +1084,11 @@ exports[`SideBar match snapshot SideBarStateTrue 1`] = `
                                   >
                                     <div
                                       class="css-1ylhpt2"
-                                      data-testid="menuLinkItem"
+                                      data-testid="menuItemLink"
                                     >
                                       <a
                                         class="css-1hn3xib"
-                                        data-testid="labelMenuLinkItem"
+                                        data-testid="menuItemLinkLabel"
                                         href="/admin/merchandize/recommender/behavioral_recommenders"
                                       >
                                         Recommendations comportementales
@@ -1125,11 +1116,11 @@ exports[`SideBar match snapshot SideBarStateTrue 1`] = `
                         >
                           <div
                             class="css-1ylhpt2"
-                            data-testid="menuLinkItem"
+                            data-testid="menuItemLink"
                           >
                             <a
                               class="css-1hn3xib"
-                              data-testid="labelMenuLinkItem"
+                              data-testid="menuItemLinkLabel"
                               href="/admin/merchandize/recommender_boosts"
                             >
                               Boosts
@@ -1143,13 +1134,13 @@ exports[`SideBar match snapshot SideBarStateTrue 1`] = `
               </div>
               <div
                 class="css-hshm0p"
-                data-testid="menuGroup"
               >
                 <div
                   class="css-jbglvz"
                   data-testid="menuItemIcon"
                 >
                   <ion-icon
+                    data-testid="ionicon"
                     src="/images/ionicons/search.svg"
                     style="width: 18px; height: 18px;"
                   />
@@ -1162,7 +1153,6 @@ exports[`SideBar match snapshot SideBarStateTrue 1`] = `
                 </div>
                 <div
                   class="css-dsnyvo"
-                  data-testid="menuGroupLinks"
                 >
                   <div>
                     <div
@@ -1173,16 +1163,16 @@ exports[`SideBar match snapshot SideBarStateTrue 1`] = `
                       >
                         <div
                           class="css-1oksv39"
-                          data-testid="subGroupMenu"
                           style="position: relative;"
                         >
                           <button
                             class="css-i4yvhb"
-                            data-testid="menuItemChildrenButton"
+                            data-testid="menuItemChildrenCollapsingButton"
                             style="transition: all 500ms; position: relative;"
                           >
                             Configuration
                             <ion-icon
+                              data-testid="ionicon"
                               src="/images/ionicons/chevron-down.svg"
                               style="transition: all 500ms;"
                             />
@@ -1211,11 +1201,11 @@ exports[`SideBar match snapshot SideBarStateTrue 1`] = `
                                   >
                                     <div
                                       class="css-1ylhpt2"
-                                      data-testid="menuLinkItem"
+                                      data-testid="menuItemLink"
                                     >
                                       <a
                                         class="css-1hn3xib"
-                                        data-testid="labelMenuLinkItem"
+                                        data-testid="menuItemLinkLabel"
                                         href="/admin/search/configuration/relevance"
                                       >
                                         Pertinence
@@ -1236,11 +1226,11 @@ exports[`SideBar match snapshot SideBarStateTrue 1`] = `
                                   >
                                     <div
                                       class="css-1ylhpt2"
-                                      data-testid="menuLinkItem"
+                                      data-testid="menuItemLink"
                                     >
                                       <a
                                         class="css-1hn3xib"
-                                        data-testid="labelMenuLinkItem"
+                                        data-testid="menuItemLinkLabel"
                                         href="/admin/search/configuration/autocompletion"
                                       >
                                         Autocomplétion
@@ -1261,11 +1251,11 @@ exports[`SideBar match snapshot SideBarStateTrue 1`] = `
                                   >
                                     <div
                                       class="css-1ylhpt2"
-                                      data-testid="menuLinkItem"
+                                      data-testid="menuItemLink"
                                     >
                                       <a
                                         class="css-1hn3xib"
-                                        data-testid="labelMenuLinkItem"
+                                        data-testid="menuItemLinkLabel"
                                         href="/admin/search/configuration/attributes"
                                       >
                                         Attributs
@@ -1293,11 +1283,11 @@ exports[`SideBar match snapshot SideBarStateTrue 1`] = `
                         >
                           <div
                             class="css-1ylhpt2"
-                            data-testid="menuLinkItem"
+                            data-testid="menuItemLink"
                           >
                             <a
                               class="css-1hn3xib"
-                              data-testid="labelMenuLinkItem"
+                              data-testid="menuItemLinkLabel"
                               href="/admin/search/facets"
                             >
                               Facettes
@@ -1320,11 +1310,11 @@ exports[`SideBar match snapshot SideBarStateTrue 1`] = `
                         >
                           <div
                             class="css-1ylhpt2"
-                            data-testid="menuLinkItem"
+                            data-testid="menuItemLink"
                           >
                             <a
                               class="css-1hn3xib"
-                              data-testid="labelMenuLinkItem"
+                              data-testid="menuItemLinkLabel"
                               href="/admin/search/thesasurus"
                             >
                               Thésaurus
@@ -1336,9 +1326,7 @@ exports[`SideBar match snapshot SideBarStateTrue 1`] = `
                   </div>
                 </div>
               </div>
-              <div
-                data-testid="menuGroup"
-              >
+              <div>
                 <div
                   class="css-19kw05j"
                   data-testid="menuItemIcon"
@@ -1348,6 +1336,7 @@ exports[`SideBar match snapshot SideBarStateTrue 1`] = `
                     href="/admin/monitoring"
                   >
                     <ion-icon
+                      data-testid="ionicon"
                       src="/images/ionicons/list.svg"
                       style="width: 18px; height: 18px;"
                     />
@@ -1360,9 +1349,7 @@ exports[`SideBar match snapshot SideBarStateTrue 1`] = `
                   </a>
                 </div>
               </div>
-              <div
-                data-testid="menuGroup"
-              >
+              <div>
                 <div
                   class="css-19kw05j"
                   data-testid="menuItemIcon"
@@ -1372,6 +1359,7 @@ exports[`SideBar match snapshot SideBarStateTrue 1`] = `
                     href="/admin/settings"
                   >
                     <ion-icon
+                      data-testid="ionicon"
                       src="/images/ionicons/settings-outline.svg"
                       style="width: 18px; height: 18px;"
                     />

@@ -14,6 +14,7 @@ exports[`Score Should match snapschot 1`] = `
       class="css-133d1dw"
     >
       <ion-icon
+        data-testid="ionicon"
         src="/images/ionicons/custom/push-pin.svg"
         style="color: rgb(13, 18, 116); width: 15px; height: 15px; display: flex; font-size: 14px; border: 1px solid #b5b9d9; border-radius: 5px; padding: 4px;"
         title="Pinned"

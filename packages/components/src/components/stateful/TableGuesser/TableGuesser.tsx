@@ -52,7 +52,7 @@ interface IProps<T extends IHydraMember> {
   tableRows: ITableRow[]
   hasEditLink?: boolean
   editLink?: string
-  dataTestId?: string
+  componentId?: string
 }
 
 function TableGuesser<T extends IHydraMember>(props: IProps<T>): JSX.Element {
@@ -74,7 +74,7 @@ function TableGuesser<T extends IHydraMember>(props: IProps<T>): JSX.Element {
     tableRows,
     hasEditLink,
     editLink,
-    dataTestId,
+    componentId,
   } = props
   const tableHeaders = useApiHeaders(resource) as IFieldConfig[]
   const fieldOptions = useApiEditableFieldOptions(resource)
@@ -164,7 +164,7 @@ function TableGuesser<T extends IHydraMember>(props: IProps<T>): JSX.Element {
         withSelection={withSelection}
         hasEditLink={hasEditLink}
         editLink={editLink}
-        dataTestId={dataTestId}
+        componentId={componentId}
       />
       <StickyBar positionRef={tableRef} show={selectedRows.length > 0}>
         <TableStickyBar

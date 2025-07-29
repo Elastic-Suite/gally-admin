@@ -3,6 +3,7 @@
 exports[`IonIcon match snapshot for alias icon 1`] = `
 <div>
   <ion-icon
+    data-testid="ionicon"
     src="/images/ionicons/analytics.svg"
   />
 </div>
@@ -11,6 +12,7 @@ exports[`IonIcon match snapshot for alias icon 1`] = `
 exports[`IonIcon match snapshot for basic icon 1`] = `
 <div>
   <ion-icon
+    data-testid="ionicon"
     src="/images/ionicons/home.svg"
   />
 </div>
@@ -19,6 +21,7 @@ exports[`IonIcon match snapshot for basic icon 1`] = `
 exports[`IonIcon match snapshot for custom icon 1`] = `
 <div>
   <ion-icon
+    data-testid="ionicon"
     src="/images/ionicons/custom/home2.svg"
   />
 </div>

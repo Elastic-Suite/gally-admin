@@ -12,6 +12,7 @@ import {
   Checkbox as MuiCheckbox,
 } from '@mui/material'
 import IonIcon from '../IonIcon/IonIcon'
+import { TestId, generateTestId } from '../../../utils/testIds'
 
 export interface ICheckboxWithoutErrorProps
   extends Omit<CheckboxProps, 'onChange' | 'onClick'> {
@@ -23,7 +24,7 @@ export interface ICheckboxWithoutErrorProps
   helperIcon?: string
   helperText?: ReactNode
   error?: boolean
-  dataTestId?: string
+  componentId?: string
 }
 
 function CheckboxWithoutError(
@@ -40,7 +41,7 @@ function CheckboxWithoutError(
     onChange,
     onClick,
     small,
-    dataTestId,
+    componentId,
     ...checkboxProps
   } = props
 
@@ -78,7 +79,10 @@ function CheckboxWithoutError(
         <div>
           {label}
           {Boolean(helperText) && (
-            <FormHelperText error={error}>
+            <FormHelperText
+              error={error}
+              data-testid={generateTestId(TestId.HELPER_TEXT, componentId)}
+            >
               {Boolean(helperIcon) && (
                 <IonIcon
                   name={helperIcon}
@@ -95,7 +99,7 @@ function CheckboxWithoutError(
           marginLeft: '-6px',
         }),
       }}
-      data-testid={dataTestId}
+      data-testid={generateTestId(TestId.CHECKBOX, componentId)}
     />
   )
 }

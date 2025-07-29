@@ -11,6 +11,7 @@ import DatePickerWithoutError, {
 } from './DatePickerWithoutError'
 import FormControl from './FormControl'
 import InfoTooltip from './InfoTooltip'
+import { TestId, generateTestId } from '../../../utils/testIds'
 
 const CustomBox = styled(Box)(({ theme }) => ({
   fontWeight: 500,
@@ -42,7 +43,7 @@ export interface IDoubleDatePickerProps
   margin?: 'none' | 'dense' | 'normal'
   helperText?: ReactNode
   helperIcon?: string
-  dataTestId?: string
+  componentId?: string
 }
 
 function DoubleDatePickerWithoutError(
@@ -64,7 +65,7 @@ function DoubleDatePickerWithoutError(
     onChange,
     onError,
     required,
-    dataTestId,
+    componentId,
     ...args
   } = props
   const { t } = useTranslation('common')
@@ -115,7 +116,7 @@ function DoubleDatePickerWithoutError(
             onChange={onChangeFrom}
             onError={onErrorFrom}
             ref={ref}
-            dataTestId={dataTestId ? `${dataTestId}Start` : null}
+            componentId={generateTestId(TestId.RANGE_DATE_FROM, componentId)}
           />
         </Grid>
         <CustomBox sx={{ paddingRight: '20px', paddingLeft: '20px' }}>
@@ -131,14 +132,14 @@ function DoubleDatePickerWithoutError(
             value={value?.toDate}
             onChange={onChangeTo}
             onError={onErrorTo}
-            dataTestId={dataTestId ? `${dataTestId}End` : null}
+            componentId={generateTestId(TestId.RANGE_DATE_TO, componentId)}
           />
         </Grid>
       </Grid>
       {Boolean(helperText) && (
         <FormHelperText
           error={error}
-          data-testid={dataTestId ? `${dataTestId}ErrorMessage` : null}
+          data-testid={generateTestId(TestId.HELPER_TEXT, componentId)}
         >
           {Boolean(helperIcon) && (
             <IonIcon

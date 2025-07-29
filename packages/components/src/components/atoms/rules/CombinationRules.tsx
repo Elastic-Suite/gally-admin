@@ -18,6 +18,7 @@ import IonIcon from '../IonIcon/IonIcon'
 
 import Rule from './Rule'
 import RuleLink from './RuleLink'
+import { TestId, generateTestId } from '../../../utils/testIds'
 
 const RuleAndLinkContainer = styled('div')(({ theme }) => ({
   gap: theme.spacing(1),
@@ -76,6 +77,7 @@ export interface ICombinationRulesProps {
   rule?: IRuleCombination
   small?: boolean
   showError?: boolean
+  componentId?: string
 }
 
 function CombinationRules(props: ICombinationRulesProps): JSX.Element {
@@ -88,6 +90,7 @@ function CombinationRules(props: ICombinationRulesProps): JSX.Element {
     rule,
     small,
     showError,
+    componentId,
   } = props
   const { t } = useTranslation('rules')
 
@@ -136,7 +139,10 @@ function CombinationRules(props: ICombinationRulesProps): JSX.Element {
   }
 
   return (
-    <Root className="combinationRules">
+    <Root
+      className="combinationRules"
+      data-testid={generateTestId(TestId.COMBINATION_RULES, componentId)}
+    >
       <RuleAndLinkContainer>
         <RuleLink label="if" />
         <Rule

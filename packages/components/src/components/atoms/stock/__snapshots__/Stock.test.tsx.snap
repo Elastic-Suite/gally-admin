@@ -4,6 +4,7 @@ exports[`Stock Should match snapschot 1`] = `
 <div>
   <div
     class="MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorSuccess MuiChip-filledSuccess css-18b01d5-MuiChip-root"
+    data-testid="stock"
     style="opacity: 1;"
   >
     <span

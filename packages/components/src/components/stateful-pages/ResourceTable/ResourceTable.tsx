@@ -38,6 +38,7 @@ import FieldGuesser from '../../stateful/FieldGuesser/FieldGuesser'
 import FiltersGuesser from '../../stateful/FiltersGuesser/FiltersGuesser'
 import TableGuesser from '../../stateful/TableGuesser/TableGuesser'
 import IonIcon from '../../atoms/IonIcon/IonIcon'
+import { TestId, generateTestId } from '../../../utils/testIds'
 
 const FitlerContent = styled('div')({
   display: 'flex',
@@ -276,7 +277,7 @@ function ResourceTable(props: IResourceTable): JSX.Element {
         resource={resource}
         searchValue={searchValue}
         showSearch={showSearch}
-        dataTestId={`${resourceName}Filter`}
+        componentId={resourceName}
       >
         {Boolean(diffDefaultValues) && (
           <FitlerContent>
@@ -285,10 +286,14 @@ function ResourceTable(props: IResourceTable): JSX.Element {
               display="secondary"
               onClick={handleReset}
               endIcon={<IonIcon name="reload-outline" />}
+              componentId="resetDefaultValues"
             >
               {t('default.button')}
             </Button>
             <Paragraph
+              data-testid={generateTestId(
+                TestId.RESOURCE_TABLE_NB_CUSTOM_VALUES_MESSAGE
+              )}
               dangerouslySetInnerHTML={{
                 __html: t('default.customValue', {
                   count: diffCount,
@@ -321,7 +326,7 @@ function ResourceTable(props: IResourceTable): JSX.Element {
         tableRows={tableRows}
         hasEditLink={hasEditLink}
         editLink={editLink}
-        dataTestId={resourceName}
+        componentId={resourceName}
       />
     </>
   )

@@ -9,6 +9,7 @@ import { StyleFormControl } from './Switch.styled'
 
 import IonIcon from '../IonIcon/IonIcon'
 import InfoTooltip from './InfoTooltip'
+import { TestId, generateTestId } from '../../../utils/testIds'
 
 interface IProps extends Omit<SwitchProps, 'onChange'> {
   helperIcon?: string
@@ -17,6 +18,7 @@ interface IProps extends Omit<SwitchProps, 'onChange'> {
   label?: string
   margin?: 'none' | 'dense' | 'normal'
   onChange?: (value: boolean, event: ChangeEvent<HTMLInputElement>) => void
+  componentId?: string
 }
 
 function Switch(props: IProps): JSX.Element {
@@ -28,6 +30,7 @@ function Switch(props: IProps): JSX.Element {
     margin,
     onChange,
     required,
+    componentId,
     ...switchProps
   } = props
 
@@ -49,6 +52,7 @@ function Switch(props: IProps): JSX.Element {
         </InputLabel>
       ) : undefined}
       <MuiSwitch
+        data-testid={generateTestId(TestId.SWITCH, componentId)}
         {...switchProps}
         onChange={handleChange}
         sx={
@@ -56,7 +60,9 @@ function Switch(props: IProps): JSX.Element {
         }
       />
       {Boolean(helperText) && (
-        <FormHelperText>
+        <FormHelperText
+          data-testid={generateTestId(TestId.HELPER_TEXT, componentId)}
+        >
           {Boolean(helperIcon) && (
             <IonIcon
               name={helperIcon}

@@ -140,6 +140,7 @@ function ProductsPreviewBottom(props: IProps): JSX.Element {
             tableRows={tableRows}
             configuration={configuration}
             hoverableLine
+            componentId="productsPreviewBottom"
           />
           <ExplainQueryDetails
             index={explain.data.explain.explainData.elasticSearchQuery.index}

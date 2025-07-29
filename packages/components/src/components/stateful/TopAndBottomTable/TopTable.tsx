@@ -46,6 +46,7 @@ interface IProps {
   ruleOperators: IRuleEngineOperators
   hasEditLink?: boolean
   editLink?: string
+  componentId?: string
 }
 
 function TopTable(props: IProps): JSX.Element {
@@ -65,6 +66,7 @@ function TopTable(props: IProps): JSX.Element {
     ruleOperators,
     hasEditLink,
     editLink,
+    componentId,
   } = props
   const { localizedCatalogIdWithDefault } = useContext(catalogContext)
 
@@ -168,6 +170,7 @@ function TopTable(props: IProps): JSX.Element {
         configuration={configuration}
         hasEditLink={hasEditLink}
         editLink={editLink}
+        componentId={componentId}
       />
     )
   )

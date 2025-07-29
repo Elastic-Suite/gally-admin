@@ -31,6 +31,7 @@ import {
 import DraggableBody from './CustomTableBody/DraggableBody'
 import NonDraggableBody from './CustomTableBody/NonDraggableBody'
 import CustomTableHeader from './CustomTableHeader/CustomTableHeader'
+import { TestId, generateTestId } from '../../../utils/testIds'
 
 export interface ICustomTableProps {
   Field: FunctionComponent<IFieldGuesserProps>
@@ -57,7 +58,7 @@ export interface ICustomTableProps {
   editLink?: string
   withoutDragableColumn?: boolean
   hoverableLine?: boolean
-  dataTestId?: string
+  componentId?: string
 }
 
 function CustomTable(
@@ -84,7 +85,7 @@ function CustomTable(
     editLink,
     withoutDragableColumn,
     hoverableLine,
-    dataTestId,
+    componentId,
   } = props
 
   const [scrollLength, setScrollLength] = useState<number>(0)
@@ -192,7 +193,7 @@ function CustomTable(
             },
             ...styles,
           }}
-          data-testid={dataTestId}
+          data-testid={generateTestId(TestId.TABLE, componentId)}
         >
           <StyledTable
             stickyHeader

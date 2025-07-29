@@ -205,6 +205,7 @@ function AdminAnalyzeResults(): JSX.Element {
                 required
                 showError={showAllErrors}
                 sx={{ width: INPUT_WIDTH }}
+                componentId="localizedCatalog"
               />
             </WrapperBlock>
 
@@ -220,6 +221,7 @@ function AdminAnalyzeResults(): JSX.Element {
                 required
                 showError={showAllErrors}
                 sx={{ width: INPUT_WIDTH }}
+                componentId="requestType"
               />
               {limitationType === 'category' && (
                 <TreeSelector
@@ -232,6 +234,7 @@ function AdminAnalyzeResults(): JSX.Element {
                   required
                   showError={showAllErrors}
                   sx={{ width: INPUT_WIDTH }}
+                  componentId="category"
                 />
               )}
 
@@ -247,10 +250,15 @@ function AdminAnalyzeResults(): JSX.Element {
                   required
                   showError={showAllErrors}
                   sx={{ width: INPUT_WIDTH }}
+                  componentId="searchTerms"
                 />
               )}
               {limitationType ? (
-                <Button sx={{ marginTop: '24px', height: 40 }} type="submit">
+                <Button
+                  sx={{ marginTop: '24px', height: 40 }}
+                  type="submit"
+                  componentId="explain"
+                >
                   {t('Explain')}
                 </Button>
               ) : null}

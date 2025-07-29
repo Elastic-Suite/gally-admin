@@ -4,6 +4,7 @@ exports[`Tree match snapshot 1`] = `
 <div>
   <ul
     class="css-1ukl6jy"
+    data-testid="tree"
   >
     <li
       class="css-1lh1lxa"
@@ -15,8 +16,10 @@ exports[`Tree match snapshot 1`] = `
       >
         <button
           class="css-1ne2h4j"
+          data-testid="treeCollapsingItemListButton"
         >
           <ion-icon
+            data-testid="ionicon"
             src="/images/ionicons/add-circle.svg"
             style="font-size: 24px;"
           />
@@ -26,6 +29,7 @@ exports[`Tree match snapshot 1`] = `
         >
           <button
             class="css-14j6g8y"
+            data-testid="treeItemTitleButton"
           >
             Catégorie Une
           </button>
@@ -45,6 +49,7 @@ exports[`Tree match snapshot 1`] = `
         >
           <button
             class="css-14j6g8y"
+            data-testid="treeItemTitleButton"
           >
             Catégorie Deux
           </button>
@@ -59,6 +64,7 @@ exports[`Tree match snapshot with selected item 1`] = `
 <div>
   <ul
     class="css-1ukl6jy"
+    data-testid="tree"
   >
     <li
       class="css-1lh1lxa"
@@ -70,8 +76,10 @@ exports[`Tree match snapshot with selected item 1`] = `
       >
         <button
           class="css-1ne2h4j"
+          data-testid="treeCollapsingItemListButton"
         >
           <ion-icon
+            data-testid="ionicon"
             src="/images/ionicons/add-circle.svg"
             style="font-size: 24px;"
           />
@@ -81,6 +89,7 @@ exports[`Tree match snapshot with selected item 1`] = `
         >
           <button
             class="css-14j6g8y"
+            data-testid="treeItemTitleButton"
           >
             <span
               class="css-1081t4c"
@@ -104,6 +113,7 @@ exports[`Tree match snapshot with selected item 1`] = `
         >
           <button
             class="css-14j6g8y"
+            data-testid="treeItemTitleButton"
           >
             Catégorie Deux
           </button>

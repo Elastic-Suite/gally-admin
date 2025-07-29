@@ -9,6 +9,7 @@ import {
 import { styled } from '@mui/system'
 import { useTranslation } from 'next-i18next'
 import { theme } from '@elastic-suite/gally-admin-shared'
+import { TestId, generateTestId } from '../../../../utils/testIds'
 
 interface IPaginationStyle {
   color: string
@@ -45,7 +46,7 @@ interface IProps {
   currentPage: number
   rowsPerPage: number
   rowsPerPageOptions: number[]
-  dataTestId?: string
+  componentId?: string
   onRowsPerPageChange?: (
     event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
   ) => void
@@ -63,7 +64,7 @@ function Pagination(props: IProps): JSX.Element {
     rowsPerPageOptions,
     onRowsPerPageChange,
     onPageChange,
-    dataTestId,
+    componentId,
   } = props
 
   const { t } = useTranslation('common')
@@ -80,9 +81,19 @@ function Pagination(props: IProps): JSX.Element {
   ): ReactNode {
     return (
       <PaginationTextContainer>
-        <span data-testid="from">{paginationInfo.from}</span> -{' '}
-        <span data-testid="to">{paginationInfo.to}</span> {t('pagination.of')}{' '}
-        <span data-testid="count">{paginationInfo.count}</span>
+        <span data-testid={generateTestId(TestId.PAGINATION_FROM, componentId)}>
+          {paginationInfo.from}
+        </span>{' '}
+        -{' '}
+        <span data-testid={generateTestId(TestId.PAGINATION_TO, componentId)}>
+          {paginationInfo.to}
+        </span>{' '}
+        {t('pagination.of')}{' '}
+        <span
+          data-testid={generateTestId(TestId.PAGINATION_COUNT, componentId)}
+        >
+          {paginationInfo.count}
+        </span>
       </PaginationTextContainer>
     )
   }
@@ -127,7 +138,7 @@ function Pagination(props: IProps): JSX.Element {
         }),
         ...style,
       }}
-      data-testid={dataTestId}
+      data-testid={generateTestId(TestId.PAGINATION, componentId)}
     >
       {Boolean(withResults) && (
         <StyledParagraph>{t(`result`, { count })}</StyledParagraph>

@@ -16,6 +16,7 @@ import { useTranslation } from 'next-i18next'
 import { selectLanguage, useAppSelector } from '../../../store'
 import { catalogContext } from '../../../contexts'
 import { Collapse } from '@mui/material'
+import { TestId, generateTestId } from '../../../utils/testIds'
 
 interface IProps {
   explainProduct: IGraphqlExplainProduct
@@ -220,7 +221,14 @@ function ExplainDetails(props: IProps): JSX.Element {
       },
     ]
 
-    return <ReadOnlyTable header={header} body={body} fullWidth />
+    return (
+      <ReadOnlyTable
+        header={header}
+        body={body}
+        fullWidth
+        componentId="matches"
+      />
+    )
   }
 
   function getIndexedContentTable(
@@ -265,25 +273,49 @@ function ExplainDetails(props: IProps): JSX.Element {
         },
       ],
     }))
-    return <ReadOnlyTable header={header} body={body} fullWidth />
+    return (
+      <ReadOnlyTable
+        header={header}
+        body={body}
+        fullWidth
+        componentId="indexedContent"
+      />
+    )
   }
 
   return (
-    <ExplainDetailsStyled>
+    <ExplainDetailsStyled data-testid={generateTestId(TestId.EXPLAIN_DETAILS)}>
       <div className="header">
-        <h4>{t('Details score')}</h4>
-        <span>{explainProduct.name}</span>
+        <h4 data-testid="explainDetailsTitle">{t('Details score')}</h4>
+        <span data-testid={generateTestId(TestId.EXPLAIN_DETAILS_NAME)}>
+          {explainProduct.name}
+        </span>
       </div>
 
       <div className="general-information">
         <h6>{t('General information')}</h6>
-        <span>{`${t('Code')}: ${explainProduct?.sku}`}</span>
-        <span>{`${t('Price')}: ${
+        <span
+          data-testid={generateTestId(
+            TestId.EXPLAIN_DETAILS_GENERAL_INFORMATION,
+            'sku'
+          )}
+        >{`${t('Code')}: ${explainProduct?.sku}`}</span>
+        <span
+          data-testid={generateTestId(
+            TestId.EXPLAIN_DETAILS_GENERAL_INFORMATION,
+            'price'
+          )}
+        >{`${t('Price')}: ${
           explainProduct?.price && explainProduct?.price[0]
             ? formatPrice(explainProduct?.price[0]?.price, currency, language)
             : ``
         }`}</span>
-        <span>{`${t('Stock')}: ${
+        <span
+          data-testid={generateTestId(
+            TestId.EXPLAIN_DETAILS_GENERAL_INFORMATION,
+            'stock'
+          )}
+        >{`${t('Stock')}: ${
           explainProduct?.stock?.status
             ? t(getStockStatusLabel(Boolean(explainProduct.stock.status)), {
                 ns: 'common',
@@ -327,6 +359,7 @@ function ExplainDetails(props: IProps): JSX.Element {
             <IonIcon
               onClick={handleToggle}
               name={open ? 'remove-circle' : 'add-circle'}
+              componentId="indexedContentCollapseButton"
             />
           </h6>
           <Collapse in={open} timeout="auto">

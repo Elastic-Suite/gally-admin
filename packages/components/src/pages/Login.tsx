@@ -122,7 +122,7 @@ function Login(): JSX.Element {
             replacementErrorsMessages={{
               typeMismatch: 'typeMismatchEmail',
             }}
-            dataTestId="emailInput"
+            componentId="email"
           />
           <InputText
             autoComplete="current-password"
@@ -136,7 +136,7 @@ function Login(): JSX.Element {
             additionalValidator={(value: string): string => {
               return !value ? 'valueMissing' : ''
             }}
-            dataTestId="passwordInput"
+            componentId="password"
           />
         </Form>
       </CustomBloc>

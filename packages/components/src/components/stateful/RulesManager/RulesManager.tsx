@@ -22,6 +22,7 @@ import { FormHelperText, InputLabel } from '@mui/material'
 import InfoTooltip from '../../atoms/form/InfoTooltip'
 import IonIcon from '../../atoms/IonIcon/IonIcon'
 import { useTranslation } from 'next-i18next'
+import { TestId, generateTestId } from '../../../utils/testIds'
 
 const sourceFieldFixedFilters = {
   'metadata.entity': 'product',
@@ -46,6 +47,7 @@ interface IRulesManagerWrapperProps
   helperIcon?: string
   small?: boolean
   showError?: boolean
+  componentId?: string
 }
 
 function RulesManagerWrapper({
@@ -76,6 +78,7 @@ function RulesManager(props: IRulesManagerProps): JSX.Element {
     helperIcon,
     first,
     small,
+    componentId,
     ...ruleProps
   } = props
   const { t } = useTranslation('common')
@@ -186,6 +189,7 @@ function RulesManager(props: IRulesManagerProps): JSX.Element {
         <FormHelperText
           error={error}
           sx={{ marginTop: !first ? '-12px' : '8px' }}
+          data-testid={generateTestId(TestId.HELPER_TEXT, componentId)}
         >
           {Boolean(helperIcon) && (
             <IonIcon

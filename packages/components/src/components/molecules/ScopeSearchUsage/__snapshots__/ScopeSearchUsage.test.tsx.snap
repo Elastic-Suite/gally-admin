@@ -15,6 +15,7 @@ exports[`ScopeSearchUsage match snapshot 1`] = `
       >
         <div
           class="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-1qqsdnr-MuiAutocomplete-root"
+          data-testid="dropdown"
         >
           <div
             class="MuiFormControl-root css-hh3vi8-MuiFormControl-root"
@@ -46,6 +47,7 @@ exports[`ScopeSearchUsage match snapshot 1`] = `
                   autocapitalize="none"
                   autocomplete="off"
                   class="MuiInputBase-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-ngazp5-MuiInputBase-input"
+                  data-testid="inputText|dropdown"
                   id=":r0:"
                   placeholder="Select a localized catalog"
                   role="combobox"
@@ -64,6 +66,7 @@ exports[`ScopeSearchUsage match snapshot 1`] = `
                     type="button"
                   >
                     <ion-icon
+                      data-testid="ionicon|dropdownCollapsingIcon|dropdown"
                       src="/images/ionicons/chevron-down.svg"
                     />
                     <span
@@ -105,6 +108,7 @@ exports[`ScopeSearchUsage match snapshot 1`] = `
                   <input
                     aria-invalid="false"
                     class="MuiInputBase-input MuiInputBase-inputAdornedEnd css-ngazp5-MuiInputBase-input"
+                    data-testid="inputText|rangeDateFrom"
                     placeholder="date.placeholder"
                     required=""
                     type="tel"
@@ -120,6 +124,7 @@ exports[`ScopeSearchUsage match snapshot 1`] = `
                       type="button"
                     >
                       <ion-icon
+                        data-testid="ionicon"
                         src="/images/ionicons/calendar-outline.svg"
                         style="font-size: 18px; padding: 0px;"
                       />
@@ -153,6 +158,7 @@ exports[`ScopeSearchUsage match snapshot 1`] = `
                   <input
                     aria-invalid="false"
                     class="MuiInputBase-input MuiInputBase-inputAdornedEnd css-ngazp5-MuiInputBase-input"
+                    data-testid="inputText|rangeDateTo"
                     placeholder="date.placeholder"
                     required=""
                     type="tel"
@@ -168,6 +174,7 @@ exports[`ScopeSearchUsage match snapshot 1`] = `
                       type="button"
                     >
                       <ion-icon
+                        data-testid="ionicon"
                         src="/images/ionicons/calendar-outline.svg"
                         style="font-size: 18px; padding: 0px;"
                       />
@@ -184,7 +191,7 @@ exports[`ScopeSearchUsage match snapshot 1`] = `
       </div>
       <button
         class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium css-1jv49re-MuiButtonBase-root-MuiButton-root"
-        data-testid="submitButton"
+        data-testid="button|form-submit"
         style="margin-top: 8px;"
         tabindex="0"
         type="submit"

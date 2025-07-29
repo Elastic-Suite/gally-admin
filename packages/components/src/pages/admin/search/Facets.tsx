@@ -17,6 +17,7 @@ import ResourceTable from '../../../components/stateful-pages/ResourceTable/Reso
 import IonIcon from '../../../components/atoms/IonIcon/IonIcon'
 import PageTitle from '../../../components/atoms/PageTitle/PageTitle'
 import Alert from '../../../components/atoms/Alert/Alert'
+import { TestId, generateTestId } from '../../../utils/testIds'
 
 const ButtonSetting = styled('div')(({ theme }) => ({
   color: theme.palette.colors.neutral[900],
@@ -90,6 +91,7 @@ function AdminSearchFacets(): JSX.Element {
             title={t('facet.title')}
           >
             <ButtonSetting
+              data-testid={generateTestId(TestId.FACETS_SETTINGS_BUTTON)}
               className={classNames({ selected: !selectedCategoryItem })}
               onClick={(): void => setSelectedCategoryItem(undefined)}
             >
@@ -107,6 +109,7 @@ function AdminSearchFacets(): JSX.Element {
         ]}
       >
         <PageTitle
+          data-testid={generateTestId(TestId.FACETS_PAGE_TITLE)}
           title={contentTitle ? contentTitle : t('facets')}
           sx={{ marginBottom: '32px' }}
         />

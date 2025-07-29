@@ -7,6 +7,7 @@ import IonIcon from '../IonIcon/IonIcon'
 
 import InfoTooltip from './InfoTooltip'
 import { StyledFormControl } from './InputText.styled'
+import { TestId, generateTestId } from '../../../utils/testIds'
 
 export interface ISliderProps
   extends Omit<SliderProps, 'defaultValue' | 'onChange'> {
@@ -21,7 +22,7 @@ export interface ISliderProps
   value: number
   width?: number
   required?: boolean
-  dataTestId?: string
+  componentId?: string
 }
 
 const indicatorNumber = [-99, 0, 100]
@@ -39,7 +40,7 @@ function Slider(props: ISliderProps): JSX.Element {
     required,
     value,
     width,
-    dataTestId,
+    componentId,
   } = props
 
   function handleChange(_: Event, value: number): void {
@@ -83,11 +84,13 @@ function Slider(props: ISliderProps): JSX.Element {
               },
             },
           }}
-          data-testid={dataTestId}
+          data-testid={generateTestId(TestId.SLIDER, componentId)}
         />
       </Box>
       {Boolean(helperText) && (
-        <FormHelperText>
+        <FormHelperText
+          data-testid={generateTestId(TestId.HELPER_TEXT, componentId)}
+        >
           {Boolean(helperIcon) && (
             <IonIcon
               name={helperIcon}

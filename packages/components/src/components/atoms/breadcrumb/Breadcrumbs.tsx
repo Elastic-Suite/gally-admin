@@ -8,6 +8,7 @@ import {
 } from '@elastic-suite/gally-admin-shared'
 
 import Breadcrumb from './Breadcrumb'
+import { TestId, generateTestId } from '../../../utils/testIds'
 
 interface IProps {
   slug: string | string[]
@@ -32,7 +33,7 @@ function Breadcrumbs(props: IProps): JSX.Element {
     <MuiBreadcrumbs
       aria-label="breadcrumb"
       sx={{ color: 'colors.neutral.500' }}
-      data-testid="breadcrumbs"
+      data-testid={generateTestId(TestId.BREADCRUMBS)}
     >
       {breadcrumbProps.map(({ key, ...props }) => (
         <Breadcrumb key={key} {...props} />

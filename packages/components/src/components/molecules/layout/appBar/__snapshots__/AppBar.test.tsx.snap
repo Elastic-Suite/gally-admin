@@ -34,12 +34,13 @@ exports[`AppBar match snapshot AppBar simple 1`] = `
     >
       <div
         class="MuiBox-root css-0"
-        data-testid="helpToolTip"
+        data-testid="helpTooltip"
       >
         <div
           class="css-b5pm8o"
         >
           <ion-icon
+            data-testid="ionicon"
             src="/images/ionicons/help-circle-outline.svg"
             style="font-size: 18px; color: rgb(129, 135, 185);"
           />
@@ -91,12 +92,13 @@ exports[`AppBar match snapshot AppBar simple 1`] = `
           class="css-1gbhtbv"
         >
           <ion-icon
+            data-testid="ionicon"
             src="/images/ionicons/person-outline.svg"
             style="font-size: 15px; color: rgb(129, 135, 185);"
           />
           <div
             class="css-14i4ulh"
-            data-testid="username"
+            data-testid="userName"
           >
             Admin@example.com
           </div>
@@ -104,6 +106,7 @@ exports[`AppBar match snapshot AppBar simple 1`] = `
             class="css-1tg3i43"
           >
             <ion-icon
+              data-testid="ionicon"
               src="/images/ionicons/chevron-down.svg"
               style="font-size: 15px; color: rgb(129, 135, 185);"
             />
@@ -228,12 +231,13 @@ exports[`AppBar match snapshot AppBarThreeSlug 1`] = `
     >
       <div
         class="MuiBox-root css-0"
-        data-testid="helpToolTip"
+        data-testid="helpTooltip"
       >
         <div
           class="css-b5pm8o"
         >
           <ion-icon
+            data-testid="ionicon"
             src="/images/ionicons/help-circle-outline.svg"
             style="font-size: 18px; color: rgb(129, 135, 185);"
           />
@@ -285,12 +289,13 @@ exports[`AppBar match snapshot AppBarThreeSlug 1`] = `
           class="css-1gbhtbv"
         >
           <ion-icon
+            data-testid="ionicon"
             src="/images/ionicons/person-outline.svg"
             style="font-size: 15px; color: rgb(129, 135, 185);"
           />
           <div
             class="css-14i4ulh"
-            data-testid="username"
+            data-testid="userName"
           >
             Admin@example.com
           </div>
@@ -298,6 +303,7 @@ exports[`AppBar match snapshot AppBarThreeSlug 1`] = `
             class="css-1tg3i43"
           >
             <ion-icon
+              data-testid="ionicon"
               src="/images/ionicons/chevron-down.svg"
               style="font-size: 15px; color: rgb(129, 135, 185);"
             />
@@ -474,12 +480,13 @@ exports[`AppBar match snapshot AppBarTwoSlug 1`] = `
     >
       <div
         class="MuiBox-root css-0"
-        data-testid="helpToolTip"
+        data-testid="helpTooltip"
       >
         <div
           class="css-b5pm8o"
         >
           <ion-icon
+            data-testid="ionicon"
             src="/images/ionicons/help-circle-outline.svg"
             style="font-size: 18px; color: rgb(129, 135, 185);"
           />
@@ -531,12 +538,13 @@ exports[`AppBar match snapshot AppBarTwoSlug 1`] = `
           class="css-1gbhtbv"
         >
           <ion-icon
+            data-testid="ionicon"
             src="/images/ionicons/person-outline.svg"
             style="font-size: 15px; color: rgb(129, 135, 185);"
           />
           <div
             class="css-14i4ulh"
-            data-testid="username"
+            data-testid="userName"
           >
             Admin@example.com
           </div>
@@ -544,6 +552,7 @@ exports[`AppBar match snapshot AppBarTwoSlug 1`] = `
             class="css-1tg3i43"
           >
             <ion-icon
+              data-testid="ionicon"
               src="/images/ionicons/chevron-down.svg"
               style="font-size: 15px; color: rgb(129, 135, 185);"
             />

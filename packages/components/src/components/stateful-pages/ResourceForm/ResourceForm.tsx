@@ -201,19 +201,20 @@ function ResourceForm(props: IProps): JSX.Element {
                     <Button
                       display="secondary"
                       disabled={isLoading}
-                      data-testid="deleteButtonResourceForm"
+                      componentId="delete"
                       endIcon={<IonIcon name="trash-outline" />}
                     >
                       {t('delete')}
                     </Button>
                   }
                   loading={isLoading}
+                  componentId={resourceName}
                 />
               ) : null}
               <Box>
                 <Button
                   type="submit"
-                  data-testid="submitButtonResourceForm"
+                  componentId="submit"
                   loading={isLoading}
                   endIcon={
                     id ? (

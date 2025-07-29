@@ -15,6 +15,7 @@ import { catalogContext } from '../../../../contexts'
 import PreviewBoostingTableManager from '../../../organisms/PreviewBoostingTable/PreviewBoostingTableManager'
 import { styled } from '@mui/material'
 import { useTranslation } from 'next-i18next'
+import { TestId, generateTestId } from '../../../../utils/testIds'
 
 const RequiredMessage = styled('p')(() => ({
   color: 'var(--neutral-900, #151A47)',
@@ -127,7 +128,9 @@ export default function PreviewGridBoostConfiguration({
 
   if (!boostIsValid) {
     return (
-      <RequiredMessage data-testid="previewRequiredMessage">
+      <RequiredMessage
+        data-testid={generateTestId(TestId.PREVIEW_REQUIRED_MESSAGE)}
+      >
         {t('missingRequiredFieldMessage')}
       </RequiredMessage>
     )

@@ -4,12 +4,13 @@ exports[`Help match snapshot Help simple 1`] = `
 <div>
   <div
     class="MuiBox-root css-0"
-    data-testid="helpToolTip"
+    data-testid="helpTooltip"
   >
     <div
       class="css-b5pm8o"
     >
       <ion-icon
+        data-testid="ionicon"
         src="/images/ionicons/help-circle-outline.svg"
         style="font-size: 18px; color: rgb(129, 135, 185);"
       />

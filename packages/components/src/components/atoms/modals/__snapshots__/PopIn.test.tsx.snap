@@ -7,6 +7,7 @@ exports[`PopIn match snapshot PopIn simple 1`] = `
   >
     <button
       class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge css-zwkw2d-MuiButtonBase-root-MuiButton-root"
+      data-testid="button"
       tabindex="0"
       type="button"
     >

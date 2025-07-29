@@ -43,6 +43,7 @@ exports[`SearchBar match snapshot SearchBar 1`] = `
                   <input
                     aria-invalid="false"
                     class="MuiInputBase-input MuiInputBase-inputAdornedEnd css-ngazp5-MuiInputBase-input"
+                    data-testid="inputText"
                     id="input-text"
                     placeholder="searchBar.placeholder"
                     type="text"
@@ -52,6 +53,7 @@ exports[`SearchBar match snapshot SearchBar 1`] = `
                     class="MuiInputAdornment-root MuiInputAdornment-positionEnd MuiInputAdornment-standard MuiInputAdornment-sizeMedium css-yxo68r-MuiInputAdornment-root"
                   >
                     <ion-icon
+                      data-testid="ionicon"
                       src="/images/ionicons/search.svg"
                     />
                   </div>

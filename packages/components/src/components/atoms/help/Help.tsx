@@ -6,6 +6,7 @@ import Box from '@mui/material/Box'
 import IonIcon from '../IonIcon/IonIcon'
 
 import HelpOver from './HelpOver'
+import { TestId, generateTestId } from '../../../utils/testIds'
 
 const CustomHelp = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -47,7 +48,7 @@ function Help(): JSX.Element {
 
   return (
     <Box
-      data-testid="helpToolTip"
+      data-testid={generateTestId(TestId.HELP_TOOLTIP)}
       onMouseOver={(): void => setHelpVisible(true)}
       onMouseLeave={(): void => setHelpVisible(false)}
       onFocus={(): void => setHelpVisible(true)}
