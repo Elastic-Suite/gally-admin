@@ -122,7 +122,6 @@ function RulesManager(props: IRulesManagerProps): JSX.Element {
   const sourceFieldLabelResource = useResource('SourceFieldLabel')
   const sourceFieldLabelFilters = useMemo(() => {
     const filters: { localizedCatalog?: string } = {}
-    console.log()
     if (localizedCatalogId !== -1) {
       filters.localizedCatalog = getIri(
         'localized_catalogs',

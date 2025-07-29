@@ -207,7 +207,7 @@ function ProductsContainer(props: IProps): JSX.Element {
   }
 
   return (
-    <Box data-tesid={generateTestId(TestId.PRODUCTS_CONTAINER, componentId)}>
+    <Box data-testid={generateTestId(TestId.PRODUCTS_CONTAINER, componentId)}>
       <Layout>
         <PageTitle
           sticky

@@ -114,7 +114,7 @@ function Button(props: IProps): JSX.Element {
   return (
     <>
       <Component
-        data-testId={generateTestId(TestId.BUTTON, componentId)}
+        data-testid={generateTestId(TestId.BUTTON, componentId)}
         {...buttonProps}
         disabled={disabled || loading}
         onClick={options ? handleOpen : onClick}

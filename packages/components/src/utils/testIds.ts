@@ -81,7 +81,7 @@ export enum TestId {
   READ_ONLY_TABLE = 'readOnlyTable',
   READ_ONLY_TABLE_ROW = 'readOnlyTableRow',
   READ_ONLY_TABLE_ROW_IMPORTANT = 'readOnlyTableRowImportant',
-  READ_ONLY_TABLE_COLLAPING_BUTTON = 'readOnlyTableCollapsingButton',
+  READ_ONLY_TABLE_COLLAPSING_BUTTON = 'readOnlyTableCollapsingButton',
   DIALOG = 'dialog',
   DIALOG_CONTENT = 'dialogContent',
   DIALOG_CLOSE_BUTTON = 'dialogCloseButton',

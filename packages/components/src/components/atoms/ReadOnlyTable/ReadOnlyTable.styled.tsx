@@ -172,7 +172,7 @@ export function ReadOnlyTableRow({
                   cursor: 'pointer',
                 }}
                 data-testid={generateTestId(
-                  TestId.READ_ONLY_TABLE_COLLAPING_BUTTON,
+                  TestId.READ_ONLY_TABLE_COLLAPSING_BUTTON,
                   componentId
                 )}
               />

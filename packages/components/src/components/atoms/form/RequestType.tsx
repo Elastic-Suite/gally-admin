@@ -135,7 +135,7 @@ function RequestType(props: IProps): JSX.Element {
           options={options}
           requestTypesOptions={requestTypesOptions}
           categoriesList={categoriesList}
-          componentId={componentId ? `${componentId}Item` : null}
+          componentId={componentId}
         />
       </CustomRoot>
       {Boolean(helperText) && (

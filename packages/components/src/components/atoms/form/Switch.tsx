@@ -61,7 +61,7 @@ function Switch(props: IProps): JSX.Element {
       />
       {Boolean(helperText) && (
         <FormHelperText
-          data-testId={generateTestId(TestId.HELPER_TEXT, componentId)}
+          data-testid={generateTestId(TestId.HELPER_TEXT, componentId)}
         >
           {Boolean(helperIcon) && (
             <IonIcon
