@@ -163,7 +163,7 @@ function DraggableRow(props: IProps): JSX.Element {
         const value =
           tableRow[header.name] && header.input === 'image'
             ? getImageValue(
-                configuration['base_url/media'],
+                configuration['gally.base_url.media'],
                 tableRow[header.name] as IImage | string
               )
             : tableRow[header.name]

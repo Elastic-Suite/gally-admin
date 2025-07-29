@@ -24,7 +24,7 @@ export function useDataLoader(): void {
     false
   )
   const [configurations] = useFetchApi<IHydraResponse<IConfigurations>>(
-    'configurations',
+    'public_configurations',
     undefined,
     undefined,
     false
@@ -48,7 +48,7 @@ export function useDataLoader(): void {
           bundles: bundles.data['hydra:member'].map((bundle) => bundle.name),
           configurations: Object.fromEntries(
             configurations.data['hydra:member'].map((configuration) => [
-              configuration.id,
+              configuration.path,
               configuration.value,
             ])
           ),

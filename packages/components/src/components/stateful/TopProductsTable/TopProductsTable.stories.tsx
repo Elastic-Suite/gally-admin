@@ -104,7 +104,7 @@ const tableRows = [
 export const TopProductTable = Template.bind({})
 TopProductTable.args = {
   configuration: {
-    'base_url/media': 'https://localhost/media/catalog/product/',
+    'gally.base_url.media': 'https://localhost/media/catalog/product/',
   },
   Field: FieldGuesser,
   tableHeaders,

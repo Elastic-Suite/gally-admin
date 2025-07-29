@@ -81,7 +81,7 @@ const tableRows = [
 ]
 
 const configuration = {
-  'base_url/media': 'https://localhost/media/catalog/product/',
+  'gally.base_url.media': 'https://localhost/media/catalog/product/',
 }
 
 describe('CustomTable', () => {

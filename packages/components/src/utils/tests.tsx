@@ -23,7 +23,7 @@ const defaultState = {
     api,
     bundles: [Bundle.VIRTUAL_CATEGORY],
     configurations: {
-      'base_url/media': 'https://localhost/media/catalog/product/',
+      'gally.base_url.media': 'https://localhost/media/catalog/product/',
     },
   },
   user: {

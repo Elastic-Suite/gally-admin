@@ -12,7 +12,7 @@ import FieldGuesser from '../FieldGuesser/FieldGuesser'
 import TopProductsTable from './TopProductsTable'
 
 const configuration = {
-  'base_url/media': 'https://localhost/media/catalog/product/',
+  'gally.base_url.media': 'https://localhost/media/catalog/product/',
 }
 
 describe('TopProductTable', () => {
