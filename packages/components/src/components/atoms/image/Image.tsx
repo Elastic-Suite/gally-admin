@@ -15,8 +15,8 @@ const ImageContainer = styled('div')({
 })
 
 const ImageTag = styled('img')({
-  height: 80,
-  width: 80,
+  maxHeight: 80,
+  maxWidth: 80,
 })
 
 const Icons = styled('div')({
