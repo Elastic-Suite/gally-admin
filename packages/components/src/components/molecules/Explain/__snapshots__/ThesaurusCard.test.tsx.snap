@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ThesaurusCard matches snapshot 1`] = `
+<div>
+  <div
+    class="css-4ldiph"
+  >
+    <h4>
+      Synonyms and expansions
+    </h4>
+    <div
+      class="css-ts3zi"
+    >
+      <div
+        class="MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorPrimary MuiChip-filledPrimary css-wih3ly-MuiChip-root"
+        style="opacity: 1;"
+      >
+        <span
+          class="MuiChip-label MuiChip-labelMedium css-6od3lo-MuiChip-label"
+        >
+          Top
+        </span>
+      </div>
+      <div
+        class="MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorPrimary MuiChip-filledPrimary css-wih3ly-MuiChip-root"
+        style="opacity: 1;"
+      >
+        <span
+          class="MuiChip-label MuiChip-labelMedium css-6od3lo-MuiChip-label"
+        >
+          Jacket
+        </span>
+      </div>
+      <div
+        class="MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorPrimary MuiChip-filledPrimary css-wih3ly-MuiChip-root"
+        style="opacity: 1;"
+      >
+        <span
+          class="MuiChip-label MuiChip-labelMedium css-6od3lo-MuiChip-label"
+        >
+          Tank
+        </span>
+      </div>
+    </div>
+    <button
+      class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge css-156z0p6-MuiButtonBase-root-MuiButton-root"
+      tabindex="0"
+      type="button"
+    >
+      Modify Thesaurus
+      <span
+        class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+      />
+    </button>
+  </div>
+</div>
+`;
