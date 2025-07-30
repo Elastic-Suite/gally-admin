@@ -4,7 +4,6 @@ import { keyframes, styled } from '@mui/system'
 import { TestId, generateTestId } from '../../../utils/testIds'
 
 import IonIcon from '../IonIcon/IonIcon'
-import { TestId, generateTestId } from '../../../utils/testIds'
 
 const CustomIndicatorLineActiveTwo = styled('div')(({ theme }) => ({
   width: 3,
