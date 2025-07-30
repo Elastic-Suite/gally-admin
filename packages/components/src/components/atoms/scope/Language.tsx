@@ -7,6 +7,7 @@ import {
 } from '@elastic-suite/gally-admin-shared'
 
 import PopInCatalogs from './PopInCatalogs'
+import { TestId, generateTestId } from '../../../utils/testIds'
 
 const CustomRoot = styled('div')(({ theme }) => ({
   gap: theme.spacing(1),
@@ -45,7 +46,7 @@ function Language({ language, order, limit, content }: IProps): JSX.Element {
     <CustomRoot>
       {newLanguage
         ? newLanguage.map((item: string, key: number) => (
-            <div key={item}>
+            <div data-testId={generateTestId(TestId.LANGUAGE, item)} key={item}>
               {limit === true ? (
                 key === NB_ACTIVE_LOCALES_BY_WEBSITE ? (
                   <div>

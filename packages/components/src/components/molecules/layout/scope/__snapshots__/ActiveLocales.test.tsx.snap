@@ -12,6 +12,7 @@ exports[`ActiveLocales match snapshot ActiveLocales simple 1`] = `
     </div>
     <div
       class="css-1un2rp5"
+      data-testid="nbActiveLocales"
     >
       <div
         class="css-akp1oj"
@@ -27,14 +28,18 @@ exports[`ActiveLocales match snapshot ActiveLocales simple 1`] = `
     <div
       class="css-1sfqhqu"
     >
-      <div>
+      <div
+        data-testid="language|French (France)"
+      >
         <div
           class="css-1ahqu2p"
         >
           French (France)
         </div>
       </div>
-      <div>
+      <div
+        data-testid="language|English (United States)"
+      >
         <div
           class="css-1ahqu2p"
         >

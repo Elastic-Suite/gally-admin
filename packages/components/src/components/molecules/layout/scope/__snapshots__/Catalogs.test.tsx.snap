@@ -17,6 +17,7 @@ exports[`Catalogs match snapshot Catalogs simple 1`] = `
     >
       <div
         class="css-djnyj7"
+        data-testid="catalogs|com"
       >
         <div
           class="css-6ho6b6"
@@ -25,6 +26,7 @@ exports[`Catalogs match snapshot Catalogs simple 1`] = `
         </div>
         <div
           class="css-1un2rp5"
+          data-testid="nbActiveLocales"
         >
           <div
             class="css-akp1oj"
@@ -40,14 +42,18 @@ exports[`Catalogs match snapshot Catalogs simple 1`] = `
         <div
           class="css-1sfqhqu"
         >
-          <div>
+          <div
+            data-testid="language|French (France)"
+          >
             <div
               class="css-1ahqu2p"
             >
               French (France)
             </div>
           </div>
-          <div>
+          <div
+            data-testid="language|English (United States)"
+          >
             <div
               class="css-1ahqu2p"
             >
@@ -58,6 +64,7 @@ exports[`Catalogs match snapshot Catalogs simple 1`] = `
       </div>
       <div
         class="css-djnyj7"
+        data-testid="catalogs|fr"
       >
         <div
           class="css-6ho6b6"
@@ -66,6 +73,7 @@ exports[`Catalogs match snapshot Catalogs simple 1`] = `
         </div>
         <div
           class="css-1un2rp5"
+          data-testid="nbActiveLocales"
         >
           <div
             class="css-akp1oj"
@@ -81,14 +89,18 @@ exports[`Catalogs match snapshot Catalogs simple 1`] = `
         <div
           class="css-1sfqhqu"
         >
-          <div>
+          <div
+            data-testid="language|French (France)"
+          >
             <div
               class="css-1ahqu2p"
             >
               French (France)
             </div>
           </div>
-          <div>
+          <div
+            data-testid="language|English (United States)"
+          >
             <div
               class="css-1ahqu2p"
             >
@@ -99,6 +111,7 @@ exports[`Catalogs match snapshot Catalogs simple 1`] = `
       </div>
       <div
         class="css-djnyj7"
+        data-testid="catalogs|uk"
       >
         <div
           class="css-6ho6b6"
@@ -107,6 +120,7 @@ exports[`Catalogs match snapshot Catalogs simple 1`] = `
         </div>
         <div
           class="css-1un2rp5"
+          data-testid="nbActiveLocales"
         >
           <div
             class="css-akp1oj"
@@ -122,14 +136,18 @@ exports[`Catalogs match snapshot Catalogs simple 1`] = `
         <div
           class="css-1sfqhqu"
         >
-          <div>
+          <div
+            data-testid="language|French (France)"
+          >
             <div
               class="css-1ahqu2p"
             >
               French (France)
             </div>
           </div>
-          <div>
+          <div
+            data-testid="language|English (United States)"
+          >
             <div
               class="css-1ahqu2p"
             >
