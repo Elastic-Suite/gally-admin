@@ -18,6 +18,7 @@ import CustomTabs from '../../../components/molecules/layout/tabs/CustomTabs'
 import SettingsAttributes from '../../../components/stateful-pages/SettingsAttributes/SettingsAttributes'
 import SettingsScope from '../../../components/stateful-pages/SettingsScope/SettingsScope'
 import AdminUserGrid from '../../../components/stateful-pages/SettingsUsers/Grid'
+import SettingsConfigurations from '../../../components/stateful-pages/SettingsConfigurations/SettingsConfigurations'
 
 const pageSlug = 'settings'
 
@@ -49,9 +50,15 @@ function AdminSettingsIndex(): JSX.Element {
         label: t('tabs.attributes'),
         url: '/admin/settings/attributes',
       },
+      {
+        Component: SettingsConfigurations,
+        id: 2,
+        label: t('tabs.configurations'),
+        url: '/admin/settings/configurations',
+      },
       isValidRoleUser(Role.ADMIN, user) && {
         Component: AdminUserGrid,
-        id: 2,
+        id: 3,
         label: t('tabs.users'),
         url: '/admin/settings/user/grid',
       },

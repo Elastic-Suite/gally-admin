@@ -57,7 +57,7 @@ export function hasFieldOptions(field: IField): boolean {
 export function isDropdownStaticOptions(
   options: IDropdownStaticOptions | IDropdownApiOptions
 ): options is IDropdownStaticOptions {
-  return 'values' in options
+  return 'values' in options && options.values.length > 0
 }
 
 /**
