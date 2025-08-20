@@ -26,7 +26,8 @@ function AdminSearchVector(): JSX.Element {
     setBreadcrumb(pagesSlug)
   }, [router.query, setBreadcrumb])
 
-  const resource = useResource('VectorSearch')
+  const resourceName = 'VectorConfiguration'
+  const resource = useResource(resourceName)
   const [activeFilters, setActiveFilters] = useFilters(resource)
   const metadatas = useContext(metadataContext)
 
@@ -46,7 +47,7 @@ function AdminSearchVector(): JSX.Element {
       <ResourceTable
         activeFilters={activeFilters}
         filters={fixedFilters}
-        resourceName="VectorConfiguration"
+        resourceName={resourceName}
         setActiveFilters={setActiveFilters}
         showSearch
         rowsPerPage={defaultRowsPerPageOptions[1]}
