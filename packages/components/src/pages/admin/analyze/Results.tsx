@@ -291,4 +291,4 @@ function AdminAnalyzeResults(): JSX.Element {
   )
 }
 
-export default withAuth(withOptions(AdminAnalyzeResults))
+export default withAuth()(withOptions(AdminAnalyzeResults))

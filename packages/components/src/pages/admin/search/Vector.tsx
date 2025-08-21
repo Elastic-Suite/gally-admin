@@ -56,4 +56,4 @@ function AdminSearchVector(): JSX.Element {
   )
 }
 
-export default withAuth(withOptions(AdminSearchVector))
+export default withAuth()(withOptions(AdminSearchVector))

@@ -4,5 +4,14 @@
   "filters.apply": "Apply",
   "filters.clearAll": "Clear all",
   "filters.filter": "Filter",
-  "filters.search": "Search"
+  "filters.search": "Search",
+  "First name": "First name",
+  "Last name": "Last name",
+  "E-mail": "E-mail",
+  "Password": "Password",
+  "Role(s)": "Role(s)",
+  "If you select the value ROLE_ADMIN, all roles will be selected automatically, because ROLE_ADMIN includes all roles.": "If you select the value ROLE_ADMIN, all roles will be selected automatically, because ROLE_ADMIN includes all roles.",
+  "An email will be sent to the user allowing them to set their password.": "An email will be sent to the user allowing them to set their password.",
+  "Administrator": "Administrator",
+  "Contributor": "Contributor"
 }

@@ -85,8 +85,11 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
     }
   }
 
-  switch (input ?? type) {
+  const inputType = input ?? type
+  switch (inputType) {
+    case DataContentType.PASSWORD:
     case DataContentType.NUMBER:
+    case DataContentType.EMAIL:
     case DataContentType.STRING: {
       return (
         <InputText
@@ -108,7 +111,7 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
           required={required}
           showError={showError}
           suffix={suffix}
-          type={input === DataContentType.NUMBER ? 'number' : 'text'}
+          type={inputType === DataContentType.STRING ? 'text' : inputType}
           value={value as string | number | null}
           placeholder={placeholder}
           replacementErrorsMessages={replacementErrorsMessages}
@@ -271,7 +274,7 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
           {...props}
           infoTooltip={infoTooltip}
           onChange={handleChange}
-          useGroups={Boolean((input ?? type) === DataContentType.OPTGROUP)}
+          useGroups={Boolean(inputType === DataContentType.OPTGROUP)}
           multiple={Boolean(value instanceof Array)}
           error={error}
           helperText={helperText}

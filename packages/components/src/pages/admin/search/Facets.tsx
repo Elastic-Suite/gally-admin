@@ -132,4 +132,4 @@ function AdminSearchFacets(): JSX.Element {
   )
 }
 
-export default withAuth(withOptions(AdminSearchFacets))
+export default withAuth()(withOptions(AdminSearchFacets))

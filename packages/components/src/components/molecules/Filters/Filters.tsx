@@ -2,6 +2,7 @@ import React, { FormEvent, ReactNode, useContext, useState } from 'react'
 import { useTranslation } from 'next-i18next'
 import { Collapse, InputAdornment, Stack } from '@mui/material'
 import {
+  DataContentType,
   IFieldConfig,
   IFieldOptions,
   IOption,
@@ -107,6 +108,12 @@ function Filters(props: IProps): JSX.Element {
   const filterMap = new Map<string, IFieldConfig>(
     filters.map((filter) => [filter.id, filter])
   )
+
+  function getInputType(originalInputType: DataContentType): DataContentType {
+    return originalInputType === DataContentType.EMAIL
+      ? DataContentType.STRING
+      : originalInputType
+  }
 
   const activeFilters = Object.entries(activeValues)
     .filter(([_, value]) => value !== '')
@@ -248,6 +255,7 @@ function Filters(props: IProps): JSX.Element {
               <FieldGuesser
                 key={filter.id}
                 {...filter}
+                input={getInputType(filter.input)}
                 onChange={handleChange}
                 showError
                 label={t(filter.label)}

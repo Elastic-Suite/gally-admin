@@ -1,6 +1,16 @@
 {
-  "action.login": "Connexion",
-  "label.mail": "E-mail",
-  "label.password": "Mot de passe",
-  "title.login": "Connexion"
+  "login.title": "Connexion",
+  "email.label": "E-mail",
+  "password.label": "Mot de passe",
+  "login.action": "Connexion",
+  "login.forgotPassword.link": "Mot de passe oublié ?",
+  "forgotPassword.title": "Mot de passe oublié",
+  "forgotPassword.description": "Veuillez entrer votre adresse e-mail et nous vous enverrons un lien pour réinitialiser votre mot de passe.",
+  "forgotPassword.action": "Envoyer",
+  "forgotPassword.message.success": "Nous vous enverrons un lien par e-mail pour réinitialiser votre mot de passe.",
+  "resetPassword.title": "Réinitialiser le mot de passe",
+  "resetPassword.action": "Sauvegarder",
+  "resetPassword.token.error": "Token introuvable ou expiré.",
+  "resetPassword.message.success": " Le mot de passe a été enregistré avec succès.",
+  "resetPassword.message.error": "Une erreur est survenue lors de la mise à jour du mot de passe."
 }

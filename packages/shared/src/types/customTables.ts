@@ -18,6 +18,8 @@ export enum DataContentType {
   SELECT = 'select',
   STOCK = 'stock',
   STRING = 'string',
+  PASSWORD = 'password',
+  EMAIL = 'email',
   TAG = 'tag',
   BUTTON = 'button',
   OPTGROUP = 'optgroup',

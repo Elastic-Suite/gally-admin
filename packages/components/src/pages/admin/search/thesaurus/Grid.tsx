@@ -29,4 +29,4 @@ function AdminThesaurusGrid(): JSX.Element {
   )
 }
 
-export default withAuth(withOptions(AdminThesaurusGrid))
+export default withAuth()(withOptions(AdminThesaurusGrid))

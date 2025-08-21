@@ -29,4 +29,4 @@ function AdminBoostGrid(): JSX.Element {
   )
 }
 
-export default withAuth(withOptions(AdminBoostGrid))
+export default withAuth()(withOptions(AdminBoostGrid))
