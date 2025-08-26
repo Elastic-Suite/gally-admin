@@ -85,7 +85,6 @@ interface IProps extends ITabContentProps {
  *
  *  REFACTO:
  *  11/ Aller chercher les todos liés au refactoring pour isoler le code dans un (nouveau) service Config ou dans le service (existant) Form
- *  12/ Erreur lors de l'ouverture d'un multiselect <li> cannot be descendant of <li>
  */
 function ConfigurationForm(props: IProps): JSX.Element {
   const {
