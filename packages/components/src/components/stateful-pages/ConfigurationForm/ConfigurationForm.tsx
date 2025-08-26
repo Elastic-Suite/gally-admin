@@ -16,103 +16,85 @@ import {
   ITabContentProps,
   LoadStatus,
   Method,
-  concatenateValuesWithLineBreaks,
   contentTypeHeader,
   isError,
 } from '@elastic-suite/gally-admin-shared'
 import { closeSnackbar, enqueueSnackbar } from 'notistack'
 import { useTranslation } from 'next-i18next'
 import { Box, Theme } from '@mui/material'
-import PageTitle from '../../atoms/PageTitle/PageTitle'
 import { styled } from '@mui/system'
 import Form from '../../atoms/form/Form'
 import { MainSectionFieldSet } from '../../organisms/CustomForm/CustomForm.styled'
 import IonIcon from '../../atoms/IonIcon/IonIcon'
 import EditableDropDownGuesser from '../../stateful/FieldGuesser/EditableDropDownGuesser'
+import {
+  formatConfigurationScopeField,
+  getBulkConfigurations,
+  getConfigurationData,
+} from '../../../services/configuration'
+import { handleFormErrors } from '../../../services'
 
-const CustomDoubleButtonSticky = styled('div')(({ theme }) => ({
+const StickyRoot = styled('div')(({ theme }) => ({
+  display: 'flex',
+  position: 'sticky',
+  top: '84px',
+  backgroundColor: theme.palette.background.page,
+  zIndex: 5,
+}))
+
+const ScopeAndSaveToolbar = styled('div')(({ theme }) => ({
+  position: 'relative',
   display: 'flex',
   flexDirection: 'row',
+  padding: (theme as Theme).spacing(2),
+  gap: (theme as Theme).spacing(2),
+  backgroundColor: theme.palette.colors.white,
+  borderBottomLeftRadius: '5px',
+  border: '1px solid #E2E6F3',
+  width: '100%',
+  marginBottom: (theme as Theme).spacing(1),
+}))
+
+const FlexBox = styled(Box)(() => ({
+  flex: 1,
+}))
+
+const RightAlignedButton = styled(Box)(({ theme }) => ({
   gap: (theme as Theme).spacing(2),
 }))
 
-interface IViolations {
-  propertyPath?: string
-  message?: string
-}
-
-// todo: Faire le ménage de l'interface IProps, les champs optionnelles sont probablement inutiles.
 interface IProps extends ITabContentProps {
-  id?: string
-  title?: string
-  entityLabel?: string
   configurationResource: IResource
   configurationGroup: IConfigurationTreeGroupFormatted
   configurationScope: IConfigurationTreeScope
   configurationList: string[]
 }
 
-// todo move to service
-function getConfigurationData(
-  configurationList: string[],
-  configurations: IConfiguration[]
-): IConfigurationData {
-  let data = {}
-  configurationList.forEach((value) => {
-    const configuration = configurations.find((item) => item.path === value)
-    if (configuration) {
-      data = { ...data, [value]: configuration.value }
-    }
-  })
-
-  return data
-}
-
-// todo move to service
-function getBulkConfigurations(
-  configurationData: IConfigurationData,
-  scopeType: ConfigurationScopeType,
-  scopeCode: string
-): IConfiguration[] {
-  const bulk: IConfiguration[] = []
-  const isGeneralScope = scopeCode === ConfigurationScopeType.SCOPE_GENERAL
-  for (const [path, value] of Object.entries(configurationData)) {
-    bulk.push({
-      path,
-      value,
-      scopeType: isGeneralScope
-        ? ConfigurationScopeType.SCOPE_GENERAL
-        : scopeType,
-      scopeCode: isGeneralScope ? null : scopeCode,
-    })
-  }
-
-  return bulk
-}
-
 /** RAF
- * Tester toutes les combinaisons possibles d'affichage avec les différentes config + tous les composants form et arbitrer de l'utilité ?
- * Ne pas save les configs qui ne changent pas ?
- * Title (dans le navigateur) de la page n'est pas défini.
- * Vérifier si les validations fonctionnent + le required (si on met required false côté back est-ce que ça fonctionne?).
+ *
+ * DONNÉES:
+ *
+ * 2/ Tester toutes les combinaisons possibles d'affichage avec les différentes config + tous les composants form et arbitrer de l'utilité ?
+ * => Pierre va ajouter des configs qui correspondent aux cas réels
+ *
+ * 10/ Vérifier si les validations fonctionnent + le required (si on met required false côté back est-ce que ça fonctionne ?).
+ * => Les contraintes de validations existent t'elles en back pour la config ?
+ *
+ * 4/ Design:
+ *  => Allonger les champs
+ *
+ *  REFACTO:
+ *  11/ Aller chercher les todos liés au refactoring pour isoler le code dans un (nouveau) service Config ou dans le service (existant) Form
+ *  12/ Erreur lors de l'ouverture d'un multiselect <li> cannot be descendant of <li>
  */
 function ConfigurationForm(props: IProps): JSX.Element {
-  /*
-    configurationResource: IResource
-  configurationGroups: IConfigurationTreeGroupFormatted
-  configurationList: string[]
-   */
   const {
-    id,
-    title,
-    entityLabel,
     configurationResource,
     configurationGroup,
     configurationScope,
     configurationList,
   } = props
-  const resourceName = 'Boost'
-  const entity = (entityLabel ?? resourceName).toLowerCase()
+  const entity = 'config'
   const { t } = useTranslation('resourceForm')
   const [errors, setErrors] = useState<IErrorsForm>()
 
@@ -121,10 +103,14 @@ function ConfigurationForm(props: IProps): JSX.Element {
   const [scopeCode, setScopeCode] = useState<string>(
     ConfigurationScopeType.SCOPE_GENERAL
   )
+  const [originalConfigurationData, setOriginalConfigurationData] =
+    useState<IConfigurationData>({})
   const [configurationData, setConfigurationData] =
     useState<IConfigurationData>({})
   const [showAllErrors, setShowAllErrors] = useState(false)
   const fetchApi = useApiFetch()
+
+  const [disableSubmit, setDisableSubmit] = useState(true)
 
   const filters = useMemo(
     () => ({
@@ -144,31 +130,48 @@ function ConfigurationForm(props: IProps): JSX.Element {
     false
   )
 
-  // todo voir avec Aurélien si c'est le bon move ?
   useEffect(() => {
     if (configurations.status === LoadStatus.SUCCEEDED) {
-      setConfigurationData(
-        getConfigurationData(
-          configurationList,
-          configurations.data['hydra:member']
-        )
+      const loadedConfigurationData = getConfigurationData(
+        configurationList,
+        configurations.data['hydra:member']
       )
+      setConfigurationData(loadedConfigurationData)
+      setOriginalConfigurationData(loadedConfigurationData)
     }
   }, [configurations, configurationList])
 
-  //todo: à mutualiser avec ResouceForm
-  function transformPropertyPath(propertyPath: string): string {
-    switch (propertyPath) {
-      case 'fromDate':
-      case 'toDate':
-        return 'doubleDatePicker'
-
-      default:
-        return propertyPath
+  function getDirtyFields(
+    configurationData: IConfigurationData
+  ): IConfigurationData {
+    if (!originalConfigurationData) {
+      return configurationData
     }
+
+    return Object.fromEntries(
+      Object.entries(configurationData).filter(
+        ([key, value]) => originalConfigurationData[key] !== value
+      )
+    )
+  }
+
+  function onSendingDataSuccess(configurationData: IConfigurationData): void {
+    // Sets new configuration data as original one so it serves as basis for next changes comparison
+    setOriginalConfigurationData(configurationData)
+    enqueueSnackbar(t('alert.update', { entity }), {
+      onShut: closeSnackbar,
+      variant: 'success',
+    })
   }
 
   async function sendingData(): Promise<void> {
+    const dirtyFields = getDirtyFields(configurationData)
+    // If nothing has changed we exit early to prevent button spam creating requests
+    if (Object.keys(dirtyFields).length === 0) {
+      onSendingDataSuccess(configurationData)
+      return
+    }
+
     setIsLoading(true)
     const sendingToApi = await fetchApi<IConfiguration>(
       '/configurations/bulk',
@@ -176,7 +179,7 @@ function ConfigurationForm(props: IProps): JSX.Element {
       {
         body: JSON.stringify(
           getBulkConfigurations(
-            configurationData,
+            dirtyFields,
             configurationGroup.scopeType,
             scopeCode
           )
@@ -187,42 +190,9 @@ function ConfigurationForm(props: IProps): JSX.Element {
     )
 
     if (!isError(sendingToApi)) {
-      //todo: set dans le state les données recupérer dans le retour du fetchApi.
-      // setData(sendingToApi)
-      enqueueSnackbar(
-        id ? t('alert.update', { entity }) : t('alert.create', { entity }),
-        {
-          onShut: closeSnackbar,
-          variant: 'success',
-        }
-      )
+      onSendingDataSuccess(configurationData)
     } else {
-      //todo: Gestion des messages à mutualiser avec ResouceForm
-      const newErrors: IErrorsForm = { fields: {}, global: [] }
-
-      sendingToApi?.violations?.forEach((err: IViolations) => {
-        if (err?.propertyPath && err?.message) {
-          newErrors.fields[transformPropertyPath(err?.propertyPath)] =
-            err.message
-        } else if (err?.message) {
-          newErrors.global.push(err.message)
-        }
-      })
-
-      enqueueSnackbar(t('error.form'), {
-        onShut: closeSnackbar,
-        variant: 'error',
-      })
-
-      if (newErrors.global.length !== 0) {
-        enqueueSnackbar(concatenateValuesWithLineBreaks(newErrors.global), {
-          onShut: closeSnackbar,
-          variant: 'error',
-          style: { whiteSpace: 'pre-line' },
-          autoHideDuration: Infinity,
-        })
-      }
-      setErrors(newErrors)
+      setErrors(handleFormErrors(sendingToApi, t))
     }
     setIsLoading(false)
   }
@@ -233,6 +203,7 @@ function ConfigurationForm(props: IProps): JSX.Element {
 
   function handleChange(value: IConfigurationData): void {
     setConfigurationData(value)
+    setDisableSubmit(Object.keys(getDirtyFields(value)).length === 0)
   }
 
   function handleSubmit(
@@ -257,9 +228,9 @@ function ConfigurationForm(props: IProps): JSX.Element {
           flexDirection: 'column',
         }}
       >
-        <PageTitle title={title} sx={{ marginBottom: '32px' }} sticky>
-          <CustomDoubleButtonSticky>
-            <Box>
+        <StickyRoot>
+          <ScopeAndSaveToolbar>
+            <FlexBox>
               {/*// todo: Add default dropdown value general (general  == default scope).*/}
               <EditableDropDownGuesser
                 onChange={handleScopeChange}
@@ -271,38 +242,26 @@ function ConfigurationForm(props: IProps): JSX.Element {
                 useGroups={
                   configurationScope.input === DataContentType.OPTGROUP
                 }
-                field={{
-                  '@type': '',
-                  description: configurationScope.label,
-                  property: {
-                    '@id': `#Configuration\\configurationScopeType\\${configurationGroup.scopeType}`,
-                    '@type': '',
-                    domain: {
-                      '@id': '',
-                    },
-                    label: configurationScope.label,
-                  },
-                  readable: true,
-                  required: true,
-                  title: configurationScope.label,
-                  writeable: true,
-                  gally: { options: configurationScope.options },
-                }}
+                field={formatConfigurationScopeField(
+                  configurationGroup,
+                  configurationScope
+                )}
                 required
               />
-            </Box>
-            <Box>
+            </FlexBox>
+            <RightAlignedButton>
               <Button
                 type="submit"
                 componentId="submit"
+                disabled={disableSubmit}
                 loading={isLoading}
                 endIcon={<IonIcon name="save-outline" />}
               >
                 {t('save')}
               </Button>
-            </Box>
-          </CustomDoubleButtonSticky>
-        </PageTitle>
+            </RightAlignedButton>
+          </ScopeAndSaveToolbar>
+        </StickyRoot>
 
         <CustomForm
           data={configurationData}
@@ -312,7 +271,6 @@ function ConfigurationForm(props: IProps): JSX.Element {
           errors={errors}
         />
       </Form>
-      {/*todo: comprendre à quoi sert ce deuxième Custom Form, il est très probablement utilisé dans le cas d'external fieldset*/}
       <CustomForm
         data={configurationData}
         showAllErrors={showAllErrors}

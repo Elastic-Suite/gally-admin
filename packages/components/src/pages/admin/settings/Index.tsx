@@ -67,9 +67,19 @@ function AdminSettingsIndex(): JSX.Element {
   const [activeTab, handleTabChange] = useTabs(routerTabs)
   const { actions, id } = activeTab
 
+  const pageTitle = useMemo(() => {
+    return findBreadcrumbLabel(0, [pageSlug], menu.hierarchy)
+      ? `${findBreadcrumbLabel(0, [pageSlug], menu.hierarchy)}`
+      : ''
+  }, [menu])
+
+  const headTitle = useMemo(() => {
+    return `${pageTitle} - ${activeTab.label}`
+  }, [pageTitle, activeTab.label])
+
   return (
     <>
-      <PageTitle title={findBreadcrumbLabel(0, [pageSlug], menu.hierarchy)}>
+      <PageTitle headTitle={headTitle} title={pageTitle}>
         {actions}
       </PageTitle>
       <CustomTabs
