@@ -13,7 +13,6 @@ import BackToLastPage from '../../atoms/backToLastPage/BackToLastPage'
 import {
   IErrorsForm,
   IMainContext,
-  concatenateValuesWithLineBreaks,
   firstLetterUppercase,
   initResourceData,
   isError,
@@ -28,17 +27,13 @@ import { styled } from '@mui/system'
 import Form from '../../atoms/form/Form'
 import { MainSectionFieldSet } from '../../organisms/CustomForm/CustomForm.styled'
 import IonIcon from '../../atoms/IonIcon/IonIcon'
+import { handleFormErrors } from '../../../services'
 
 const CustomDoubleButtonSticky = styled('div')(({ theme }) => ({
   display: 'flex',
   flexDirection: 'row',
   gap: (theme as Theme).spacing(2),
 }))
-
-interface IViolations {
-  propertyPath?: string
-  message?: string
-}
 
 interface IProps {
   id?: string
@@ -79,17 +74,6 @@ function ResourceForm(props: IProps): JSX.Element {
     }
   }, [id, fetchApi, log, resource.url, router])
 
-  function transformPropertyPath(propertyPath: string): string {
-    switch (propertyPath) {
-      case 'fromDate':
-      case 'toDate':
-        return 'doubleDatePicker'
-
-      default:
-        return propertyPath
-    }
-  }
-
   async function sendingData(): Promise<unknown> {
     setIsLoading(true)
     let sendingToApi
@@ -112,31 +96,7 @@ function ResourceForm(props: IProps): JSX.Element {
         return
       }
     } else {
-      const newErrors: IErrorsForm = { fields: {}, global: [] }
-
-      sendingToApi?.violations?.forEach((err: IViolations) => {
-        if (err?.propertyPath && err?.message) {
-          newErrors.fields[transformPropertyPath(err?.propertyPath)] =
-            err.message
-        } else if (err?.message) {
-          newErrors.global.push(err.message)
-        }
-      })
-
-      enqueueSnackbar(t('error.form'), {
-        onShut: closeSnackbar,
-        variant: 'error',
-      })
-
-      if (newErrors.global.length !== 0) {
-        enqueueSnackbar(concatenateValuesWithLineBreaks(newErrors.global), {
-          onShut: closeSnackbar,
-          variant: 'error',
-          style: { whiteSpace: 'pre-line' },
-          autoHideDuration: Infinity,
-        })
-      }
-      setErrors(newErrors)
+      setErrors(handleFormErrors(sendingToApi, t))
     }
     setIsLoading(false)
   }

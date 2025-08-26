@@ -42,6 +42,7 @@ interface IProps extends TypographyProps {
   sticky?: boolean
   title: string
   hideTitle?: boolean
+  headTitle?: string | null
   componentId?: string
 }
 
@@ -51,6 +52,7 @@ function PageTitle(props: IProps): JSX.Element {
     sticky,
     title,
     hideTitle,
+    headTitle,
     componentId,
     ...typographyProps
   } = props
@@ -58,9 +60,11 @@ function PageTitle(props: IProps): JSX.Element {
 
   return (
     <>
-      <Head>
-        <title>{getHeadTitle(title)}</title>
-      </Head>
+      {headTitle !== null && (
+        <Head>
+          <title>{getHeadTitle(headTitle ?? title)}</title>
+        </Head>
+      )}
       <RootComponent
         data-testid={generateTestId(TestId.PAGE_TITLE, componentId)}
       >

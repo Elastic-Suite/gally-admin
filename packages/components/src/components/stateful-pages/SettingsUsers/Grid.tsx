@@ -22,6 +22,7 @@ function AdminUserGrid(): JSX.Element {
       propsButton={propsButton}
       editLink="user/edit"
       hideTitle
+      headTitle={null}
     />
   )
 }

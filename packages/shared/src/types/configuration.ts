@@ -37,6 +37,7 @@ export interface IConfigurationTreeGroup {
   label: string
   scopeType: ConfigurationScopeType
   fieldsets: Record<string, IConfigurationTreeGroupFieldsets>
+  position?: number
 }
 
 export interface IConfigurationTreeGroupFormatted
