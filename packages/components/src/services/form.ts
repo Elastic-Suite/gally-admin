@@ -1,13 +1,23 @@
 import {
+  IError,
+  IErrorsForm,
   IFetch,
   IFieldConfig,
   IHydraResponse,
   ILimitationsTypes,
   IRequestType,
+  concatenateValuesWithLineBreaks,
 } from '@elastic-suite/gally-admin-shared'
 import { InputBaseProps } from '@mui/material'
 import { useApiList } from '../hooks'
 import { IDoubleDatePickerValues } from '../components/atoms/form/DoubleDatePickerWithoutError'
+import { closeSnackbar, enqueueSnackbar } from 'notistack'
+import { TFunction } from 'i18next'
+
+interface IViolations {
+  propertyPath?: string
+  message?: string
+}
 
 export type IProps = Pick<InputBaseProps, 'required' | 'type'>
 
@@ -20,6 +30,17 @@ export function getFormValue(value: string, props: IProps): string | number {
     return Number(value)
   }
   return value
+}
+
+export function transformPropertyPath(propertyPath: string): string {
+  switch (propertyPath) {
+    case 'fromDate':
+    case 'toDate':
+      return 'doubleDatePicker'
+
+    default:
+      return propertyPath
+  }
 }
 
 export function getDoubleDatePickerValue(
@@ -44,6 +65,36 @@ export function getRequestTypeData(
   })
 
   return { ...requestTypeData, requestTypes: data.requestTypes }
+}
+
+export function handleFormErrors(
+  formErrors: IError,
+  t: TFunction<'resourceForm'>
+): IErrorsForm {
+  const newErrors: IErrorsForm = { fields: {}, global: [] }
+
+  formErrors?.violations?.forEach((err: IViolations) => {
+    if (err?.propertyPath && err?.message) {
+      newErrors.fields[transformPropertyPath(err?.propertyPath)] = err.message
+    } else if (err?.message) {
+      newErrors.global.push(err.message)
+    }
+  })
+
+  enqueueSnackbar(t('error.form'), {
+    onShut: closeSnackbar,
+    variant: 'error',
+  })
+
+  if (newErrors.global.length !== 0) {
+    enqueueSnackbar(concatenateValuesWithLineBreaks(newErrors.global), {
+      onShut: closeSnackbar,
+      variant: 'error',
+      style: { whiteSpace: 'pre-line' },
+      autoHideDuration: Infinity,
+    })
+  }
+  return newErrors
 }
 
 export function useValue(

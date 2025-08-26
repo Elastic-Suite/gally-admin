@@ -18,6 +18,7 @@ import CustomTabs from '../../../components/molecules/layout/tabs/CustomTabs'
 import SettingsAttributes from '../../../components/stateful-pages/SettingsAttributes/SettingsAttributes'
 import SettingsScope from '../../../components/stateful-pages/SettingsScope/SettingsScope'
 import AdminUserGrid from '../../../components/stateful-pages/SettingsUsers/Grid'
+import SettingsConfigurations from '../../../components/stateful-pages/SettingsConfigurations/SettingsConfigurations'
 
 const pageSlug = 'settings'
 
@@ -49,9 +50,15 @@ function AdminSettingsIndex(): JSX.Element {
         label: t('tabs.attributes'),
         url: '/admin/settings/attributes',
       },
+      {
+        Component: SettingsConfigurations,
+        id: 2,
+        label: t('tabs.configurations'),
+        url: '/admin/settings/configurations',
+      },
       isValidRoleUser(Role.ADMIN, user) && {
         Component: AdminUserGrid,
-        id: 2,
+        id: 3,
         label: t('tabs.users'),
         url: '/admin/settings/user/grid',
       },
@@ -60,9 +67,19 @@ function AdminSettingsIndex(): JSX.Element {
   const [activeTab, handleTabChange] = useTabs(routerTabs)
   const { actions, id } = activeTab
 
+  const pageTitle = useMemo(() => {
+    return findBreadcrumbLabel(0, [pageSlug], menu.hierarchy)
+      ? `${findBreadcrumbLabel(0, [pageSlug], menu.hierarchy)}`
+      : ''
+  }, [menu])
+
+  const headTitle = useMemo(() => {
+    return `${pageTitle} - ${activeTab.label}`
+  }, [pageTitle, activeTab.label])
+
   return (
     <>
-      <PageTitle title={findBreadcrumbLabel(0, [pageSlug], menu.hierarchy)}>
+      <PageTitle headTitle={headTitle} title={pageTitle}>
         {actions}
       </PageTitle>
       <CustomTabs
