@@ -81,6 +81,7 @@ export function handleFormErrors(
     }
   })
 
+  // TODO - CONFIG: check with Boubkar if having the notifications part here is relevant
   enqueueSnackbar(t('error.form'), {
     onShut: closeSnackbar,
     variant: 'error',
