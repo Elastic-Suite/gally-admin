@@ -10,9 +10,9 @@ import {
   IConfigurationTreeScopes,
   IField,
   IGallyClass,
+  IGallyProperty,
   IResource,
 } from '@elastic-suite/gally-admin-shared'
-import { IGallyProperty } from '../../../shared/src'
 
 type IResources = Record<string, IResource>
 type IConfigList = Record<string, string[]>
