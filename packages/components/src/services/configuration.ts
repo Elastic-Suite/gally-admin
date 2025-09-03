@@ -12,6 +12,7 @@ import {
   IGallyClass,
   IResource,
 } from '@elastic-suite/gally-admin-shared'
+import { IGallyProperty } from '../../../shared/src'
 
 type IResources = Record<string, IResource>
 type IConfigList = Record<string, string[]>
@@ -62,7 +63,7 @@ function formatField(
   label: string,
   title: string,
   required: boolean,
-  gally: unknown
+  gally: IGallyProperty
 ): IField {
   return {
     '@type': '',
@@ -130,6 +131,7 @@ function extractDataFromConfigurationTree(
   const configurationTreeClone: IConfigurationTree = JSON.parse(
     JSON.stringify(configurationTree)
   )
+
   const groups: IConfigurationTreeGroupFormatted[] = []
   const configList: IConfigList = {}
   const resources: IResources = {}
