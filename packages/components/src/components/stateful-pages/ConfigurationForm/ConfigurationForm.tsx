@@ -63,6 +63,16 @@ const RightAlignedButton = styled(Box)(({ theme }) => ({
   gap: (theme as Theme).spacing(2),
 }))
 
+const FormWithWiderInputs = styled(Form)(() => ({
+  '& input[type="text"], & input[type="email"]': {
+    minWidth: '400px',
+    width: '100%',
+  },
+  'input[type="number"]': {
+    width: '75px',
+  },
+}))
+
 interface IProps extends ITabContentProps {
   configurationResource: IResource
   configurationGroup: IConfigurationTreeGroupFormatted
@@ -263,7 +273,7 @@ function ConfigurationForm(props: IProps): JSX.Element {
 
   return (
     <MainSectionFieldSet>
-      <Form
+      <FormWithWiderInputs
         onSubmit={handleSubmit}
         style={{
           display: 'flex',
@@ -312,7 +322,7 @@ function ConfigurationForm(props: IProps): JSX.Element {
           resource={configurationResource}
           errors={errors}
         />
-      </Form>
+      </FormWithWiderInputs>
       <CustomForm
         data={configurationData}
         showAllErrors={showAllErrors}
