@@ -163,7 +163,6 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
         requestTypeConfigurations,
         ...doubleDatePickerProps
       } = props
-      console.log(name)
 
       return (
         <Box>

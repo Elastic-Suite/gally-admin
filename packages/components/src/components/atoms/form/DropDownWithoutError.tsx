@@ -206,6 +206,7 @@ function DropDownWithoutError<T>(
         renderGroup={(params): JSX.Element => (
           <li key={params.key}>
             <ListSubheader
+              component="div"
               data-testid={generateTestId(
                 TestId.DROPDOWN_OPTION_GROUP_TITLE,
                 dataTestId
