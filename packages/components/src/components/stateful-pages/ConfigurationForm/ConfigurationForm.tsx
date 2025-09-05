@@ -36,6 +36,7 @@ import { handleFormErrors } from '../../../services'
 
 const StickyRoot = styled('div')(({ theme }) => ({
   display: 'flex',
+  flexDirection: 'column',
   position: 'sticky',
   top: '84px',
   backgroundColor: theme.palette.background.page,
@@ -51,7 +52,6 @@ const ScopeAndSaveToolbar = styled('div')(({ theme }) => ({
   backgroundColor: theme.palette.colors.white,
   borderBottomLeftRadius: '5px',
   border: '1px solid #E2E6F3',
-  width: '100%',
   marginBottom: (theme as Theme).spacing(1),
 }))
 
@@ -83,8 +83,6 @@ interface IProps extends ITabContentProps {
  * 4/ Design:
  *  => Allonger les champs
  *
- *  REFACTO:
- *  11/ Aller chercher les todos liés au refactoring pour isoler le code dans un (nouveau) service Config ou dans le service (existant) Form
  */
 function ConfigurationForm(props: IProps): JSX.Element {
   const {
@@ -93,8 +91,8 @@ function ConfigurationForm(props: IProps): JSX.Element {
     configurationScope,
     configurationList,
   } = props
-  const entity = 'config'
   const { t } = useTranslation('resourceForm')
+  const { t: tConfig } = useTranslation('configurations')
   const [errors, setErrors] = useState<IErrorsForm>()
 
   const [isLoading, setIsLoading] = useState(false)
@@ -109,7 +107,21 @@ function ConfigurationForm(props: IProps): JSX.Element {
   const [showAllErrors, setShowAllErrors] = useState(false)
   const fetchApi = useApiFetch()
 
-  const [disableSubmit, setDisableSubmit] = useState(true)
+  const dirtyFields = useMemo(() => {
+    if (!originalConfigurationData) {
+      return configurationData
+    }
+
+    return Object.fromEntries(
+      Object.entries(configurationData).filter(
+        ([key, value]) => originalConfigurationData[key] !== value
+      )
+    )
+  }, [configurationData, originalConfigurationData])
+
+  const disableSubmit = useMemo(() => {
+    return isLoading || Object.keys(dirtyFields).length === 0
+  }, [isLoading, dirtyFields])
 
   const filters = useMemo(
     () => ({
@@ -140,31 +152,38 @@ function ConfigurationForm(props: IProps): JSX.Element {
     }
   }, [configurations, configurationList])
 
-  function getDirtyFields(
-    configurationData: IConfigurationData
-  ): IConfigurationData {
-    if (!originalConfigurationData) {
-      return configurationData
-    }
-
-    return Object.fromEntries(
-      Object.entries(configurationData).filter(
-        ([key, value]) => originalConfigurationData[key] !== value
-      )
-    )
-  }
-
   function onSendingDataSuccess(configurationData: IConfigurationData): void {
+    const updatedCount = Object.keys(dirtyFields).length
+    enqueueSnackbar(
+      tConfig('updatedConfigurations.info', { count: updatedCount }),
+      {
+        onShut: closeSnackbar,
+        variant: 'success',
+      }
+    )
     // Sets new configuration data as original one so it serves as basis for next changes comparison
     setOriginalConfigurationData(configurationData)
-    enqueueSnackbar(t('alert.update', { entity }), {
-      onShut: closeSnackbar,
-      variant: 'success',
+  }
+
+  function onFormErrors(event: FormEvent<HTMLFormElement>): void {
+    setShowAllErrors(true)
+    const { invalidElementsCount, firstInvalidElement } =
+      checkInvalidElements(event)
+    enqueueSnackbar(
+      tConfig('invalidConfigurations.alert', { count: invalidElementsCount }),
+      {
+        onShut: closeSnackbar,
+        variant: 'error',
+      }
+    )
+    firstInvalidElement?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'center',
+      inline: 'nearest',
     })
   }
 
   async function sendingData(): Promise<void> {
-    const dirtyFields = getDirtyFields(configurationData)
     // If nothing has changed we exit early to prevent button spam creating requests
     if (Object.keys(dirtyFields).length === 0) {
       onSendingDataSuccess(configurationData)
@@ -202,7 +221,32 @@ function ConfigurationForm(props: IProps): JSX.Element {
 
   function handleChange(value: IConfigurationData): void {
     setConfigurationData(value)
-    setDisableSubmit(Object.keys(getDirtyFields(value)).length === 0)
+  }
+
+  function checkInvalidElements(event: FormEvent<HTMLFormElement>): {
+    invalidElementsCount: number
+    firstInvalidElement: HTMLFormElement | null
+  } {
+    const form = event.currentTarget
+
+    // Get all form elements
+    const formElements = Array.from(form.elements) as HTMLFormElement[]
+
+    let firstInvalidElement: HTMLFormElement = null
+    // Count invalid elements using checkValidity()
+    const invalidElements = formElements.filter((element) => {
+      // Check if element supports validation
+      if ('checkValidity' in element) {
+        firstInvalidElement =
+          !firstInvalidElement && !element.checkValidity()
+            ? element
+            : firstInvalidElement
+        return !element.checkValidity()
+      }
+      return false
+    })
+
+    return { invalidElementsCount: invalidElements.length, firstInvalidElement }
   }
 
   function handleSubmit(
@@ -213,7 +257,7 @@ function ConfigurationForm(props: IProps): JSX.Element {
     if (formIsValid) {
       sendingData()
     } else {
-      setShowAllErrors(true)
+      onFormErrors(event)
     }
   }
 
@@ -230,7 +274,6 @@ function ConfigurationForm(props: IProps): JSX.Element {
         <StickyRoot>
           <ScopeAndSaveToolbar>
             <FlexBox>
-              {/*// todo: Add default dropdown value general (general  == default scope).*/}
               <EditableDropDownGuesser
                 onChange={handleScopeChange}
                 value={scopeCode}

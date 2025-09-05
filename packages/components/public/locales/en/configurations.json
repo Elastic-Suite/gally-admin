@@ -1,0 +1,6 @@
+{
+  "updatedConfigurations.info_one": "{{ count }} configuration has been updated",
+  "updatedConfigurations.info_other": "{{ count }} configurations have been updated",
+  "invalidConfigurations.alert_one": "{{ count }} configuration is missing or invalid",
+  "invalidConfigurations.alert_other": "{{ count }} configurations are missing or invalid"
+}
