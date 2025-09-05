@@ -87,12 +87,6 @@ interface IProps extends ITabContentProps {
  * 2/ Tester toutes les combinaisons possibles d'affichage avec les différentes config + tous les composants form et arbitrer de l'utilité ?
  * => Pierre va ajouter des configs qui correspondent aux cas réels
  *
- * 10/ Vérifier si les validations fonctionnent + le required (si on met required false côté back est-ce que ça fonctionne ?).
- * => Les contraintes de validations existent t'elles en back pour la config ?
- *
- * 4/ Design:
- *  => Allonger les champs
- *
  */
 function ConfigurationForm(props: IProps): JSX.Element {
   const {
@@ -227,6 +221,7 @@ function ConfigurationForm(props: IProps): JSX.Element {
 
   function handleScopeChange(value: string): void {
     setScopeCode(value)
+    setShowAllErrors(false)
   }
 
   function handleChange(value: IConfigurationData): void {
@@ -288,7 +283,7 @@ function ConfigurationForm(props: IProps): JSX.Element {
                 onChange={handleScopeChange}
                 value={scopeCode}
                 data={{}}
-                label={configurationScope.label}
+                label={tConfig('configurationAppliesTo.label')}
                 id="configurationScopeType"
                 name="configurationScopeType"
                 useGroups={
