@@ -7,6 +7,7 @@ import {
   IRuleAttribute,
   IRuleCombination,
   IRuleEngineOperators,
+  RuleAttributeType,
   RuleType,
   RuleValueType,
 } from '../types'
@@ -66,7 +67,8 @@ export function serializeRule<R extends IRule>(
       children: rule.children.map((rule) => serializeRule(rule, ruleOperators)),
     }
   } else if (isAttributeRule(rule)) {
-    let ruleValue: string | string[] | number | number[] | boolean = rule.value
+    let ruleValue: string | string[] | number | number[] | boolean | Date =
+      rule.value
     const valueType = getAttributeRuleValueType(
       rule,
       ruleOperators.operatorsValueType
@@ -84,6 +86,15 @@ export function serializeRule<R extends IRule>(
       }
     } else if (ruleValueNumberTypes.includes(valueType)) {
       ruleValue = Number(rule.value)
+    } else if (
+      (RuleAttributeType.DATE || RuleAttributeType.DATETIME) &&
+      ruleValue instanceof Date
+    ) {
+      // We have no datetime rule attribute for now, so it would always be Date
+      ruleValue =
+        rule.attribute_type === RuleAttributeType.DATE
+          ? ruleValue.toISOString().split('T')[0]
+          : ruleValue.toISOString()
     } else if (valueType === RuleValueType.STRING) {
       ruleValue = String(rule.value)
     }
