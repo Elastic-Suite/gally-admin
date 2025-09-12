@@ -5,7 +5,6 @@ import { useApiFetch, useApiList } from '../../../hooks'
 import CustomForm from '../../organisms/CustomForm/CustomForm'
 import Button from '../../atoms/buttons/Button'
 import {
-  ConfigurationScopeType,
   DataContentType,
   IConfiguration,
   IConfigurationData,
@@ -33,6 +32,8 @@ import {
   getConfigurationData,
 } from '../../../services/configuration'
 import { handleFormErrors } from '../../../services'
+import { TestId } from '../../../utils/testIds'
+import Alert from '../../atoms/Alert/Alert'
 
 const StickyRoot = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -98,12 +99,11 @@ function ConfigurationForm(props: IProps): JSX.Element {
   const { t } = useTranslation('resourceForm')
   const { t: tConfig } = useTranslation('configurations')
   const [errors, setErrors] = useState<IErrorsForm>()
+  const [showWarning, setShowWarning] = useState(true)
 
   const [isLoading, setIsLoading] = useState(false)
 
-  const [scopeCode, setScopeCode] = useState<string>(
-    ConfigurationScopeType.SCOPE_GENERAL
-  )
+  const [scopeCode, setScopeCode] = useState<string | null>(null)
   const [originalConfigurationData, setOriginalConfigurationData] =
     useState<IConfigurationData>({})
   const [configurationData, setConfigurationData] =
@@ -267,66 +267,77 @@ function ConfigurationForm(props: IProps): JSX.Element {
   }
 
   return (
-    <MainSectionFieldSet>
-      <FormWithWiderInputs
-        onSubmit={handleSubmit}
-        style={{
-          display: 'flex',
-          gap: 16,
-          flexDirection: 'column',
-        }}
-      >
-        <StickyRoot>
-          <ScopeAndSaveToolbar>
-            <FlexBox>
-              <EditableDropDownGuesser
-                onChange={handleScopeChange}
-                value={scopeCode}
-                data={{}}
-                label={tConfig('configurationAppliesTo.label')}
-                id="configurationScopeType"
-                name="configurationScopeType"
-                useGroups={
-                  configurationScope.input === DataContentType.OPTGROUP
-                }
-                field={formatConfigurationScopeField(
-                  configurationGroup,
-                  configurationScope
-                )}
-                required
-              />
-            </FlexBox>
-            <RightAlignedButton>
-              <Button
-                type="submit"
-                componentId="submit"
-                disabled={disableSubmit}
-                loading={isLoading}
-                endIcon={<IonIcon name="save-outline" />}
-              >
-                {t('save')}
-              </Button>
-            </RightAlignedButton>
-          </ScopeAndSaveToolbar>
-        </StickyRoot>
+    <>
+      {showWarning ? (
+        <Alert
+          message={tConfig('dangerousChanges.warning')}
+          variant="warning"
+          style={{ marginBottom: 0 }}
+          onShut={(): void => setShowWarning(false)}
+        />
+      ) : null}
+      <MainSectionFieldSet>
+        <FormWithWiderInputs
+          data-testid={TestId.CONFIGURATION_FORM}
+          onSubmit={handleSubmit}
+          style={{
+            display: 'flex',
+            gap: 16,
+            flexDirection: 'column',
+          }}
+        >
+          <StickyRoot>
+            <ScopeAndSaveToolbar>
+              <FlexBox>
+                <EditableDropDownGuesser
+                  componentId="configurationScopeType"
+                  onChange={handleScopeChange}
+                  value={scopeCode}
+                  data={{}}
+                  label={tConfig('configurationAppliesTo.label')}
+                  id="configurationScopeType"
+                  name="configurationScopeType"
+                  useGroups={
+                    configurationScope.input === DataContentType.OPTGROUP
+                  }
+                  field={formatConfigurationScopeField(
+                    configurationGroup,
+                    configurationScope
+                  )}
+                />
+              </FlexBox>
+              <RightAlignedButton>
+                <Button
+                  type="submit"
+                  componentId="submit"
+                  disabled={disableSubmit}
+                  loading={isLoading}
+                  endIcon={<IonIcon name="save-outline" />}
+                >
+                  {t('save')}
+                </Button>
+              </RightAlignedButton>
+            </ScopeAndSaveToolbar>
+          </StickyRoot>
 
+          <CustomForm
+            data={configurationData}
+            showAllErrors={showAllErrors}
+            onChange={handleChange}
+            resource={configurationResource}
+            errors={errors}
+          />
+        </FormWithWiderInputs>
         <CustomForm
           data={configurationData}
           showAllErrors={showAllErrors}
           onChange={handleChange}
           resource={configurationResource}
           errors={errors}
+          externalFieldSet
         />
-      </FormWithWiderInputs>
-      <CustomForm
-        data={configurationData}
-        showAllErrors={showAllErrors}
-        onChange={handleChange}
-        resource={configurationResource}
-        errors={errors}
-        externalFieldSet
-      />
-    </MainSectionFieldSet>
+      </MainSectionFieldSet>
+    </>
   )
 }
 
