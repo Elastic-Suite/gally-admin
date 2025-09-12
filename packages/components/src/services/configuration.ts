@@ -42,12 +42,15 @@ function getBulkConfigurations(
   scopeCode: string
 ): IConfiguration[] {
   const bulk: IConfiguration[] = []
+  const isGeneralScope = scopeCode === null
   for (const [path, value] of Object.entries(configurationData)) {
     bulk.push({
       path,
       value,
-      scopeType,
-      scopeCode,
+      scopeType: isGeneralScope
+        ? ConfigurationScopeType.SCOPE_GENERAL
+        : scopeType,
+      scopeCode: isGeneralScope ? null : scopeCode,
     })
   }
 
