@@ -4,6 +4,7 @@ import { keyframes, styled } from '@mui/system'
 import { ITab } from '@elastic-suite/gally-admin-shared'
 
 import SubTabPanel from './SubTabPanel'
+import { TestId, generateTestId } from '../../../utils/testIds'
 
 const CustomRoot = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -78,13 +79,14 @@ const opacity = keyframes`
 `
 
 interface IProps {
+  componentId?: string
   defaultActiveId: number
   onChange?: (id: number) => void
   tabs: ITab[]
 }
 
 function SubTabs(props: IProps): JSX.Element {
-  const { defaultActiveId, onChange, tabs } = props
+  const { componentId, defaultActiveId, onChange, tabs } = props
   const [activeId, setActiveId] = useState(defaultActiveId)
 
   function handleChange(id: number): void {
@@ -95,18 +97,31 @@ function SubTabs(props: IProps): JSX.Element {
   }
 
   return (
-    <CustomRoot>
+    <CustomRoot
+      {...(componentId && {
+        'data-testId': generateTestId(TestId.TABS, componentId),
+      })}
+    >
       <CustumRootSubTabs>
         {tabs.map(({ label, id }) =>
           id === activeId ? (
             <CustomSubTabsActive
+              {...(componentId && {
+                'data-testId': generateTestId(TestId.TAB, componentId),
+              })}
               key={id}
               onClick={(): void => handleChange(id)}
             >
               {label}
             </CustomSubTabsActive>
           ) : (
-            <CustomSubTabs key={id} onClick={(): void => handleChange(id)}>
+            <CustomSubTabs
+              {...(componentId && {
+                'data-testId': generateTestId(TestId.TAB, componentId),
+              })}
+              key={id}
+              onClick={(): void => handleChange(id)}
+            >
               {label}
             </CustomSubTabs>
           )

@@ -3,5 +3,6 @@
   "updatedConfigurations.info_other": "{{ count }} configurations ont été mises à jour",
   "invalidConfigurations.alert_one": "{{ count }} configuration est manquante ou invalide",
   "invalidConfigurations.alert_other": "{{ count }} configurations sont manquantes ou invalides",
-  "configurationAppliesTo.label": "La configuration s'applique à:"
+  "configurationAppliesTo.label": "La configuration s'applique à:",
+  "dangerousChanges.warning": "Attention : La modification de ces configurations peut causer une instabilité de l'application ou des comportements inattendus. Veuillez vous assurer de comprendre l'impact avant d'effectuer des changements."
 }

@@ -11,7 +11,6 @@ import SubTabs from '../../atoms/subTabs/SubTabs'
 import { extractDataFromConfigurationTree } from '../../../services/configuration'
 
 function SettingsConfigurations(): JSX.Element {
-  // const { t } = useTranslation('configuration')
   const [configurationTree] =
     useFetchApi<IConfigurationTreeData>('configuration_tree')
 
@@ -49,6 +48,7 @@ function SettingsConfigurations(): JSX.Element {
 
   return (
     <SubTabs
+      componentId="configurationsGroups"
       defaultActiveId={id}
       onChange={handleTabChange}
       tabs={routerTabs}
