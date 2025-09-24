@@ -22,7 +22,7 @@ const configurationTreeScopes: IConfigurationTreeScopes = {
       api_graphql: 'configurationLocalizedCatalogGroupOptions',
       values: [],
     },
-    label: 'Catalogues localisés',
+    label: 'Localized catalogs',
   },
   [ConfigurationScopeType.SCOPE_REQUEST_TYPE]: {
     input: 'select',
@@ -32,7 +32,7 @@ const configurationTreeScopes: IConfigurationTreeScopes = {
       api_graphql: 'configurationRequestTypeOptions',
       values: [],
     },
-    label: 'Types de requête',
+    label: 'Request types',
   },
   [ConfigurationScopeType.SCOPE_LOCALE]: {
     input: 'optgroup',
@@ -52,7 +52,7 @@ const configurationTreeScopes: IConfigurationTreeScopes = {
       api_graphql: 'configurationLanguageOptions',
       values: [],
     },
-    label: 'Langues',
+    label: 'Languages',
   },
 }
 
@@ -414,7 +414,7 @@ const expectedConfigurationTreeScopes: IConfigurationTreeScopes = {
       api_graphql: 'configurationLocalizedCatalogGroupOptions',
       values: [],
     },
-    label: 'Catalogues localisés',
+    label: 'Localized catalogs',
   },
   request_type: {
     input: 'select',
@@ -424,7 +424,7 @@ const expectedConfigurationTreeScopes: IConfigurationTreeScopes = {
       api_graphql: 'configurationRequestTypeOptions',
       values: [],
     },
-    label: 'Types de requête',
+    label: 'Request types',
   },
   locale: {
     input: 'optgroup',
@@ -444,7 +444,7 @@ const expectedConfigurationTreeScopes: IConfigurationTreeScopes = {
       api_graphql: 'configurationLanguageOptions',
       values: [],
     },
-    label: 'Langues',
+    label: 'Languages',
   },
 }
 
