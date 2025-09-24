@@ -81,14 +81,6 @@ interface IProps extends ITabContentProps {
   configurationList: string[]
 }
 
-/** RAF
- *
- * DONNÉES:
- *
- * 2/ Tester toutes les combinaisons possibles d'affichage avec les différentes config + tous les composants form et arbitrer de l'utilité ?
- * => Pierre va ajouter des configs qui correspondent aux cas réels
- *
- */
 function ConfigurationForm(props: IProps): JSX.Element {
   const {
     configurationResource,
@@ -96,8 +88,7 @@ function ConfigurationForm(props: IProps): JSX.Element {
     configurationScope,
     configurationList,
   } = props
-  const { t } = useTranslation('resourceForm')
-  const { t: tConfig } = useTranslation('configurations')
+  const { t } = useTranslation(['resourceForm', 'configurations'])
   const [errors, setErrors] = useState<IErrorsForm>()
   const [showWarning, setShowWarning] = useState(true)
 
@@ -159,7 +150,10 @@ function ConfigurationForm(props: IProps): JSX.Element {
   function onSendingDataSuccess(configurationData: IConfigurationData): void {
     const updatedCount = Object.keys(dirtyFields).length
     enqueueSnackbar(
-      tConfig('updatedConfigurations.info', { count: updatedCount }),
+      t('updatedConfigurations.info', {
+        count: updatedCount,
+        ns: 'configurations',
+      }),
       {
         onShut: closeSnackbar,
         variant: 'success',
@@ -174,7 +168,10 @@ function ConfigurationForm(props: IProps): JSX.Element {
     const { invalidElementsCount, firstInvalidElement } =
       checkInvalidElements(event)
     enqueueSnackbar(
-      tConfig('invalidConfigurations.alert', { count: invalidElementsCount }),
+      t('invalidConfigurations.alert', {
+        count: invalidElementsCount,
+        ns: 'configurations',
+      }),
       {
         onShut: closeSnackbar,
         variant: 'error',
@@ -268,14 +265,14 @@ function ConfigurationForm(props: IProps): JSX.Element {
 
   return (
     <>
-      {showWarning ? (
+      {Boolean(showWarning) && (
         <Alert
-          message={tConfig('dangerousChanges.warning')}
+          message={t('dangerousChanges.warning', { ns: 'configurations' })}
           variant="warning"
           style={{ marginBottom: 0 }}
           onShut={(): void => setShowWarning(false)}
         />
-      ) : null}
+      )}
       <MainSectionFieldSet>
         <FormWithWiderInputs
           data-testid={TestId.CONFIGURATION_FORM}
@@ -294,7 +291,9 @@ function ConfigurationForm(props: IProps): JSX.Element {
                   onChange={handleScopeChange}
                   value={scopeCode}
                   data={{}}
-                  label={tConfig('configurationAppliesTo.label')}
+                  label={t('configurationAppliesTo.label', {
+                    ns: 'configurations',
+                  })}
                   id="configurationScopeType"
                   name="configurationScopeType"
                   useGroups={

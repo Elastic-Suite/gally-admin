@@ -21,7 +21,7 @@ type IConfigFieldsetFieldWithFieldSet =
     fieldset: string
   }
 
-function getConfigurationData(
+export function getConfigurationData(
   configurationList: string[],
   configurations: IConfiguration[]
 ): IConfigurationData {
@@ -36,7 +36,7 @@ function getConfigurationData(
   return data
 }
 
-function getBulkConfigurations(
+export function getBulkConfigurations(
   configurationData: IConfigurationData,
   scopeType: ConfigurationScopeType,
   scopeCode: string
@@ -84,7 +84,7 @@ function formatField(
   }
 }
 
-function formatConfigurationScopeField(
+export function formatConfigurationScopeField(
   configurationGroup: IConfigurationTreeGroupFormatted,
   configurationScope: IConfigurationTreeScope
 ): IField {
@@ -120,7 +120,7 @@ function getSortedConfigurationTreeGroupsByPosition(
   )
 }
 
-function extractDataFromConfigurationTree(
+export function extractDataFromConfigurationTree(
   configurationTree: IConfigurationTree
 ): [
   IResources,
@@ -171,11 +171,4 @@ function extractDataFromConfigurationTree(
   }
 
   return [resources, groups, configurationTreeClone.scopes, configList]
-}
-
-export {
-  extractDataFromConfigurationTree,
-  formatConfigurationScopeField,
-  getConfigurationData,
-  getBulkConfigurations,
 }
