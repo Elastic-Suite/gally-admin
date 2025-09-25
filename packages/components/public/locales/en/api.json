@@ -13,5 +13,6 @@
   "If you select the value ROLE_ADMIN, all roles will be selected automatically, because ROLE_ADMIN includes all roles.": "If you select the value ROLE_ADMIN, all roles will be selected automatically, because ROLE_ADMIN includes all roles.",
   "An email will be sent to the user allowing them to set their password.": "An email will be sent to the user allowing them to set their password.",
   "Administrator": "Administrator",
-  "Contributor": "Contributor"
+  "Contributor": "Contributor",
+  "Non-native OpenSearch sorting may impact performance on facets with many options.<br />Affected sorts are:<br />• Admin sort<br />• Name (Z → A)<br />• Natural sort (A → Z)<br />• Natural sort (Z → A)": "Non-native OpenSearch sorting may impact performance on facets with many options.<br />Affected sorts are:<br />• Admin sort<br />• Name (Z → A)<br />• Natural sort (A → Z)<br />• Natural sort (Z → A)"
 }
