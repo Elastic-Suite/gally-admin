@@ -4,6 +4,8 @@
   "Hidden": "Hidden",
   "Result count": "Result count",
   "Admin sort": "Admin sort",
-  "Name": "Name",
-  "Relevance": "Relevance"
+  "Name (A → Z)": "Name (A → Z)",
+  "Name (Z → A)": "Name (Z → A)",
+  "Natural sort (A → Z)": "Natural sort (A → Z)",
+  "Natural sort (Z → A)": "Natural sort (Z → A)"
 }

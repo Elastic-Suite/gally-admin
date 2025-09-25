@@ -71,5 +71,6 @@
   "If you select the value ROLE_ADMIN, all roles will be selected automatically, because ROLE_ADMIN includes all roles.": "Si vous sélectionnez la valeur ROLE_ADMIN, tous les rôles seront sélectionnés automatiquement, car ROLE_ADMIN inclut tous les rôles.",
   "An email will be sent to the user allowing them to set their password.": "Un e-mail sera envoyé à l'utilisateur pour qu'il puisse défnir son mot de passe.",
   "Administrator": "Administrateur",
-  "Contributor": "Contributeur"
+  "Contributor": "Contributeur",
+  "Non-native OpenSearch sorting may impact performance on facets with many options.<br />Affected sorts are:<br />• Admin sort<br />• Name (Z → A)<br />• Natural sort (A → Z)<br />• Natural sort (Z → A)": "Les tris non natifs d’OpenSearch peuvent affecter les performances des facettes contenant de nombreuses options.<br />Tris concernés :<br />• Tri administrateur<br />• Nom (Z → A)<br />• Tri naturel (A → Z)<br />• Tri naturel (Z → A)"
 }
