@@ -7,6 +7,7 @@ import IonIcon from '../IonIcon/IonIcon'
 import TitleScope from '../scope/TitleScope'
 import NbActiveLocales from '../scope/NbActiveLocales'
 import Language from '../scope/Language'
+import { TestId, generateTestId } from '../../../utils/testIds'
 
 const CustomClose = styled('div')(({ theme }) => ({
   position: 'absolute',
@@ -23,7 +24,7 @@ const CustomClose = styled('div')(({ theme }) => ({
   },
 }))
 
-const CustumOtherLanguage = styled('div')(({ theme }) => ({
+const CustomOtherLanguage = styled('div')(({ theme }) => ({
   textAlign: 'center',
   lineHeight: '18px',
   paddingTop: theme.spacing(0.5),
@@ -66,10 +67,14 @@ function PopInCatalogs({ content, title }: IProps): JSX.Element {
 
   return (
     <>
-      <CustumOtherLanguage onClick={handleClickOpen}>
+      <CustomOtherLanguage onClick={handleClickOpen}>
         {title}
-      </CustumOtherLanguage>
+      </CustomOtherLanguage>
       <Dialog
+        data-testId={generateTestId(
+          TestId.POPIN_CATALOGS,
+          getUniqueLocalName(content).join('|')
+        )}
         open={open}
         onClose={handleClose}
         aria-labelledby="alert-dialog-title"
