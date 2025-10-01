@@ -35,7 +35,7 @@ function AdminSettingsIndex(): JSX.Element {
   }, [router.query, setBreadcrumb])
 
   const routerTabs: IRouterTab[] = useMemo(() => {
-    return [
+    const tabs: IRouterTab[] = [
       {
         Component: SettingsScope,
         default: true,
@@ -56,13 +56,18 @@ function AdminSettingsIndex(): JSX.Element {
         label: t('tabs.configurations'),
         url: '/admin/settings/configurations',
       },
-      isValidRoleUser(Role.ADMIN, user) && {
+    ]
+
+    if (isValidRoleUser(Role.ADMIN, user)) {
+      tabs.push({
         Component: AdminUserGrid,
         id: 3,
         label: t('tabs.users'),
         url: '/admin/settings/user/grid',
-      },
-    ]
+      })
+    }
+
+    return tabs
   }, [t, user])
   const [activeTab, handleTabChange] = useTabs(routerTabs)
   const { actions, id } = activeTab
