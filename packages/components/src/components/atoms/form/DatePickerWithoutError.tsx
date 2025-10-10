@@ -20,6 +20,8 @@ import IonIcon from '../IonIcon/IonIcon'
 import InputTextWithoutError, { IInputTextProps } from './InputTextWithoutError'
 
 import { useTranslation } from 'next-i18next'
+import { createUTCDateSafe } from '@elastic-suite/gally-admin-shared'
+import { isValid } from 'date-fns'
 
 const CustomPickersDay = styled(PickersDay, {
   shouldForwardProp: (prop) =>
@@ -67,12 +69,10 @@ function DatePickerWithoutError(
   const { value, onChange, onError, componentId, ...args } = props
 
   function onChangeDatePicker(date: Date | string): void {
-    let utcDate = date
-    if (date instanceof Date) {
-      utcDate = new Date(
-        Date.UTC(date.getFullYear(), date.getMonth(), date.getDate())
-      )
-    }
+    // Creates a new date ignoring daylight saving hours to ensure input value is not to previous day
+    // When a date is input between 00:00:00 and 02:00:00
+    const utcDate =
+      date instanceof Date && isValid(date) ? createUTCDateSafe(date) : ''
     onChange(utcDate)
   }
 
