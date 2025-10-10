@@ -143,3 +143,13 @@ export function roundNumber(
 
   return forceDecimalDisplay ? rounded.toFixed(decimal) : rounded
 }
+
+export function createUTCDateSafe(date: Date): Date {
+  // COnvert date to UTC to ignore timezone
+  // Use setUTCFullYear instead of Date.UTC to avoid the automatic 0-99 to 19xx year mapping
+  const utcDate = new Date(0) // Start with epoch
+  utcDate.setUTCFullYear(date.getFullYear(), date.getMonth(), date.getDate())
+  utcDate.setUTCHours(0, 0, 0, 0) // Reset time to midnight
+
+  return utcDate
+}
