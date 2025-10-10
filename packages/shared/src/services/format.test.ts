@@ -1,5 +1,6 @@
 import {
   addPrefixKeyObject,
+  createUTCDateSafe,
   firstLetterLowercase,
   firstLetterUppercase,
   formatPrice,
@@ -115,6 +116,15 @@ describe('Format service', () => {
       expect(roundNumber(1, 4)).toEqual(1)
       expect(roundNumber(1.005, 2)).toEqual(1.01)
       expect(roundNumber(1, 4, true)).toEqual('1.0000')
+    })
+  })
+
+  describe('createUTCDateSafe', () => {
+    it('should keep 2 digit year and not consider it is 19xx', () => {
+      const twoDigitsYearDate = new Date('0002-01-01T00:00:00')
+      expect(createUTCDateSafe(twoDigitsYearDate).toISOString()).toContain(
+        '0002-01-01T00:00:00.000Z'
+      )
     })
   })
 })
