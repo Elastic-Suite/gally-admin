@@ -69,8 +69,9 @@ function DatePickerWithoutError(
   const { value, onChange, onError, componentId, ...args } = props
 
   function onChangeDatePicker(date: Date | string): void {
-    // Creates a new date ignoring daylight saving hours to ensure input value is not to previous day
-    // When a date is input between 00:00:00 and 02:00:00
+    // When date is an object, we format the date to ignore the timezone
+    // This prevents dates close to 00:00:00 to be considered the previous day
+    // For Example "Sat Oct 19 2030 00:00:00 GMT+0200" could be formatted as "Fri Oct 18"
     const utcDate =
       date instanceof Date && isValid(date) ? createUTCDateSafe(date) : ''
     onChange(utcDate)
