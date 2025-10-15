@@ -13,6 +13,7 @@ exports[`ThesaurusCard Should match snapshot 1`] = `
     >
       <div
         class="MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorPrimary MuiChip-filledPrimary css-wih3ly-MuiChip-root"
+        data-testid="chip"
         style="opacity: 1;"
       >
         <span
@@ -23,6 +24,7 @@ exports[`ThesaurusCard Should match snapshot 1`] = `
       </div>
       <div
         class="MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorPrimary MuiChip-filledPrimary css-wih3ly-MuiChip-root"
+        data-testid="chip"
         style="opacity: 1;"
       >
         <span
@@ -33,6 +35,7 @@ exports[`ThesaurusCard Should match snapshot 1`] = `
       </div>
       <div
         class="MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorPrimary MuiChip-filledPrimary css-wih3ly-MuiChip-root"
+        data-testid="chip"
         style="opacity: 1;"
       >
         <span
@@ -44,6 +47,7 @@ exports[`ThesaurusCard Should match snapshot 1`] = `
     </div>
     <button
       class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge css-156z0p6-MuiButtonBase-root-MuiButton-root"
+      data-testid="button"
       tabindex="0"
       type="button"
     >
