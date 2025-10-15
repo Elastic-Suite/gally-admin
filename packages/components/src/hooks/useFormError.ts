@@ -49,7 +49,8 @@ export function useFormError(
       let error = null
       if (validator) {
         error = validator(value, event)
-        ref.current?.setCustomValidity(error)
+        // Ensure we do not pass null values that would be considered errors
+        ref.current?.setCustomValidity(error ?? '')
       }
       if (
         (error === null || error === '') &&
@@ -109,7 +110,8 @@ export function useFormError(
       props,
       (error: string): void => {
         setError(error)
-        ref.current?.setCustomValidity(error)
+        // Ensure we do not pass null values that would be considered errors
+        ref.current?.setCustomValidity(error ?? '')
       },
     ]
   }, [error, handleChange, t, disabled, showError, replacementErrorsMessages])
