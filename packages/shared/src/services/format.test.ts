@@ -120,11 +120,27 @@ describe('Format service', () => {
   })
 
   describe('createUTCDateSafe', () => {
+    // BEWARE: using a function Date.UTC(date.getFullYear(), date.getMonth(), date.getDate())
+    // Would interpret 0002 à 1902 and prevent inputting a four digit date using the keyboard
     it('should keep 2 digit year and not consider it is 19xx', () => {
       const twoDigitsYearDate = new Date('0002-01-01T00:00:00')
       expect(createUTCDateSafe(twoDigitsYearDate).toISOString()).toContain(
         '0002-01-01T00:00:00.000Z'
       )
+    })
+
+    it('does not rollback date to the previous day in edge cases', () => {
+      // Depending on GMT+0200 a date to midnight could be interpreted as the previous day, depending on the formatting function used
+      // for example, using toISOString would subtract 2 hours and make this date the 18th of October
+      const dateCloseToPreviousDay = new Date(
+        Date.parse(
+          'Sat Oct 19 2030 00:00:00 GMT+0200 (heure d’été d’Europe centrale)'
+        )
+      )
+      expect(createUTCDateSafe(dateCloseToPreviousDay).toISOString()).toContain(
+        '2030-10-19'
+      )
+      expect(dateCloseToPreviousDay.toISOString()).toContain('2030-10-18')
     })
   })
 })
