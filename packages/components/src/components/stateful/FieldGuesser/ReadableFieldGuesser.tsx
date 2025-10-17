@@ -164,7 +164,11 @@ function ReadableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
           multipleValueFormat={multipleValueFormat}
         />
       ) : (
-        <Box data-testid={generateTestId(TestId.OTHER_READABLE_FIELD, name)}>
+        <Box
+          data-testid={generateTestId(TestId.OTHER_READABLE_FIELD, name)}
+          sx={{ display: 'inline-block', width: '100%' }}
+          title={value as string}
+        >
           {value as string}
         </Box>
       )
