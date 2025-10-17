@@ -1,7 +1,10 @@
 import { Table, TableCell, TableContainer } from '@mui/material'
 import { styled } from '@mui/system'
 
-import { getCustomScrollBarStyles } from '@elastic-suite/gally-admin-shared'
+import {
+  columnMaxWidth,
+  getCustomScrollBarStyles,
+} from '@elastic-suite/gally-admin-shared'
 
 export const TableContainerWithCustomScrollbar = styled(TableContainer)(
   ({ theme }) => ({
@@ -19,7 +22,7 @@ export const StyledTable = styled(Table)({
 
 export const BaseTableCell = styled(TableCell)({
   maxHeight: '80px',
-  maxWidth: '20%',
+  maxWidth: `${columnMaxWidth}px`,
   textOverflow: 'ellipsis',
   overflow: 'hidden',
   verticalAlign: 'middle',
