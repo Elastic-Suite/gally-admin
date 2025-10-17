@@ -4,6 +4,7 @@ import {
   DataContentType,
   ITableHeader,
   ITableHeaderSticky,
+  columnMaxWidth,
   reorderingColumnWidth,
   selectionColumnWidth,
   stickyColunWidth,
@@ -114,6 +115,11 @@ function CustomTableHeader(props: IProps): JSX.Element {
               minWidth: `${stickyColunWidth}px`,
               borderLeft: 'none',
               ...(stickyHeader.isLastSticky && stickyBorderStyle(shadow)),
+              ...(stickyHeader.type === DataContentType.STRING && {
+                overflow: 'hidden',
+                maxWidth: `${columnMaxWidth}px`,
+                textOverflow: 'ellipsis',
+              }),
             }}
           >
             {stickyHeader.label}
@@ -146,10 +152,13 @@ function CustomTableHeader(props: IProps): JSX.Element {
                   width: '15%',
                 }),
                 ...(header.type === DataContentType.STRING && {
-                  maxWidth: 'fit-content',
+                  overflow: 'hidden',
+                  maxWidth: `${columnMaxWidth}px`,
+                  textOverflow: 'ellipsis',
                 }),
                 ...header.headerStyle,
               }}
+              title={t(header.label)}
             >
               {t(header.label)}
               {header.gridHeaderInfoTooltip?.trim() ? (
