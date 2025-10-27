@@ -1,3 +1,4 @@
+import { isValid } from 'date-fns'
 import { emptyCombinationRule, ruleValueNumberTypes } from '../constants'
 import {
   ICategoryConfiguration,
@@ -90,11 +91,13 @@ export function serializeRule<R extends IRule>(
       (RuleAttributeType.DATE || RuleAttributeType.DATETIME) &&
       ruleValue instanceof Date
     ) {
-      // We have no datetime rule attribute for now, so it would always be Date
-      ruleValue =
-        rule.attribute_type === RuleAttributeType.DATE
-          ? ruleValue.toISOString().split('T')[0]
-          : ruleValue.toISOString()
+      if (isValid(ruleValue)) {
+        // We have no datetime rule attribute for now, so it would always be Date
+        ruleValue =
+          rule.attribute_type === RuleAttributeType.DATE
+            ? ruleValue.toISOString().split('T')[0]
+            : ruleValue.toISOString()
+      }
     } else if (valueType === RuleValueType.STRING) {
       ruleValue = String(rule.value)
     }
