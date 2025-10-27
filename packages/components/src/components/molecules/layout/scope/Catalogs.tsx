@@ -60,7 +60,7 @@ function Catalogs({ content }: IProps): JSX.Element {
       <CustomRoot>
         {content['hydra:member'].map((item: ICatalog, key: number) => (
           <CustomCatalogs
-            data-testId={generateTestId(TestId.CATALOGS, item.code)}
+            data-testid={generateTestId(TestId.CATALOGS, item.code)}
             key={item.name}
           >
             <TitleScope name={item.name} />

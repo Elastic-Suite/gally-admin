@@ -71,7 +71,7 @@ function PopInCatalogs({ content, title }: IProps): JSX.Element {
         {title}
       </CustomOtherLanguage>
       <Dialog
-        data-testId={generateTestId(
+        data-testid={generateTestId(
           TestId.POPIN_CATALOGS,
           getUniqueLocalName(content).join('|')
         )}
