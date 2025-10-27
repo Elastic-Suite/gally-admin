@@ -99,7 +99,7 @@ function SubTabs(props: IProps): JSX.Element {
   return (
     <CustomRoot
       {...(componentId && {
-        'data-testId': generateTestId(TestId.TABS, componentId),
+        'data-testid': generateTestId(TestId.TABS, componentId),
       })}
     >
       <CustumRootSubTabs>
@@ -107,7 +107,7 @@ function SubTabs(props: IProps): JSX.Element {
           id === activeId ? (
             <CustomSubTabsActive
               {...(componentId && {
-                'data-testId': generateTestId(TestId.TAB, componentId),
+                'data-testid': generateTestId(TestId.TAB, componentId),
               })}
               key={id}
               onClick={(): void => handleChange(id)}
@@ -117,7 +117,7 @@ function SubTabs(props: IProps): JSX.Element {
           ) : (
             <CustomSubTabs
               {...(componentId && {
-                'data-testId': generateTestId(TestId.TAB, componentId),
+                'data-testid': generateTestId(TestId.TAB, componentId),
               })}
               key={id}
               onClick={(): void => handleChange(id)}

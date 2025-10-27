@@ -46,7 +46,7 @@ function Language({ language, order, limit, content }: IProps): JSX.Element {
     <CustomRoot>
       {newLanguage
         ? newLanguage.map((item: string, key: number) => (
-            <div data-testId={generateTestId(TestId.LANGUAGE, item)} key={item}>
+            <div data-testid={generateTestId(TestId.LANGUAGE, item)} key={item}>
               {limit === true ? (
                 key === NB_ACTIVE_LOCALES_BY_WEBSITE ? (
                   <div>

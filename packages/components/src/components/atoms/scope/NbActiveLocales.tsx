@@ -33,7 +33,7 @@ interface IProps {
 function NbActiveLocales({ number }: IProps): JSX.Element {
   const { t } = useTranslation('common')
   return (
-    <CustomRoot data-testId={generateTestId(TestId.NB_ACTIVE_LOCALES)}>
+    <CustomRoot data-testid={generateTestId(TestId.NB_ACTIVE_LOCALES)}>
       <CustomNbActiveLocales>{number}</CustomNbActiveLocales>
       <CustomTexteActiveLocales>
         {t('catalog.activeLocale', { count: number })}
