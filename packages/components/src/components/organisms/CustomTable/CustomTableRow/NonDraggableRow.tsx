@@ -11,6 +11,7 @@ import {
   ITableRow,
   getImageValue,
   getPropsFromFieldState,
+  stickyColumnPadding,
 } from '@elastic-suite/gally-admin-shared'
 
 import {
@@ -123,6 +124,7 @@ function NonDraggableRow(props: IProps): JSX.Element {
         <StickyTableCell
           key={stickyHeader.name}
           sx={{
+            padding: stickyColumnPadding,
             ...stickyStyle(
               cssLeftValues[i + 1 + Number(withSelection)],
               shadow,

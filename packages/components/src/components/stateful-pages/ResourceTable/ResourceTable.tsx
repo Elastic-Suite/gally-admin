@@ -40,7 +40,7 @@ import TableGuesser from '../../stateful/TableGuesser/TableGuesser'
 import IonIcon from '../../atoms/IonIcon/IonIcon'
 import { TestId, generateTestId } from '../../../utils/testIds'
 
-const FitlerContent = styled('div')({
+const FilterContent = styled('div')({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'flex-end',
@@ -280,7 +280,7 @@ function ResourceTable(props: IResourceTable): JSX.Element {
         componentId={resourceName}
       >
         {Boolean(diffDefaultValues) && (
-          <FitlerContent>
+          <FilterContent>
             <Button
               disabled={diffCount === 0}
               display="secondary"
@@ -301,7 +301,7 @@ function ResourceTable(props: IResourceTable): JSX.Element {
                 }),
               }}
             />
-          </FitlerContent>
+          </FilterContent>
         )}
       </FiltersGuesser>
       <TableGuesser

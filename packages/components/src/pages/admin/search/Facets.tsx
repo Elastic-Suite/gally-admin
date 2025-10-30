@@ -18,6 +18,7 @@ import IonIcon from '../../../components/atoms/IonIcon/IonIcon'
 import PageTitle from '../../../components/atoms/PageTitle/PageTitle'
 import Alert from '../../../components/atoms/Alert/Alert'
 import { TestId, generateTestId } from '../../../utils/testIds'
+import { Box } from '@mui/material'
 
 const ButtonSetting = styled('div')(({ theme }) => ({
   color: theme.palette.colors.neutral[900],
@@ -85,20 +86,27 @@ function AdminSearchFacets(): JSX.Element {
     <>
       <TwoColsLayout
         left={[
-          <TitleBlock
-            key="configuration"
-            subtitle={t('facet.configuration')}
-            title={t('facet.title')}
+          <Box
+            key="configuration-title"
+            sx={{
+              flexShrink: 0,
+            }}
           >
-            <ButtonSetting
-              data-testid={generateTestId(TestId.FACETS_SETTINGS_BUTTON)}
-              className={classNames({ selected: !selectedCategoryItem })}
-              onClick={(): void => setSelectedCategoryItem(undefined)}
+            <TitleBlock
+              key="configuration"
+              subtitle={t('facet.configuration')}
+              title={t('facet.title')}
             >
-              <IonIconStyle name="settings" />
-              <DefaultButton>{t('facet.button.setting')}</DefaultButton>
-            </ButtonSetting>
-          </TitleBlock>,
+              <ButtonSetting
+                data-testid={generateTestId(TestId.FACETS_SETTINGS_BUTTON)}
+                className={classNames({ selected: !selectedCategoryItem })}
+                onClick={(): void => setSelectedCategoryItem(undefined)}
+              >
+                <IonIconStyle name="settings" />
+                <DefaultButton>{t('facet.button.setting')}</DefaultButton>
+              </ButtonSetting>
+            </TitleBlock>
+          </Box>,
           <TitleBlock key="categories" subtitle={t('facet.byCategory')}>
             <CategoryTree
               categories={categories.data}
@@ -107,6 +115,7 @@ function AdminSearchFacets(): JSX.Element {
             />
           </TitleBlock>,
         ]}
+        leftWidth={280}
       >
         <PageTitle
           data-testid={generateTestId(TestId.FACETS_PAGE_TITLE)}
