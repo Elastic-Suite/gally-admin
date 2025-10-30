@@ -134,6 +134,7 @@ export function getFieldHeader(field: IField, t: TFunction): IFieldConfig {
     multipleInputConfiguration: field.gally?.multipleInputConfiguration,
     placeholder: field.gally?.placeholder,
     defaultValue: field.gally?.defaultValue,
+    sticky: field.gally?.sticky,
   }
 }
 

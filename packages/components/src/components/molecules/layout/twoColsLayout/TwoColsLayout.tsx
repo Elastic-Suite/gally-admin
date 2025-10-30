@@ -1,6 +1,8 @@
 import React, { ReactNode, useEffect, useRef } from 'react'
 import { styled } from '@mui/system'
 
+const defaultLeftWidth = 402
+
 const Sentinel = styled('div')({
   position: 'absolute',
   top: 0,
@@ -15,11 +17,11 @@ const CustomRoot = styled('div')({
   flexDirection: 'row',
 })
 
-const CustomLeftSide = styled('div')({
-  width: 402,
+const CustomLeftSide = styled('div')<{ width: number }>(({ width }) => ({
+  width,
   boxSizing: 'border-box',
   flexShrink: 0,
-})
+}))
 
 const CustomBorder = styled('div')(({ theme }) => ({
   borderRadius: theme.spacing(1),
@@ -27,14 +29,14 @@ const CustomBorder = styled('div')(({ theme }) => ({
   borderColor: theme.palette.colors.neutral[300],
 }))
 
-const Sticky = styled(CustomBorder)(({ theme }) => ({
+const Sticky = styled(CustomBorder)<{ width: number }>(({ theme, width }) => ({
   display: 'flex',
   flexDirection: 'column',
   backgroundColor: theme.palette.colors.white,
   position: 'sticky',
   top: '100px',
   alignSelf: 'flex-start',
-  width: 402,
+  width,
   maxHeight: 'calc(100vh - 115px)',
   boxSizing: 'border-box',
   '&.fixed': {
@@ -42,20 +44,25 @@ const Sticky = styled(CustomBorder)(({ theme }) => ({
   },
 }))
 
-const CustomRightSide = styled('div')({
-  width: `calc(100% - 390px)`,
-  boxSizing: 'border-box',
-  paddingLeft: '25px',
-})
+const CustomRightSide = styled('div')<{ leftWidth: number }>(
+  ({ leftWidth }) => ({
+    width: `calc(100% - ${leftWidth - 25}px)`,
+    boxSizing: 'border-box',
+    paddingLeft: '25px',
+  })
+)
 
 interface IProps {
   left: ReactNode[] | ReactNode
   children: ReactNode
+  leftWidth?: number
 }
 
-function TwoColsLayout({ left, children }: IProps): JSX.Element {
+function TwoColsLayout({ left, children, leftWidth }: IProps): JSX.Element {
   const colRef = useRef<HTMLDivElement>()
   const sentinelRef = useRef<HTMLDivElement>()
+
+  const realLeftSideWidth = leftWidth ?? defaultLeftWidth
 
   useEffect(() => {
     function handler(entries: IntersectionObserverEntry[]): void {
@@ -77,10 +84,14 @@ function TwoColsLayout({ left, children }: IProps): JSX.Element {
     <>
       <Sentinel ref={sentinelRef} />
       <CustomRoot>
-        <CustomLeftSide>
-          <Sticky ref={colRef}>{left}</Sticky>
+        <CustomLeftSide width={realLeftSideWidth}>
+          <Sticky ref={colRef} width={realLeftSideWidth}>
+            {left}
+          </Sticky>
         </CustomLeftSide>
-        <CustomRightSide>{children}</CustomRightSide>
+        <CustomRightSide leftWidth={realLeftSideWidth}>
+          {children}
+        </CustomRightSide>
       </CustomRoot>
     </>
   )

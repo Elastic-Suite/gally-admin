@@ -135,6 +135,7 @@ export interface IGallyProperty {
   defaultValue?: unknown
   showError?: boolean
   gridHeaderInfoTooltip?: string
+  sticky?: boolean
 }
 export interface IDropdownOptions {
   objectKeyValue?: string
