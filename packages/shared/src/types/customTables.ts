@@ -36,9 +36,7 @@ export enum DataContentType {
   PROPARTIONALTOATTRIBUTE = 'proportionalToAttribute',
 }
 
-export interface ITableHeader extends IFieldConfig {
-  sticky?: boolean
-}
+export type ITableHeader = IFieldConfig
 
 export interface IBaseStyle {
   left: string
@@ -92,6 +90,7 @@ export interface ITableRow {
 }
 
 export interface IHorizontalOverflow {
+  isAtEnd: boolean
   isOverflow: boolean
   shadow: boolean
 }

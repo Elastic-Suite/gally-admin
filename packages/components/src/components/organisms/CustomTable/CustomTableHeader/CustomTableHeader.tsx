@@ -4,8 +4,10 @@ import {
   DataContentType,
   ITableHeader,
   ITableHeaderSticky,
+  columnMaxWidth,
   reorderingColumnWidth,
   selectionColumnWidth,
+  stickyColumnPadding,
   stickyColunWidth,
 } from '@elastic-suite/gally-admin-shared'
 import { useTranslation } from 'next-i18next'
@@ -110,10 +112,16 @@ function CustomTableHeader(props: IProps): JSX.Element {
               borderTopWidth: '1px',
               borderTopStyle: 'solid',
               backgroundColor: 'neutral.light',
-              zIndex: '1',
+              zIndex: 3,
               minWidth: `${stickyColunWidth}px`,
               borderLeft: 'none',
+              padding: stickyColumnPadding,
               ...(stickyHeader.isLastSticky && stickyBorderStyle(shadow)),
+              ...(stickyHeader.type === DataContentType.STRING && {
+                overflow: 'hidden',
+                maxWidth: `${columnMaxWidth}px`,
+                textOverflow: 'ellipsis',
+              }),
             }}
           >
             {stickyHeader.label}
@@ -146,10 +154,13 @@ function CustomTableHeader(props: IProps): JSX.Element {
                   width: '15%',
                 }),
                 ...(header.type === DataContentType.STRING && {
-                  maxWidth: 'fit-content',
+                  overflow: 'hidden',
+                  maxWidth: `${columnMaxWidth}px`,
+                  textOverflow: 'ellipsis',
                 }),
                 ...header.headerStyle,
               }}
+              title={t(header.label)}
             >
               {t(header.label)}
               {header.gridHeaderInfoTooltip?.trim() ? (

@@ -6,6 +6,7 @@ export const useIsHorizontalOverflow = (
 ): IHorizontalOverflow => {
   const [isOverflow, setIsOverflow] = useState(false)
   const [shadow, setShadow] = useState(false)
+  const [isAtEnd, setIsAtEnd] = useState(false)
 
   useLayoutEffect(() => {
     function trigger(): () => void {
@@ -14,7 +15,10 @@ export const useIsHorizontalOverflow = (
         setIsOverflow(hasOverflow)
         if (hasOverflow) {
           const handleScroll = (event: UIEvent): void => {
-            setShadow((event.target as HTMLTableElement).scrollLeft > 0)
+            const target = event.target as HTMLElement
+            const { clientWidth, scrollLeft, scrollWidth } = target
+            setShadow(scrollLeft > 0)
+            setIsAtEnd(scrollLeft + clientWidth >= scrollWidth - 20)
           }
           current.addEventListener('scroll', handleScroll)
           return () => current.removeEventListener('scroll', handleScroll)
@@ -25,5 +29,5 @@ export const useIsHorizontalOverflow = (
     trigger()
   }, [current])
 
-  return { isOverflow, shadow }
+  return { isAtEnd, isOverflow, shadow }
 }
