@@ -50,6 +50,18 @@ const DefaultButton = styled('button')(() => ({
   color: 'inherit',
 }))
 
+const StyledCategoriesTree = styled('div')({
+  '& li': {
+    minWidth: '180px',
+    width: 'auto',
+    height: 'unset',
+    '& div': {
+      height: 'unset',
+      minHeight: '24px',
+    },
+  },
+})
+
 const pagesSlug = ['search', 'facets']
 
 function AdminSearchFacets(): JSX.Element {
@@ -108,11 +120,13 @@ function AdminSearchFacets(): JSX.Element {
             </TitleBlock>
           </Box>,
           <TitleBlock key="categories" subtitle={t('facet.byCategory')}>
-            <CategoryTree
-              categories={categories.data}
-              selectedItem={selectedCategoryItem}
-              onSelect={setSelectedCategoryItem}
-            />
+            <StyledCategoriesTree>
+              <CategoryTree
+                categories={categories.data}
+                selectedItem={selectedCategoryItem}
+                onSelect={setSelectedCategoryItem}
+              />
+            </StyledCategoriesTree>
           </TitleBlock>,
         ]}
         leftWidth={280}

@@ -33,6 +33,7 @@ export const CustomTitle = styled('button')(({ theme }) => ({
   fontFamily: 'var(--gally-font)',
   fontSize: '12px',
   fontWeight: 500,
+  textAlign: 'left',
 }))
 
 export const CustomTitleBase = styled(CustomTitle)(({ theme }) => ({

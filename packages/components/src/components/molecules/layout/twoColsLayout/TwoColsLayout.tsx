@@ -37,7 +37,7 @@ const Sticky = styled(CustomBorder)<{ width: number }>(({ theme, width }) => ({
   top: '100px',
   alignSelf: 'flex-start',
   width,
-  maxHeight: 'calc(100vh - 115px)',
+  maxHeight: 'calc(100vh - 165px)', // 156px is the main interface padding top + 9px so the bottom of the container is visible
   boxSizing: 'border-box',
   '&.fixed': {
     position: 'fixed',
