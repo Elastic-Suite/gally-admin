@@ -157,7 +157,8 @@ export function useApiList<T extends object>(
   searchParameters?: ISearchParameters,
   searchValue?: string,
   withDebounce = false,
-  withPagination = false
+  withPagination = false,
+  conditions = true
 ): [
   IFetch<IHydraResponse<T>> | null,
   Dispatch<SetStateAction<T[]>>?,
@@ -168,12 +169,13 @@ export function useApiList<T extends object>(
       getListApiParameters(page, rowsPerPage, searchParameters, searchValue),
     [page, rowsPerPage, searchParameters, searchValue]
   )
+  // BEWARE: useFetchApi parameters order do no match useApiList parameters order
   const [response, updateResponse, load] = useFetchApi<IHydraResponse<T>>(
     resource,
     parameters,
     undefined,
     true,
-    true,
+    conditions,
     withDebounce,
     withPagination ? rowsPerPage : undefined
   )

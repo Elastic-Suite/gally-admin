@@ -1,7 +1,13 @@
-import React, { ReactNode, useCallback, useEffect, useMemo } from 'react'
+import React, {
+  ReactNode,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+} from 'react'
 import { useTranslation } from 'next-i18next'
 
-import { ruleOptionsContext } from '../../../contexts'
+import { catalogContext, ruleOptionsContext } from '../../../contexts'
 import { useResource, useSingletonLoader } from '../../../hooks'
 import {
   ICategories,
@@ -10,6 +16,7 @@ import {
   IOptions,
   IRuleEngineOperators,
   ISourceFieldOption,
+  ISourceFieldOptionLabel,
   ITreeItem,
   RuleAttributeType,
   RuleCombinationOperator,
@@ -42,7 +49,9 @@ function RuleOptionsProvider(props: IProps): JSX.Element {
     props
   const { operators, operatorsBySourceFieldType, operatorsValueType } =
     ruleOperators
+  const { localizedCatalogIdWithDefault } = useContext(catalogContext)
   const sourceFieldOptionResource = useResource('SourceFieldOption')
+  const sourceFieldOptionLabelResource = useResource('SourceFieldOptionLabel')
   const { t } = useTranslation('rules')
   const { fetch, map, setMap } = useSingletonLoader<
     IOptions<unknown> | ITreeItem[]
@@ -114,6 +123,58 @@ function RuleOptionsProvider(props: IProps): JSX.Element {
     [fields]
   )
 
+  const fetchAndFormatAttributeValueOptionsLabels = useCallback(
+    async (
+      fetchApi: IFetchApi,
+      field: IField
+    ): Promise<ISourceFieldOptionLabel[]> => {
+      const response = await fetchApiUsingPagination<
+        IHydraResponse<ISourceFieldOptionLabel>
+      >(
+        fetchApi,
+        sourceFieldOptionLabelResource,
+        {
+          // Ensure we only get source field options labels for the current/default catalog and the current source field
+          localizedCatalog: getIri(
+            'localized_catalogs',
+            localizedCatalogId !== -1
+              ? localizedCatalogId
+              : localizedCatalogIdWithDefault
+          ),
+          'sourceFieldOption.sourceField': getIri('source_fields', field.id),
+        },
+        undefined,
+        200
+      )
+
+      return response.data['hydra:member'] ?? []
+    },
+    [
+      localizedCatalogId,
+      localizedCatalogIdWithDefault,
+      sourceFieldOptionLabelResource,
+    ]
+  )
+
+  function mergeAttributeValueOptionsLabels(
+    data: IHydraResponse<ISourceFieldOption>,
+    labels: ISourceFieldOptionLabel[]
+  ): void {
+    // Create a map of sourceFieldOption id to label for efficient lookup
+    const labelMap = new Map<string, ISourceFieldOptionLabel>()
+    for (const label of labels) {
+      labelMap.set(label.sourceFieldOption['@id'], label)
+    }
+
+    // Map each option to its corresponding label
+    for (const option of data['hydra:member']) {
+      const label = labelMap.get(option['@id'])
+      if (label) {
+        option.labels = [label]
+      }
+    }
+  }
+
   const loadAttributeValueOptions = useCallback(
     (fieldCode: string): void => {
       const field = fields.find(({ code }) => code === fieldCode)
@@ -161,8 +222,16 @@ function RuleOptionsProvider(props: IProps): JSX.Element {
               200
             )
 
+            // Attributes options labels are now empty in the response.data for optimization purposes
+            // We must make a separate request to fetch labels for each option
+            const attributesValueOptionsLabels =
+              await fetchAndFormatAttributeValueOptionsLabels(fetchApi, field)
+            mergeAttributeValueOptionsLabels(
+              response.data,
+              attributesValueOptionsLabels
+            )
             if (response.error) {
-              throw new Error('soure_field_option request error')
+              throw new Error('source_field_option request error')
             } else {
               return getOptionsFromOptionResource(
                 response.data,
@@ -173,7 +242,14 @@ function RuleOptionsProvider(props: IProps): JSX.Element {
         )
       }
     },
-    [catalogId, fetch, fields, localizedCatalogId, sourceFieldOptionResource]
+    [
+      catalogId,
+      fetch,
+      fetchAndFormatAttributeValueOptionsLabels,
+      fields,
+      localizedCatalogId,
+      sourceFieldOptionResource,
+    ]
   )
 
   const context = useMemo(() => {
