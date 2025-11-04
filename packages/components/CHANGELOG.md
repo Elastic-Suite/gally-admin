@@ -1,3 +1,69 @@
+#### 2.1.1 (2025-11-04)
+
+##### Chores
+
+- **#1340702:**
+  - change test data to english ([53b6465d](https://github.com/Elastic-Suite/gally-admin/commit/53b6465d20cbeab76596d430e6b2976e7848a441))
+  - remove obsolete TODOS and refactor somes exports and translations ([2ef87fca](https://github.com/Elastic-Suite/gally-admin/commit/2ef87fcaf6db40d3b752f48512f917bf5668a57a))
+
+##### New Features
+
+- design system for thesaurus card ([b34b8a3e](https://github.com/Elastic-Suite/gally-admin/commit/b34b8a3e518aea4eec1eb8c504c75689a577590e))
+- add date field handling in rule serialization ([7f3e0453](https://github.com/Elastic-Suite/gally-admin/commit/7f3e0453c6280b5227093e4f7b22a6eb22ed9cf6))
+- **#1349827:**
+  - add test ids to popin catalog ([42dcf137](https://github.com/Elastic-Suite/gally-admin/commit/42dcf13794e981afa549044d63b648e9fd6c070e))
+  - correct snapshots and duplicate imports ([961e2a0f](https://github.com/Elastic-Suite/gally-admin/commit/961e2a0f2252663b6e5f1b6e1e3408b05baa0c56))
+  - add tests ids to various components ([a9803b97](https://github.com/Elastic-Suite/gally-admin/commit/a9803b97cbf9091ac465d41e2c3581ebefd10d96))
+  - allow optional item id in test id helper ([40547991](https://github.com/Elastic-Suite/gally-admin/commit/405479915936d39730e7c413fd03a2c2057a6675))
+  - add tests ids helper ([41d7bc04](https://github.com/Elastic-Suite/gally-admin/commit/41d7bc04bcaab62da75c4ddf41dedec2f739ceae))
+- **#1363066:** add translations ([8feec1e8](https://github.com/Elastic-Suite/gally-admin/commit/8feec1e8f6dd40b18219ec32f57b65c81557c7fd))
+- **#1340702:**
+  - configuration - fix general conf managment ([8ebacadf](https://github.com/Elastic-Suite/gally-admin/commit/8ebacadfb2ed189e629a5944762ccac0a02e4c3f))
+  - configuration - add tests ids + general scope id + danger warning ([62821536](https://github.com/Elastic-Suite/gally-admin/commit/62821536b88e2eef752181df221390f42cc8f801))
+  - configuration - better scope label + error message correction ([f094c2f9](https://github.com/Elastic-Suite/gally-admin/commit/f094c2f958894654576ba4e297de4807ffb48bdd))
+  - configuration - enlarge input fields ([8fc80a7f](https://github.com/Elastic-Suite/gally-admin/commit/8fc80a7fbf62e52fab44b9cb8be35edf4e1ddba5))
+  - show invalid config error count and updated config count ([b27e1a22](https://github.com/Elastic-Suite/gally-admin/commit/b27e1a22fd065be8a9f16deaffa235f2aa924878))
+  - ensure correct imports from shared ([16c1bde0](https://github.com/Elastic-Suite/gally-admin/commit/16c1bde0705035850545c90c2aa0ac53419fe878))
+  - add more tests to form service ([ddf24fc9](https://github.com/Elastic-Suite/gally-admin/commit/ddf24fc9575ab772344a03a82f63b8fc767ae556))
+  - add todo to ensure refactoring is considered ([f0ef93f4](https://github.com/Elastic-Suite/gally-admin/commit/f0ef93f4b380a745e6f3ad8173e7512f626d19dc))
+  - add configuration service + tests ([5978ce7f](https://github.com/Elastic-Suite/gally-admin/commit/5978ce7f0b04aff6358e2f0e0945f83934f74e08))
+  - fix li descendant of li error in grouped dropdowns ([4e3498d2](https://github.com/Elastic-Suite/gally-admin/commit/4e3498d215abf85799437f687131c0427989c2c4))
+  - send only configuration diff + refactor code in services + bugfix ([4f992bf3](https://github.com/Elastic-Suite/gally-admin/commit/4f992bf3bc607e0964054eb39a101a0d09a91a33))
+  - add configuration management from Gally's BO ([d8fb7fd4](https://github.com/Elastic-Suite/gally-admin/commit/d8fb7fd4fe2cfc0547d0f96db96221c6687c485c))
+- **#1340400:** add user management from Gally's BO ([a24bc515](https://github.com/Elastic-Suite/gally-admin/commit/a24bc515945b90fc193dde80a6e427bc17240241))
+- **#1300810:** add and refactor data-testid using generateTestId function ([63d45a32](https://github.com/Elastic-Suite/gally-admin/commit/63d45a32bd281844541b50a88ff4d474130e851b))
+- **#1330810:**
+  - add data-testid for thesaurus basics tests ([14fd7b37](https://github.com/Elastic-Suite/gally-admin/commit/14fd7b37e282df7c72b5cecfac9d1b96ce58ae1f))
+  - add data-testId for entityDropdown ([cc3b000b](https://github.com/Elastic-Suite/gally-admin/commit/cc3b000b6c238855519d256bdd98a5fd464ca5bf))
+  - add data-testid for the fitler component ([0bd19e63](https://github.com/Elastic-Suite/gally-admin/commit/0bd19e6378864ff3deca25dab2fac7aad83e81e1))
+  - add dataTestId to manipulate grids ([2377ce3b](https://github.com/Elastic-Suite/gally-admin/commit/2377ce3b4e58eb911cbddd58eb236760087efc36))
+- **#1316095:**
+  - prevent display of malformed images ([176afcdb](https://github.com/Elastic-Suite/gally-admin/commit/176afcdb108ad2afbdb146c91d777bcacb33bfd3))
+  - update configuration api ([c45381e8](https://github.com/Elastic-Suite/gally-admin/commit/c45381e89f5f52a7d8219cf0c04ba9c2f04a231b))
+- **#1244775:**
+  - Search terms table design system ([1d4a6983](https://github.com/Elastic-Suite/gally-admin/commit/1d4a69830d00847ae79e87615073391e8a0b7e8a))
+  - add scope component search usage design system ([bb32612b](https://github.com/Elastic-Suite/gally-admin/commit/bb32612b1e9444120d6d789807db78ccf3c74931))
+  - add search terms charts design system ([83296ec3](https://github.com/Elastic-Suite/gally-admin/commit/83296ec34511e2084148dc973e2c4ace0cea08cc))
+
+##### Bug Fixes
+
+- typo on data-testid props ([93800381](https://github.com/Elastic-Suite/gally-admin/commit/93800381f823cbb98918ecb861025d7176a9840a))
+- correct test snapshot on the thesaurus card ([d91e9b19](https://github.com/Elastic-Suite/gally-admin/commit/d91e9b19f918293b7e085273622fabbcd81e922c))
+- correct test snapshot title on thesaurus card ([756b4558](https://github.com/Elastic-Suite/gally-admin/commit/756b45581753a057e5f3adf2e379cf24f3b6192d))
+- feedback correction ([658411d5](https://github.com/Elastic-Suite/gally-admin/commit/658411d58627bd1b72273b45c27da5b62826d16e))
+- **#1364431:**
+  - check that timezone was changed to Z in format test ([4fb09e83](https://github.com/Elastic-Suite/gally-admin/commit/4fb09e8336d0a762f7db5b4b3f231e71fe155493))
+  - comment typo ([878bcbc7](https://github.com/Elastic-Suite/gally-admin/commit/878bcbc750f8a0562e32e61f83a3298f823ae11d))
+  - add comments to clarify usage of date functions ([211e103d](https://github.com/Elastic-Suite/gally-admin/commit/211e103d64435baebf4effb268db4bfc3b89b4ab))
+  - year parsing when inputting a date with keyboard and error handling ([691fd237](https://github.com/Elastic-Suite/gally-admin/commit/691fd2378e9af70ef1f93119c7eb03873fa9880d))
+  - prevent rules serialization crash on invalid dates ([cc5edc88](https://github.com/Elastic-Suite/gally-admin/commit/cc5edc886143e8766ae64e19ec5dc696de29c189))
+- **#1340400:** tab concatenation add empty value on tabs object instead to add nothing ([bc9c1729](https://github.com/Elastic-Suite/gally-admin/commit/bc9c1729f5eab50a08e4ee370bf29474ed855b4b))
+- **#1346395:** filters apply after reload on vector search screen ([7fecb3ad](https://github.com/Elastic-Suite/gally-admin/commit/7fecb3adf487c008d47e127b75d4aea011105ff3))
+- **#1350360:** issue on inefficient queries for source fields options and label in rule engine ([f20fe224](https://github.com/Elastic-Suite/gally-admin/commit/f20fe2246c464900f74df990df9b93cf5587bae5))
+- **#1336345:**
+  - add new script in package.json to install husky ([24b8d59a](https://github.com/Elastic-Suite/gally-admin/commit/24b8d59ac85e8f71c4db0830dddb19c53844796c))
+  - add dynamic import for the client side rendering in integration ([82764b52](https://github.com/Elastic-Suite/gally-admin/commit/82764b521811b525424cb95237c426a8c72428b3))
+
 #### 2.1.1.1 (2025-04-15)
 
 ##### New Features
