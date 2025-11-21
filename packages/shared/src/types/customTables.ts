@@ -56,6 +56,7 @@ export interface ISelectionStyle extends IBaseStyle {
 
 export interface IStickyStyle extends IBaseStyle {
   minWidth: string
+  maxWidth?: string
   stickyBorderStyle?: IStickyBorderStyle
   overflow?: string
 }
