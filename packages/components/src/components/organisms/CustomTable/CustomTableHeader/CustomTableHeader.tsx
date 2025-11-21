@@ -7,8 +7,9 @@ import {
   columnMaxWidth,
   reorderingColumnWidth,
   selectionColumnWidth,
+  stickyColumnMaxWidth,
   stickyColumnPadding,
-  stickyColunWidth,
+  stickyColumnWidth,
 } from '@elastic-suite/gally-admin-shared'
 import { useTranslation } from 'next-i18next'
 
@@ -113,13 +114,13 @@ function CustomTableHeader(props: IProps): JSX.Element {
               borderTopStyle: 'solid',
               backgroundColor: 'neutral.light',
               zIndex: 3,
-              minWidth: `${stickyColunWidth}px`,
+              minWidth: `${stickyColumnWidth}px`,
               borderLeft: 'none',
               padding: stickyColumnPadding,
               ...(stickyHeader.isLastSticky && stickyBorderStyle(shadow)),
               ...(stickyHeader.type === DataContentType.STRING && {
                 overflow: 'hidden',
-                maxWidth: `${columnMaxWidth}px`,
+                maxWidth: `${stickyColumnMaxWidth}px`,
                 textOverflow: 'ellipsis',
               }),
             }}

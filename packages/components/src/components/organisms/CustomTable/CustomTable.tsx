@@ -19,7 +19,7 @@ import {
   ITableRow,
   reorderingColumnWidth,
   selectionColumnWidth,
-  stickyColunWidth,
+  stickyColumnWidth,
 } from '@elastic-suite/gally-admin-shared'
 
 import { useIsHorizontalOverflow } from '../../../hooks'
@@ -119,7 +119,7 @@ function CustomTable(
    * It could ( maybe should ) be improved by setting an array of width provide by props if needed.
    */
   const stickyLength =
-    tableHeaders.filter((header) => header.sticky).length * stickyColunWidth
+    tableHeaders.filter((header) => header.sticky).length * stickyColumnWidth
   let handleDragEnd = null
   if (draggable) {
     handleDragEnd = (e: DropResult): void => {
@@ -147,7 +147,7 @@ function CustomTable(
     }
     if (stickyHeaders.length > 0) {
       eachLeftvalues = eachLeftvalues.concat(
-        Array(stickyHeaders.length).fill(stickyColunWidth)
+        Array(stickyHeaders.length).fill(stickyColumnWidth)
       )
     }
     eachLeftvalues.reduce(
