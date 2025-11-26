@@ -28,7 +28,7 @@ exports[`Tree match snapshot 1`] = `
           class="css-gmuwbf"
         >
           <button
-            class="css-14j6g8y"
+            class="css-6mlr6n"
             data-testid="treeItemTitleButton"
           >
             Catégorie Une
@@ -48,7 +48,7 @@ exports[`Tree match snapshot 1`] = `
           class="css-gmuwbf"
         >
           <button
-            class="css-14j6g8y"
+            class="css-6mlr6n"
             data-testid="treeItemTitleButton"
           >
             Catégorie Deux
@@ -88,7 +88,7 @@ exports[`Tree match snapshot with selected item 1`] = `
           class="css-gmuwbf"
         >
           <button
-            class="css-14j6g8y"
+            class="css-6mlr6n"
             data-testid="treeItemTitleButton"
           >
             <span
@@ -112,7 +112,7 @@ exports[`Tree match snapshot with selected item 1`] = `
           class="css-gmuwbf"
         >
           <button
-            class="css-14j6g8y"
+            class="css-6mlr6n"
             data-testid="treeItemTitleButton"
           >
             Catégorie Deux
