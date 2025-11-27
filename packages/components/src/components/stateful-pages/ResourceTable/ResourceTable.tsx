@@ -7,7 +7,7 @@ import React, {
   useMemo,
   useState,
 } from 'react'
-import { TFunction, useTranslation } from 'next-i18next'
+import { TFunction, Trans, useTranslation } from 'next-i18next'
 import { styled } from '@mui/system'
 import {
   IFieldGuesserProps,
@@ -294,13 +294,15 @@ function ResourceTable(props: IResourceTable): JSX.Element {
               data-testid={generateTestId(
                 TestId.RESOURCE_TABLE_NB_CUSTOM_VALUES_MESSAGE
               )}
-              dangerouslySetInnerHTML={{
-                __html: t('default.customValue', {
-                  count: diffCount,
-                  value: `<strong>${diffCount}</strong>`,
-                }),
-              }}
-            />
+            >
+              <Trans
+                ns="resourceTable"
+                i18nKey="default.customValue"
+                count={diffCount}
+                values={{ value: diffCount }}
+                components={[<strong key="0" />]}
+              />
+            </Paragraph>
           </FilterContent>
         )}
       </FiltersGuesser>
