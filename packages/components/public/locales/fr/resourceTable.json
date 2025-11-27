@@ -8,7 +8,7 @@
   "thesaurus.none": "Aucun thésaurus n'a été créé",
   "thesaurus.none.btn": "Créer un thésaurus",
   "default.customValue_zero": "Vous n'avez pas de valeur personnalisée",
-  "default.customValue_one": "Vous utilisez {{value}} valeur personnalisée",
-  "default.customValue_other": "Vous utilisez {{value}} valeurs personnalisées",
+  "default.customValue_one": "Vous utilisez <0>{{value}}</0> valeur personnalisée",
+  "default.customValue_other": "Vous utilisez <0>{{value}}</0> valeurs personnalisées",
   "default.button": "Passer aux valeurs par défaut"
 }
