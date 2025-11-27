@@ -7,7 +7,7 @@ import React, {
   useMemo,
   useState,
 } from 'react'
-import { TFunction, useTranslation } from 'next-i18next'
+import { TFunction, Trans, useTranslation } from 'next-i18next'
 import { styled } from '@mui/system'
 import {
   IFieldGuesserProps,
@@ -40,7 +40,7 @@ import TableGuesser from '../../stateful/TableGuesser/TableGuesser'
 import IonIcon from '../../atoms/IonIcon/IonIcon'
 import { TestId, generateTestId } from '../../../utils/testIds'
 
-const FitlerContent = styled('div')({
+const FilterContent = styled('div')({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'flex-end',
@@ -280,7 +280,7 @@ function ResourceTable(props: IResourceTable): JSX.Element {
         componentId={resourceName}
       >
         {Boolean(diffDefaultValues) && (
-          <FitlerContent>
+          <FilterContent>
             <Button
               disabled={diffCount === 0}
               display="secondary"
@@ -294,14 +294,16 @@ function ResourceTable(props: IResourceTable): JSX.Element {
               data-testid={generateTestId(
                 TestId.RESOURCE_TABLE_NB_CUSTOM_VALUES_MESSAGE
               )}
-              dangerouslySetInnerHTML={{
-                __html: t('default.customValue', {
-                  count: diffCount,
-                  value: `<strong>${diffCount}</strong>`,
-                }),
-              }}
-            />
-          </FitlerContent>
+            >
+              <Trans
+                ns="resourceTable"
+                i18nKey="default.customValue"
+                count={diffCount}
+                values={{ value: diffCount }}
+                components={[<strong key="0" />]}
+              />
+            </Paragraph>
+          </FilterContent>
         )}
       </FiltersGuesser>
       <TableGuesser
