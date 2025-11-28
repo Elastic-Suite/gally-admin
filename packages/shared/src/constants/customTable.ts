@@ -2,8 +2,8 @@ import { DataContentType, ITableHeader, ImageIcon } from '../types'
 
 export const reorderingColumnWidth = 48 // 48px provide by Figma
 export const selectionColumnWidth = 40 // In Figma, it should be 68px but it takes too much space
-export const stickyColumnWidth = 180 // 180px, fixed width for sticky column width ( TODO : add a table )
-export const stickyColumnMaxWidth = 180 // 180px
+export const stickyColumnWidth = 134 // fixed width for sticky column width ( TODO : add a table )
+export const stickyColumnMaxWidth = 134
 export const stickyColumnPadding = '14px 16px'
 
 export const columnMaxWidth = 220
