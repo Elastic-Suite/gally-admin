@@ -3,7 +3,7 @@ import {
   IDraggableColumnStyle,
   IStickyStyle,
   reorderingColumnWidth,
-  stickyColunWidth,
+  stickyColumnWidth,
 } from '@elastic-suite/gally-admin-shared'
 
 import {
@@ -83,7 +83,7 @@ describe('RowService', () => {
         mockInput.type
       )
       expect(cssStyle.overflow).toBeUndefined()
-      expect(cssStyle.minWidth).toEqual(`${stickyColunWidth}px`)
+      expect(cssStyle.minWidth).toEqual(`${stickyColumnWidth}px`)
       expect(cssStyle.left).toEqual('10px')
     })
   })

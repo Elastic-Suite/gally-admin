@@ -1,4 +1,4 @@
-import React, { SyntheticEvent, useContext, useEffect } from 'react'
+import React, { SyntheticEvent, useContext, useEffect, useMemo } from 'react'
 import { useTranslation } from 'next-i18next'
 import {
   IFieldGuesserProps,
@@ -8,6 +8,7 @@ import {
 import { optionsContext } from '../../../contexts'
 
 import DropDown from '../../atoms/form/DropDown'
+import { useDropdownTextWidth } from '../../../hooks/useDropdownTextWidth'
 
 interface IProps extends Omit<IFieldGuesserProps, 'onChange'> {
   onChange: (
@@ -42,13 +43,24 @@ function EditableDropDownGuesser(props: IProps): JSX.Element {
     showError,
     replacementErrorsMessages,
     componentId,
+    row,
   } = props
 
   const { t } = useTranslation('common')
   const { fieldOptions, load, statuses } = useContext(optionsContext)
-  const dropDownOptions =
-    options ?? fieldOptions.get(field.property['@id']) ?? []
+  const dropDownOptions = useMemo(
+    () => options ?? fieldOptions.get(field.property['@id']) ?? [],
+    [options, fieldOptions, field]
+  )
   const dirty = diffValue !== undefined && diffValue !== value
+  const defaultMinWidth = 230.667
+  const calculatedWidthFromHook = useDropdownTextWidth(
+    dropDownOptions,
+    defaultMinWidth,
+    80
+  )
+  // In table context we try to keep the field as small as possible, in classic form it takes the default min width
+  const calculatedWidth = row ? calculatedWidthFromHook : defaultMinWidth
 
   useEffect(() => {
     if (!options && field) {
@@ -96,7 +108,7 @@ function EditableDropDownGuesser(props: IProps): JSX.Element {
           : placeholder
       }
       objectKeyValue={field?.gally?.options?.objectKeyValue}
-      sx={{ minWidth: '230.667px' }}
+      sx={{ minWidth: calculatedWidth }}
       replacementErrorsMessages={replacementErrorsMessages}
       componentId={componentId}
     />

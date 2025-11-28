@@ -5,7 +5,8 @@ import {
   ISelectionStyle,
   IStickyStyle,
   reorderingColumnWidth,
-  stickyColunWidth,
+  stickyColumnMaxWidth,
+  stickyColumnWidth,
 } from '@elastic-suite/gally-admin-shared'
 
 import { stickyBorderStyle } from './customTable'
@@ -50,7 +51,8 @@ export function stickyStyle(
 ): IStickyStyle {
   return {
     zIndex: '1',
-    minWidth: `${stickyColunWidth}px`,
+    minWidth: `${stickyColumnWidth}px`,
+    maxWidth: `${stickyColumnMaxWidth}px`,
     left: `${leftValue}px`,
     borderBottomColor: 'colors.neutral.300',
     backgroundColor: 'colors.white',

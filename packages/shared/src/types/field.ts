@@ -49,6 +49,7 @@ export interface IFieldConfig extends IFieldState {
   showError?: boolean
   replacementErrorsMessages?: Record<string, string>
   gridHeaderInfoTooltip?: string
+  sticky?: boolean
 }
 
 export interface IFieldConfigFormWithFieldset {

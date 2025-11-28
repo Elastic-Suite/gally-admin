@@ -10,15 +10,17 @@ exports[`TitleBlock match snapshot TwoColsLayout simple 1`] = `
   >
     <div
       class="css-hx5t32"
+      width="402"
     >
       <div
-        class="css-1hfn4lg"
+        class="css-1ict1r5"
+        width="402"
       >
         Hello World
       </div>
     </div>
     <div
-      class="css-w4yc1"
+      class="css-s1f7js"
     >
       Hello
     </div>
@@ -36,16 +38,18 @@ exports[`TitleBlock match snapshot TwoColsLayout with Array in left 1`] = `
   >
     <div
       class="css-hx5t32"
+      width="402"
     >
       <div
-        class="css-1hfn4lg"
+        class="css-1ict1r5"
+        width="402"
       >
         hello world One
         hello world Two
       </div>
     </div>
     <div
-      class="css-w4yc1"
+      class="css-s1f7js"
     >
       <button
         class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium css-1jv49re-MuiButtonBase-root-MuiButton-root"

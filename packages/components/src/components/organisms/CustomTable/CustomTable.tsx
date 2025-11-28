@@ -19,7 +19,7 @@ import {
   ITableRow,
   reorderingColumnWidth,
   selectionColumnWidth,
-  stickyColunWidth,
+  stickyColumnWidth,
 } from '@elastic-suite/gally-admin-shared'
 
 import { useIsHorizontalOverflow } from '../../../hooks'
@@ -32,6 +32,18 @@ import DraggableBody from './CustomTableBody/DraggableBody'
 import NonDraggableBody from './CustomTableBody/NonDraggableBody'
 import CustomTableHeader from './CustomTableHeader/CustomTableHeader'
 import { TestId, generateTestId } from '../../../utils/testIds'
+import { Box, Fade, styled } from '@mui/material'
+
+const OverflowShadow = styled('div')({
+  position: 'absolute',
+  top: '52px',
+  right: 0,
+  bottom: 0,
+  width: '20px',
+  background: 'linear-gradient(to left, rgba(0,0,0,0.4), transparent)',
+  pointerEvents: 'none',
+  zIndex: 1,
+})
 
 export interface ICustomTableProps {
   Field: FunctionComponent<IFieldGuesserProps>
@@ -91,7 +103,7 @@ function CustomTable(
   const [scrollLength, setScrollLength] = useState<number>(0)
   const tableRef = useRef<HTMLDivElement>()
   const { current: refCurrent } = ref ?? tableRef
-  const { isOverflow, shadow } = useIsHorizontalOverflow(refCurrent)
+  const { isAtEnd, isOverflow, shadow } = useIsHorizontalOverflow(refCurrent)
 
   useEffect(() => {
     if (refCurrent?.scrollTo) {
@@ -103,11 +115,11 @@ function CustomTable(
 
   /**
    * Compute the length of the sticky part.
-   * For now, each sticky colun have a fixed width of 200px but it could ( maybe should ) be improve by seeting an array of width provide by props if needed.
+   * For now, each sticky column have a fixed width.
+   * It could ( maybe should ) be improved by setting an array of width provide by props if needed.
    */
   const stickyLength =
-    tableHeaders.filter((header) => header.sticky).length * stickyColunWidth
-
+    tableHeaders.filter((header) => header.sticky).length * stickyColumnWidth
   let handleDragEnd = null
   if (draggable) {
     handleDragEnd = (e: DropResult): void => {
@@ -135,7 +147,7 @@ function CustomTable(
     }
     if (stickyHeaders.length > 0) {
       eachLeftvalues = eachLeftvalues.concat(
-        Array(stickyHeaders.length).fill(stickyColunWidth)
+        Array(stickyHeaders.length).fill(stickyColumnWidth)
       )
     }
     eachLeftvalues.reduce(
@@ -182,84 +194,89 @@ function CustomTable(
   return (
     <>
       <DragDropContext onDragEnd={handleDragEnd}>
-        <TableContainerWithCustomScrollbar
-          ref={ref ?? tableRef}
-          sx={{
-            '&::-webkit-scrollbar-track': {
-              marginLeft: `${scrollLength}px`,
-            },
-            '&::-webkit-scrollbar-thumb': {
-              marginLeft: `${scrollLength}px`,
-            },
-            ...styles,
-          }}
-          data-testid={generateTestId(TestId.TABLE, componentId)}
-        >
-          <StyledTable
-            stickyHeader
-            sx={
-              hoverableLine
-                ? {
-                    '& tr:hover td': {
-                      backgroundColor: '#F4F7FF',
-                      cursor: 'pointer',
-                    },
-                  }
-                : {}
-            }
+        <Box style={{ position: 'relative' }}>
+          <TableContainerWithCustomScrollbar
+            ref={ref ?? tableRef}
+            sx={{
+              '&::-webkit-scrollbar-track': {
+                marginLeft: `${scrollLength}px`,
+              },
+              '&::-webkit-scrollbar-thumb': {
+                marginLeft: `${scrollLength}px`,
+              },
+              ...styles,
+            }}
+            data-testid={generateTestId(TestId.TABLE, componentId)}
           >
-            <CustomTableHeader
-              cssLeftValues={cssLeftValues}
-              isHorizontalOverflow={isOverflow}
-              massiveSelectionIndeterminate={massiveSelectionIndeterminate}
-              massiveSelectionState={massiveSelectionState}
-              onSelection={handleSelection}
-              shadow={shadow}
-              tableHeaders={newHeadersTable}
-              withSelection={withSelection}
-              withoutDragableColumn={withoutDragableColumn}
-            />
-            {Boolean(!draggable) && (
-              <NonDraggableBody
-                Field={Field}
+            <StyledTable
+              stickyHeader
+              sx={
+                hoverableLine
+                  ? {
+                      '& tr:hover td': {
+                        backgroundColor: '#F4F7FF',
+                        cursor: 'pointer',
+                      },
+                    }
+                  : {}
+              }
+            >
+              <CustomTableHeader
                 cssLeftValues={cssLeftValues}
-                diffRows={diffRows}
                 isHorizontalOverflow={isOverflow}
-                onRowUpdate={onRowUpdate}
-                onSelectRows={onSelection}
-                selectedRows={selectedRows}
+                massiveSelectionIndeterminate={massiveSelectionIndeterminate}
+                massiveSelectionState={massiveSelectionState}
+                onSelection={handleSelection}
                 shadow={shadow}
-                tableConfigs={tableConfigs}
                 tableHeaders={newHeadersTable}
-                tableRows={tableRows}
                 withSelection={withSelection}
-                configuration={configuration}
-                hasEditLink={hasEditLink}
-                editLink={editLink}
                 withoutDragableColumn={withoutDragableColumn}
               />
-            )}
-            {Boolean(draggable) && (
-              <DraggableBody
-                Field={Field}
-                cssLeftValues={cssLeftValues}
-                diffRows={diffRows}
-                isHorizontalOverflow={isOverflow}
-                onRowUpdate={onRowUpdate}
-                onSelectRows={onSelection}
-                selectedRows={selectedRows}
-                shadow={shadow}
-                tableConfigs={tableConfigs}
-                tableHeaders={newHeadersTable}
-                tableRows={tableRows}
-                withSelection={withSelection}
-                configuration={configuration}
-                hasEditLink={hasEditLink}
-                editLink={editLink}
-              />
-            )}
-          </StyledTable>
-        </TableContainerWithCustomScrollbar>
+              {Boolean(!draggable) && (
+                <NonDraggableBody
+                  Field={Field}
+                  cssLeftValues={cssLeftValues}
+                  diffRows={diffRows}
+                  isHorizontalOverflow={isOverflow}
+                  onRowUpdate={onRowUpdate}
+                  onSelectRows={onSelection}
+                  selectedRows={selectedRows}
+                  shadow={shadow}
+                  tableConfigs={tableConfigs}
+                  tableHeaders={newHeadersTable}
+                  tableRows={tableRows}
+                  withSelection={withSelection}
+                  configuration={configuration}
+                  hasEditLink={hasEditLink}
+                  editLink={editLink}
+                  withoutDragableColumn={withoutDragableColumn}
+                />
+              )}
+              {Boolean(draggable) && (
+                <DraggableBody
+                  Field={Field}
+                  cssLeftValues={cssLeftValues}
+                  diffRows={diffRows}
+                  isHorizontalOverflow={isOverflow}
+                  onRowUpdate={onRowUpdate}
+                  onSelectRows={onSelection}
+                  selectedRows={selectedRows}
+                  shadow={shadow}
+                  tableConfigs={tableConfigs}
+                  tableHeaders={newHeadersTable}
+                  tableRows={tableRows}
+                  withSelection={withSelection}
+                  configuration={configuration}
+                  hasEditLink={hasEditLink}
+                  editLink={editLink}
+                />
+              )}
+            </StyledTable>
+          </TableContainerWithCustomScrollbar>
+          <Fade in={isOverflow ? !isAtEnd : null} timeout={300}>
+            <OverflowShadow />
+          </Fade>
+        </Box>
       </DragDropContext>
     </>
   )

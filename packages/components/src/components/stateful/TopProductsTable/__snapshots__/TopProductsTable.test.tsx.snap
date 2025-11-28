@@ -19,295 +19,315 @@ exports[`TopProductTable Should match snapschot 1`] = `
       />
     </div>
     <div
-      class="MuiTableContainer-root css-vj1no2-MuiTableContainer-root"
-      data-testid="table"
+      class="MuiBox-root css-0"
+      style="position: relative;"
     >
-      <table
-        class="MuiTable-root MuiTable-stickyHeader css-oiusu9-MuiTable-root"
+      <div
+        class="MuiTableContainer-root css-vj1no2-MuiTableContainer-root"
+        data-testid="table"
       >
-        <thead
-          class="MuiTableHead-root css-15wwp11-MuiTableHead-root"
+        <table
+          class="MuiTable-root MuiTable-stickyHeader css-oiusu9-MuiTable-root"
         >
-          <tr
-            class="MuiTableRow-root MuiTableRow-head css-1u1grnd-MuiTableRow-root"
+          <thead
+            class="MuiTableHead-root css-15wwp11-MuiTableHead-root"
           >
-            <th
-              class="MuiTableCell-root MuiTableCell-head MuiTableCell-stickyHeader MuiTableCell-sizeMedium css-7ipanl-MuiTableCell-root"
-              scope="col"
+            <tr
+              class="MuiTableRow-root MuiTableRow-head css-1u1grnd-MuiTableRow-root"
             >
-               
-            </th>
-            <th
-              class="MuiTableCell-root MuiTableCell-head MuiTableCell-stickyHeader MuiTableCell-sizeMedium css-14s9tkc-MuiTableCell-root"
-              scope="col"
-            >
-              Code
-            </th>
-            <th
-              class="MuiTableCell-root MuiTableCell-head MuiTableCell-stickyHeader MuiTableCell-sizeMedium css-nxfm2m-MuiTableCell-root"
-              scope="col"
-            >
-              Image
-            </th>
-            <th
-              class="MuiTableCell-root MuiTableCell-head MuiTableCell-stickyHeader MuiTableCell-sizeMedium css-14s9tkc-MuiTableCell-root"
-              scope="col"
-            >
-              Name
-            </th>
-            <th
-              class="MuiTableCell-root MuiTableCell-head MuiTableCell-stickyHeader MuiTableCell-sizeMedium css-vavf5g-MuiTableCell-root"
-              scope="col"
-            >
-              Score
-            </th>
-            <th
-              class="MuiTableCell-root MuiTableCell-head MuiTableCell-stickyHeader MuiTableCell-sizeMedium css-vl654x-MuiTableCell-root"
-              scope="col"
-            >
-              In stock
-            </th>
-            <th
-              class="MuiTableCell-root MuiTableCell-head MuiTableCell-stickyHeader MuiTableCell-sizeMedium css-vavf5g-MuiTableCell-root"
-              scope="col"
-            >
-              Price
-            </th>
-            <th
-              class="MuiTableCell-root MuiTableCell-head MuiTableCell-stickyHeader MuiTableCell-sizeMedium css-nxfm2m-MuiTableCell-root"
-              scope="col"
-            >
-              Visible
-            </th>
-          </tr>
-        </thead>
-        <tbody
-          class="MuiTableBody-root css-apqrd9-MuiTableBody-root"
-          data-rbd-droppable-context-id="0"
-          data-rbd-droppable-id="droppableTable"
-        >
-          <tr
-            class="MuiTableRow-root css-9mllys-MuiTableRow-root"
-            data-rbd-draggable-context-id="0"
-            data-rbd-draggable-id="1"
+              <th
+                class="MuiTableCell-root MuiTableCell-head MuiTableCell-stickyHeader MuiTableCell-sizeMedium css-etc0q-MuiTableCell-root"
+                scope="col"
+              >
+                 
+              </th>
+              <th
+                class="MuiTableCell-root MuiTableCell-head MuiTableCell-stickyHeader MuiTableCell-sizeMedium css-1qdeia9-MuiTableCell-root"
+                scope="col"
+                title="Code"
+              >
+                Code
+              </th>
+              <th
+                class="MuiTableCell-root MuiTableCell-head MuiTableCell-stickyHeader MuiTableCell-sizeMedium css-jq3q5n-MuiTableCell-root"
+                scope="col"
+                title="Image"
+              >
+                Image
+              </th>
+              <th
+                class="MuiTableCell-root MuiTableCell-head MuiTableCell-stickyHeader MuiTableCell-sizeMedium css-1qdeia9-MuiTableCell-root"
+                scope="col"
+                title="Name"
+              >
+                Name
+              </th>
+              <th
+                class="MuiTableCell-root MuiTableCell-head MuiTableCell-stickyHeader MuiTableCell-sizeMedium css-16hxf92-MuiTableCell-root"
+                scope="col"
+                title="Score"
+              >
+                Score
+              </th>
+              <th
+                class="MuiTableCell-root MuiTableCell-head MuiTableCell-stickyHeader MuiTableCell-sizeMedium css-vhxknf-MuiTableCell-root"
+                scope="col"
+                title="In stock"
+              >
+                In stock
+              </th>
+              <th
+                class="MuiTableCell-root MuiTableCell-head MuiTableCell-stickyHeader MuiTableCell-sizeMedium css-16hxf92-MuiTableCell-root"
+                scope="col"
+                title="Price"
+              >
+                Price
+              </th>
+              <th
+                class="MuiTableCell-root MuiTableCell-head MuiTableCell-stickyHeader MuiTableCell-sizeMedium css-jq3q5n-MuiTableCell-root"
+                scope="col"
+                title="Visible"
+              >
+                Visible
+              </th>
+            </tr>
+          </thead>
+          <tbody
+            class="MuiTableBody-root css-apqrd9-MuiTableBody-root"
+            data-rbd-droppable-context-id="0"
+            data-rbd-droppable-id="droppableTable"
           >
-            <td
-              aria-describedby="rbd-hidden-text-0-hidden-text-0"
-              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1bpo2xn-MuiTableCell-root"
-              data-rbd-drag-handle-context-id="0"
-              data-rbd-drag-handle-draggable-id="1"
-              draggable="false"
-              role="button"
-              tabindex="0"
+            <tr
+              class="MuiTableRow-root css-9mllys-MuiTableRow-root"
+              data-rbd-draggable-context-id="0"
+              data-rbd-draggable-id="1"
             >
-              <div
-                class="MuiBox-root css-siks6p"
-              >
-                <ion-icon
-                  data-testid="ionicon"
-                  src="/images/ionicons/reorder-two-outline.svg"
-                />
-              </div>
-            </td>
-            <td
-              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-7bmc7a-MuiTableCell-root"
-            >
-              <div
-                class="css-dsfkib"
-                data-testid="otherReadableField|code"
-              >
-                VA03
-              </div>
-            </td>
-            <td
-              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-7bmc7a-MuiTableCell-root"
-            >
-              <div
-                class="css-k008qs"
-              >
-                <img
-                  alt="field.productImage"
-                  class="css-4vmo8e"
-                  src="https://localhost/media/catalog/product/static/media/assets/img/scarf_elastic.png"
-                />
-                <div
-                  class="css-133d1dw"
-                />
-              </div>
-            </td>
-            <td
-              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-7bmc7a-MuiTableCell-root"
-            >
-              <div
-                class="css-dsfkib"
-                data-testid="otherReadableField|name"
-              >
-                Product name
-              </div>
-            </td>
-            <td
-              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-7bmc7a-MuiTableCell-root"
-            >
-              <div
-                class="MuiBox-root css-0"
-                data-testid="score|score"
+              <td
+                aria-describedby="rbd-hidden-text-0-hidden-text-0"
+                class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-ahhz6x-MuiTableCell-root"
+                data-rbd-drag-handle-context-id="0"
+                data-rbd-drag-handle-draggable-id="1"
+                draggable="false"
+                role="button"
+                tabindex="0"
               >
                 <div
-                  class="MuiBox-root css-1q1dwxg"
-                  data-testid="scoreContainer|score"
+                  class="MuiBox-root css-siks6p"
                 >
-                  100.11
+                  <ion-icon
+                    data-testid="ionicon"
+                    src="/images/ionicons/reorder-two-outline.svg"
+                  />
                 </div>
-              </div>
-            </td>
-            <td
-              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-7bmc7a-MuiTableCell-root"
-            >
-              <div
-                class="MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorSuccess MuiChip-filledSuccess css-18b01d5-MuiChip-root"
-                data-testid="stock|stock"
-                style="opacity: 1;"
-              >
-                <span
-                  class="MuiChip-label MuiChip-labelMedium css-6od3lo-MuiChip-label"
-                >
-                  stock.inStock
-                </span>
-              </div>
-            </td>
-            <td
-              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-7bmc7a-MuiTableCell-root"
-            >
-              <div
-                class="MuiBox-root css-1ci6mhc"
-                data-testid="price|price"
-              >
-                 
-                €10.00
-              </div>
-            </td>
-            <td
-              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-7bmc7a-MuiTableCell-root"
-            >
-              <div
-                class="css-dsfkib"
-              >
-                filter.yes
-              </div>
-            </td>
-          </tr>
-          <tr
-            class="MuiTableRow-root css-9mllys-MuiTableRow-root"
-            data-rbd-draggable-context-id="0"
-            data-rbd-draggable-id="2"
-          >
-            <td
-              aria-describedby="rbd-hidden-text-0-hidden-text-0"
-              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1bpo2xn-MuiTableCell-root"
-              data-rbd-drag-handle-context-id="0"
-              data-rbd-drag-handle-draggable-id="2"
-              draggable="false"
-              role="button"
-              tabindex="0"
-            >
-              <div
-                class="MuiBox-root css-siks6p"
-              >
-                <ion-icon
-                  data-testid="ionicon"
-                  src="/images/ionicons/reorder-two-outline.svg"
-                />
-              </div>
-            </td>
-            <td
-              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-7bmc7a-MuiTableCell-root"
-            >
-              <div
-                class="css-dsfkib"
-                data-testid="otherReadableField|code"
-              >
-                VA03
-              </div>
-            </td>
-            <td
-              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-7bmc7a-MuiTableCell-root"
-            >
-              <div
-                class="css-k008qs"
-              >
-                <img
-                  alt="field.productImage"
-                  class="css-4vmo8e"
-                  src="https://localhost/media/catalog/product/static/media/assets/img/scarf_elastic.png"
-                />
-                <div
-                  class="css-133d1dw"
-                />
-              </div>
-            </td>
-            <td
-              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-7bmc7a-MuiTableCell-root"
-            >
-              <div
-                class="css-dsfkib"
-                data-testid="otherReadableField|name"
-              >
-                Product name
-              </div>
-            </td>
-            <td
-              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-7bmc7a-MuiTableCell-root"
-            >
-              <div
-                class="MuiBox-root css-0"
-                data-testid="score|score"
+              </td>
+              <td
+                class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-cdbv8i-MuiTableCell-root"
               >
                 <div
-                  class="MuiBox-root css-1q1dwxg"
-                  data-testid="scoreContainer|score"
+                  class="css-11gtdug"
+                  data-testid="otherReadableField|code"
+                  title="VA03"
                 >
-                  100.11
+                  VA03
                 </div>
-              </div>
-            </td>
-            <td
-              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-7bmc7a-MuiTableCell-root"
-            >
-              <div
-                class="MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorError MuiChip-filledError css-1gbpvzg-MuiChip-root"
-                data-testid="stock|stock"
-                style="opacity: 1;"
+              </td>
+              <td
+                class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-cdbv8i-MuiTableCell-root"
               >
-                <span
-                  class="MuiChip-label MuiChip-labelMedium css-6od3lo-MuiChip-label"
+                <div
+                  class="css-k008qs"
                 >
-                  stock.outOfStock
-                </span>
-              </div>
-            </td>
-            <td
-              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-7bmc7a-MuiTableCell-root"
-            >
-              <div
-                class="MuiBox-root css-1ci6mhc"
-                data-testid="price|price"
+                  <img
+                    alt="field.productImage"
+                    class="css-4vmo8e"
+                    src="https://localhost/media/catalog/product/static/media/assets/img/scarf_elastic.png"
+                  />
+                  <div
+                    class="css-133d1dw"
+                  />
+                </div>
+              </td>
+              <td
+                class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-cdbv8i-MuiTableCell-root"
               >
-                 
-                €10.00
-              </div>
-            </td>
-            <td
-              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-7bmc7a-MuiTableCell-root"
-            >
-              <div
-                class="css-dsfkib"
+                <div
+                  class="css-11gtdug"
+                  data-testid="otherReadableField|name"
+                  title="Product name"
+                >
+                  Product name
+                </div>
+              </td>
+              <td
+                class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-cdbv8i-MuiTableCell-root"
               >
-                filter.yes
-              </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+                <div
+                  class="MuiBox-root css-0"
+                  data-testid="score|score"
+                >
+                  <div
+                    class="MuiBox-root css-1q1dwxg"
+                    data-testid="scoreContainer|score"
+                  >
+                    100.11
+                  </div>
+                </div>
+              </td>
+              <td
+                class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-cdbv8i-MuiTableCell-root"
+              >
+                <div
+                  class="MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorSuccess MuiChip-filledSuccess css-18b01d5-MuiChip-root"
+                  data-testid="stock|stock"
+                  style="opacity: 1;"
+                >
+                  <span
+                    class="MuiChip-label MuiChip-labelMedium css-6od3lo-MuiChip-label"
+                  >
+                    stock.inStock
+                  </span>
+                </div>
+              </td>
+              <td
+                class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-cdbv8i-MuiTableCell-root"
+              >
+                <div
+                  class="MuiBox-root css-1ci6mhc"
+                  data-testid="price|price"
+                >
+                   
+                  €10.00
+                </div>
+              </td>
+              <td
+                class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-cdbv8i-MuiTableCell-root"
+              >
+                <div
+                  class="css-dsfkib"
+                >
+                  filter.yes
+                </div>
+              </td>
+            </tr>
+            <tr
+              class="MuiTableRow-root css-9mllys-MuiTableRow-root"
+              data-rbd-draggable-context-id="0"
+              data-rbd-draggable-id="2"
+            >
+              <td
+                aria-describedby="rbd-hidden-text-0-hidden-text-0"
+                class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-ahhz6x-MuiTableCell-root"
+                data-rbd-drag-handle-context-id="0"
+                data-rbd-drag-handle-draggable-id="2"
+                draggable="false"
+                role="button"
+                tabindex="0"
+              >
+                <div
+                  class="MuiBox-root css-siks6p"
+                >
+                  <ion-icon
+                    data-testid="ionicon"
+                    src="/images/ionicons/reorder-two-outline.svg"
+                  />
+                </div>
+              </td>
+              <td
+                class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-cdbv8i-MuiTableCell-root"
+              >
+                <div
+                  class="css-11gtdug"
+                  data-testid="otherReadableField|code"
+                  title="VA03"
+                >
+                  VA03
+                </div>
+              </td>
+              <td
+                class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-cdbv8i-MuiTableCell-root"
+              >
+                <div
+                  class="css-k008qs"
+                >
+                  <img
+                    alt="field.productImage"
+                    class="css-4vmo8e"
+                    src="https://localhost/media/catalog/product/static/media/assets/img/scarf_elastic.png"
+                  />
+                  <div
+                    class="css-133d1dw"
+                  />
+                </div>
+              </td>
+              <td
+                class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-cdbv8i-MuiTableCell-root"
+              >
+                <div
+                  class="css-11gtdug"
+                  data-testid="otherReadableField|name"
+                  title="Product name"
+                >
+                  Product name
+                </div>
+              </td>
+              <td
+                class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-cdbv8i-MuiTableCell-root"
+              >
+                <div
+                  class="MuiBox-root css-0"
+                  data-testid="score|score"
+                >
+                  <div
+                    class="MuiBox-root css-1q1dwxg"
+                    data-testid="scoreContainer|score"
+                  >
+                    100.11
+                  </div>
+                </div>
+              </td>
+              <td
+                class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-cdbv8i-MuiTableCell-root"
+              >
+                <div
+                  class="MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorError MuiChip-filledError css-1gbpvzg-MuiChip-root"
+                  data-testid="stock|stock"
+                  style="opacity: 1;"
+                >
+                  <span
+                    class="MuiChip-label MuiChip-labelMedium css-6od3lo-MuiChip-label"
+                  >
+                    stock.outOfStock
+                  </span>
+                </div>
+              </td>
+              <td
+                class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-cdbv8i-MuiTableCell-root"
+              >
+                <div
+                  class="MuiBox-root css-1ci6mhc"
+                  data-testid="price|price"
+                >
+                   
+                  €10.00
+                </div>
+              </td>
+              <td
+                class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-cdbv8i-MuiTableCell-root"
+              >
+                <div
+                  class="css-dsfkib"
+                >
+                  filter.yes
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div
+        class="css-15z3x2o"
+        style="opacity: 0; visibility: hidden;"
+      />
     </div>
   </div>
 </div>
