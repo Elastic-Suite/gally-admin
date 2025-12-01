@@ -7,5 +7,7 @@
   "Name (A → Z)": "Name (A → Z)",
   "Name (Z → A)": "Name (Z → A)",
   "Natural sort (A → Z)": "Natural sort (A → Z)",
-  "Natural sort (Z → A)": "Natural sort (Z → A)"
+  "Natural sort (Z → A)": "Natural sort (Z → A)",
+  "Logical OR": "Logical OR",
+  "Logical AND": "Logical AND"
 }
