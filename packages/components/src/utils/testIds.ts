@@ -110,6 +110,7 @@ export enum TestId {
   RULES_MANAGER = 'rulesManager',
   COMBINATION_RULES = 'combinationRules',
   CONFIGURATION_FORM = 'configurationForm',
+  IMPORT_EXPORT_PROFILE_RUN = 'importExportProfileRun',
 }
 
 type ItemId = `|${string}` | ''
