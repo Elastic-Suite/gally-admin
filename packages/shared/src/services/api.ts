@@ -51,10 +51,22 @@ export function fetchApi<T extends object>(
 ): Promise<T> {
   const apiUrl =
     typeof resource === 'string' ? getApiUrl(resource) : getApiUrl(resource.url)
+  const optionsHeaders = (options.headers as Record<string, string>) || {}
+  const shouldSetContentType = !(
+    contentTypeHeader in optionsHeaders && !optionsHeaders[contentTypeHeader]
+  )
+
+  // Filter out empty content type from options headers
+  // This is useful for multipart/form-data (file upload) that let the browser handle
+  // The content-type and the file boundaries automatically
+  const filteredOptionsHeaders = Object.fromEntries(
+    Object.entries(optionsHeaders).filter(([_, value]) => Boolean(value))
+  )
+
   const headers: Record<string, string> = {
     [languageHeader]: language,
-    [contentTypeHeader]: 'application/ld+json',
-    ...(options.headers as Record<string, string>),
+    ...(shouldSetContentType && { [contentTypeHeader]: 'application/ld+json' }),
+    ...filteredOptionsHeaders,
   }
   const token = storageGet(tokenStorageKey)
   if (secure && token) {

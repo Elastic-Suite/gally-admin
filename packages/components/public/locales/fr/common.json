@@ -85,5 +85,14 @@
   "formError.typeMismatchEmail": "Le format de l'adresse e-mail est invalide.",
   "newPassword.label": "Nouveau mot de passe",
   "confirmPassword.label": "Confirmer le mot de passe",
-  "Edit": "Editer"
+  "Edit": "Editer",
+  "upload.dragAndDrop": "Glissez et déposez votre fichier ici",
+  "upload.orClickToBrowse": "ou cliquez pour parcourir les fichiers",
+  "upload.clickToChange": "Cliquez pour changer le fichier",
+  "upload.validate": "Valider",
+  "upload.fileSize": "{{size}} Mo",
+  "upload.acceptedFileTypes": "Types de fichiers acceptés : {{types}}",
+  "upload.maximumFileSize": "Taille maximale du fichier : {{size}} Mo",
+  "upload.error.fileSizeExceeds": "La taille du fichier dépasse {{size}} Mo",
+  "upload.error.fileTypeNotAccepted": "Type de fichier non accepté. Types acceptés : {{types}}"
 }

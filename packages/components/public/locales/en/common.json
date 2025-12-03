@@ -77,5 +77,14 @@
   "formError.typeMismatchEmail": "The email address format is invalid.",
   "newPassword.label": "New password",
   "confirmPassword.label": "Confirm password",
-  "Edit": "Edit"
+  "Edit": "Edit",
+  "upload.dragAndDrop": "Drag and drop your file here",
+  "upload.orClickToBrowse": "or click to browse files",
+  "upload.clickToChange": "Click to change file",
+  "upload.validate": "Validate",
+  "upload.fileSize": "{{size}} MB",
+  "upload.acceptedFileTypes": "Accepted file types: {{types}}",
+  "upload.maximumFileSize": "Maximum file size: {{size}} MB",
+  "upload.error.fileSizeExceeds": "File size exceeds {{size}} MB",
+  "upload.error.fileTypeNotAccepted": "File type not accepted. Accepted types: {{types}}"
 }
