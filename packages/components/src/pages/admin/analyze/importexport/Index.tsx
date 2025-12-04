@@ -1,64 +1,71 @@
-import React, { useContext, useEffect, useMemo } from 'react'
+import React, { FunctionComponent, useContext, useEffect, useMemo } from 'react'
 import { useTranslation } from 'next-i18next'
 import { useRouter } from 'next/router'
 
 import { PageTitle } from '../../../../components'
-import { selectMenu, useAppSelector } from '../../../../store'
 import { withAuth, withOptions } from '../../../../hocs'
 import { breadcrumbContext } from '../../../../contexts'
 
 import {
+  IJobProfilesByType,
   IRouterTab,
-  findBreadcrumbLabel,
 } from '@elastic-suite/gally-admin-shared'
-import { useTabs } from '../../../../hooks'
+import { useFetchApi, useTabs } from '../../../../hooks'
 import CustomTabs from '../../../../components/molecules/layout/tabs/CustomTabs'
 import AdminImport from '../../../../components/stateful-pages/ImportExport/Import'
 import AdminExport from '../../../../components/stateful-pages/ImportExport/Export'
 
-const pageSlug = 'importexport'
+const pagesSlug = ['analyze', 'import_export']
+const componentsByProfile: Record<string, FunctionComponent> = {
+  import: AdminImport,
+  export: AdminExport,
+}
 
 function AdminImportExportIndex(): JSX.Element {
-  const { t } = useTranslation(pageSlug)
+  const { t } = useTranslation('importExport')
   const router = useRouter()
-  const menu = useAppSelector(selectMenu)
   const [, setBreadcrumb] = useContext(breadcrumbContext)
 
+  const [jobProfiles] = useFetchApi<IJobProfilesByType>(`job_profiles`)
+
   useEffect(() => {
-    const { slug } = router.query
-    setBreadcrumb([pageSlug, ...slug])
+    setBreadcrumb(pagesSlug)
   }, [router.query, setBreadcrumb])
+
   const routerTabs: IRouterTab[] = useMemo(() => {
-    const tabs: IRouterTab[] = [
-      {
-        Component: AdminImport,
-        default: true,
-        id: 0,
-        label: t('tabs.import'),
-        url: '/admin/analyze/importexport/import',
-      },
-      {
-        Component: AdminExport,
-        id: 1,
-        label: t('tabs.export'),
-        url: '/admin/analyze/importexport/export',
-      },
-    ]
+    if (!jobProfiles?.data?.profiles) {
+      return []
+    }
+
+    const tabs: IRouterTab[] = []
+    for (const profile of Object.keys(jobProfiles.data.profiles)) {
+      tabs.push({
+        Component: componentsByProfile[profile],
+        componentProps: {
+          profiles: jobProfiles.data.profiles[profile],
+        },
+        id: tabs.length,
+        label: t(`tabs.${profile}`),
+        url: `/admin/analyze/importexport/${profile}`,
+      })
+    }
+
     return tabs
-  }, [t])
+  }, [jobProfiles, t])
 
   const [activeTab, handleTabChange] = useTabs(routerTabs)
-  const { actions, id } = activeTab
 
-  const pageTitle = useMemo(() => {
-    return findBreadcrumbLabel(0, [pageSlug], menu.hierarchy)
-      ? `${findBreadcrumbLabel(0, [pageSlug], menu.hierarchy)}`
-      : ''
-  }, [menu])
+  const pageTitle = t('importexport')
 
   const headTitle = useMemo(() => {
-    return `${pageTitle} - ${activeTab.label}`
-  }, [pageTitle, activeTab.label])
+    return activeTab ? `${pageTitle} - ${activeTab.label}` : ''
+  }, [activeTab, pageTitle])
+
+  if (!jobProfiles?.data?.profiles) {
+    return null
+  }
+
+  const { actions, id } = activeTab
 
   return (
     <>
