@@ -1,14 +1,32 @@
 import React from 'react'
-import { withAuth, withOptions } from '../../../hocs'
-import { useTranslation } from 'next-i18next'
-import { Role } from '@elastic-suite/gally-admin-shared'
+import {
+  IJobProfileInfos,
+  IJobProfiles,
+} from '@elastic-suite/gally-admin-shared'
+import RunnableProfileGrid from '../../organisms/RunnableJobProfileGrid/RunnableJobProfileGrid'
+interface IProps {
+  profiles: IJobProfiles
+}
 
-function AdminExport(): JSX.Element {
-  const { t } = useTranslation('importexport')
+function AdminExport(props: IProps): JSX.Element {
+  const fixedFilters = {
+    type: 'export',
+  }
+
+  const { profiles } = props
+
+  function onProfileRun(item: IJobProfileInfos): void {
+    console.log(item)
+  }
 
   return (
-    <>{ t('export') }</>
+    <RunnableProfileGrid
+      defaultProfile={Object.values(profiles)[0]}
+      fixedFilters={fixedFilters}
+      profiles={profiles}
+      onProfileRun={onProfileRun}
+    />
   )
 }
 
-export default withAuth(Role.ADMIN)(withOptions(AdminExport))
+export default AdminExport

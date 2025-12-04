@@ -64,11 +64,20 @@ export function useResourceOperations<T extends IHydraMember>(
   )
 
   const create = useCallback(
-    (item: Omit<T, 'id' | '@id' | '@type'>): Promise<T | IError> =>
-      fetchApi(apiUrl, undefined, {
-        body: JSON.stringify(item),
+    (item: Omit<T, 'id' | '@id' | '@type'>): Promise<T | IError> => {
+      // Check if item is FormData (file upload)
+      const isFormData = item instanceof FormData
+
+      const requestOptions: RequestInit = {
+        body: isFormData ? item : JSON.stringify(item),
         method: Method.POST,
-      }),
+        headers: {
+          [contentTypeHeader]: isFormData ? '' : 'application/ld+json',
+        },
+      }
+
+      return fetchApi(apiUrl, undefined, requestOptions)
+    },
     [apiUrl, fetchApi]
   )
 
