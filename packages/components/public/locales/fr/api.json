@@ -74,5 +74,7 @@
   "Contributor": "Contributeur",
   "Non-native OpenSearch sorting may impact performance on facets with many options.<br />Affected sorts are:<br />• Admin sort<br />• Name (Z → A)<br />• Natural sort (A → Z)<br />• Natural sort (Z → A)": "Les tris non natifs d’OpenSearch peuvent affecter les performances des facettes contenant de nombreuses options.<br />Tris concernés :<br />• Tri administrateur<br />• Nom (Z → A)<br />• Tri naturel (A → Z)<br />• Tri naturel (Z → A)",
   "When several values are selected in a facet/filter, the default behavior is to combine them with a logical OR (\"red\" OR \"blue\"). But a logical AND can be handy for some attributes (\"egg free\" AND \"gluten free\", \"waterproof AND lightweight AND warm\").": "Quand plusieurs valeurs sont sélectionnées dans une facette/un filtre, le comportement par défaut est de les combiner avec un OU logique (\"rouge\" OU \"bleu\"). Mais un ET logique peut être plus adapté pour certains attributs (\"sans oeuf\" ET \"sans gluten\", \"imperméable ET léger ET chaud\").",
-  "Facet internal logic": "Logique interne de la facette"
+  "Facet internal logic": "Logique interne de la facette",
+  "Import thesaurus": "Importer un thesaurus",
+  "Export thesaurus": "Exporter un thesaurus"
 }

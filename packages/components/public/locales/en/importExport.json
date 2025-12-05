@@ -3,5 +3,11 @@
   "tabs.import": "Import",
   "tabs.export": "Export",
   "profile": "Profile",
-  "profile.run": "Run"
+  "profile.run": "Run",
+  "import.run": "Import",
+  "export.run": "Export",
+  "error.createImportJob": "An error has occurred during import creation",
+  "error.createExportJob": "An error has occurred during export creation",
+  "success.importJobCreated": "Import job created successfully",
+  "success.exportJobCreated": "Export job created successfully"
 }

@@ -1,7 +1,8 @@
 import React, { ChangeEvent, DragEvent, useRef, useState } from 'react'
-import { Alert, Box, Button, Typography, styled } from '@mui/material'
+import { Alert, Box, Typography, styled } from '@mui/material'
 import CloudUploadIcon from '@mui/icons-material/CloudUpload'
 import UploadFileIcon from '@mui/icons-material/UploadFile'
+import Button from '../../atoms/buttons/Button'
 import { useTranslation } from 'next-i18next'
 
 const VisuallyHiddenInput = styled('input')({

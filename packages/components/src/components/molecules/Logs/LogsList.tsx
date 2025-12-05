@@ -1,29 +1,23 @@
 import React from 'react'
-import { Box, Typography } from '@mui/material'
+import { Box, Theme, Typography, useTheme } from '@mui/material'
 import { ILog } from '@elastic-suite/gally-admin-shared'
+import { useTranslation } from 'next-i18next'
+import { selectLanguage, useAppSelector } from '../../../store'
 
 interface IProps {
   logs: ILog[]
 }
 
-const getSeverityColor = (severity: string): string => {
-  switch (severity) {
-    case 'error':
-      return '#ff6b6b'
-    case 'warning':
-      return '#ffd93d'
-    case 'info':
-      return '#6bcf7f'
-    case 'debug':
-      return '#a8dadc'
-    default:
-      return '#ffffff'
-  }
-}
+const getSeverityColor = (theme: Theme): Record<string, string> => ({
+  error: theme.palette.error.main,
+  warning: theme.palette.warning.main,
+  info: theme.palette.info.main,
+  debug: theme.palette.grey[500],
+})
 
-const formatTimestamp = (timestamp: string): string => {
-  const date = new Date(timestamp)
-  return date.toLocaleString('en-US', {
+const formatLogDate = (value: string, language: string): string => {
+  const date = new Date(value as string)
+  return date.toLocaleString(language, {
     year: 'numeric',
     month: '2-digit',
     day: '2-digit',
@@ -36,6 +30,10 @@ const formatTimestamp = (timestamp: string): string => {
 
 function LogsList(props: IProps): JSX.Element {
   const { logs } = props
+  const { t } = useTranslation('common')
+  const theme = useTheme()
+  const severityColors = getSeverityColor(theme)
+  const language = useAppSelector(selectLanguage)
 
   return (
     <Box
@@ -46,13 +44,15 @@ function LogsList(props: IProps): JSX.Element {
         overflowX: 'auto',
         whiteSpace: 'pre-wrap',
         wordBreak: 'break-word',
-        backgroundColor: '#f5f5f5',
+        backgroundColor: theme.palette.background.default,
         borderRadius: '4px',
       }}
     >
       {logs.length === 0 ? (
-        <Typography sx={{ color: '#666', fontStyle: 'italic' }}>
-          No logs available
+        <Typography
+          sx={{ color: theme.palette.text.secondary, fontStyle: 'italic' }}
+        >
+          {t('logs.noLogs')}
         </Typography>
       ) : (
         logs.map((log) => (
@@ -61,7 +61,7 @@ function LogsList(props: IProps): JSX.Element {
             sx={{
               marginBottom: '8px',
               paddingBottom: '8px',
-              borderBottom: '1px solid #e0e0e0',
+              borderBottom: `1px solid ${theme.palette.divider}`,
               '&:last-child': {
                 borderBottom: 'none',
               },
@@ -70,16 +70,17 @@ function LogsList(props: IProps): JSX.Element {
             <Typography
               component="span"
               sx={{
-                color: '#666',
+                color: theme.palette.text.secondary,
                 marginRight: '12px',
               }}
             >
-              [{formatTimestamp(log.loggedAt)}]
+              [{formatLogDate(log.loggedAt, language)}]
             </Typography>
             <Typography
               component="span"
               sx={{
-                color: getSeverityColor(log.severity),
+                color:
+                  severityColors[log.severity] || theme.palette.text.primary,
                 fontWeight: 'bold',
                 marginRight: '12px',
                 textTransform: 'uppercase',
@@ -90,7 +91,7 @@ function LogsList(props: IProps): JSX.Element {
             <Typography
               component="span"
               sx={{
-                color: '#333',
+                color: theme.palette.text.primary,
               }}
             >
               {log.message}

@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import {
-  Button,
   Dialog,
   DialogContent,
   DialogTitle,
@@ -10,7 +9,9 @@ import {
 import CloseIcon from '@mui/icons-material/Close'
 import VisibilityIcon from '@mui/icons-material/Visibility'
 import { ILog } from '@elastic-suite/gally-admin-shared'
+import Button from '../../atoms/buttons/Button'
 import LogsList from './LogsList'
+import { useTranslation } from 'next-i18next'
 
 interface IProps {
   logs: ILog[]
@@ -18,6 +19,8 @@ interface IProps {
 
 function Logs(props: IProps): JSX.Element {
   const { logs } = props
+
+  const { t } = useTranslation('common')
   const [open, setOpen] = useState(false)
 
   const handleOpen = (): void => setOpen(true)
@@ -26,11 +29,14 @@ function Logs(props: IProps): JSX.Element {
   return (
     <>
       <Button
-        variant="outlined"
+        disabled={!logs.length}
+        display="secondary"
+        size="small"
         startIcon={<VisibilityIcon />}
         onClick={handleOpen}
+        title={logs.length ? t('logs.view') : t('logs.noLogs')}
       >
-        View Logs
+        {t('logs.view')}
       </Button>
 
       <Dialog
@@ -53,7 +59,7 @@ function Logs(props: IProps): JSX.Element {
           }}
         >
           <Typography variant="h6" component="span">
-            Job Logs
+            {t('logs')}
           </Typography>
           <IconButton aria-label="close" onClick={handleClose}>
             <CloseIcon />

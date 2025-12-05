@@ -23,7 +23,7 @@ export function useResource(
   mainContext: IMainContext = IMainContext.GRID
 ): IResource {
   const api = useAppSelector(selectApi)
-  const { pathname } = useRouter()
+  const { asPath } = useRouter()
   return useMemo(() => {
     const resource = getResource(api, resourceName)
     return {
@@ -31,19 +31,19 @@ export function useResource(
       supportedProperty:
         resource?.supportedProperty instanceof Array
           ? resource?.supportedProperty.map((field) =>
-              updatePropertiesAccordingToPath(field, pathname, mainContext)
+              updatePropertiesAccordingToPath(field, asPath, mainContext)
             )
           : resource?.supportedProperty
           ? [
               updatePropertiesAccordingToPath(
                 resource.supportedProperty,
-                pathname,
+                asPath,
                 mainContext
               ),
             ]
           : resource?.supportedProperty,
     }
-  }, [api, pathname, mainContext, resourceName])
+  }, [api, asPath, mainContext, resourceName])
 }
 
 export function useResourceOperations<T extends IHydraMember>(

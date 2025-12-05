@@ -94,5 +94,15 @@
   "upload.acceptedFileTypes": "Types de fichiers acceptés : {{types}}",
   "upload.maximumFileSize": "Taille maximale du fichier : {{size}} Mo",
   "upload.error.fileSizeExceeds": "La taille du fichier dépasse {{size}} Mo",
-  "upload.error.fileTypeNotAccepted": "Type de fichier non accepté. Types acceptés : {{types}}"
+  "upload.error.fileTypeNotAccepted": "Type de fichier non accepté. Types acceptés : {{types}}",
+  "download.file": "Télécharger le fichier",
+  "download.error": "Une erreur est survenue durant le téléchargement",
+  "logs.noLogs": "Aucun log disponible",
+  "logs.view": "Voir les logs",
+  "status.finished": "Terminé",
+  "status.error": "Erreur",
+  "status.processing": "En cours",
+  "status.new": "Nouveau",
+  "job.pendingCount_one": "<0>1 tâche est en attente.</0> Rechargez ou revenez sur cette page dans quelques instants",
+  "job.pendingCount_other": "<0>Des tâches sont en attente.</0> Rechargez ou revenez sur cette page dans quelques instants"
 }

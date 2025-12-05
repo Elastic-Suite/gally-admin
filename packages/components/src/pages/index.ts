@@ -1,6 +1,6 @@
 export { default as AdminAnalyzeResults } from './admin/analyze/Results'
-export { default as AdminAnalyzeImportExport } from './admin/analyze/ImportExport'
-export { default as AdminImportExportIndex } from './admin/analyze/importexport/Index'
+export { default as AdminImportExport } from './admin/ImportExport'
+export { default as AdminImportExportIndex } from './admin/importexport/Index'
 export { default as AdminMerchandizeCategories } from './admin/merchandize/categories'
 export { default as AdminAutoRecommenderGrid } from './admin/merchandize/recommender/auto_recommender/Grid'
 export { default as AdminAutoRecommenderCreate } from './admin/merchandize/recommender/auto_recommender/Create'
