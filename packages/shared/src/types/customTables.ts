@@ -34,6 +34,7 @@ export enum DataContentType {
   BOOSTPREVIEW = 'boostPreview',
   POSITIONEFFECT = 'positionEffect',
   PROPARTIONALTOATTRIBUTE = 'proportionalToAttribute',
+  LOGS = 'logs',
 }
 
 export type ITableHeader = IFieldConfig
