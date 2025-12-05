@@ -86,5 +86,15 @@
   "upload.acceptedFileTypes": "Accepted file types: {{types}}",
   "upload.maximumFileSize": "Maximum file size: {{size}} MB",
   "upload.error.fileSizeExceeds": "File size exceeds {{size}} MB",
-  "upload.error.fileTypeNotAccepted": "File type not accepted. Accepted types: {{types}}"
+  "upload.error.fileTypeNotAccepted": "File type not accepted. Accepted types: {{types}}",
+  "download.file": "Download file",
+  "download.error": "An error has occurred during download",
+  "logs.noLogs": "No logs available",
+  "logs.view": "View logs",
+  "status.finished": "Finished",
+  "status.error": "Error",
+  "status.processing": "Processing",
+  "status.new": "New",
+  "job.pendingCount_one": "<0>1 pending task.</0> Reload or come back to this page in a few moments",
+  "job.pendingCount_other": "<0>There are pending tasks.</0> Reload or come back to this page in a few moments"
 }

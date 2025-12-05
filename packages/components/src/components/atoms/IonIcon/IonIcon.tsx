@@ -47,6 +47,7 @@ export const iconAliasMapping = {
   monitoring: 'list',
   more: 'add-circle',
   settings: 'settings-outline',
+  import_export: 'swap-vertical-outline',
 }
 export const customIcons = [
   ...Object.keys(iconSrcMapping),

@@ -16,5 +16,7 @@
   "Contributor": "Contributor",
   "Non-native OpenSearch sorting may impact performance on facets with many options.<br />Affected sorts are:<br />• Admin sort<br />• Name (Z → A)<br />• Natural sort (A → Z)<br />• Natural sort (Z → A)": "Non-native OpenSearch sorting may impact performance on facets with many options.<br />Affected sorts are:<br />• Admin sort<br />• Name (Z → A)<br />• Natural sort (A → Z)<br />• Natural sort (Z → A)",
   "When several values are selected in a facet/filter, the default behavior is to combine them with a logical OR (\"red\" OR \"blue\"). But a logical AND can be handy for some attributes (\"egg free\" AND \"gluten free\", \"waterproof AND lightweight AND warm\").": "When several values are selected in a facet/filter, the default behavior is to combine them with a logical OR (\"red\" OR \"blue\"). But a logical AND can be handy for some attributes (\"egg free\" AND \"gluten free\", \"waterproof AND lightweight AND warm\").",
-  "Facet internal logic": "Facet internal logic"
+  "Facet internal logic": "Facet internal logic",
+  "Import thesaurus": "Import thesaurus",
+  "Export thesaurus": "Export thesaurus"
 }
