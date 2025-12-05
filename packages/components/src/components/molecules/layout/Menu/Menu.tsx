@@ -48,6 +48,7 @@ interface IProps {
 const itemRouterTabs: Record<string, boolean> = {
   settings: true,
   monitoring: true,
+  import_export: true,
 }
 
 function Menu(props: IProps): JSX.Element {

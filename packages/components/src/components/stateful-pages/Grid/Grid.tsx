@@ -8,6 +8,7 @@ import { useFilters, useResource } from '../../../hooks'
 import { useTranslation } from 'next-i18next'
 import { styled } from '@mui/system'
 import { TestId, generateTestId } from '../../../utils/testIds'
+import JobButtons from '../../molecules/JobButtons/JobButtons'
 
 interface IProps
   extends Omit<IResourceTable, 'activeFilters' | 'setActiveFilters'> {
@@ -17,6 +18,7 @@ interface IProps
   propsButton?: Record<string, any>
   hideTitle?: boolean
   headTitle?: string | null
+  hasJobButtons?: boolean
 }
 
 const isIconInButton = ['isIconInButton', 'large']
@@ -44,6 +46,7 @@ function Grid(props: IProps): JSX.Element {
     propsButton,
     hideTitle,
     headTitle,
+    hasJobButtons = true,
     ...otherProps
   } = props
 
@@ -58,6 +61,13 @@ function Grid(props: IProps): JSX.Element {
         hideTitle={hideTitle}
         headTitle={headTitle}
       >
+        {hasJobButtons && resource.gally.jobs ? (
+          <JobButtons
+            resourceName={resourceName}
+            jobButtons={resource.gally.jobs}
+            propsButton={propsButton}
+          />
+        ) : null}
         {hasNewLink ? (
           <Button
             {...propsButton}

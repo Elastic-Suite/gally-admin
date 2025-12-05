@@ -52,6 +52,11 @@ interface IProps {
   componentId?: string
 }
 
+const replacedInputTypes: Partial<Record<DataContentType, DataContentType>> = {
+  [DataContentType.EMAIL]: DataContentType.STRING,
+  [DataContentType.STATUS]: DataContentType.SELECT,
+}
+
 function getActiveFilterLabel(
   filter: IFieldConfig,
   value: unknown,
@@ -110,9 +115,7 @@ function Filters(props: IProps): JSX.Element {
   )
 
   function getInputType(originalInputType: DataContentType): DataContentType {
-    return originalInputType === DataContentType.EMAIL
-      ? DataContentType.STRING
-      : originalInputType
+    return replacedInputTypes[originalInputType] ?? originalInputType
   }
 
   const activeFilters = Object.entries(activeValues)

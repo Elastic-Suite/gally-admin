@@ -2,23 +2,34 @@ import React, { FunctionComponent, useContext, useEffect, useMemo } from 'react'
 import { useTranslation } from 'next-i18next'
 import { useRouter } from 'next/router'
 
-import { PageTitle } from '../../../../components'
-import { withAuth, withOptions } from '../../../../hocs'
-import { breadcrumbContext } from '../../../../contexts'
+import { PageTitle } from '../../../components'
+import { withAuth, withOptions } from '../../../hocs'
+import { breadcrumbContext } from '../../../contexts'
 
 import {
+  IJobProfileInfos,
+  IJobProfiles,
   IJobProfilesByType,
   IRouterTab,
 } from '@elastic-suite/gally-admin-shared'
-import { useFetchApi, useTabs } from '../../../../hooks'
-import CustomTabs from '../../../../components/molecules/layout/tabs/CustomTabs'
-import AdminImport from '../../../../components/stateful-pages/ImportExport/Import'
-import AdminExport from '../../../../components/stateful-pages/ImportExport/Export'
+import { useFetchApi, useTabs } from '../../../hooks'
+import CustomTabs from '../../../components/molecules/layout/tabs/CustomTabs'
+import AdminImport from '../../../components/stateful-pages/ImportExport/Import'
+import AdminExport from '../../../components/stateful-pages/ImportExport/Export'
 
-const pagesSlug = ['analyze', 'import_export']
+const pagesSlug = 'import_export'
 const componentsByProfile: Record<string, FunctionComponent> = {
   import: AdminImport,
   export: AdminExport,
+}
+
+function getDefaultProfile(profiles: IJobProfiles): IJobProfileInfos {
+  const params = new URLSearchParams(window.location.search)
+  const profileFromUrl =
+    params.get('import_profile') || params.get('export_profile')
+  return profileFromUrl && profiles[profileFromUrl]
+    ? profiles[profileFromUrl]
+    : Object.values(profiles)[0]
 }
 
 function AdminImportExportIndex(): JSX.Element {
@@ -27,10 +38,6 @@ function AdminImportExportIndex(): JSX.Element {
   const [, setBreadcrumb] = useContext(breadcrumbContext)
 
   const [jobProfiles] = useFetchApi<IJobProfilesByType>(`job_profiles`)
-
-  useEffect(() => {
-    setBreadcrumb(pagesSlug)
-  }, [router.query, setBreadcrumb])
 
   const routerTabs: IRouterTab[] = useMemo(() => {
     if (!jobProfiles?.data?.profiles) {
@@ -43,10 +50,11 @@ function AdminImportExportIndex(): JSX.Element {
         Component: componentsByProfile[profile],
         componentProps: {
           profiles: jobProfiles.data.profiles[profile],
+          defaultProfile: getDefaultProfile(jobProfiles.data.profiles[profile]),
         },
         id: tabs.length,
         label: t(`tabs.${profile}`),
-        url: `/admin/analyze/importexport/${profile}`,
+        url: `/admin/importexport/${profile}`,
       })
     }
 
@@ -54,6 +62,11 @@ function AdminImportExportIndex(): JSX.Element {
   }, [jobProfiles, t])
 
   const [activeTab, handleTabChange] = useTabs(routerTabs)
+
+  useEffect(() => {
+    const { slug } = router.query
+    setBreadcrumb([pagesSlug, ...slug])
+  }, [router.query, activeTab, setBreadcrumb])
 
   const pageTitle = t('importexport')
 

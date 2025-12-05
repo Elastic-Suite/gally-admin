@@ -1,4 +1,4 @@
-import React, { ForwardedRef, forwardRef } from 'react'
+import React, { ForwardedRef, ReactNode, forwardRef } from 'react'
 import { IconButton, Alert as MuiAlert } from '@mui/material'
 import { styled } from '@mui/system'
 import { CustomContentProps, SnackbarKey } from 'notistack'
@@ -48,15 +48,18 @@ const StyledAlert = styled(MuiAlert)(({ severity, theme }) => ({
 interface IProps extends Partial<CustomContentProps> {
   onShut?: (id: SnackbarKey) => void
   mb?: number
+  children?: ReactNode
 }
 
 function Alert(props: IProps, ref: ForwardedRef<HTMLDivElement>): JSX.Element {
-  const { id, message, onShut, variant = 'info', mb = 2 } = props
+  const { id, message, onShut, variant = 'info', mb = 2, children } = props
   const { t } = useTranslation('alert')
 
   function handleClick(): void {
     onShut?.(id)
   }
+
+  const content = children || t(message as string)
 
   return (
     <StyledAlert
@@ -75,7 +78,7 @@ function Alert(props: IProps, ref: ForwardedRef<HTMLDivElement>): JSX.Element {
       sx={{ mb }}
       data-testid={generateTestId(TestId.ALERT, variant)}
     >
-      {t(message)}
+      {content}
     </StyledAlert>
   )
 }
