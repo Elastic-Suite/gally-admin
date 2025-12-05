@@ -84,5 +84,9 @@
   "upload.acceptedFileTypes": "Accepted file types: {{types}}",
   "upload.maximumFileSize": "Maximum file size: {{size}} MB",
   "upload.error.fileSizeExceeds": "File size exceeds {{size}} MB",
-  "upload.error.fileTypeNotAccepted": "File type not accepted. Accepted types: {{types}}"
+  "upload.error.fileTypeNotAccepted": "File type not accepted. Accepted types: {{types}}",
+  "download.file": "Download file",
+  "download.error": "An error has occurred during download",
+  "logs.noLogs": "No logs available",
+  "logs.view": "View logs"
 }

@@ -5,7 +5,7 @@ import {
   isError,
 } from '@elastic-suite/gally-admin-shared'
 import RunnableProfileGrid from '../../organisms/RunnableJobProfileGrid/RunnableJobProfileGrid'
-import FileUploadDropzone from '../../atoms/FileUploadDropzone/FileUploadDropzone'
+import FileUploadDropzone from '../../molecules/FileUploadDropzone/FileUploadDropzone'
 import {
   Box,
   Dialog,
@@ -29,7 +29,7 @@ function AdminImport(props: IProps): JSX.Element {
   }
   const { profiles } = props
 
-  const { t } = useTranslation('jobs')
+  const { t } = useTranslation('importExport')
   const [isUploadFileModalOpen, setIsUploadFileModalOpen] = useState(false)
   const [currentProfile, setCurrentProfile] = useState<IJobProfileInfos>(null)
   const jobFileResource = useResource('JobFile')
@@ -66,14 +66,14 @@ function AdminImport(props: IProps): JSX.Element {
     })
 
     if (isError(sendingJobToApi)) {
-      enqueueSnackbar(t('error.createJob'), {
+      enqueueSnackbar(t('error.createImportJob'), {
         onShut: closeSnackbar,
         variant: 'error',
       })
       return
     }
 
-    enqueueSnackbar(t('success.jobCreated'), {
+    enqueueSnackbar(t('success.importJobCreated'), {
       onShut: closeSnackbar,
       variant: 'success',
     })

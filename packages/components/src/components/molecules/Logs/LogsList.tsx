@@ -1,6 +1,7 @@
 import React from 'react'
 import { Box, Typography } from '@mui/material'
 import { ILog } from '@elastic-suite/gally-admin-shared'
+import { useTranslation } from 'next-i18next'
 
 interface IProps {
   logs: ILog[]
@@ -36,6 +37,7 @@ const formatTimestamp = (timestamp: string): string => {
 
 function LogsList(props: IProps): JSX.Element {
   const { logs } = props
+  const { t } = useTranslation('common')
 
   return (
     <Box
@@ -52,7 +54,7 @@ function LogsList(props: IProps): JSX.Element {
     >
       {logs.length === 0 ? (
         <Typography sx={{ color: '#666', fontStyle: 'italic' }}>
-          No logs available
+          {t('logs.noLogs')}
         </Typography>
       ) : (
         logs.map((log) => (
