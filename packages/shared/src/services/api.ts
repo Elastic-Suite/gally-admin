@@ -2,6 +2,7 @@ import {
   apiUrl,
   authErrorCodes,
   authHeader,
+  contentDispositionHeader,
   contentTypeHeader,
   defaultPageSize,
   languageHeader,
@@ -18,7 +19,7 @@ import {
   LoadStatus,
 } from '../types'
 
-import { fetchJson } from './fetch'
+import { fetchJson, fetchRaw } from './fetch'
 import { HydraError, getFieldName, isHydraError, isJSonldType } from './hydra'
 import { AuthError, isError } from './network'
 import { storageGet, storageRemove } from './storage'
@@ -89,6 +90,57 @@ export function fetchApi<T extends object>(
       throw new AuthError('Unauthorized/Forbidden')
     }
     return json
+  })
+}
+
+/**
+ * Extracts the filename from a Content-Disposition header.
+ */
+function extractFilename(contentDisposition: string | null): string | null {
+  if (!contentDisposition) {
+    return null
+  }
+
+  const filenameMatch = contentDisposition.match(
+    /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/
+  )
+  if (!filenameMatch?.[1]) {
+    return null
+  }
+
+  return filenameMatch[1].replace(/['"]/g, '')
+}
+
+export function fetchApiFile(
+  resource: IResource | string,
+  secure = true
+): Promise<{
+  content: string
+  contentType: string | null
+  filename: string
+  status: LoadStatus
+}> {
+  const token = storageGet(tokenStorageKey)
+  const headers: Record<string, string> = {}
+  if (secure && token) {
+    headers[authHeader] = `Bearer ${token}`
+  }
+
+  const apiUrl =
+    typeof resource === 'string' ? getApiUrl(resource) : getApiUrl(resource.url)
+
+  return fetchRaw(apiUrl, { headers }).then(({ content, response }) => {
+    if (authErrorCodes.includes(response.status)) {
+      storageRemove(tokenStorageKey)
+      throw new AuthError('Unauthorized/Forbidden')
+    }
+    return {
+      content,
+      contentType: response.headers.get(contentTypeHeader),
+      filename: extractFilename(response.headers.get(contentDispositionHeader)),
+      status:
+        response.status !== 200 ? LoadStatus.FAILED : LoadStatus.SUCCEEDED,
+    }
   })
 }
 
