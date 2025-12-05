@@ -42,3 +42,15 @@ export async function fetchJson<T extends object>(
   const json = response?.status !== 204 ? await response.json() : {}
   return { json, response }
 }
+
+export async function fetchRaw(
+  url: string,
+  options: RequestInit = {}
+): Promise<{ content: string; response: Response }> {
+  if (!options.method || options.method === Method.GET) {
+    url = normalizeUrl(url.toString())
+  }
+  const response = await fetch(url, options)
+  const content = response?.status !== 204 ? await response.text() : ''
+  return { content, response }
+}
