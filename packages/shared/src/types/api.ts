@@ -26,11 +26,17 @@ export interface IOperation extends IJsonldType {
   title: string
 }
 
+export interface IJobConfig {
+  label: string
+  profile?: string
+}
+
 export interface IGallyClass {
   fieldset: Record<
     string,
     { position: number; label?: string; tooltip?: string }
   >
+  jobs?: Record<string, IJobConfig[] | IJobConfig>
 }
 
 export interface IResource extends IJsonldBase {

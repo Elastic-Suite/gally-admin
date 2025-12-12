@@ -101,6 +101,7 @@ export interface IResourceTable {
   hasEditLink?: boolean
   editLink?: string
   rowsPerPage?: number
+  refreshTable?: number | string
 }
 
 const listOfDefaultFacets = [
@@ -129,13 +130,24 @@ function ResourceTable(props: IResourceTable): JSX.Element {
     hasEditLink,
     editLink,
     rowsPerPage: rowsPerPageValue,
+    refreshTable,
   } = props
 
   const resource = useResource(resourceName)
   const [page, setPage] = usePage()
   const [searchValue, setSearchValue] = useSearch()
 
-  const parameters = useFilterParameters(activeFilters, filters)
+  const filtersWithRefreshTrigger = useMemo(() => {
+    return {
+      ...filters,
+      ...{ refresh: refreshTable },
+    }
+  }, [filters, refreshTable])
+
+  const parameters = useFilterParameters(
+    activeFilters,
+    filtersWithRefreshTrigger
+  )
   useFiltersRedirect(page, activeFilters, searchValue, active)
 
   const rowsPerPageOptions = defaultRowsPerPageOptions

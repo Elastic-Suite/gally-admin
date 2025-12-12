@@ -5,6 +5,7 @@ import {
   DataContentType,
   IFieldGuesserProps,
   IImage,
+  ILog,
   IPositionEffect,
   IPrice,
   IProductInfo,
@@ -27,6 +28,9 @@ import PreviewGridBoostConfiguration from '../../atoms/form/PreviewGridBoostConf
 import Image from '../../atoms/image/Image'
 import PositionEffect from '../../atoms/positionEffect/PositionEffect'
 import { TestId, generateTestId } from '../../../utils/testIds'
+import Logs from '../../molecules/Logs/Logs'
+import FileDownloader from '../../molecules/FileDownloader/FileDownloader'
+import Status from '../../atoms/Status/Status'
 
 const Box = styled('div')({
   display: 'flex',
@@ -41,7 +45,7 @@ const CustomA = styled('a')(({ theme }) => ({
 }))
 
 function ReadableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
-  const { input, value, field, options, multipleValueFormat, data, name } =
+  const { input, value, field, options, multipleValueFormat, data, name, row } =
     props
   const { t } = useTranslation('common')
   const language = useAppSelector(selectLanguage)
@@ -155,6 +159,51 @@ function ReadableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
 
     case DataContentType.POSITIONEFFECT: {
       return <PositionEffect positionEffect={value as IPositionEffect} />
+    }
+
+    case DataContentType.DATE: {
+      const date = new Date(value as string)
+      const dateAsString = date.toLocaleString(language, {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: false,
+      })
+      return (
+        <Box
+          sx={{ display: 'inline-block', width: '100%' }}
+          title={dateAsString}
+        >
+          {dateAsString}
+        </Box>
+      )
+    }
+
+    case DataContentType.LOGS: {
+      return (
+        <Logs
+          data-testid={generateTestId(TestId.LOGS, name)}
+          logs={value as ILog[]}
+        />
+      )
+    }
+
+    case DataContentType.JOBFILE: {
+      // TODO: make API return content type to ensure correct file opening in browser
+      return (
+        <FileDownloader
+          data-testid={generateTestId(TestId.JOBFILE, name)}
+          fileAPIUrl={`/jobs/${row.id}/download`}
+          contentType="text/csv"
+        />
+      )
+    }
+
+    case DataContentType.STATUS: {
+      return <Status value={value as string} field={field} options={options} />
     }
 
     default: {

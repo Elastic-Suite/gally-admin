@@ -68,7 +68,7 @@ function ProductsPreviewBottom(props: IProps): JSX.Element {
               type:
                 explainProduct.boosts?.weight &&
                 explainProduct.boosts?.weight !== 1
-                  ? explainProduct.boosts?.weight > 1
+                  ? (explainProduct.boosts?.weight as number) > 1
                     ? 'up'
                     : 'down'
                   : '',
