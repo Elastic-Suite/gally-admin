@@ -46,11 +46,11 @@ function JobButtons({
     return flat
   }, [jobButtons])
 
-  const navigateToImportExportPage = async (
+  const navigateToImportExportPage = (
     jobKey: string,
     jobProfile: string
-  ): Promise<void> => {
-    await router.push(
+  ): void => {
+    router.push(
       `/admin/importexport/${jobKey.split('_')[0]}?${jobKey}=${jobProfile}`
     )
   }
@@ -73,8 +73,8 @@ function JobButtons({
             TestId.GRID_JOB_BUTTON,
             `${config.profile}|${resourceName}`
           )}
-          onClick={async (): Promise<void> => {
-            await navigateToImportExportPage(config.jobKey, config.profile)
+          onClick={(): void => {
+            navigateToImportExportPage(config.jobKey, config.profile)
           }}
         >
           {t(config.label)}

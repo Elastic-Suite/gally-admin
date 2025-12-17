@@ -24,6 +24,7 @@ interface IProps {
 function UploadJobFileModal(props: IProps): JSX.Element {
   const { isOpen, profile, onClose, onFileUploaded } = props
   const { t } = useTranslation('importExport')
+  const acceptedFileTypes = ['csv']
 
   const jobFileResource = useResource('JobFile')
   const { create: createJobFile } = useResourceOperations(jobFileResource)
@@ -91,8 +92,8 @@ function UploadJobFileModal(props: IProps): JSX.Element {
       <DialogContent>
         <FileUploadDropzone
           onFileUpload={handleFileUpload}
-          acceptedFileTypes=".csv"
-          maxFileSize={10485760}
+          acceptedFileTypes={acceptedFileTypes.join(',')}
+          maxFileSize={5242880}
         />
       </DialogContent>
     </Dialog>

@@ -56,6 +56,7 @@ function ProfileRunner(props: IProps): JSX.Element {
         value={currentProfile.profile}
         onChange={setCurrentProfile}
         componentId="profile"
+        required
       />
       <Button
         type="submit"
