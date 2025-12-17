@@ -36,7 +36,7 @@ export enum DataContentType {
   PROPARTIONALTOATTRIBUTE = 'proportionalToAttribute',
   DATE = 'date',
   LOGS = 'logs',
-  JOBFILE = 'jobfile',
+  JOBFILE = 'jobFile',
   FILE = 'file',
   STATUS = 'status',
 }
