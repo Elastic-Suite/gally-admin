@@ -155,9 +155,11 @@ export function getFilter(mapping: IMapping, t: TFunction): IFieldConfig {
     ...fieldConfig,
     editable: true,
     id,
-    input: mapping.variable.endsWith('[between]')
-      ? DataContentType.RANGE
-      : input,
+    input:
+      input !== DataContentType.DATE &&
+      mapping.variable.endsWith('[between]')
+        ? DataContentType.RANGE
+        : input,
     label: mapping.field
       ? mapping.field.property.label ??
         t(...getFieldLabelTranslationArgs(mapping.field.title))
@@ -169,17 +171,65 @@ export function getFilter(mapping: IMapping, t: TFunction): IFieldConfig {
   }
 }
 
+function isDateFilterOperatorMapping(mapping: IHydraMapping): boolean {
+  return (
+    mapping.variable.endsWith('[before]') ||
+    mapping.variable.endsWith('[strictly_before]') ||
+    mapping.variable.endsWith('[after]') ||
+    mapping.variable.endsWith('[strictly_after]')
+  )
+}
+
+function isOperatorMapping(mapping: IHydraMapping): boolean {
+  return mapping.variable.endsWith('[lt]') ||
+  mapping.variable.endsWith('[gt]') ||
+  mapping.variable.endsWith('[lte]') ||
+  mapping.variable.endsWith('[gte]')
+}
+
+function extractDateMappings(
+  mappings: IHydraMapping[],
+  resource: IResource
+): IMapping[] {
+  if (!mappings) {
+    return []
+  }
+  // Date mappings do not have simple filters, they only exists as dateAttribute[before],
+  // dateAttribute[strictly_before], dateAttribute[after], dateAttribute[strictly_after]
+  // We must create a simple "dateAttribute" filter mapping when one of the above exists
+  return Object.values(
+    mappings.reduce((acc: Record<string, IMapping>, mapping) => {
+      const baseVariable = mapping.variable.replace(
+        /\[(before|strictly_before|after|strictly_after)\]$/,
+        ''
+      )
+      const betweenVariable = `${baseVariable}[between]`
+      if (isDateFilterOperatorMapping(mapping) && !acc[betweenVariable]) {
+        acc[betweenVariable] = {
+          ...mapping,
+          variable: betweenVariable,
+          field: getField(resource, mapping.property),
+          multiple: mapping.variable.endsWith('[]'),
+        }
+      }
+
+      return acc
+    }, {})
+  )
+}
+
 export function getMappings<T extends IHydraMember>(
   apiData: IHydraResponse<T>,
   resource: IResource
 ): IMapping[] {
+  const dateMappings = extractDateMappings(
+    apiData?.['hydra:search']['hydra:mapping'],
+    resource
+  )
+
   const mappings: IMapping[] = apiData?.['hydra:search']['hydra:mapping']
     .filter(
-      (mapping) =>
-        !mapping.variable.endsWith('[lt]') &&
-        !mapping.variable.endsWith('[gt]') &&
-        !mapping.variable.endsWith('[lte]') &&
-        !mapping.variable.endsWith('[gte]')
+      (mapping) => !isOperatorMapping(mapping) && !isDateFilterOperatorMapping(mapping)
     )
     .map((mapping) => ({
       ...mapping,
@@ -187,6 +237,7 @@ export function getMappings<T extends IHydraMember>(
       multiple: mapping.variable.endsWith('[]'),
     }))
     .filter((mapping) => mapping.field)
+    .concat(dateMappings)
   const arrayProperties = mappings
     .filter((mapping) => mapping.multiple)
     .map((mapping) => mapping.property)
