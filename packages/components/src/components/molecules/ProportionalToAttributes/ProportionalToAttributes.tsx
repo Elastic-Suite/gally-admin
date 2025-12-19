@@ -2,6 +2,7 @@ import React from 'react'
 import RadioGroup from '../../atoms/form/RadioGroup'
 import InputText from '../../atoms/form/InputText'
 import DropDown from '../../atoms/form/DropDown'
+import Switch from '../../atoms/form/Switch'
 import { IOptions } from '@elastic-suite/gally-admin-shared'
 import { useTranslation } from 'next-i18next'
 import { ProportionalToAttributesContainer } from './ProportionalToAttributes.styled'
@@ -9,6 +10,7 @@ export interface IProportionalToAttributesValue {
   source_field_code?: string
   boost_impact?: string
   scale_factor: number
+  allow_negative_boost: boolean
 }
 
 export interface IProportionalToAttributesProps {
@@ -30,12 +32,13 @@ function ProportionalToAttributes({
     source_field_code: sourceFieldCode,
     boost_impact: boostImpact,
     scale_factor: scaleFactor,
+    allow_negative_boost: allowNegativeBoost,
   } = value
   const { t } = useTranslation('boost')
 
   function handleChange(
     name: keyof IProportionalToAttributesValue,
-    newValue: string | number
+    newValue: string | number | boolean
   ): void {
     if (onChange)
       onChange({
@@ -87,6 +90,16 @@ function ProportionalToAttributes({
         onChange={(value: number): void => handleChange('scale_factor', value)}
         showError={showError}
         infoTooltip={t('boostConfig.scaleFactorTooltip')}
+      />
+
+      <Switch
+        label={t('boostConfig.allowNegativeBoost')}
+        required
+        checked={allowNegativeBoost}
+        onChange={(value: boolean): void =>
+          handleChange('allow_negative_boost', value)
+        }
+        infoTooltip={t('boostConfig.allowNegativeBoostTooltip')}
       />
     </ProportionalToAttributesContainer>
   )
