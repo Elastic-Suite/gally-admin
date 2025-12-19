@@ -121,6 +121,7 @@ export function useValue(
     case 'requestType':
       return getRequestTypeData(data, limitationTypeOptionsApi)
 
+    case 'date':
     case 'rangeDate':
       return getDoubleDatePickerValue(data as Record<string, Date>)
 
