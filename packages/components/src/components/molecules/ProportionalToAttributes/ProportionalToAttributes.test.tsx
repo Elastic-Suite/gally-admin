@@ -13,6 +13,7 @@ describe('ProportionalToAttributes', () => {
           source_field_code: undefined,
           boost_impact: undefined,
           scale_factor: 1,
+          allow_negative_boost: true,
         }}
         sourceFields={[
           {
