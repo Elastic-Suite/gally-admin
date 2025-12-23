@@ -4,7 +4,9 @@ import { IFieldErrorProps, IValidator, useFormError } from '../../../hooks'
 
 import InputTextWithoutError, { IInputTextProps } from './InputTextWithoutError'
 
-interface IInputTextErrorProps extends IFieldErrorProps, IInputTextProps {}
+export interface IInputTextErrorProps
+  extends IFieldErrorProps,
+    IInputTextProps {}
 
 function InputText(props: IInputTextErrorProps): JSX.Element {
   const {
@@ -14,6 +16,7 @@ function InputText(props: IInputTextErrorProps): JSX.Element {
     replacementErrorsMessages,
     ...inputProps
   } = props
+
   const validator = useCallback<IValidator>(
     (value, event) => {
       if (additionalValidator) return additionalValidator(value, event)

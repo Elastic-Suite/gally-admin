@@ -12,6 +12,7 @@ import {
 
 import DropDown from '../../atoms/form/DropDown'
 import InputText from '../../atoms/form/InputText'
+import InputNumber from '../../atoms/form/InputNumber'
 import Range from '../../atoms/form/Range'
 import Switch from '../../atoms/form/Switch'
 
@@ -54,6 +55,7 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
     helperText,
     replacementErrorsMessages,
     disabled,
+    field,
   } = props
 
   const { t } = useTranslation('common')
@@ -87,8 +89,37 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
 
   const inputType = input ?? type
   switch (inputType) {
+    case DataContentType.NUMBER: {
+      const subType: 'integer' | 'float' = field.gally?.numberType ?? 'integer'
+      return (
+        <InputNumber
+          infoTooltip={infoTooltip}
+          dirty={dirty}
+          disabled={disabled}
+          error={error}
+          helperText={
+            dirty
+              ? t('form.defaultValue', {
+                  value: diffValue ? diffValue : t('default.undefined'),
+                })
+              : helperText
+          }
+          inputProps={validation}
+          componentId={name}
+          label={label}
+          onChange={handleChange}
+          required={required}
+          showError={showError}
+          suffix={suffix}
+          numberType={subType}
+          value={value as string | number}
+          placeholder={placeholder}
+          replacementErrorsMessages={replacementErrorsMessages}
+        />
+      )
+    }
+
     case DataContentType.PASSWORD:
-    case DataContentType.NUMBER:
     case DataContentType.EMAIL:
     case DataContentType.STRING: {
       return (

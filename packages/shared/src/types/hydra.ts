@@ -115,6 +115,7 @@ export interface IGallyProperty {
   depends?: IFieldDepends
   editable?: boolean
   input?: string
+  numberType?: 'integer' | 'float'
   options?: IDropdownOptions & (IDropdownStaticOptions | IDropdownApiOptions)
   position?: number
   required?: boolean
