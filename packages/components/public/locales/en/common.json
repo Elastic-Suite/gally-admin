@@ -55,6 +55,8 @@
   "formError.prompt": "The prompt must contain a single occurrence of \"%s\".",
   "formError.scaleFactorWrongFormat": "The scale factor must be greater than 0",
   "formError.mismatchPassword": "Please make sure your passwords match.",
+  "formError.invalidInteger": "The value is not an integer",
+  "formError.invalidFloat": "The value is not a number",
   "field.productImage": "Product image",
   "default.undefined": "empty",
   "log.out": "Log out",
