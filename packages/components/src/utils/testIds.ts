@@ -4,6 +4,8 @@ export enum TestId {
   NB_ACTIVE_LOCALES = 'nbActiveLocales',
   LANGUAGE = 'language',
   INPUT_TEXT = 'inputText',
+  INPUT_INTEGER = 'inputInteger',
+  INPUT_FLOAT = 'inputFloat',
   RANGE_TO_INPUT = 'rangeToInput',
   RANGE_FROM_INPUT = 'rangeFromInput',
   SLIDER = 'slider',

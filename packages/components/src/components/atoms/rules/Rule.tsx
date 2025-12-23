@@ -25,13 +25,7 @@ import DropDown from '../form/DropDown'
 import TreeSelector from '../form/TreeSelector'
 import InputText from '../form/InputText'
 import DatePickerError from '../form/DatePicker'
-
-function getInputType(valueType: RuleValueType): 'number' | 'text' {
-  if (ruleValueNumberTypes.includes(valueType)) {
-    return 'number'
-  }
-  return 'text'
-}
+import InputNumber from '../form/InputNumber'
 
 interface IProps {
   catalogId: number
@@ -206,6 +200,17 @@ function Rule(props: IProps): JSX.Element {
           onChange={handleChange('value')}
         />
       )
+    } else if (ruleValueNumberTypes.includes(valueType)) {
+      return (
+        <InputNumber
+          showError={showError}
+          onChange={handleInputChange(multiple)}
+          required
+          small={small}
+          numberType={valueType === RuleValueType.INT ? 'integer' : 'float'}
+          value={value as string}
+        />
+      )
     }
 
     return (
@@ -214,7 +219,7 @@ function Rule(props: IProps): JSX.Element {
         onChange={handleInputChange(multiple)}
         required
         small={small}
-        type={getInputType(valueType)}
+        type="text"
         value={
           multiple
             ? (value as string[]).join(ruleArrayValueSeparator)

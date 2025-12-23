@@ -54,6 +54,8 @@
   "formError.expansionTermsDuplicate": "Il y a des doublons parmi les \"termes étendus\", veuillez les retirer.",
   "formError.scaleFactorWrongFormat": "Le scale factor doit être supérieur à 0",
   "formError.mismatchPassword": "Veuillez vous assurer que vos mots de passe correspondent.",
+  "formError.invalidInteger": "La valeur n'est pas un entier",
+  "formError.invalidFloat": "La valeur n'est pas un nombre",
   "field.productImage": "Image produit",
   "formError.prompt": "Le prompt doit contenir une seule occurrence de \"%s\".",
   "default.undefined": "vide",
