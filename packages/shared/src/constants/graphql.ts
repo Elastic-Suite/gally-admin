@@ -347,6 +347,7 @@ export function getMoreFacetOptionsQuery(
         localizedCatalog: 'String!',
         aggregation: 'String!',
         search: 'String',
+        optionSearch: 'String',
       },
       viewMoreFacetOptions: {
         __args: {
@@ -354,6 +355,7 @@ export function getMoreFacetOptionsQuery(
           localizedCatalog: new VariableType('localizedCatalog'),
           aggregation: new VariableType('aggregation'),
           search: new VariableType('search'),
+          optionSearch: new VariableType('optionSearch'),
           filter,
         },
         id: true,
@@ -376,6 +378,7 @@ export function getMoreFacetProductOptionsQuery(
         aggregation: 'String!',
         currentCategoryId: 'String',
         search: 'String',
+        optionSearch: 'String',
       },
       viewMoreProductFacetOptions: {
         __args: {
@@ -383,6 +386,7 @@ export function getMoreFacetProductOptionsQuery(
           aggregation: new VariableType('aggregation'),
           currentCategoryId: new VariableType('currentCategoryId'),
           search: new VariableType('search'),
+          optionSearch: new VariableType('optionSearch'),
           filter,
         },
         id: true,
