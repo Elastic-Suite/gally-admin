@@ -13,6 +13,7 @@ export interface IGraphqlViewMoreFacetOptionsVariables {
   localizedCatalog: string
   filter?: IDocumentFieldFilterInput[] | IDocumentFieldFilterInput
   search?: string
+  optionSearch?: string
 }
 
 export interface IGraphqlViewMoreFacetOptions {
