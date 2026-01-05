@@ -21,7 +21,6 @@ import InputTextWithoutError, { IInputTextProps } from './InputTextWithoutError'
 
 import { useTranslation } from 'next-i18next'
 import { createUTCDateSafe } from '@elastic-suite/gally-admin-shared'
-import { isValid } from 'date-fns'
 
 const CustomPickersDay = styled(PickersDay, {
   shouldForwardProp: (prop) =>
@@ -69,11 +68,13 @@ function DatePickerWithoutError(
   const { value, onChange, onError, componentId, ...args } = props
 
   function onChangeDatePicker(date: Date | string): void {
-    // When date is an object, we format the date to ignore the timezone
-    // This prevents dates close to 00:00:00 to be considered the previous day
-    // For Example "Sat Oct 19 2030 00:00:00 GMT+0200" could be formatted as "Fri Oct 18"
-    const utcDate =
-      date instanceof Date && isValid(date) ? createUTCDateSafe(date) : ''
+    let utcDate = date
+    if (date instanceof Date) {
+      // When date is an object, we format the date to ignore the timezone
+      // This prevents dates close to 00:00:00 to be considered the previous day
+      // For Example "Sat Oct 19 2030 00:00:00 GMT+0200" could be formatted as "Fri Oct 18"
+      utcDate = createUTCDateSafe(date)
+    }
     onChange(utcDate)
   }
 
