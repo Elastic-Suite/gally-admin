@@ -190,10 +190,13 @@ function Rule(props: IProps): JSX.Element {
         />
       )
     } else if (attribute_type === RuleAttributeType.DATE) {
+      // We ensure to set an empty string (not null) in case of an empty date
+      // Because rule engine validator explicitly test the empty string case
+      // to check the existence of a value
       const datePickerValue =
         (typeof value === 'string' && value) || value instanceof Date
           ? new Date(value)
-          : null
+          : ''
 
       return (
         <DatePickerError
