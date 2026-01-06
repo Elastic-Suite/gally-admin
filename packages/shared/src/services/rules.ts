@@ -139,7 +139,13 @@ export function isRuleValid(rule?: IRule): boolean {
   } else if (isCombinationRule(rule)) {
     return rule.children.every(isRuleValid)
   } else if (isAttributeRule(rule)) {
-    return rule.field !== '' && rule.operator !== '' && rule.value !== ''
+    // TODO: implement a more generic solution if more attributes rules
+    // require specific validations
+    const isRuleValueValid =
+      rule.attribute_type === RuleAttributeType.DATE
+        ? isValid(rule.value)
+        : rule.value !== ''
+    return rule.field !== '' && rule.operator !== '' && isRuleValueValid
   }
   return true
 }
