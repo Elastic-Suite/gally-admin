@@ -23,6 +23,8 @@
   "boost_one": "boost",
   "boost_other": "boosts",
   "preview": "Prévisualiser",
+  "boostConfig.allowNegativeBoost": "Autoriser un boost négatif",
+  "boostConfig.allowNegativeBoostTooltip": "Si laissée décochée, filtrera les cas où la valeur d'attribut (multipliée par le pré-multiplicateur de valeur) serait trop basse pour générer un boost positif après l'application du modificateur d'impact du boost. Cela empêche ce produit d'être pénalisé par rapport à d'autres produits qui n'ont pas du tout de valeur pour cet attribut.",
   "boostConfig.sourceField": "Valeur d'attribut",
   "boostConfig.sourceField.placeholder": "Sélectionnez une valeur d'attribut",
   "boostConfig.boostImpact": "Impact du Boost",
