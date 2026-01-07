@@ -4,6 +4,7 @@ import {
   IRuleAttribute,
   IRuleCombination,
   IRuleEngineOperators,
+  RuleAttributeType,
   RuleType,
 } from '../types'
 
@@ -86,6 +87,21 @@ describe('Rules service', () => {
         operator: 'eq',
         attribute_type: 'int',
         value: 42,
+      },
+    ] as IRuleAttribute[],
+  } as IRuleCombination
+
+  const dateVirtualRule = {
+    type: RuleType.COMBINATION,
+    operator: 'all',
+    value: true,
+    children: [
+      {
+        type: RuleType.ATTRIBUTE,
+        field: 'created_at',
+        operator: 'eq',
+        attribute_type: RuleAttributeType.DATE,
+        value: '',
       },
     ] as IRuleAttribute[],
   } as IRuleCombination
@@ -228,6 +244,36 @@ describe('Rules service', () => {
           ] as IRuleAttribute[],
         } as IRuleCombination)
       ).toEqual(false)
+    })
+
+    it('should validate a rule with a date field as string', () => {
+      const validDateRule = { ...dateVirtualRule }
+      validDateRule.children[0].value = '2026-12-07'
+      expect(isRuleValid(validDateRule)).toEqual(true)
+    })
+
+    it('should validate a rule with a date field as Date', () => {
+      const validDateRule = { ...dateVirtualRule }
+      validDateRule.children[0].value = new Date('2026-12-07')
+      expect(isRuleValid(validDateRule)).toEqual(true)
+    })
+
+    it('should invalidate a rule with invalid date field as string', () => {
+      const invalidDateRule = { ...dateVirtualRule }
+      invalidDateRule.children[0].value = 'invalid date'
+      expect(isRuleValid(invalidDateRule)).toEqual(false)
+    })
+
+    it('should invalidate a rule with invalid date field as Date', () => {
+      const invalidDateRule = { ...dateVirtualRule }
+      invalidDateRule.children[0].value = new Date('9999-99-99')
+      expect(isRuleValid(invalidDateRule)).toEqual(false)
+    })
+
+    it('should invalidate a rule with empty date field', () => {
+      const emptyDateRule = { ...dateVirtualRule }
+      emptyDateRule.children[0].value = ''
+      expect(isRuleValid(emptyDateRule)).toEqual(false)
     })
   })
 })

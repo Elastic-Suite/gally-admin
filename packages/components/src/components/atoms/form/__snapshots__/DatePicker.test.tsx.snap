@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`DatePicker sould match snapshot 1`] = `
+exports[`DatePicker should match snapshot 1`] = `
 <div>
   <div
     class="MuiFormControl-root css-hh3vi8-MuiFormControl-root"
