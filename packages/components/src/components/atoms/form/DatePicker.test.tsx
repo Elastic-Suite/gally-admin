@@ -7,7 +7,7 @@ import { screen } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
 
 describe('DatePicker', () => {
-  it('sould match snapshot', () => {
+  it('should match snapshot', () => {
     const { container } = renderWithProviders(
       <DatePicker
         label="Label"

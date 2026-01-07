@@ -38,7 +38,7 @@ export enum RuleCombinationOperator {
 
 export interface IRule {
   type: RuleType
-  value: string | string[] | number | number[] | boolean
+  value: string | string[] | number | number[] | boolean | Date
 }
 
 export interface IRuleAttribute extends IRule {

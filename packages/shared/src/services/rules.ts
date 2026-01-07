@@ -1,4 +1,4 @@
-import { isValid } from 'date-fns'
+import { isValid, parseISO } from 'date-fns'
 import { emptyCombinationRule, ruleValueNumberTypes } from '../constants'
 import {
   ICategoryConfiguration,
@@ -133,6 +133,13 @@ export function cleanBeforeSaveCatConf(
   return catConfCleaned
 }
 
+function isDateValueValid(value: string | Date): boolean {
+  // TODO: our version date-fns isValid only accepts dates not strings
+  // Update to date-fns >= 3 which accepts both formats
+  return isValid(value instanceof Date ? value : parseISO(value))
+}
+
+// TODO: refactor this validation with the ResourceForm one
 export function isRuleValid(rule?: IRule): boolean {
   if (!rule) {
     return true
@@ -143,7 +150,7 @@ export function isRuleValid(rule?: IRule): boolean {
     // require specific validations
     const isRuleValueValid =
       rule.attribute_type === RuleAttributeType.DATE
-        ? isValid(rule.value)
+        ? isDateValueValid(rule.value as string | Date)
         : rule.value !== ''
     return rule.field !== '' && rule.operator !== '' && isRuleValueValid
   }
