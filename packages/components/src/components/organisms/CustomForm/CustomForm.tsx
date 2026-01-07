@@ -92,6 +92,7 @@ function CustomForm(props: IProps): JSX.Element {
                     placeholder={
                       field?.placeholder ? t(field?.placeholder) : undefined
                     }
+                    multiple={!!field?.multiple}
                     helperText={errors?.fields?.[field?.name]}
                     error={Boolean(errors?.fields?.[field?.name])}
                   />
