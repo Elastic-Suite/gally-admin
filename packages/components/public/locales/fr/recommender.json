@@ -1,0 +1,8 @@
+{
+  "title.update": "Modification d’une recommandation automatique",
+  "title.create": "Création d’une recommandation automatique",
+  "recommender.none": "Aucune recommandation automatique n'a été créé",
+  "recommender.none.btn": "Créer une recommandation automatique",
+  "recommender.title": "Recommandation automatique",
+  "entity.label": "recommandation automatique"
+}

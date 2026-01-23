@@ -2,7 +2,10 @@ import React from 'react'
 import { Collapse } from '@mui/material'
 import Link from 'next/link'
 import { keyframes, styled } from '@mui/system'
-import { IMenuChild, removeFirstCharIfExist } from '@elastic-suite/gally-admin-shared'
+import {
+  IMenuChild,
+  removeFirstCharIfExist,
+} from '@elastic-suite/gally-admin-shared'
 
 import IonIcon from '../IonIcon/IonIcon'
 import { TestId, generateTestId } from '../../../utils/testIds'
@@ -248,19 +251,21 @@ function MenuItem(props: IProps): JSX.Element {
             data-testid={generateTestId(TestId.MENU_ITEM_CHILDREN)}
           >
             {menuChildren.map((item: IMenuChild) => {
-              let path = removeFirstCharIfExist('/', item?.path)
+              const path = removeFirstCharIfExist('/', item?.path)
 
-              return <MenuItem
-                key={item.code}
-                childrenState={childrenState}
-                code={item.code}
-                href={path ?? slugify(item.code, 2)}
-                isActive={words.join('_') === item.code}
-                label={item.label}
-                onToggle={onToggle}
-                sidebarStateTimeout={sidebarStateTimeout}
-                words={words}
-              />
+              return (
+                <MenuItem
+                  key={item.code}
+                  childrenState={childrenState}
+                  code={item.code}
+                  href={path ?? slugify(item.code, 2)}
+                  isActive={words.join('_') === item.code}
+                  label={item.label}
+                  onToggle={onToggle}
+                  sidebarStateTimeout={sidebarStateTimeout}
+                  words={words}
+                />
+              )
             })}
           </CustomChildren>
         )}

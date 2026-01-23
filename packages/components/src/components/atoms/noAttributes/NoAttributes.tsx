@@ -33,15 +33,15 @@ export interface INoAttributesProps {
   title: string
   btnTitle?: string
   btnHref?: string
-  absolutLink?: boolean
+  absoluteLink?: boolean
 }
 
 function NoAttributes(props: INoAttributesProps): JSX.Element {
-  const { title, btnTitle, btnHref, absolutLink = true } = props
+  const { title, btnTitle, btnHref, absoluteLink = true } = props
 
   const { pathname } = useRouter()
   const pathnameWithoutLastFile =
-    !absolutLink && pathname
+    !absoluteLink && pathname
       ? pathname.substring(0, pathname.lastIndexOf('/'))
       : ''
 

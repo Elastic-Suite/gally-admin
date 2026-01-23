@@ -4,5 +4,6 @@
   "tabs.users": "Users",
   "tabs.configurations": "Configurations",
   "tabs.attributes": "Attributes",
-  "settingsAttributes.alert": "All configurations done here must wait for reindexation to be effective in your front-office application"
+  "settingsAttributes.alert": "All configurations done here must wait for reindexation to be effective in your front-office application",
+  "boost.none": "No attribute has been created"
 }

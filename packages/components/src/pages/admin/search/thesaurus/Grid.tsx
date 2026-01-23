@@ -4,6 +4,7 @@ import { withAuth, withOptions } from '../../../../hocs'
 import { useRouter } from 'next/router'
 import { breadcrumbContext } from '../../../../contexts'
 import IonIcon from '../../../../components/atoms/IonIcon/IonIcon'
+import { useTranslation } from 'next-i18next'
 
 const pagesSlug = ['search', 'thesaurus']
 
@@ -14,6 +15,7 @@ const propsButton = {
 function AdminThesaurusGrid(): JSX.Element {
   const router = useRouter()
   const [, setBreadcrumb] = useContext(breadcrumbContext)
+  const { t } = useTranslation('thesaurus')
 
   useEffect(() => {
     setBreadcrumb(pagesSlug)
@@ -25,6 +27,12 @@ function AdminThesaurusGrid(): JSX.Element {
       hasNewLink
       hasEditLink
       propsButton={propsButton}
+      noAttributesProps={{
+        title: t('thesaurus.none'),
+        btnTitle: t('thesaurus.none.btn'),
+        btnHref: './create',
+        absoluteLink: false,
+      }}
     />
   )
 }

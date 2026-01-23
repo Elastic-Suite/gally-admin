@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`NoAttributes NoAttributes with absolutLink 1`] = `
+exports[`NoAttributes NoAttributes with absoluteLink 1`] = `
 <div>
   <div
     class="css-1tomd0t"
@@ -35,7 +35,7 @@ exports[`NoAttributes NoAttributes with absolutLink 1`] = `
 </div>
 `;
 
-exports[`NoAttributes NoAttributes without absolutLink 1`] = `
+exports[`NoAttributes NoAttributes without absoluteLink 1`] = `
 <div>
   <div
     class="css-1tomd0t"

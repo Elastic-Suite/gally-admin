@@ -1,0 +1,8 @@
+{
+  "title.update": "Modification d’un type de recommandation",
+  "title.create": "Création d’un type de recommandation",
+  "recommender_type.none": "Aucun type de recommandation n'a été créé",
+  "recommender_type.none.btn": "Créer un type de recommandation",
+  "recommender_type.title": "Type de recommandation",
+  "entity.label": "type de recommandation"
+}
