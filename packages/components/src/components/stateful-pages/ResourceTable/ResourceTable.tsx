@@ -7,7 +7,7 @@ import React, {
   useMemo,
   useState,
 } from 'react'
-import { TFunction, Trans, useTranslation } from 'next-i18next'
+import { Trans, useTranslation } from 'next-i18next'
 import { styled } from '@mui/system'
 import {
   IFieldGuesserProps,
@@ -51,39 +51,6 @@ const Paragraph = styled('p')(({ theme }) => ({
   marginTop: theme.spacing(1),
 }))
 
-function getProps(resourceName: string, t: TFunction): INoAttributesProps {
-  switch (resourceName) {
-    case 'FacetConfiguration':
-      return {
-        title: t('facets.none'),
-        btnTitle: t('facets.none.btn'),
-        btnHref: 'admin/settings/attributes',
-      }
-
-    case 'SourceField':
-      return {
-        title: t('attributes.none'),
-        btnTitle: t('attributes.none.btn'),
-        btnHref: 'admin/settings/attributes',
-      }
-
-    case 'Boost':
-      return {
-        title: t('boost.none'),
-        btnTitle: t('boost.none.btn'),
-        btnHref: './create',
-        absolutLink: false,
-      }
-    case 'Thesaurus':
-      return {
-        title: t('thesaurus.none'),
-        btnTitle: t('thesaurus.none.btn'),
-        btnHref: './create',
-        absolutLink: false,
-      }
-  }
-}
-
 function isObjectNotEmpty(object: object): boolean {
   return Object.values(object).some((value) => value)
 }
@@ -101,6 +68,7 @@ export interface IResourceTable {
   hasEditLink?: boolean
   editLink?: string
   rowsPerPage?: number
+  noAttributesProps?: INoAttributesProps
 }
 
 const listOfDefaultFacets = [
@@ -129,6 +97,7 @@ function ResourceTable(props: IResourceTable): JSX.Element {
     hasEditLink,
     editLink,
     rowsPerPage: rowsPerPageValue,
+    noAttributesProps,
   } = props
 
   const resource = useResource(resourceName)
@@ -265,7 +234,7 @@ function ResourceTable(props: IResourceTable): JSX.Element {
     resourceData.status === LoadStatus.SUCCEEDED &&
     !filterOrSearchAreUp
   ) {
-    return <NoAttributes {...getProps(resourceName, t)} />
+    return <NoAttributes {...noAttributesProps} />
   }
   return (
     <>
