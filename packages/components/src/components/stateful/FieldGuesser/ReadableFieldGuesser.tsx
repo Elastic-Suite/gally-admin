@@ -195,7 +195,7 @@ function ReadableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
       // TODO: make API return content type to ensure correct file opening in browser
       return (
         <FileDownloader
-          data-testid={generateTestId(TestId.JOBFILE, name)}
+          componentId={generateTestId(TestId.JOBFILE, name)}
           fileAPIUrl={`/jobs/${row.id}/download`}
           contentType="text/csv"
         />

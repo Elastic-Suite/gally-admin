@@ -17,6 +17,7 @@ interface IProps {
   onProfileRun: (profile: IJobProfileInfos) => void
   pendingJobsCount: number
   runProfileButtonLabel?: string
+  componentId?: string
 }
 
 function RunnableJobProfileGrid(props: IProps): JSX.Element {
@@ -27,6 +28,7 @@ function RunnableJobProfileGrid(props: IProps): JSX.Element {
     onProfileRun,
     pendingJobsCount = 0,
     runProfileButtonLabel,
+    componentId,
   } = props
 
   const resource = useResource('Job')
@@ -50,6 +52,7 @@ function RunnableJobProfileGrid(props: IProps): JSX.Element {
         defaultProfile={defaultProfile}
         onProfileRun={runProfile}
         runProfileButtonLabel={runProfileButtonLabel}
+        componentId={componentId}
       />
       {Boolean(pendingJobsCount) && (
         <>
