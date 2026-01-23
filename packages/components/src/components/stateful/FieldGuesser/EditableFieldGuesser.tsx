@@ -70,7 +70,7 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
       | boolean
       | number
       | string
-      | (boolean | number | string)[]
+      | (boolean | number | string | Date)[]
       | IDoubleDatePickerValues
       | IRequestType
       | IRuleCombination
@@ -195,21 +195,19 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
         ...doubleDatePickerProps
       } = props
 
-      const handleDateRangeChange = (
-        value: unknown,
-      ): void => {
-        const fromDate = (value as IDoubleDatePickerValues).fromDate
-          ? new Date((value as IDoubleDatePickerValues).fromDate)
-              .toLocaleDateString('en-CA')
-              .replace(/-/g, '/')
-          : null
-        const toDate = (value as IDoubleDatePickerValues).toDate
-          ? new Date((value as IDoubleDatePickerValues).toDate)
-              .toLocaleDateString('en-CA')
-              .replace(/-/g, '/')
-          : null
-        handleChange([fromDate, toDate])
+      const handleDateRangeChange = (value: unknown): void => {
+        handleChange([
+          (value as IDoubleDatePickerValues).fromDate,
+          (value as IDoubleDatePickerValues).toDate,
+        ])
       }
+
+      const formattedValue: IDoubleDatePickerValues = Array.isArray(value)
+        ? {
+            fromDate: value[0] && value[0] !== '' ? new Date(value[0]) : null,
+            toDate: value[1] && value[1] !== '' ? new Date(value[1]) : null,
+          }
+        : { fromDate: null, toDate: null }
 
       return (
         <Box>
@@ -217,14 +215,7 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
             {...doubleDatePickerProps}
             placeholder={placeholder}
             infoTooltip={infoTooltip}
-            value={
-              Array.isArray(value)
-                ? {
-                    fromDate: value[0] ? new Date(value[0].replace(/\//g, '-')) : '',
-                    toDate: value[1] ? new Date(value[1].replace(/\//g, '-')) : '',
-                  }
-                : (value as IDoubleDatePickerValues)
-            }
+            value={formattedValue}
             onChange={handleDateRangeChange}
             error={error}
             helperText={helperText}

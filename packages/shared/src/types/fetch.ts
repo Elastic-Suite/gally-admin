@@ -18,10 +18,9 @@ export interface IGraphqlResponse<D> {
   data: D
 }
 
-export type ISearchParameters = Record<
-  string,
-  string | number | boolean | (string | number | boolean)[]
->
+export type IParam = string | number | boolean | Date
+
+export type ISearchParameters = Record<string, IParam | IParam[]>
 
 export type IFetchApi = <T extends object>(
   resource: IResource | string,
