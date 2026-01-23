@@ -4,6 +4,7 @@ import CloudUploadIcon from '@mui/icons-material/CloudUpload'
 import UploadFileIcon from '@mui/icons-material/UploadFile'
 import Button from '../../atoms/buttons/Button'
 import { useTranslation } from 'next-i18next'
+import { TestId, generateTestId } from '../../../utils/testIds'
 
 const VisuallyHiddenInput = styled('input')({
   clip: 'rect(0 0 0 0)',
@@ -153,7 +154,7 @@ function FileUploadDropzone(props: IFileUploadDropzoneProps): JSX.Element {
   }
 
   return (
-    <Box>
+    <Box data-testid={generateTestId(TestId.FILE_UPLOAD_DROPZONE)}>
       <DropZone
         isDragging={isDragging}
         onDragEnter={handleDragEnter}
@@ -177,7 +178,11 @@ function FileUploadDropzone(props: IFileUploadDropzoneProps): JSX.Element {
                 mb: 2,
               }}
             />
-            <Typography variant="h6" gutterBottom>
+            <Typography
+              data-testid="selectedFileName"
+              variant="h6"
+              gutterBottom
+            >
               {selectedFile.name}
             </Typography>
             <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
@@ -211,6 +216,7 @@ function FileUploadDropzone(props: IFileUploadDropzoneProps): JSX.Element {
       {selectedFile ? (
         <Box sx={{ mt: 2 }}>
           <Button
+            data-testid={generateTestId(TestId.BUTTON, 'upload')}
             variant="contained"
             color="primary"
             startIcon={<UploadFileIcon />}

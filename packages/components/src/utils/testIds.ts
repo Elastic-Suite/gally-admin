@@ -113,8 +113,14 @@ export enum TestId {
   CONFIGURATION_FORM = 'configurationForm',
   IMPORT_EXPORT_PROFILE_RUN = 'importExportProfileRun',
   LOGS = 'logs',
+  JOBPROFILE = 'jobProfile',
   JOBFILE = 'jobFile',
   STATUS = 'status',
+  UPLOAD_JOB_FILE_MODAL = 'uploadJobFileModal',
+  UPLOAD_JOB_FILE_MODAL_TITLE = 'uploadJobFileModalTitle',
+  FILE_UPLOAD_DROPZONE = 'fileUploadDropZone',
+  FILE_UPLOAD_DROPZONE_SELECTED_FILE_NAME = 'selectedFileName',
+  FILE_DOWNLOADER = 'fileDownloader',
 }
 
 type ItemId = `|${string}` | ''
