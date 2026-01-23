@@ -4,9 +4,11 @@ import CloudDownloadIcon from '@mui/icons-material/CloudDownload'
 import { LoadStatus, fetchApiFile } from '@elastic-suite/gally-admin-shared'
 import { useTranslation } from 'next-i18next'
 import { closeSnackbar, enqueueSnackbar } from 'notistack'
+import { TestId, generateTestId } from '../../../utils/testIds'
 
 interface IProps {
   fileAPIUrl: string
+  componentId?: string
   contentType?: string
 }
 
@@ -17,7 +19,7 @@ interface IFileInfos {
 }
 
 function FileDownloader(props: IProps): JSX.Element {
-  const { fileAPIUrl, contentType } = props
+  const { fileAPIUrl, componentId, contentType } = props
 
   const { t } = useTranslation('common')
   const [isLoading, setIsLoading] = useState(false)
@@ -68,6 +70,7 @@ function FileDownloader(props: IProps): JSX.Element {
   return (
     <>
       <Button
+        componentId={generateTestId(TestId.FILE_DOWNLOADER, componentId)}
         display="secondary"
         size="small"
         startIcon={<CloudDownloadIcon />}

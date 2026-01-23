@@ -59,6 +59,7 @@ function AdminExport(props: IProps): JSX.Element {
         onProfileRun={handleProfileRun}
         pendingJobsCount={pendingJobsCount}
         runProfileButtonLabel={t('export.run')}
+        componentId="export"
       />
     </>
   )
