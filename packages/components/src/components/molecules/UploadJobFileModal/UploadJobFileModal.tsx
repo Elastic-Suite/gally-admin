@@ -13,6 +13,7 @@ import { closeSnackbar, enqueueSnackbar } from 'notistack'
 import { IJobProfileInfos, isError } from '@elastic-suite/gally-admin-shared'
 import FileUploadDropzone from '../FileUploadDropzone/FileUploadDropzone'
 import { useResource, useResourceOperations } from '../../../hooks'
+import { TestId, generateTestId } from '../../../utils/testIds'
 
 interface IProps {
   isOpen: boolean
@@ -74,10 +75,21 @@ function UploadJobFileModal(props: IProps): JSX.Element {
   }
 
   return (
-    <Dialog open={isOpen} onClose={onClose} maxWidth="sm" fullWidth>
+    <Dialog
+      data-testid={generateTestId(TestId.UPLOAD_JOB_FILE_MODAL)}
+      open={isOpen}
+      onClose={onClose}
+      maxWidth="sm"
+      fullWidth
+    >
       <DialogTitle>
         <Box display="flex" justifyContent="space-between" alignItems="center">
-          <Typography variant="h6">{profile.label}</Typography>
+          <Typography
+            data-testid={generateTestId(TestId.UPLOAD_JOB_FILE_MODAL_TITLE)}
+            variant="h6"
+          >
+            {profile.label}
+          </Typography>
           <IconButton
             aria-label="close"
             onClick={onClose}

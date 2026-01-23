@@ -59,6 +59,7 @@ function AdminImport(props: IProps): JSX.Element {
         onProfileRun={handleProfileRun}
         pendingJobsCount={pendingJobsCount}
         runProfileButtonLabel={t('import.run')}
+        componentId="import"
       />
       <UploadJobFileModal
         isOpen={isUploadFileModalOpen}

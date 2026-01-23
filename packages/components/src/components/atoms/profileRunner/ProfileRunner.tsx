@@ -11,11 +11,13 @@ import DropDownWithoutError from '../form/DropDownWithoutError'
 import Button from '../buttons/Button'
 import { TestId, generateTestId } from '../../../utils/testIds'
 import { Paper } from '@mui/material'
+
 interface IProps {
   profiles: IJobProfiles
   defaultProfile: IJobProfileInfos
   onProfileRun: (profile: IJobProfileInfos) => void
   runProfileButtonLabel?: string
+  componentId?: string
 }
 
 const Container = styled(Paper)(({ theme }) => ({
@@ -36,8 +38,13 @@ const Title = styled('div')(({ theme }) => ({
 }))
 
 function ProfileRunner(props: IProps): JSX.Element {
-  const { profiles, defaultProfile, onProfileRun, runProfileButtonLabel } =
-    props
+  const {
+    profiles,
+    defaultProfile,
+    onProfileRun,
+    runProfileButtonLabel,
+    componentId,
+  } = props
   const { t } = useTranslation('importExport')
   const [currentProfile, setCurrentProfile] =
     useState<IJobProfileInfos>(defaultProfile)
@@ -48,6 +55,7 @@ function ProfileRunner(props: IProps): JSX.Element {
       value: item.profile,
     })
   )
+
   return (
     <Container>
       <Title>{t('profile')}</Title>
@@ -55,12 +63,15 @@ function ProfileRunner(props: IProps): JSX.Element {
         options={profileOptions}
         value={currentProfile.profile}
         onChange={setCurrentProfile}
-        componentId="profile"
+        componentId={generateTestId(TestId.JOBPROFILE, componentId)}
         required
       />
       <Button
         type="submit"
-        data-testid={generateTestId(TestId.IMPORT_EXPORT_PROFILE_RUN)}
+        data-testid={generateTestId(
+          TestId.IMPORT_EXPORT_PROFILE_RUN,
+          componentId
+        )}
         onClick={(): void => onProfileRun(currentProfile)}
       >
         {runProfileButtonLabel ?? t('profile.run')}
