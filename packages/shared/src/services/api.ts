@@ -13,6 +13,7 @@ import {
   IFetch,
   IFetchApi,
   IHydraResponse,
+  IParam,
   IResource,
   IResponseError,
   ISearchParameters,
@@ -154,27 +155,48 @@ export function removeEmptyParameters(
   )
 }
 
+function formatFilterValue(value: IParam): boolean | number | string {
+  return value instanceof Date ? value.toISOString().split('T')[0] : value
+}
+
+function formatRangeFilterKeys(key: string, value: IParam[]): string[] {
+  const baseKey = getFieldName(key)
+  return [
+    value[0] instanceof Date ? `${baseKey}[after]` : `${baseKey}[gte]`,
+    value[1] instanceof Date ? `${baseKey}[before]` : `${baseKey}[lte]`,
+  ]
+}
+
+function formatRangeFilterKeyValues(
+  key: string,
+  value: IParam[]
+): [string, boolean | number | string][] {
+  const filterKeys = formatRangeFilterKeys(key, value)
+  const rangeFilterKeyValues: [string, boolean | number | string][] = []
+  if (value[0] !== '') {
+    rangeFilterKeyValues.push([filterKeys[0], formatFilterValue(value[0])])
+  }
+  if (value[1] !== '') {
+    rangeFilterKeyValues.push([filterKeys[1], formatFilterValue(value[1])])
+  }
+  return rangeFilterKeyValues
+}
+
 export function getApiFilters(
   filters: ISearchParameters = {}
 ): ISearchParameters {
   return Object.fromEntries(
-    Object.entries(filters).reduce<
-      [string, string | number | boolean | (string | number | boolean)[]][]
-    >((acc, [key, value]) => {
-      if (key.endsWith('[between]')) {
-        const baseKey = getFieldName(key)
-        value = value as (string | number)[]
-        if (value[0] !== '') {
-          acc.push([`${baseKey}[gte]`, value[0]])
+    Object.entries(filters).reduce<[string, IParam | IParam[]][]>(
+      (acc, [key, value]) => {
+        if (key.endsWith('[between]')) {
+          acc.push(...formatRangeFilterKeyValues(key, value as IParam[]))
+        } else {
+          acc.push([key, formatFilterValue(value as IParam)])
         }
-        if (value[1] !== '') {
-          acc.push([`${baseKey}[lte]`, value[1]])
-        }
-      } else {
-        acc.push([key, value])
-      }
-      return acc
-    }, [])
+        return acc
+      },
+      []
+    )
   )
 }
 

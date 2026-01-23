@@ -13,6 +13,7 @@ import {
   ISourceFieldOption,
   ISourceFieldOptionLabel,
 } from '../types'
+import { isValid } from 'date-fns'
 
 export class HydraError extends Error {
   error: IHydraError
@@ -193,6 +194,9 @@ export function isFieldValueValid(field: IField, value: unknown): boolean {
       return (typeof value === 'number' && !isNaN(value)) || value === ''
     case 'boolean':
       return typeof value === 'boolean'
+    case 'date':
+    case 'dateTime':
+      return value === '' || isValid(value)
     default:
       return typeof value === 'string'
   }
