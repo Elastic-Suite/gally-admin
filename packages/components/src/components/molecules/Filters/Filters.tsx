@@ -30,6 +30,7 @@ import {
   SearchBox,
 } from './Filters.styled'
 import { TestId, generateTestId } from '../../../utils/testIds'
+import { useRouter } from 'next/router'
 
 interface IActiveFilter {
   filter: IFieldConfig
@@ -57,16 +58,44 @@ const replacedInputTypes: Partial<Record<DataContentType, DataContentType>> = {
   [DataContentType.STATUS]: DataContentType.SELECT,
 }
 
+function getDateFilterLabel(value: Date, locale: string): string {
+  return locale === 'fr'
+    ? value.toLocaleDateString('fr-FR').replace(/-/g, '/')
+    : value.toLocaleDateString('en-US').replace(/-/g, '/')
+}
+function getRangeFilterLabel(
+  value: (string | number | Date)[],
+  locale: string
+): string {
+  if (value.every((v) => v instanceof Date || !v)) {
+    const [start, end] = value as Date[]
+    const startLabel = start ? getDateFilterLabel(start, locale) : null
+    const endLabel = end ? getDateFilterLabel(end, locale) : null
+
+    if (startLabel && endLabel) {
+      return `${startLabel} - ${endLabel}`
+    } else if (startLabel) {
+      return `>= ${startLabel}`
+    } else if (endLabel) {
+      return `<= ${endLabel}`
+    }
+    return ''
+  }
+
+  return value.join('-')
+}
+
 function getActiveFilterLabel(
   filter: IFieldConfig,
   value: unknown,
-  fieldOptions: IFieldOptions
+  fieldOptions: IFieldOptions,
+  locale?: string
 ): string {
   const options =
     filter?.options ?? fieldOptions.get(filter?.field.property['@id']) ?? []
 
   if (filter.id.endsWith('[between]')) {
-    value = (value as (string | number)[]).join('-')
+    value = getRangeFilterLabel(value as (string | number | Date)[], locale)
   }
 
   const option: IOption<unknown> = options.find((option) => {
@@ -82,11 +111,12 @@ function getActiveFilterLabel(
 function getActiveFilter(
   filter: IFieldConfig,
   value: unknown,
-  fieldOptions: IFieldOptions
+  fieldOptions: IFieldOptions,
+  locale?: string
 ): { filter: IFieldConfig; label: string; value: unknown } {
   return {
     filter,
-    label: getActiveFilterLabel(filter, value, fieldOptions),
+    label: getActiveFilterLabel(filter, value, fieldOptions, locale),
     value,
   }
 }
@@ -109,6 +139,7 @@ function Filters(props: IProps): JSX.Element {
   const [open, setOpen] = useState(false)
   const { t } = useTranslation('api')
   const { fieldOptions } = useContext(optionsContext)
+  const { locale } = useRouter()
 
   const filterMap = new Map<string, IFieldConfig>(
     filters.map((filter) => [filter.id, filter])
@@ -124,14 +155,14 @@ function Filters(props: IProps): JSX.Element {
       const filter = filterMap.get(id)
       if (filter) {
         if (filter.id.endsWith('[between]')) {
-          const val = value as (string | number)[]
+          const val = value as (string | number | Date)[]
           if (val[0] || val[1]) {
-            acc.push(getActiveFilter(filter, val, fieldOptions))
+            acc.push(getActiveFilter(filter, val, fieldOptions, locale))
           }
         } else if (filter.multiple) {
           return acc.concat(
             (value as unknown[]).map((v) =>
-              getActiveFilter(filter, v, fieldOptions)
+              getActiveFilter(filter, v, fieldOptions, locale)
             )
           )
         } else {
