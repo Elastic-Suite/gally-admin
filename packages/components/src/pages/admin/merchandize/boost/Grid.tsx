@@ -2,8 +2,9 @@ import Grid from '../../../../components/stateful-pages/Grid/Grid'
 import React, { useContext, useEffect } from 'react'
 import { withAuth, withOptions } from '../../../../hocs'
 import { useRouter } from 'next/router'
-import { breadcrumbContext } from '../../../../../src/contexts'
+import { breadcrumbContext } from '../../../../contexts'
 import IonIcon from '../../../../components/atoms/IonIcon/IonIcon'
+import { useTranslation } from 'next-i18next'
 
 const pagesSlug = ['merchandize', 'boosts']
 
@@ -14,6 +15,7 @@ const propsButton = {
 function AdminBoostGrid(): JSX.Element {
   const router = useRouter()
   const [, setBreadcrumb] = useContext(breadcrumbContext)
+  const { t } = useTranslation('boost')
 
   useEffect(() => {
     setBreadcrumb(pagesSlug)
@@ -25,6 +27,12 @@ function AdminBoostGrid(): JSX.Element {
       hasNewLink
       hasEditLink
       propsButton={propsButton}
+      noAttributesProps={{
+        title: t('boost.none'),
+        btnTitle: t('boost.none.btn'),
+        btnHref: './create',
+        absoluteLink: false,
+      }}
     />
   )
 }

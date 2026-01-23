@@ -70,7 +70,7 @@ function Grid(props: IProps): JSX.Element {
               href={newLink ?? './create'}
               isIconInButton={Boolean(propsButton?.endIcon)}
             >
-              {t('create')} {title ?? t(resourceName)}
+              {t('create')} {(title ?? t(resourceName)).toLowerCase()}
             </CustomAHref>
           </Button>
         ) : null}

@@ -13,5 +13,7 @@
   "expansion.error_message.reference_terms.duplicate": "There are duplicates among the \"reference terms\", please remove them.",
   "expansion.error_message.reference_term.empty": "Please enter a value in all the \"reference term\" fields.",
   "expansion.error_message.expansion_terms.empty": "Please enter at least one value in all \"expansion terms\" fields.",
-  "expansion.error_message.expansion_terms.duplicate": "There are duplicates among the \"expansion terms\", please remove them."
+  "expansion.error_message.expansion_terms.duplicate": "There are duplicates among the \"expansion terms\", please remove them.",
+  "thesaurus.none": "No thesaurus has been created",
+  "thesaurus.none.btn": "Create a thesaurus"
 }

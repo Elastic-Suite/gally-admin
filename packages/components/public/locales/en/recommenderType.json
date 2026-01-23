@@ -1,0 +1,8 @@
+{
+  "title.update": "Updating of a recommender type",
+  "title.create": "Creating of a recommender type",
+  "recommender_type.none": "No recommender type has been created",
+  "recommender_type.none.btn": "Create a recommender type",
+  "recommender_type.title": "Recommender type",
+  "entity.label": "recommender type"
+}

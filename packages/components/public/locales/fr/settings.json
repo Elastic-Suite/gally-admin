@@ -4,5 +4,6 @@
   "tabs.users": "Utilisateurs",
   "tabs.configurations": "Configurations",
   "tabs.attributes": "Attributs",
-  "settingsAttributes.alert": "Toutes les configurations faites ici doivent attendre que la réindexation soit effective dans votre application front-office"
+  "settingsAttributes.alert": "Toutes les configurations faites ici doivent attendre que la réindexation soit effective dans votre application front-office",
+  "attributes.none": "Aucun attribut n'a été créé"
 }

@@ -5,7 +5,7 @@ import { renderWithProviders } from '../../../utils/tests'
 import NoAttributes from './NoAttributes'
 
 describe('NoAttributes', () => {
-  it('NoAttributes with absolutLink', () => {
+  it('NoAttributes with absoluteLink', () => {
     const { container } = renderWithProviders(
       <NoAttributes
         title="No attributes were specified as searchable in the settings"
@@ -16,13 +16,13 @@ describe('NoAttributes', () => {
     expect(container).toMatchSnapshot()
   })
 
-  it('NoAttributes without absolutLink', () => {
+  it('NoAttributes without absoluteLink', () => {
     const { container } = renderWithProviders(
       <NoAttributes
         title="No attributes were specified as searchable in the settings"
         btnTitle="Add searchable attributes"
         btnHref="admin/settings/attributes"
-        absolutLink={false}
+        absoluteLink={false}
       />
     )
     expect(container).toMatchSnapshot()

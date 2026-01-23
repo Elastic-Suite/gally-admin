@@ -4,8 +4,9 @@ import { withAuth, withOptions } from '../../../../../hocs'
 import { useRouter } from 'next/router'
 import { breadcrumbContext } from '../../../../../contexts'
 import IonIcon from '../../../../../components/atoms/IonIcon/IonIcon'
+import { useTranslation } from 'next-i18next'
 
-const pagesSlug = ['merchandize', 'recommender', 'recommender_types']
+const pagesSlug = ['merchandize', 'recommender', 'recommender_type']
 
 const propsButton = {
   endIcon: <IonIcon name="add-circle-outline" />,
@@ -14,6 +15,7 @@ const propsButton = {
 function AdminRecommenderTypeGrid(): JSX.Element {
   const router = useRouter()
   const [, setBreadcrumb] = useContext(breadcrumbContext)
+  const { t } = useTranslation('recommenderType')
 
   useEffect(() => {
     setBreadcrumb(pagesSlug)
@@ -25,6 +27,13 @@ function AdminRecommenderTypeGrid(): JSX.Element {
       hasNewLink
       hasEditLink
       propsButton={propsButton}
+      noAttributesProps={{
+        title: t('recommender_type.none'),
+        btnTitle: t('recommender_type.none.btn'),
+        btnHref: './create',
+        absoluteLink: false,
+      }}
+      title={t('recommender_type.title')}
     />
   )
 }

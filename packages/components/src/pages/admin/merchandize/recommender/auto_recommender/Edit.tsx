@@ -5,7 +5,7 @@ import { useRouter } from 'next/router'
 import { breadcrumbContext } from '../../../../../contexts'
 import { useTranslation } from 'next-i18next'
 
-const pagesSlug = ['merchandize', 'recommender', 'auto_recommenders']
+const pagesSlug = ['merchandize', 'recommender', 'auto_recommender']
 
 function AdminAutoRecommenderEdit(): JSX.Element {
   const router = useRouter()
@@ -27,6 +27,7 @@ function AdminAutoRecommenderEdit(): JSX.Element {
       title={t('title.update')}
       resourceName="Recommender"
       id={idUpdate}
+      entityLabel={t('entity.label')}
     />
   )
 }

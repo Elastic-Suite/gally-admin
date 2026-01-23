@@ -149,6 +149,11 @@ function AdminSearchFacets(): JSX.Element {
           resourceName="FacetConfiguration"
           diffDefaultValues
           showSearch
+          noAttributesProps={{
+            title: t('facets.none'),
+            btnTitle: t('facets.none.btn'),
+            btnHref: 'admin/settings/attributes',
+          }}
         />
       </TwoColsLayout>
     </>
