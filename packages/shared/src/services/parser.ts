@@ -89,10 +89,7 @@ export function findRelatedClass(
           range['http://www.w3.org/2002/07/owl#equivalentClass'][0][
             'http://www.w3.org/2002/07/owl#allValuesFrom'
           ][0]['@id']
-        if (
-          allValuesFrom &&
-          onProperty === 'http://www.w3.org/ns/hydra/core#member'
-        ) {
+        if (allValuesFrom && isHydraMember(onProperty)) {
           return supportedClassMap.get(allValuesFrom)
         }
       }
@@ -118,6 +115,18 @@ export function findRelatedClass(
       return supportedClassMap.get(returns)
     }
   }
+}
+
+export function isHydraMember(iri: string): boolean {
+  if (!iri) {
+    return false
+  }
+
+  return (
+    iri === 'http://www.w3.org/ns/hydra/core#member' || // API Platform v3 version
+    iri.endsWith('/member') || // API Platform v4 (context IRI)
+    iri.endsWith('#member')
+  )
 }
 
 export function simplifyJsonldObject(

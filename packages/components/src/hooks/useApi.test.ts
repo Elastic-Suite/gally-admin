@@ -223,7 +223,7 @@ describe('useApi', () => {
       const mock = fetchApi as jest.Mock
       mock.mockClear()
       mock.mockImplementationOnce(() =>
-        Promise.resolve({ 'hydra:member': [{ id: 0 }] })
+        Promise.resolve({ 'member': [{ id: 0 }] })
       )
       const { result } = renderHookWithProviders(() =>
         useApiList('/list', false)
@@ -231,13 +231,13 @@ describe('useApi', () => {
       await waitFor(() =>
         expect(result.current[0]).toEqual({
           status: LoadStatus.SUCCEEDED,
-          data: { 'hydra:member': [{ id: 0 }] },
+          data: { 'member': [{ id: 0 }] },
         })
       )
       act(() => result.current[1]([{ id: 1 } as unknown as IHydraMember]))
       expect(result.current[0]).toEqual({
         status: LoadStatus.SUCCEEDED,
-        data: { 'hydra:member': [{ id: 1 }] },
+        data: { 'member': [{ id: 1 }] },
       })
     })
 
@@ -245,7 +245,7 @@ describe('useApi', () => {
       const mock = fetchApi as jest.Mock
       mock.mockClear()
       mock.mockImplementationOnce(() =>
-        Promise.resolve({ 'hydra:member': [{ id: 0 }] })
+        Promise.resolve({ 'member': [{ id: 0 }] })
       )
       const { result } = renderHookWithProviders(() =>
         useApiList('/list', false)
@@ -253,7 +253,7 @@ describe('useApi', () => {
       await waitFor(() =>
         expect(result.current[0]).toEqual({
           status: LoadStatus.SUCCEEDED,
-          data: { 'hydra:member': [{ id: 0 }] },
+          data: { 'member': [{ id: 0 }] },
         })
       )
       act(() =>
@@ -263,7 +263,7 @@ describe('useApi', () => {
       )
       expect(result.current[0]).toEqual({
         status: LoadStatus.SUCCEEDED,
-        data: { 'hydra:member': [{ id: 0 }, { id: 1 }] },
+        data: { 'member': [{ id: 0 }, { id: 1 }] },
       })
     })
   })
@@ -281,7 +281,7 @@ describe('useApi', () => {
         update: expect.any(Function),
       })
       await waitFor(() =>
-        expect(result.current[0].data['hydra:member'].length).toEqual(2)
+        expect(result.current[0].data.member.length).toEqual(2)
       )
       expect(fetchApi).toHaveBeenCalledWith(
         'en',
@@ -297,7 +297,7 @@ describe('useApi', () => {
         useApiEditableList<ITest>(resource)
       )
       await waitFor(() =>
-        expect(result.current[0].data['hydra:member'].length).toEqual(2)
+        expect(result.current[0].data.member.length).toEqual(2)
       )
       ;(fetchApi as jest.Mock).mockClear()
       await act(() => result.current[1].create({ hello: 'world' }))
@@ -315,7 +315,7 @@ describe('useApi', () => {
         useApiEditableList<ITest>(resource)
       )
       await waitFor(() =>
-        expect(result.current[0].data['hydra:member'].length).toEqual(2)
+        expect(result.current[0].data.member.length).toEqual(2)
       )
       ;(fetchApi as jest.Mock).mockClear()
       await act(() => result.current[1].replace({ id: 1, hello: 'world' }))
@@ -333,7 +333,7 @@ describe('useApi', () => {
         useApiEditableList<ITest>(resource)
       )
       await waitFor(() =>
-        expect(result.current[0].data['hydra:member'].length).toEqual(2)
+        expect(result.current[0].data.member.length).toEqual(2)
       )
       ;(fetchApi as jest.Mock).mockClear()
       await act(() => result.current[1].update(1, { hello: 'world' }))
@@ -355,7 +355,7 @@ describe('useApi', () => {
         useApiEditableList<ITest>(resource)
       )
       await waitFor(() =>
-        expect(result.current[0].data['hydra:member'].length).toEqual(2)
+        expect(result.current[0].data.member.length).toEqual(2)
       )
       ;(fetchApi as jest.Mock).mockClear()
       await act(() => result.current[1].remove(1))
@@ -373,7 +373,7 @@ describe('useApi', () => {
         useApiEditableList<ITest>(resource)
       )
       await waitFor(() =>
-        expect(result.current[0].data['hydra:member'].length).toEqual(2)
+        expect(result.current[0].data.member.length).toEqual(2)
       )
       ;(fetchApi as jest.Mock).mockClear()
       await act(() => result.current[1].massUpdate([1], { hello: 'world' }))
@@ -395,7 +395,7 @@ describe('useApi', () => {
         useApiEditableList<ITest>(resource)
       )
       await waitFor(() =>
-        expect(result.current[0].data['hydra:member'].length).toEqual(2)
+        expect(result.current[0].data.member.length).toEqual(2)
       )
       ;(fetchApi as jest.Mock).mockClear()
       await act(() =>

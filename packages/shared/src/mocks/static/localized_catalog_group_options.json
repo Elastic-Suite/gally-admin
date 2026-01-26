@@ -1,8 +1,8 @@
 {
   "@context": "/contexts/LocalizedCatalogGroupOption",
   "@id": "/localized_catalog_group_options",
-  "@type": "hydra:Collection",
-  "hydra:member": [
+  "@type": "Collection",
+  "member": [
     {
       "id": "com",
       "value": "com",
@@ -49,5 +49,5 @@
       ]
     }
   ],
-  "hydra:totalItems": 3
+  "totalItems": 3
 }

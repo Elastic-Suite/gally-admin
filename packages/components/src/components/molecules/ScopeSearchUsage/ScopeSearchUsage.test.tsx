@@ -5,7 +5,7 @@ import catalogMock from '../../../../public/mocks/catalog.json'
 
 describe('ScopeSearchUsage', () => {
   it('match snapshot', () => {
-    const catalogsOptions = catalogMock['hydra:member'].flatMap((catalog) => {
+    const catalogsOptions = catalogMock.member.flatMap((catalog) => {
       return catalog.localizedCatalogs.map((localizedCatalog) => {
         return {
           id: catalog.name,

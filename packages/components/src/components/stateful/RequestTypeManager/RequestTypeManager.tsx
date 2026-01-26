@@ -54,11 +54,11 @@ function RequestTypeManager(props: IProps): JSX.Element | null {
     requestTypeConfigurations?.categoryTreeApi ?? 'categoryTree'
   )
 
-  const operatorOptions = operatorOptionsApi?.data?.['hydra:member'].map(
+  const operatorOptions = operatorOptionsApi?.data?.member.map(
     (option) => ({ ...option, label: tApi(option.label) })
   )
-  const limitationTypeOptions = limitationTypeOptionsApi?.data?.['hydra:member']
-  const requestTypeOptions = requestTypeOptionsApi?.data?.['hydra:member']
+  const limitationTypeOptions = limitationTypeOptionsApi?.data?.member
+  const requestTypeOptions = requestTypeOptionsApi?.data?.member
   const categoriesList = categoriesListApi?.data?.categories
 
   if (

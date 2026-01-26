@@ -1,8 +1,8 @@
 {
   "@context": "/contexts/BoostModelOption",
   "@id": "/boost_model_options",
-  "@type": "hydra:Collection",
-  "hydra:member": [
+  "@type": "Collection",
+  "member": [
     {
       "id": "constant_score",
       "value": "constant_score",
@@ -14,5 +14,5 @@
       "label": "Behavioral Data"
     }
   ],
-  "hydra:totalItems": 1
+  "totalItems": 1
 }

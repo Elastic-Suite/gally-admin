@@ -163,7 +163,7 @@ export async function fetchApiUsingPagination<T extends object>(
   if (isError(firstResponse)) {
     return { error: firstResponse.error, status: LoadStatus.FAILED }
   }
-  const totalItems = (firstResponse as IHydraResponse<T>)['hydra:totalItems']
+  const {totalItems} = firstResponse as IHydraResponse<T>
   const promises: Promise<IHydraResponse<T> | IError>[] = []
   for (; totalItems > (currentPage + 1) * rowsPerPage; currentPage++) {
     newParameters = getListApiParameters(
@@ -180,12 +180,12 @@ export async function fetchApiUsingPagination<T extends object>(
       errors.push(json)
       return []
     }
-    return (json as IHydraResponse<T>)['hydra:member']
+    return (json as IHydraResponse<T>).member
   })
   if (errors.length > 0) {
     return { error: errors[0].error, status: LoadStatus.FAILED }
   }
-  ;(firstResponse as IHydraResponse<T>)['hydra:member'].push(
+  ;(firstResponse as IHydraResponse<T>).member.push(
     ...hydraMemberOtherResponses
   )
   return { data: firstResponse, status: LoadStatus.SUCCEEDED }

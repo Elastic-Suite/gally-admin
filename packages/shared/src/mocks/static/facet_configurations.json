@@ -1,8 +1,8 @@
 {
   "@context": "/contexts/FacetConfiguration",
   "@id": "/facet_configurations",
-  "@type": "hydra:Collection",
-  "hydra:member": [
+  "@type": "Collection",
+  "member": [
     {
       "@id": "/facet_configurations/15-0",
       "@type": "FacetConfiguration",
@@ -80,16 +80,16 @@
       "sourceFieldCode": "created_at"
     }
   ],
-  "hydra:totalItems": 4,
-  "hydra:view": {
+  "totalItems": 4,
+  "view": {
     "@id": "/facet_configurations?pagination=true\u0026pageSize=50",
-    "@type": "hydra:PartialCollectionView"
+    "@type": "PartialCollectionView"
   },
-  "hydra:search": {
-    "@type": "hydra:IriTemplate",
-    "hydra:template": "/facet_configurations{?category,category[]}",
-    "hydra:variableRepresentation": "BasicRepresentation",
-    "hydra:mapping": [
+  "search": {
+    "@type": "IriTemplate",
+    "template": "/facet_configurations{?category,category[]}",
+    "variableRepresentation": "BasicRepresentation",
+    "mapping": [
       {
         "@type": "IriTemplateMapping",
         "variable": "category",

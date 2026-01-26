@@ -132,7 +132,7 @@ function RulesManager(props: IRulesManagerProps): JSX.Element {
     )
 
     if (sourceFields?.data) {
-      filters['sourceField[]'] = sourceFields.data['hydra:member'].map((s) =>
+      filters['sourceField[]'] = sourceFields.data.member.map((s) =>
         s.id.toString()
       )
     } else {
@@ -160,13 +160,13 @@ function RulesManager(props: IRulesManagerProps): JSX.Element {
   }
 
   const sourceFieldLabelsMap = new Map(
-    sourceFieldLabels.data['hydra:member'].map((label) => [
+    sourceFieldLabels.data.member.map((label) => [
       label.sourceField,
       label.label,
     ])
   )
 
-  const fields = sourceFields.data['hydra:member'].map((field) => {
+  const fields = sourceFields.data.member.map((field) => {
     const label = sourceFieldLabelsMap.get(getIri('source_fields', field.id))
     return {
       id: field.id,

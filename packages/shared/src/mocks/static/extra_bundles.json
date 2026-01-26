@@ -1,9 +1,9 @@
 {
   "@context": "/contexts/ExtraBundle",
   "@id": "/extra_bundles",
-  "@type": "hydra:Collection",
-  "hydra:member": [
+  "@type": "Collection",
+  "member": [
     { "id": "GallyVirtualCategoryBundle", "name": "GallyVirtualCategoryBundle" }
   ],
-  "hydra:totalItems": 1
+  "totalItems": 1
 }

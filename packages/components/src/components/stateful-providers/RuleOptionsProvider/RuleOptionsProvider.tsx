@@ -147,7 +147,7 @@ function RuleOptionsProvider(props: IProps): JSX.Element {
         200
       )
 
-      return response.data['hydra:member'] ?? []
+      return response.data.member ?? []
     },
     [
       localizedCatalogId,
@@ -167,7 +167,7 @@ function RuleOptionsProvider(props: IProps): JSX.Element {
     }
 
     // Map each option to its corresponding label
-    for (const option of data['hydra:member']) {
+    for (const option of data.member) {
       const label = labelMap.get(option['@id'])
       if (label) {
         option.labels = [label]

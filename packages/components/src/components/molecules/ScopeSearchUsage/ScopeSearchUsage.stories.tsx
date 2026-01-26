@@ -15,7 +15,7 @@ const Template: ComponentStory<typeof ScopeSearchUsage> = (args) => (
 
 export const Default = Template.bind({})
 
-const catalogsOptions = catalogMock['hydra:member'].flatMap((catalog) => {
+const catalogsOptions = catalogMock.member.flatMap((catalog) => {
   return catalog.localizedCatalogs.map((localizedCatalog) => {
     return {
       id: catalog.name,

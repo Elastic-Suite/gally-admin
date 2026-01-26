@@ -1,8 +1,8 @@
 {
   "@context": "/contexts/SourceFieldOptionLabel",
   "@id": "/source_field_option_labels",
-  "@type": "hydra:Collection",
-  "hydra:member": [
+  "@type": "Collection",
+  "member": [
     {
       "@id": "/source_field_option_labels/3000",
       "@type": "SourceFieldOptionLabel",
@@ -160,16 +160,16 @@
       "label": "Orange"
     }
   ],
-  "hydra:totalItems": 13,
-  "hydra:view": {
+  "totalItems": 13,
+  "view": {
     "@id": "/source_field_option_labels?order%5BsourceFieldOption.position%5D=asc\u0026sourceFieldOption.sourceField=%2Fsource_fields%2F713\u0026catalog=%2Flocalized_catalogs%2F43\u0026pagination=false",
-    "@type": "hydra:PartialCollectionView"
+    "@type": "PartialCollectionView"
   },
-  "hydra:search": {
-    "@type": "hydra:IriTemplate",
-    "hydra:template": "/source_field_option_labels{?catalog,catalog[],sourceFieldOption.sourceField,sourceFieldOption.sourceField[],order[sourceFieldOption.position]}",
-    "hydra:variableRepresentation": "BasicRepresentation",
-    "hydra:mapping": [
+  "search": {
+    "@type": "IriTemplate",
+    "template": "/source_field_option_labels{?catalog,catalog[],sourceFieldOption.sourceField,sourceFieldOption.sourceField[],order[sourceFieldOption.position]}",
+    "variableRepresentation": "BasicRepresentation",
+    "mapping": [
       {
         "@type": "IriTemplateMapping",
         "variable": "catalog",

@@ -1,12 +1,12 @@
 {
   "@context": "/contexts/Configuration",
   "@id": "/configurations",
-  "@type": "hydra:Collection",
-  "hydra:member": [
+  "@type": "Collection",
+  "member": [
     {
       "path": "gally.base_url.media",
       "value": "https://ec2-34-244-104-82.eu-west-1.compute.amazonaws.com/media/catalog/product/"
     }
   ],
-  "hydra:totalItems": 1
+  "totalItems": 1
 }

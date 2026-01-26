@@ -59,8 +59,8 @@ export default function PreviewGridBoostConfiguration({
 
   const [requestTypesOptionsAPI] = useFetchApi<
     {
-      'hydra:member': IRequestTypesOptions[]
-      'hydra:totalItems': number
+      'member': IRequestTypesOptions[]
+      'totalItems': number
     } & IJsonldBase
   >('boost_request_type_options')
 
@@ -73,7 +73,7 @@ export default function PreviewGridBoostConfiguration({
       ) || []
 
     return (
-      requestTypesOptionsAPI?.data?.['hydra:member']?.filter((requestType) =>
+      requestTypesOptionsAPI?.data?.member?.filter((requestType) =>
         currentRequestTypes?.includes(requestType.value)
       ) || []
     )

@@ -54,11 +54,11 @@ function Catalogs({ content }: IProps): JSX.Element {
   return (
     <CustomFullRoot>
       <CustomNbCatalogs>
-        {content['hydra:member'].length}{' '}
-        {t('catalog.catalog', { count: content['hydra:member'].length })}
+        {content.member.length}{' '}
+        {t('catalog.catalog', { count: content.member.length })}
       </CustomNbCatalogs>
       <CustomRoot>
-        {content['hydra:member'].map((item: ICatalog, key: number) => (
+        {content.member.map((item: ICatalog, key: number) => (
           <CustomCatalogs
             data-testid={generateTestId(TestId.CATALOGS, item.code)}
             key={item.name}
@@ -68,7 +68,7 @@ function Catalogs({ content }: IProps): JSX.Element {
             <Language
               order={key}
               language={getUniqueLocalName(item)}
-              content={content['hydra:member']}
+              content={content.member}
               limit
             />
           </CustomCatalogs>

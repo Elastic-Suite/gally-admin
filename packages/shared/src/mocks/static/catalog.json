@@ -1,8 +1,8 @@
 {
   "@context": "/contexts/Catalog",
   "@id": "/catalogs",
-  "@type": "hydra:Collection",
-  "hydra:member": [
+  "@type": "Collection",
+  "member": [
     {
       "@id": "/catalogs/1",
       "@type": "Catalog",
@@ -97,12 +97,12 @@
       ]
     }
   ],
-  "hydra:totalItems": 3,
-  "hydra:search": {
-    "@type": "hydra:IriTemplate",
-    "hydra:template": "/catalogs{?code,code[]}",
-    "hydra:variableRepresentation": "BasicRepresentation",
-    "hydra:mapping": [
+  "totalItems": 3,
+  "search": {
+    "@type": "IriTemplate",
+    "template": "/catalogs{?code,code[]}",
+    "variableRepresentation": "BasicRepresentation",
+    "mapping": [
       {
         "@type": "IriTemplateMapping",
         "variable": "code",

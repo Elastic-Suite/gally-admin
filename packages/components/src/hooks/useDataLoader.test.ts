@@ -16,7 +16,7 @@ jest.mock('./useApi', () => ({
   useFetchApi: jest.fn((): unknown => [
     {
       data: {
-        'hydra:member': [
+        'member': [
           {
             id: 'GallyVirtualCategoryBundle',
             name: 'GallyVirtualCategoryBundle',

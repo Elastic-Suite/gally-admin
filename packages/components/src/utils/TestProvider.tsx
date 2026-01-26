@@ -14,8 +14,8 @@ interface IProps {
 
 function TestProvider(props: IProps): JSX.Element {
   const { children } = props
-  const contextValueCatalog = useCatalogs(catalogs['hydra:member'])
-  const contextValueMetadata = metadata['hydra:member']
+  const contextValueCatalog = useCatalogs(catalogs.member)
+  const contextValueMetadata = metadata.member
 
   return (
     <OptionsProvider>

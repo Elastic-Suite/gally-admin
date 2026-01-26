@@ -108,9 +108,7 @@ function AdminAnalyzeResults(): JSX.Element {
     requestTypeData?.data && variables?.requestType
       ? getLimitationType(
           variables?.requestType,
-          requestTypeData.data[
-            'hydra:member'
-          ] as unknown as IRequestTypesOptions[]
+          requestTypeData.data.member as unknown as IRequestTypesOptions[]
         )
       : undefined
 

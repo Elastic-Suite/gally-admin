@@ -173,7 +173,7 @@ export function getMappings<T extends IHydraMember>(
   apiData: IHydraResponse<T>,
   resource: IResource
 ): IMapping[] {
-  const mappings: IMapping[] = apiData?.['hydra:search']['hydra:mapping']
+  const mappings: IMapping[] = apiData?.search.mapping
     .filter(
       (mapping) =>
         !mapping.variable.endsWith('[lt]') &&

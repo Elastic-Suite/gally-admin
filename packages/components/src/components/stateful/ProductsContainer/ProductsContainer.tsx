@@ -123,7 +123,7 @@ function ProductsContainer(props: IProps): JSX.Element {
   const [{ data }] = useApiList<ISortingOption>(resourceSortingOption)
 
   const sortOption = data
-    ? data[`hydra:member`].map((obj: ISortingOption) => ({
+    ? data.member.map((obj: ISortingOption) => ({
         value: obj.code,
         ...obj,
       }))

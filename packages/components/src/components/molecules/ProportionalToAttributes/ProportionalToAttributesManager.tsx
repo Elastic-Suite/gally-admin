@@ -51,9 +51,9 @@ function ProportionalToAttributesManager(
   return (
     <ProportionalToAttributes
       sourceFields={
-        boostAttributeValueFieldOptionsResponse.data['hydra:member']
+        boostAttributeValueFieldOptionsResponse.data.member
       }
-      boostImpactOptions={boostImpactOptionsResponse.data['hydra:member']}
+      boostImpactOptions={boostImpactOptionsResponse.data.member}
       {...props}
     />
   )
