@@ -150,7 +150,7 @@ export function useFetchApi<T extends object>(
   return [response, updateResponse, load]
 }
 
-export function useApiList<T extends object>(
+export function  useApiList<T extends object>(
   resource?: IResource | string,
   page: number | false = 0,
   rowsPerPage: number = defaultPageSize,
@@ -182,11 +182,12 @@ export function useApiList<T extends object>(
 
   const updateList = useCallback(
     (data: SetStateAction<T[]>): void => {
-      updateResponse((prevState) => ({
-        ...prevState,
-        'hydra:member':
-          data instanceof Function ? data(prevState['hydra:member']) : data,
-      }))
+      updateResponse((prevState) => {
+        return {
+          ...prevState,
+          member: data instanceof Function ? data(prevState.member) : data,
+        }
+      })
     },
     [updateResponse]
   )
@@ -299,7 +300,7 @@ export function useApiEditableList<T extends IHydraMember>(
       const createResponse = await create(item)
       if (
         !isError(createResponse) &&
-        response.data['hydra:member'].length < rowsPerPage
+        response.data.member.length < rowsPerPage
       ) {
         // reload if item has been added and we are on the last page
         load()
@@ -354,7 +355,7 @@ export function useApiEditableList<T extends IHydraMember>(
       const removeResponse = await remove(id)
       if (
         isError(removeResponse) ||
-        response.data['hydra:member'].length === rowsPerPage
+        response.data.member.length === rowsPerPage
       ) {
         // reload if error
         // and reload if we are not on the last page to fill the space left by the deleted item

@@ -1,8 +1,8 @@
 {
   "@context": "/contexts/BoostRequestTypeOption",
   "@id": "/boost_request_type_options",
-  "@type": "hydra:Collection",
-  "hydra:member": [
+  "@type": "Collection",
+  "member": [
     {
       "label": "Catalog product view",
       "id": "product_catalog",
@@ -22,5 +22,5 @@
       "value": "product_autocomplete"
     }
   ],
-  "hydra:totalItems": 2
+  "totalItems": 2
 }

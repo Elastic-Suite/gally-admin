@@ -1,8 +1,8 @@
 {
   "@context": "/contexts/ProductSortingOption",
   "@id": "/product_sorting_options",
-  "@type": "hydra:Collection",
-  "hydra:member": [
+  "@type": "Collection",
+  "member": [
     {
       "code": "position",
       "label": "Position"
@@ -24,5 +24,5 @@
       "label": "Price"
     }
   ],
-  "hydra:totalItems": 5
+  "totalItems": 5
 }

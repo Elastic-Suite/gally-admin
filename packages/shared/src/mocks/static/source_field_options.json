@@ -1,8 +1,8 @@
 {
   "@context": "/contexts/SourceFieldOption",
   "@id": "/source_field_options",
-  "@type": "hydra:Collection",
-  "hydra:member": [
+  "@type": "Collection",
+  "member": [
     {
       "@id": "/source_field_options/2966",
       "@type": "SourceFieldOption",
@@ -433,16 +433,16 @@
       ]
     }
   ],
-  "hydra:totalItems": 13,
-  "hydra:view": {
+  "totalItems": 13,
+  "view": {
     "@id": "/source_field_options?order%5Bposition%5D=asc\u0026sourceField=%2Fsource_fields%2F824\u0026pagination=false",
-    "@type": "hydra:PartialCollectionView"
+    "@type": "PartialCollectionView"
   },
-  "hydra:search": {
-    "@type": "hydra:IriTemplate",
-    "hydra:template": "/source_field_options{?sourceField,sourceField[],order[position]}",
-    "hydra:variableRepresentation": "BasicRepresentation",
-    "hydra:mapping": [
+  "search": {
+    "@type": "IriTemplate",
+    "template": "/source_field_options{?sourceField,sourceField[],order[position]}",
+    "variableRepresentation": "BasicRepresentation",
+    "mapping": [
       {
         "@type": "IriTemplateMapping",
         "variable": "sourceField",

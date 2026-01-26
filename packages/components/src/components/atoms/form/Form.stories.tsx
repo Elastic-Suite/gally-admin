@@ -89,10 +89,10 @@ const Template = (): JSX.Element => {
         showError={showAllErrors}
         required
         onChange={setRequestType}
-        options={textOperatorOptions['hydra:member']}
-        limitationsTypes={limitationsTypes['hydra:member']}
+        options={textOperatorOptions.member}
+        limitationsTypes={limitationsTypes.member}
         requestTypesOptions={
-          requestTypesOptions['hydra:member'] as IRequestTypesOptions[]
+          requestTypesOptions.member as IRequestTypesOptions[]
         }
         categoriesList={categories.categories}
       />

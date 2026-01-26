@@ -131,7 +131,7 @@ function ResourceTable(props: IResourceTable): JSX.Element {
 
   const { data, error } = resourceData
 
-  const tableRows = data?.['hydra:member'] as unknown as ITableRow[]
+  const tableRows = data?.member as unknown as ITableRow[]
   const diffRows: ITableRow[] = useMemo(() => {
     if (diffDefaultValues && tableRows) {
       const newTableRows = tableRows.map((itemTableRow) => {
@@ -230,7 +230,7 @@ function ResourceTable(props: IResourceTable): JSX.Element {
     searchValue !== '' || isObjectNotEmpty(activeFilters)
 
   if (
-    data['hydra:member'].length === 0 &&
+    data.member.length === 0 &&
     resourceData.status === LoadStatus.SUCCEEDED &&
     !filterOrSearchAreUp
   ) {
@@ -277,11 +277,11 @@ function ResourceTable(props: IResourceTable): JSX.Element {
       </FiltersGuesser>
       <TableGuesser
         Field={Field}
-        count={data['hydra:totalItems']}
+        count={data.totalItems}
         currentPage={page}
         diffRows={diffRows}
         noResult={
-          data['hydra:member'].length === 0 &&
+          data.member.length === 0 &&
           resourceData.status === LoadStatus.SUCCEEDED &&
           filterOrSearchAreUp
         }

@@ -16,13 +16,13 @@ interface IProps {
 }
 
 const sourceFieldLabelsMap = new Map(
-  sourceFieldLabels['hydra:member'].map((label) => [
+  sourceFieldLabels.member.map((label) => [
     label.sourceField,
     label.label,
   ])
 )
 
-const fields = sourceFields['hydra:member'].map((field) => {
+const fields = sourceFields.member.map((field) => {
   const label = sourceFieldLabelsMap.get(getIri('source_fields', field.id))
   return {
     id: field.id,

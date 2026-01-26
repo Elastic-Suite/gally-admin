@@ -35,7 +35,7 @@ function CatalogProvider(props: IProps): JSX.Element {
         if (isError(json)) {
           log(json.error)
         } else {
-          setCatalogs(json['hydra:member'])
+          setCatalogs(json.member)
         }
       })
     }

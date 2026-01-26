@@ -1,8 +1,8 @@
 {
   "@context": "/contexts/Metadata",
   "@id": "/metadata",
-  "@type": "hydra:Collection",
-  "hydra:member": [
+  "@type": "Collection",
+  "member": [
     {
       "@id": "/metadata/1",
       "@type": "Metadata",
@@ -22,5 +22,5 @@
       "sourceFields": ["/source_fields/2"]
     }
   ],
-  "hydra:totalItems": 2
+  "totalItems": 2
 }

@@ -30,8 +30,8 @@ const Template: ComponentStory<typeof RequestType> = (args) => {
 
 export const Default = Template.bind({})
 Default.args = {
-  options: textOperatorOptions['hydra:member'],
-  limitationsTypes: limitationsTypes['hydra:member'],
-  requestTypesOptions: requestTypesOptions['hydra:member'],
+  options: textOperatorOptions.member,
+  limitationsTypes: limitationsTypes.member,
+  requestTypesOptions: requestTypesOptions.member,
   categoriesList: categoriesList.categories,
 }

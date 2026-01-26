@@ -18,9 +18,9 @@ export interface IDocsJsonldContext {
 
 export interface IDocsJsonld extends IJsonldBase {
   '@context': IDocsJsonldContext
-  'hydra:entrypoint': string
-  'hydra:supportedClass': IHydraSupportedClass[]
-  'hydra:title': string
+  entrypoint: string
+  supportedClass: IHydraSupportedClass[]
+  title: string
 }
 
 export interface IExpandedDocsJsonld extends IJsonldBase {

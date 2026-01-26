@@ -59,7 +59,7 @@ export function getRequestTypeData(
 
   const requestTypeData = {} as IRequestType
 
-  limitationTypeOptionsApi?.data?.['hydra:member'].forEach((it) => {
+  limitationTypeOptionsApi?.data?.member.forEach((it) => {
     requestTypeData[`${it.value}Limitations` as keyof IRequestType] =
       data[`${it.value}Limitations`] ?? []
   })

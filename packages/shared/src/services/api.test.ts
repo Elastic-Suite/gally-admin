@@ -113,7 +113,7 @@ describe('Api service', () => {
       const mock = fetchJson as jest.Mock
       mock.mockClear()
       mock.mockImplementationOnce(() =>
-        Promise.resolve({ json: { '@type': 'hydra:Error' } })
+        Promise.resolve({ json: { '@type': 'Error' } })
       )
       await expect(fetchApi('en', '/restricted')).rejects.toThrow(HydraError)
       expect(fetchJson).toHaveBeenCalledWith('http://localhost/restricted', {

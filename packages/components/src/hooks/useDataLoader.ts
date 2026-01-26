@@ -45,9 +45,9 @@ export function useDataLoader(): void {
       dispatch(
         setData({
           api: api.data,
-          bundles: bundles.data['hydra:member'].map((bundle) => bundle.name),
+          bundles: bundles.data.member.map((bundle) => bundle.name),
           configurations: Object.fromEntries(
-            configurations.data['hydra:member'].map((configuration) => [
+            configurations.data.member.map((configuration) => [
               configuration.path,
               configuration.value,
             ])

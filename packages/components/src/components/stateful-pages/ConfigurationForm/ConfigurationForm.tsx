@@ -140,7 +140,7 @@ function ConfigurationForm(props: IProps): JSX.Element {
     if (configurations.status === LoadStatus.SUCCEEDED) {
       const loadedConfigurationData = getConfigurationData(
         configurationList,
-        configurations.data['hydra:member']
+        configurations.data.member
       )
       setConfigurationData(loadedConfigurationData)
       setOriginalConfigurationData(loadedConfigurationData)

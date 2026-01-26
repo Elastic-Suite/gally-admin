@@ -53,7 +53,7 @@ describe('Hydra service', () => {
     it('should check if response is a hydra error', () => {
       expect(
         isHydraError({
-          '@type': 'hydra:Error',
+          '@type': 'Error',
         })
       ).toEqual(true)
     })

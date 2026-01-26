@@ -72,17 +72,15 @@ export interface IRdfsRange {
 
 export interface IHydraSupportedOperation extends IJsonldType {
   expects?: string
-  'hydra:method': Method
-  'hydra:title'?: string
+  method: Method
+  title?: string
   'rdfs:label': string
   returns: string
 }
 
 export interface IHydraProperty extends IJsonldBase {
   domain: string
-  'hydra:supportedOperation'?:
-    | IHydraSupportedOperation
-    | IHydraSupportedOperation[]
+  supportedOperation?: IHydraSupportedOperation | IHydraSupportedOperation[]
   'owl:maxCardinality'?: number
   range?: string
   'rdfs:label': string
@@ -152,22 +150,20 @@ export interface IDropdownApiOptions {
 }
 
 export interface IHydraSupportedProperty extends IJsonldType {
-  'hydra:description'?: string
-  'hydra:property': IHydraProperty
-  'hydra:readable': boolean
-  'hydra:required'?: boolean
-  'hydra:title': string
-  'hydra:writeable': boolean
+  description?: string
+  property: IHydraProperty
+  readable: boolean
+  required?: boolean
+  title: string
+  writeable: boolean
   gally?: IGallyProperty
 }
 
 export interface IHydraSupportedClass extends IJsonldBase {
-  'hydra:description'?: string
-  'hydra:supportedOperation'?:
-    | IHydraSupportedOperation
-    | IHydraSupportedOperation[]
-  'hydra:supportedProperty': IHydraSupportedProperty[]
-  'hydra:title': string
+  description?: string
+  supportedOperation?: IHydraSupportedOperation | IHydraSupportedOperation[]
+  supportedProperty: IHydraSupportedProperty[]
+  title: string
   'rdfs:label'?: string
   subClassOf?: string
 }
@@ -194,9 +190,9 @@ export interface IHydraTrace {
 
 export interface IHydraError extends IJsonldType, IJsonldContext {
   '@context': '/contexts/Error'
-  '@type': 'hydra:Error'
-  'hydra:description': string
-  'hydra:title': string
+  '@type': 'Error'
+  description: string
+  title: string
   trace: IHydraTrace[]
 }
 
@@ -207,18 +203,18 @@ export interface IHydraMapping extends IJsonldType {
 }
 
 export interface IHydraSearch extends IJsonldType {
-  'hydra:mapping': IHydraMapping[]
-  'hydra:template': string
-  'hydra:variableRepresentation': string
+  mapping: IHydraMapping[]
+  template: string
+  variableRepresentation: string
 }
 
 export interface IHydraResponse<Member>
   extends IJsonldContext,
     IJsonldType,
     IJsonldId {
-  'hydra:member': Member[]
-  'hydra:search'?: IHydraSearch
-  'hydra:totalItems': number
+  member: Member[]
+  search?: IHydraSearch
+  totalItems: number
 }
 
 export interface IExpandedHydraSupportedOperation extends IJsonldType {

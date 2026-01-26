@@ -28,7 +28,7 @@ interface IProps extends ITabContentProps {
 
 function ActiveLocales({ content }: IProps): JSX.Element {
   let languages = []
-  for (const hydraContent of content['hydra:member']) {
+  for (const hydraContent of content.member) {
     for (const localizedCatalogsContent of hydraContent.localizedCatalogs) {
       languages.push(localizedCatalogsContent.localName)
     }

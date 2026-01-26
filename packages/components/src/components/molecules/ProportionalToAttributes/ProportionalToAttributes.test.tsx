@@ -27,7 +27,7 @@ describe('ProportionalToAttributes', () => {
             label: 'Product links exist2',
           },
         ]}
-        boostImpactOptions={boostImpactOptionsMock['hydra:member']}
+        boostImpactOptions={boostImpactOptionsMock.member}
       />
     )
     expect(container).toMatchSnapshot()

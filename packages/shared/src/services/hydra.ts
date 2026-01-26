@@ -17,7 +17,7 @@ import {
 export class HydraError extends Error {
   error: IHydraError
   constructor(error: IHydraError) {
-    super(error['hydra:description'])
+    super(error.description)
     this.error = error
   }
 }
@@ -31,7 +31,7 @@ export function isJSonldType<T extends object>(
 export function isHydraError<T extends IJsonldType>(
   json: T | IHydraError
 ): json is IHydraError {
-  return json['@type'] === 'hydra:Error'
+  return json['@type'] === 'Error'
 }
 
 export function getResource(api: IApi, resourceName: string): IResource {
@@ -89,7 +89,7 @@ export function getReferencedResource(api: IApi, field: IField): IResource {
 export function getOptionsFromResource<T extends IHydraMember>(
   response: IHydraResponse<T>
 ): IOptions<string | number> {
-  return response['hydra:member'].map((member) => ({
+  return response.member.map((member) => ({
     id: member.id,
     label: member['@id'],
     value: member.id,
@@ -99,7 +99,7 @@ export function getOptionsFromResource<T extends IHydraMember>(
 export function getOptionsFromLabelResource<T extends IHydraLabelMember>(
   response: IHydraResponse<T>
 ): IOptions<string | number> {
-  return response['hydra:member'].map((member) => ({
+  return response.member.map((member) => ({
     id: member.id,
     label: member.label,
     value: member.id,
@@ -110,7 +110,7 @@ export function getOptionsFromOptionResource(
   optionLabelsResponse: IHydraResponse<ISourceFieldOption>,
   localizedCatalogId = -1
 ): IOptions<string | number> {
-  return optionLabelsResponse['hydra:member'].map((option) => {
+  return optionLabelsResponse.member.map((option) => {
     let label = option.defaultLabel
     if (localizedCatalogId !== -1) {
       label =
@@ -129,7 +129,7 @@ export function getOptionsFromOptionResource(
 export function getOptionsFromOptionLabelResource(
   optionLabelsResponse: IHydraResponse<ISourceFieldOptionLabel>
 ): IOptions<string | number> {
-  return optionLabelsResponse['hydra:member'].map((option) => ({
+  return optionLabelsResponse.member.map((option) => ({
     id: option.sourceFieldOption.code,
     label: option.label,
     value: option.sourceFieldOption.code,
@@ -149,13 +149,11 @@ function convertValueForOpt(data: IApiSchemaOptions[]): IOptions<string> {
 export function getOptionsFromApiSchema(
   response: IHydraResponse<IApiSchemaOptions>
 ): IOptions<string | number> {
-  const res = response['hydra:member'].map(
-    ({ label, value, code, options }) => ({
-      label,
-      value: value ?? code,
-      options,
-    })
-  )
+  const res = response.member.map(({ label, value, code, options }) => ({
+    label,
+    value: value ?? code,
+    options,
+  }))
   return res.some(({ options }) => options) ? convertValueForOpt(res) : res
 }
 

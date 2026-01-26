@@ -29,7 +29,7 @@ function MetadataProvider(props: IProps): JSX.Element {
         if (isError(json)) {
           log(json.error)
         } else {
-          setMetadata(json['hydra:member'])
+          setMetadata(json.member)
         }
       })
     }
