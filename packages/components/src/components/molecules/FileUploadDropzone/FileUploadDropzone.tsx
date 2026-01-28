@@ -156,6 +156,7 @@ function FileUploadDropzone(props: IFileUploadDropzoneProps): JSX.Element {
   return (
     <Box data-testid={generateTestId(TestId.FILE_UPLOAD_DROPZONE)}>
       <DropZone
+        data-testid={generateTestId(TestId.FILE_UPLOAD_DROPZONE, 'dropzone')}
         isDragging={isDragging}
         onDragEnter={handleDragEnter}
         onDragLeave={handleDragLeave}
@@ -164,6 +165,7 @@ function FileUploadDropzone(props: IFileUploadDropzoneProps): JSX.Element {
         onClick={handleDropZoneClick}
       >
         <VisuallyHiddenInput
+          data-testid={generateTestId(TestId.FILE_UPLOAD_DROPZONE, 'input')}
           ref={fileInputRef}
           type="file"
           accept={getAcceptAttribute()}
