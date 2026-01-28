@@ -70,7 +70,7 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
       | boolean
       | number
       | string
-      | (boolean | number | string)[]
+      | (boolean | number | string | Date)[]
       | IDoubleDatePickerValues
       | IRequestType
       | IRuleCombination
@@ -184,6 +184,45 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
           helperText={helperText}
           componentId={name}
         />
+      )
+    }
+
+    case DataContentType.DATE: {
+      const {
+        multipleInputConfiguration,
+        multipleValueFormat,
+        requestTypeConfigurations,
+        ...doubleDatePickerProps
+      } = props
+
+      const handleDateRangeChange = (value: unknown): void => {
+        handleChange([
+          (value as IDoubleDatePickerValues).fromDate,
+          (value as IDoubleDatePickerValues).toDate,
+        ])
+      }
+
+      const formattedValue: IDoubleDatePickerValues = Array.isArray(value)
+        ? {
+            fromDate: value[0] && value[0] !== '' ? new Date(value[0]) : null,
+            toDate: value[1] && value[1] !== '' ? new Date(value[1]) : null,
+          }
+        : { fromDate: null, toDate: null }
+
+      return (
+        <Box>
+          <DoubleDatePicker
+            {...doubleDatePickerProps}
+            placeholder={placeholder}
+            infoTooltip={infoTooltip}
+            value={formattedValue}
+            onChange={handleDateRangeChange}
+            error={error}
+            helperText={helperText}
+            label={label}
+            componentId={name}
+          />
+        </Box>
       )
     }
 

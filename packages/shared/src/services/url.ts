@@ -10,6 +10,40 @@ import { ISearchParameters } from '../types'
 
 import { removeEmptyParameters } from './api'
 
+function formatDateParameterForUrl(param: Date): string {
+  // We force the dd/MM/yyyy to we can guess a param in url is a date without knowing anything else
+  return param.toLocaleDateString('en-GB').replace(/-/g, '/')
+}
+
+function getRangeParameterFromUrl(param: string): (string | Date)[] {
+  return param.split(rangeSeparator).map((v) => {
+    // Date parameters always follow the dd/MM/yyyy regardless of locale
+    const datePattern = /^(\d{2})\/(\d{2})\/(\d{4})$/
+    const match = v.match(datePattern)
+
+    if (match) {
+      const [, day, month, year] = match
+      // Create date from dd/MM/yyyy format
+      return new Date(Number(year), Number(month) - 1, Number(day))
+    }
+
+    return v
+  })
+}
+
+function formatRangeParameterForUrl(
+  value: ISearchParameters[keyof ISearchParameters]
+): string {
+  if (Array.isArray(value)) {
+    return value
+      .map((v) =>
+        v instanceof Date ? formatDateParameterForUrl(v) : String(v ?? '')
+      )
+      .join(rangeSeparator)
+  }
+  return String(value)
+}
+
 export function getUrl(
   urlParam: string | URL,
   searchParameters: ISearchParameters = {}
@@ -18,9 +52,9 @@ export function getUrl(
 
   Object.entries(searchParameters).forEach(([key, value]) => {
     if (key.endsWith('[between]')) {
-      value = value as (string | number)[]
+      value = value as (string | number | Date)[]
       if (value[0] !== '' || value[1] !== '') {
-        url.searchParams.append(key, value.join(rangeSeparator))
+        url.searchParams.append(key, formatRangeParameterForUrl(value))
       }
     } else if (value instanceof Array) {
       value.forEach((value) => url.searchParams.append(key, String(value)))
@@ -103,7 +137,7 @@ export function getParametersFromUrl(url: URL): ISearchParameters {
   return Object.fromEntries(
     [...url.searchParams.entries()].reduce((acc, [key, value]) => {
       if (key.endsWith('[between]')) {
-        acc.push([key, value.split(rangeSeparator)])
+        acc.push([key, getRangeParameterFromUrl(value)])
       } else if (key.endsWith('[]')) {
         const existingValue = acc.find(([accKey]) => accKey === key)?.[1]
         if (existingValue) {
