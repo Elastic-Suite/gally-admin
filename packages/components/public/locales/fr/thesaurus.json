@@ -14,5 +14,7 @@
   "expansion.error_message.reference_terms.duplicate": "Il y a des doublons parmi les \"termes de référence\", veuillez les retirer.",
   "expansion.error_message.reference_term.empty": "Veuillez renseigner une valeur dans tous les champs \"terme de référence\".",
   "expansion.error_message.expansion_terms.empty": "Veuillez renseigner au moins une valeur dans tous les champs \"termes étendus\".",
-  "expansion.error_message.expansion_terms.duplicate": "Il y a des doublons parmi les \"termes étendus\", veuillez les retirer."
+  "expansion.error_message.expansion_terms.duplicate": "Il y a des doublons parmi les \"termes étendus\", veuillez les retirer.",
+  "thesaurus.none": "Aucun thésaurus n'a été créé",
+  "thesaurus.none.btn": "Créer un thésaurus"
 }

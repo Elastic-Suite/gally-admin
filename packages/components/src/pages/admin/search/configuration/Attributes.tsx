@@ -59,6 +59,11 @@ function AdminSearchFacetsConfigurationAttributes(): JSX.Element {
         setActiveFilters={setActiveFilters}
         urlParams={searchableAttributeUrl}
         showSearch
+        noAttributesProps={{
+          title: t('attributes.none'),
+          btnTitle: t('attributes.none.btn'),
+          btnHref: 'admin/settings/attributes',
+        }}
       />
     </>
   )

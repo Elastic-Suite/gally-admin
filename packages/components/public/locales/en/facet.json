@@ -1,4 +1,6 @@
 {
+  "facets.none": "No attributes were specified as filterable in the settings",
+  "facets.none.btn": "Add filterable attributes",
   "facet.title": "Category",
   "facet.configuration": "General configuration",
   "facet.button.setting": "Set Default values",

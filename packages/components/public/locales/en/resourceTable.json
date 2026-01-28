@@ -1,12 +1,4 @@
 {
-  "attributes.none": "No attributes were specified as searchable in the settings",
-  "attributes.none.btn": "Add searchable attributes",
-  "facets.none": "No attributes were specified as filterable in the settings",
-  "facets.none.btn": "Add filterable attributes",
-  "boost.none": "No boost has been created",
-  "boost.none.btn": "Create a boost",
-  "thesaurus.none": "No thesaurus has been created",
-  "thesaurus.none.btn": "Create a thesaurus",
   "default.customValue_zero": "You don't have any custom value",
   "default.customValue_one": "You are using <0>{{value}}</0> custom value",
   "default.customValue_other": "You are using <0>{{value}}</0> custom values",

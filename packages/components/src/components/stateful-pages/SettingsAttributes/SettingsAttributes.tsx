@@ -70,6 +70,9 @@ function SettingsAttributes(props: ITabContentProps): JSX.Element {
         resourceName="SourceField"
         setActiveFilters={setActiveFilters}
         showSearch
+        noAttributesProps={{
+          title: t('attributes.none'),
+        }}
       />
     </>
   )
