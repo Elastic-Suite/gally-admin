@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react'
+import React, { useCallback, useState } from 'react'
 import { useFilters, useResource } from '../../../hooks'
 import ProfileRunner from '../../atoms/profileRunner/ProfileRunner'
 import { ResourceTable } from '../../index'
@@ -33,6 +33,7 @@ function RunnableJobProfileGrid(props: IProps): JSX.Element {
 
   const resource = useResource('Job')
   const [activeFilters, setActiveFilters] = useFilters(resource)
+  const [showPendingJobsAlert, setShowPendingJobsAlert] = useState(true)
 
   const runProfile = useCallback(
     (profile: IJobProfileInfos) => {
@@ -54,9 +55,13 @@ function RunnableJobProfileGrid(props: IProps): JSX.Element {
         runProfileButtonLabel={runProfileButtonLabel}
         componentId={componentId}
       />
-      {Boolean(pendingJobsCount) && (
+      {Boolean(pendingJobsCount) && showPendingJobsAlert ? (
         <>
-          <Alert variant="info" style={{ marginBottom: 0 }}>
+          <Alert
+            variant="info"
+            style={{ marginBottom: 0 }}
+            onShut={(): void => setShowPendingJobsAlert(false)}
+          >
             <Trans
               ns="common"
               i18nKey="job.pendingCount"
@@ -66,7 +71,7 @@ function RunnableJobProfileGrid(props: IProps): JSX.Element {
             />
           </Alert>
         </>
-      )}
+      ) : null}
       <ResourceTable
         refreshTable={pendingJobsCount}
         activeFilters={activeFilters}
