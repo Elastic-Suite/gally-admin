@@ -1,0 +1,80 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RunnableJobProfileGrid should render correctly with default props 1`] = `
+<div>
+  <div
+    class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 css-12zq586-MuiPaper-root"
+  >
+    <div
+      class="css-rx6kk2"
+    >
+      profile
+    </div>
+    <div
+      class="MuiFormControl-root css-1girsym-MuiFormControl-root"
+    >
+      <div
+        class="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-1qqsdnr-MuiAutocomplete-root"
+        data-testid="dropdown|jobProfile|test"
+      >
+        <div
+          class="MuiFormControl-root css-hh3vi8-MuiFormControl-root"
+        >
+          <div
+            class="InputText__Wrapper css-17fp4jk"
+          >
+            <div
+              class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-33c5sc-MuiInputBase-root"
+            >
+              <input
+                aria-autocomplete="list"
+                aria-expanded="false"
+                aria-invalid="false"
+                autocapitalize="none"
+                autocomplete="off"
+                class="MuiInputBase-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-ngazp5-MuiInputBase-input"
+                data-testid="inputText|dropdown|jobProfile|test"
+                id=":r0:"
+                role="combobox"
+                spellcheck="false"
+                type="text"
+                value="Profile 1"
+              />
+              <div
+                class="MuiAutocomplete-endAdornment css-1q60rmi-MuiAutocomplete-endAdornment"
+              >
+                <button
+                  aria-label="form.open"
+                  class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiAutocomplete-popupIndicator css-qzbt6i-MuiButtonBase-root-MuiIconButton-root-MuiAutocomplete-popupIndicator"
+                  tabindex="-1"
+                  title="form.open"
+                  type="button"
+                >
+                  <ion-icon
+                    data-testid="ionicon|dropdownCollapsingIcon|dropdown|jobProfile|test"
+                    src="/images/ionicons/chevron-down.svg"
+                  />
+                  <span
+                    class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                  />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button
+      class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium css-1jv49re-MuiButtonBase-root-MuiButton-root"
+      data-testid="importExportProfileRun|test"
+      tabindex="0"
+      type="submit"
+    >
+      profile.run
+      <span
+        class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+      />
+    </button>
+  </div>
+</div>
+`;
