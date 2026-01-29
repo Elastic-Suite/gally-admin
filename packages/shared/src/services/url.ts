@@ -11,20 +11,29 @@ import { ISearchParameters } from '../types'
 import { removeEmptyParameters } from './api'
 
 function formatDateParameterForUrl(param: Date): string {
-  // We force the dd/MM/yyyy to we can guess a param in url is a date without knowing anything else
-  return param.toLocaleDateString('en-GB').replace(/-/g, '/')
+  // We force the dd/MM/yyyy HH:mm:ss to we can guess a param in url is a date without knowing anything else
+  const date = param.toLocaleDateString('en-GB').replace(/-/g, '/')
+  const time = param.toLocaleTimeString('en-GB', { hour12: false })
+  return `${date} ${time}`
 }
 
 function getRangeParameterFromUrl(param: string): (string | Date)[] {
   return param.split(rangeSeparator).map((v) => {
-    // Date parameters always follow the dd/MM/yyyy regardless of locale
-    const datePattern = /^(\d{2})\/(\d{2})\/(\d{4})$/
+    // Date parameters always follow the dd/MM/yyyy HH:mm:ss regardless of locale
+    const datePattern = /^(\d{2})\/(\d{2})\/(\d{4})\s(\d{2}):(\d{2}):(\d{2})$/
     const match = v.match(datePattern)
 
     if (match) {
-      const [, day, month, year] = match
-      // Create date from dd/MM/yyyy format
-      return new Date(Number(year), Number(month) - 1, Number(day))
+      const [, day, month, year, hours, minutes, seconds] = match
+      // Create date from dd/MM/yyyy HH:mm:ss format
+      return new Date(
+        Number(year),
+        Number(month) - 1,
+        Number(day),
+        Number(hours),
+        Number(minutes),
+        Number(seconds)
+      )
     }
 
     return v
@@ -44,6 +53,10 @@ function formatRangeParameterForUrl(
   return String(value)
 }
 
+function isValidRange(value: (string | number | Date)[]): boolean {
+  return value.some((v) => v !== '' && v !== null)
+}
+
 export function getUrl(
   urlParam: string | URL,
   searchParameters: ISearchParameters = {}
@@ -53,7 +66,7 @@ export function getUrl(
   Object.entries(searchParameters).forEach(([key, value]) => {
     if (key.endsWith('[between]')) {
       value = value as (string | number | Date)[]
-      if (value[0] !== '' || value[1] !== '') {
+      if (isValidRange(value as (string | number | Date)[])) {
         url.searchParams.append(key, formatRangeParameterForUrl(value))
       }
     } else if (value instanceof Array) {
