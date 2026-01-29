@@ -42,7 +42,7 @@ export default function Status(props: IProps): JSX.Element {
   return (
     <Chip
       data-testid={generateTestId(TestId.STATUS, value)}
-      label={(translatedValue.label as string) ?? value}
+      label={(translatedValue?.label as string) ?? value}
       color={jobStatusColorMap[value]}
       variant="filled"
     />
