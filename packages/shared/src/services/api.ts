@@ -138,7 +138,8 @@ export function fetchApiFile(
     return {
       content,
       contentType: response.headers.get(contentTypeHeader),
-      filename: extractFilename(response.headers.get(contentDispositionHeader)),
+      filename:
+        extractFilename(response.headers.get(contentDispositionHeader)) ?? '',
       status:
         response.status !== 200 ? LoadStatus.FAILED : LoadStatus.SUCCEEDED,
     }

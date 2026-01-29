@@ -46,8 +46,9 @@ function FileDownloader(props: IProps): JSX.Element {
 
   function handleFileDownload(): void {
     if (!fileInfos && !isLoading) {
-      fetchApiFile(fileAPIUrl).then(
-        ({ content, contentType, filename, status }) => {
+      setIsLoading(true)
+      fetchApiFile(fileAPIUrl)
+        .then(({ content, contentType, filename, status }) => {
           if (status !== LoadStatus.SUCCEEDED) {
             enqueueSnackbar(t('download.error'), {
               onShut: closeSnackbar,
@@ -58,8 +59,14 @@ function FileDownloader(props: IProps): JSX.Element {
             triggerDownload({ content, contentType, filename })
           }
           setIsLoading(false)
-        }
-      )
+        })
+        .catch(() => {
+          enqueueSnackbar(t('download.error'), {
+            onShut: closeSnackbar,
+            variant: 'error',
+          })
+          setIsLoading(false)
+        })
     }
 
     if (fileInfos) {
