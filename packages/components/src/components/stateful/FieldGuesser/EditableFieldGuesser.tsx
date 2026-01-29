@@ -196,10 +196,24 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
       } = props
 
       const handleDateRangeChange = (value: unknown): void => {
-        handleChange([
-          (value as IDoubleDatePickerValues).fromDate,
-          (value as IDoubleDatePickerValues).toDate,
-        ])
+        const dateRange = value as IDoubleDatePickerValues
+        // Ensuring whole day range from 00:00:00 to 23:59:59
+        // So user can select the same day in "from" and "to"
+        const startValue = dateRange.fromDate
+          ? ((): Date => {
+              const date = new Date(dateRange.fromDate)
+              date.setHours(0, 0, 0, 0)
+              return date
+            })()
+          : null
+        const endValue = dateRange.toDate
+          ? ((): Date => {
+              const date = new Date(dateRange.toDate)
+              date.setHours(23, 59, 59, 999)
+              return date
+            })()
+          : null
+        handleChange([startValue, endValue])
       }
 
       const formattedValue: IDoubleDatePickerValues = Array.isArray(value)

@@ -25,6 +25,7 @@ import { HydraError, getFieldName, isHydraError, isJSonldType } from './hydra'
 import { AuthError, isError } from './network'
 import { storageGet, storageRemove } from './storage'
 import { getListApiParameters, getUrl } from './url'
+import { createUTCDateSafe } from './format'
 
 export class ApiError extends Error {}
 
@@ -157,7 +158,7 @@ export function removeEmptyParameters(
 }
 
 function formatFilterValue(value: IParam): boolean | number | string {
-  return value instanceof Date ? value.toISOString().split('T')[0] : value
+  return value instanceof Date ? value.toISOString() : value
 }
 
 function formatRangeFilterKeys(key: string, value: IParam[]): string[] {
@@ -168,6 +169,18 @@ function formatRangeFilterKeys(key: string, value: IParam[]): string[] {
   ]
 }
 
+function formatDateRangeStart(value: Date): Date {
+  const startValue = createUTCDateSafe(value)
+  startValue.setUTCHours(0, 0, 0, 0)
+  return startValue
+}
+
+function formatDateRangeEnd(value: Date): Date {
+  const endValue = createUTCDateSafe(value)
+  endValue.setUTCHours(23, 59, 59, 999)
+  return endValue
+}
+
 function formatRangeFilterKeyValues(
   key: string,
   value: IParam[]
@@ -175,10 +188,14 @@ function formatRangeFilterKeyValues(
   const filterKeys = formatRangeFilterKeys(key, value)
   const rangeFilterKeyValues: [string, boolean | number | string][] = []
   if (value[0] !== '') {
-    rangeFilterKeyValues.push([filterKeys[0], formatFilterValue(value[0])])
+    const rangeStart =
+      value[0] instanceof Date ? formatDateRangeStart(value[0]) : value[0]
+    rangeFilterKeyValues.push([filterKeys[0], formatFilterValue(rangeStart)])
   }
   if (value[1] !== '') {
-    rangeFilterKeyValues.push([filterKeys[1], formatFilterValue(value[1])])
+    const rangeEnd =
+      value[1] instanceof Date ? formatDateRangeEnd(value[1]) : value[1]
+    rangeFilterKeyValues.push([filterKeys[1], formatFilterValue(rangeEnd)])
   }
   return rangeFilterKeyValues
 }

@@ -63,26 +63,37 @@ function getDateFilterLabel(value: Date, locale: string): string {
     ? value.toLocaleDateString('fr-FR').replace(/-/g, '/')
     : value.toLocaleDateString('en-US').replace(/-/g, '/')
 }
+
+function formatRangeLabel(
+  startLabel: string | null,
+  endLabel: string | null
+): string {
+  if (startLabel && endLabel) {
+    return `${startLabel} - ${endLabel}`
+  } else if (startLabel) {
+    return `>= ${startLabel}`
+  } else if (endLabel) {
+    return `<= ${endLabel}`
+  }
+  return ''
+}
+
 function getRangeFilterLabel(
   value: (string | number | Date)[],
   locale: string
 ): string {
+  let startLabel: string | number | Date = value[0] ?? null
+  let endLabel: string | number | Date = value[1] ?? null
   if (value.every((v) => v instanceof Date || !v)) {
     const [start, end] = value as Date[]
-    const startLabel = start ? getDateFilterLabel(start, locale) : null
-    const endLabel = end ? getDateFilterLabel(end, locale) : null
-
-    if (startLabel && endLabel) {
-      return `${startLabel} - ${endLabel}`
-    } else if (startLabel) {
-      return `>= ${startLabel}`
-    } else if (endLabel) {
-      return `<= ${endLabel}`
-    }
-    return ''
+    startLabel = start ? getDateFilterLabel(start, locale) : null
+    endLabel = end ? getDateFilterLabel(end, locale) : null
   }
 
-  return value.join('-')
+  return formatRangeLabel(
+    startLabel as string | null,
+    endLabel as string | null
+  )
 }
 
 function getActiveFilterLabel(

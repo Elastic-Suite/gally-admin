@@ -280,7 +280,7 @@ export function valueInitializer(type: string, input?: string): unknown {
 }
 
 export function initResourceData(resource: IResource): Record<string, unknown> {
-  const visibleChamp = Object.fromEntries(
+  return Object.fromEntries(
     resource.supportedProperty
       .filter((property) => property?.gally?.visible)
       .map((item) => {
@@ -293,5 +293,4 @@ export function initResourceData(resource: IResource): Record<string, unknown> {
         ]
       })
   )
-  return visibleChamp
 }

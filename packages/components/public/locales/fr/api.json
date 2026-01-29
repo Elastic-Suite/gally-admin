@@ -76,5 +76,11 @@
   "When several values are selected in a facet/filter, the default behavior is to combine them with a logical OR (\"red\" OR \"blue\"). But a logical AND can be handy for some attributes (\"egg free\" AND \"gluten free\", \"waterproof AND lightweight AND warm\").": "Quand plusieurs valeurs sont sélectionnées dans une facette/un filtre, le comportement par défaut est de les combiner avec un OU logique (\"rouge\" OU \"bleu\"). Mais un ET logique peut être plus adapté pour certains attributs (\"sans oeuf\" ET \"sans gluten\", \"imperméable ET léger ET chaud\").",
   "Facet internal logic": "Logique interne de la facette",
   "Import thesaurus": "Importer un thesaurus",
-  "Export thesaurus": "Exporter un thesaurus"
+  "Export thesaurus": "Exporter un thesaurus",
+  "Profile": "Profil",
+  "Status": "Statut",
+  "Created at": "Date de création",
+  "Finished at": "Date de fin",
+  "File": "Fichier",
+  "Logs": "Logs"
 }
