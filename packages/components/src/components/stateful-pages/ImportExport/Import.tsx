@@ -16,7 +16,9 @@ function AdminImport(props: IProps): JSX.Element {
   const { profiles, defaultProfile } = props
   const { t } = useTranslation('importExport')
   const [isUploadFileModalOpen, setIsUploadFileModalOpen] = useState(false)
-  const [currentProfile, setCurrentProfile] = useState<IJobProfileInfos>(null)
+  const [currentProfile, setCurrentProfile] = useState<IJobProfileInfos | null>(
+    null
+  )
   const [pendingJobsCount, setPendingJobsCount] = useState(0)
 
   const fixedFilters = useMemo(
@@ -53,7 +55,7 @@ function AdminImport(props: IProps): JSX.Element {
   return (
     <>
       <RunnableProfileGrid
-        defaultProfile={defaultProfile}
+        defaultProfile={currentProfile ?? defaultProfile}
         fixedFilters={fixedFilters}
         profiles={profiles}
         onProfileRun={handleProfileRun}
