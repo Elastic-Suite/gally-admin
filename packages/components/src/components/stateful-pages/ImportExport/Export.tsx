@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import {
   IJobProfileInfos,
   IJobProfiles,
@@ -20,6 +20,9 @@ function AdminExport(props: IProps): JSX.Element {
   const jobResource = useResource('Job')
   const { create: createJob } = useResourceOperations(jobResource)
   const [pendingJobsCount, setPendingJobsCount] = useState(0)
+  const [currentProfile, setCurrentProfile] = useState<IJobProfileInfos | null>(
+    null
+  )
 
   const fixedFilters = useMemo(
     () => ({
@@ -27,6 +30,15 @@ function AdminExport(props: IProps): JSX.Element {
     }),
     []
   )
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search)
+    const profileFromUrl = params.get('export_profile')
+
+    if (profileFromUrl && profiles[profileFromUrl]) {
+      setCurrentProfile(profiles[profileFromUrl])
+    }
+  }, [profiles])
 
   async function handleProfileRun(profile: IJobProfileInfos): Promise<void> {
     const sendingJobToApi = await createJob({
@@ -53,7 +65,7 @@ function AdminExport(props: IProps): JSX.Element {
   return (
     <>
       <RunnableProfileGrid
-        defaultProfile={defaultProfile}
+        defaultProfile={currentProfile ?? defaultProfile}
         fixedFilters={fixedFilters}
         profiles={profiles}
         onProfileRun={handleProfileRun}
