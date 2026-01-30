@@ -2,6 +2,7 @@ import {
   apiUrl,
   authErrorCodes,
   authHeader,
+  contentDispositionHeader,
   contentTypeHeader,
   defaultPageSize,
   languageHeader,
@@ -12,17 +13,19 @@ import {
   IFetch,
   IFetchApi,
   IHydraResponse,
+  IParam,
   IResource,
   IResponseError,
   ISearchParameters,
   LoadStatus,
 } from '../types'
 
-import { fetchJson } from './fetch'
+import { fetchJson, fetchRaw } from './fetch'
 import { HydraError, getFieldName, isHydraError, isJSonldType } from './hydra'
 import { AuthError, isError } from './network'
 import { storageGet, storageRemove } from './storage'
 import { getListApiParameters, getUrl } from './url'
+import { createUTCDateSafe } from './format'
 
 export class ApiError extends Error {}
 
@@ -51,10 +54,22 @@ export function fetchApi<T extends object>(
 ): Promise<T> {
   const apiUrl =
     typeof resource === 'string' ? getApiUrl(resource) : getApiUrl(resource.url)
+  const optionsHeaders = (options.headers as Record<string, string>) || {}
+  const shouldSetContentType = !(
+    contentTypeHeader in optionsHeaders && !optionsHeaders[contentTypeHeader]
+  )
+
+  // Filter out empty content type from options headers
+  // This is useful for multipart/form-data (file upload) that let the browser handle
+  // The content-type and the file boundaries automatically
+  const filteredOptionsHeaders = Object.fromEntries(
+    Object.entries(optionsHeaders).filter(([_, value]) => Boolean(value))
+  )
+
   const headers: Record<string, string> = {
     [languageHeader]: language,
-    [contentTypeHeader]: 'application/ld+json',
-    ...(options.headers as Record<string, string>),
+    ...(shouldSetContentType && { [contentTypeHeader]: 'application/ld+json' }),
+    ...filteredOptionsHeaders,
   }
   const token = storageGet(tokenStorageKey)
   if (secure && token) {
@@ -80,6 +95,58 @@ export function fetchApi<T extends object>(
   })
 }
 
+/**
+ * Extracts the filename from a Content-Disposition header.
+ */
+function extractFilename(contentDisposition: string | null): string | null {
+  if (!contentDisposition) {
+    return null
+  }
+
+  const filenameMatch = contentDisposition.match(
+    /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/
+  )
+  if (!filenameMatch?.[1]) {
+    return null
+  }
+
+  return filenameMatch[1].replace(/['"]/g, '')
+}
+
+export function fetchApiFile(
+  resource: IResource | string,
+  secure = true
+): Promise<{
+  content: string
+  contentType: string | null
+  filename: string
+  status: LoadStatus
+}> {
+  const token = storageGet(tokenStorageKey)
+  const headers: Record<string, string> = {}
+  if (secure && token) {
+    headers[authHeader] = `Bearer ${token}`
+  }
+
+  const apiUrl =
+    typeof resource === 'string' ? getApiUrl(resource) : getApiUrl(resource.url)
+
+  return fetchRaw(apiUrl, { headers }).then(({ content, response }) => {
+    if (authErrorCodes.includes(response.status)) {
+      storageRemove(tokenStorageKey)
+      throw new AuthError('Unauthorized/Forbidden')
+    }
+    return {
+      content,
+      contentType: response.headers.get(contentTypeHeader),
+      filename:
+        extractFilename(response.headers.get(contentDispositionHeader)) ?? '',
+      status:
+        response.status !== 200 ? LoadStatus.FAILED : LoadStatus.SUCCEEDED,
+    }
+  })
+}
+
 export function removeEmptyParameters(
   searchParameters: ISearchParameters = {}
 ): ISearchParameters {
@@ -90,27 +157,64 @@ export function removeEmptyParameters(
   )
 }
 
+function formatFilterValue(value: IParam): boolean | number | string {
+  return value instanceof Date ? value.toISOString() : value
+}
+
+function formatRangeFilterKeys(key: string, value: IParam[]): string[] {
+  const baseKey = getFieldName(key)
+  return [
+    value[0] instanceof Date ? `${baseKey}[after]` : `${baseKey}[gte]`,
+    value[1] instanceof Date ? `${baseKey}[before]` : `${baseKey}[lte]`,
+  ]
+}
+
+function formatDateRangeStart(value: Date): Date {
+  const startValue = createUTCDateSafe(value)
+  startValue.setUTCHours(0, 0, 0, 0)
+  return startValue
+}
+
+function formatDateRangeEnd(value: Date): Date {
+  const endValue = createUTCDateSafe(value)
+  endValue.setUTCHours(23, 59, 59, 999)
+  return endValue
+}
+
+function formatRangeFilterKeyValues(
+  key: string,
+  value: IParam[]
+): [string, boolean | number | string][] {
+  const filterKeys = formatRangeFilterKeys(key, value)
+  const rangeFilterKeyValues: [string, boolean | number | string][] = []
+  if (value[0] !== '') {
+    const rangeStart =
+      value[0] instanceof Date ? formatDateRangeStart(value[0]) : value[0]
+    rangeFilterKeyValues.push([filterKeys[0], formatFilterValue(rangeStart)])
+  }
+  if (value[1] !== '') {
+    const rangeEnd =
+      value[1] instanceof Date ? formatDateRangeEnd(value[1]) : value[1]
+    rangeFilterKeyValues.push([filterKeys[1], formatFilterValue(rangeEnd)])
+  }
+  return rangeFilterKeyValues
+}
+
 export function getApiFilters(
   filters: ISearchParameters = {}
 ): ISearchParameters {
   return Object.fromEntries(
-    Object.entries(filters).reduce<
-      [string, string | number | boolean | (string | number | boolean)[]][]
-    >((acc, [key, value]) => {
-      if (key.endsWith('[between]')) {
-        const baseKey = getFieldName(key)
-        value = value as (string | number)[]
-        if (value[0] !== '') {
-          acc.push([`${baseKey}[gte]`, value[0]])
+    Object.entries(filters).reduce<[string, IParam | IParam[]][]>(
+      (acc, [key, value]) => {
+        if (key.endsWith('[between]')) {
+          acc.push(...formatRangeFilterKeyValues(key, value as IParam[]))
+        } else {
+          acc.push([key, formatFilterValue(value as IParam)])
         }
-        if (value[1] !== '') {
-          acc.push([`${baseKey}[lte]`, value[1]])
-        }
-      } else {
-        acc.push([key, value])
-      }
-      return acc
-    }, [])
+        return acc
+      },
+      []
+    )
   )
 }
 

@@ -10,6 +10,53 @@ import { ISearchParameters } from '../types'
 
 import { removeEmptyParameters } from './api'
 
+function formatDateParameterForUrl(param: Date): string {
+  // We force the dd/MM/yyyy HH:mm:ss to we can guess a param in url is a date without knowing anything else
+  const date = param.toLocaleDateString('en-GB').replace(/-/g, '/')
+  const time = param.toLocaleTimeString('en-GB', { hour12: false })
+  return `${date} ${time}`
+}
+
+function getRangeParameterFromUrl(param: string): (string | Date)[] {
+  return param.split(rangeSeparator).map((v) => {
+    // Date parameters always follow the dd/MM/yyyy HH:mm:ss regardless of locale
+    const datePattern = /^(\d{2})\/(\d{2})\/(\d{4})\s(\d{2}):(\d{2}):(\d{2})$/
+    const match = v.match(datePattern)
+
+    if (match) {
+      const [, day, month, year, hours, minutes, seconds] = match
+      // Create date from dd/MM/yyyy HH:mm:ss format
+      return new Date(
+        Number(year),
+        Number(month) - 1,
+        Number(day),
+        Number(hours),
+        Number(minutes),
+        Number(seconds)
+      )
+    }
+
+    return v
+  })
+}
+
+function formatRangeParameterForUrl(
+  value: ISearchParameters[keyof ISearchParameters]
+): string {
+  if (Array.isArray(value)) {
+    return value
+      .map((v) =>
+        v instanceof Date ? formatDateParameterForUrl(v) : String(v ?? '')
+      )
+      .join(rangeSeparator)
+  }
+  return String(value)
+}
+
+function isValidRange(value: (string | number | Date)[]): boolean {
+  return value.some((v) => v !== '' && v !== null)
+}
+
 export function getUrl(
   urlParam: string | URL,
   searchParameters: ISearchParameters = {}
@@ -18,9 +65,9 @@ export function getUrl(
 
   Object.entries(searchParameters).forEach(([key, value]) => {
     if (key.endsWith('[between]')) {
-      value = value as (string | number)[]
-      if (value[0] !== '' || value[1] !== '') {
-        url.searchParams.append(key, value.join(rangeSeparator))
+      value = value as (string | number | Date)[]
+      if (isValidRange(value as (string | number | Date)[])) {
+        url.searchParams.append(key, formatRangeParameterForUrl(value))
       }
     } else if (value instanceof Array) {
       value.forEach((value) => url.searchParams.append(key, String(value)))
@@ -103,7 +150,7 @@ export function getParametersFromUrl(url: URL): ISearchParameters {
   return Object.fromEntries(
     [...url.searchParams.entries()].reduce((acc, [key, value]) => {
       if (key.endsWith('[between]')) {
-        acc.push([key, value.split(rangeSeparator)])
+        acc.push([key, getRangeParameterFromUrl(value)])
       } else if (key.endsWith('[]')) {
         const existingValue = acc.find(([accKey]) => accKey === key)?.[1]
         if (existingValue) {

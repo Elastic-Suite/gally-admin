@@ -70,7 +70,7 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
       | boolean
       | number
       | string
-      | (boolean | number | string)[]
+      | (boolean | number | string | Date)[]
       | IDoubleDatePickerValues
       | IRequestType
       | IRuleCombination
@@ -184,6 +184,59 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
           helperText={helperText}
           componentId={name}
         />
+      )
+    }
+
+    case DataContentType.DATE: {
+      const {
+        multipleInputConfiguration,
+        multipleValueFormat,
+        requestTypeConfigurations,
+        ...doubleDatePickerProps
+      } = props
+
+      const handleDateRangeChange = (value: unknown): void => {
+        const dateRange = value as IDoubleDatePickerValues
+        // Ensuring whole day range from 00:00:00 to 23:59:59
+        // So user can select the same day in "from" and "to"
+        const startValue = dateRange.fromDate
+          ? ((): Date => {
+              const date = new Date(dateRange.fromDate)
+              date.setHours(0, 0, 0, 0)
+              return date
+            })()
+          : null
+        const endValue = dateRange.toDate
+          ? ((): Date => {
+              const date = new Date(dateRange.toDate)
+              date.setHours(23, 59, 59, 999)
+              return date
+            })()
+          : null
+        handleChange([startValue, endValue])
+      }
+
+      const formattedValue: IDoubleDatePickerValues = Array.isArray(value)
+        ? {
+            fromDate: value[0] && value[0] !== '' ? new Date(value[0]) : null,
+            toDate: value[1] && value[1] !== '' ? new Date(value[1]) : null,
+          }
+        : { fromDate: null, toDate: null }
+
+      return (
+        <Box>
+          <DoubleDatePicker
+            {...doubleDatePickerProps}
+            placeholder={placeholder}
+            infoTooltip={infoTooltip}
+            value={formattedValue}
+            onChange={handleDateRangeChange}
+            error={error}
+            helperText={helperText}
+            label={label}
+            componentId={name}
+          />
+        </Box>
       )
     }
 

@@ -23,7 +23,7 @@ export function useResource(
   mainContext: IMainContext = IMainContext.GRID
 ): IResource {
   const api = useAppSelector(selectApi)
-  const { pathname } = useRouter()
+  const { asPath } = useRouter()
   return useMemo(() => {
     const resource = getResource(api, resourceName)
     return {
@@ -31,19 +31,19 @@ export function useResource(
       supportedProperty:
         resource?.supportedProperty instanceof Array
           ? resource?.supportedProperty.map((field) =>
-              updatePropertiesAccordingToPath(field, pathname, mainContext)
+              updatePropertiesAccordingToPath(field, asPath, mainContext)
             )
           : resource?.supportedProperty
           ? [
               updatePropertiesAccordingToPath(
                 resource.supportedProperty,
-                pathname,
+                asPath,
                 mainContext
               ),
             ]
           : resource?.supportedProperty,
     }
-  }, [api, pathname, mainContext, resourceName])
+  }, [api, asPath, mainContext, resourceName])
 }
 
 export function useResourceOperations<T extends IHydraMember>(
@@ -64,11 +64,20 @@ export function useResourceOperations<T extends IHydraMember>(
   )
 
   const create = useCallback(
-    (item: Omit<T, 'id' | '@id' | '@type'>): Promise<T | IError> =>
-      fetchApi(apiUrl, undefined, {
-        body: JSON.stringify(item),
+    (item: Omit<T, 'id' | '@id' | '@type'>): Promise<T | IError> => {
+      // Check if item is FormData (file upload)
+      const isFormData = item instanceof FormData
+
+      const requestOptions: RequestInit = {
+        body: isFormData ? item : JSON.stringify(item),
         method: Method.POST,
-      }),
+        headers: {
+          [contentTypeHeader]: isFormData ? '' : 'application/ld+json',
+        },
+      }
+
+      return fetchApi(apiUrl, undefined, requestOptions)
+    },
     [apiUrl, fetchApi]
   )
 
