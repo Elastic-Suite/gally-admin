@@ -8,6 +8,7 @@ import {
   ISearchParameters,
 } from '@elastic-suite/gally-admin-shared'
 import Alert from '../../atoms/Alert/Alert'
+import { INoAttributesProps } from '../../atoms/noAttributes/NoAttributes'
 import { Trans } from 'next-i18next'
 
 interface IProps {
@@ -18,6 +19,7 @@ interface IProps {
   pendingJobsCount: number
   runProfileButtonLabel?: string
   componentId?: string
+  noAttributesProps?: INoAttributesProps
 }
 
 function RunnableJobProfileGrid(props: IProps): JSX.Element {
@@ -29,6 +31,7 @@ function RunnableJobProfileGrid(props: IProps): JSX.Element {
     pendingJobsCount = 0,
     runProfileButtonLabel,
     componentId,
+    noAttributesProps,
   } = props
 
   const resource = useResource('Job')
@@ -79,6 +82,7 @@ function RunnableJobProfileGrid(props: IProps): JSX.Element {
         resourceName="Job"
         setActiveFilters={setActiveFilters}
         showSearch={false}
+        noAttributesProps={noAttributesProps}
       />
     </>
   )

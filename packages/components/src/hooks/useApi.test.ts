@@ -305,7 +305,11 @@ describe('useApi', () => {
         'en',
         'https://localhost/metadata',
         undefined,
-        { body: '{"hello":"world"}', method: 'POST' },
+        {
+          body: '{"hello":"world"}',
+          headers: { 'Content-Type': 'application/ld+json' },
+          method: 'POST',
+        },
         true
       )
     })

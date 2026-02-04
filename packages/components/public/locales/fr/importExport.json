@@ -9,5 +9,7 @@
   "error.createImportJob": "Une erreur est survenue durant la création de la tâche d'import",
   "error.createExportJob": "Une erreur est survenue durant la création de la tâche d'export",
   "success.importJobCreated": "Tâche d'import créée avec succès",
-  "success.exportJobCreated": "Tâche d'export créée avec succès"
+  "success.exportJobCreated": "Tâche d'export créée avec succès",
+  "import.none": "Aucun import n'a été créé",
+  "export.none": "Aucun export n'a été créé"
 }

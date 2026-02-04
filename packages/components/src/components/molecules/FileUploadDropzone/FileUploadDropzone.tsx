@@ -1,5 +1,5 @@
 import React, { ChangeEvent, DragEvent, useRef, useState } from 'react'
-import { Alert, Box, Typography, styled } from '@mui/material'
+import { Alert, Box, Theme, Typography, styled } from '@mui/material'
 import CloudUploadIcon from '@mui/icons-material/CloudUpload'
 import UploadFileIcon from '@mui/icons-material/UploadFile'
 import Button from '../../atoms/buttons/Button'
@@ -176,7 +176,7 @@ function FileUploadDropzone(props: IFileUploadDropzoneProps): JSX.Element {
             <UploadFileIcon
               sx={{
                 fontSize: 64,
-                color: (theme) => theme.palette.success.main,
+                color: (theme: Theme) => theme.palette.success.main,
                 mb: 2,
               }}
             />
@@ -201,7 +201,7 @@ function FileUploadDropzone(props: IFileUploadDropzoneProps): JSX.Element {
             <CloudUploadIcon
               sx={{
                 fontSize: 64,
-                color: (theme) => theme.palette.primary.main,
+                color: (theme: Theme) => theme.palette.primary.main,
                 mb: 2,
               }}
             />
