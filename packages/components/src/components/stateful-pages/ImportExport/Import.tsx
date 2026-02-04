@@ -62,6 +62,9 @@ function AdminImport(props: IProps): JSX.Element {
         pendingJobsCount={pendingJobsCount}
         runProfileButtonLabel={t('import.run')}
         componentId="import"
+        noAttributesProps={{
+          title: t('import.none'),
+        }}
       />
       <UploadJobFileModal
         isOpen={isUploadFileModalOpen}

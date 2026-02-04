@@ -72,6 +72,9 @@ function AdminExport(props: IProps): JSX.Element {
         pendingJobsCount={pendingJobsCount}
         runProfileButtonLabel={t('export.run')}
         componentId="export"
+        noAttributesProps={{
+          title: t('export.none'),
+        }}
       />
     </>
   )

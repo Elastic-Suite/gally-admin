@@ -156,8 +156,7 @@ export function getFilter(mapping: IMapping, t: TFunction): IFieldConfig {
     editable: true,
     id,
     input:
-      input !== DataContentType.DATE &&
-      mapping.variable.endsWith('[between]')
+      input !== DataContentType.DATE && mapping.variable.endsWith('[between]')
         ? DataContentType.RANGE
         : input,
     label: mapping.field
@@ -181,10 +180,12 @@ function isDateFilterOperatorMapping(mapping: IHydraMapping): boolean {
 }
 
 function isOperatorMapping(mapping: IHydraMapping): boolean {
-  return mapping.variable.endsWith('[lt]') ||
-  mapping.variable.endsWith('[gt]') ||
-  mapping.variable.endsWith('[lte]') ||
-  mapping.variable.endsWith('[gte]')
+  return (
+    mapping.variable.endsWith('[lt]') ||
+    mapping.variable.endsWith('[gt]') ||
+    mapping.variable.endsWith('[lte]') ||
+    mapping.variable.endsWith('[gte]')
+  )
 }
 
 function extractDateMappings(
@@ -229,7 +230,8 @@ export function getMappings<T extends IHydraMember>(
 
   const mappings: IMapping[] = apiData?.['hydra:search']['hydra:mapping']
     .filter(
-      (mapping) => !isOperatorMapping(mapping) && !isDateFilterOperatorMapping(mapping)
+      (mapping) =>
+        !isOperatorMapping(mapping) && !isDateFilterOperatorMapping(mapping)
     )
     .map((mapping) => ({
       ...mapping,

@@ -9,5 +9,7 @@
   "error.createImportJob": "An error has occurred during import creation",
   "error.createExportJob": "An error has occurred during export creation",
   "success.importJobCreated": "Import job created successfully",
-  "success.exportJobCreated": "Export job created successfully"
+  "success.exportJobCreated": "Export job created successfully",
+  "import.none": "No import has been created",
+  "export.none": "No export has been created"
 }

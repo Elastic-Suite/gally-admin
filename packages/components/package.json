@@ -73,6 +73,7 @@
     "@elastic-suite/gally-admin-shared": "^2.2.1",
     "@emotion/react": "11.10.4",
     "@emotion/styled": "11.10.4",
+    "@mui/icons-material": "5.10.6",
     "@mui/material": "5.10.5",
     "@mui/x-charts": "6.19.8",
     "@mui/x-date-pickers": "5.0.5",
