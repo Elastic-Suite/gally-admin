@@ -48,7 +48,7 @@ function ResourceForm(props: IProps): JSX.Element {
   const { t } = useTranslation('resourceForm')
   const resource = useResource(resourceName, IMainContext.FORM)
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const { replace, create, remove } = useResourceOperations<any>(resource)
+  const { update, create, remove } = useResourceOperations<any>(resource)
   const [errors, setErrors] = useState<IErrorsForm>()
 
   const router = useRouter()
@@ -78,7 +78,7 @@ function ResourceForm(props: IProps): JSX.Element {
     setIsLoading(true)
     let sendingToApi
     if (id) {
-      sendingToApi = await replace(data)
+      sendingToApi = await update(id, data)
     } else {
       sendingToApi = await create(data)
     }

@@ -52,7 +52,7 @@ const Paragraph = styled('p')(({ theme }) => ({
 }))
 
 function isObjectNotEmpty(object: object): boolean {
-  return Object.values(object).some((value) => value)
+  return Object.values(object).some((value) => value || value === false)
 }
 export interface IResourceTable {
   Field?: FunctionComponent<IFieldGuesserProps>
