@@ -23,6 +23,7 @@ function AdminUserGrid(): JSX.Element {
       editLink="user/edit"
       hideTitle
       headTitle={null}
+      newLink="./user/create"
     />
   )
 }

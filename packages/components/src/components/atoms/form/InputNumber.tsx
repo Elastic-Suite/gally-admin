@@ -1,6 +1,6 @@
 import React, { SyntheticEvent, useEffect, useState } from 'react'
 import InputText, { IInputTextErrorProps } from './InputText'
-import { TestId } from '../../../utils/testIds'
+import { TestId, generateTestId } from '../../../utils/testIds'
 
 interface IFieldNumberProps {
   numberType?: 'integer' | 'float'
@@ -12,7 +12,7 @@ interface IInputTextNumberProps
     Omit<IInputTextErrorProps, 'value'> {}
 
 function InputNumber(props: IInputTextNumberProps): JSX.Element {
-  const { numberType, value, ...inputProps } = props
+  const { numberType, value, componentId, ...inputProps } = props
 
   const [localValue, setLocalValue] = useState<string | number>(value)
 
@@ -34,7 +34,9 @@ function InputNumber(props: IInputTextNumberProps): JSX.Element {
 
     // Case when nothing remains after replacing
     if (formattedValue.trim() === '') {
-      setLocalValue(value)
+      setLocalValue(null)
+      // Call the original onChange if it exists
+      inputProps.onChange?.(null, e)
       return
     }
 
@@ -105,7 +107,7 @@ function InputNumber(props: IInputTextNumberProps): JSX.Element {
     return (
       <InputText
         {...inputProps}
-        componentId={TestId.INPUT_INTEGER}
+        componentId={generateTestId(TestId.INPUT_INTEGER, componentId)}
         onChange={handleIntegerChange}
         type="number"
         value={localValue}
@@ -118,7 +120,7 @@ function InputNumber(props: IInputTextNumberProps): JSX.Element {
     <InputText
       {...inputProps}
       inputProps={{ ...inputProps.inputProps, inputMode: 'decimal' }}
-      componentId={TestId.INPUT_FLOAT}
+      componentId={generateTestId(TestId.INPUT_FLOAT, componentId)}
       onChange={handleFloatChange}
       type="text"
       value={localValue}
