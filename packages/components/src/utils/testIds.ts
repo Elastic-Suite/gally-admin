@@ -113,8 +113,8 @@ export enum TestId {
   CONFIGURATION_FORM = 'configurationForm',
   IMPORT_EXPORT_PROFILE_RUN = 'importExportProfileRun',
   LOGS = 'logs',
-  JOBPROFILE = 'jobProfile',
   JOBFILE = 'jobFile',
+  JOBPROFILE = 'jobProfile',
   STATUS = 'status',
   UPLOAD_JOB_FILE_MODAL = 'uploadJobFileModal',
   UPLOAD_JOB_FILE_MODAL_TITLE = 'uploadJobFileModalTitle',
@@ -123,13 +123,22 @@ export enum TestId {
   FILE_DOWNLOADER = 'fileDownloader',
 }
 
-type ItemId = `|${string}` | ''
+export const TEST_ID_SEPARATOR = '|'
+
+type ItemIds = (TestId | string)[]
+type ItemId = `${typeof TEST_ID_SEPARATOR}${TestId | string}` | ''
 export type FullTestId = `${TestId}${ItemId}`
 
-function normalizeItemId(itemId?: string): ItemId {
-  return itemId ? `|${itemId}` : ''
+function normalizeItemId(itemIds: ItemIds): ItemId {
+  const filtered = itemIds.filter((itemId) => itemId)
+  return filtered.length > 0
+    ? (`${TEST_ID_SEPARATOR}${filtered.join(TEST_ID_SEPARATOR)}` as ItemId)
+    : ''
 }
 
-export function generateTestId(testId: TestId, itemId?: string): FullTestId {
-  return `${testId}${normalizeItemId(itemId)}`
+export function generateTestId(
+  testId: TestId,
+  ...itemIds: ItemIds
+): FullTestId {
+  return `${testId}${normalizeItemId(itemIds)}`
 }
