@@ -67,7 +67,7 @@ function Grid(props: IProps): JSX.Element {
         hideTitle={hideTitle}
         headTitle={headTitle}
       >
-        {hasJobButtons && resource.gally.jobs ? (
+        {hasJobButtons && resource?.gally?.jobs ? (
           <JobButtons
             resourceName={resourceName}
             jobButtons={resource.gally.jobs}
