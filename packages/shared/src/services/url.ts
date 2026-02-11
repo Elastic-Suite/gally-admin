@@ -189,8 +189,9 @@ export function getPageParameter(
   prefix?: string
 ): number {
   const pageEntry = Object.entries(parameters).find(
-    ([key]) => key.replace(`_${prefix}`, '') === currentPage
+    ([key]) => key.replace(`${prefix}_`, '') === currentPage
   )
+  console.log(parameters)
   return Number(pageEntry?.[1] ?? 0)
 }
 
@@ -199,7 +200,7 @@ export function getSearchParameter(
   prefix?: string
 ): string {
   const pageEntry = Object.entries(parameters).find(
-    ([key]) => key.replace(`_${prefix}`, '') === searchParameter
+    ([key]) => key.replace(`${prefix}_`, '') === searchParameter
   )
   return String(pageEntry?.[1] ?? '')
 }
