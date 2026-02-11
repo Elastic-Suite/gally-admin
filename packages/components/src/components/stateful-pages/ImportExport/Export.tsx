@@ -10,12 +10,13 @@ import { useTranslation } from 'next-i18next'
 import { useResource, useResourceOperations } from '../../../hooks'
 
 interface IProps {
+  active?: boolean
   profiles: IJobProfiles
   defaultProfile: IJobProfileInfos
 }
 
 function AdminExport(props: IProps): JSX.Element {
-  const { profiles, defaultProfile } = props
+  const { active, profiles, defaultProfile } = props
   const { t } = useTranslation('importExport')
   const jobResource = useResource('Job')
   const { create: createJob } = useResourceOperations(jobResource)
@@ -65,6 +66,7 @@ function AdminExport(props: IProps): JSX.Element {
   return (
     <>
       <RunnableProfileGrid
+        active={active}
         defaultProfile={currentProfile ?? defaultProfile}
         fixedFilters={fixedFilters}
         profiles={profiles}

@@ -12,6 +12,7 @@ import { INoAttributesProps } from '../../atoms/noAttributes/NoAttributes'
 import { Trans } from 'next-i18next'
 
 interface IProps {
+  active?: boolean
   fixedFilters: ISearchParameters
   profiles: IJobProfiles
   defaultProfile: IJobProfileInfos
@@ -24,6 +25,7 @@ interface IProps {
 
 function RunnableJobProfileGrid(props: IProps): JSX.Element {
   const {
+    active,
     fixedFilters,
     profiles,
     defaultProfile,
@@ -35,7 +37,7 @@ function RunnableJobProfileGrid(props: IProps): JSX.Element {
   } = props
 
   const resource = useResource('Job')
-  const [activeFilters, setActiveFilters] = useFilters(resource)
+  const [activeFilters, setActiveFilters] = useFilters(resource, componentId)
   const [showPendingJobsAlert, setShowPendingJobsAlert] = useState(true)
 
   const runProfile = useCallback(
@@ -76,9 +78,11 @@ function RunnableJobProfileGrid(props: IProps): JSX.Element {
         </>
       ) : null}
       <ResourceTable
+        active={active}
         refreshTable={pendingJobsCount}
         activeFilters={activeFilters}
         filters={fixedFilters}
+        filtersPrefix={componentId}
         resourceName="Job"
         setActiveFilters={setActiveFilters}
         showSearch={false}

@@ -2,7 +2,7 @@ import Grid from '../Grid/Grid'
 import React from 'react'
 import { withAuth, withOptions } from '../../../hocs'
 import { useTranslation } from 'next-i18next'
-import { Role } from '@elastic-suite/gally-admin-shared'
+import { ITabContentProps, Role } from '@elastic-suite/gally-admin-shared'
 import IonIcon from '../../atoms/IonIcon/IonIcon'
 
 const propsButton = {
@@ -10,11 +10,13 @@ const propsButton = {
   style: { marginBottom: '48px', marginLeft: 'auto' },
 }
 
-function AdminUserGrid(): JSX.Element {
+function AdminUserGrid(props: ITabContentProps): JSX.Element {
+  const { active } = props
   const { t } = useTranslation('user')
 
   return (
     <Grid
+      active={active}
       resourceName="User"
       title={t('title.grid')}
       hasNewLink
