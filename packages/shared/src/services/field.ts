@@ -14,18 +14,23 @@ export enum IMainContext {
   FORM = 'form',
 }
 
+function transformPropertyPath(path: string): string {
+  const pathWithoutQueryString = path?.split('?')[0]
+  if (pathWithoutQueryString?.includes('admin/settings')) {
+    path = 'settings_attribute'
+  } else {
+    path = pathWithoutQueryString?.replaceAll('/', '_').replace('_admin_', '')
+  }
+  return path
+}
+
 export function updatePropertiesAccordingToPath(
   field: IField,
   path: string,
   mainContext: IMainContext
 ): IField {
   let result: IField = field
-  if (path?.includes('admin/settings')) {
-    path = 'settings_attribute'
-  } else {
-    path = path?.replaceAll('/', '_').replace('_admin_', '')
-  }
-
+  path = transformPropertyPath(path)
   const mainContextGally = field.gally?.[mainContext as IMainContext]
 
   if (mainContextGally) {
