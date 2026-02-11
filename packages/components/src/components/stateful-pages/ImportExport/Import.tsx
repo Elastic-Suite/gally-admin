@@ -8,12 +8,13 @@ import UploadJobFileModal from '../../molecules/UploadJobFileModal/UploadJobFile
 import { useTranslation } from 'next-i18next'
 
 interface IProps {
+  active?: boolean
   profiles: IJobProfiles
   defaultProfile: IJobProfileInfos
 }
 
 function AdminImport(props: IProps): JSX.Element {
-  const { profiles, defaultProfile } = props
+  const { active, profiles, defaultProfile } = props
   const { t } = useTranslation('importExport')
   const [isUploadFileModalOpen, setIsUploadFileModalOpen] = useState(false)
   const [currentProfile, setCurrentProfile] = useState<IJobProfileInfos | null>(
@@ -55,6 +56,7 @@ function AdminImport(props: IProps): JSX.Element {
   return (
     <>
       <RunnableProfileGrid
+        active={active}
         defaultProfile={currentProfile ?? defaultProfile}
         fixedFilters={fixedFilters}
         profiles={profiles}
@@ -71,6 +73,7 @@ function AdminImport(props: IProps): JSX.Element {
         profile={currentProfile}
         onClose={handleClose}
         onFileUploaded={handleFileUploaded}
+        title={t('import.file.title', { title: currentProfile?.label })}
       />
     </>
   )

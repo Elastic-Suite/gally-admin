@@ -35,11 +35,10 @@ export function useOptions(): IOptionsContext {
           // get options from the schema
           if (isDropdownStaticOptions(field.gally?.options)) {
             // static options
-            const options = field.gally.options.values.map((option) => ({
+            return field.gally.options.values.map((option) => ({
               ...option,
               label: option?.label,
             }))
-            return options
           }
           // options from api
           const response = await fetchApi(field.gally.options.api_rest)

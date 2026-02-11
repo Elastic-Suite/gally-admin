@@ -11,5 +11,6 @@
   "success.importJobCreated": "Tâche d'import créée avec succès",
   "success.exportJobCreated": "Tâche d'export créée avec succès",
   "import.none": "Aucun import n'a été créé",
-  "export.none": "Aucun export n'a été créé"
+  "export.none": "Aucun export n'a été créé",
+  "import.file.title": "Import: {{title}}"
 }
