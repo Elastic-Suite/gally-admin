@@ -1,4 +1,4 @@
-import React, { SyntheticEvent, useState } from 'react'
+import React, { SyntheticEvent, useEffect, useRef, useState } from 'react'
 import { Box, Tab, Tabs } from '@mui/material'
 
 import { ITab } from '@elastic-suite/gally-admin-shared'
@@ -17,17 +17,25 @@ interface IProps {
 export default function CustomTabs(props: IProps): JSX.Element {
   const { defaultActiveId, onChange, tabs, componentId } = props
   const [activeId, setActiveId] = useState(defaultActiveId ?? tabs[0]?.id)
+  const isInitialMount = useRef(true)
   const activeTabExits = tabs.some((tab) => tab.id === activeId)
   if (!activeTabExits) {
     setActiveId(defaultActiveId ?? tabs[0]?.id)
   }
 
+  useEffect(() => {
+    if (isInitialMount.current) {
+      isInitialMount.current = false
+      return
+    }
+    if (onChange) {
+      onChange(activeId)
+    }
+  }, [activeId, onChange])
+
   const handleChange = (event: SyntheticEvent, id: number): void => {
     event.preventDefault()
     setActiveId(id)
-    if (onChange) {
-      onChange(id)
-    }
   }
 
   return (

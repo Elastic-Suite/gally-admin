@@ -11,5 +11,6 @@
   "success.importJobCreated": "Import job created successfully",
   "success.exportJobCreated": "Export job created successfully",
   "import.none": "No import has been created",
-  "export.none": "No export has been created"
+  "export.none": "No export has been created",
+  "import.file.title": "Import: {{title}}"
 }

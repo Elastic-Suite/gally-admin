@@ -20,10 +20,11 @@ interface IProps {
   profile: IJobProfileInfos | null
   onClose: () => void
   onFileUploaded?: () => void
+  title?: string
 }
 
 function UploadJobFileModal(props: IProps): JSX.Element {
-  const { isOpen, profile, onClose, onFileUploaded } = props
+  const { isOpen, profile, onClose, onFileUploaded, title } = props
   const { t } = useTranslation('importExport')
   const acceptedFileTypes = ['csv']
 
@@ -31,6 +32,8 @@ function UploadJobFileModal(props: IProps): JSX.Element {
   const { create: createJobFile } = useResourceOperations(jobFileResource)
   const jobResource = useResource('Job')
   const { create: createJob } = useResourceOperations(jobResource)
+
+  const modalTitle = title ?? profile?.label ?? ''
 
   const handleFileUpload = useCallback(
     async (file: File): Promise<void> => {
@@ -88,7 +91,7 @@ function UploadJobFileModal(props: IProps): JSX.Element {
             data-testid={generateTestId(TestId.UPLOAD_JOB_FILE_MODAL_TITLE)}
             variant="h6"
           >
-            {profile.label}
+            {modalTitle}
           </Typography>
           <IconButton
             aria-label="close"
