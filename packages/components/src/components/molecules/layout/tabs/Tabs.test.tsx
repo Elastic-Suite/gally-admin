@@ -3,6 +3,7 @@ import React from 'react'
 import { renderWithProviders } from '../../../../utils/tests'
 
 import CustomTabs from './CustomTabs'
+import { fireEvent, screen, waitFor } from '@testing-library/react'
 
 describe('TabsAndSubTabs', () => {
   it('match snapshot', () => {
@@ -33,5 +34,57 @@ describe('TabsAndSubTabs', () => {
       />
     )
     expect(container).toMatchSnapshot()
+  })
+
+  it('should not call onChange on initial mount', () => {
+    const onChange = jest.fn()
+    renderWithProviders(
+      <CustomTabs
+        defaultActiveId={0}
+        tabs={[
+          {
+            id: 0,
+            label: 'A',
+            Component: (): JSX.Element => <>Hello World 1</>,
+          },
+          {
+            id: 1,
+            label: 'B',
+            Component: (): JSX.Element => <>Hello World 2</>,
+          },
+        ]}
+        onChange={onChange}
+      />
+    )
+    expect(onChange).not.toHaveBeenCalled()
+  })
+
+  it('should call onChange only when tab changes', async () => {
+    const onChange = jest.fn()
+    renderWithProviders(
+      <CustomTabs
+        defaultActiveId={0}
+        tabs={[
+          {
+            id: 0,
+            label: 'A',
+            Component: (): JSX.Element => <>Hello World 1</>,
+          },
+          {
+            id: 1,
+            label: 'B',
+            Component: (): JSX.Element => <>Hello World 2</>,
+          },
+        ]}
+        onChange={onChange}
+      />
+    )
+    await waitFor(() => {
+      expect(onChange).not.toHaveBeenCalled()
+    })
+    fireEvent.click(screen.getAllByTestId('tab')[1])
+    await waitFor(() => {
+      expect(onChange).toHaveBeenCalledWith(1)
+    })
   })
 })
