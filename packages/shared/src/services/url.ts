@@ -94,10 +94,19 @@ export function getListParameters(
 ): ISearchParameters {
   const pageKey = prefix ? `${prefix}_${currentPage}` : currentPage
   const searchKey = prefix ? `${prefix}_${searchParameter}` : searchParameter
+  const prefixedSearchParameters =
+    prefix && searchParameters
+      ? Object.fromEntries(
+          Object.entries(searchParameters).map(([key, value]) => [
+            `${prefix}_${key}`,
+            value,
+          ])
+        )
+      : searchParameters
 
   if (typeof page === 'number') {
     return removeEmptyParameters({
-      ...searchParameters,
+      ...prefixedSearchParameters,
       [pageKey]: page === 0 ? '' : page, // If page=0, remove parameter from URL
       [searchKey]: searchValue,
     })
@@ -191,7 +200,6 @@ export function getPageParameter(
   const pageEntry = Object.entries(parameters).find(
     ([key]) => key.replace(`${prefix}_`, '') === currentPage
   )
-  console.log(parameters)
   return Number(pageEntry?.[1] ?? 0)
 }
 

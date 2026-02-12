@@ -22,20 +22,10 @@ export function useFiltersRedirect(
   const router = useRouter()
   useEffect(() => {
     if (active) {
-      const prefixedFilters =
-        prefix && activeFilters
-          ? Object.fromEntries(
-              Object.entries(activeFilters).map(([key, value]) => [
-                `${prefix}_${key}`,
-                value,
-              ])
-            )
-          : activeFilters
-
       const url = getAppUrl(
         router.asPath,
         page,
-        prefixedFilters,
+        activeFilters,
         searchValue,
         prefix
       )
@@ -53,7 +43,8 @@ export function usePage(
   const [page, setPage] = useState<number>(() => {
     const url = getRouterUrl(router.asPath)
     const parameters = getParametersFromUrl(url, prefix)
-    return getPageParameter(parameters)
+
+    return getPageParameter(parameters, prefix)
   })
   return [page, setPage]
 }
@@ -80,7 +71,7 @@ export function useSearch(
   const [searchValue, setSearchValue] = useState<string>(() => {
     const url = getRouterUrl(router.asPath)
     const parameters = getParametersFromUrl(url, prefix)
-    return getSearchParameter(parameters)
+    return getSearchParameter(parameters, prefix)
   })
   return [searchValue, setSearchValue]
 }
