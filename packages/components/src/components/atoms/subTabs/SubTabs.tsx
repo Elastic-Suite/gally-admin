@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { keyframes, styled } from '@mui/system'
 
 import { ITab } from '@elastic-suite/gally-admin-shared'
@@ -11,7 +11,7 @@ const CustomRoot = styled('div')(({ theme }) => ({
   gap: theme.spacing(4),
 }))
 
-const CustumRootSubTabs = styled('div')({
+const CustomRootSubTabs = styled('div')({
   border: '1px solid #E2E6F3',
   borderRadius: 8,
   display: 'flex',
@@ -88,12 +88,20 @@ interface IProps {
 function SubTabs(props: IProps): JSX.Element {
   const { componentId, defaultActiveId, onChange, tabs } = props
   const [activeId, setActiveId] = useState(defaultActiveId)
+  const isInitialMount = useRef(true)
+
+  useEffect(() => {
+    if (isInitialMount.current) {
+      isInitialMount.current = false
+      return
+    }
+    if (onChange) {
+      onChange(activeId)
+    }
+  }, [activeId, onChange])
 
   function handleChange(id: number): void {
     setActiveId(id)
-    if (onChange) {
-      onChange(id)
-    }
   }
 
   return (
@@ -102,7 +110,7 @@ function SubTabs(props: IProps): JSX.Element {
         'data-testid': generateTestId(TestId.TABS, componentId),
       })}
     >
-      <CustumRootSubTabs>
+      <CustomRootSubTabs>
         {tabs.map(({ label, id }) =>
           id === activeId ? (
             <CustomSubTabsActive
@@ -126,7 +134,7 @@ function SubTabs(props: IProps): JSX.Element {
             </CustomSubTabs>
           )
         )}
-      </CustumRootSubTabs>
+      </CustomRootSubTabs>
       {tabs.map(({ Component, componentProps, id }) => (
         <SubTabPanel key={id} id={id} value={activeId}>
           <Component {...componentProps} active={id === activeId} />

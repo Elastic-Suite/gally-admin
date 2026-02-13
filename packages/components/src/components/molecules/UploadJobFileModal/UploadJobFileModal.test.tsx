@@ -107,7 +107,7 @@ describe('UploadJobFileModal', () => {
     expect(modal).toEqual(null)
   })
 
-  it('should display profile label in title', () => {
+  it('should display profile label in title when title prop is not provided', () => {
     const customProfile: IJobProfileInfos = {
       label: 'Custom Profile Label',
       profile: 'CUSTOM_PROFILE',
@@ -122,6 +122,27 @@ describe('UploadJobFileModal', () => {
     )
 
     expect(title).toHaveTextContent('Custom Profile Label')
+  })
+
+  it('should display custom label in title if title props is provided', () => {
+    const customProfile: IJobProfileInfos = {
+      label: 'Custom Profile Label',
+      profile: 'CUSTOM_PROFILE',
+    }
+
+    renderWithProviders(
+      <UploadJobFileModal
+        {...defaultProps}
+        profile={customProfile}
+        title="A custom title"
+      />
+    )
+
+    const title = screen.getByTestId(
+      generateTestId(TestId.UPLOAD_JOB_FILE_MODAL_TITLE)
+    )
+
+    expect(title).toHaveTextContent('A custom title')
   })
 
   it('should call onClose when close button is clicked', () => {

@@ -89,18 +89,31 @@ export function clearParameters(url: URL): URL {
 export function getListParameters(
   page: number | false = 0,
   searchParameters: ISearchParameters = {},
-  searchValue = ''
+  searchValue = '',
+  prefix?: string
 ): ISearchParameters {
+  const pageKey = prefix ? `${prefix}_${currentPage}` : currentPage
+  const searchKey = prefix ? `${prefix}_${searchParameter}` : searchParameter
+  const prefixedSearchParameters =
+    prefix && searchParameters
+      ? Object.fromEntries(
+          Object.entries(searchParameters).map(([key, value]) => [
+            `${prefix}_${key}`,
+            value,
+          ])
+        )
+      : searchParameters
+
   if (typeof page === 'number') {
     return removeEmptyParameters({
-      ...searchParameters,
-      [currentPage]: page === 0 ? '' : page, // If page=0, remove parameter from URL
-      [searchParameter]: searchValue,
+      ...prefixedSearchParameters,
+      [pageKey]: page === 0 ? '' : page, // If page=0, remove parameter from URL
+      [searchKey]: searchValue,
     })
   }
   return removeEmptyParameters({
     ...searchParameters,
-    [searchParameter]: searchValue,
+    [searchKey]: searchValue,
   })
 }
 
@@ -139,16 +152,30 @@ export function getAppUrl(
   path: string,
   page: number | false = 0,
   activeFilters?: ISearchParameters,
-  searchValue?: string
+  searchValue?: string,
+  prefix?: string
 ): URL {
-  const parameters = getListParameters(page, activeFilters, searchValue)
+  const parameters = getListParameters(page, activeFilters, searchValue, prefix)
   const url = getRouterUrl(path)
   return getUrl(clearParameters(url), parameters)
 }
 
-export function getParametersFromUrl(url: URL): ISearchParameters {
+export function getParametersFromUrl(
+  url: URL,
+  prefix?: string
+): ISearchParameters {
   return Object.fromEntries(
     [...url.searchParams.entries()].reduce((acc, [key, value]) => {
+      // If prefix is provided, only include parameters that start with the prefix
+      if (prefix) {
+        const prefixPattern = `${prefix}_`
+        if (!key.startsWith(prefixPattern)) {
+          return acc
+        }
+        // Remove the prefix from the key
+        key = key.substring(prefixPattern.length)
+      }
+
       if (key.endsWith('[between]')) {
         acc.push([key, getRangeParameterFromUrl(value)])
       } else if (key.endsWith('[]')) {
@@ -166,16 +193,22 @@ export function getParametersFromUrl(url: URL): ISearchParameters {
   )
 }
 
-export function getPageParameter(parameters: ISearchParameters): number {
+export function getPageParameter(
+  parameters: ISearchParameters,
+  prefix?: string
+): number {
   const pageEntry = Object.entries(parameters).find(
-    ([key]) => key === currentPage
+    ([key]) => key.replace(`${prefix}_`, '') === currentPage
   )
   return Number(pageEntry?.[1] ?? 0)
 }
 
-export function getSearchParameter(parameters: ISearchParameters): string {
+export function getSearchParameter(
+  parameters: ISearchParameters,
+  prefix?: string
+): string {
   const pageEntry = Object.entries(parameters).find(
-    ([key]) => key === searchParameter
+    ([key]) => key.replace(`${prefix}_`, '') === searchParameter
   )
   return String(pageEntry?.[1] ?? '')
 }

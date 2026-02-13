@@ -35,7 +35,7 @@ function SettingsConfigurations(): JSX.Element {
       id: index,
       default: index === 0 ? true : undefined,
       label: group.label,
-      url: `/admin/settings/scope/configurations/${group.code}`,
+      url: `/admin/settings/configurations/${group.code}`,
     }))
   }, [configurationTree])
 

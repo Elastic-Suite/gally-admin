@@ -61,6 +61,7 @@ export interface IResourceTable {
   diffDefaultValues?: boolean
   getTableConfigs?: (rows: ITableRow[]) => ITableConfig[]
   filters?: ISearchParameters
+  filtersPrefix?: string
   resourceName: string
   setActiveFilters: Dispatch<SetStateAction<ISearchParameters>>
   urlParams?: string
@@ -91,6 +92,7 @@ function ResourceTable(props: IResourceTable): JSX.Element {
     diffDefaultValues,
     getTableConfigs,
     filters,
+    filtersPrefix,
     resourceName,
     setActiveFilters,
     urlParams,
@@ -103,8 +105,9 @@ function ResourceTable(props: IResourceTable): JSX.Element {
   } = props
 
   const resource = useResource(resourceName)
-  const [page, setPage] = usePage()
-  const [searchValue, setSearchValue] = useSearch()
+  const validFiltersPrefix = filtersPrefix ?? resource.title.toLowerCase()
+  const [page, setPage] = usePage(validFiltersPrefix)
+  const [searchValue, setSearchValue] = useSearch(validFiltersPrefix)
 
   const filtersWithRefreshTrigger = useMemo(() => {
     return {
@@ -117,7 +120,13 @@ function ResourceTable(props: IResourceTable): JSX.Element {
     activeFilters,
     filtersWithRefreshTrigger
   )
-  useFiltersRedirect(page, activeFilters, searchValue, active)
+  useFiltersRedirect(
+    page,
+    activeFilters,
+    searchValue,
+    active,
+    validFiltersPrefix
+  )
 
   const rowsPerPageOptions = defaultRowsPerPageOptions
   const [rowsPerPage, setRowsPerPage] = useState<number>(
