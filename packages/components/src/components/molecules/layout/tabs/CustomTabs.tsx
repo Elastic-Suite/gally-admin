@@ -17,21 +17,24 @@ interface IProps {
 export default function CustomTabs(props: IProps): JSX.Element {
   const { defaultActiveId, onChange, tabs, componentId } = props
   const [activeId, setActiveId] = useState(defaultActiveId ?? tabs[0]?.id)
+  const lastActiveId = useRef(defaultActiveId ?? tabs[0]?.id)
   const isInitialMount = useRef(true)
-  const activeTabExits = tabs.some((tab) => tab.id === activeId)
-  if (!activeTabExits) {
-    setActiveId(defaultActiveId ?? tabs[0]?.id)
-  }
+
+  const validActiveId = tabs.some((tab) => tab.id === activeId)
+    ? activeId
+    : defaultActiveId ?? tabs[0]?.id
 
   useEffect(() => {
     if (isInitialMount.current) {
       isInitialMount.current = false
       return
     }
-    if (onChange) {
-      onChange(activeId)
+
+    if (validActiveId !== lastActiveId.current && onChange) {
+      lastActiveId.current = validActiveId
+      onChange(validActiveId)
     }
-  }, [activeId, onChange])
+  }, [validActiveId, onChange])
 
   const handleChange = (event: SyntheticEvent, id: number): void => {
     event.preventDefault()
@@ -45,7 +48,7 @@ export default function CustomTabs(props: IProps): JSX.Element {
     >
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
         <Tabs
-          value={activeId}
+          value={validActiveId}
           onChange={handleChange}
           aria-label="basic tabs example"
         >
@@ -60,8 +63,8 @@ export default function CustomTabs(props: IProps): JSX.Element {
         </Tabs>
       </Box>
       {tabs.map(({ id, Component, componentProps }) => (
-        <TabPanel key={id} value={activeId} id={id}>
-          <Component {...componentProps} active={id === activeId} />
+        <TabPanel key={id} value={validActiveId} id={id}>
+          <Component {...componentProps} active={id === validActiveId} />
         </TabPanel>
       ))}
     </Box>
