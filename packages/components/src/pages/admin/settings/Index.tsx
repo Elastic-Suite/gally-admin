@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 
 import { breadcrumbContext } from '../../../contexts'
 import { withAuth, withOptions } from '../../../hocs'
-import { useTabs, useUser } from '../../../hooks'
+import { TabUrlMatching, useTabs, useUser } from '../../../hooks'
 import { selectMenu, useAppSelector } from '../../../store'
 import {
   IRouterTab,
@@ -69,7 +69,10 @@ function AdminSettingsIndex(): JSX.Element {
 
     return tabs
   }, [t, user])
-  const [activeTab, handleTabChange] = useTabs(routerTabs)
+  const [activeTab, handleTabChange] = useTabs(
+    routerTabs,
+    TabUrlMatching.PARTIAL
+  )
   const { actions, id } = activeTab
 
   const pageTitle = useMemo(() => {
