@@ -124,8 +124,9 @@ function CustomTableHeader(props: IProps): JSX.Element {
                 textOverflow: 'ellipsis',
               }),
             }}
+            title={t(stickyHeader.label)}
           >
-            {stickyHeader.label}
+            {t(stickyHeader.label)}
             {stickyHeader.gridHeaderInfoTooltip?.trim() ? (
               <InfoTooltip
                 title={t(stickyHeader.gridHeaderInfoTooltip)}

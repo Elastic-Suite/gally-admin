@@ -52,7 +52,14 @@ const Paragraph = styled('p')(({ theme }) => ({
 }))
 
 function isObjectNotEmpty(object: object): boolean {
-  return Object.values(object).some((value) => value || value === false)
+  return Object.values(object).some((value) => {
+    // Consider empty: empty string, null, undefined, empty array
+    // Consider non-empty: 0, false, and all other values
+    if (Array.isArray(value)) {
+      return value.length > 0
+    }
+    return value !== '' && value !== null && value !== undefined
+  })
 }
 export interface IResourceTable {
   Field?: FunctionComponent<IFieldGuesserProps>
@@ -230,10 +237,16 @@ function ResourceTable(props: IResourceTable): JSX.Element {
           return [item[0], item?.[1] ?? null]
         })
       if (entries.length > 0) {
-        replace({
+        const entity = {
           ...tableRows?.[index],
           ...Object.fromEntries(entries),
-        } as unknown as ISourceField)
+        } as unknown as ISourceField
+
+        if (update) {
+          update(entity.id, entity)
+        } else if (replace) {
+          replace(entity)
+        }
       }
     }, [])
   }
