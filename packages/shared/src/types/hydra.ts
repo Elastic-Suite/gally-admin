@@ -74,7 +74,6 @@ export interface IHydraSupportedOperation extends IJsonldType {
   expects?: string
   'hydra:method': Method
   'hydra:title'?: string
-  'rdfs:label': string
   returns: string
 }
 
@@ -85,7 +84,6 @@ export interface IHydraProperty extends IJsonldBase {
     | IHydraSupportedOperation[]
   'owl:maxCardinality'?: number
   range?: string
-  'rdfs:label': string
   'rdfs:range'?: (IJsonldId | IRdfsRange)[]
 }
 
@@ -168,7 +166,6 @@ export interface IHydraSupportedClass extends IJsonldBase {
     | IHydraSupportedOperation[]
   'hydra:supportedProperty': IHydraSupportedProperty[]
   'hydra:title': string
-  'rdfs:label'?: string
   subClassOf?: string
 }
 

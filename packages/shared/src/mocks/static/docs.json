@@ -21,7 +21,7 @@
     {
       "@id": "#Metadata",
       "@type": "hydra:Class",
-      "rdfs:label": "Metadata",
+      "label": "Metadata",
       "hydra:title": "Metadata",
       "hydra:supportedProperty": [
         {
@@ -29,7 +29,7 @@
           "hydra:property": {
             "@id": "#Metadata/entity",
             "@type": "rdf:Property",
-            "rdfs:label": "entity",
+            "label": "entity",
             "domain": "#Metadata",
             "range": "xmls:string"
           },
@@ -43,7 +43,7 @@
           "hydra:property": {
             "@id": "#Metadata/sourceFields",
             "@type": "hydra:Link",
-            "rdfs:label": "sourceFields",
+            "label": "sourceFields",
             "domain": "#Metadata",
             "range": "#SourceField"
           },
@@ -58,7 +58,7 @@
           "@type": ["hydra:Operation", "schema:FindAction"],
           "hydra:method": "GET",
           "hydra:title": "Retrieves Metadata resource.",
-          "rdfs:label": "Retrieves Metadata resource.",
+          "label": "Retrieves Metadata resource.",
           "returns": "#Metadata"
         },
         {
@@ -66,7 +66,7 @@
           "expects": "#Metadata",
           "hydra:method": "PUT",
           "hydra:title": "Replaces the Metadata resource.",
-          "rdfs:label": "Replaces the Metadata resource.",
+          "label": "Replaces the Metadata resource.",
           "returns": "#Metadata"
         },
         {
@@ -74,14 +74,14 @@
           "expects": "#Metadata",
           "hydra:method": "PATCH",
           "hydra:title": "Updates the Metadata resource.",
-          "rdfs:label": "Updates the Metadata resource.",
+          "label": "Updates the Metadata resource.",
           "returns": "#Metadata"
         },
         {
           "@type": ["hydra:Operation", "schema:DeleteAction"],
           "hydra:method": "DELETE",
           "hydra:title": "Deletes the Metadata resource.",
-          "rdfs:label": "Deletes the Metadata resource.",
+          "label": "Deletes the Metadata resource.",
           "returns": "owl:Nothing"
         }
       ]
@@ -89,7 +89,7 @@
     {
       "@id": "#SourceField",
       "@type": "hydra:Class",
-      "rdfs:label": "SourceField",
+      "label": "SourceField",
       "hydra:title": "SourceField",
       "hydra:supportedProperty": [
         {
@@ -97,7 +97,7 @@
           "hydra:property": {
             "@id": "#SourceField/code",
             "@type": "rdf:Property",
-            "rdfs:label": "Attribute code",
+            "label": "Attribute code",
             "domain": "#SourceField",
             "range": "xmls:string"
           },
@@ -112,7 +112,7 @@
           "hydra:property": {
             "@id": "#SourceField/defaultLabel",
             "@type": "rdf:Property",
-            "rdfs:label": "Attribute label",
+            "label": "Attribute label",
             "domain": "#SourceField",
             "range": "xmls:string"
           },
@@ -127,7 +127,7 @@
           "hydra:property": {
             "@id": "#SourceField/type",
             "@type": "rdf:Property",
-            "rdfs:label": "Attribute type",
+            "label": "Attribute type",
             "domain": "#SourceField",
             "range": "xmls:string"
           },
@@ -167,7 +167,7 @@
           "hydra:property": {
             "@id": "#SourceField/isFilterable",
             "@type": "rdf:Property",
-            "rdfs:label": "Filterable",
+            "label": "Filterable",
             "domain": "#SourceField",
             "range": "xmls:boolean"
           },
@@ -189,7 +189,7 @@
           "hydra:property": {
             "@id": "#SourceField/isSearchable",
             "@type": "rdf:Property",
-            "rdfs:label": "Searchable",
+            "label": "Searchable",
             "domain": "#SourceField",
             "range": "xmls:boolean"
           },
@@ -211,7 +211,7 @@
           "hydra:property": {
             "@id": "#SourceField/isSortable",
             "@type": "rdf:Property",
-            "rdfs:label": "Sortable",
+            "label": "Sortable",
             "domain": "#SourceField",
             "range": "xmls:boolean"
           },
@@ -233,7 +233,7 @@
           "hydra:property": {
             "@id": "#SourceField/isUsedForRules",
             "@type": "rdf:Property",
-            "rdfs:label": "Use in rule engine",
+            "label": "Use in rule engine",
             "domain": "#SourceField",
             "range": "xmls:boolean"
           },
@@ -255,7 +255,7 @@
           "hydra:property": {
             "@id": "#SourceField/weight",
             "@type": "rdf:Property",
-            "rdfs:label": "Search weight",
+            "label": "Search weight",
             "domain": "#SourceField",
             "range": "xmls:integer"
           },
@@ -292,7 +292,7 @@
           "hydra:property": {
             "@id": "#SourceField/isSpellchecked",
             "@type": "rdf:Property",
-            "rdfs:label": "Used in spellcheck",
+            "label": "Used in spellcheck",
             "domain": "#SourceField",
             "range": "xmls:boolean"
           },
@@ -314,7 +314,7 @@
           "hydra:property": {
             "@id": "#SourceField/isSystem",
             "@type": "rdf:Property",
-            "rdfs:label": "isSystem",
+            "label": "isSystem",
             "domain": "#SourceField",
             "range": "xmls:boolean"
           },
@@ -328,7 +328,7 @@
           "hydra:property": {
             "@id": "#SourceField/metadata",
             "@type": "hydra:Link",
-            "rdfs:label": "metadata",
+            "label": "metadata",
             "domain": "#SourceField",
             "owl:maxCardinality": 1,
             "range": "#Metadata"
@@ -343,7 +343,7 @@
           "hydra:property": {
             "@id": "#SourceField/labels",
             "@type": "hydra:Link",
-            "rdfs:label": "labels",
+            "label": "labels",
             "domain": "#SourceField",
             "range": "#SourceFieldLabel"
           },
@@ -357,7 +357,7 @@
           "hydra:property": {
             "@id": "#SourceField/options",
             "@type": "hydra:Link",
-            "rdfs:label": "options",
+            "label": "options",
             "domain": "#SourceField",
             "range": "#SourceFieldOption"
           },
@@ -372,7 +372,7 @@
           "@type": ["hydra:Operation", "schema:FindAction"],
           "hydra:method": "GET",
           "hydra:title": "Retrieves SourceField resource.",
-          "rdfs:label": "Retrieves SourceField resource.",
+          "label": "Retrieves SourceField resource.",
           "returns": "#SourceField"
         },
         {
@@ -380,7 +380,7 @@
           "expects": "#SourceField",
           "hydra:method": "PUT",
           "hydra:title": "Replaces the SourceField resource.",
-          "rdfs:label": "Replaces the SourceField resource.",
+          "label": "Replaces the SourceField resource.",
           "returns": "#SourceField"
         },
         {
@@ -388,14 +388,14 @@
           "expects": "#SourceField",
           "hydra:method": "PATCH",
           "hydra:title": "Updates the SourceField resource.",
-          "rdfs:label": "Updates the SourceField resource.",
+          "label": "Updates the SourceField resource.",
           "returns": "#SourceField"
         },
         {
           "@type": ["hydra:Operation", "schema:DeleteAction"],
           "hydra:method": "DELETE",
           "hydra:title": "Deletes the SourceField resource.",
-          "rdfs:label": "Deletes the SourceField resource.",
+          "label": "Deletes the SourceField resource.",
           "returns": "owl:Nothing"
         }
       ]
@@ -403,7 +403,7 @@
     {
       "@id": "#CategoryProductMerchandising",
       "@type": "hydra:Class",
-      "rdfs:label": "CategoryProductMerchandising",
+      "label": "CategoryProductMerchandising",
       "hydra:title": "CategoryProductMerchandising",
       "hydra:supportedProperty": [
         {
@@ -411,7 +411,7 @@
           "hydra:property": {
             "@id": "#CategoryProductMerchandising/category",
             "@type": "hydra:Link",
-            "rdfs:label": "category",
+            "label": "category",
             "domain": "#CategoryProductMerchandising",
             "owl:maxCardinality": 1,
             "range": "#Category"
@@ -426,7 +426,7 @@
           "hydra:property": {
             "@id": "#CategoryProductMerchandising/productId",
             "@type": "rdf:Property",
-            "rdfs:label": "productId",
+            "label": "productId",
             "domain": "#CategoryProductMerchandising",
             "range": "xmls:integer"
           },
@@ -440,7 +440,7 @@
           "hydra:property": {
             "@id": "#CategoryProductMerchandising/catalog",
             "@type": "hydra:Link",
-            "rdfs:label": "catalog",
+            "label": "catalog",
             "domain": "#CategoryProductMerchandising",
             "owl:maxCardinality": 1,
             "range": "#Catalog"
@@ -455,7 +455,7 @@
           "hydra:property": {
             "@id": "#CategoryProductMerchandising/localizedCatalog",
             "@type": "hydra:Link",
-            "rdfs:label": "localizedCatalog",
+            "label": "localizedCatalog",
             "domain": "#CategoryProductMerchandising",
             "owl:maxCardinality": 1,
             "range": "#LocalizedCatalog"
@@ -470,7 +470,7 @@
           "hydra:property": {
             "@id": "#CategoryProductMerchandising/position",
             "@type": "rdf:Property",
-            "rdfs:label": "position",
+            "label": "position",
             "domain": "#CategoryProductMerchandising",
             "range": "xmls:integer"
           },
@@ -485,14 +485,14 @@
           "@type": ["hydra:Operation", "schema:FindAction"],
           "hydra:method": "GET",
           "hydra:title": "Retrieves CategoryProductMerchandising resource.",
-          "rdfs:label": "Retrieves CategoryProductMerchandising resource.",
+          "label": "Retrieves CategoryProductMerchandising resource.",
           "returns": "owl:Nothing"
         },
         {
           "@type": ["hydra:Operation", "schema:FindAction"],
           "hydra:method": "GET",
           "hydra:title": "Retrieves CategoryProductMerchandising resource.",
-          "rdfs:label": "Retrieves CategoryProductMerchandising resource.",
+          "label": "Retrieves CategoryProductMerchandising resource.",
           "returns": "#CategoryProductMerchandising"
         }
       ]
@@ -500,7 +500,7 @@
     {
       "@id": "#Category",
       "@type": "hydra:Class",
-      "rdfs:label": "Category",
+      "label": "Category",
       "hydra:title": "Category",
       "hydra:supportedProperty": [
         {
@@ -508,7 +508,7 @@
           "hydra:property": {
             "@id": "#Category/id",
             "@type": "rdf:Property",
-            "rdfs:label": "id",
+            "label": "id",
             "domain": "#Category",
             "range": "xmls:string"
           },
@@ -522,7 +522,7 @@
           "hydra:property": {
             "@id": "#Category/parentId",
             "@type": "rdf:Property",
-            "rdfs:label": "parentId",
+            "label": "parentId",
             "domain": "#Category",
             "range": "xmls:string"
           },
@@ -536,7 +536,7 @@
           "hydra:property": {
             "@id": "#Category/level",
             "@type": "rdf:Property",
-            "rdfs:label": "level",
+            "label": "level",
             "domain": "#Category",
             "range": "xmls:integer"
           },
@@ -550,7 +550,7 @@
           "hydra:property": {
             "@id": "#Category/path",
             "@type": "rdf:Property",
-            "rdfs:label": "path",
+            "label": "path",
             "domain": "#Category",
             "range": "xmls:string"
           },
@@ -565,7 +565,7 @@
           "@type": ["hydra:Operation", "schema:FindAction"],
           "hydra:method": "GET",
           "hydra:title": "Retrieves Category resource.",
-          "rdfs:label": "Retrieves Category resource.",
+          "label": "Retrieves Category resource.",
           "returns": "#Category"
         },
         {
@@ -573,7 +573,7 @@
           "expects": "#Category",
           "hydra:method": "PUT",
           "hydra:title": "Replaces the Category resource.",
-          "rdfs:label": "Replaces the Category resource.",
+          "label": "Replaces the Category resource.",
           "returns": "#Category"
         },
         {
@@ -581,7 +581,7 @@
           "expects": "#Category",
           "hydra:method": "PATCH",
           "hydra:title": "Updates the Category resource.",
-          "rdfs:label": "Updates the Category resource.",
+          "label": "Updates the Category resource.",
           "returns": "#Category"
         }
       ]
@@ -589,7 +589,7 @@
     {
       "@id": "#Catalog",
       "@type": "hydra:Class",
-      "rdfs:label": "Catalog",
+      "label": "Catalog",
       "hydra:title": "Catalog",
       "hydra:supportedProperty": [
         {
@@ -597,7 +597,7 @@
           "hydra:property": {
             "@id": "#Catalog/code",
             "@type": "rdf:Property",
-            "rdfs:label": "code",
+            "label": "code",
             "domain": "#Catalog",
             "range": "xmls:string"
           },
@@ -611,7 +611,7 @@
           "hydra:property": {
             "@id": "#Catalog/name",
             "@type": "rdf:Property",
-            "rdfs:label": "name",
+            "label": "name",
             "domain": "#Catalog",
             "range": "xmls:string"
           },
@@ -625,7 +625,7 @@
           "hydra:property": {
             "@id": "#Catalog/localizedCatalogs",
             "@type": "rdf:Property",
-            "rdfs:label": "localizedCatalogs",
+            "label": "localizedCatalogs",
             "domain": "#Catalog",
             "range": "#LocalizedCatalog"
           },
@@ -640,7 +640,7 @@
           "@type": ["hydra:Operation", "schema:FindAction"],
           "hydra:method": "GET",
           "hydra:title": "Retrieves Catalog resource.",
-          "rdfs:label": "Retrieves Catalog resource.",
+          "label": "Retrieves Catalog resource.",
           "returns": "#Catalog"
         },
         {
@@ -648,7 +648,7 @@
           "expects": "#Catalog",
           "hydra:method": "PUT",
           "hydra:title": "Replaces the Catalog resource.",
-          "rdfs:label": "Replaces the Catalog resource.",
+          "label": "Replaces the Catalog resource.",
           "returns": "#Catalog"
         },
         {
@@ -656,14 +656,14 @@
           "expects": "#Catalog",
           "hydra:method": "PATCH",
           "hydra:title": "Updates the Catalog resource.",
-          "rdfs:label": "Updates the Catalog resource.",
+          "label": "Updates the Catalog resource.",
           "returns": "#Catalog"
         },
         {
           "@type": ["hydra:Operation", "schema:DeleteAction"],
           "hydra:method": "DELETE",
           "hydra:title": "Deletes the Catalog resource.",
-          "rdfs:label": "Deletes the Catalog resource.",
+          "label": "Deletes the Catalog resource.",
           "returns": "owl:Nothing"
         }
       ]
@@ -671,7 +671,7 @@
     {
       "@id": "#LocalizedCatalog",
       "@type": "hydra:Class",
-      "rdfs:label": "LocalizedCatalog",
+      "label": "LocalizedCatalog",
       "hydra:title": "LocalizedCatalog",
       "hydra:supportedProperty": [
         {
@@ -679,7 +679,7 @@
           "hydra:property": {
             "@id": "#LocalizedCatalog/name",
             "@type": "rdf:Property",
-            "rdfs:label": "name",
+            "label": "name",
             "domain": "#LocalizedCatalog",
             "range": "xmls:string"
           },
@@ -693,7 +693,7 @@
           "hydra:property": {
             "@id": "#LocalizedCatalog/code",
             "@type": "rdf:Property",
-            "rdfs:label": "code",
+            "label": "code",
             "domain": "#LocalizedCatalog",
             "range": "xmls:string"
           },
@@ -707,7 +707,7 @@
           "hydra:property": {
             "@id": "#LocalizedCatalog/locale",
             "@type": "rdf:Property",
-            "rdfs:label": "locale",
+            "label": "locale",
             "domain": "#LocalizedCatalog",
             "range": "xmls:string"
           },
@@ -721,7 +721,7 @@
           "hydra:property": {
             "@id": "http://schema.org/priceCurrency",
             "@type": "rdf:Property",
-            "rdfs:label": "currency",
+            "label": "currency",
             "domain": "#LocalizedCatalog",
             "range": "xmls:string"
           },
@@ -735,7 +735,7 @@
           "hydra:property": {
             "@id": "#LocalizedCatalog/isDefault",
             "@type": "rdf:Property",
-            "rdfs:label": "isDefault",
+            "label": "isDefault",
             "domain": "#LocalizedCatalog",
             "range": "xmls:boolean"
           },
@@ -750,7 +750,7 @@
           "hydra:property": {
             "@id": "#LocalizedCatalog/catalog",
             "@type": "hydra:Link",
-            "rdfs:label": "catalog",
+            "label": "catalog",
             "domain": "#LocalizedCatalog",
             "owl:maxCardinality": 1,
             "range": "#Catalog"
@@ -765,7 +765,7 @@
           "hydra:property": {
             "@id": "#LocalizedCatalog/localName",
             "@type": "rdf:Property",
-            "rdfs:label": "localName",
+            "label": "localName",
             "domain": "#LocalizedCatalog",
             "range": "xmls:string"
           },
@@ -780,7 +780,7 @@
           "@type": ["hydra:Operation", "schema:FindAction"],
           "hydra:method": "GET",
           "hydra:title": "Retrieves LocalizedCatalog resource.",
-          "rdfs:label": "Retrieves LocalizedCatalog resource.",
+          "label": "Retrieves LocalizedCatalog resource.",
           "returns": "#LocalizedCatalog"
         },
         {
@@ -788,7 +788,7 @@
           "expects": "#LocalizedCatalog",
           "hydra:method": "PUT",
           "hydra:title": "Replaces the LocalizedCatalog resource.",
-          "rdfs:label": "Replaces the LocalizedCatalog resource.",
+          "label": "Replaces the LocalizedCatalog resource.",
           "returns": "#LocalizedCatalog"
         },
         {
@@ -796,14 +796,14 @@
           "expects": "#LocalizedCatalog",
           "hydra:method": "PATCH",
           "hydra:title": "Updates the LocalizedCatalog resource.",
-          "rdfs:label": "Updates the LocalizedCatalog resource.",
+          "label": "Updates the LocalizedCatalog resource.",
           "returns": "#LocalizedCatalog"
         },
         {
           "@type": ["hydra:Operation", "schema:DeleteAction"],
           "hydra:method": "DELETE",
           "hydra:title": "Deletes the LocalizedCatalog resource.",
-          "rdfs:label": "Deletes the LocalizedCatalog resource.",
+          "label": "Deletes the LocalizedCatalog resource.",
           "returns": "owl:Nothing"
         }
       ]
@@ -811,7 +811,7 @@
     {
       "@id": "#SourceFieldLabel",
       "@type": "hydra:Class",
-      "rdfs:label": "SourceFieldLabel",
+      "label": "SourceFieldLabel",
       "hydra:title": "SourceFieldLabel",
       "hydra:supportedProperty": [
         {
@@ -819,7 +819,7 @@
           "hydra:property": {
             "@id": "#SourceFieldLabel/sourceField",
             "@type": "hydra:Link",
-            "rdfs:label": "sourceField",
+            "label": "sourceField",
             "domain": "#SourceFieldLabel",
             "owl:maxCardinality": 1,
             "range": "#SourceField"
@@ -834,7 +834,7 @@
           "hydra:property": {
             "@id": "#SourceFieldLabel/localizedCatalog",
             "@type": "hydra:Link",
-            "rdfs:label": "localizedCatalog",
+            "label": "localizedCatalog",
             "domain": "#SourceFieldLabel",
             "owl:maxCardinality": 1,
             "range": "#LocalizedCatalog"
@@ -849,7 +849,7 @@
           "hydra:property": {
             "@id": "#SourceFieldLabel/label",
             "@type": "rdf:Property",
-            "rdfs:label": "label",
+            "label": "label",
             "domain": "#SourceFieldLabel",
             "range": "xmls:string"
           },
@@ -864,7 +864,7 @@
           "@type": ["hydra:Operation", "schema:FindAction"],
           "hydra:method": "GET",
           "hydra:title": "Retrieves SourceFieldLabel resource.",
-          "rdfs:label": "Retrieves SourceFieldLabel resource.",
+          "label": "Retrieves SourceFieldLabel resource.",
           "returns": "#SourceFieldLabel"
         },
         {
@@ -872,7 +872,7 @@
           "expects": "#SourceFieldLabel",
           "hydra:method": "PUT",
           "hydra:title": "Replaces the SourceFieldLabel resource.",
-          "rdfs:label": "Replaces the SourceFieldLabel resource.",
+          "label": "Replaces the SourceFieldLabel resource.",
           "returns": "#SourceFieldLabel"
         },
         {
@@ -880,14 +880,14 @@
           "expects": "#SourceFieldLabel",
           "hydra:method": "PATCH",
           "hydra:title": "Updates the SourceFieldLabel resource.",
-          "rdfs:label": "Updates the SourceFieldLabel resource.",
+          "label": "Updates the SourceFieldLabel resource.",
           "returns": "#SourceFieldLabel"
         },
         {
           "@type": ["hydra:Operation", "schema:DeleteAction"],
           "hydra:method": "DELETE",
           "hydra:title": "Deletes the SourceFieldLabel resource.",
-          "rdfs:label": "Deletes the SourceFieldLabel resource.",
+          "label": "Deletes the SourceFieldLabel resource.",
           "returns": "owl:Nothing"
         }
       ]
@@ -895,7 +895,7 @@
     {
       "@id": "#SourceFieldOption",
       "@type": "hydra:Class",
-      "rdfs:label": "SourceFieldOption",
+      "label": "SourceFieldOption",
       "hydra:title": "SourceFieldOption",
       "hydra:supportedProperty": [
         {
@@ -903,7 +903,7 @@
           "hydra:property": {
             "@id": "#SourceFieldOption/code",
             "@type": "rdf:Property",
-            "rdfs:label": "code",
+            "label": "code",
             "domain": "#SourceFieldOption",
             "range": "xmls:string"
           },
@@ -917,7 +917,7 @@
           "hydra:property": {
             "@id": "#SourceFieldOption/sourceField",
             "@type": "hydra:Link",
-            "rdfs:label": "sourceField",
+            "label": "sourceField",
             "domain": "#SourceFieldOption",
             "owl:maxCardinality": 1,
             "range": "#SourceField"
@@ -932,7 +932,7 @@
           "hydra:property": {
             "@id": "#SourceFieldOption/position",
             "@type": "rdf:Property",
-            "rdfs:label": "position",
+            "label": "position",
             "domain": "#SourceFieldOption",
             "range": "xmls:integer"
           },
@@ -946,7 +946,7 @@
           "hydra:property": {
             "@id": "#SourceFieldOption/defaultLabel",
             "@type": "rdf:Property",
-            "rdfs:label": "defaultLabel",
+            "label": "defaultLabel",
             "domain": "#SourceFieldOption",
             "range": "xmls:string"
           },
@@ -960,7 +960,7 @@
           "hydra:property": {
             "@id": "#SourceFieldOption/labels",
             "@type": "rdf:Property",
-            "rdfs:label": "labels",
+            "label": "labels",
             "domain": "#SourceFieldOption",
             "range": "#SourceFieldOptionLabel"
           },
@@ -975,7 +975,7 @@
           "@type": ["hydra:Operation", "schema:FindAction"],
           "hydra:method": "GET",
           "hydra:title": "Retrieves SourceFieldOption resource.",
-          "rdfs:label": "Retrieves SourceFieldOption resource.",
+          "label": "Retrieves SourceFieldOption resource.",
           "returns": "#SourceFieldOption"
         },
         {
@@ -983,7 +983,7 @@
           "expects": "#SourceFieldOption",
           "hydra:method": "PUT",
           "hydra:title": "Replaces the SourceFieldOption resource.",
-          "rdfs:label": "Replaces the SourceFieldOption resource.",
+          "label": "Replaces the SourceFieldOption resource.",
           "returns": "#SourceFieldOption"
         },
         {
@@ -991,14 +991,14 @@
           "expects": "#SourceFieldOption",
           "hydra:method": "PATCH",
           "hydra:title": "Updates the SourceFieldOption resource.",
-          "rdfs:label": "Updates the SourceFieldOption resource.",
+          "label": "Updates the SourceFieldOption resource.",
           "returns": "#SourceFieldOption"
         },
         {
           "@type": ["hydra:Operation", "schema:DeleteAction"],
           "hydra:method": "DELETE",
           "hydra:title": "Deletes the SourceFieldOption resource.",
-          "rdfs:label": "Deletes the SourceFieldOption resource.",
+          "label": "Deletes the SourceFieldOption resource.",
           "returns": "owl:Nothing"
         }
       ]
@@ -1006,7 +1006,7 @@
     {
       "@id": "#CategoryConfiguration",
       "@type": "hydra:Class",
-      "rdfs:label": "CategoryConfiguration",
+      "label": "CategoryConfiguration",
       "hydra:title": "CategoryConfiguration",
       "hydra:supportedProperty": [
         {
@@ -1014,7 +1014,7 @@
           "hydra:property": {
             "@id": "#CategoryConfiguration/category",
             "@type": "hydra:Link",
-            "rdfs:label": "category",
+            "label": "category",
             "domain": "#CategoryConfiguration",
             "owl:maxCardinality": 1,
             "range": "#Category"
@@ -1029,7 +1029,7 @@
           "hydra:property": {
             "@id": "#CategoryConfiguration/catalog",
             "@type": "hydra:Link",
-            "rdfs:label": "catalog",
+            "label": "catalog",
             "domain": "#CategoryConfiguration",
             "owl:maxCardinality": 1,
             "range": "#Catalog"
@@ -1044,7 +1044,7 @@
           "hydra:property": {
             "@id": "#CategoryConfiguration/localizedCatalog",
             "@type": "hydra:Link",
-            "rdfs:label": "localizedCatalog",
+            "label": "localizedCatalog",
             "domain": "#CategoryConfiguration",
             "owl:maxCardinality": 1,
             "range": "#LocalizedCatalog"
@@ -1059,7 +1059,7 @@
           "hydra:property": {
             "@id": "#CategoryConfiguration/name",
             "@type": "rdf:Property",
-            "rdfs:label": "name",
+            "label": "name",
             "domain": "#CategoryConfiguration",
             "range": "xmls:string"
           },
@@ -1073,7 +1073,7 @@
           "hydra:property": {
             "@id": "#CategoryConfiguration/isVirtual",
             "@type": "rdf:Property",
-            "rdfs:label": "isVirtual",
+            "label": "isVirtual",
             "domain": "#CategoryConfiguration",
             "range": "xmls:boolean"
           },
@@ -1087,7 +1087,7 @@
           "hydra:property": {
             "@id": "#CategoryConfiguration/virtualRule",
             "@type": "rdf:Property",
-            "rdfs:label": "virtualRule",
+            "label": "virtualRule",
             "domain": "#CategoryConfiguration",
             "range": "xmls:string"
           },
@@ -1101,7 +1101,7 @@
           "hydra:property": {
             "@id": "#CategoryConfiguration/useNameInProductSearch",
             "@type": "rdf:Property",
-            "rdfs:label": "useNameInProductSearch",
+            "label": "useNameInProductSearch",
             "domain": "#CategoryConfiguration",
             "range": "xmls:boolean"
           },
@@ -1118,7 +1118,7 @@
           "hydra:property": {
             "@id": "#CategoryConfiguration/defaultSorting",
             "@type": "rdf:Property",
-            "rdfs:label": "defaultSorting",
+            "label": "defaultSorting",
             "domain": "#CategoryConfiguration",
             "range": "xmls:string"
           },
@@ -1139,7 +1139,7 @@
           "hydra:property": {
             "@id": "#CategoryConfiguration/isActive",
             "@type": "rdf:Property",
-            "rdfs:label": "isActive",
+            "label": "isActive",
             "domain": "#CategoryConfiguration",
             "range": "xmls:boolean"
           },
@@ -1154,14 +1154,14 @@
           "@type": ["hydra:Operation", "schema:FindAction"],
           "hydra:method": "GET",
           "hydra:title": "Retrieves CategoryConfiguration resource.",
-          "rdfs:label": "Retrieves CategoryConfiguration resource.",
+          "label": "Retrieves CategoryConfiguration resource.",
           "returns": "#CategoryConfiguration"
         },
         {
           "@type": ["hydra:Operation", "schema:FindAction"],
           "hydra:method": "GET",
           "hydra:title": "Retrieves CategoryConfiguration resource.",
-          "rdfs:label": "Retrieves CategoryConfiguration resource.",
+          "label": "Retrieves CategoryConfiguration resource.",
           "returns": "#CategoryConfiguration"
         },
         {
@@ -1169,7 +1169,7 @@
           "expects": "#CategoryConfiguration",
           "hydra:method": "PUT",
           "hydra:title": "Replaces the CategoryConfiguration resource.",
-          "rdfs:label": "Replaces the CategoryConfiguration resource.",
+          "label": "Replaces the CategoryConfiguration resource.",
           "returns": "#CategoryConfiguration"
         },
         {
@@ -1177,7 +1177,7 @@
           "expects": "#CategoryConfiguration",
           "hydra:method": "PATCH",
           "hydra:title": "Updates the CategoryConfiguration resource.",
-          "rdfs:label": "Updates the CategoryConfiguration resource.",
+          "label": "Updates the CategoryConfiguration resource.",
           "returns": "#CategoryConfiguration"
         }
       ]
@@ -1185,7 +1185,7 @@
     {
       "@id": "#FacetConfiguration",
       "@type": "hydra:Class",
-      "rdfs:label": "FacetConfiguration",
+      "label": "FacetConfiguration",
       "hydra:title": "FacetConfiguration",
       "hydra:supportedProperty": [
         {
@@ -1193,7 +1193,7 @@
           "hydra:property": {
             "@id": "#FacetConfiguration/id",
             "@type": "rdf:Property",
-            "rdfs:label": "id",
+            "label": "id",
             "domain": "#FacetConfiguration",
             "range": "xmls:string"
           },
@@ -1207,7 +1207,7 @@
           "hydra:property": {
             "@id": "#FacetConfiguration/sourceField",
             "@type": "hydra:Link",
-            "rdfs:label": "sourceField",
+            "label": "sourceField",
             "domain": "#FacetConfiguration",
             "owl:maxCardinality": 1,
             "range": "#SourceField"
@@ -1222,7 +1222,7 @@
           "hydra:property": {
             "@id": "#FacetConfiguration/category",
             "@type": "hydra:Link",
-            "rdfs:label": "category",
+            "label": "category",
             "domain": "#FacetConfiguration",
             "owl:maxCardinality": 1,
             "range": "#Category"
@@ -1237,7 +1237,7 @@
           "hydra:property": {
             "@id": "#FacetConfiguration/displayMode",
             "@type": "rdf:Property",
-            "rdfs:label": "Display",
+            "label": "Display",
             "domain": "#FacetConfiguration",
             "range": "xmls:string"
           },
@@ -1264,7 +1264,7 @@
           "hydra:property": {
             "@id": "#FacetConfiguration/coverageRate",
             "@type": "rdf:Property",
-            "rdfs:label": "Coverage",
+            "label": "Coverage",
             "domain": "#FacetConfiguration",
             "range": "xmls:integer"
           },
@@ -1285,7 +1285,7 @@
           "hydra:property": {
             "@id": "#FacetConfiguration/maxSize",
             "@type": "rdf:Property",
-            "rdfs:label": "Max size",
+            "label": "Max size",
             "domain": "#FacetConfiguration",
             "range": "xmls:integer"
           },
@@ -1305,7 +1305,7 @@
           "hydra:property": {
             "@id": "#FacetConfiguration/sortOrder",
             "@type": "rdf:Property",
-            "rdfs:label": "Sort order",
+            "label": "Sort order",
             "domain": "#FacetConfiguration",
             "range": "xmls:string"
           },
@@ -1333,7 +1333,7 @@
           "hydra:property": {
             "@id": "#FacetConfiguration/isRecommendable",
             "@type": "rdf:Property",
-            "rdfs:label": "Facet recommenders",
+            "label": "Facet recommenders",
             "domain": "#FacetConfiguration",
             "range": "xmls:boolean"
           },
@@ -1348,7 +1348,7 @@
           "hydra:property": {
             "@id": "#FacetConfiguration/isVirtual",
             "@type": "rdf:Property",
-            "rdfs:label": "Virtual attributes",
+            "label": "Virtual attributes",
             "domain": "#FacetConfiguration",
             "range": "xmls:boolean"
           },
@@ -1363,7 +1363,7 @@
           "hydra:property": {
             "@id": "#FacetConfiguration/position",
             "@type": "rdf:Property",
-            "rdfs:label": "Position",
+            "label": "Position",
             "domain": "#FacetConfiguration",
             "range": "xmls:integer"
           },
@@ -1383,7 +1383,7 @@
           "hydra:property": {
             "@id": "#FacetConfiguration/defaultDisplayMode",
             "@type": "rdf:Property",
-            "rdfs:label": "defaultDisplayMode",
+            "label": "defaultDisplayMode",
             "domain": "#FacetConfiguration",
             "range": "xmls:string"
           },
@@ -1397,7 +1397,7 @@
           "hydra:property": {
             "@id": "#FacetConfiguration/defaultCoverageRate",
             "@type": "rdf:Property",
-            "rdfs:label": "defaultCoverageRate",
+            "label": "defaultCoverageRate",
             "domain": "#FacetConfiguration",
             "range": "xmls:integer"
           },
@@ -1411,7 +1411,7 @@
           "hydra:property": {
             "@id": "#FacetConfiguration/defaultMaxSize",
             "@type": "rdf:Property",
-            "rdfs:label": "defaultMaxSize",
+            "label": "defaultMaxSize",
             "domain": "#FacetConfiguration",
             "range": "xmls:integer"
           },
@@ -1425,7 +1425,7 @@
           "hydra:property": {
             "@id": "#FacetConfiguration/defaultSortOrder",
             "@type": "rdf:Property",
-            "rdfs:label": "defaultSortOrder",
+            "label": "defaultSortOrder",
             "domain": "#FacetConfiguration",
             "range": "xmls:string"
           },
@@ -1439,7 +1439,7 @@
           "hydra:property": {
             "@id": "#FacetConfiguration/defaultIsRecommendable",
             "@type": "rdf:Property",
-            "rdfs:label": "defaultIsRecommendable",
+            "label": "defaultIsRecommendable",
             "domain": "#FacetConfiguration",
             "range": "xmls:boolean"
           },
@@ -1453,7 +1453,7 @@
           "hydra:property": {
             "@id": "#FacetConfiguration/defaultIsVirtual",
             "@type": "rdf:Property",
-            "rdfs:label": "defaultIsVirtual",
+            "label": "defaultIsVirtual",
             "domain": "#FacetConfiguration",
             "range": "xmls:boolean"
           },
@@ -1467,7 +1467,7 @@
           "hydra:property": {
             "@id": "#FacetConfiguration/defaultPosition",
             "@type": "rdf:Property",
-            "rdfs:label": "defaultPosition",
+            "label": "defaultPosition",
             "domain": "#FacetConfiguration",
             "range": "xmls:integer"
           },
@@ -1481,7 +1481,7 @@
           "hydra:property": {
             "@id": "#FacetConfiguration/sourceFieldCode",
             "@type": "rdf:Property",
-            "rdfs:label": "Attribute code",
+            "label": "Attribute code",
             "domain": "#FacetConfiguration",
             "range": "xmls:string"
           },
@@ -1502,7 +1502,7 @@
           "@type": ["hydra:Operation", "schema:FindAction"],
           "hydra:method": "GET",
           "hydra:title": "Retrieves FacetConfiguration resource.",
-          "rdfs:label": "Retrieves FacetConfiguration resource.",
+          "label": "Retrieves FacetConfiguration resource.",
           "returns": "#FacetConfiguration"
         },
         {
@@ -1510,7 +1510,7 @@
           "expects": "#FacetConfiguration",
           "hydra:method": "PUT",
           "hydra:title": "Replaces the FacetConfiguration resource.",
-          "rdfs:label": "Replaces the FacetConfiguration resource.",
+          "label": "Replaces the FacetConfiguration resource.",
           "returns": "#FacetConfiguration"
         },
         {
@@ -1518,14 +1518,14 @@
           "expects": "#FacetConfiguration",
           "hydra:method": "PATCH",
           "hydra:title": "Updates the FacetConfiguration resource.",
-          "rdfs:label": "Updates the FacetConfiguration resource.",
+          "label": "Updates the FacetConfiguration resource.",
           "returns": "#FacetConfiguration"
         },
         {
           "@type": ["hydra:Operation", "schema:DeleteAction"],
           "hydra:method": "DELETE",
           "hydra:title": "Deletes the FacetConfiguration resource.",
-          "rdfs:label": "Deletes the FacetConfiguration resource.",
+          "label": "Deletes the FacetConfiguration resource.",
           "returns": "owl:Nothing"
         }
       ]
@@ -1533,7 +1533,7 @@
     {
       "@id": "#Boost",
       "@type": "hydra:Class",
-      "rdfs:label": "Boost",
+      "label": "Boost",
       "hydra:title": "Boost",
       "hydra:supportedProperty": [
         {
@@ -1541,7 +1541,7 @@
           "hydra:property": {
             "@id": "#Boost/name",
             "@type": "rdf:Property",
-            "rdfs:label": "Name",
+            "label": "Name",
             "domain": "#Boost",
             "range": "xmls:string"
           },
@@ -1556,7 +1556,7 @@
           "hydra:property": {
             "@id": "#Boost/isActive",
             "@type": "rdf:Property",
-            "rdfs:label": "Enabled",
+            "label": "Enabled",
             "domain": "#Boost",
             "range": "xmls:boolean"
           },
@@ -1571,7 +1571,7 @@
           "hydra:property": {
             "@id": "#Boost/fromDate",
             "@type": "rdf:Property",
-            "rdfs:label": "fromDate",
+            "label": "fromDate",
             "domain": "#Boost",
             "range": "xmls:dateTime"
           },
@@ -1585,7 +1585,7 @@
           "hydra:property": {
             "@id": "#Boost/toDate",
             "@type": "rdf:Property",
-            "rdfs:label": "toDate",
+            "label": "toDate",
             "domain": "#Boost",
             "range": "xmls:dateTime"
           },
@@ -1599,7 +1599,7 @@
           "hydra:property": {
             "@id": "#Boost/conditionRule",
             "@type": "rdf:Property",
-            "rdfs:label": "conditionRule",
+            "label": "conditionRule",
             "domain": "#Boost",
             "range": "xmls:string"
           },
@@ -1613,7 +1613,7 @@
           "hydra:property": {
             "@id": "#Boost/model",
             "@type": "rdf:Property",
-            "rdfs:label": "Model",
+            "label": "Model",
             "domain": "#Boost",
             "range": "xmls:string"
           },
@@ -1637,7 +1637,7 @@
           "hydra:property": {
             "@id": "#Boost/modelConfig",
             "@type": "rdf:Property",
-            "rdfs:label": "modelConfig",
+            "label": "modelConfig",
             "domain": "#Boost",
             "range": "xmls:string"
           },
@@ -1651,7 +1651,7 @@
           "hydra:property": {
             "@id": "#Boost/localizedCatalogs",
             "@type": "hydra:Link",
-            "rdfs:label": "localizedCatalogs",
+            "label": "localizedCatalogs",
             "domain": "#Boost",
             "range": "#LocalizedCatalog"
           },
@@ -1665,7 +1665,7 @@
           "hydra:property": {
             "@id": "#Boost/requestTypes",
             "@type": "rdf:Property",
-            "rdfs:label": "requestTypes",
+            "label": "requestTypes",
             "domain": "#Boost",
             "range": "#BoostRequestType"
           },
@@ -1679,7 +1679,7 @@
           "hydra:property": {
             "@id": "#Boost/requestTypeLabels",
             "@type": "rdf:Property",
-            "rdfs:label": "Request type",
+            "label": "Request type",
             "domain": "#Boost"
           },
           "hydra:title": "requestTypeLabels",
@@ -1703,7 +1703,7 @@
           "hydra:property": {
             "@id": "#Boost/categoryLimitations",
             "@type": "rdf:Property",
-            "rdfs:label": "categoryLimitations",
+            "label": "categoryLimitations",
             "domain": "#Boost",
             "range": "#BoostCategoryLimitation"
           },
@@ -1717,7 +1717,7 @@
           "hydra:property": {
             "@id": "#Boost/searchLimitations",
             "@type": "rdf:Property",
-            "rdfs:label": "searchLimitations",
+            "label": "searchLimitations",
             "domain": "#Boost",
             "range": "#BoostSearchLimitation"
           },
@@ -1731,7 +1731,7 @@
           "hydra:property": {
             "@id": "#Boost/createdAt",
             "@type": "rdf:Property",
-            "rdfs:label": "createdAt",
+            "label": "createdAt",
             "domain": "#Boost",
             "range": "xmls:dateTime"
           },
@@ -1745,7 +1745,7 @@
           "hydra:property": {
             "@id": "#Boost/updatedAt",
             "@type": "rdf:Property",
-            "rdfs:label": "updatedAt",
+            "label": "updatedAt",
             "domain": "#Boost",
             "range": "xmls:dateTime"
           },
@@ -1759,7 +1759,7 @@
           "hydra:property": {
             "@id": "#Boost/localizedCatalogLabels",
             "@type": "rdf:Property",
-            "rdfs:label": "Scope",
+            "label": "Scope",
             "domain": "#Boost"
           },
           "hydra:title": "localizedCatalogLabels",
@@ -1784,7 +1784,7 @@
           "@type": ["hydra:Operation", "schema:FindAction"],
           "hydra:method": "GET",
           "hydra:title": "Retrieves Boost resource.",
-          "rdfs:label": "Retrieves Boost resource.",
+          "label": "Retrieves Boost resource.",
           "returns": "#Boost"
         },
         {
@@ -1792,14 +1792,14 @@
           "expects": "#Boost",
           "hydra:method": "PUT",
           "hydra:title": "Replaces the Boost resource.",
-          "rdfs:label": "Replaces the Boost resource.",
+          "label": "Replaces the Boost resource.",
           "returns": "#Boost"
         },
         {
           "@type": ["hydra:Operation", "schema:DeleteAction"],
           "hydra:method": "DELETE",
           "hydra:title": "Deletes the Boost resource.",
-          "rdfs:label": "Deletes the Boost resource.",
+          "label": "Deletes the Boost resource.",
           "returns": "owl:Nothing"
         }
       ]
@@ -1807,7 +1807,7 @@
     {
       "@id": "#BoostRequestType",
       "@type": "hydra:Class",
-      "rdfs:label": "BoostRequestType",
+      "label": "BoostRequestType",
       "hydra:title": "BoostRequestType",
       "hydra:supportedProperty": [
         {
@@ -1815,7 +1815,7 @@
           "hydra:property": {
             "@id": "#BoostRequestType/boost",
             "@type": "hydra:Link",
-            "rdfs:label": "boost",
+            "label": "boost",
             "domain": "#BoostRequestType",
             "owl:maxCardinality": 1,
             "range": "#Boost"
@@ -1830,7 +1830,7 @@
           "hydra:property": {
             "@id": "#BoostRequestType/requestType",
             "@type": "rdf:Property",
-            "rdfs:label": "requestType",
+            "label": "requestType",
             "domain": "#BoostRequestType",
             "range": "xmls:string"
           },
@@ -1844,7 +1844,7 @@
           "hydra:property": {
             "@id": "#BoostRequestType/applyToAll",
             "@type": "rdf:Property",
-            "rdfs:label": "applyToAll",
+            "label": "applyToAll",
             "domain": "#BoostRequestType",
             "range": "xmls:boolean"
           },
@@ -1859,7 +1859,7 @@
           "@type": ["hydra:Operation", "schema:FindAction"],
           "hydra:method": "GET",
           "hydra:title": "Retrieves BoostRequestType resource.",
-          "rdfs:label": "Retrieves BoostRequestType resource.",
+          "label": "Retrieves BoostRequestType resource.",
           "returns": "#BoostRequestType"
         },
         {
@@ -1867,7 +1867,7 @@
           "expects": "#BoostRequestType",
           "hydra:method": "PUT",
           "hydra:title": "Replaces the BoostRequestType resource.",
-          "rdfs:label": "Replaces the BoostRequestType resource.",
+          "label": "Replaces the BoostRequestType resource.",
           "returns": "#BoostRequestType"
         },
         {
@@ -1875,14 +1875,14 @@
           "expects": "#BoostRequestType",
           "hydra:method": "PATCH",
           "hydra:title": "Updates the BoostRequestType resource.",
-          "rdfs:label": "Updates the BoostRequestType resource.",
+          "label": "Updates the BoostRequestType resource.",
           "returns": "#BoostRequestType"
         },
         {
           "@type": ["hydra:Operation", "schema:DeleteAction"],
           "hydra:method": "DELETE",
           "hydra:title": "Deletes the BoostRequestType resource.",
-          "rdfs:label": "Deletes the BoostRequestType resource.",
+          "label": "Deletes the BoostRequestType resource.",
           "returns": "owl:Nothing"
         }
       ]
@@ -1890,7 +1890,7 @@
     {
       "@id": "#BoostCategoryLimitation",
       "@type": "hydra:Class",
-      "rdfs:label": "BoostCategoryLimitation",
+      "label": "BoostCategoryLimitation",
       "hydra:title": "BoostCategoryLimitation",
       "hydra:supportedProperty": [
         {
@@ -1898,7 +1898,7 @@
           "hydra:property": {
             "@id": "#BoostCategoryLimitation/boost",
             "@type": "hydra:Link",
-            "rdfs:label": "boost",
+            "label": "boost",
             "domain": "#BoostCategoryLimitation",
             "owl:maxCardinality": 1,
             "range": "#Boost"
@@ -1913,7 +1913,7 @@
           "hydra:property": {
             "@id": "#BoostCategoryLimitation/category",
             "@type": "hydra:Link",
-            "rdfs:label": "category",
+            "label": "category",
             "domain": "#BoostCategoryLimitation",
             "owl:maxCardinality": 1,
             "range": "#Category"
@@ -1929,7 +1929,7 @@
           "@type": ["hydra:Operation", "schema:FindAction"],
           "hydra:method": "GET",
           "hydra:title": "Retrieves BoostCategoryLimitation resource.",
-          "rdfs:label": "Retrieves BoostCategoryLimitation resource.",
+          "label": "Retrieves BoostCategoryLimitation resource.",
           "returns": "#BoostCategoryLimitation"
         },
         {
@@ -1937,7 +1937,7 @@
           "expects": "#BoostCategoryLimitation",
           "hydra:method": "PUT",
           "hydra:title": "Replaces the BoostCategoryLimitation resource.",
-          "rdfs:label": "Replaces the BoostCategoryLimitation resource.",
+          "label": "Replaces the BoostCategoryLimitation resource.",
           "returns": "#BoostCategoryLimitation"
         },
         {
@@ -1945,14 +1945,14 @@
           "expects": "#BoostCategoryLimitation",
           "hydra:method": "PATCH",
           "hydra:title": "Updates the BoostCategoryLimitation resource.",
-          "rdfs:label": "Updates the BoostCategoryLimitation resource.",
+          "label": "Updates the BoostCategoryLimitation resource.",
           "returns": "#BoostCategoryLimitation"
         },
         {
           "@type": ["hydra:Operation", "schema:DeleteAction"],
           "hydra:method": "DELETE",
           "hydra:title": "Deletes the BoostCategoryLimitation resource.",
-          "rdfs:label": "Deletes the BoostCategoryLimitation resource.",
+          "label": "Deletes the BoostCategoryLimitation resource.",
           "returns": "owl:Nothing"
         }
       ]
@@ -1960,7 +1960,7 @@
     {
       "@id": "#BoostSearchLimitation",
       "@type": "hydra:Class",
-      "rdfs:label": "BoostSearchLimitation",
+      "label": "BoostSearchLimitation",
       "hydra:title": "BoostSearchLimitation",
       "hydra:supportedProperty": [
         {
@@ -1968,7 +1968,7 @@
           "hydra:property": {
             "@id": "#BoostSearchLimitation/boost",
             "@type": "hydra:Link",
-            "rdfs:label": "boost",
+            "label": "boost",
             "domain": "#BoostSearchLimitation",
             "owl:maxCardinality": 1,
             "range": "#Boost"
@@ -1983,7 +1983,7 @@
           "hydra:property": {
             "@id": "#BoostSearchLimitation/operator",
             "@type": "rdf:Property",
-            "rdfs:label": "operator",
+            "label": "operator",
             "domain": "#BoostSearchLimitation",
             "range": "xmls:string"
           },
@@ -1997,7 +1997,7 @@
           "hydra:property": {
             "@id": "#BoostSearchLimitation/queryText",
             "@type": "rdf:Property",
-            "rdfs:label": "queryText",
+            "label": "queryText",
             "domain": "#BoostSearchLimitation",
             "range": "xmls:string"
           },
@@ -2012,7 +2012,7 @@
           "@type": ["hydra:Operation", "schema:FindAction"],
           "hydra:method": "GET",
           "hydra:title": "Retrieves BoostSearchLimitation resource.",
-          "rdfs:label": "Retrieves BoostSearchLimitation resource.",
+          "label": "Retrieves BoostSearchLimitation resource.",
           "returns": "#BoostSearchLimitation"
         },
         {
@@ -2020,7 +2020,7 @@
           "expects": "#BoostSearchLimitation",
           "hydra:method": "PUT",
           "hydra:title": "Replaces the BoostSearchLimitation resource.",
-          "rdfs:label": "Replaces the BoostSearchLimitation resource.",
+          "label": "Replaces the BoostSearchLimitation resource.",
           "returns": "#BoostSearchLimitation"
         },
         {
@@ -2028,14 +2028,14 @@
           "expects": "#BoostSearchLimitation",
           "hydra:method": "PATCH",
           "hydra:title": "Updates the BoostSearchLimitation resource.",
-          "rdfs:label": "Updates the BoostSearchLimitation resource.",
+          "label": "Updates the BoostSearchLimitation resource.",
           "returns": "#BoostSearchLimitation"
         },
         {
           "@type": ["hydra:Operation", "schema:DeleteAction"],
           "hydra:method": "DELETE",
           "hydra:title": "Deletes the BoostSearchLimitation resource.",
-          "rdfs:label": "Deletes the BoostSearchLimitation resource.",
+          "label": "Deletes the BoostSearchLimitation resource.",
           "returns": "owl:Nothing"
         }
       ]
@@ -2043,7 +2043,7 @@
     {
       "@id": "#BoostRequestTypeOption",
       "@type": "hydra:Class",
-      "rdfs:label": "BoostRequestTypeOption",
+      "label": "BoostRequestTypeOption",
       "hydra:title": "BoostRequestTypeOption",
       "hydra:supportedProperty": [
         {
@@ -2051,7 +2051,7 @@
           "hydra:property": {
             "@id": "#BoostRequestTypeOption/value",
             "@type": "rdf:Property",
-            "rdfs:label": "value",
+            "label": "value",
             "domain": "#BoostRequestTypeOption",
             "range": "xmls:string"
           },
@@ -2065,7 +2065,7 @@
           "hydra:property": {
             "@id": "#BoostRequestTypeOption/label",
             "@type": "rdf:Property",
-            "rdfs:label": "label",
+            "label": "label",
             "domain": "#BoostRequestTypeOption",
             "range": "xmls:string"
           },
@@ -2079,7 +2079,7 @@
           "hydra:property": {
             "@id": "#BoostRequestTypeOption/limitationType",
             "@type": "rdf:Property",
-            "rdfs:label": "limitationType",
+            "label": "limitationType",
             "domain": "#BoostRequestTypeOption",
             "range": "xmls:string"
           },
@@ -2094,7 +2094,7 @@
     {
       "@id": "#BoostModelOption",
       "@type": "hydra:Class",
-      "rdfs:label": "BoostModelOption",
+      "label": "BoostModelOption",
       "hydra:title": "BoostModelOption",
       "hydra:supportedProperty": [
         {
@@ -2102,7 +2102,7 @@
           "hydra:property": {
             "@id": "#BoostModelOption/value",
             "@type": "rdf:Property",
-            "rdfs:label": "value",
+            "label": "value",
             "domain": "#BoostModelOption",
             "range": "xmls:string"
           },
@@ -2116,7 +2116,7 @@
           "hydra:property": {
             "@id": "#BoostModelOption/label",
             "@type": "rdf:Property",
-            "rdfs:label": "label",
+            "label": "label",
             "domain": "#BoostModelOption",
             "range": "xmls:string"
           },
@@ -2131,7 +2131,7 @@
     {
       "@id": "#BoostQueryTextOperatorOption",
       "@type": "hydra:Class",
-      "rdfs:label": "BoostQueryTextOperatorOption",
+      "label": "BoostQueryTextOperatorOption",
       "hydra:title": "BoostQueryTextOperatorOption",
       "hydra:supportedProperty": [
         {
@@ -2139,7 +2139,7 @@
           "hydra:property": {
             "@id": "#BoostQueryTextOperatorOption/value",
             "@type": "rdf:Property",
-            "rdfs:label": "value",
+            "label": "value",
             "domain": "#BoostQueryTextOperatorOption",
             "range": "xmls:string"
           },
@@ -2153,7 +2153,7 @@
           "hydra:property": {
             "@id": "#BoostQueryTextOperatorOption/label",
             "@type": "rdf:Property",
-            "rdfs:label": "label",
+            "label": "label",
             "domain": "#BoostQueryTextOperatorOption",
             "range": "xmls:string"
           },
@@ -2168,7 +2168,7 @@
     {
       "@id": "#BoostLimitationTypeOption",
       "@type": "hydra:Class",
-      "rdfs:label": "BoostLimitationTypeOption",
+      "label": "BoostLimitationTypeOption",
       "hydra:title": "BoostLimitationTypeOption",
       "hydra:supportedProperty": [
         {
@@ -2176,7 +2176,7 @@
           "hydra:property": {
             "@id": "#BoostLimitationTypeOption/value",
             "@type": "rdf:Property",
-            "rdfs:label": "value",
+            "label": "value",
             "domain": "#BoostLimitationTypeOption",
             "range": "xmls:string"
           },
@@ -2190,7 +2190,7 @@
           "hydra:property": {
             "@id": "#BoostLimitationTypeOption/label",
             "@type": "rdf:Property",
-            "rdfs:label": "label",
+            "label": "label",
             "domain": "#BoostLimitationTypeOption",
             "range": "xmls:string"
           },
@@ -2204,7 +2204,7 @@
           "hydra:property": {
             "@id": "#BoostLimitationTypeOption/labelAll",
             "@type": "rdf:Property",
-            "rdfs:label": "labelAll",
+            "label": "labelAll",
             "domain": "#BoostLimitationTypeOption",
             "range": "xmls:string"
           },
@@ -2219,7 +2219,7 @@
     {
       "@id": "#ExtraBundle",
       "@type": "hydra:Class",
-      "rdfs:label": "ExtraBundle",
+      "label": "ExtraBundle",
       "hydra:title": "ExtraBundle",
       "hydra:supportedProperty": [
         {
@@ -2227,7 +2227,7 @@
           "hydra:property": {
             "@id": "#ExtraBundle/id",
             "@type": "rdf:Property",
-            "rdfs:label": "id",
+            "label": "id",
             "domain": "#ExtraBundle",
             "range": "xmls:string"
           },
@@ -2241,7 +2241,7 @@
           "hydra:property": {
             "@id": "#ExtraBundle/name",
             "@type": "rdf:Property",
-            "rdfs:label": "name",
+            "label": "name",
             "domain": "#ExtraBundle",
             "range": "xmls:string"
           },
@@ -2256,7 +2256,7 @@
     {
       "@id": "#LocalizedCatalogGroupOption",
       "@type": "hydra:Class",
-      "rdfs:label": "LocalizedCatalogGroupOption",
+      "label": "LocalizedCatalogGroupOption",
       "hydra:title": "LocalizedCatalogGroupOption",
       "hydra:supportedProperty": [
         {
@@ -2264,7 +2264,7 @@
           "hydra:property": {
             "@id": "#LocalizedCatalogGroupOption/value",
             "@type": "rdf:Property",
-            "rdfs:label": "value",
+            "label": "value",
             "domain": "#LocalizedCatalogGroupOption",
             "range": "xmls:string"
           },
@@ -2278,7 +2278,7 @@
           "hydra:property": {
             "@id": "#LocalizedCatalogGroupOption/label",
             "@type": "rdf:Property",
-            "rdfs:label": "label",
+            "label": "label",
             "domain": "#LocalizedCatalogGroupOption",
             "range": "xmls:string"
           },
@@ -2292,7 +2292,7 @@
           "hydra:property": {
             "@id": "#LocalizedCatalogGroupOption/options",
             "@type": "rdf:Property",
-            "rdfs:label": "options",
+            "label": "options",
             "domain": "#LocalizedCatalogGroupOption"
           },
           "hydra:title": "options",
@@ -2306,7 +2306,7 @@
     {
       "@id": "#CategoryTree",
       "@type": "hydra:Class",
-      "rdfs:label": "CategoryTree",
+      "label": "CategoryTree",
       "hydra:title": "CategoryTree",
       "hydra:supportedProperty": [],
       "hydra:supportedOperation": [
@@ -2314,7 +2314,7 @@
           "@type": ["hydra:Operation", "schema:FindAction"],
           "hydra:method": "GET",
           "hydra:title": "Retrieves CategoryTree resource.",
-          "rdfs:label": "Retrieves CategoryTree resource.",
+          "label": "Retrieves CategoryTree resource.",
           "returns": "#CategoryTree"
         }
       ]
@@ -2322,7 +2322,7 @@
     {
       "@id": "#ProductSortingOption",
       "@type": "hydra:Class",
-      "rdfs:label": "ProductSortingOption",
+      "label": "ProductSortingOption",
       "hydra:title": "ProductSortingOption",
       "hydra:supportedProperty": [
         {
@@ -2330,7 +2330,7 @@
           "hydra:property": {
             "@id": "#ProductSortingOption/code",
             "@type": "rdf:Property",
-            "rdfs:label": "code",
+            "label": "code",
             "domain": "#ProductSortingOption",
             "range": "xmls:string"
           },
@@ -2344,7 +2344,7 @@
           "hydra:property": {
             "@id": "#ProductSortingOption/label",
             "@type": "rdf:Property",
-            "rdfs:label": "label",
+            "label": "label",
             "domain": "#ProductSortingOption",
             "range": "xmls:string"
           },
@@ -2359,7 +2359,7 @@
     {
       "@id": "#Configuration",
       "@type": "hydra:Class",
-      "rdfs:label": "Configuration",
+      "label": "Configuration",
       "hydra:title": "Configuration",
       "hydra:supportedProperty": [
         {
@@ -2367,7 +2367,7 @@
           "hydra:property": {
             "@id": "#Configuration/id",
             "@type": "rdf:Property",
-            "rdfs:label": "id",
+            "label": "id",
             "domain": "#Configuration",
             "range": "xmls:string"
           },
@@ -2381,7 +2381,7 @@
           "hydra:property": {
             "@id": "#Configuration/value",
             "@type": "rdf:Property",
-            "rdfs:label": "value",
+            "label": "value",
             "domain": "#Configuration",
             "range": "xmls:string"
           },
@@ -2396,7 +2396,7 @@
     {
       "@id": "#IndexDocument",
       "@type": "hydra:Class",
-      "rdfs:label": "IndexDocument",
+      "label": "IndexDocument",
       "hydra:title": "IndexDocument",
       "hydra:supportedProperty": [
         {
@@ -2404,7 +2404,7 @@
           "hydra:property": {
             "@id": "#IndexDocument/indexName",
             "@type": "rdf:Property",
-            "rdfs:label": "indexName",
+            "label": "indexName",
             "domain": "#IndexDocument",
             "range": "xmls:string"
           },
@@ -2418,7 +2418,7 @@
           "hydra:property": {
             "@id": "#IndexDocument/documents",
             "@type": "rdf:Property",
-            "rdfs:label": "documents",
+            "label": "documents",
             "domain": "#IndexDocument",
             "range": "xmls:string"
           },
@@ -2433,7 +2433,7 @@
           "@type": ["hydra:Operation", "schema:FindAction"],
           "hydra:method": "GET",
           "hydra:title": "Retrieves IndexDocument resource.",
-          "rdfs:label": "Retrieves IndexDocument resource.",
+          "label": "Retrieves IndexDocument resource.",
           "returns": "owl:Nothing"
         }
       ]
@@ -2441,7 +2441,7 @@
     {
       "@id": "#SelfReindex",
       "@type": "hydra:Class",
-      "rdfs:label": "SelfReindex",
+      "label": "SelfReindex",
       "hydra:title": "SelfReindex",
       "hydra:supportedProperty": [
         {
@@ -2449,7 +2449,7 @@
           "hydra:property": {
             "@id": "#SelfReindex/entityType",
             "@type": "rdf:Property",
-            "rdfs:label": "entityType",
+            "label": "entityType",
             "domain": "#SelfReindex",
             "range": "xmls:string"
           },
@@ -2463,7 +2463,7 @@
           "hydra:property": {
             "@id": "#SelfReindex/id",
             "@type": "rdf:Property",
-            "rdfs:label": "id",
+            "label": "id",
             "domain": "#SelfReindex",
             "range": "xmls:string"
           },
@@ -2477,7 +2477,7 @@
           "hydra:property": {
             "@id": "#SelfReindex/entityTypes",
             "@type": "rdf:Property",
-            "rdfs:label": "entityTypes",
+            "label": "entityTypes",
             "domain": "#SelfReindex",
             "range": "xmls:string"
           },
@@ -2492,7 +2492,7 @@
           "hydra:property": {
             "@id": "#SelfReindex/status",
             "@type": "rdf:Property",
-            "rdfs:label": "status",
+            "label": "status",
             "domain": "#SelfReindex",
             "range": "xmls:string"
           },
@@ -2507,7 +2507,7 @@
           "hydra:property": {
             "@id": "#SelfReindex/indexNames",
             "@type": "rdf:Property",
-            "rdfs:label": "indexNames",
+            "label": "indexNames",
             "domain": "#SelfReindex",
             "range": "xmls:string"
           },
@@ -2523,7 +2523,7 @@
           "@type": ["hydra:Operation", "schema:FindAction"],
           "hydra:method": "GET",
           "hydra:title": "Retrieves SelfReindex resource.",
-          "rdfs:label": "Retrieves SelfReindex resource.",
+          "label": "Retrieves SelfReindex resource.",
           "returns": "owl:Nothing"
         }
       ]
@@ -2531,7 +2531,7 @@
     {
       "@id": "#MappingStatus",
       "@type": "hydra:Class",
-      "rdfs:label": "MappingStatus",
+      "label": "MappingStatus",
       "hydra:title": "MappingStatus",
       "hydra:supportedProperty": [],
       "hydra:supportedOperation": [
@@ -2539,7 +2539,7 @@
           "@type": ["hydra:Operation", "schema:FindAction"],
           "hydra:method": "GET",
           "hydra:title": "Retrieves MappingStatus resource.",
-          "rdfs:label": "Retrieves MappingStatus resource.",
+          "label": "Retrieves MappingStatus resource.",
           "returns": "#MappingStatus"
         }
       ]
@@ -2547,7 +2547,7 @@
     {
       "@id": "#Index",
       "@type": "hydra:Class",
-      "rdfs:label": "Index",
+      "label": "Index",
       "hydra:title": "Index",
       "hydra:supportedProperty": [
         {
@@ -2555,7 +2555,7 @@
           "hydra:property": {
             "@id": "#Index/name",
             "@type": "rdf:Property",
-            "rdfs:label": "name",
+            "label": "name",
             "domain": "#Index",
             "range": "xmls:string"
           },
@@ -2569,7 +2569,7 @@
           "hydra:property": {
             "@id": "#Index/aliases",
             "@type": "rdf:Property",
-            "rdfs:label": "aliases",
+            "label": "aliases",
             "domain": "#Index",
             "range": "xmls:string"
           },
@@ -2583,7 +2583,7 @@
           "hydra:property": {
             "@id": "#Index/docsCount",
             "@type": "rdf:Property",
-            "rdfs:label": "docsCount",
+            "label": "docsCount",
             "domain": "#Index",
             "range": "xmls:integer"
           },
@@ -2597,7 +2597,7 @@
           "hydra:property": {
             "@id": "#Index/size",
             "@type": "rdf:Property",
-            "rdfs:label": "size",
+            "label": "size",
             "domain": "#Index",
             "range": "xmls:string"
           },
@@ -2611,7 +2611,7 @@
           "hydra:property": {
             "@id": "#Index/entityType",
             "@type": "rdf:Property",
-            "rdfs:label": "entityType",
+            "label": "entityType",
             "domain": "#Index",
             "range": "xmls:string"
           },
@@ -2625,7 +2625,7 @@
           "hydra:property": {
             "@id": "#Index/localizedCatalog",
             "@type": "hydra:Link",
-            "rdfs:label": "localizedCatalog",
+            "label": "localizedCatalog",
             "domain": "#Index",
             "owl:maxCardinality": 1,
             "range": "#LocalizedCatalog"
@@ -2640,7 +2640,7 @@
           "hydra:property": {
             "@id": "#Index/status",
             "@type": "rdf:Property",
-            "rdfs:label": "status",
+            "label": "status",
             "domain": "#Index",
             "range": "xmls:string"
           },
@@ -2655,14 +2655,14 @@
           "@type": ["hydra:Operation", "schema:FindAction"],
           "hydra:method": "GET",
           "hydra:title": "Retrieves Index resource.",
-          "rdfs:label": "Retrieves Index resource.",
+          "label": "Retrieves Index resource.",
           "returns": "#Index"
         },
         {
           "@type": ["hydra:Operation", "schema:DeleteAction"],
           "hydra:method": "DELETE",
           "hydra:title": "Deletes the Index resource.",
-          "rdfs:label": "Deletes the Index resource.",
+          "label": "Deletes the Index resource.",
           "returns": "owl:Nothing"
         },
         {
@@ -2670,7 +2670,7 @@
           "expects": "#Index",
           "hydra:method": "PUT",
           "hydra:title": "Replaces the Index resource.",
-          "rdfs:label": "Replaces the Index resource.",
+          "label": "Replaces the Index resource.",
           "returns": "#Index"
         },
         {
@@ -2678,7 +2678,7 @@
           "expects": "#Index",
           "hydra:method": "PUT",
           "hydra:title": "Replaces the Index resource.",
-          "rdfs:label": "Replaces the Index resource.",
+          "label": "Replaces the Index resource.",
           "returns": "#Index"
         }
       ]
@@ -2686,7 +2686,7 @@
     {
       "@id": "#Menu",
       "@type": "hydra:Class",
-      "rdfs:label": "Menu",
+      "label": "Menu",
       "hydra:title": "Menu",
       "hydra:supportedProperty": [],
       "hydra:supportedOperation": [
@@ -2694,7 +2694,7 @@
           "@type": ["hydra:Operation", "schema:FindAction"],
           "hydra:method": "GET",
           "hydra:title": "Retrieves Menu resource.",
-          "rdfs:label": "Retrieves Menu resource.",
+          "label": "Retrieves Menu resource.",
           "returns": "#Menu"
         }
       ]
@@ -2702,7 +2702,7 @@
     {
       "@id": "#SourceFieldOptionLabel",
       "@type": "hydra:Class",
-      "rdfs:label": "SourceFieldOptionLabel",
+      "label": "SourceFieldOptionLabel",
       "hydra:title": "SourceFieldOptionLabel",
       "hydra:supportedProperty": [
         {
@@ -2710,7 +2710,7 @@
           "hydra:property": {
             "@id": "#SourceFieldOptionLabel/sourceFieldOption",
             "@type": "rdf:Property",
-            "rdfs:label": "sourceFieldOption",
+            "label": "sourceFieldOption",
             "domain": "#SourceFieldOptionLabel",
             "owl:maxCardinality": 1,
             "range": "#SourceFieldOption"
@@ -2725,7 +2725,7 @@
           "hydra:property": {
             "@id": "#SourceFieldOptionLabel/localizedCatalog",
             "@type": "hydra:Link",
-            "rdfs:label": "localizedCatalog",
+            "label": "localizedCatalog",
             "domain": "#SourceFieldOptionLabel",
             "owl:maxCardinality": 1,
             "range": "#LocalizedCatalog"
@@ -2740,7 +2740,7 @@
           "hydra:property": {
             "@id": "#SourceFieldOptionLabel/label",
             "@type": "rdf:Property",
-            "rdfs:label": "label",
+            "label": "label",
             "domain": "#SourceFieldOptionLabel",
             "range": "xmls:string"
           },
@@ -2755,7 +2755,7 @@
           "@type": ["hydra:Operation", "schema:FindAction"],
           "hydra:method": "GET",
           "hydra:title": "Retrieves SourceFieldOptionLabel resource.",
-          "rdfs:label": "Retrieves SourceFieldOptionLabel resource.",
+          "label": "Retrieves SourceFieldOptionLabel resource.",
           "returns": "#SourceFieldOptionLabel"
         },
         {
@@ -2763,7 +2763,7 @@
           "expects": "#SourceFieldOptionLabel",
           "hydra:method": "PUT",
           "hydra:title": "Replaces the SourceFieldOptionLabel resource.",
-          "rdfs:label": "Replaces the SourceFieldOptionLabel resource.",
+          "label": "Replaces the SourceFieldOptionLabel resource.",
           "returns": "#SourceFieldOptionLabel"
         },
         {
@@ -2771,14 +2771,14 @@
           "expects": "#SourceFieldOptionLabel",
           "hydra:method": "PATCH",
           "hydra:title": "Updates the SourceFieldOptionLabel resource.",
-          "rdfs:label": "Updates the SourceFieldOptionLabel resource.",
+          "label": "Updates the SourceFieldOptionLabel resource.",
           "returns": "#SourceFieldOptionLabel"
         },
         {
           "@type": ["hydra:Operation", "schema:DeleteAction"],
           "hydra:method": "DELETE",
           "hydra:title": "Deletes the SourceFieldOptionLabel resource.",
-          "rdfs:label": "Deletes the SourceFieldOptionLabel resource.",
+          "label": "Deletes the SourceFieldOptionLabel resource.",
           "returns": "owl:Nothing"
         }
       ]
@@ -2786,7 +2786,7 @@
     {
       "@id": "#Product",
       "@type": "hydra:Class",
-      "rdfs:label": "Product",
+      "label": "Product",
       "hydra:title": "Product",
       "hydra:supportedProperty": [],
       "hydra:supportedOperation": [
@@ -2794,7 +2794,7 @@
           "@type": ["hydra:Operation", "schema:FindAction"],
           "hydra:method": "GET",
           "hydra:title": "Retrieves Product resource.",
-          "rdfs:label": "Retrieves Product resource.",
+          "label": "Retrieves Product resource.",
           "returns": "owl:Nothing"
         }
       ]
@@ -2802,7 +2802,7 @@
     {
       "@id": "#Document",
       "@type": "hydra:Class",
-      "rdfs:label": "Document",
+      "label": "Document",
       "hydra:title": "Document",
       "hydra:supportedProperty": [],
       "hydra:supportedOperation": [
@@ -2810,7 +2810,7 @@
           "@type": ["hydra:Operation", "schema:FindAction"],
           "hydra:method": "GET",
           "hydra:title": "Retrieves Document resource.",
-          "rdfs:label": "Retrieves Document resource.",
+          "label": "Retrieves Document resource.",
           "returns": "owl:Nothing"
         }
       ]
@@ -2818,7 +2818,7 @@
     {
       "@id": "#ProductFacetOption",
       "@type": "hydra:Class",
-      "rdfs:label": "ProductFacetOption",
+      "label": "ProductFacetOption",
       "hydra:title": "ProductFacetOption",
       "hydra:supportedProperty": [],
       "hydra:supportedOperation": [
@@ -2826,7 +2826,7 @@
           "@type": ["hydra:Operation", "schema:FindAction"],
           "hydra:method": "GET",
           "hydra:title": "Retrieves ProductFacetOption resource.",
-          "rdfs:label": "Retrieves ProductFacetOption resource.",
+          "label": "Retrieves ProductFacetOption resource.",
           "returns": "owl:Nothing"
         }
       ]
@@ -2834,7 +2834,7 @@
     {
       "@id": "#FacetOption",
       "@type": "hydra:Class",
-      "rdfs:label": "FacetOption",
+      "label": "FacetOption",
       "hydra:title": "FacetOption",
       "hydra:supportedProperty": [],
       "hydra:supportedOperation": [
@@ -2842,7 +2842,7 @@
           "@type": ["hydra:Operation", "schema:FindAction"],
           "hydra:method": "GET",
           "hydra:title": "Retrieves FacetOption resource.",
-          "rdfs:label": "Retrieves FacetOption resource.",
+          "label": "Retrieves FacetOption resource.",
           "returns": "owl:Nothing"
         }
       ]
@@ -2850,7 +2850,7 @@
     {
       "@id": "#RuleEngineGraphQlFilters",
       "@type": "hydra:Class",
-      "rdfs:label": "RuleEngineGraphQlFilters",
+      "label": "RuleEngineGraphQlFilters",
       "hydra:title": "RuleEngineGraphQlFilters",
       "hydra:supportedProperty": [
         {
@@ -2858,7 +2858,7 @@
           "hydra:property": {
             "@id": "#RuleEngineGraphQlFilters/id",
             "@type": "rdf:Property",
-            "rdfs:label": "id",
+            "label": "id",
             "domain": "#RuleEngineGraphQlFilters",
             "range": "xmls:string"
           },
@@ -2872,7 +2872,7 @@
           "hydra:property": {
             "@id": "#RuleEngineGraphQlFilters/graphQlFilters",
             "@type": "rdf:Property",
-            "rdfs:label": "graphQlFilters",
+            "label": "graphQlFilters",
             "domain": "#RuleEngineGraphQlFilters"
           },
           "hydra:title": "graphQlFilters",
@@ -2886,7 +2886,7 @@
           "@type": ["hydra:Operation", "schema:FindAction"],
           "hydra:method": "GET",
           "hydra:title": "Retrieves RuleEngineGraphQlFilters resource.",
-          "rdfs:label": "Retrieves RuleEngineGraphQlFilters resource.",
+          "label": "Retrieves RuleEngineGraphQlFilters resource.",
           "returns": "owl:Nothing"
         }
       ]
@@ -2894,7 +2894,7 @@
     {
       "@id": "#RuleEngineOperators",
       "@type": "hydra:Class",
-      "rdfs:label": "RuleEngineOperators",
+      "label": "RuleEngineOperators",
       "hydra:title": "RuleEngineOperators",
       "hydra:supportedProperty": [],
       "hydra:supportedOperation": [
@@ -2902,7 +2902,7 @@
           "@type": ["hydra:Operation", "schema:FindAction"],
           "hydra:method": "GET",
           "hydra:title": "Retrieves RuleEngineOperators resource.",
-          "rdfs:label": "Retrieves RuleEngineOperators resource.",
+          "label": "Retrieves RuleEngineOperators resource.",
           "returns": "#RuleEngineOperators"
         }
       ]
@@ -2910,7 +2910,7 @@
     {
       "@id": "#Authentication",
       "@type": "hydra:Class",
-      "rdfs:label": "Authentication",
+      "label": "Authentication",
       "hydra:title": "Authentication",
       "hydra:supportedProperty": [],
       "hydra:supportedOperation": [
@@ -2918,7 +2918,7 @@
           "@type": ["hydra:Operation", "schema:FindAction"],
           "hydra:method": "GET",
           "hydra:title": "Retrieves Authentication resource.",
-          "rdfs:label": "Retrieves Authentication resource.",
+          "label": "Retrieves Authentication resource.",
           "returns": "owl:Nothing"
         }
       ]
@@ -2934,7 +2934,7 @@
             "@id": "#Entrypoint/metadata",
             "@type": "hydra:Link",
             "domain": "#Entrypoint",
-            "rdfs:label": "The collection of Metadata resources",
+            "label": "The collection of Metadata resources",
             "rdfs:range": [
               { "@id": "hydra:Collection" },
               {
@@ -2949,7 +2949,7 @@
                 "@type": ["hydra:Operation", "schema:FindAction"],
                 "hydra:method": "GET",
                 "hydra:title": "Retrieves the collection of Metadata resources.",
-                "rdfs:label": "Retrieves the collection of Metadata resources.",
+                "label": "Retrieves the collection of Metadata resources.",
                 "returns": "hydra:Collection"
               },
               {
@@ -2957,7 +2957,7 @@
                 "expects": "#Metadata",
                 "hydra:method": "POST",
                 "hydra:title": "Creates a Metadata resource.",
-                "rdfs:label": "Creates a Metadata resource.",
+                "label": "Creates a Metadata resource.",
                 "returns": "#Metadata"
               }
             ]
@@ -2972,7 +2972,7 @@
             "@id": "#Entrypoint/sourceField",
             "@type": "hydra:Link",
             "domain": "#Entrypoint",
-            "rdfs:label": "The collection of SourceField resources",
+            "label": "The collection of SourceField resources",
             "rdfs:range": [
               { "@id": "hydra:Collection" },
               {
@@ -2987,7 +2987,7 @@
                 "@type": ["hydra:Operation", "schema:FindAction"],
                 "hydra:method": "GET",
                 "hydra:title": "Retrieves the collection of SourceField resources.",
-                "rdfs:label": "Retrieves the collection of SourceField resources.",
+                "label": "Retrieves the collection of SourceField resources.",
                 "returns": "hydra:Collection"
               },
               {
@@ -2995,7 +2995,7 @@
                 "expects": "#SourceField",
                 "hydra:method": "POST",
                 "hydra:title": "Creates a SourceField resource.",
-                "rdfs:label": "Creates a SourceField resource.",
+                "label": "Creates a SourceField resource.",
                 "returns": "#SourceField"
               }
             ]
@@ -3010,7 +3010,7 @@
             "@id": "#Entrypoint/categoryProductMerchandising",
             "@type": "hydra:Link",
             "domain": "#Entrypoint",
-            "rdfs:label": "The collection of CategoryProductMerchandising resources",
+            "label": "The collection of CategoryProductMerchandising resources",
             "rdfs:range": [
               { "@id": "hydra:Collection" },
               {
@@ -3028,7 +3028,7 @@
                 "expects": "#CategoryProductMerchandising",
                 "hydra:method": "POST",
                 "hydra:title": "Creates a CategoryProductMerchandising resource.",
-                "rdfs:label": "Creates a CategoryProductMerchandising resource.",
+                "label": "Creates a CategoryProductMerchandising resource.",
                 "returns": "#CategoryProductMerchandising"
               }
             ]
@@ -3043,7 +3043,7 @@
             "@id": "#Entrypoint/category",
             "@type": "hydra:Link",
             "domain": "#Entrypoint",
-            "rdfs:label": "The collection of Category resources",
+            "label": "The collection of Category resources",
             "rdfs:range": [
               { "@id": "hydra:Collection" },
               {
@@ -3058,7 +3058,7 @@
                 "@type": ["hydra:Operation", "schema:FindAction"],
                 "hydra:method": "GET",
                 "hydra:title": "Retrieves the collection of Category resources.",
-                "rdfs:label": "Retrieves the collection of Category resources.",
+                "label": "Retrieves the collection of Category resources.",
                 "returns": "hydra:Collection"
               }
             ]
@@ -3073,7 +3073,7 @@
             "@id": "#Entrypoint/catalog",
             "@type": "hydra:Link",
             "domain": "#Entrypoint",
-            "rdfs:label": "The collection of Catalog resources",
+            "label": "The collection of Catalog resources",
             "rdfs:range": [
               { "@id": "hydra:Collection" },
               {
@@ -3088,7 +3088,7 @@
                 "@type": ["hydra:Operation", "schema:FindAction"],
                 "hydra:method": "GET",
                 "hydra:title": "Retrieves the collection of Catalog resources.",
-                "rdfs:label": "Retrieves the collection of Catalog resources.",
+                "label": "Retrieves the collection of Catalog resources.",
                 "returns": "hydra:Collection"
               },
               {
@@ -3096,7 +3096,7 @@
                 "expects": "#Catalog",
                 "hydra:method": "POST",
                 "hydra:title": "Creates a Catalog resource.",
-                "rdfs:label": "Creates a Catalog resource.",
+                "label": "Creates a Catalog resource.",
                 "returns": "#Catalog"
               }
             ]
@@ -3111,7 +3111,7 @@
             "@id": "#Entrypoint/localizedCatalog",
             "@type": "hydra:Link",
             "domain": "#Entrypoint",
-            "rdfs:label": "The collection of LocalizedCatalog resources",
+            "label": "The collection of LocalizedCatalog resources",
             "rdfs:range": [
               { "@id": "hydra:Collection" },
               {
@@ -3126,7 +3126,7 @@
                 "@type": ["hydra:Operation", "schema:FindAction"],
                 "hydra:method": "GET",
                 "hydra:title": "Retrieves the collection of LocalizedCatalog resources.",
-                "rdfs:label": "Retrieves the collection of LocalizedCatalog resources.",
+                "label": "Retrieves the collection of LocalizedCatalog resources.",
                 "returns": "hydra:Collection"
               },
               {
@@ -3134,7 +3134,7 @@
                 "expects": "#LocalizedCatalog",
                 "hydra:method": "POST",
                 "hydra:title": "Creates a LocalizedCatalog resource.",
-                "rdfs:label": "Creates a LocalizedCatalog resource.",
+                "label": "Creates a LocalizedCatalog resource.",
                 "returns": "#LocalizedCatalog"
               }
             ]
@@ -3149,7 +3149,7 @@
             "@id": "#Entrypoint/sourceFieldLabel",
             "@type": "hydra:Link",
             "domain": "#Entrypoint",
-            "rdfs:label": "The collection of SourceFieldLabel resources",
+            "label": "The collection of SourceFieldLabel resources",
             "rdfs:range": [
               { "@id": "hydra:Collection" },
               {
@@ -3164,7 +3164,7 @@
                 "@type": ["hydra:Operation", "schema:FindAction"],
                 "hydra:method": "GET",
                 "hydra:title": "Retrieves the collection of SourceFieldLabel resources.",
-                "rdfs:label": "Retrieves the collection of SourceFieldLabel resources.",
+                "label": "Retrieves the collection of SourceFieldLabel resources.",
                 "returns": "hydra:Collection"
               },
               {
@@ -3172,7 +3172,7 @@
                 "expects": "#SourceFieldLabel",
                 "hydra:method": "POST",
                 "hydra:title": "Creates a SourceFieldLabel resource.",
-                "rdfs:label": "Creates a SourceFieldLabel resource.",
+                "label": "Creates a SourceFieldLabel resource.",
                 "returns": "#SourceFieldLabel"
               }
             ]
@@ -3187,7 +3187,7 @@
             "@id": "#Entrypoint/sourceFieldOption",
             "@type": "hydra:Link",
             "domain": "#Entrypoint",
-            "rdfs:label": "The collection of SourceFieldOption resources",
+            "label": "The collection of SourceFieldOption resources",
             "rdfs:range": [
               { "@id": "hydra:Collection" },
               {
@@ -3202,7 +3202,7 @@
                 "@type": ["hydra:Operation", "schema:FindAction"],
                 "hydra:method": "GET",
                 "hydra:title": "Retrieves the collection of SourceFieldOption resources.",
-                "rdfs:label": "Retrieves the collection of SourceFieldOption resources.",
+                "label": "Retrieves the collection of SourceFieldOption resources.",
                 "returns": "hydra:Collection"
               },
               {
@@ -3210,7 +3210,7 @@
                 "expects": "#SourceFieldOption",
                 "hydra:method": "POST",
                 "hydra:title": "Creates a SourceFieldOption resource.",
-                "rdfs:label": "Creates a SourceFieldOption resource.",
+                "label": "Creates a SourceFieldOption resource.",
                 "returns": "#SourceFieldOption"
               }
             ]
@@ -3225,7 +3225,7 @@
             "@id": "#Entrypoint/categoryConfiguration",
             "@type": "hydra:Link",
             "domain": "#Entrypoint",
-            "rdfs:label": "The collection of CategoryConfiguration resources",
+            "label": "The collection of CategoryConfiguration resources",
             "rdfs:range": [
               { "@id": "hydra:Collection" },
               {
@@ -3240,7 +3240,7 @@
                 "@type": ["hydra:Operation", "schema:FindAction"],
                 "hydra:method": "GET",
                 "hydra:title": "Retrieves the collection of CategoryConfiguration resources.",
-                "rdfs:label": "Retrieves the collection of CategoryConfiguration resources.",
+                "label": "Retrieves the collection of CategoryConfiguration resources.",
                 "returns": "hydra:Collection"
               },
               {
@@ -3248,7 +3248,7 @@
                 "expects": "#CategoryConfiguration",
                 "hydra:method": "POST",
                 "hydra:title": "Creates a CategoryConfiguration resource.",
-                "rdfs:label": "Creates a CategoryConfiguration resource.",
+                "label": "Creates a CategoryConfiguration resource.",
                 "returns": "#CategoryConfiguration"
               }
             ]
@@ -3263,7 +3263,7 @@
             "@id": "#Entrypoint/facetConfiguration",
             "@type": "hydra:Link",
             "domain": "#Entrypoint",
-            "rdfs:label": "The collection of FacetConfiguration resources",
+            "label": "The collection of FacetConfiguration resources",
             "rdfs:range": [
               { "@id": "hydra:Collection" },
               {
@@ -3278,7 +3278,7 @@
                 "@type": ["hydra:Operation", "schema:FindAction"],
                 "hydra:method": "GET",
                 "hydra:title": "Retrieves the collection of FacetConfiguration resources.",
-                "rdfs:label": "Retrieves the collection of FacetConfiguration resources.",
+                "label": "Retrieves the collection of FacetConfiguration resources.",
                 "returns": "hydra:Collection"
               }
             ]
@@ -3293,7 +3293,7 @@
             "@id": "#Entrypoint/boost",
             "@type": "hydra:Link",
             "domain": "#Entrypoint",
-            "rdfs:label": "The collection of Boost resources",
+            "label": "The collection of Boost resources",
             "rdfs:range": [
               { "@id": "hydra:Collection" },
               {
@@ -3308,7 +3308,7 @@
                 "@type": ["hydra:Operation", "schema:FindAction"],
                 "hydra:method": "GET",
                 "hydra:title": "Retrieves the collection of Boost resources.",
-                "rdfs:label": "Retrieves the collection of Boost resources.",
+                "label": "Retrieves the collection of Boost resources.",
                 "returns": "hydra:Collection"
               },
               {
@@ -3316,7 +3316,7 @@
                 "expects": "#Boost",
                 "hydra:method": "POST",
                 "hydra:title": "Creates a Boost resource.",
-                "rdfs:label": "Creates a Boost resource.",
+                "label": "Creates a Boost resource.",
                 "returns": "#Boost"
               }
             ]
@@ -3331,7 +3331,7 @@
             "@id": "#Entrypoint/boostRequestType",
             "@type": "hydra:Link",
             "domain": "#Entrypoint",
-            "rdfs:label": "The collection of BoostRequestType resources",
+            "label": "The collection of BoostRequestType resources",
             "rdfs:range": [
               { "@id": "hydra:Collection" },
               {
@@ -3346,7 +3346,7 @@
                 "@type": ["hydra:Operation", "schema:FindAction"],
                 "hydra:method": "GET",
                 "hydra:title": "Retrieves the collection of BoostRequestType resources.",
-                "rdfs:label": "Retrieves the collection of BoostRequestType resources.",
+                "label": "Retrieves the collection of BoostRequestType resources.",
                 "returns": "hydra:Collection"
               },
               {
@@ -3354,7 +3354,7 @@
                 "expects": "#BoostRequestType",
                 "hydra:method": "POST",
                 "hydra:title": "Creates a BoostRequestType resource.",
-                "rdfs:label": "Creates a BoostRequestType resource.",
+                "label": "Creates a BoostRequestType resource.",
                 "returns": "#BoostRequestType"
               }
             ]
@@ -3369,7 +3369,7 @@
             "@id": "#Entrypoint/boostCategoryLimitation",
             "@type": "hydra:Link",
             "domain": "#Entrypoint",
-            "rdfs:label": "The collection of BoostCategoryLimitation resources",
+            "label": "The collection of BoostCategoryLimitation resources",
             "rdfs:range": [
               { "@id": "hydra:Collection" },
               {
@@ -3384,7 +3384,7 @@
                 "@type": ["hydra:Operation", "schema:FindAction"],
                 "hydra:method": "GET",
                 "hydra:title": "Retrieves the collection of BoostCategoryLimitation resources.",
-                "rdfs:label": "Retrieves the collection of BoostCategoryLimitation resources.",
+                "label": "Retrieves the collection of BoostCategoryLimitation resources.",
                 "returns": "hydra:Collection"
               },
               {
@@ -3392,7 +3392,7 @@
                 "expects": "#BoostCategoryLimitation",
                 "hydra:method": "POST",
                 "hydra:title": "Creates a BoostCategoryLimitation resource.",
-                "rdfs:label": "Creates a BoostCategoryLimitation resource.",
+                "label": "Creates a BoostCategoryLimitation resource.",
                 "returns": "#BoostCategoryLimitation"
               }
             ]
@@ -3407,7 +3407,7 @@
             "@id": "#Entrypoint/boostSearchLimitation",
             "@type": "hydra:Link",
             "domain": "#Entrypoint",
-            "rdfs:label": "The collection of BoostSearchLimitation resources",
+            "label": "The collection of BoostSearchLimitation resources",
             "rdfs:range": [
               { "@id": "hydra:Collection" },
               {
@@ -3422,7 +3422,7 @@
                 "@type": ["hydra:Operation", "schema:FindAction"],
                 "hydra:method": "GET",
                 "hydra:title": "Retrieves the collection of BoostSearchLimitation resources.",
-                "rdfs:label": "Retrieves the collection of BoostSearchLimitation resources.",
+                "label": "Retrieves the collection of BoostSearchLimitation resources.",
                 "returns": "hydra:Collection"
               },
               {
@@ -3430,7 +3430,7 @@
                 "expects": "#BoostSearchLimitation",
                 "hydra:method": "POST",
                 "hydra:title": "Creates a BoostSearchLimitation resource.",
-                "rdfs:label": "Creates a BoostSearchLimitation resource.",
+                "label": "Creates a BoostSearchLimitation resource.",
                 "returns": "#BoostSearchLimitation"
               }
             ]
@@ -3445,7 +3445,7 @@
             "@id": "#Entrypoint/boostRequestTypeOption",
             "@type": "hydra:Link",
             "domain": "#Entrypoint",
-            "rdfs:label": "The collection of BoostRequestTypeOption resources",
+            "label": "The collection of BoostRequestTypeOption resources",
             "rdfs:range": [
               { "@id": "hydra:Collection" },
               {
@@ -3460,7 +3460,7 @@
                 "@type": ["hydra:Operation", "schema:FindAction"],
                 "hydra:method": "GET",
                 "hydra:title": "Retrieves the collection of BoostRequestTypeOption resources.",
-                "rdfs:label": "Retrieves the collection of BoostRequestTypeOption resources.",
+                "label": "Retrieves the collection of BoostRequestTypeOption resources.",
                 "returns": "hydra:Collection"
               }
             ]
@@ -3475,7 +3475,7 @@
             "@id": "#Entrypoint/boostModelOption",
             "@type": "hydra:Link",
             "domain": "#Entrypoint",
-            "rdfs:label": "The collection of BoostModelOption resources",
+            "label": "The collection of BoostModelOption resources",
             "rdfs:range": [
               { "@id": "hydra:Collection" },
               {
@@ -3490,7 +3490,7 @@
                 "@type": ["hydra:Operation", "schema:FindAction"],
                 "hydra:method": "GET",
                 "hydra:title": "Retrieves the collection of BoostModelOption resources.",
-                "rdfs:label": "Retrieves the collection of BoostModelOption resources.",
+                "label": "Retrieves the collection of BoostModelOption resources.",
                 "returns": "hydra:Collection"
               }
             ]
@@ -3505,7 +3505,7 @@
             "@id": "#Entrypoint/boostQueryTextOperatorOption",
             "@type": "hydra:Link",
             "domain": "#Entrypoint",
-            "rdfs:label": "The collection of BoostQueryTextOperatorOption resources",
+            "label": "The collection of BoostQueryTextOperatorOption resources",
             "rdfs:range": [
               { "@id": "hydra:Collection" },
               {
@@ -3522,7 +3522,7 @@
                 "@type": ["hydra:Operation", "schema:FindAction"],
                 "hydra:method": "GET",
                 "hydra:title": "Retrieves the collection of BoostQueryTextOperatorOption resources.",
-                "rdfs:label": "Retrieves the collection of BoostQueryTextOperatorOption resources.",
+                "label": "Retrieves the collection of BoostQueryTextOperatorOption resources.",
                 "returns": "hydra:Collection"
               }
             ]
@@ -3537,7 +3537,7 @@
             "@id": "#Entrypoint/boostLimitationTypeOption",
             "@type": "hydra:Link",
             "domain": "#Entrypoint",
-            "rdfs:label": "The collection of BoostLimitationTypeOption resources",
+            "label": "The collection of BoostLimitationTypeOption resources",
             "rdfs:range": [
               { "@id": "hydra:Collection" },
               {
@@ -3552,7 +3552,7 @@
                 "@type": ["hydra:Operation", "schema:FindAction"],
                 "hydra:method": "GET",
                 "hydra:title": "Retrieves the collection of BoostLimitationTypeOption resources.",
-                "rdfs:label": "Retrieves the collection of BoostLimitationTypeOption resources.",
+                "label": "Retrieves the collection of BoostLimitationTypeOption resources.",
                 "returns": "hydra:Collection"
               }
             ]
@@ -3567,7 +3567,7 @@
             "@id": "#Entrypoint/extraBundle",
             "@type": "hydra:Link",
             "domain": "#Entrypoint",
-            "rdfs:label": "The collection of ExtraBundle resources",
+            "label": "The collection of ExtraBundle resources",
             "rdfs:range": [
               { "@id": "hydra:Collection" },
               {
@@ -3582,7 +3582,7 @@
                 "@type": ["hydra:Operation", "schema:FindAction"],
                 "hydra:method": "GET",
                 "hydra:title": "Retrieves the collection of ExtraBundle resources.",
-                "rdfs:label": "Retrieves the collection of ExtraBundle resources.",
+                "label": "Retrieves the collection of ExtraBundle resources.",
                 "returns": "hydra:Collection"
               }
             ]
@@ -3597,7 +3597,7 @@
             "@id": "#Entrypoint/localizedCatalogGroupOption",
             "@type": "hydra:Link",
             "domain": "#Entrypoint",
-            "rdfs:label": "The collection of LocalizedCatalogGroupOption resources",
+            "label": "The collection of LocalizedCatalogGroupOption resources",
             "rdfs:range": [
               { "@id": "hydra:Collection" },
               {
@@ -3612,7 +3612,7 @@
                 "@type": ["hydra:Operation", "schema:FindAction"],
                 "hydra:method": "GET",
                 "hydra:title": "Retrieves the collection of LocalizedCatalogGroupOption resources.",
-                "rdfs:label": "Retrieves the collection of LocalizedCatalogGroupOption resources.",
+                "label": "Retrieves the collection of LocalizedCatalogGroupOption resources.",
                 "returns": "hydra:Collection"
               }
             ]
@@ -3627,7 +3627,7 @@
             "@id": "#Entrypoint/productSortingOption",
             "@type": "hydra:Link",
             "domain": "#Entrypoint",
-            "rdfs:label": "The collection of ProductSortingOption resources",
+            "label": "The collection of ProductSortingOption resources",
             "rdfs:range": [
               { "@id": "hydra:Collection" },
               {
@@ -3642,7 +3642,7 @@
                 "@type": ["hydra:Operation", "schema:FindAction"],
                 "hydra:method": "GET",
                 "hydra:title": "Retrieves the collection of ProductSortingOption resources.",
-                "rdfs:label": "Retrieves the collection of ProductSortingOption resources.",
+                "label": "Retrieves the collection of ProductSortingOption resources.",
                 "returns": "hydra:Collection"
               }
             ]
@@ -3657,7 +3657,7 @@
             "@id": "#Entrypoint/configuration",
             "@type": "hydra:Link",
             "domain": "#Entrypoint",
-            "rdfs:label": "The collection of Configuration resources",
+            "label": "The collection of Configuration resources",
             "rdfs:range": [
               { "@id": "hydra:Collection" },
               {
@@ -3672,7 +3672,7 @@
                 "@type": ["hydra:Operation", "schema:FindAction"],
                 "hydra:method": "GET",
                 "hydra:title": "Retrieves the collection of Configuration resources.",
-                "rdfs:label": "Retrieves the collection of Configuration resources.",
+                "label": "Retrieves the collection of Configuration resources.",
                 "returns": "hydra:Collection"
               }
             ]
@@ -3687,7 +3687,7 @@
             "@id": "#Entrypoint/indexDocument",
             "@type": "hydra:Link",
             "domain": "#Entrypoint",
-            "rdfs:label": "The collection of IndexDocument resources",
+            "label": "The collection of IndexDocument resources",
             "rdfs:range": [
               { "@id": "hydra:Collection" },
               {
@@ -3703,7 +3703,7 @@
                 "expects": "#IndexDocument",
                 "hydra:method": "POST",
                 "hydra:title": "Creates a IndexDocument resource.",
-                "rdfs:label": "Creates a IndexDocument resource.",
+                "label": "Creates a IndexDocument resource.",
                 "returns": "#IndexDocument"
               }
             ]
@@ -3718,7 +3718,7 @@
             "@id": "#Entrypoint/selfReindex",
             "@type": "hydra:Link",
             "domain": "#Entrypoint",
-            "rdfs:label": "The collection of SelfReindex resources",
+            "label": "The collection of SelfReindex resources",
             "rdfs:range": [
               { "@id": "hydra:Collection" },
               {
@@ -3734,7 +3734,7 @@
                 "expects": "#SelfReindex",
                 "hydra:method": "POST",
                 "hydra:title": "Creates a SelfReindex resource.",
-                "rdfs:label": "Creates a SelfReindex resource.",
+                "label": "Creates a SelfReindex resource.",
                 "returns": "#SelfReindex"
               }
             ]
@@ -3749,7 +3749,7 @@
             "@id": "#Entrypoint/index",
             "@type": "hydra:Link",
             "domain": "#Entrypoint",
-            "rdfs:label": "The collection of Index resources",
+            "label": "The collection of Index resources",
             "rdfs:range": [
               { "@id": "hydra:Collection" },
               {
@@ -3764,7 +3764,7 @@
                 "@type": ["hydra:Operation", "schema:FindAction"],
                 "hydra:method": "GET",
                 "hydra:title": "Retrieves the collection of Index resources.",
-                "rdfs:label": "Retrieves the collection of Index resources.",
+                "label": "Retrieves the collection of Index resources.",
                 "returns": "hydra:Collection"
               },
               {
@@ -3772,7 +3772,7 @@
                 "expects": "#Index",
                 "hydra:method": "POST",
                 "hydra:title": "Creates a Index resource.",
-                "rdfs:label": "Creates a Index resource.",
+                "label": "Creates a Index resource.",
                 "returns": "#Index"
               }
             ]
@@ -3787,7 +3787,7 @@
             "@id": "#Entrypoint/sourceFieldOptionLabel",
             "@type": "hydra:Link",
             "domain": "#Entrypoint",
-            "rdfs:label": "The collection of SourceFieldOptionLabel resources",
+            "label": "The collection of SourceFieldOptionLabel resources",
             "rdfs:range": [
               { "@id": "hydra:Collection" },
               {
@@ -3802,7 +3802,7 @@
                 "@type": ["hydra:Operation", "schema:FindAction"],
                 "hydra:method": "GET",
                 "hydra:title": "Retrieves the collection of SourceFieldOptionLabel resources.",
-                "rdfs:label": "Retrieves the collection of SourceFieldOptionLabel resources.",
+                "label": "Retrieves the collection of SourceFieldOptionLabel resources.",
                 "returns": "hydra:Collection"
               },
               {
@@ -3810,7 +3810,7 @@
                 "expects": "#SourceFieldOptionLabel",
                 "hydra:method": "POST",
                 "hydra:title": "Creates a SourceFieldOptionLabel resource.",
-                "rdfs:label": "Creates a SourceFieldOptionLabel resource.",
+                "label": "Creates a SourceFieldOptionLabel resource.",
                 "returns": "#SourceFieldOptionLabel"
               }
             ]
@@ -3825,7 +3825,7 @@
             "@id": "#Entrypoint/ruleEngineGraphQlFilters",
             "@type": "hydra:Link",
             "domain": "#Entrypoint",
-            "rdfs:label": "The collection of RuleEngineGraphQlFilters resources",
+            "label": "The collection of RuleEngineGraphQlFilters resources",
             "rdfs:range": [
               { "@id": "hydra:Collection" },
               {
@@ -3841,7 +3841,7 @@
                 "expects": "#RuleEngineGraphQlFilters",
                 "hydra:method": "POST",
                 "hydra:title": "Creates a RuleEngineGraphQlFilters resource.",
-                "rdfs:label": "Creates a RuleEngineGraphQlFilters resource.",
+                "label": "Creates a RuleEngineGraphQlFilters resource.",
                 "returns": "#RuleEngineGraphQlFilters"
               }
             ]
@@ -3854,7 +3854,7 @@
       "hydra:supportedOperation": {
         "@type": "hydra:Operation",
         "hydra:method": "GET",
-        "rdfs:label": "The API entrypoint.",
+        "label": "The API entrypoint.",
         "returns": "#EntryPoint"
       }
     },
@@ -3868,7 +3868,7 @@
           "hydra:property": {
             "@id": "#ConstraintViolation/propertyPath",
             "@type": "rdf:Property",
-            "rdfs:label": "propertyPath",
+            "label": "propertyPath",
             "domain": "#ConstraintViolation",
             "range": "xmls:string"
           },
@@ -3882,7 +3882,7 @@
           "hydra:property": {
             "@id": "#ConstraintViolation/message",
             "@type": "rdf:Property",
-            "rdfs:label": "message",
+            "label": "message",
             "domain": "#ConstraintViolation",
             "range": "xmls:string"
           },
@@ -3904,7 +3904,7 @@
           "hydra:property": {
             "@id": "#ConstraintViolationList/violations",
             "@type": "rdf:Property",
-            "rdfs:label": "violations",
+            "label": "violations",
             "domain": "#ConstraintViolationList",
             "range": "#ConstraintViolation"
           },
