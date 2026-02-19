@@ -1,5 +1,14 @@
 {
+  "searchUsage": "Search Usage",
   "resultsSearchItems_one": "{{count}} result search items",
   "resultsSearchItems_other": "{{count}} results search items",
-  "Sessions": "Sessions"
+  "Sessions": "Sessions",
+  "period": "Period",
+  "searchCount": "searches",
+  "categoryViewCount": "Category views",
+  "productViewCount": "Product views",
+  "addToCartCount": "Products added to cart",
+  "orderCount": "Sales",
+  "sessionCount": "Page views",
+  "visitorCount": "Visitors"
 }

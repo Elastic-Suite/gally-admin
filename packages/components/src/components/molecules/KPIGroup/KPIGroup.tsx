@@ -1,20 +1,21 @@
 import React from 'react'
-import KPI, { IKPIPros } from '../../atoms/KPI/KPI'
+import KPI, { IKPIProps } from '../../atoms/KPI/KPI'
 import { Container } from './KPIGroup.styled'
 
-interface IKPI extends IKPIPros {
+interface IKPI extends IKPIProps {
   id: string | number
 }
 
 interface IKPIGroupProps {
   kpis: IKPI[]
+  animated?: boolean
 }
 
-function KPIGroup({ kpis }: IKPIGroupProps): JSX.Element {
+function KPIGroup({ kpis, animated = false }: IKPIGroupProps): JSX.Element {
   return (
     <Container>
       {kpis.map(({ id, ...value }) => (
-        <KPI key={id} {...value} />
+        <KPI key={id} {...value} animated={animated} />
       ))}
     </Container>
   )

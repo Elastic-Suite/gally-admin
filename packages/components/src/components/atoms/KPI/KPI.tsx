@@ -1,17 +1,27 @@
 import React from 'react'
 import { Container, Content, Title } from './KPI.styled'
+import { styled } from '@mui/system'
+import { useAnimatedValue } from '../../../hooks/useAnimatedValue'
 
-export interface IKPIPros {
+export interface IKPIProps {
   label: string
   value: number
   isPercentage?: boolean
+  animated?: boolean
 }
 
-function KPI({ label, value, isPercentage }: IKPIPros): JSX.Element {
+const StyledTitle = styled(Title)({
+  textTransform: 'none',
+})
+
+function KPI({ label, value, isPercentage, animated }: IKPIProps): JSX.Element {
+  const animatedValue = useAnimatedValue(value, { enabled: animated })
   return (
     <Container>
-      <Title>{label}</Title>
-      <Content>{`${value.toLocaleString()}${isPercentage ? '%' : ''}`}</Content>
+      <StyledTitle>{label}</StyledTitle>
+      <Content>{`${animatedValue.toLocaleString()}${
+        isPercentage ? '%' : ''
+      }`}</Content>
     </Container>
   )
 }
