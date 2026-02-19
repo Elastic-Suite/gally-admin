@@ -1,6 +1,6 @@
 import React, { ReactNode, useEffect, useState } from 'react'
 import { Box } from '@mui/material'
-import { TabVisibilityContext } from '../../../../contexts/TabVisibilityContext'
+import TabVisibilityProvider from '../../../stateful-providers/TabVisibilityProvider/TabVisibilityProvider'
 
 interface IProps {
   children?: ReactNode
@@ -20,7 +20,7 @@ function TabPanel(props: IProps): JSX.Element {
   const isVisible = value === id
 
   return (
-    <TabVisibilityContext.Provider value={isVisible}>
+    <TabVisibilityProvider value={isVisible}>
       <div
         role="tabpanel"
         hidden={value !== id}
@@ -42,7 +42,7 @@ function TabPanel(props: IProps): JSX.Element {
           </Box>
         ) : null}
       </div>
-    </TabVisibilityContext.Provider>
+    </TabVisibilityProvider>
   )
 }
 

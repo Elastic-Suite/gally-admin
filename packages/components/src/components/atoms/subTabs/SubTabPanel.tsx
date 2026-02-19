@@ -1,5 +1,6 @@
 import React, { ReactNode, useContext, useEffect, useState } from 'react'
-import { TabVisibilityContext } from '../../../contexts/TabVisibilityContext'
+import TabVisibilityProvider from '../../stateful-providers/TabVisibilityProvider/TabVisibilityProvider'
+import { tabVisibilityContext } from '../../../contexts'
 
 interface IProps {
   children?: ReactNode
@@ -12,7 +13,7 @@ function SubTabPanel(props: IProps): JSX.Element {
   const [isLoaded, setIsLoaded] = useState(false)
 
   // Get parent's visibility from context
-  const isParentVisible = useContext(TabVisibilityContext)
+  const isParentVisible = useContext(tabVisibilityContext)
   // This subtab's own visibility state
   const isOwnVisible = value === id
   // Combined visibility: visible only if parent is visible and this subtab is active
@@ -25,14 +26,14 @@ function SubTabPanel(props: IProps): JSX.Element {
   }, [value, id])
 
   return (
-    <TabVisibilityContext.Provider value={isVisible}>
+    <TabVisibilityProvider value={isVisible}>
       <div
         style={{ width: '100%', display: id === value ? 'block' : 'none' }}
         key={id}
       >
         {(value === id || Boolean(isLoaded)) && children}
       </div>
-    </TabVisibilityContext.Provider>
+    </TabVisibilityProvider>
   )
 }
 
