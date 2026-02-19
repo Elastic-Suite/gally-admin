@@ -1,8 +1,8 @@
-import { useCallback } from 'react'
+import { useCallback, useContext } from 'react'
 import Router, { useRouter } from 'next/router'
 
 import { IRouterTab, getRouterPath } from '@elastic-suite/gally-admin-shared'
-import { useTabVisibility } from '../contexts/TabVisibilityContext'
+import { tabVisibilityContext } from '../contexts'
 
 export enum TabUrlMatching {
   EXACT = 0,
@@ -15,7 +15,7 @@ export function useTabs(
 ): [IRouterTab, (id: number) => void] {
   const { asPath } = useRouter()
   const pathname = getRouterPath(asPath)
-  const isVisible = useTabVisibility()
+  const isVisible = useContext(tabVisibilityContext)
 
   const activeTab =
     tabs.find((tab) => {
