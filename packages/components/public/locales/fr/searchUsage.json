@@ -1,9 +1,18 @@
 {
+  "searchUsage": "Utilisation de la recherche",
   "Scope": "Portée",
   "Select a localized catalog": "Sélectionnez un catalogue localisé",
   "Apply": "Appliquer",
   "resultsSearchItems_one": "{{count}} résultat pour les éléments de recherche",
   "resultsSearchItems_other": "{{count}} résultats pour les éléments de recherche",
+  "period": "Période",
   "Terms": "Termes",
-  "Sessions": "Sessions"
+  "Sessions": "Sessions",
+  "searchCount": "Recherches",
+  "categoryViewCount": "Catégories vues",
+  "productViewCount": "Produits vus",
+  "addToCartCount": "Produits ajoutés au panier",
+  "orderCount": "Commandes",
+  "sessionCount": "Pages vues",
+  "visitorCount": "Visiteurs"
 }

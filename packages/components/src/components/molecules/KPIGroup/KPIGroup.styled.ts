@@ -5,6 +5,6 @@ export const Container = styled('div')(({ theme }) => ({
   alignItems: 'center',
   flexWrap: 'wrap',
   columnGap: theme.spacing(8),
-  rowGap: theme.spacing(14),
+  rowGap: theme.spacing(7),
   width: '100%',
 }))

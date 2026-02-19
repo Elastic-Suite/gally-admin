@@ -54,7 +54,7 @@ export function useFilters(
   prefix?: string
 ): [ISearchParameters, Dispatch<SetStateAction<ISearchParameters>>] {
   const router = useRouter()
-  const filterPrefix = prefix ?? resource.title.toLowerCase()
+  const filterPrefix = prefix ?? resource?.title?.toLowerCase()
   const [activeFilters, setActiveFilters] = useState<ISearchParameters>(() => {
     const url = getRouterUrl(router.asPath)
     const parameters = getParametersFromUrl(url, filterPrefix)
