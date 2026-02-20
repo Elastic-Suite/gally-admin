@@ -134,6 +134,7 @@ function AdminAnalyseSearchUsage(): JSX.Element {
       .filter(([label, _]) => !excludedKeys.includes(label))
       .map(([label, value]) => ({
         id: `${kpi.id}_${kpiIndex++}`,
+        componentId: label,
         label: t(label),
         value: value ?? '',
       })),
@@ -142,10 +143,11 @@ function AdminAnalyseSearchUsage(): JSX.Element {
   return (
     <>
       <PageTitle title={t('searchUsage')} sx={{ marginBottom: '32px' }} />
-      <StyledPaper>
+      <StyledPaper data-testid={generateTestId(TestId.KPI_FILTERS)}>
         <CatalogSwitcher />
         <StyledContainer>
           <DoubleDatePicker
+            componentId="period"
             label={t('period')}
             value={kpiDateFilter}
             onChange={setKpiDateFilter}
