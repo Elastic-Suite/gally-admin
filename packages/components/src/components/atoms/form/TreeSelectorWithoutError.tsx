@@ -73,7 +73,10 @@ function TreeSelectorWithoutError<Multiple extends boolean | undefined>(
     flatTree(data, flat)
     return flat
   }, [data])
-  const getOptionLabel = useCallback((option?: ITreeItem) => option?.name, [])
+  const getOptionLabel = useCallback(
+    (option?: ITreeItem) => option?.name ?? '',
+    []
+  )
   const filterOptions = useCallback((options: ITreeItem[]) => options, [])
   const onInputChange = useCallback(
     (event?: ChangeEvent<HTMLInputElement>) =>
