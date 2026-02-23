@@ -155,3 +155,26 @@ export function createUTCDateSafe(date: Date): Date {
 
   return utcDate
 }
+
+export function formatFloatValue(value: string): string {
+  // Replace comma with dot for storage and remove invalid characters
+  const cleaned = (value || '').replace(/,/g, '.').replace(/[^\d.]/g, '')
+  let result = ''
+  let dotUsed = false
+  for (const ch of cleaned) {
+    if (ch === '.') {
+      if (dotUsed) {
+        continue
+      }
+      dotUsed = true
+    }
+    result += ch
+  }
+
+  return result
+}
+
+export function formatIntegerValue(value: string): string {
+  // Remove all non-digits
+  return value.replace(/\D/g, '')
+}

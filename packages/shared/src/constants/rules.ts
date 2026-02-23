@@ -23,4 +23,8 @@ export const emptyAttributeRule: IRuleAttribute = {
 }
 
 export const ruleValueNumberTypes = [RuleValueType.INT, RuleValueType.FLOAT]
-export const ruleArrayValueSeparator = ','
+export const ruleValueNumberMultipleTypes = [
+  RuleValueType.INT_MULTIPLE,
+  RuleValueType.FLOAT_MULTIPLE,
+]
+export const ruleArrayValueSeparator = '>|<'

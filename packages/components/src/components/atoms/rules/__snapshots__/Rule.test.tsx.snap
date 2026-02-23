@@ -1,0 +1,2039 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should match snapshot Rule multiple id value (type: int, operator: !in) 1`] = `
+<div>
+  <div
+    class="css-11ahytb"
+  >
+    <div
+      class="MuiFormControl-root css-1girsym-MuiFormControl-root"
+    >
+      <div
+        class="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-1qqsdnr-MuiAutocomplete-root"
+        data-testid="dropdown"
+      >
+        <div
+          class="MuiFormControl-root css-hh3vi8-MuiFormControl-root"
+        >
+          <div
+            class="InputText__Wrapper css-17fp4jk"
+          >
+            <div
+              class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-33c5sc-MuiInputBase-root"
+            >
+              <input
+                aria-autocomplete="list"
+                aria-expanded="false"
+                aria-invalid="false"
+                autocapitalize="none"
+                autocomplete="off"
+                class="MuiInputBase-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-ngazp5-MuiInputBase-input"
+                data-testid="inputText|dropdown"
+                id=":r6:"
+                role="combobox"
+                spellcheck="false"
+                type="text"
+                value="Id"
+              />
+              <div
+                class="MuiAutocomplete-endAdornment css-1q60rmi-MuiAutocomplete-endAdornment"
+              >
+                <button
+                  aria-label="form.open"
+                  class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiAutocomplete-popupIndicator css-qzbt6i-MuiButtonBase-root-MuiIconButton-root-MuiAutocomplete-popupIndicator"
+                  tabindex="-1"
+                  title="form.open"
+                  type="button"
+                >
+                  <ion-icon
+                    data-testid="ionicon|dropdownCollapsingIcon|dropdown"
+                    src="/images/ionicons/chevron-down.svg"
+                  />
+                  <span
+                    class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                  />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="MuiFormControl-root css-1girsym-MuiFormControl-root"
+    >
+      <div
+        class="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-1qqsdnr-MuiAutocomplete-root"
+        data-testid="dropdown"
+      >
+        <div
+          class="MuiFormControl-root css-hh3vi8-MuiFormControl-root"
+        >
+          <div
+            class="InputText__Wrapper css-17fp4jk"
+          >
+            <div
+              class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-8j6zha-MuiInputBase-root"
+            >
+              <input
+                aria-autocomplete="list"
+                aria-expanded="false"
+                aria-invalid="false"
+                autocapitalize="none"
+                autocomplete="off"
+                class="MuiInputBase-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-ngazp5-MuiInputBase-input"
+                data-testid="inputText|dropdown"
+                id=":r7:"
+                role="combobox"
+                spellcheck="false"
+                type="text"
+                value="is not one of"
+              />
+              <div
+                class="MuiAutocomplete-endAdornment css-1q60rmi-MuiAutocomplete-endAdornment"
+              >
+                <button
+                  aria-label="form.open"
+                  class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiAutocomplete-popupIndicator css-qzbt6i-MuiButtonBase-root-MuiIconButton-root-MuiAutocomplete-popupIndicator"
+                  tabindex="-1"
+                  title="form.open"
+                  type="button"
+                >
+                  <ion-icon
+                    data-testid="ionicon|dropdownCollapsingIcon|dropdown"
+                    src="/images/ionicons/chevron-down.svg"
+                  />
+                  <span
+                    class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                  />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      style="position: relative;"
+    >
+      <div
+        class="css-1r61l91"
+        data-testid="textFieldTagsCleanButton"
+      >
+        <ion-icon
+          data-testid="ionicon"
+          src="/images/ionicons/close.svg"
+          style="font-size: 14px; padding: 0px;"
+        />
+      </div>
+      <div
+        class="css-vaijrj"
+      >
+        <div
+          class="css-1mxyr7i"
+        >
+          <div
+            class="css-r1vopi"
+          >
+            <div
+              class="MuiButtonBase-root MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-deletable MuiChip-deletableColorDefault MuiChip-filledDefault css-69f6vo-MuiButtonBase-root-MuiChip-root"
+              data-testid="chip"
+              role="button"
+              style="opacity: 1;"
+              tabindex="0"
+            >
+              <span
+                class="MuiChip-label MuiChip-labelMedium css-6od3lo-MuiChip-label"
+              >
+                35
+              </span>
+              <button
+                class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiChip-deleteIcon MuiChip-deleteIconMedium MuiChip-deleteIconColorDefault MuiChip-deleteIconFilledColorDefault css-78trlr-MuiButtonBase-root-MuiIconButton-root"
+                tabindex="0"
+                type="button"
+              >
+                <ion-icon
+                  data-testid="ionicon|chipDeleteIcon|chip"
+                  src="/images/ionicons/close.svg"
+                />
+                <span
+                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                />
+              </button>
+            </div>
+            <div
+              class="MuiButtonBase-root MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-deletable MuiChip-deletableColorDefault MuiChip-filledDefault css-69f6vo-MuiButtonBase-root-MuiChip-root"
+              data-testid="chip"
+              role="button"
+              style="opacity: 1;"
+              tabindex="0"
+            >
+              <span
+                class="MuiChip-label MuiChip-labelMedium css-6od3lo-MuiChip-label"
+              >
+                4800
+              </span>
+              <button
+                class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiChip-deleteIcon MuiChip-deleteIconMedium MuiChip-deleteIconColorDefault MuiChip-deleteIconFilledColorDefault css-78trlr-MuiButtonBase-root-MuiIconButton-root"
+                tabindex="0"
+                type="button"
+              >
+                <ion-icon
+                  data-testid="ionicon|chipDeleteIcon|chip"
+                  src="/images/ionicons/close.svg"
+                />
+                <span
+                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                />
+              </button>
+            </div>
+            <div
+              class="MuiButtonBase-root MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-deletable MuiChip-deletableColorDefault MuiChip-filledDefault css-69f6vo-MuiButtonBase-root-MuiChip-root"
+              data-testid="chip"
+              role="button"
+              style="opacity: 1;"
+              tabindex="0"
+            >
+              <span
+                class="MuiChip-label MuiChip-labelMedium css-6od3lo-MuiChip-label"
+              >
+                5232
+              </span>
+              <button
+                class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiChip-deleteIcon MuiChip-deleteIconMedium MuiChip-deleteIconColorDefault MuiChip-deleteIconFilledColorDefault css-78trlr-MuiButtonBase-root-MuiIconButton-root"
+                tabindex="0"
+                type="button"
+              >
+                <ion-icon
+                  data-testid="ionicon|chipDeleteIcon|chip"
+                  src="/images/ionicons/close.svg"
+                />
+                <span
+                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                />
+              </button>
+            </div>
+            <div
+              class="MuiButtonBase-root MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-deletable MuiChip-deletableColorDefault MuiChip-filledDefault css-69f6vo-MuiButtonBase-root-MuiChip-root"
+              data-testid="chip"
+              role="button"
+              style="opacity: 1;"
+              tabindex="0"
+            >
+              <span
+                class="MuiChip-label MuiChip-labelMedium css-6od3lo-MuiChip-label"
+              >
+                123
+              </span>
+              <button
+                class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiChip-deleteIcon MuiChip-deleteIconMedium MuiChip-deleteIconColorDefault MuiChip-deleteIconFilledColorDefault css-78trlr-MuiButtonBase-root-MuiIconButton-root"
+                tabindex="0"
+                type="button"
+              >
+                <ion-icon
+                  data-testid="ionicon|chipDeleteIcon|chip"
+                  src="/images/ionicons/close.svg"
+                />
+                <span
+                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                />
+              </button>
+            </div>
+            <div
+              class="css-u4p24i"
+            >
+              <div
+                class="MuiFormControl-root css-hh3vi8-MuiFormControl-root"
+              >
+                <div
+                  class="InputText__Wrapper css-17fp4jk"
+                >
+                  <div
+                    class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-z54rnl-MuiInputBase-root"
+                  >
+                    <input
+                      aria-invalid="false"
+                      class="MuiInputBase-input css-ngazp5-MuiInputBase-input"
+                      data-testid="inputText|textFieldTags"
+                      placeholder="placeholder.default.textFieldTags"
+                      type="text"
+                      value=""
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="css-1on137o"
+    >
+      <ion-icon
+        data-testid="ionicon"
+        src="/images/ionicons/close.svg"
+        style="font-size: 17.85px;"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Should match snapshot Rule multiple id value (type: int, operator: in) 1`] = `
+<div>
+  <div
+    class="css-11ahytb"
+  >
+    <div
+      class="MuiFormControl-root css-1girsym-MuiFormControl-root"
+    >
+      <div
+        class="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-1qqsdnr-MuiAutocomplete-root"
+        data-testid="dropdown"
+      >
+        <div
+          class="MuiFormControl-root css-hh3vi8-MuiFormControl-root"
+        >
+          <div
+            class="InputText__Wrapper css-17fp4jk"
+          >
+            <div
+              class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-33c5sc-MuiInputBase-root"
+            >
+              <input
+                aria-autocomplete="list"
+                aria-expanded="false"
+                aria-invalid="false"
+                autocapitalize="none"
+                autocomplete="off"
+                class="MuiInputBase-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-ngazp5-MuiInputBase-input"
+                data-testid="inputText|dropdown"
+                id=":r4:"
+                role="combobox"
+                spellcheck="false"
+                type="text"
+                value="Id"
+              />
+              <div
+                class="MuiAutocomplete-endAdornment css-1q60rmi-MuiAutocomplete-endAdornment"
+              >
+                <button
+                  aria-label="form.open"
+                  class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiAutocomplete-popupIndicator css-qzbt6i-MuiButtonBase-root-MuiIconButton-root-MuiAutocomplete-popupIndicator"
+                  tabindex="-1"
+                  title="form.open"
+                  type="button"
+                >
+                  <ion-icon
+                    data-testid="ionicon|dropdownCollapsingIcon|dropdown"
+                    src="/images/ionicons/chevron-down.svg"
+                  />
+                  <span
+                    class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                  />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="MuiFormControl-root css-1girsym-MuiFormControl-root"
+    >
+      <div
+        class="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-1qqsdnr-MuiAutocomplete-root"
+        data-testid="dropdown"
+      >
+        <div
+          class="MuiFormControl-root css-hh3vi8-MuiFormControl-root"
+        >
+          <div
+            class="InputText__Wrapper css-17fp4jk"
+          >
+            <div
+              class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-8j6zha-MuiInputBase-root"
+            >
+              <input
+                aria-autocomplete="list"
+                aria-expanded="false"
+                aria-invalid="false"
+                autocapitalize="none"
+                autocomplete="off"
+                class="MuiInputBase-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-ngazp5-MuiInputBase-input"
+                data-testid="inputText|dropdown"
+                id=":r5:"
+                role="combobox"
+                spellcheck="false"
+                type="text"
+                value="is one of"
+              />
+              <div
+                class="MuiAutocomplete-endAdornment css-1q60rmi-MuiAutocomplete-endAdornment"
+              >
+                <button
+                  aria-label="form.open"
+                  class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiAutocomplete-popupIndicator css-qzbt6i-MuiButtonBase-root-MuiIconButton-root-MuiAutocomplete-popupIndicator"
+                  tabindex="-1"
+                  title="form.open"
+                  type="button"
+                >
+                  <ion-icon
+                    data-testid="ionicon|dropdownCollapsingIcon|dropdown"
+                    src="/images/ionicons/chevron-down.svg"
+                  />
+                  <span
+                    class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                  />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      style="position: relative;"
+    >
+      <div
+        class="css-1r61l91"
+        data-testid="textFieldTagsCleanButton"
+      >
+        <ion-icon
+          data-testid="ionicon"
+          src="/images/ionicons/close.svg"
+          style="font-size: 14px; padding: 0px;"
+        />
+      </div>
+      <div
+        class="css-vaijrj"
+      >
+        <div
+          class="css-1mxyr7i"
+        >
+          <div
+            class="css-r1vopi"
+          >
+            <div
+              class="MuiButtonBase-root MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-deletable MuiChip-deletableColorDefault MuiChip-filledDefault css-69f6vo-MuiButtonBase-root-MuiChip-root"
+              data-testid="chip"
+              role="button"
+              style="opacity: 1;"
+              tabindex="0"
+            >
+              <span
+                class="MuiChip-label MuiChip-labelMedium css-6od3lo-MuiChip-label"
+              >
+                35
+              </span>
+              <button
+                class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiChip-deleteIcon MuiChip-deleteIconMedium MuiChip-deleteIconColorDefault MuiChip-deleteIconFilledColorDefault css-78trlr-MuiButtonBase-root-MuiIconButton-root"
+                tabindex="0"
+                type="button"
+              >
+                <ion-icon
+                  data-testid="ionicon|chipDeleteIcon|chip"
+                  src="/images/ionicons/close.svg"
+                />
+                <span
+                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                />
+              </button>
+            </div>
+            <div
+              class="MuiButtonBase-root MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-deletable MuiChip-deletableColorDefault MuiChip-filledDefault css-69f6vo-MuiButtonBase-root-MuiChip-root"
+              data-testid="chip"
+              role="button"
+              style="opacity: 1;"
+              tabindex="0"
+            >
+              <span
+                class="MuiChip-label MuiChip-labelMedium css-6od3lo-MuiChip-label"
+              >
+                4800
+              </span>
+              <button
+                class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiChip-deleteIcon MuiChip-deleteIconMedium MuiChip-deleteIconColorDefault MuiChip-deleteIconFilledColorDefault css-78trlr-MuiButtonBase-root-MuiIconButton-root"
+                tabindex="0"
+                type="button"
+              >
+                <ion-icon
+                  data-testid="ionicon|chipDeleteIcon|chip"
+                  src="/images/ionicons/close.svg"
+                />
+                <span
+                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                />
+              </button>
+            </div>
+            <div
+              class="MuiButtonBase-root MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-deletable MuiChip-deletableColorDefault MuiChip-filledDefault css-69f6vo-MuiButtonBase-root-MuiChip-root"
+              data-testid="chip"
+              role="button"
+              style="opacity: 1;"
+              tabindex="0"
+            >
+              <span
+                class="MuiChip-label MuiChip-labelMedium css-6od3lo-MuiChip-label"
+              >
+                5232
+              </span>
+              <button
+                class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiChip-deleteIcon MuiChip-deleteIconMedium MuiChip-deleteIconColorDefault MuiChip-deleteIconFilledColorDefault css-78trlr-MuiButtonBase-root-MuiIconButton-root"
+                tabindex="0"
+                type="button"
+              >
+                <ion-icon
+                  data-testid="ionicon|chipDeleteIcon|chip"
+                  src="/images/ionicons/close.svg"
+                />
+                <span
+                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                />
+              </button>
+            </div>
+            <div
+              class="MuiButtonBase-root MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-deletable MuiChip-deletableColorDefault MuiChip-filledDefault css-69f6vo-MuiButtonBase-root-MuiChip-root"
+              data-testid="chip"
+              role="button"
+              style="opacity: 1;"
+              tabindex="0"
+            >
+              <span
+                class="MuiChip-label MuiChip-labelMedium css-6od3lo-MuiChip-label"
+              >
+                123
+              </span>
+              <button
+                class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiChip-deleteIcon MuiChip-deleteIconMedium MuiChip-deleteIconColorDefault MuiChip-deleteIconFilledColorDefault css-78trlr-MuiButtonBase-root-MuiIconButton-root"
+                tabindex="0"
+                type="button"
+              >
+                <ion-icon
+                  data-testid="ionicon|chipDeleteIcon|chip"
+                  src="/images/ionicons/close.svg"
+                />
+                <span
+                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                />
+              </button>
+            </div>
+            <div
+              class="css-u4p24i"
+            >
+              <div
+                class="MuiFormControl-root css-hh3vi8-MuiFormControl-root"
+              >
+                <div
+                  class="InputText__Wrapper css-17fp4jk"
+                >
+                  <div
+                    class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-z54rnl-MuiInputBase-root"
+                  >
+                    <input
+                      aria-invalid="false"
+                      class="MuiInputBase-input css-ngazp5-MuiInputBase-input"
+                      data-testid="inputText|textFieldTags"
+                      placeholder="placeholder.default.textFieldTags"
+                      type="text"
+                      value=""
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="css-1on137o"
+    >
+      <ion-icon
+        data-testid="ionicon"
+        src="/images/ionicons/close.svg"
+        style="font-size: 17.85px;"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Should match snapshot Rule multiple price value (type: price, operator: !in) 1`] = `
+<div>
+  <div
+    class="css-11ahytb"
+  >
+    <div
+      class="MuiFormControl-root css-1girsym-MuiFormControl-root"
+    >
+      <div
+        class="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-1qqsdnr-MuiAutocomplete-root"
+        data-testid="dropdown"
+      >
+        <div
+          class="MuiFormControl-root css-hh3vi8-MuiFormControl-root"
+        >
+          <div
+            class="InputText__Wrapper css-17fp4jk"
+          >
+            <div
+              class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-33c5sc-MuiInputBase-root"
+            >
+              <input
+                aria-autocomplete="list"
+                aria-expanded="false"
+                aria-invalid="false"
+                autocapitalize="none"
+                autocomplete="off"
+                class="MuiInputBase-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-ngazp5-MuiInputBase-input"
+                data-testid="inputText|dropdown"
+                id=":ra:"
+                role="combobox"
+                spellcheck="false"
+                type="text"
+                value="Price"
+              />
+              <div
+                class="MuiAutocomplete-endAdornment css-1q60rmi-MuiAutocomplete-endAdornment"
+              >
+                <button
+                  aria-label="form.open"
+                  class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiAutocomplete-popupIndicator css-qzbt6i-MuiButtonBase-root-MuiIconButton-root-MuiAutocomplete-popupIndicator"
+                  tabindex="-1"
+                  title="form.open"
+                  type="button"
+                >
+                  <ion-icon
+                    data-testid="ionicon|dropdownCollapsingIcon|dropdown"
+                    src="/images/ionicons/chevron-down.svg"
+                  />
+                  <span
+                    class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                  />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="MuiFormControl-root css-1girsym-MuiFormControl-root"
+    >
+      <div
+        class="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-1qqsdnr-MuiAutocomplete-root"
+        data-testid="dropdown"
+      >
+        <div
+          class="MuiFormControl-root css-hh3vi8-MuiFormControl-root"
+        >
+          <div
+            class="InputText__Wrapper css-17fp4jk"
+          >
+            <div
+              class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-8j6zha-MuiInputBase-root"
+            >
+              <input
+                aria-autocomplete="list"
+                aria-expanded="false"
+                aria-invalid="false"
+                autocapitalize="none"
+                autocomplete="off"
+                class="MuiInputBase-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-ngazp5-MuiInputBase-input"
+                data-testid="inputText|dropdown"
+                id=":rb:"
+                role="combobox"
+                spellcheck="false"
+                type="text"
+                value="is not one of"
+              />
+              <div
+                class="MuiAutocomplete-endAdornment css-1q60rmi-MuiAutocomplete-endAdornment"
+              >
+                <button
+                  aria-label="form.open"
+                  class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiAutocomplete-popupIndicator css-qzbt6i-MuiButtonBase-root-MuiIconButton-root-MuiAutocomplete-popupIndicator"
+                  tabindex="-1"
+                  title="form.open"
+                  type="button"
+                >
+                  <ion-icon
+                    data-testid="ionicon|dropdownCollapsingIcon|dropdown"
+                    src="/images/ionicons/chevron-down.svg"
+                  />
+                  <span
+                    class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                  />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      style="position: relative;"
+    >
+      <div
+        class="css-1r61l91"
+        data-testid="textFieldTagsCleanButton"
+      >
+        <ion-icon
+          data-testid="ionicon"
+          src="/images/ionicons/close.svg"
+          style="font-size: 14px; padding: 0px;"
+        />
+      </div>
+      <div
+        class="css-vaijrj"
+      >
+        <div
+          class="css-1mxyr7i"
+        >
+          <div
+            class="css-r1vopi"
+          >
+            <div
+              class="MuiButtonBase-root MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-deletable MuiChip-deletableColorDefault MuiChip-filledDefault css-69f6vo-MuiButtonBase-root-MuiChip-root"
+              data-testid="chip"
+              role="button"
+              style="opacity: 1;"
+              tabindex="0"
+            >
+              <span
+                class="MuiChip-label MuiChip-labelMedium css-6od3lo-MuiChip-label"
+              >
+                48.00
+              </span>
+              <button
+                class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiChip-deleteIcon MuiChip-deleteIconMedium MuiChip-deleteIconColorDefault MuiChip-deleteIconFilledColorDefault css-78trlr-MuiButtonBase-root-MuiIconButton-root"
+                tabindex="0"
+                type="button"
+              >
+                <ion-icon
+                  data-testid="ionicon|chipDeleteIcon|chip"
+                  src="/images/ionicons/close.svg"
+                />
+                <span
+                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                />
+              </button>
+            </div>
+            <div
+              class="MuiButtonBase-root MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-deletable MuiChip-deletableColorDefault MuiChip-filledDefault css-69f6vo-MuiButtonBase-root-MuiChip-root"
+              data-testid="chip"
+              role="button"
+              style="opacity: 1;"
+              tabindex="0"
+            >
+              <span
+                class="MuiChip-label MuiChip-labelMedium css-6od3lo-MuiChip-label"
+              >
+                52.32
+              </span>
+              <button
+                class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiChip-deleteIcon MuiChip-deleteIconMedium MuiChip-deleteIconColorDefault MuiChip-deleteIconFilledColorDefault css-78trlr-MuiButtonBase-root-MuiIconButton-root"
+                tabindex="0"
+                type="button"
+              >
+                <ion-icon
+                  data-testid="ionicon|chipDeleteIcon|chip"
+                  src="/images/ionicons/close.svg"
+                />
+                <span
+                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                />
+              </button>
+            </div>
+            <div
+              class="MuiButtonBase-root MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-deletable MuiChip-deletableColorDefault MuiChip-filledDefault css-69f6vo-MuiButtonBase-root-MuiChip-root"
+              data-testid="chip"
+              role="button"
+              style="opacity: 1;"
+              tabindex="0"
+            >
+              <span
+                class="MuiChip-label MuiChip-labelMedium css-6od3lo-MuiChip-label"
+              >
+                12.3
+              </span>
+              <button
+                class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiChip-deleteIcon MuiChip-deleteIconMedium MuiChip-deleteIconColorDefault MuiChip-deleteIconFilledColorDefault css-78trlr-MuiButtonBase-root-MuiIconButton-root"
+                tabindex="0"
+                type="button"
+              >
+                <ion-icon
+                  data-testid="ionicon|chipDeleteIcon|chip"
+                  src="/images/ionicons/close.svg"
+                />
+                <span
+                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                />
+              </button>
+            </div>
+            <div
+              class="MuiButtonBase-root MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-deletable MuiChip-deletableColorDefault MuiChip-filledDefault css-69f6vo-MuiButtonBase-root-MuiChip-root"
+              data-testid="chip"
+              role="button"
+              style="opacity: 1;"
+              tabindex="0"
+            >
+              <span
+                class="MuiChip-label MuiChip-labelMedium css-6od3lo-MuiChip-label"
+              >
+                32
+              </span>
+              <button
+                class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiChip-deleteIcon MuiChip-deleteIconMedium MuiChip-deleteIconColorDefault MuiChip-deleteIconFilledColorDefault css-78trlr-MuiButtonBase-root-MuiIconButton-root"
+                tabindex="0"
+                type="button"
+              >
+                <ion-icon
+                  data-testid="ionicon|chipDeleteIcon|chip"
+                  src="/images/ionicons/close.svg"
+                />
+                <span
+                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                />
+              </button>
+            </div>
+            <div
+              class="css-u4p24i"
+            >
+              <div
+                class="MuiFormControl-root css-hh3vi8-MuiFormControl-root"
+              >
+                <div
+                  class="InputText__Wrapper css-17fp4jk"
+                >
+                  <div
+                    class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-z54rnl-MuiInputBase-root"
+                  >
+                    <input
+                      aria-invalid="false"
+                      class="MuiInputBase-input css-ngazp5-MuiInputBase-input"
+                      data-testid="inputText|textFieldTags"
+                      placeholder="placeholder.default.textFieldTags"
+                      type="text"
+                      value=""
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="css-1on137o"
+    >
+      <ion-icon
+        data-testid="ionicon"
+        src="/images/ionicons/close.svg"
+        style="font-size: 17.85px;"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Should match snapshot Rule multiple price value (type: price, operator: in) 1`] = `
+<div>
+  <div
+    class="css-11ahytb"
+  >
+    <div
+      class="MuiFormControl-root css-1girsym-MuiFormControl-root"
+    >
+      <div
+        class="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-1qqsdnr-MuiAutocomplete-root"
+        data-testid="dropdown"
+      >
+        <div
+          class="MuiFormControl-root css-hh3vi8-MuiFormControl-root"
+        >
+          <div
+            class="InputText__Wrapper css-17fp4jk"
+          >
+            <div
+              class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-33c5sc-MuiInputBase-root"
+            >
+              <input
+                aria-autocomplete="list"
+                aria-expanded="false"
+                aria-invalid="false"
+                autocapitalize="none"
+                autocomplete="off"
+                class="MuiInputBase-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-ngazp5-MuiInputBase-input"
+                data-testid="inputText|dropdown"
+                id=":r8:"
+                role="combobox"
+                spellcheck="false"
+                type="text"
+                value="Price"
+              />
+              <div
+                class="MuiAutocomplete-endAdornment css-1q60rmi-MuiAutocomplete-endAdornment"
+              >
+                <button
+                  aria-label="form.open"
+                  class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiAutocomplete-popupIndicator css-qzbt6i-MuiButtonBase-root-MuiIconButton-root-MuiAutocomplete-popupIndicator"
+                  tabindex="-1"
+                  title="form.open"
+                  type="button"
+                >
+                  <ion-icon
+                    data-testid="ionicon|dropdownCollapsingIcon|dropdown"
+                    src="/images/ionicons/chevron-down.svg"
+                  />
+                  <span
+                    class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                  />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="MuiFormControl-root css-1girsym-MuiFormControl-root"
+    >
+      <div
+        class="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-1qqsdnr-MuiAutocomplete-root"
+        data-testid="dropdown"
+      >
+        <div
+          class="MuiFormControl-root css-hh3vi8-MuiFormControl-root"
+        >
+          <div
+            class="InputText__Wrapper css-17fp4jk"
+          >
+            <div
+              class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-8j6zha-MuiInputBase-root"
+            >
+              <input
+                aria-autocomplete="list"
+                aria-expanded="false"
+                aria-invalid="false"
+                autocapitalize="none"
+                autocomplete="off"
+                class="MuiInputBase-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-ngazp5-MuiInputBase-input"
+                data-testid="inputText|dropdown"
+                id=":r9:"
+                role="combobox"
+                spellcheck="false"
+                type="text"
+                value="is one of"
+              />
+              <div
+                class="MuiAutocomplete-endAdornment css-1q60rmi-MuiAutocomplete-endAdornment"
+              >
+                <button
+                  aria-label="form.open"
+                  class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiAutocomplete-popupIndicator css-qzbt6i-MuiButtonBase-root-MuiIconButton-root-MuiAutocomplete-popupIndicator"
+                  tabindex="-1"
+                  title="form.open"
+                  type="button"
+                >
+                  <ion-icon
+                    data-testid="ionicon|dropdownCollapsingIcon|dropdown"
+                    src="/images/ionicons/chevron-down.svg"
+                  />
+                  <span
+                    class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                  />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      style="position: relative;"
+    >
+      <div
+        class="css-1r61l91"
+        data-testid="textFieldTagsCleanButton"
+      >
+        <ion-icon
+          data-testid="ionicon"
+          src="/images/ionicons/close.svg"
+          style="font-size: 14px; padding: 0px;"
+        />
+      </div>
+      <div
+        class="css-vaijrj"
+      >
+        <div
+          class="css-1mxyr7i"
+        >
+          <div
+            class="css-r1vopi"
+          >
+            <div
+              class="MuiButtonBase-root MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-deletable MuiChip-deletableColorDefault MuiChip-filledDefault css-69f6vo-MuiButtonBase-root-MuiChip-root"
+              data-testid="chip"
+              role="button"
+              style="opacity: 1;"
+              tabindex="0"
+            >
+              <span
+                class="MuiChip-label MuiChip-labelMedium css-6od3lo-MuiChip-label"
+              >
+                48.00
+              </span>
+              <button
+                class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiChip-deleteIcon MuiChip-deleteIconMedium MuiChip-deleteIconColorDefault MuiChip-deleteIconFilledColorDefault css-78trlr-MuiButtonBase-root-MuiIconButton-root"
+                tabindex="0"
+                type="button"
+              >
+                <ion-icon
+                  data-testid="ionicon|chipDeleteIcon|chip"
+                  src="/images/ionicons/close.svg"
+                />
+                <span
+                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                />
+              </button>
+            </div>
+            <div
+              class="MuiButtonBase-root MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-deletable MuiChip-deletableColorDefault MuiChip-filledDefault css-69f6vo-MuiButtonBase-root-MuiChip-root"
+              data-testid="chip"
+              role="button"
+              style="opacity: 1;"
+              tabindex="0"
+            >
+              <span
+                class="MuiChip-label MuiChip-labelMedium css-6od3lo-MuiChip-label"
+              >
+                52.32
+              </span>
+              <button
+                class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiChip-deleteIcon MuiChip-deleteIconMedium MuiChip-deleteIconColorDefault MuiChip-deleteIconFilledColorDefault css-78trlr-MuiButtonBase-root-MuiIconButton-root"
+                tabindex="0"
+                type="button"
+              >
+                <ion-icon
+                  data-testid="ionicon|chipDeleteIcon|chip"
+                  src="/images/ionicons/close.svg"
+                />
+                <span
+                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                />
+              </button>
+            </div>
+            <div
+              class="MuiButtonBase-root MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-deletable MuiChip-deletableColorDefault MuiChip-filledDefault css-69f6vo-MuiButtonBase-root-MuiChip-root"
+              data-testid="chip"
+              role="button"
+              style="opacity: 1;"
+              tabindex="0"
+            >
+              <span
+                class="MuiChip-label MuiChip-labelMedium css-6od3lo-MuiChip-label"
+              >
+                12.3
+              </span>
+              <button
+                class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiChip-deleteIcon MuiChip-deleteIconMedium MuiChip-deleteIconColorDefault MuiChip-deleteIconFilledColorDefault css-78trlr-MuiButtonBase-root-MuiIconButton-root"
+                tabindex="0"
+                type="button"
+              >
+                <ion-icon
+                  data-testid="ionicon|chipDeleteIcon|chip"
+                  src="/images/ionicons/close.svg"
+                />
+                <span
+                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                />
+              </button>
+            </div>
+            <div
+              class="MuiButtonBase-root MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-deletable MuiChip-deletableColorDefault MuiChip-filledDefault css-69f6vo-MuiButtonBase-root-MuiChip-root"
+              data-testid="chip"
+              role="button"
+              style="opacity: 1;"
+              tabindex="0"
+            >
+              <span
+                class="MuiChip-label MuiChip-labelMedium css-6od3lo-MuiChip-label"
+              >
+                32
+              </span>
+              <button
+                class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiChip-deleteIcon MuiChip-deleteIconMedium MuiChip-deleteIconColorDefault MuiChip-deleteIconFilledColorDefault css-78trlr-MuiButtonBase-root-MuiIconButton-root"
+                tabindex="0"
+                type="button"
+              >
+                <ion-icon
+                  data-testid="ionicon|chipDeleteIcon|chip"
+                  src="/images/ionicons/close.svg"
+                />
+                <span
+                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                />
+              </button>
+            </div>
+            <div
+              class="css-u4p24i"
+            >
+              <div
+                class="MuiFormControl-root css-hh3vi8-MuiFormControl-root"
+              >
+                <div
+                  class="InputText__Wrapper css-17fp4jk"
+                >
+                  <div
+                    class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-z54rnl-MuiInputBase-root"
+                  >
+                    <input
+                      aria-invalid="false"
+                      class="MuiInputBase-input css-ngazp5-MuiInputBase-input"
+                      data-testid="inputText|textFieldTags"
+                      placeholder="placeholder.default.textFieldTags"
+                      type="text"
+                      value=""
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="css-1on137o"
+    >
+      <ion-icon
+        data-testid="ionicon"
+        src="/images/ionicons/close.svg"
+        style="font-size: 17.85px;"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Should match snapshot Rule multiple sku value (type: text, operator: !in) 1`] = `
+<div>
+  <div
+    class="css-11ahytb"
+  >
+    <div
+      class="MuiFormControl-root css-1girsym-MuiFormControl-root"
+    >
+      <div
+        class="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-1qqsdnr-MuiAutocomplete-root"
+        data-testid="dropdown"
+      >
+        <div
+          class="MuiFormControl-root css-hh3vi8-MuiFormControl-root"
+        >
+          <div
+            class="InputText__Wrapper css-17fp4jk"
+          >
+            <div
+              class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-33c5sc-MuiInputBase-root"
+            >
+              <input
+                aria-autocomplete="list"
+                aria-expanded="false"
+                aria-invalid="false"
+                autocapitalize="none"
+                autocomplete="off"
+                class="MuiInputBase-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-ngazp5-MuiInputBase-input"
+                data-testid="inputText|dropdown"
+                id=":r2:"
+                role="combobox"
+                spellcheck="false"
+                type="text"
+                value="Sku"
+              />
+              <div
+                class="MuiAutocomplete-endAdornment css-1q60rmi-MuiAutocomplete-endAdornment"
+              >
+                <button
+                  aria-label="form.open"
+                  class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiAutocomplete-popupIndicator css-qzbt6i-MuiButtonBase-root-MuiIconButton-root-MuiAutocomplete-popupIndicator"
+                  tabindex="-1"
+                  title="form.open"
+                  type="button"
+                >
+                  <ion-icon
+                    data-testid="ionicon|dropdownCollapsingIcon|dropdown"
+                    src="/images/ionicons/chevron-down.svg"
+                  />
+                  <span
+                    class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                  />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="MuiFormControl-root css-1girsym-MuiFormControl-root"
+    >
+      <div
+        class="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-1qqsdnr-MuiAutocomplete-root"
+        data-testid="dropdown"
+      >
+        <div
+          class="MuiFormControl-root css-hh3vi8-MuiFormControl-root"
+        >
+          <div
+            class="InputText__Wrapper css-17fp4jk"
+          >
+            <div
+              class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-8j6zha-MuiInputBase-root"
+            >
+              <input
+                aria-autocomplete="list"
+                aria-expanded="false"
+                aria-invalid="false"
+                autocapitalize="none"
+                autocomplete="off"
+                class="MuiInputBase-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-ngazp5-MuiInputBase-input"
+                data-testid="inputText|dropdown"
+                id=":r3:"
+                role="combobox"
+                spellcheck="false"
+                type="text"
+                value="is not one of"
+              />
+              <div
+                class="MuiAutocomplete-endAdornment css-1q60rmi-MuiAutocomplete-endAdornment"
+              >
+                <button
+                  aria-label="form.open"
+                  class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiAutocomplete-popupIndicator css-qzbt6i-MuiButtonBase-root-MuiIconButton-root-MuiAutocomplete-popupIndicator"
+                  tabindex="-1"
+                  title="form.open"
+                  type="button"
+                >
+                  <ion-icon
+                    data-testid="ionicon|dropdownCollapsingIcon|dropdown"
+                    src="/images/ionicons/chevron-down.svg"
+                  />
+                  <span
+                    class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                  />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      style="position: relative;"
+    >
+      <div
+        class="css-1r61l91"
+        data-testid="textFieldTagsCleanButton"
+      >
+        <ion-icon
+          data-testid="ionicon"
+          src="/images/ionicons/close.svg"
+          style="font-size: 14px; padding: 0px;"
+        />
+      </div>
+      <div
+        class="css-vaijrj"
+      >
+        <div
+          class="css-1mxyr7i"
+        >
+          <div
+            class="css-r1vopi"
+          >
+            <div
+              class="MuiButtonBase-root MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-deletable MuiChip-deletableColorDefault MuiChip-filledDefault css-69f6vo-MuiButtonBase-root-MuiChip-root"
+              data-testid="chip"
+              role="button"
+              style="opacity: 1;"
+              tabindex="0"
+            >
+              <span
+                class="MuiChip-label MuiChip-labelMedium css-6od3lo-MuiChip-label"
+              >
+                VP11
+              </span>
+              <button
+                class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiChip-deleteIcon MuiChip-deleteIconMedium MuiChip-deleteIconColorDefault MuiChip-deleteIconFilledColorDefault css-78trlr-MuiButtonBase-root-MuiIconButton-root"
+                tabindex="0"
+                type="button"
+              >
+                <ion-icon
+                  data-testid="ionicon|chipDeleteIcon|chip"
+                  src="/images/ionicons/close.svg"
+                />
+                <span
+                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                />
+              </button>
+            </div>
+            <div
+              class="MuiButtonBase-root MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-deletable MuiChip-deletableColorDefault MuiChip-filledDefault css-69f6vo-MuiButtonBase-root-MuiChip-root"
+              data-testid="chip"
+              role="button"
+              style="opacity: 1;"
+              tabindex="0"
+            >
+              <span
+                class="MuiChip-label MuiChip-labelMedium css-6od3lo-MuiChip-label"
+              >
+                VP12
+              </span>
+              <button
+                class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiChip-deleteIcon MuiChip-deleteIconMedium MuiChip-deleteIconColorDefault MuiChip-deleteIconFilledColorDefault css-78trlr-MuiButtonBase-root-MuiIconButton-root"
+                tabindex="0"
+                type="button"
+              >
+                <ion-icon
+                  data-testid="ionicon|chipDeleteIcon|chip"
+                  src="/images/ionicons/close.svg"
+                />
+                <span
+                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                />
+              </button>
+            </div>
+            <div
+              class="MuiButtonBase-root MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-deletable MuiChip-deletableColorDefault MuiChip-filledDefault css-69f6vo-MuiButtonBase-root-MuiChip-root"
+              data-testid="chip"
+              role="button"
+              style="opacity: 1;"
+              tabindex="0"
+            >
+              <span
+                class="MuiChip-label MuiChip-labelMedium css-6od3lo-MuiChip-label"
+              >
+                12.3
+              </span>
+              <button
+                class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiChip-deleteIcon MuiChip-deleteIconMedium MuiChip-deleteIconColorDefault MuiChip-deleteIconFilledColorDefault css-78trlr-MuiButtonBase-root-MuiIconButton-root"
+                tabindex="0"
+                type="button"
+              >
+                <ion-icon
+                  data-testid="ionicon|chipDeleteIcon|chip"
+                  src="/images/ionicons/close.svg"
+                />
+                <span
+                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                />
+              </button>
+            </div>
+            <div
+              class="MuiButtonBase-root MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-deletable MuiChip-deletableColorDefault MuiChip-filledDefault css-69f6vo-MuiButtonBase-root-MuiChip-root"
+              data-testid="chip"
+              role="button"
+              style="opacity: 1;"
+              tabindex="0"
+            >
+              <span
+                class="MuiChip-label MuiChip-labelMedium css-6od3lo-MuiChip-label"
+              >
+                15,8
+              </span>
+              <button
+                class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiChip-deleteIcon MuiChip-deleteIconMedium MuiChip-deleteIconColorDefault MuiChip-deleteIconFilledColorDefault css-78trlr-MuiButtonBase-root-MuiIconButton-root"
+                tabindex="0"
+                type="button"
+              >
+                <ion-icon
+                  data-testid="ionicon|chipDeleteIcon|chip"
+                  src="/images/ionicons/close.svg"
+                />
+                <span
+                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                />
+              </button>
+            </div>
+            <div
+              class="MuiButtonBase-root MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-deletable MuiChip-deletableColorDefault MuiChip-filledDefault css-69f6vo-MuiButtonBase-root-MuiChip-root"
+              data-testid="chip"
+              role="button"
+              style="opacity: 1;"
+              tabindex="0"
+            >
+              <span
+                class="MuiChip-label MuiChip-labelMedium css-6od3lo-MuiChip-label"
+              >
+                74
+              </span>
+              <button
+                class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiChip-deleteIcon MuiChip-deleteIconMedium MuiChip-deleteIconColorDefault MuiChip-deleteIconFilledColorDefault css-78trlr-MuiButtonBase-root-MuiIconButton-root"
+                tabindex="0"
+                type="button"
+              >
+                <ion-icon
+                  data-testid="ionicon|chipDeleteIcon|chip"
+                  src="/images/ionicons/close.svg"
+                />
+                <span
+                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                />
+              </button>
+            </div>
+            <div
+              class="css-u4p24i"
+            >
+              <div
+                class="MuiFormControl-root css-hh3vi8-MuiFormControl-root"
+              >
+                <div
+                  class="InputText__Wrapper css-17fp4jk"
+                >
+                  <div
+                    class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-z54rnl-MuiInputBase-root"
+                  >
+                    <input
+                      aria-invalid="false"
+                      class="MuiInputBase-input css-ngazp5-MuiInputBase-input"
+                      data-testid="inputText|textFieldTags"
+                      placeholder="placeholder.default.textFieldTags"
+                      type="text"
+                      value=""
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="css-1on137o"
+    >
+      <ion-icon
+        data-testid="ionicon"
+        src="/images/ionicons/close.svg"
+        style="font-size: 17.85px;"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Should match snapshot Rule multiple sku value (type: text, operator: in) 1`] = `
+<div>
+  <div
+    class="css-11ahytb"
+  >
+    <div
+      class="MuiFormControl-root css-1girsym-MuiFormControl-root"
+    >
+      <div
+        class="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-1qqsdnr-MuiAutocomplete-root"
+        data-testid="dropdown"
+      >
+        <div
+          class="MuiFormControl-root css-hh3vi8-MuiFormControl-root"
+        >
+          <div
+            class="InputText__Wrapper css-17fp4jk"
+          >
+            <div
+              class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-33c5sc-MuiInputBase-root"
+            >
+              <input
+                aria-autocomplete="list"
+                aria-expanded="false"
+                aria-invalid="false"
+                autocapitalize="none"
+                autocomplete="off"
+                class="MuiInputBase-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-ngazp5-MuiInputBase-input"
+                data-testid="inputText|dropdown"
+                id=":r0:"
+                role="combobox"
+                spellcheck="false"
+                type="text"
+                value="Sku"
+              />
+              <div
+                class="MuiAutocomplete-endAdornment css-1q60rmi-MuiAutocomplete-endAdornment"
+              >
+                <button
+                  aria-label="form.open"
+                  class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiAutocomplete-popupIndicator css-qzbt6i-MuiButtonBase-root-MuiIconButton-root-MuiAutocomplete-popupIndicator"
+                  tabindex="-1"
+                  title="form.open"
+                  type="button"
+                >
+                  <ion-icon
+                    data-testid="ionicon|dropdownCollapsingIcon|dropdown"
+                    src="/images/ionicons/chevron-down.svg"
+                  />
+                  <span
+                    class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                  />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="MuiFormControl-root css-1girsym-MuiFormControl-root"
+    >
+      <div
+        class="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-1qqsdnr-MuiAutocomplete-root"
+        data-testid="dropdown"
+      >
+        <div
+          class="MuiFormControl-root css-hh3vi8-MuiFormControl-root"
+        >
+          <div
+            class="InputText__Wrapper css-17fp4jk"
+          >
+            <div
+              class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-8j6zha-MuiInputBase-root"
+            >
+              <input
+                aria-autocomplete="list"
+                aria-expanded="false"
+                aria-invalid="false"
+                autocapitalize="none"
+                autocomplete="off"
+                class="MuiInputBase-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-ngazp5-MuiInputBase-input"
+                data-testid="inputText|dropdown"
+                id=":r1:"
+                role="combobox"
+                spellcheck="false"
+                type="text"
+                value="is one of"
+              />
+              <div
+                class="MuiAutocomplete-endAdornment css-1q60rmi-MuiAutocomplete-endAdornment"
+              >
+                <button
+                  aria-label="form.open"
+                  class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiAutocomplete-popupIndicator css-qzbt6i-MuiButtonBase-root-MuiIconButton-root-MuiAutocomplete-popupIndicator"
+                  tabindex="-1"
+                  title="form.open"
+                  type="button"
+                >
+                  <ion-icon
+                    data-testid="ionicon|dropdownCollapsingIcon|dropdown"
+                    src="/images/ionicons/chevron-down.svg"
+                  />
+                  <span
+                    class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                  />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      style="position: relative;"
+    >
+      <div
+        class="css-1r61l91"
+        data-testid="textFieldTagsCleanButton"
+      >
+        <ion-icon
+          data-testid="ionicon"
+          src="/images/ionicons/close.svg"
+          style="font-size: 14px; padding: 0px;"
+        />
+      </div>
+      <div
+        class="css-vaijrj"
+      >
+        <div
+          class="css-1mxyr7i"
+        >
+          <div
+            class="css-r1vopi"
+          >
+            <div
+              class="MuiButtonBase-root MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-deletable MuiChip-deletableColorDefault MuiChip-filledDefault css-69f6vo-MuiButtonBase-root-MuiChip-root"
+              data-testid="chip"
+              role="button"
+              style="opacity: 1;"
+              tabindex="0"
+            >
+              <span
+                class="MuiChip-label MuiChip-labelMedium css-6od3lo-MuiChip-label"
+              >
+                VP11
+              </span>
+              <button
+                class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiChip-deleteIcon MuiChip-deleteIconMedium MuiChip-deleteIconColorDefault MuiChip-deleteIconFilledColorDefault css-78trlr-MuiButtonBase-root-MuiIconButton-root"
+                tabindex="0"
+                type="button"
+              >
+                <ion-icon
+                  data-testid="ionicon|chipDeleteIcon|chip"
+                  src="/images/ionicons/close.svg"
+                />
+                <span
+                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                />
+              </button>
+            </div>
+            <div
+              class="MuiButtonBase-root MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-deletable MuiChip-deletableColorDefault MuiChip-filledDefault css-69f6vo-MuiButtonBase-root-MuiChip-root"
+              data-testid="chip"
+              role="button"
+              style="opacity: 1;"
+              tabindex="0"
+            >
+              <span
+                class="MuiChip-label MuiChip-labelMedium css-6od3lo-MuiChip-label"
+              >
+                VP12
+              </span>
+              <button
+                class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiChip-deleteIcon MuiChip-deleteIconMedium MuiChip-deleteIconColorDefault MuiChip-deleteIconFilledColorDefault css-78trlr-MuiButtonBase-root-MuiIconButton-root"
+                tabindex="0"
+                type="button"
+              >
+                <ion-icon
+                  data-testid="ionicon|chipDeleteIcon|chip"
+                  src="/images/ionicons/close.svg"
+                />
+                <span
+                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                />
+              </button>
+            </div>
+            <div
+              class="MuiButtonBase-root MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-deletable MuiChip-deletableColorDefault MuiChip-filledDefault css-69f6vo-MuiButtonBase-root-MuiChip-root"
+              data-testid="chip"
+              role="button"
+              style="opacity: 1;"
+              tabindex="0"
+            >
+              <span
+                class="MuiChip-label MuiChip-labelMedium css-6od3lo-MuiChip-label"
+              >
+                12.3
+              </span>
+              <button
+                class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiChip-deleteIcon MuiChip-deleteIconMedium MuiChip-deleteIconColorDefault MuiChip-deleteIconFilledColorDefault css-78trlr-MuiButtonBase-root-MuiIconButton-root"
+                tabindex="0"
+                type="button"
+              >
+                <ion-icon
+                  data-testid="ionicon|chipDeleteIcon|chip"
+                  src="/images/ionicons/close.svg"
+                />
+                <span
+                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                />
+              </button>
+            </div>
+            <div
+              class="MuiButtonBase-root MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-deletable MuiChip-deletableColorDefault MuiChip-filledDefault css-69f6vo-MuiButtonBase-root-MuiChip-root"
+              data-testid="chip"
+              role="button"
+              style="opacity: 1;"
+              tabindex="0"
+            >
+              <span
+                class="MuiChip-label MuiChip-labelMedium css-6od3lo-MuiChip-label"
+              >
+                15,8
+              </span>
+              <button
+                class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiChip-deleteIcon MuiChip-deleteIconMedium MuiChip-deleteIconColorDefault MuiChip-deleteIconFilledColorDefault css-78trlr-MuiButtonBase-root-MuiIconButton-root"
+                tabindex="0"
+                type="button"
+              >
+                <ion-icon
+                  data-testid="ionicon|chipDeleteIcon|chip"
+                  src="/images/ionicons/close.svg"
+                />
+                <span
+                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                />
+              </button>
+            </div>
+            <div
+              class="MuiButtonBase-root MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-deletable MuiChip-deletableColorDefault MuiChip-filledDefault css-69f6vo-MuiButtonBase-root-MuiChip-root"
+              data-testid="chip"
+              role="button"
+              style="opacity: 1;"
+              tabindex="0"
+            >
+              <span
+                class="MuiChip-label MuiChip-labelMedium css-6od3lo-MuiChip-label"
+              >
+                74
+              </span>
+              <button
+                class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiChip-deleteIcon MuiChip-deleteIconMedium MuiChip-deleteIconColorDefault MuiChip-deleteIconFilledColorDefault css-78trlr-MuiButtonBase-root-MuiIconButton-root"
+                tabindex="0"
+                type="button"
+              >
+                <ion-icon
+                  data-testid="ionicon|chipDeleteIcon|chip"
+                  src="/images/ionicons/close.svg"
+                />
+                <span
+                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                />
+              </button>
+            </div>
+            <div
+              class="css-u4p24i"
+            >
+              <div
+                class="MuiFormControl-root css-hh3vi8-MuiFormControl-root"
+              >
+                <div
+                  class="InputText__Wrapper css-17fp4jk"
+                >
+                  <div
+                    class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-z54rnl-MuiInputBase-root"
+                  >
+                    <input
+                      aria-invalid="false"
+                      class="MuiInputBase-input css-ngazp5-MuiInputBase-input"
+                      data-testid="inputText|textFieldTags"
+                      placeholder="placeholder.default.textFieldTags"
+                      type="text"
+                      value=""
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="css-1on137o"
+    >
+      <ion-icon
+        data-testid="ionicon"
+        src="/images/ionicons/close.svg"
+        style="font-size: 17.85px;"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Should match snapshot Rule multiple sku value (type: text, operator: in) 1`] = `
+<div>
+  <div
+    class="css-11ahytb"
+  >
+    <div
+      class="MuiFormControl-root css-1girsym-MuiFormControl-root"
+    >
+      <div
+        class="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-1qqsdnr-MuiAutocomplete-root"
+        data-testid="dropdown"
+      >
+        <div
+          class="MuiFormControl-root css-hh3vi8-MuiFormControl-root"
+        >
+          <div
+            class="InputText__Wrapper css-17fp4jk"
+          >
+            <div
+              class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-33c5sc-MuiInputBase-root"
+            >
+              <input
+                aria-autocomplete="list"
+                aria-expanded="false"
+                aria-invalid="false"
+                autocapitalize="none"
+                autocomplete="off"
+                class="MuiInputBase-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-ngazp5-MuiInputBase-input"
+                data-testid="inputText|dropdown"
+                id=":r0:"
+                role="combobox"
+                spellcheck="false"
+                type="text"
+                value="Sku"
+              />
+              <div
+                class="MuiAutocomplete-endAdornment css-1q60rmi-MuiAutocomplete-endAdornment"
+              >
+                <button
+                  aria-label="form.open"
+                  class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiAutocomplete-popupIndicator css-qzbt6i-MuiButtonBase-root-MuiIconButton-root-MuiAutocomplete-popupIndicator"
+                  tabindex="-1"
+                  title="form.open"
+                  type="button"
+                >
+                  <ion-icon
+                    data-testid="ionicon|dropdownCollapsingIcon|dropdown"
+                    src="/images/ionicons/chevron-down.svg"
+                  />
+                  <span
+                    class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                  />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="MuiFormControl-root css-1girsym-MuiFormControl-root"
+    >
+      <div
+        class="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-1qqsdnr-MuiAutocomplete-root"
+        data-testid="dropdown"
+      >
+        <div
+          class="MuiFormControl-root css-hh3vi8-MuiFormControl-root"
+        >
+          <div
+            class="InputText__Wrapper css-17fp4jk"
+          >
+            <div
+              class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-8j6zha-MuiInputBase-root"
+            >
+              <input
+                aria-autocomplete="list"
+                aria-expanded="false"
+                aria-invalid="false"
+                autocapitalize="none"
+                autocomplete="off"
+                class="MuiInputBase-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-ngazp5-MuiInputBase-input"
+                data-testid="inputText|dropdown"
+                id=":r1:"
+                role="combobox"
+                spellcheck="false"
+                type="text"
+                value="is one of"
+              />
+              <div
+                class="MuiAutocomplete-endAdornment css-1q60rmi-MuiAutocomplete-endAdornment"
+              >
+                <button
+                  aria-label="form.open"
+                  class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiAutocomplete-popupIndicator css-qzbt6i-MuiButtonBase-root-MuiIconButton-root-MuiAutocomplete-popupIndicator"
+                  tabindex="-1"
+                  title="form.open"
+                  type="button"
+                >
+                  <ion-icon
+                    data-testid="ionicon|dropdownCollapsingIcon|dropdown"
+                    src="/images/ionicons/chevron-down.svg"
+                  />
+                  <span
+                    class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                  />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      style="position: relative;"
+    >
+      <div
+        class="css-1r61l91"
+        data-testid="textFieldTagsCleanButton"
+      >
+        <ion-icon
+          data-testid="ionicon"
+          src="/images/ionicons/close.svg"
+          style="font-size: 14px; padding: 0px;"
+        />
+      </div>
+      <div
+        class="css-vaijrj"
+      >
+        <div
+          class="css-1mxyr7i"
+        >
+          <div
+            class="css-r1vopi"
+          >
+            <div
+              class="MuiButtonBase-root MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-deletable MuiChip-deletableColorDefault MuiChip-filledDefault css-69f6vo-MuiButtonBase-root-MuiChip-root"
+              data-testid="chip"
+              role="button"
+              style="opacity: 1;"
+              tabindex="0"
+            >
+              <span
+                class="MuiChip-label MuiChip-labelMedium css-6od3lo-MuiChip-label"
+              >
+                VP11
+              </span>
+              <button
+                class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiChip-deleteIcon MuiChip-deleteIconMedium MuiChip-deleteIconColorDefault MuiChip-deleteIconFilledColorDefault css-78trlr-MuiButtonBase-root-MuiIconButton-root"
+                tabindex="0"
+                type="button"
+              >
+                <ion-icon
+                  data-testid="ionicon|chipDeleteIcon|chip"
+                  src="/images/ionicons/close.svg"
+                />
+                <span
+                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                />
+              </button>
+            </div>
+            <div
+              class="MuiButtonBase-root MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-deletable MuiChip-deletableColorDefault MuiChip-filledDefault css-69f6vo-MuiButtonBase-root-MuiChip-root"
+              data-testid="chip"
+              role="button"
+              style="opacity: 1;"
+              tabindex="0"
+            >
+              <span
+                class="MuiChip-label MuiChip-labelMedium css-6od3lo-MuiChip-label"
+              >
+                VP12
+              </span>
+              <button
+                class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiChip-deleteIcon MuiChip-deleteIconMedium MuiChip-deleteIconColorDefault MuiChip-deleteIconFilledColorDefault css-78trlr-MuiButtonBase-root-MuiIconButton-root"
+                tabindex="0"
+                type="button"
+              >
+                <ion-icon
+                  data-testid="ionicon|chipDeleteIcon|chip"
+                  src="/images/ionicons/close.svg"
+                />
+                <span
+                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                />
+              </button>
+            </div>
+            <div
+              class="MuiButtonBase-root MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-deletable MuiChip-deletableColorDefault MuiChip-filledDefault css-69f6vo-MuiButtonBase-root-MuiChip-root"
+              data-testid="chip"
+              role="button"
+              style="opacity: 1;"
+              tabindex="0"
+            >
+              <span
+                class="MuiChip-label MuiChip-labelMedium css-6od3lo-MuiChip-label"
+              >
+                12.3
+              </span>
+              <button
+                class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiChip-deleteIcon MuiChip-deleteIconMedium MuiChip-deleteIconColorDefault MuiChip-deleteIconFilledColorDefault css-78trlr-MuiButtonBase-root-MuiIconButton-root"
+                tabindex="0"
+                type="button"
+              >
+                <ion-icon
+                  data-testid="ionicon|chipDeleteIcon|chip"
+                  src="/images/ionicons/close.svg"
+                />
+                <span
+                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                />
+              </button>
+            </div>
+            <div
+              class="MuiButtonBase-root MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-deletable MuiChip-deletableColorDefault MuiChip-filledDefault css-69f6vo-MuiButtonBase-root-MuiChip-root"
+              data-testid="chip"
+              role="button"
+              style="opacity: 1;"
+              tabindex="0"
+            >
+              <span
+                class="MuiChip-label MuiChip-labelMedium css-6od3lo-MuiChip-label"
+              >
+                15,8
+              </span>
+              <button
+                class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiChip-deleteIcon MuiChip-deleteIconMedium MuiChip-deleteIconColorDefault MuiChip-deleteIconFilledColorDefault css-78trlr-MuiButtonBase-root-MuiIconButton-root"
+                tabindex="0"
+                type="button"
+              >
+                <ion-icon
+                  data-testid="ionicon|chipDeleteIcon|chip"
+                  src="/images/ionicons/close.svg"
+                />
+                <span
+                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                />
+              </button>
+            </div>
+            <div
+              class="MuiButtonBase-root MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-deletable MuiChip-deletableColorDefault MuiChip-filledDefault css-69f6vo-MuiButtonBase-root-MuiChip-root"
+              data-testid="chip"
+              role="button"
+              style="opacity: 1;"
+              tabindex="0"
+            >
+              <span
+                class="MuiChip-label MuiChip-labelMedium css-6od3lo-MuiChip-label"
+              >
+                74
+              </span>
+              <button
+                class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiChip-deleteIcon MuiChip-deleteIconMedium MuiChip-deleteIconColorDefault MuiChip-deleteIconFilledColorDefault css-78trlr-MuiButtonBase-root-MuiIconButton-root"
+                tabindex="0"
+                type="button"
+              >
+                <ion-icon
+                  data-testid="ionicon|chipDeleteIcon|chip"
+                  src="/images/ionicons/close.svg"
+                />
+                <span
+                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                />
+              </button>
+            </div>
+            <div
+              class="css-u4p24i"
+            >
+              <div
+                class="MuiFormControl-root css-hh3vi8-MuiFormControl-root"
+              >
+                <div
+                  class="InputText__Wrapper css-17fp4jk"
+                >
+                  <div
+                    class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-z54rnl-MuiInputBase-root"
+                  >
+                    <input
+                      aria-invalid="false"
+                      class="MuiInputBase-input css-ngazp5-MuiInputBase-input"
+                      data-testid="inputText|textFieldTags"
+                      placeholder="placeholder.default.textFieldTags"
+                      type="text"
+                      value=""
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="css-1on137o"
+    >
+      <ion-icon
+        data-testid="ionicon"
+        src="/images/ionicons/close.svg"
+        style="font-size: 17.85px;"
+      />
+    </div>
+  </div>
+</div>
+`;

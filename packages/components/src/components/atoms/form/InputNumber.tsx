@@ -1,4 +1,8 @@
 import React, { SyntheticEvent, useEffect, useState } from 'react'
+import {
+  formatFloatValue,
+  formatIntegerValue,
+} from '@elastic-suite/gally-admin-shared'
 import InputText, { IInputTextErrorProps } from './InputText'
 import { TestId, generateTestId } from '../../../utils/testIds'
 
@@ -10,6 +14,22 @@ interface IFieldNumberProps {
 interface IInputTextNumberProps
   extends IFieldNumberProps,
     Omit<IInputTextErrorProps, 'value'> {}
+
+export const createAdditionalValidator = (isInteger: boolean) => {
+  return (value: string | number): string => {
+    const stringValue = String(value)
+    // Mark invalid when ending with dot or comma
+    if (/[.,]$/.test(stringValue)) {
+      return 'invalidFloat'
+    }
+    // For integer: allow only digits
+    if (isInteger) {
+      return /^\d*$/.test(stringValue) ? '' : 'invalidInteger'
+    }
+    // For float: allow digits, commas, and dots (but not at the end)
+    return /^[\d,.\s]*$/.test(stringValue) ? '' : 'invalidFloat'
+  }
+}
 
 function InputNumber(props: IInputTextNumberProps): JSX.Element {
   const { numberType, value, componentId, ...inputProps } = props
@@ -29,8 +49,7 @@ function InputNumber(props: IInputTextNumberProps): JSX.Element {
   ): void => {
     const stringValue = String(newValue)
 
-    // Only format when passing up (remove all non-digits)
-    const formattedValue = stringValue.replace(/\D/g, '')
+    const formattedValue = formatIntegerValue(stringValue)
 
     // Case when nothing remains after replacing
     if (formattedValue.trim() === '') {
@@ -66,9 +85,7 @@ function InputNumber(props: IInputTextNumberProps): JSX.Element {
       return
     }
 
-    // Only format when passing up (replace comma with dot for storage)
-    const formattedValue =
-      stringValue.replace(/,/g, '.').replace(/[^\d.]/g, '') ?? ''
+    const formattedValue = formatFloatValue(stringValue)
 
     // Case when nothing remains after replacing
     if (formattedValue.trim() === '') {
@@ -89,19 +106,7 @@ function InputNumber(props: IInputTextNumberProps): JSX.Element {
     inputProps.onChange?.(numericValue, e)
   }
 
-  const additionalValidator = (value: string | number): string => {
-    const stringValue = String(value)
-    // Mark invalid when ending with dot or comma
-    if (/[.,]$/.test(stringValue)) {
-      return 'invalidFloat'
-    }
-    // For integer: allow only digits
-    if (isInteger) {
-      return /^\d*$/.test(stringValue) ? '' : 'invalidInteger'
-    }
-    // For float: allow digits, commas, and dots (but not at the end)
-    return /^[\d,.\s]*$/.test(stringValue) ? '' : 'invalidFloat'
-  }
+  const additionalValidator = createAdditionalValidator(isInteger)
 
   if (isInteger) {
     return (
