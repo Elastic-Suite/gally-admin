@@ -255,7 +255,7 @@ function TextFieldTagsWithoutError(
                   }
                   onChange={(value): void => setVal(value as string)}
                   onKeyDown={(event): void => {
-                    if (event.code === 'Enter') manageTags(undefined, event)
+                    if (event.key === 'Enter') manageTags(undefined, event)
                   }}
                   inputRef={ref}
                   componentId={generateTestId(
