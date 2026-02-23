@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useMemo } from 'react'
+import React, { useCallback, useContext, useEffect, useMemo } from 'react'
 import { useTranslation } from 'next-i18next'
 import {
   IOptions,
@@ -9,11 +9,14 @@ import {
   RuleType,
   RuleValueType,
   flatTree,
+  formatFloatValue,
+  formatIntegerValue,
   getAttributeRuleValueType,
   isAttributeRule,
   isAttributeRuleValueMultiple,
   isCombinationRule,
   ruleArrayValueSeparator,
+  ruleValueNumberMultipleTypes,
   ruleValueNumberTypes,
 } from '@elastic-suite/gally-admin-shared'
 
@@ -25,7 +28,8 @@ import DropDown from '../form/DropDown'
 import TreeSelector from '../form/TreeSelector'
 import InputText from '../form/InputText'
 import DatePickerError from '../form/DatePicker'
-import InputNumber from '../form/InputNumber'
+import InputNumber, { createAdditionalValidator } from '../form/InputNumber'
+import TextFieldTags from '../form/TextFieldTags'
 
 interface IProps {
   catalogId: number
@@ -35,6 +39,25 @@ interface IProps {
   rule: IRule
   small?: boolean
   showError?: boolean
+}
+
+type Formatter = (item: string) => string
+
+const ruleTypeFormatterMap: Partial<Record<RuleValueType, Formatter>> = {
+  [RuleValueType.FLOAT_MULTIPLE]: formatFloatValue,
+  [RuleValueType.INT_MULTIPLE]: formatIntegerValue,
+}
+
+function formatMultipleValue(
+  values: string,
+  valueType: RuleValueType
+): string[] {
+  const formatter: Formatter =
+    ruleTypeFormatterMap[valueType] ?? ((x: string): string => x)
+  return values
+    .split(ruleArrayValueSeparator)
+    .map((item) => formatter(item.trim()))
+    .filter((item) => item !== '')
 }
 
 function Rule(props: IProps): JSX.Element {
@@ -90,15 +113,21 @@ function Rule(props: IProps): JSX.Element {
     }
   }
 
-  function handleInputChange(multiple: boolean) {
-    return (value: string): void => {
-      if (multiple) {
-        onChange({ ...rule, value: value.split(ruleArrayValueSeparator) })
-      } else {
-        onChange({ ...rule, value })
+  const handleInputChange = useCallback(
+    (multiple: boolean, valueType: RuleValueType) => {
+      return (value: string): void => {
+        if (multiple) {
+          onChange({
+            ...rule,
+            value: formatMultipleValue(value, valueType),
+          })
+        } else {
+          onChange({ ...rule, value })
+        }
       }
-    }
-  }
+    },
+    [rule, onChange]
+  )
 
   function handleFieldChange(value: string): void {
     onChange({
@@ -130,6 +159,13 @@ function Rule(props: IProps): JSX.Element {
           : '',
     })
   }
+
+  const handleMultipleTagsChange = useCallback(
+    (tags: string[], valueType: RuleValueType): void => {
+      handleInputChange(true, valueType)(tags.join(ruleArrayValueSeparator))
+    },
+    [handleInputChange]
+  )
 
   function getAttributeValueComponent(rule: IRuleAttribute): JSX.Element {
     const { attribute_type, field, value } = rule
@@ -200,15 +236,48 @@ function Rule(props: IProps): JSX.Element {
           onChange={handleChange('value')}
         />
       )
-    } else if (ruleValueNumberTypes.includes(valueType)) {
+    } else if (ruleValueNumberTypes.includes(valueType) && !multiple) {
       return (
         <InputNumber
           showError={showError}
-          onChange={handleInputChange(multiple)}
+          onChange={handleInputChange(false, valueType)}
           required
           small={small}
           numberType={valueType === RuleValueType.INT ? 'integer' : 'float'}
           value={value as string}
+        />
+      )
+    } else if (multiple) {
+      let additionalValidator = undefined
+      if (ruleValueNumberMultipleTypes.includes(valueType)) {
+        additionalValidator = (values: string[]): string => {
+          for (const value of values) {
+            const error = createAdditionalValidator(
+              valueType === RuleValueType.INT_MULTIPLE
+            )(value)
+            if (error !== '') {
+              return error
+            }
+          }
+          return ''
+        }
+      }
+
+      const displayValue = formatMultipleValue(
+        (value as string[]).join(ruleArrayValueSeparator),
+        valueType
+      )
+
+      return (
+        <TextFieldTags
+          showError={showError}
+          required
+          withCleanButton
+          onChange={(tags: string[]): void => {
+            handleMultipleTagsChange(tags, valueType)
+          }}
+          value={displayValue}
+          additionalValidator={additionalValidator}
         />
       )
     }
@@ -216,15 +285,11 @@ function Rule(props: IProps): JSX.Element {
     return (
       <InputText
         showError={showError}
-        onChange={handleInputChange(multiple)}
+        onChange={handleInputChange(false, valueType)}
         required
         small={small}
         type="text"
-        value={
-          multiple
-            ? (value as string[]).join(ruleArrayValueSeparator)
-            : (value as string)
-        }
+        value={value as string}
       />
     )
   }

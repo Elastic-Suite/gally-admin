@@ -3,6 +3,8 @@ import {
   createUTCDateSafe,
   firstLetterLowercase,
   firstLetterUppercase,
+  formatFloatValue,
+  formatIntegerValue,
   formatPrice,
   getFieldLabelTranslationArgs,
   getHeadTitle,
@@ -138,6 +140,28 @@ describe('Format service', () => {
       expect(createUTCDateSafe(dateCloseToPreviousDay).toISOString()).toContain(
         '2030-10-19T00:00:00.000Z'
       )
+    })
+
+    describe('formatFloatValue', () => {
+      it('Should format float value', () => {
+        expect(formatFloatValue('3.5')).toEqual('3.5')
+        expect(formatFloatValue('3.00')).toEqual('3.00')
+        expect(formatFloatValue('3,5')).toEqual('3.5')
+        expect(formatFloatValue('4,9,5')).toEqual('4.95')
+        expect(formatFloatValue('4.9.5')).toEqual('4.95')
+        expect(formatFloatValue('35')).toEqual('35')
+        expect(formatFloatValue('test')).toEqual('')
+      })
+    })
+
+    describe('formatIntegerValue', () => {
+      it('Should format integer value', () => {
+        expect(formatIntegerValue('32')).toEqual('32')
+        expect(formatIntegerValue('3.5')).toEqual('35')
+        expect(formatIntegerValue('3.00')).toEqual('300')
+        expect(formatIntegerValue('3,5')).toEqual('35')
+        expect(formatIntegerValue('test')).toEqual('')
+      })
     })
   })
 })
