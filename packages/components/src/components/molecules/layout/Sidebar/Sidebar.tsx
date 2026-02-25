@@ -7,6 +7,7 @@ import { IMenu } from '@elastic-suite/gally-admin-shared'
 
 import Menu from '../Menu/Menu'
 import { TestId, generateTestId } from '../../../../utils/testIds'
+import { useHomePageUrl } from '../../../../hooks/useHomePageUrl'
 
 const CustomImgCollapse = styled('div')({
   position: 'absolute',
@@ -77,6 +78,8 @@ function Sidebar(props: IProps): JSX.Element {
     sidebarStateTimeout,
   } = props
 
+  const homePageUrl = useHomePageUrl()
+
   /*
    * Use of Collapse from mui to collapse sidebar when button is clicked
    * see: https://mui.com/material-ui/transitions/#collapse
@@ -91,7 +94,7 @@ function Sidebar(props: IProps): JSX.Element {
       data-testid={generateTestId(TestId.SIDE_BAR)}
     >
       <CustomRoot style={sidebarState ? {} : { width: 'inherit' }}>
-        <Link href="/admin/settings/scope/catalogs">
+        <Link href={homePageUrl}>
           <CustomImgContainer>
             <CustomImgExtended
               style={!sidebarStateTimeout ? {} : { opacity: 0 }}

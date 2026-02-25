@@ -80,7 +80,10 @@ function PopInCatalogs({ content, title }: IProps): JSX.Element {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <CustomClose onClick={handleClose}>
+        <CustomClose
+          data-testid={generateTestId(TestId.POPIN_CATALOGS, 'close')}
+          onClick={handleClose}
+        >
           <IonIcon name="close" style={{ fontSize: '17.85px' }} />
         </CustomClose>
         <CustomRoot>

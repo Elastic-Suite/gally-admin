@@ -3,13 +3,15 @@
 exports[`KPIGroup match snapshot KPIGroup 1`] = `
 <div>
   <div
-    class="css-1l3liia"
+    class="css-1bfv3sy"
+    data-testid="kpiGroup"
   >
     <div
       class="css-4jtltt"
+      data-testid="kpi"
     >
       <h3
-        class="css-1xva16q"
+        class="css-1oifnsw"
       >
         Test 1
       </h3>
@@ -21,9 +23,10 @@ exports[`KPIGroup match snapshot KPIGroup 1`] = `
     </div>
     <div
       class="css-4jtltt"
+      data-testid="kpi"
     >
       <h3
-        class="css-1xva16q"
+        class="css-1oifnsw"
       >
         Test 2
       </h3>

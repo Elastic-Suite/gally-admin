@@ -3,7 +3,12 @@ import { useRouter } from 'next/router'
 
 import { withAuth, withOptions } from '../../../hocs'
 import { breadcrumbContext, catalogContext } from '../../../contexts'
-import { useFetchApi, useFilters, useResource } from '../../../hooks'
+import {
+  useFetchApi,
+  useFilters,
+  useFiltersRedirect,
+  useResource,
+} from '../../../hooks'
 import {
   IHydraMember,
   IHydraResponse,
@@ -52,7 +57,7 @@ const StyledButton = styled(Button)(() => ({
   marginTop: '25px',
 }))
 
-function AdminAnalyseSearchUsage(): JSX.Element {
+function AdminAnalyzeSearchUsage(): JSX.Element {
   const router = useRouter()
 
   const [, setBreadcrumb] = useContext(breadcrumbContext)
@@ -66,12 +71,31 @@ function AdminAnalyseSearchUsage(): JSX.Element {
   const resource = useResource('Kpi')
   const [activeFilters, setActiveFilters] = useFilters(resource)
   const [kpiDateFilter, setKpiDateFilter] = useState<IDoubleDatePickerValues>({
-    fromDate: null,
-    toDate: null,
+    fromDate: (activeFilters.startDate as string) ?? null,
+    toDate: (activeFilters.endDate as string) ?? null,
   })
   const [showError, setShowError] = useState(false)
   const [filtersHaveError, setFiltersHaveError] = useState(false)
   const localizedCatalogContext = useContext(catalogContext)
+
+  const filtersForUrl = useMemo(() => {
+    const filters: ISearchParameters = { ...activeFilters }
+    if (filters?.catalog) {
+      delete filters.catalog
+    }
+    if (filters?.localizedCatalog) {
+      delete filters.localizedCatalog
+    }
+    return filters
+  }, [activeFilters])
+
+  const filtersForApi = useMemo(() => {
+    const filters: ISearchParameters = { ...activeFilters }
+    if (filters?.localizedCatalog) {
+      delete filters.catalog
+    }
+    return filters
+  }, [activeFilters])
 
   const pendingFilters = useMemo(() => {
     const filters: ISearchParameters = {}
@@ -116,8 +140,10 @@ function AdminAnalyseSearchUsage(): JSX.Element {
 
   const [{ data: kpiData }] = useFetchApi<IHydraResponse<IKPI>>(
     resource,
-    activeFilters
+    filtersForApi
   )
+
+  useFiltersRedirect(0, filtersForUrl, '', true, resource?.title?.toLowerCase())
 
   const excludedKeys = [
     '@id',
@@ -176,4 +202,4 @@ function AdminAnalyseSearchUsage(): JSX.Element {
   )
 }
 
-export default withAuth()(withOptions(AdminAnalyseSearchUsage))
+export default withAuth()(withOptions(AdminAnalyzeSearchUsage))
