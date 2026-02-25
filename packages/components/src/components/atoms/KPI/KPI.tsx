@@ -20,7 +20,7 @@ function KPI({
   label,
   value,
   isPercentage,
-  animated,
+  animated = false,
   componentId,
 }: IKPIProps): JSX.Element {
   const animatedValue = useAnimatedValue(value, { enabled: animated })

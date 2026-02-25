@@ -17,6 +17,7 @@ import Form from '../components/atoms/form/Form'
 
 import PageTitle from '../components/atoms/PageTitle/PageTitle'
 import { styled } from '@mui/system'
+import { useHomePageUrl } from '../hooks/useHomePageUrl'
 
 const ForgotPasswordLink = styled('a')(({ theme }) => ({
   fontFamily: 'var(--gally-font)',
@@ -40,10 +41,11 @@ function Login(): JSX.Element {
   const fetchApi = useApiFetch(false)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const defaultRedirectUrl = useHomePageUrl()
 
   const redirectToRequestedPath = useCallback(
-    () => Router.push(requestedPath ?? '/admin/settings/scope/catalogs'),
-    [requestedPath]
+    () => Router.push(requestedPath ?? defaultRedirectUrl),
+    [requestedPath, defaultRedirectUrl]
   )
 
   useEffect(() => {

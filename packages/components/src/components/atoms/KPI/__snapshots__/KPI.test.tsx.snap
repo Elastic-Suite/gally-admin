@@ -4,9 +4,10 @@ exports[`KPI match snapshot KPI percentage 1`] = `
 <div>
   <div
     class="css-4jtltt"
+    data-testid="kpi"
   >
     <h3
-      class="css-1xva16q"
+      class="css-1oifnsw"
     >
       Test percentage value
     </h3>
@@ -23,9 +24,10 @@ exports[`KPI match snapshot KPI simple 1`] = `
 <div>
   <div
     class="css-4jtltt"
+    data-testid="kpi"
   >
     <h3
-      class="css-1xva16q"
+      class="css-1oifnsw"
     >
       Test simple value
     </h3>
