@@ -19,7 +19,10 @@ import {
 import {
   allLocalizedCatalogs,
   createSampleSourceFields,
+  categoryMetadata,
   productMetadata,
+  sampleCategoriesEn,
+  sampleCategoriesFr,
   sampleLocalizedCatalogEn,
   sampleLocalizedCatalogFr,
   sampleProductsEn,
@@ -33,6 +36,8 @@ describe('Index Operations', () => {
   let isAvailable: boolean;
   let indexFr: Index;
   let indexEn: Index;
+  let catIndexFr: Index;
+  let catIndexEn: Index;
 
   beforeAll(async () => {
     isAvailable = await checkGallyAvailability();
@@ -46,6 +51,79 @@ describe('Index Operations', () => {
     await synchronizer.syncAllLocalizedCatalogs(allLocalizedCatalogs);
     await synchronizer.syncAllSourceFields(createSampleSourceFields());
   });
+
+  // -------------------------------------------------------------------------
+  // Category indexing
+  // -------------------------------------------------------------------------
+
+  it('should create a category index for FR localized catalog', async ({ skip }) => {
+    if (!isAvailable) skip();
+
+    catIndexFr = await indexOp.createIndex(
+      categoryMetadata,
+      sampleLocalizedCatalogFr,
+    );
+
+    expect(catIndexFr).toBeDefined();
+    expect(catIndexFr.getName()).toBeTruthy();
+    expect(catIndexFr.getMetadata().getEntity()).toBe('category');
+
+    console.log(`  Created FR category index: ${catIndexFr.getName()}`);
+  });
+
+  it('should create a category index for EN localized catalog', async ({ skip }) => {
+    if (!isAvailable) skip();
+
+    catIndexEn = await indexOp.createIndex(
+      categoryMetadata,
+      sampleLocalizedCatalogEn,
+    );
+
+    expect(catIndexEn).toBeDefined();
+    expect(catIndexEn.getName()).toBeTruthy();
+
+    console.log(`  Created EN category index: ${catIndexEn.getName()}`);
+  });
+
+  it('should bulk-index FR categories', async ({ skip }) => {
+    if (!isAvailable || !catIndexFr) skip();
+
+    await indexOp.executeBulk(catIndexFr, sampleCategoriesFr);
+
+    expect(true).toBe(true);
+    console.log(`  Indexed ${sampleCategoriesFr.length} FR categories`);
+  });
+
+  it('should bulk-index EN categories', async ({ skip }) => {
+    if (!isAvailable || !catIndexEn) skip();
+
+    await indexOp.executeBulk(catIndexEn, sampleCategoriesEn);
+
+    expect(true).toBe(true);
+    console.log(`  Indexed ${sampleCategoriesEn.length} EN categories`);
+  });
+
+  it('should install the FR category index', async ({ skip }) => {
+    if (!isAvailable || !catIndexFr) skip();
+
+    await indexOp.refreshIndex(catIndexFr);
+    await indexOp.installIndex(catIndexFr);
+    expect(true).toBe(true);
+    console.log(`  Installed FR category index: ${catIndexFr.getName()}`);
+  });
+
+  it('should install the EN category index', async ({ skip }) => {
+    if (!isAvailable || !catIndexEn) skip();
+
+    await indexOp.refreshIndex(catIndexEn);
+    await indexOp.installIndex(catIndexEn);
+    expect(true).toBe(true);
+    console.log(`  Installed EN category index: ${catIndexEn.getName()}`);
+  });
+
+  // -------------------------------------------------------------------------
+  // Product indexing
+  // -------------------------------------------------------------------------
 
   it('should create an index for FR localized catalog', async ({ skip }) => {
     if (!isAvailable) skip();

@@ -25,8 +25,10 @@ import {
 import {
   allLocalizedCatalogs,
   createSampleSourceFields,
+  categoryMetadata,
   productMetadata,
   sampleLocalizedCatalogFr,
+  sampleCategoriesFr,
   sampleProductsFr,
 } from '../fixtures/sample-data';
 import { checkGallyAvailability, getTestConfiguration } from '../test-config';
@@ -61,10 +63,24 @@ describe('Full E2E Lifecycle', () => {
     console.log(`  ✓ ${sourceFields.length} source fields synced`);
 
     // -----------------------------------------------------------------------
-    // Step 3: Create index
+    // Step 3: Create and index categories
     // -----------------------------------------------------------------------
-    console.log('\n  === Step 3: Creating index ===');
+    console.log('\n  === Step 3: Indexing categories ===');
     const indexOp = new IndexOperation(config);
+    const catIndex = await indexOp.createIndex(
+      categoryMetadata,
+      sampleLocalizedCatalogFr,
+    );
+    expect(catIndex.getName()).toBeTruthy();
+    await indexOp.executeBulk(catIndex, sampleCategoriesFr);
+    await indexOp.refreshIndex(catIndex);
+    await indexOp.installIndex(catIndex);
+    console.log(`  ✓ ${sampleCategoriesFr.length} categories indexed and installed: ${catIndex.getName()}`);
+
+    // -----------------------------------------------------------------------
+    // Step 4: Create product index
+    // -----------------------------------------------------------------------
+    console.log('\n  === Step 4: Creating product index ===');
     const index = await indexOp.createIndex(
       productMetadata,
       sampleLocalizedCatalogFr,
@@ -73,16 +89,16 @@ describe('Full E2E Lifecycle', () => {
     console.log(`  ✓ Index created: ${index.getName()}`);
 
     // -----------------------------------------------------------------------
-    // Step 4: Bulk-index documents
+    // Step 5: Bulk-index documents
     // -----------------------------------------------------------------------
-    console.log('\n  === Step 4: Indexing documents ===');
+    console.log('\n  === Step 5: Indexing documents ===');
     await indexOp.executeBulk(index, sampleProductsFr);
     console.log(`  ✓ ${sampleProductsFr.length} products indexed`);
 
     // -----------------------------------------------------------------------
-    // Step 5: Refresh + Install index
+    // Step 6: Refresh + Install index
     // -----------------------------------------------------------------------
-    console.log('\n  === Step 5: Installing index ===');
+    console.log('\n  === Step 6: Installing index ===');
     await indexOp.refreshIndex(index);
     await indexOp.installIndex(index);
     console.log(`  ✓ Index installed (live): ${index.getName()}`);
@@ -91,9 +107,9 @@ describe('Full E2E Lifecycle', () => {
     await new Promise((resolve) => setTimeout(resolve, 3000));
 
     // -----------------------------------------------------------------------
-    // Step 6: Search and verify
+    // Step 7: Search and verify
     // -----------------------------------------------------------------------
-    console.log('\n  === Step 6: Searching ===');
+    console.log('\n  === Step 7: Searching ===');
     const searchManager = new SearchManager(config);
 
     // 6a. Broad search (all products)

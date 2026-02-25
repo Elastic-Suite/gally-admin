@@ -117,7 +117,7 @@ export class IndexOperation {
     const indexName = typeof index === 'string' ? index : index.getName();
     await this.client.post(IndexOperation.INDEX_DOCUMENT_ENTITY_CODE, {
       indexName,
-      documents,
+      documents: documents.map((doc) => JSON.stringify(doc)),
     });
   }
 

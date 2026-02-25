@@ -28,6 +28,12 @@ export class Client {
     this.configuration = configuration;
     this.tokenCacheManager = tokenCacheManager;
     this.baseUrl = configuration.getBaseUri().replace(/\/+$/, '') + '/';
+
+    // Disable SSL certificate verification when checkSSL is false.
+    // This is necessary for self-signed certificates (e.g. local dev environments).
+    if (!configuration.getCheckSSL()) {
+      process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
+    }
   }
 
   async get(
@@ -200,7 +206,16 @@ export class Client {
     const response = await fetch(url, fetchOptions);
 
     if (!response.ok) {
-      const error = new Error(`HTTP ${response.status}: ${response.statusText}`);
+      let errorBody = '';
+      try {
+        errorBody = await response.text();
+      } catch {
+        // ignore
+      }
+      const errorMessage = errorBody
+        ? `HTTP ${response.status}: ${response.statusText} — ${errorBody}`
+        : `HTTP ${response.status}: ${response.statusText}`;
+      const error = new Error(errorMessage);
       (error as any).status = response.status;
       throw error;
     }
