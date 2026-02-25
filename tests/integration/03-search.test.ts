@@ -20,9 +20,12 @@ import {
 import {
   allLocalizedCatalogs,
   createSampleSourceFields,
+  categoryMetadata,
   productMetadata,
   sampleLocalizedCatalogFr,
   sampleLocalizedCatalogEn,
+  sampleCategoriesFr,
+  sampleCategoriesEn,
   sampleProductsFr,
   sampleProductsEn,
 } from '../fixtures/sample-data';
@@ -47,7 +50,25 @@ describe('Search', () => {
 
     const indexOp = new IndexOperation(config);
 
-    // Create + index + install FR
+    // Create + index + install categories FR
+    const catIndexFr = await indexOp.createIndex(
+      categoryMetadata,
+      sampleLocalizedCatalogFr,
+    );
+    await indexOp.executeBulk(catIndexFr, sampleCategoriesFr);
+    await indexOp.refreshIndex(catIndexFr);
+    await indexOp.installIndex(catIndexFr);
+
+    // Create + index + install categories EN
+    const catIndexEn = await indexOp.createIndex(
+      categoryMetadata,
+      sampleLocalizedCatalogEn,
+    );
+    await indexOp.executeBulk(catIndexEn, sampleCategoriesEn);
+    await indexOp.refreshIndex(catIndexEn);
+    await indexOp.installIndex(catIndexEn);
+
+    // Create + index + install FR products
     const indexFr = await indexOp.createIndex(
       productMetadata,
       sampleLocalizedCatalogFr,
@@ -56,7 +77,7 @@ describe('Search', () => {
     await indexOp.refreshIndex(indexFr);
     await indexOp.installIndex(indexFr);
 
-    // Create + index + install EN
+    // Create + index + install EN products
     const indexEn = await indexOp.createIndex(
       productMetadata,
       sampleLocalizedCatalogEn,

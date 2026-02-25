@@ -12,7 +12,11 @@ export default defineConfig({
     testTimeout: 60_000,
     hookTimeout: 120_000,
 
-    // Run tests sequentially (they depend on Gally state)
+    // Run test files sequentially to avoid race conditions
+    // (all tests share the same Gally instance state)
+    fileParallelism: false,
+
+    // Run tests within each file sequentially (they depend on Gally state)
     sequence: {
       concurrent: false,
     },

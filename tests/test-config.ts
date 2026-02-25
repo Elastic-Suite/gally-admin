@@ -35,12 +35,34 @@ export function getTestConfiguration(): Configuration {
 export async function checkGallyAvailability(): Promise<boolean> {
   try {
     const conf = getTestConfiguration();
+
+    // Temporarily disable SSL verification for the availability check
+    // when checkSSL is false (self-signed certificates)
+    const previousTlsSetting = process.env['NODE_TLS_REJECT_UNAUTHORIZED'];
+    if (!conf.getCheckSSL()) {
+      process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
+    }
+
     const url = conf.getBaseUri().replace(/\/+$/, '') + '/';
-    const response = await fetch(url, {
-      method: 'GET',
-      signal: AbortSignal.timeout(5000),
-    });
-    return response.ok || response.status === 401;
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 5000);
+
+    try {
+      const response = await fetch(url, {
+        method: 'GET',
+        signal: controller.signal,
+      });
+      clearTimeout(timeout);
+      return response.ok || response.status === 301 || response.status === 401;
+    } finally {
+      clearTimeout(timeout);
+      // Restore previous setting
+      if (previousTlsSetting === undefined) {
+        delete process.env['NODE_TLS_REJECT_UNAUTHORIZED'];
+      } else {
+        process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = previousTlsSetting;
+      }
+    }
   } catch {
     return false;
   }
