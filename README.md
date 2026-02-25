@@ -152,6 +152,52 @@ const indexOp = new IndexOperation(config, tokenCache);
 - Node.js >= 18.0.0 (uses native `fetch`)
 - TypeScript >= 5.3 (for development)
 
+## Integration Tests
+
+The SDK includes integration tests that run against a real Gally instance. They test the complete lifecycle: catalog sync → indexation → search.
+
+### Setup
+
+1. Copy the environment template:
+
+```bash
+cp .env.test.example .env.test
+```
+
+2. Edit `.env.test` with your Gally instance settings:
+
+```env
+GALLY_BASE_URI=https://your-gally-instance.com/api/
+GALLY_USER=admin@example.com
+GALLY_PASSWORD=your-password
+GALLY_CHECK_SSL=false
+```
+
+3. Run the tests:
+
+```bash
+# Run all integration tests
+npm run test:integration
+
+# Run a specific test file
+npx vitest run tests/integration/04-full-lifecycle.test.ts
+
+# Run in watch mode
+npm run test:watch
+```
+
+### Test Structure
+
+| File | Description |
+|------|-------------|
+| `tests/fixtures/sample-data.ts` | Sample catalogs, source fields, and products |
+| `tests/integration/01-structure-sync.test.ts` | Catalog & source field synchronization |
+| `tests/integration/02-index-operations.test.ts` | Index creation, bulk indexing, installation |
+| `tests/integration/03-search.test.ts` | Search queries, pagination, aggregations |
+| `tests/integration/04-full-lifecycle.test.ts` | Complete end-to-end lifecycle in one test |
+
+Tests are automatically **skipped** if the Gally instance is not reachable.
+
 ## License
 
 [OSL-3.0](https://opensource.org/license/osl-3-0-php)
