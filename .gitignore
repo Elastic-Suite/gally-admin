@@ -1,4 +1,7 @@
-node_modules
-lerna-debug.log
-yarn-error.log
-.idea/
+node_modules/
+dist/
+*.tsbuildinfo
+.env
+.env.test
+.DS_Store
+coverage/
