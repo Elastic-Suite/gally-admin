@@ -24,6 +24,8 @@ export function useResource(
 ): IResource {
   const api = useAppSelector(selectApi)
   const { asPath } = useRouter()
+  const pathWithoutQueryString = useMemo(() => asPath?.split('?')[0], [asPath])
+
   return useMemo(() => {
     const resource = getResource(api, resourceName)
     return {
@@ -31,19 +33,23 @@ export function useResource(
       supportedProperty:
         resource?.supportedProperty instanceof Array
           ? resource?.supportedProperty.map((field) =>
-              updatePropertiesAccordingToPath(field, asPath, mainContext)
+              updatePropertiesAccordingToPath(
+                field,
+                pathWithoutQueryString,
+                mainContext
+              )
             )
           : resource?.supportedProperty
           ? [
               updatePropertiesAccordingToPath(
                 resource.supportedProperty,
-                asPath,
+                pathWithoutQueryString,
                 mainContext
               ),
             ]
           : resource?.supportedProperty,
     }
-  }, [api, asPath, mainContext, resourceName])
+  }, [api, pathWithoutQueryString, mainContext, resourceName])
 }
 
 export function useResourceOperations<T extends IHydraMember>(

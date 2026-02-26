@@ -15,13 +15,7 @@ export enum IMainContext {
 }
 
 function transformPropertyPath(path: string): string {
-  const pathWithoutQueryString = path?.split('?')[0]
-  if (pathWithoutQueryString?.includes('admin/settings')) {
-    path = 'settings_attribute'
-  } else {
-    path = pathWithoutQueryString?.replaceAll('/', '_').replace('_admin_', '')
-  }
-  return path
+  return path?.replaceAll('/', '_').replace('_admin_', '')
 }
 
 export function updatePropertiesAccordingToPath(
