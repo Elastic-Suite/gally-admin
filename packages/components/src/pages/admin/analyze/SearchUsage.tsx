@@ -57,6 +57,15 @@ const StyledButton = styled(Button)(() => ({
   marginTop: '25px',
 }))
 
+const excludedKeys = [
+  '@id',
+  '@type',
+  'id',
+  'localizedCatalog',
+  'startDate',
+  'endDate',
+]
+
 function AdminAnalyzeSearchUsage(): JSX.Element {
   const router = useRouter()
 
@@ -131,40 +140,44 @@ function AdminAnalyzeSearchUsage(): JSX.Element {
     setFiltersHaveError(filtersHaveError)
   }
 
+  const filtersHaveChanged = useMemo(() => {
+    return Object.fromEntries(
+      Object.entries(pendingFilters).filter(
+        ([key, value]) => activeFilters[key] !== value
+      )
+    )
+  }, [pendingFilters, activeFilters])
+
   function applyFilters(): void {
     setShowError(true)
-    if (!filtersHaveError && pendingFilters !== activeFilters) {
+    if (!filtersHaveError && filtersHaveChanged) {
       setActiveFilters(pendingFilters)
     }
   }
 
   const [{ data: kpiData }] = useFetchApi<IHydraResponse<IKPI>>(
     resource,
-    filtersForApi
+    filtersForApi,
   )
 
-  useFiltersRedirect(0, filtersForUrl, '', true, resource?.title?.toLowerCase())
+  const resourcePrefix = useMemo(() => resource?.title?.toLowerCase(), [resource])
+  useFiltersRedirect(0, filtersForUrl, '', true, resourcePrefix)
 
-  const excludedKeys = [
-    '@id',
-    '@type',
-    'id',
-    'localizedCatalog',
-    'startDate',
-    'endDate',
-  ]
-  let kpiIndex = 0
-  const kpiGroups = kpiData?.['hydra:member'].map((kpi) => ({
-    id: kpi.id,
-    kpis: Object.entries(kpi)
-      .filter(([label, _]) => !excludedKeys.includes(label))
-      .map(([label, value]) => ({
-        id: `${kpi.id}_${kpiIndex++}`,
-        componentId: label,
-        label: t(label),
-        value: value ?? '',
-      })),
-  }))
+  const kpiGroups = useMemo(() => {
+    if (!kpiData?.['hydra:member']) return []
+
+    return kpiData['hydra:member'].map((kpi) => ({
+      id: kpi.id,
+      kpis: Object.entries(kpi)
+        .filter(([label, _]) => !excludedKeys.includes(label))
+        .map(([label, value], index) => ({
+          id: `${kpi.id}_${index}`,
+          componentId: label,
+          label: t(label),
+          value: value ?? '',
+        })),
+    }))
+  }, [kpiData, t])
 
   return (
     <>
