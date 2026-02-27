@@ -41,11 +41,7 @@ export const fieldDropdownWithContext = {
     position: 10,
     visible: true,
     context: {
-      settings_attribute: {
-        visible: true,
-        position: 20,
-      },
-      search_configuration_attribute: {
+      search_configuration_attributes: {
         visible: false,
         position: 30,
       },
