@@ -1,4 +1,11 @@
-import React, { useContext, useEffect, useMemo, useState } from 'react'
+import React, {
+  FormEvent,
+  useContext,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react'
 import { useRouter } from 'next/router'
 
 import { withAuth, withOptions } from '../../../hocs'
@@ -53,8 +60,18 @@ const StyledContainer = styled('div')(() => ({
   marginBottom: '8px',
 }))
 
-const StyledButton = styled(Button)(() => ({
+const StyledButtonContainer = styled('div')(() => ({
   marginTop: '25px',
+}))
+
+const StyledForm = styled('form')(({ theme }) => ({
+  display: 'flex',
+  flexDirection: 'row',
+  flexWrap: 'wrap',
+  columnGap: theme.spacing(3),
+  rowGap: theme.spacing(6),
+  alignItems: 'flex-start',
+  width: '100%',
 }))
 
 const excludedKeys = [
@@ -68,6 +85,7 @@ const excludedKeys = [
 
 function AdminAnalyzeSearchUsage(): JSX.Element {
   const router = useRouter()
+  const formRef = useRef<HTMLFormElement>(null)
 
   const [, setBreadcrumb] = useContext(breadcrumbContext)
 
@@ -89,12 +107,9 @@ function AdminAnalyzeSearchUsage(): JSX.Element {
 
   const filtersForUrl = useMemo(() => {
     const filters: ISearchParameters = { ...activeFilters }
-    if (filters?.catalog) {
-      delete filters.catalog
-    }
-    if (filters?.localizedCatalog) {
-      delete filters.localizedCatalog
-    }
+    // TODO: find how to handle catalog filters from/to URL as they change a context
+    delete filters.catalog
+    delete filters.localizedCatalog
     return filters
   }, [activeFilters])
 
@@ -148,19 +163,53 @@ function AdminAnalyzeSearchUsage(): JSX.Element {
     )
   }, [pendingFilters, activeFilters])
 
-  function applyFilters(): void {
+  function handleSubmit(event: FormEvent<HTMLFormElement>): void {
+    event.preventDefault()
     setShowError(true)
-    if (!filtersHaveError && filtersHaveChanged) {
+
+    // Validate form
+    if (!formRef.current?.checkValidity()) {
+      return
+    }
+
+    // Check for custom errors
+    if (filtersHaveError) {
+      return
+    }
+
+    // Apply filters if validation passes
+    if (filtersHaveChanged) {
       setActiveFilters(pendingFilters)
+    }
+  }
+
+  function handleReset(): void {
+    // Reset form validation state
+    setShowError(false)
+    setFiltersHaveError(false)
+
+    // Reset date filter
+    setKpiDateFilter({
+      fromDate: null,
+      toDate: null,
+    })
+    localizedCatalogContext.setCatalogId(null)
+    localizedCatalogContext.setLocalizedCatalogId(-1)
+
+    if (Object.values(activeFilters).length) {
+      setActiveFilters({})
     }
   }
 
   const [{ data: kpiData }] = useFetchApi<IHydraResponse<IKPI>>(
     resource,
-    filtersForApi,
+    filtersForApi
   )
 
-  const resourcePrefix = useMemo(() => resource?.title?.toLowerCase(), [resource])
+  const resourcePrefix = useMemo(
+    () => resource?.title?.toLowerCase(),
+    [resource]
+  )
   useFiltersRedirect(0, filtersForUrl, '', true, resourcePrefix)
 
   const kpiGroups = useMemo(() => {
@@ -182,29 +231,48 @@ function AdminAnalyzeSearchUsage(): JSX.Element {
   return (
     <>
       <PageTitle title={t('searchUsage')} sx={{ marginBottom: '32px' }} />
-      <StyledPaper data-testid={generateTestId(TestId.KPI_FILTERS)}>
-        <CatalogSwitcher />
-        <StyledContainer>
-          <DoubleDatePicker
-            componentId="period"
-            label={t('period')}
-            value={kpiDateFilter}
-            onChange={setKpiDateFilter}
-            onError={onFiltersError}
-            showError={showError}
-          />
-        </StyledContainer>
-        <StyledButton
-          type="submit"
-          endIcon={<IonIcon name="checkmark-done-outline" />}
-          data-testid={generateTestId(
-            TestId.FILTER_APPLY_BUTTON,
-            'searchUsage'
-          )}
-          onClick={applyFilters}
+      <StyledPaper>
+        <StyledForm
+          ref={formRef}
+          onSubmit={handleSubmit}
+          data-testid={generateTestId(TestId.KPI_FILTERS)}
+          noValidate
         >
-          {t('filters.apply', { ns: 'api' })}
-        </StyledButton>
+          <CatalogSwitcher />
+          <StyledContainer>
+            <DoubleDatePicker
+              componentId="period"
+              label={t('period')}
+              value={kpiDateFilter}
+              onChange={setKpiDateFilter}
+              onError={onFiltersError}
+              showError={showError}
+            />
+          </StyledContainer>
+          <StyledButtonContainer>
+            <Button
+              type="submit"
+              endIcon={<IonIcon name="checkmark-done-outline" />}
+              data-testid={generateTestId(
+                TestId.FILTER_APPLY_BUTTON,
+                'searchUsage'
+              )}
+            >
+              {t('filters.apply', { ns: 'api' })}
+            </Button>
+            <Button
+              display="tertiary"
+              onClick={handleReset}
+              endIcon={<IonIcon name="reload-outline" />}
+              data-testid={generateTestId(
+                TestId.FILTER_CLEAR_BUTTON,
+                'searchUsage'
+              )}
+            >
+              {t('filters.clearAll', { ns: 'api' })}
+            </Button>
+          </StyledButtonContainer>
+        </StyledForm>
       </StyledPaper>
       {kpiGroups?.length > 0
         ? kpiGroups.map(({ id, kpis }) => (
