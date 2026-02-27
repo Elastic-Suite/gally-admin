@@ -20,22 +20,7 @@ describe('Field service', () => {
       expect(
         updatePropertiesAccordingToPath(
           fieldDropdownWithContext,
-          'admin/settings/attributes',
-          IMainContext.FORM
-        )
-      ).toEqual({
-        ...fieldDropdownWithContext,
-        gally: {
-          ...fieldDropdownWithContext.gally,
-          editable: false,
-          position: 20,
-          visible: true,
-        },
-      })
-      expect(
-        updatePropertiesAccordingToPath(
-          fieldDropdownWithContext,
-          'search/configuration/attribute',
+          'search/configuration/attributes',
           IMainContext.FORM
         )
       ).toEqual({
