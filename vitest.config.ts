@@ -8,6 +8,7 @@ export default defineConfig({
     },
   },
   test: {
+    cache: false,
     // Integration tests need longer timeouts (network calls to real Gally instance)
     testTimeout: 60_000,
     hookTimeout: 120_000,

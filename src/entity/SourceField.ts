@@ -103,6 +103,10 @@ export class SourceField extends AbstractEntity {
       data['isSystem'] = true;
     }
 
+    if (this.getUri()) {
+      data['@id'] = this.getUri();
+    }
+
     return data;
   }
 }

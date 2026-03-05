@@ -37,9 +37,15 @@ export class Catalog extends AbstractEntity {
   }
 
   toJson(): Record<string, string> {
-    return {
+    const jsonFields: Record<string, string> = {
       code: this.getCode(),
       name: this.getName(),
     };
+
+    if (this.getUri()) {
+      jsonFields['@id'] = this.getUri();
+    }
+
+    return jsonFields;
   }
 }

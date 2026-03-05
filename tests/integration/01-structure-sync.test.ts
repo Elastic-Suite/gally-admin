@@ -17,7 +17,7 @@ import {
   LocalizedCatalogRepository,
   MetadataRepository,
   SourceFieldRepository,
-} from '../../src/index';
+} from '../../src';
 import {
   allLocalizedCatalogs,
   createSampleSourceFields,

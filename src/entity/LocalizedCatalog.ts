@@ -63,12 +63,18 @@ export class LocalizedCatalog extends AbstractEntity {
   }
 
   toJson(): Record<string, string> {
-    return {
+    const jsonFields: Record<string, string> = {
       code: this.getCode(),
       name: this.getName(),
       locale: this.getLocale(),
       currency: this.getCurrency(),
       catalog: this.getCatalog().toString(),
-    };
+    }
+
+    if (this.getUri()) {
+      jsonFields['@id'] = this.getUri()
+    }
+
+    return jsonFields
   }
 }

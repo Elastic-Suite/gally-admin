@@ -70,12 +70,18 @@ export class SourceFieldOption extends AbstractEntity {
   }
 
   toJson(): Record<string, any> {
-    return {
+    const jsonFields: Record<string, any> = {
       sourceField: this.getSourceField().toString(),
       code: this.getCode(),
       position: this.getPosition(),
       defaultLabel: this.getDefaultLabel(),
       labels: this.getLabels().map((label) => label.toJson()),
     };
+
+    if (this.getUri()) {
+      jsonFields['@id'] = this.getUri();
+    }
+
+    return jsonFields;
   }
 }

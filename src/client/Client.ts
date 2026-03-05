@@ -31,7 +31,7 @@ export class Client {
 
     // Disable SSL certificate verification when checkSSL is false.
     // This is necessary for self-signed certificates (e.g. local dev environments).
-    if (!configuration.getCheckSSL()) {
+    if (!configuration.getCheckSSL() && typeof process !== 'undefined' && process.env) {
       process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
     }
   }
@@ -146,7 +146,7 @@ export class Client {
         return this.executeRequest(method, endpoint, data, mergedHeaders);
       }
       throw new Error(
-        `An error happened when fetching the "${endpoint}" API endpoint.`,
+        `An error happened when fetching the "${endpoint}" API endpoint with ${method} method.`,
         { cause: error },
       );
     }
