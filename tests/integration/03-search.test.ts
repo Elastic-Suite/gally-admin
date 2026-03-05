@@ -16,7 +16,7 @@ import {
   IndexOperation,
   Configuration,
   Request,
-} from '../../src/index';
+} from '../../src';
 import {
   allLocalizedCatalogs,
   createSampleSourceFields,

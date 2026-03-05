@@ -12,9 +12,9 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/index.mjs",
-      "require": "./dist/index.js",
-      "types": "./dist/index.d.ts"
+      "require": "./dist/index.js"
     }
   },
   "scripts": {
@@ -25,6 +25,7 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:integration": "vitest run --reporter=verbose",
+    "prepare": "npm run build",
     "prepublishOnly": "npm run build"
   },
   "devDependencies": {

@@ -50,9 +50,15 @@ export class Index {
   }
 
   toJson(): Record<string, string> {
-    return {
+    const jsonFields: Record<string, string> = {
       entityType: this.getMetadata().getEntity(),
       localizedCatalog: this.getLocalizedCatalog().getCode(),
     };
+
+    if (this.getName()) {
+      jsonFields['name'] = this.getName()!;
+    }
+
+    return jsonFields;
   }
 }

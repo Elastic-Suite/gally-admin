@@ -6,7 +6,7 @@
 
 import { config } from 'dotenv';
 import { resolve } from 'path';
-import { Configuration } from '../src/index';
+import { Configuration } from '../src';
 
 // Load .env.test from the project root
 config({ path: resolve(__dirname, '..', '.env.test') });

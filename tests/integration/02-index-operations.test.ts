@@ -15,7 +15,7 @@ import {
   StructureSynchronizer,
   Configuration,
   Index,
-} from '../../src/index';
+} from '../../src';
 import {
   allLocalizedCatalogs,
   createSampleSourceFields,

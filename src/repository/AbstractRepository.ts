@@ -11,8 +11,8 @@
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { Client } from '../client/Client';
-import { AbstractEntity } from '../entity/AbstractEntity';
+import { Client } from '../client';
+import { AbstractEntity } from '../entity';
 
 /**
  * Abstract entity repository.
@@ -90,6 +90,7 @@ export abstract class AbstractRepository<T extends AbstractEntity> {
 
     let result: Record<string, any>;
     if (uri) {
+      entity.setUri(uri)
       result = await this.client.put(uri, entity.toJson());
     } else {
       result = await this.client.post(this.getEntityCode(), entity.toJson());

@@ -5,3 +5,12 @@ dist/
 .env.test
 .DS_Store
 coverage/
+
+# Generated test files
+tests/**/*.test.js
+tests/**/*.test.js.map
+tests/**/*.test.d.ts
+tests/**/*.test.d.ts.map
+
+# Generated tsconfig
+tsconfig.test.json

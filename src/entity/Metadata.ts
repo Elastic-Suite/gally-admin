@@ -31,6 +31,14 @@ export class Metadata extends AbstractEntity {
   }
 
   toJson(): Record<string, string> {
-    return { entity: this.getEntity() };
+    const jsonFields: Record<string, string> = {
+      entity: this.getEntity(),
+    };
+
+    if (this.getUri()) {
+      jsonFields['@id'] = this.getUri();
+    }
+
+    return jsonFields;
   }
 }
