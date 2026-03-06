@@ -1,0 +1,20 @@
+{
+  "name": "test-gally-ts-sdk",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@gally/sdk": "../"
+  },
+  "devDependencies": {
+    "vite": "^7.3.1"
+  }
+}

@@ -9,10 +9,10 @@
  * @license   Open Software License v. 3.0 (OSL-3.0)
  */
 
-export { AbstractRepository } from './AbstractRepository';
-export { AbstractBulkRepository } from './AbstractBulkRepository';
-export { CatalogRepository } from './CatalogRepository';
-export { LocalizedCatalogRepository } from './LocalizedCatalogRepository';
-export { MetadataRepository } from './MetadataRepository';
-export { SourceFieldRepository } from './SourceFieldRepository';
-export { SourceFieldOptionRepository } from './SourceFieldOptionRepository';
+export { AbstractRepository } from './AbstractRepository'
+export { AbstractBulkRepository } from './AbstractBulkRepository'
+export { CatalogRepository } from './CatalogRepository'
+export { LocalizedCatalogRepository } from './LocalizedCatalogRepository'
+export { MetadataRepository } from './MetadataRepository'
+export { SourceFieldRepository } from './SourceFieldRepository'
+export { SourceFieldOptionRepository } from './SourceFieldOptionRepository'

@@ -16,17 +16,17 @@ export {
   SortDirection,
   SORT_RELEVANCE_FIELD,
   getFilterTypeByOperator,
-} from './Request';
+} from './Request'
 export type {
   RequestOptions,
   FilterOperatorType,
   FilterTypeType,
   SortDirectionType,
-} from './Request';
-export { Response, ResponseFilterType } from './Response';
+} from './Request'
+export { Response, ResponseFilterType } from './Response'
 export type {
   Aggregation,
   AggregationOption,
   PaginationInfo,
   SortInfo,
-} from './Response';
+} from './Response'

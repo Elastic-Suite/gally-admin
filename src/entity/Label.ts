@@ -9,33 +9,33 @@
  * @license   Open Software License v. 3.0 (OSL-3.0)
  */
 
-import { LocalizedCatalog } from './LocalizedCatalog';
+import { LocalizedCatalog } from './LocalizedCatalog'
 
 export class Label {
-  private localizedCatalog: LocalizedCatalog;
-  private readonly label: string;
+  private localizedCatalog: LocalizedCatalog
+  private readonly label: string
 
   constructor(localizedCatalog: LocalizedCatalog, label: string) {
-    this.localizedCatalog = localizedCatalog;
-    this.label = label;
+    this.localizedCatalog = localizedCatalog
+    this.label = label
   }
 
   getLocalizedCatalog(): LocalizedCatalog {
-    return this.localizedCatalog;
+    return this.localizedCatalog
   }
 
   setLocalizedCatalog(localizedCatalog: LocalizedCatalog): void {
-    this.localizedCatalog = localizedCatalog;
+    this.localizedCatalog = localizedCatalog
   }
 
   getLabel(): string {
-    return this.label;
+    return this.label
   }
 
   toJson(): Record<string, string> {
     return {
       localizedCatalog: this.getLocalizedCatalog().toString(),
       label: this.getLabel(),
-    };
+    }
   }
 }

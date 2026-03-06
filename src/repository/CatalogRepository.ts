@@ -11,24 +11,24 @@
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { Client } from '../client/Client';
-import { Catalog } from '../entity/Catalog';
-import { AbstractRepository } from './AbstractRepository';
+import { Client } from '../client/Client'
+import { Catalog } from '../entity/Catalog'
+import { AbstractRepository } from './AbstractRepository'
 
 /**
  * Catalog repository.
  */
 export class CatalogRepository extends AbstractRepository<Catalog> {
   constructor(client: Client) {
-    super(client);
+    super(client)
   }
 
   getEntityCode(): string {
-    return Catalog.ENTITY_CODE;
+    return Catalog.ENTITY_CODE
   }
 
   getIdentity(entity: Catalog): string {
-    return entity.getCode();
+    return entity.getCode()
   }
 
   protected buildEntityObject(rawEntity: Record<string, any>): Catalog {
@@ -36,6 +36,6 @@ export class CatalogRepository extends AbstractRepository<Catalog> {
       rawEntity['code'] as string,
       rawEntity['name'] as string,
       rawEntity['@id'] as string | undefined,
-    );
+    )
   }
 }

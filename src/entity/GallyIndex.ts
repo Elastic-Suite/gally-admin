@@ -9,56 +9,56 @@
  * @license   Open Software License v. 3.0 (OSL-3.0)
  */
 
-import { LocalizedCatalog } from './LocalizedCatalog';
-import { Metadata } from './Metadata';
+import { LocalizedCatalog } from './LocalizedCatalog'
+import { Metadata } from './Metadata'
 
 export class Index {
-  private readonly metadata: Metadata;
-  private readonly localizedCatalog: LocalizedCatalog;
-  private name?: string;
+  private readonly metadata: Metadata
+  private readonly localizedCatalog: LocalizedCatalog
+  private name?: string
 
-  static readonly ENTITY_CODE = 'indices';
+  static readonly ENTITY_CODE = 'indices'
 
   constructor(
     metadata: Metadata,
     localizedCatalog: LocalizedCatalog,
     name?: string,
   ) {
-    this.metadata = metadata;
-    this.localizedCatalog = localizedCatalog;
-    this.name = name;
+    this.metadata = metadata
+    this.localizedCatalog = localizedCatalog
+    this.name = name
   }
 
   getEntityCode(): string {
-    return Index.ENTITY_CODE;
+    return Index.ENTITY_CODE
   }
 
   getMetadata(): Metadata {
-    return this.metadata;
+    return this.metadata
   }
 
   getLocalizedCatalog(): LocalizedCatalog {
-    return this.localizedCatalog;
+    return this.localizedCatalog
   }
 
   getName(): string | undefined {
-    return this.name;
+    return this.name
   }
 
   setName(name: string | undefined): void {
-    this.name = name;
+    this.name = name
   }
 
   toJson(): Record<string, string> {
     const jsonFields: Record<string, string> = {
       entityType: this.getMetadata().getEntity(),
       localizedCatalog: this.getLocalizedCatalog().getCode(),
-    };
-
-    if (this.getName()) {
-      jsonFields['name'] = this.getName()!;
     }
 
-    return jsonFields;
+    if (this.getName()) {
+      jsonFields['name'] = this.getName()!
+    }
+
+    return jsonFields
   }
 }

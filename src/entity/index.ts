@@ -9,11 +9,11 @@
  * @license   Open Software License v. 3.0 (OSL-3.0)
  */
 
-export { AbstractEntity } from './AbstractEntity';
-export { Catalog } from './Catalog';
-export { Index } from './GallyIndex';
-export { Label } from './Label';
-export { LocalizedCatalog } from './LocalizedCatalog';
-export { Metadata } from './Metadata';
-export { SourceField, SourceFieldType } from './SourceField';
-export { SourceFieldOption } from './SourceFieldOption';
+export { AbstractEntity } from './AbstractEntity'
+export { Catalog } from './Catalog'
+export { Index } from './GallyIndex'
+export { Label } from './Label'
+export { LocalizedCatalog } from './LocalizedCatalog'
+export { Metadata } from './Metadata'
+export { SourceField, SourceFieldType } from './SourceField'
+export { SourceFieldOption } from './SourceFieldOption'

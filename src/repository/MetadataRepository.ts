@@ -11,30 +11,30 @@
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { Client } from '../client/Client';
-import { Metadata } from '../entity/Metadata';
-import { AbstractRepository } from './AbstractRepository';
+import { Client } from '../client/Client'
+import { Metadata } from '../entity/Metadata'
+import { AbstractRepository } from './AbstractRepository'
 
 /**
  * Metadata repository.
  */
 export class MetadataRepository extends AbstractRepository<Metadata> {
   constructor(client: Client) {
-    super(client);
+    super(client)
   }
 
   getEntityCode(): string {
-    return Metadata.ENTITY_CODE;
+    return Metadata.ENTITY_CODE
   }
 
   getIdentity(entity: Metadata): string {
-    return entity.getEntity();
+    return entity.getEntity()
   }
 
   protected buildEntityObject(rawEntity: Record<string, any>): Metadata {
     return new Metadata(
       rawEntity['entity'] as string,
       rawEntity['@id'] as string | undefined,
-    );
+    )
   }
 }

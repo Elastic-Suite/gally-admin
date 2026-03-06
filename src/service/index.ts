@@ -9,6 +9,6 @@
  * @license   Open Software License v. 3.0 (OSL-3.0)
  */
 
-export { IndexOperation } from './IndexOperation';
-export { SearchManager } from './SearchManager';
-export { StructureSynchronizer } from './StructureSynchronizer';
+export { IndexOperation } from './IndexOperation'
+export { SearchManager } from './SearchManager'
+export { StructureSynchronizer } from './StructureSynchronizer'

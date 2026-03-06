@@ -13,13 +13,13 @@ import {
   SourceField,
   SourceFieldType,
   SourceFieldOption,
-} from '../../src/index';
+} from '../../src/index'
 
 // ---------------------------------------------------------------------------
 // Catalogs
 // ---------------------------------------------------------------------------
 
-export const sampleCatalog = new Catalog('sdk_test_shop', 'SDK Test Shop');
+export const sampleCatalog = new Catalog('sdk_test_shop', 'SDK Test Shop')
 
 export const sampleLocalizedCatalogFr = new LocalizedCatalog(
   sampleCatalog,
@@ -27,7 +27,7 @@ export const sampleLocalizedCatalogFr = new LocalizedCatalog(
   'SDK Test Shop FR',
   'fr_FR',
   'EUR',
-);
+)
 
 export const sampleLocalizedCatalogEn = new LocalizedCatalog(
   sampleCatalog,
@@ -35,19 +35,19 @@ export const sampleLocalizedCatalogEn = new LocalizedCatalog(
   'SDK Test Shop EN',
   'en_US',
   'USD',
-);
+)
 
 export const allLocalizedCatalogs = [
   sampleLocalizedCatalogFr,
   sampleLocalizedCatalogEn,
-];
+]
 
 // ---------------------------------------------------------------------------
 // Metadata
 // ---------------------------------------------------------------------------
 
-export const productMetadata = new Metadata('product');
-export const categoryMetadata = new Metadata('category');
+export const productMetadata = new Metadata('product')
+export const categoryMetadata = new Metadata('category')
 
 // ---------------------------------------------------------------------------
 // Source Fields
@@ -55,16 +55,10 @@ export const categoryMetadata = new Metadata('category');
 
 export function createSampleSourceFields(): SourceField[] {
   return [
-    new SourceField(
-      productMetadata,
-      'name',
-      SourceFieldType.TEXT,
-      'Name',
-      [
-        new Label(sampleLocalizedCatalogFr, 'Nom'),
-        new Label(sampleLocalizedCatalogEn, 'Name'),
-      ],
-    ),
+    new SourceField(productMetadata, 'name', SourceFieldType.TEXT, 'Name', [
+      new Label(sampleLocalizedCatalogFr, 'Nom'),
+      new Label(sampleLocalizedCatalogEn, 'Name'),
+    ]),
     new SourceField(
       productMetadata,
       'description',
@@ -75,46 +69,22 @@ export function createSampleSourceFields(): SourceField[] {
         new Label(sampleLocalizedCatalogEn, 'Description'),
       ],
     ),
-    new SourceField(
-      productMetadata,
-      'sku',
-      SourceFieldType.REFERENCE,
-      'SKU',
-      [
-        new Label(sampleLocalizedCatalogFr, 'SKU'),
-        new Label(sampleLocalizedCatalogEn, 'SKU'),
-      ],
-    ),
-    new SourceField(
-      productMetadata,
-      'brand',
-      SourceFieldType.SELECT,
-      'Brand',
-      [
-        new Label(sampleLocalizedCatalogFr, 'Marque'),
-        new Label(sampleLocalizedCatalogEn, 'Brand'),
-      ],
-    ),
-    new SourceField(
-      productMetadata,
-      'color',
-      SourceFieldType.SELECT,
-      'Color',
-      [
-        new Label(sampleLocalizedCatalogFr, 'Couleur'),
-        new Label(sampleLocalizedCatalogEn, 'Color'),
-      ],
-    ),
-    new SourceField(
-      productMetadata,
-      'size',
-      SourceFieldType.KEYWORD,
-      'Size',
-      [
-        new Label(sampleLocalizedCatalogFr, 'Taille'),
-        new Label(sampleLocalizedCatalogEn, 'Size'),
-      ],
-    ),
+    new SourceField(productMetadata, 'sku', SourceFieldType.REFERENCE, 'SKU', [
+      new Label(sampleLocalizedCatalogFr, 'SKU'),
+      new Label(sampleLocalizedCatalogEn, 'SKU'),
+    ]),
+    new SourceField(productMetadata, 'brand', SourceFieldType.SELECT, 'Brand', [
+      new Label(sampleLocalizedCatalogFr, 'Marque'),
+      new Label(sampleLocalizedCatalogEn, 'Brand'),
+    ]),
+    new SourceField(productMetadata, 'color', SourceFieldType.SELECT, 'Color', [
+      new Label(sampleLocalizedCatalogFr, 'Couleur'),
+      new Label(sampleLocalizedCatalogEn, 'Color'),
+    ]),
+    new SourceField(productMetadata, 'size', SourceFieldType.KEYWORD, 'Size', [
+      new Label(sampleLocalizedCatalogFr, 'Taille'),
+      new Label(sampleLocalizedCatalogEn, 'Size'),
+    ]),
     new SourceField(
       productMetadata,
       'is_active',
@@ -135,17 +105,11 @@ export function createSampleSourceFields(): SourceField[] {
         new Label(sampleLocalizedCatalogEn, 'Weight'),
       ],
     ),
-    new SourceField(
-      productMetadata,
-      'image',
-      SourceFieldType.IMAGE,
-      'Image',
-      [
-        new Label(sampleLocalizedCatalogFr, 'Image'),
-        new Label(sampleLocalizedCatalogEn, 'Image'),
-      ],
-    ),
-  ];
+    new SourceField(productMetadata, 'image', SourceFieldType.IMAGE, 'Image', [
+      new Label(sampleLocalizedCatalogFr, 'Image'),
+      new Label(sampleLocalizedCatalogEn, 'Image'),
+    ]),
+  ]
 }
 
 // ---------------------------------------------------------------------------
@@ -188,7 +152,7 @@ export function createSampleSourceFieldOptions(
       new Label(sampleLocalizedCatalogFr, 'Blanc'),
       new Label(sampleLocalizedCatalogEn, 'White'),
     ]),
-  ];
+  ]
 }
 
 // ---------------------------------------------------------------------------
@@ -242,7 +206,7 @@ export const sampleCategoriesFr: Record<string, any>[] = [
     level: 3,
     name: 'Lifestyle',
   },
-];
+]
 
 export const sampleCategoriesEn: Record<string, any>[] = [
   {
@@ -280,7 +244,7 @@ export const sampleCategoriesEn: Record<string, any>[] = [
     level: 3,
     name: 'Lifestyle',
   },
-];
+]
 
 // ---------------------------------------------------------------------------
 // Sample Products
@@ -291,7 +255,8 @@ export const sampleProductsFr: Record<string, any>[] = [
     id: '1',
     sku: 'SDK-SHOE-001',
     name: 'Chaussure de course Nike Air',
-    description: 'Chaussure de course légère et performante avec semelle en mousse.',
+    description:
+      'Chaussure de course légère et performante avec semelle en mousse.',
     brand: [{ value: 'nike', label: 'Nike' }],
     color: [{ value: 'red', label: 'Rouge' }],
     size: '42',
@@ -300,7 +265,10 @@ export const sampleProductsFr: Record<string, any>[] = [
     image: 'https://example.com/images/nike-air.jpg',
     price: [{ price: 129.99, group_id: 0 }],
     stock: { status: true, qty: 50 },
-    category: [{ id: 'cat_running', name: 'Running' }, { id: 'cat_shoes', name: 'Chaussures' }],
+    category: [
+      { id: 'cat_running', name: 'Running' },
+      { id: 'cat_shoes', name: 'Chaussures' },
+    ],
   },
   {
     id: '2',
@@ -315,7 +283,10 @@ export const sampleProductsFr: Record<string, any>[] = [
     image: 'https://example.com/images/adidas-ultraboost.jpg',
     price: [{ price: 179.99, group_id: 0 }],
     stock: { status: true, qty: 30 },
-    category: [{ id: 'cat_running', name: 'Running' }, { id: 'cat_shoes', name: 'Chaussures' }],
+    category: [
+      { id: 'cat_running', name: 'Running' },
+      { id: 'cat_shoes', name: 'Chaussures' },
+    ],
   },
   {
     id: '3',
@@ -330,7 +301,10 @@ export const sampleProductsFr: Record<string, any>[] = [
     image: 'https://example.com/images/puma-rsx.jpg',
     price: [{ price: 109.99, group_id: 0 }],
     stock: { status: true, qty: 15 },
-    category: [{ id: 'cat_sneakers', name: 'Baskets' }, { id: 'cat_shoes', name: 'Chaussures' }],
+    category: [
+      { id: 'cat_sneakers', name: 'Baskets' },
+      { id: 'cat_shoes', name: 'Chaussures' },
+    ],
   },
   {
     id: '4',
@@ -345,7 +319,10 @@ export const sampleProductsFr: Record<string, any>[] = [
     image: 'https://example.com/images/nike-airmax.jpg',
     price: [{ price: 159.99, group_id: 0 }],
     stock: { status: true, qty: 25 },
-    category: [{ id: 'cat_lifestyle', name: 'Lifestyle' }, { id: 'cat_shoes', name: 'Chaussures' }],
+    category: [
+      { id: 'cat_lifestyle', name: 'Lifestyle' },
+      { id: 'cat_shoes', name: 'Chaussures' },
+    ],
   },
   {
     id: '5',
@@ -360,16 +337,20 @@ export const sampleProductsFr: Record<string, any>[] = [
     image: 'https://example.com/images/adidas-stansmith.jpg',
     price: [{ price: 99.99, group_id: 0 }],
     stock: { status: true, qty: 100 },
-    category: [{ id: 'cat_sneakers', name: 'Baskets' }, { id: 'cat_shoes', name: 'Chaussures' }],
+    category: [
+      { id: 'cat_sneakers', name: 'Baskets' },
+      { id: 'cat_shoes', name: 'Chaussures' },
+    ],
   },
-];
+]
 
 export const sampleProductsEn: Record<string, any>[] = [
   {
     id: '1',
     sku: 'SDK-SHOE-001',
     name: 'Nike Air Running Shoe',
-    description: 'Lightweight and high-performance running shoe with foam sole.',
+    description:
+      'Lightweight and high-performance running shoe with foam sole.',
     brand: [{ value: 'nike', label: 'Nike' }],
     color: [{ value: 'red', label: 'Red' }],
     size: '42',
@@ -378,7 +359,10 @@ export const sampleProductsEn: Record<string, any>[] = [
     image: 'https://example.com/images/nike-air.jpg',
     price: [{ price: 139.99, group_id: 0 }],
     stock: { status: true, qty: 50 },
-    category: [{ id: 'cat_running', name: 'Running' }, { id: 'cat_shoes', name: 'Shoes' }],
+    category: [
+      { id: 'cat_running', name: 'Running' },
+      { id: 'cat_shoes', name: 'Shoes' },
+    ],
   },
   {
     id: '2',
@@ -393,7 +377,10 @@ export const sampleProductsEn: Record<string, any>[] = [
     image: 'https://example.com/images/adidas-ultraboost.jpg',
     price: [{ price: 189.99, group_id: 0 }],
     stock: { status: true, qty: 30 },
-    category: [{ id: 'cat_running', name: 'Running' }, { id: 'cat_shoes', name: 'Shoes' }],
+    category: [
+      { id: 'cat_running', name: 'Running' },
+      { id: 'cat_shoes', name: 'Shoes' },
+    ],
   },
   {
     id: '3',
@@ -408,7 +395,10 @@ export const sampleProductsEn: Record<string, any>[] = [
     image: 'https://example.com/images/puma-rsx.jpg',
     price: [{ price: 119.99, group_id: 0 }],
     stock: { status: true, qty: 15 },
-    category: [{ id: 'cat_sneakers', name: 'Sneakers' }, { id: 'cat_shoes', name: 'Shoes' }],
+    category: [
+      { id: 'cat_sneakers', name: 'Sneakers' },
+      { id: 'cat_shoes', name: 'Shoes' },
+    ],
   },
   {
     id: '4',
@@ -423,7 +413,10 @@ export const sampleProductsEn: Record<string, any>[] = [
     image: 'https://example.com/images/nike-airmax.jpg',
     price: [{ price: 169.99, group_id: 0 }],
     stock: { status: true, qty: 25 },
-    category: [{ id: 'cat_lifestyle', name: 'Lifestyle' }, { id: 'cat_shoes', name: 'Shoes' }],
+    category: [
+      { id: 'cat_lifestyle', name: 'Lifestyle' },
+      { id: 'cat_shoes', name: 'Shoes' },
+    ],
   },
   {
     id: '5',
@@ -438,6 +431,9 @@ export const sampleProductsEn: Record<string, any>[] = [
     image: 'https://example.com/images/adidas-stansmith.jpg',
     price: [{ price: 109.99, group_id: 0 }],
     stock: { status: true, qty: 100 },
-    category: [{ id: 'cat_sneakers', name: 'Sneakers' }, { id: 'cat_shoes', name: 'Shoes' }],
+    category: [
+      { id: 'cat_sneakers', name: 'Sneakers' },
+      { id: 'cat_shoes', name: 'Shoes' },
+    ],
   },
-];
+]

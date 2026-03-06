@@ -9,17 +9,17 @@
  * @license   Open Software License v. 3.0 (OSL-3.0)
  */
 
-import { AbstractEntity } from './AbstractEntity';
-import { Catalog } from './Catalog';
+import { AbstractEntity } from './AbstractEntity'
+import { Catalog } from './Catalog'
 
 export class LocalizedCatalog extends AbstractEntity {
-  private readonly catalog: Catalog;
-  private readonly code: string;
-  private readonly name: string;
-  private readonly locale: string;
-  private readonly currency: string;
+  private readonly catalog: Catalog
+  private readonly code: string
+  private readonly name: string
+  private readonly locale: string
+  private readonly currency: string
 
-  static readonly ENTITY_CODE = 'localized_catalogs';
+  static readonly ENTITY_CODE = 'localized_catalogs'
 
   constructor(
     catalog: Catalog,
@@ -29,37 +29,37 @@ export class LocalizedCatalog extends AbstractEntity {
     currency: string,
     uri?: string,
   ) {
-    super();
-    this.catalog = catalog;
-    this.code = code;
-    this.name = name;
-    this.locale = locale;
-    this.currency = currency;
-    this.uri = uri;
+    super()
+    this.catalog = catalog
+    this.code = code
+    this.name = name
+    this.locale = locale
+    this.currency = currency
+    this.uri = uri
   }
 
   getEntityCode(): string {
-    return LocalizedCatalog.ENTITY_CODE;
+    return LocalizedCatalog.ENTITY_CODE
   }
 
   getCatalog(): Catalog {
-    return this.catalog;
+    return this.catalog
   }
 
   getCode(): string {
-    return this.code;
+    return this.code
   }
 
   getName(): string {
-    return this.name;
+    return this.name
   }
 
   getLocale(): string {
-    return this.locale;
+    return this.locale
   }
 
   getCurrency(): string {
-    return this.currency;
+    return this.currency
   }
 
   toJson(): Record<string, string> {

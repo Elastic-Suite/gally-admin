@@ -9,36 +9,36 @@
  * @license   Open Software License v. 3.0 (OSL-3.0)
  */
 
-import { AbstractEntity } from './AbstractEntity';
+import { AbstractEntity } from './AbstractEntity'
 
 export class Metadata extends AbstractEntity {
-  private readonly entity: string;
+  private readonly entity: string
 
-  static readonly ENTITY_CODE = 'metadata';
+  static readonly ENTITY_CODE = 'metadata'
 
   constructor(entity: string, uri?: string) {
-    super();
-    this.entity = entity;
-    this.uri = uri;
+    super()
+    this.entity = entity
+    this.uri = uri
   }
 
   getEntityCode(): string {
-    return Metadata.ENTITY_CODE;
+    return Metadata.ENTITY_CODE
   }
 
   getEntity(): string {
-    return this.entity;
+    return this.entity
   }
 
   toJson(): Record<string, string> {
     const jsonFields: Record<string, string> = {
       entity: this.getEntity(),
-    };
-
-    if (this.getUri()) {
-      jsonFields['@id'] = this.getUri();
     }
 
-    return jsonFields;
+    if (this.getUri()) {
+      jsonFields['@id'] = this.getUri()
+    }
+
+    return jsonFields
   }
 }

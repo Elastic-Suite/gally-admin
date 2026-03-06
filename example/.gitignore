@@ -1,0 +1,10 @@
+node_modules/
+dist/
+*.tsbuildinfo
+.env
+.env.test
+.DS_Store
+coverage/
+
+# Generated tsconfig
+tsconfig.test.json

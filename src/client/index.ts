@@ -9,8 +9,8 @@
  * @license   Open Software License v. 3.0 (OSL-3.0)
  */
 
-export { Client } from './Client';
-export type { HttpMethod } from './Client';
-export { Configuration } from './Configuration';
-export type { ConfigurationOptions } from './Configuration';
-export type { TokenCacheManager } from './TokenCacheManager';
+export { Client } from './Client'
+export type { HttpMethod } from './Client'
+export { BrowserConfiguration, Configuration } from './Configuration'
+export type { BrowserConfigurationOptions, ConfigurationOptions } from './Configuration'
+export type { TokenCacheManager } from './TokenCacheManager'
