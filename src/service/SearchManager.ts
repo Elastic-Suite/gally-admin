@@ -11,34 +11,34 @@
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { Client } from '../client/Client';
-import { Configuration } from '../client/Configuration';
-import { TokenCacheManager } from '../client/TokenCacheManager';
-import { Metadata } from '../entity/Metadata';
-import { SourceField } from '../entity/SourceField';
-import { Request } from '../graphql/Request';
-import { Response } from '../graphql/Response';
-import { MetadataRepository } from '../repository/MetadataRepository';
-import { SourceFieldRepository } from '../repository/SourceFieldRepository';
+import { Client } from '../client/Client'
+import { Configuration } from '../client/Configuration'
+import { TokenCacheManager } from '../client/TokenCacheManager'
+import { Metadata } from '../entity/Metadata'
+import { SourceField } from '../entity/SourceField'
+import { Request } from '../graphql/Request'
+import { Response } from '../graphql/Response'
+import { MetadataRepository } from '../repository/MetadataRepository'
+import { SourceFieldRepository } from '../repository/SourceFieldRepository'
 
 /**
  * Search manager service.
  */
 export class SearchManager {
-  protected readonly client: Client;
-  protected productSortingOptions?: SourceField[];
-  protected readonly sourceFieldRepository: SourceFieldRepository;
+  protected readonly client: Client
+  protected productSortingOptions?: SourceField[]
+  protected readonly sourceFieldRepository: SourceFieldRepository
 
   constructor(
     configuration: Configuration,
     tokenCacheManager?: TokenCacheManager,
   ) {
-    const client = new Client(configuration, tokenCacheManager);
-    this.client = client;
+    const client = new Client(configuration, tokenCacheManager)
+    this.client = client
     this.sourceFieldRepository = new SourceFieldRepository(
       client,
       new MetadataRepository(client),
-    );
+    )
   }
 
   async getProductSortingOptions(): Promise<SourceField[]> {
@@ -51,12 +51,12 @@ export class SearchManager {
             type
           }
         }
-      `;
-      const response = await this.client.graphql(query, {}, {}, false);
-      const metadata = new Metadata('product');
+      `
+      const response = await this.client.graphql(query, {}, {}, false)
+      const metadata = new Metadata('product')
 
-      const data = response['data'] as Record<string, any>;
-      const options = (data['productSortingOptions'] as any[]) ?? [];
+      const data = response['data'] as Record<string, any>
+      const options = (data['productSortingOptions'] as any[]) ?? []
 
       this.productSortingOptions = options.map(
         (option: any) =>
@@ -67,10 +67,10 @@ export class SearchManager {
             option['label'] as string,
             [],
           ),
-      );
+      )
     }
 
-    return this.productSortingOptions;
+    return this.productSortingOptions
   }
 
   async getFilterableSourceField(
@@ -79,7 +79,7 @@ export class SearchManager {
     return this.sourceFieldRepository.findBy({
       'metadata.entity': metadata.getEntity(),
       isFilterable: true,
-    });
+    })
   }
 
   async getSelectSourceField(
@@ -88,23 +88,20 @@ export class SearchManager {
     return this.sourceFieldRepository.findBy({
       'metadata.entity': metadata.getEntity(),
       type: SourceField.ENTITY_CODE === 'source_fields' ? 'select' : 'select',
-    });
+    })
   }
 
   async search(request: Request): Promise<Response> {
-    const priceGroup = request.getPriceGroupId();
+    const priceGroup = request.getPriceGroupId()
 
     const response = await this.client.graphql(
       request.buildSearchQuery(),
       request.getVariables(),
       priceGroup ? { 'price-group-id': priceGroup } : {},
       false,
-    );
+    )
 
-    return new Response(
-      request,
-      response['data'] as Record<string, any>,
-    );
+    return new Response(request, response['data'] as Record<string, any>)
   }
 
   async viewMoreProductFilterOption(
@@ -131,23 +128,22 @@ export class SearchManager {
           count
         }
       }
-    `;
+    `
 
-    const variables = request.getVariables();
+    const variables = request.getVariables()
     const filteredVariables: Record<string, any> = {
       aggregation: aggregationField,
       localizedCatalog: variables['localizedCatalog'],
-    };
+    }
 
     if (variables['search']) {
-      filteredVariables['search'] = variables['search'];
+      filteredVariables['search'] = variables['search']
     }
     if (variables['filter']) {
-      filteredVariables['filter'] = variables['filter'];
+      filteredVariables['filter'] = variables['filter']
     }
     if (variables['currentCategoryId']) {
-      filteredVariables['currentCategoryId'] =
-        variables['currentCategoryId'];
+      filteredVariables['currentCategoryId'] = variables['currentCategoryId']
     }
 
     const response = await this.client.graphql(
@@ -155,9 +151,9 @@ export class SearchManager {
       filteredVariables,
       {},
       false,
-    );
+    )
 
-    const data = response['data'] as Record<string, any>;
-    return (data['viewMoreProductFacetOptions'] as any[]) ?? [];
+    const data = response['data'] as Record<string, any>
+    return (data['viewMoreProductFacetOptions'] as any[]) ?? []
   }
 }

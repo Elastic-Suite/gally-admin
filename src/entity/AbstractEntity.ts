@@ -12,21 +12,21 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 export abstract class AbstractEntity {
-  protected uri?: string;
+  protected uri?: string
 
-  abstract getEntityCode(): string;
+  abstract getEntityCode(): string
 
   getUri(): string {
-    return this.uri ?? '';
+    return this.uri ?? ''
   }
 
   setUri(uri: string): void {
-    this.uri = uri;
+    this.uri = uri
   }
 
   toString(): string {
-    return this.getUri();
+    return this.getUri()
   }
 
-  abstract toJson(): Record<string, any>;
+  abstract toJson(): Record<string, any>
 }

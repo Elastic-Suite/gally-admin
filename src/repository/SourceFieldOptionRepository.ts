@@ -11,44 +11,41 @@
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { Client } from '../client/Client';
-import { SourceField } from '../entity/SourceField';
-import { SourceFieldOption } from '../entity/SourceFieldOption';
-import { AbstractBulkRepository } from './AbstractBulkRepository';
-import { SourceFieldRepository } from './SourceFieldRepository';
+import { Client } from '../client/Client'
+import { SourceField } from '../entity/SourceField'
+import { SourceFieldOption } from '../entity/SourceFieldOption'
+import { AbstractBulkRepository } from './AbstractBulkRepository'
+import { SourceFieldRepository } from './SourceFieldRepository'
 
 /**
  * Source field option repository.
  */
 export class SourceFieldOptionRepository extends AbstractBulkRepository<SourceFieldOption> {
-  private readonly sourceFieldRepository: SourceFieldRepository;
+  private readonly sourceFieldRepository: SourceFieldRepository
 
-  constructor(
-    client: Client,
-    sourceFieldRepository: SourceFieldRepository,
-  ) {
-    super(client);
-    this.sourceFieldRepository = sourceFieldRepository;
+  constructor(client: Client, sourceFieldRepository: SourceFieldRepository) {
+    super(client)
+    this.sourceFieldRepository = sourceFieldRepository
   }
 
   getEntityCode(): string {
-    return SourceFieldOption.ENTITY_CODE;
+    return SourceFieldOption.ENTITY_CODE
   }
 
   getIdentity(entity: SourceFieldOption): string {
-    return `${entity.getSourceField().getCode()}_${entity.getCode()}`;
+    return `${entity.getSourceField().getCode()}_${entity.getCode()}`
   }
 
   protected buildEntityObject(
     rawEntity: Record<string, any>,
   ): SourceFieldOption {
-    const sourceFieldUri = rawEntity['sourceField'] as string;
-    let sourceField: SourceField | undefined;
+    const sourceFieldUri = rawEntity['sourceField'] as string
+    let sourceField: SourceField | undefined
 
     const cachedSourceField =
-      this.sourceFieldRepository['entityByUri'].get(sourceFieldUri);
+      this.sourceFieldRepository['entityByUri'].get(sourceFieldUri)
     if (cachedSourceField) {
-      sourceField = cachedSourceField;
+      sourceField = cachedSourceField
     } else {
       sourceField = new SourceField(
         { getEntity: () => 'unknown', toString: () => sourceFieldUri } as any,
@@ -58,7 +55,7 @@ export class SourceFieldOptionRepository extends AbstractBulkRepository<SourceFi
         [],
         false,
         sourceFieldUri,
-      );
+      )
     }
 
     return new SourceFieldOption(
@@ -68,22 +65,22 @@ export class SourceFieldOptionRepository extends AbstractBulkRepository<SourceFi
       rawEntity['defaultLabel'] as string,
       rawEntity['labels'] ?? [],
       rawEntity['@id'] as string | undefined,
-    );
+    )
   }
 
   /**
    * Override findByUri to handle async source field resolution.
    */
   override async findByUri(uri: string): Promise<SourceFieldOption> {
-    const cached = this.entityByUri.get(uri);
+    const cached = this.entityByUri.get(uri)
     if (cached) {
-      return cached;
+      return cached
     }
 
-    const rawEntity = await this.client.get(uri);
+    const rawEntity = await this.client.get(uri)
     const sourceField = await this.sourceFieldRepository.findByUri(
       rawEntity['sourceField'] as string,
-    );
+    )
 
     const entity = new SourceFieldOption(
       sourceField,
@@ -92,9 +89,9 @@ export class SourceFieldOptionRepository extends AbstractBulkRepository<SourceFi
       rawEntity['defaultLabel'] as string,
       rawEntity['labels'] ?? [],
       rawEntity['@id'] as string | undefined,
-    );
+    )
 
-    this.saveInCache(entity);
-    return entity;
+    this.saveInCache(entity)
+    return entity
   }
 }

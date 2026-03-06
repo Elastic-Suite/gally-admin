@@ -17,7 +17,11 @@
     "isolatedModules": true,
     "noUncheckedIndexedAccess": true,
     "noUnusedLocals": true,
-    "noUnusedParameters": true
+    "noUnusedParameters": true,
+    "paths": {
+      "@gally/sdk": ["./src/index.ts"],
+      "@gally/sdk/browser": ["./src/browser.ts"]
+    }
   },
   "include": ["src"],
   "exclude": ["node_modules", "dist"]

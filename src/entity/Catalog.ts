@@ -9,43 +9,43 @@
  * @license   Open Software License v. 3.0 (OSL-3.0)
  */
 
-import { AbstractEntity } from './AbstractEntity';
+import { AbstractEntity } from './AbstractEntity'
 
 export class Catalog extends AbstractEntity {
-  private readonly code: string;
-  private readonly name: string;
+  private readonly code: string
+  private readonly name: string
 
-  static readonly ENTITY_CODE = 'catalogs';
+  static readonly ENTITY_CODE = 'catalogs'
 
   constructor(code: string, name: string, uri?: string) {
-    super();
-    this.code = code;
-    this.name = name;
-    this.uri = uri;
+    super()
+    this.code = code
+    this.name = name
+    this.uri = uri
   }
 
   getEntityCode(): string {
-    return Catalog.ENTITY_CODE;
+    return Catalog.ENTITY_CODE
   }
 
   getCode(): string {
-    return this.code;
+    return this.code
   }
 
   getName(): string {
-    return this.name;
+    return this.name
   }
 
   toJson(): Record<string, string> {
     const jsonFields: Record<string, string> = {
       code: this.getCode(),
       name: this.getName(),
-    };
-
-    if (this.getUri()) {
-      jsonFields['@id'] = this.getUri();
     }
 
-    return jsonFields;
+    if (this.getUri()) {
+      jsonFields['@id'] = this.getUri()
+    }
+
+    return jsonFields
   }
 }

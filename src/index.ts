@@ -10,12 +10,12 @@
  */
 
 // Client
-export { Client, Configuration } from './client';
+export { Client, Configuration } from './client'
 export type {
   HttpMethod,
   ConfigurationOptions,
   TokenCacheManager,
-} from './client';
+} from './client'
 
 // Entities
 export {
@@ -28,7 +28,7 @@ export {
   SourceField,
   SourceFieldType,
   SourceFieldOption,
-} from './entity';
+} from './entity'
 
 // GraphQL
 export {
@@ -40,7 +40,7 @@ export {
   SORT_RELEVANCE_FIELD,
   ResponseFilterType,
   getFilterTypeByOperator,
-} from './graphql';
+} from './graphql'
 export type {
   RequestOptions,
   FilterOperatorType,
@@ -50,7 +50,7 @@ export type {
   AggregationOption,
   PaginationInfo,
   SortInfo,
-} from './graphql';
+} from './graphql'
 
 // Repositories
 export {
@@ -61,11 +61,17 @@ export {
   MetadataRepository,
   SourceFieldRepository,
   SourceFieldOptionRepository,
-} from './repository';
+} from './repository'
 
 // Services
-export {
-  IndexOperation,
-  SearchManager,
-  StructureSynchronizer,
-} from './service';
+export { IndexOperation, SearchManager, StructureSynchronizer } from './service'
+
+// Check if running in browser
+const isBrowser = typeof window !== 'undefined'
+
+if (isBrowser) {
+  console.warn(
+    'You are importing the full @gally/sdk in a browser environment. ' +
+    'Consider using @gally/sdk/browser instead to reduce bundle size and prevent errors.'
+  )
+}

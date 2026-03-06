@@ -11,112 +11,110 @@
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { Client } from '../client';
-import { AbstractEntity } from '../entity';
+import { Client } from '../client'
+import { AbstractEntity } from '../entity'
 
 /**
  * Abstract entity repository.
  */
 export abstract class AbstractRepository<T extends AbstractEntity> {
-  protected static readonly FETCH_PAGE_SIZE = 50;
+  protected static readonly FETCH_PAGE_SIZE = 50
 
-  protected entityByIdentity: Map<string, T> = new Map();
-  protected entityByUri: Map<string, T> = new Map();
+  protected entityByIdentity: Map<string, T> = new Map()
+  protected entityByUri: Map<string, T> = new Map()
 
   constructor(protected readonly client: Client) {}
 
-  abstract getEntityCode(): string;
+  abstract getEntityCode(): string
 
-  abstract getIdentity(entity: T): string;
+  abstract getIdentity(entity: T): string
 
   async findByUri(uri: string): Promise<T> {
-    const cached = this.entityByUri.get(uri);
+    const cached = this.entityByUri.get(uri)
     if (cached) {
-      return cached;
+      return cached
     }
 
-    const rawEntity = await this.client.get(uri);
-    const entity = this.buildEntityObject(rawEntity);
-    this.saveInCache(entity);
+    const rawEntity = await this.client.get(uri)
+    const entity = this.buildEntityObject(rawEntity)
+    this.saveInCache(entity)
 
-    return entity;
+    return entity
   }
 
   findByIdentity(entity: T): T | undefined {
-    const identity = this.getIdentity(entity);
-    return this.entityByIdentity.get(identity);
+    const identity = this.getIdentity(entity)
+    return this.entityByIdentity.get(identity)
   }
 
   async findBy(
     criteria: Record<string, any> = {},
     saveInCache = false,
   ): Promise<Map<string, T>> {
-    let currentPage = 1;
-    const entities = new Map<string, T>();
+    let currentPage = 1
+    const entities = new Map<string, T>()
 
-    let rawEntitiesArray: any[];
+    let rawEntitiesArray: any[]
     do {
       const rawEntities = await this.client.get(this.getEntityCode(), {
         ...criteria,
         currentPage,
         pageSize: AbstractRepository.FETCH_PAGE_SIZE,
-      });
+      })
 
-      rawEntitiesArray = (rawEntities['hydra:member'] as any[]) ?? [];
+      rawEntitiesArray = (rawEntities['hydra:member'] as any[]) ?? []
       for (const rawEntity of rawEntitiesArray) {
-        const entity = this.buildEntityObject(rawEntity);
-        entities.set(this.getIdentity(entity), entity);
+        const entity = this.buildEntityObject(rawEntity)
+        entities.set(this.getIdentity(entity), entity)
         if (saveInCache) {
-          this.saveInCache(entity);
+          this.saveInCache(entity)
         }
       }
-      currentPage++;
-    } while (rawEntitiesArray.length >= AbstractRepository.FETCH_PAGE_SIZE);
+      currentPage++
+    } while (rawEntitiesArray.length >= AbstractRepository.FETCH_PAGE_SIZE)
 
-    return entities;
+    return entities
   }
 
   async findAll(): Promise<Map<string, T>> {
-    return this.findBy({}, true);
+    return this.findBy({}, true)
   }
 
   async createOrUpdate(entity: T): Promise<T> {
-    const identity = this.getIdentity(entity);
+    const identity = this.getIdentity(entity)
 
-    const existingEntity = this.entityByIdentity.get(identity);
-    const uri = existingEntity
-      ? existingEntity.toString()
-      : entity.toString();
+    const existingEntity = this.entityByIdentity.get(identity)
+    const uri = existingEntity ? existingEntity.toString() : entity.toString()
 
-    let result: Record<string, any>;
+    let result: Record<string, any>
     if (uri) {
       entity.setUri(uri)
-      result = await this.client.put(uri, entity.toJson());
+      result = await this.client.put(uri, entity.toJson())
     } else {
-      result = await this.client.post(this.getEntityCode(), entity.toJson());
+      result = await this.client.post(this.getEntityCode(), entity.toJson())
     }
 
-    entity.setUri(result['@id'] as string);
-    this.saveInCache(entity);
+    entity.setUri(result['@id'] as string)
+    this.saveInCache(entity)
 
-    return entity;
+    return entity
   }
 
   async delete(entity: T): Promise<void> {
-    const identity = this.getIdentity(entity);
-    const existingEntity = this.entityByIdentity.get(identity);
+    const identity = this.getIdentity(entity)
+    const existingEntity = this.entityByIdentity.get(identity)
 
     if (!existingEntity) {
-      throw new Error(`Entity ${identity} not found.`);
+      throw new Error(`Entity ${identity} not found.`)
     }
 
-    await this.client.delete(existingEntity.toString());
+    await this.client.delete(existingEntity.toString())
   }
 
   protected saveInCache(entity: T): void {
-    this.entityByIdentity.set(this.getIdentity(entity), entity);
-    this.entityByUri.set(entity.toString(), entity);
+    this.entityByIdentity.set(this.getIdentity(entity), entity)
+    this.entityByUri.set(entity.toString(), entity)
   }
 
-  protected abstract buildEntityObject(rawEntity: Record<string, any>): T;
+  protected abstract buildEntityObject(rawEntity: Record<string, any>): T
 }

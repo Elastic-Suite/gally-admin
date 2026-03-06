@@ -10,8 +10,5 @@
  */
 
 export interface TokenCacheManager {
-  getToken(
-    getToken: () => Promise<string>,
-    useCache?: boolean,
-  ): Promise<string>;
+  getToken(getToken: () => Promise<string>, useCache?: boolean): Promise<string>
 }

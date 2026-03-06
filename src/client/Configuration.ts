@@ -10,38 +10,49 @@
  */
 
 export interface ConfigurationOptions {
-  baseUri: string;
-  checkSSL?: boolean;
-  user: string;
-  password: string;
+  baseUri: string
+  checkSSL?: boolean
+  user: string
+  password: string
+}
+
+export type BrowserConfigurationOptions = Omit<ConfigurationOptions, 'user' | 'password'> & {
+  user?: null
+  password?: null
 }
 
 export class Configuration {
-  private readonly baseUri: string;
-  private readonly checkSSL: boolean;
-  private readonly user: string;
-  private readonly password: string;
+  private readonly baseUri: string
+  private readonly checkSSL: boolean
+  private readonly user: string
+  private readonly password: string
 
-  constructor(options: ConfigurationOptions) {
-    this.baseUri = options.baseUri;
-    this.checkSSL = options.checkSSL ?? true;
-    this.user = options.user;
-    this.password = options.password;
+  constructor(options: ConfigurationOptions | BrowserConfigurationOptions) {
+    this.baseUri = options.baseUri
+    this.checkSSL = options.checkSSL ?? true
+    this.user = options.user ?? ''
+    this.password = options.password ?? ''
   }
 
   getBaseUri(): string {
-    return this.baseUri;
+    return this.baseUri
   }
 
   getCheckSSL(): boolean {
-    return this.checkSSL;
+    return this.checkSSL
   }
 
   getUser(): string {
-    return this.user;
+    return this.user
   }
 
   getPassword(): string {
-    return this.password;
+    return this.password
+  }
+}
+
+export class BrowserConfiguration extends Configuration {
+  constructor(options: BrowserConfigurationOptions) {
+    super(options)
   }
 }

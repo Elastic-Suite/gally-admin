@@ -11,9 +11,9 @@
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { AbstractEntity } from './AbstractEntity';
-import { Label } from './Label';
-import { Metadata } from './Metadata';
+import { AbstractEntity } from './AbstractEntity'
+import { Label } from './Label'
+import { Metadata } from './Metadata'
 
 export enum SourceFieldType {
   TEXT = 'text',
@@ -33,14 +33,14 @@ export enum SourceFieldType {
 }
 
 export class SourceField extends AbstractEntity {
-  private readonly metadata: Metadata;
-  private readonly code: string;
-  private readonly type: string;
-  private readonly defaultLabel: string;
-  private readonly labels: Label[];
-  private readonly isSystemField: boolean;
+  private readonly metadata: Metadata
+  private readonly code: string
+  private readonly type: string
+  private readonly defaultLabel: string
+  private readonly labels: Label[]
+  private readonly isSystemField: boolean
 
-  static readonly ENTITY_CODE = 'source_fields';
+  static readonly ENTITY_CODE = 'source_fields'
 
   constructor(
     metadata: Metadata,
@@ -51,42 +51,42 @@ export class SourceField extends AbstractEntity {
     isSystem = false,
     uri?: string,
   ) {
-    super();
-    this.metadata = metadata;
-    this.code = code;
-    this.type = type;
-    this.defaultLabel = defaultLabel;
-    this.labels = labels;
-    this.isSystemField = isSystem;
-    this.uri = uri;
+    super()
+    this.metadata = metadata
+    this.code = code
+    this.type = type
+    this.defaultLabel = defaultLabel
+    this.labels = labels
+    this.isSystemField = isSystem
+    this.uri = uri
   }
 
   getEntityCode(): string {
-    return SourceField.ENTITY_CODE;
+    return SourceField.ENTITY_CODE
   }
 
   getMetadata(): Metadata {
-    return this.metadata;
+    return this.metadata
   }
 
   getCode(): string {
-    return this.code;
+    return this.code
   }
 
   getType(): string {
-    return this.type;
+    return this.type
   }
 
   getDefaultLabel(): string {
-    return this.defaultLabel;
+    return this.defaultLabel
   }
 
   getLabels(): Label[] {
-    return this.labels;
+    return this.labels
   }
 
   isSystem(): boolean {
-    return this.isSystemField;
+    return this.isSystemField
   }
 
   toJson(): Record<string, any> {
@@ -96,17 +96,17 @@ export class SourceField extends AbstractEntity {
       type: this.getType(),
       defaultLabel: this.getDefaultLabel(),
       labels: this.getLabels().map((label) => label.toJson()),
-    };
+    }
 
     if (this.isSystemField) {
-      data['isUsedForRules'] = true;
-      data['isSystem'] = true;
+      data['isUsedForRules'] = true
+      data['isSystem'] = true
     }
 
     if (this.getUri()) {
-      data['@id'] = this.getUri();
+      data['@id'] = this.getUri()
     }
 
-    return data;
+    return data
   }
 }

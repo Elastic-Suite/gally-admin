@@ -11,18 +11,18 @@
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { AbstractEntity } from './AbstractEntity';
-import { Label } from './Label';
-import { SourceField } from './SourceField';
+import { AbstractEntity } from './AbstractEntity'
+import { Label } from './Label'
+import { SourceField } from './SourceField'
 
 export class SourceFieldOption extends AbstractEntity {
-  private sourceField: SourceField;
-  private readonly code: string;
-  private readonly position: number;
-  private readonly defaultLabel: string;
-  private readonly labels: Label[];
+  private sourceField: SourceField
+  private readonly code: string
+  private readonly position: number
+  private readonly defaultLabel: string
+  private readonly labels: Label[]
 
-  static readonly ENTITY_CODE = 'source_field_options';
+  static readonly ENTITY_CODE = 'source_field_options'
 
   constructor(
     sourceField: SourceField,
@@ -32,41 +32,41 @@ export class SourceFieldOption extends AbstractEntity {
     labels: Label[],
     uri?: string,
   ) {
-    super();
-    this.sourceField = sourceField;
-    this.code = code;
-    this.position = position;
-    this.defaultLabel = defaultLabel;
-    this.labels = labels;
-    this.uri = uri;
+    super()
+    this.sourceField = sourceField
+    this.code = code
+    this.position = position
+    this.defaultLabel = defaultLabel
+    this.labels = labels
+    this.uri = uri
   }
 
   getEntityCode(): string {
-    return SourceFieldOption.ENTITY_CODE;
+    return SourceFieldOption.ENTITY_CODE
   }
 
   getSourceField(): SourceField {
-    return this.sourceField;
+    return this.sourceField
   }
 
   setSourceField(sourceField: SourceField): void {
-    this.sourceField = sourceField;
+    this.sourceField = sourceField
   }
 
   getCode(): string {
-    return this.code;
+    return this.code
   }
 
   getPosition(): number {
-    return this.position;
+    return this.position
   }
 
   getDefaultLabel(): string {
-    return this.defaultLabel;
+    return this.defaultLabel
   }
 
   getLabels(): Label[] {
-    return this.labels;
+    return this.labels
   }
 
   toJson(): Record<string, any> {
@@ -76,12 +76,12 @@ export class SourceFieldOption extends AbstractEntity {
       position: this.getPosition(),
       defaultLabel: this.getDefaultLabel(),
       labels: this.getLabels().map((label) => label.toJson()),
-    };
-
-    if (this.getUri()) {
-      jsonFields['@id'] = this.getUri();
     }
 
-    return jsonFields;
+    if (this.getUri()) {
+      jsonFields['@id'] = this.getUri()
+    }
+
+    return jsonFields
   }
 }
