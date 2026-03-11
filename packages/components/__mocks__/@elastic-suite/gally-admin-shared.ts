@@ -89,7 +89,7 @@ export const getApiFilters = jest.fn((x) => x)
 /* bundle */
 
 export const isVirtualCategoryEnabled = jest.fn(() => true)
-export const isDashboardEnabled = jest.fn((): boolean => false)
+export const isSearchUsageEnabled = jest.fn((): boolean => false)
 
 /* fetch */
 export const isError = jest.fn((json) => 'error' in json)

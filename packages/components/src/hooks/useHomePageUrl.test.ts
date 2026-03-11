@@ -1,6 +1,6 @@
 import { useHomePageUrl } from './useHomePageUrl'
 import {
-  isDashboardEnabled,
+  isSearchUsageEnabled,
   premiumHomePageUrl,
   standardHomePageUrl,
 } from '@elastic-suite/gally-admin-shared'
@@ -12,7 +12,7 @@ describe('useHomePageUrl', () => {
   })
 
   it('should return standard homepage url if the user has only standard packages', () => {
-    ;(isDashboardEnabled as jest.Mock).mockReturnValue(false)
+    ;(isSearchUsageEnabled as jest.Mock).mockReturnValue(false)
     renderHookWithProviders(() => {
       const afterLoginRedirectUrl = useHomePageUrl()
       expect(afterLoginRedirectUrl).toEqual(standardHomePageUrl)
@@ -20,7 +20,7 @@ describe('useHomePageUrl', () => {
   })
 
   it('should return premium homepage url if the user has premium dashboard package', () => {
-    ;(isDashboardEnabled as jest.Mock).mockReturnValue(true)
+    ;(isSearchUsageEnabled as jest.Mock).mockReturnValue(true)
     renderHookWithProviders(() => {
       const afterLoginRedirectUrl = useHomePageUrl()
       expect(afterLoginRedirectUrl).toEqual(premiumHomePageUrl)

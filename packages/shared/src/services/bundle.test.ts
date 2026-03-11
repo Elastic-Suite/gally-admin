@@ -1,6 +1,6 @@
 import { Bundle } from '../types'
 
-import { isDashboardEnabled, isVirtualCategoryEnabled } from './bundle'
+import { isSearchUsageEnabled, isVirtualCategoryEnabled } from './bundle'
 
 describe('bundle service', () => {
   describe('isVirtualCategoryEnabled', () => {
@@ -10,10 +10,10 @@ describe('bundle service', () => {
     })
   })
 
-  describe('isDashboardEnabled', () => {
-    it('should test if Dashboard bundle is enabled', () => {
-      expect(isDashboardEnabled([])).toEqual(false)
-      expect(isDashboardEnabled([Bundle.DASHBOARD])).toEqual(true)
+  describe('isSearchUsageEnabled', () => {
+    it('should test if SearchUsage bundle is enabled', () => {
+      expect(isSearchUsageEnabled([])).toEqual(false)
+      expect(isSearchUsageEnabled([Bundle.SEARCH_USAGE])).toEqual(true)
     })
   })
 })
