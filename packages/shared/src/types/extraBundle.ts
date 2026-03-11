@@ -3,7 +3,7 @@ export enum Bundle {
   BOOST = 'GallyBoostBundle',
   THESAURUS = 'GallyThesaurusBundle',
   VECTOR_SEARCH = 'GallyVectorSearchBundle',
-  DASHBOARD = 'GallyDashboardBundle',
+  SEARCH_USAGE = 'GallySearchUsageBundle',
 }
 
 export interface IExtraBundle {

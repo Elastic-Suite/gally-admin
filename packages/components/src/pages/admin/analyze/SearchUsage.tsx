@@ -107,7 +107,8 @@ function AdminAnalyzeSearchUsage(): JSX.Element {
 
   const filtersForUrl = useMemo(() => {
     const filters: ISearchParameters = { ...activeFilters }
-    // TODO: find how to handle catalog filters from/to URL as they change a context
+    // We remove catalog filters from/to URL as they use a context
+    // So they do not work easily with the useFiltersRedirect hook
     delete filters.catalog
     delete filters.localizedCatalog
     return filters

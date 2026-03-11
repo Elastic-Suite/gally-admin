@@ -4,6 +4,6 @@ export function isVirtualCategoryEnabled(bundles: Bundle[]): boolean {
   return bundles.includes(Bundle.VIRTUAL_CATEGORY)
 }
 
-export function isDashboardEnabled(bundles: Bundle[]): boolean {
-  return bundles.includes(Bundle.DASHBOARD)
+export function isSearchUsageEnabled(bundles: Bundle[]): boolean {
+  return bundles.includes(Bundle.SEARCH_USAGE)
 }
