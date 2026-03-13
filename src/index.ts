@@ -65,10 +65,10 @@ export {
 
 // Services
 export {
-  IndexOperation, SearchManager, StructureSynchronizer, TrackingEventManager, TrackingEventType
+  IndexOperation, SearchManager, StructureSynchronizer, TrackingEventManager
 } from './service'
+export { TrackingEventValidator, TrackingEventType } from './validators'
 export type { TrackingEventInput, TrackingEventResponse } from './service'
-export { TrackingEventValidator } from './validators'
 
 // Check if running in browser
 const isBrowser = typeof window !== 'undefined'

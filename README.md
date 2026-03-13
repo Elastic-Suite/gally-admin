@@ -231,6 +231,32 @@ interface TrackingEventResult {
 }
 ```
 
+#### Event Batching, Debouncing & Throttling
+
+The `TrackingEventManager` automatically optimizes event submission by:
+
+- **Batching**: Multiple events are combined into a single GraphQL request (default batch size: 10)
+- **Debouncing**: Rapid event submissions are delayed to allow batching (default: 300ms)
+- **Throttling**: Requests are rate-limited to prevent overwhelming the API (default: 1000ms minimum between flushes)
+
+You can customize these behaviors when creating the manager:
+
+```typescript
+const trackingManager = new TrackingEventManager(config, {
+  debounceMs: 500,    // Wait 500ms before flushing queued events
+  throttleMs: 2000,   // Minimum 2000ms between API requests
+  batchSize: 20,      // Send up to 20 events per request
+})
+```
+
+For cleanup before page unload, flush any pending events:
+
+```typescript
+window.addEventListener('beforeunload', async () => {
+  await trackingManager.flushPending()
+})
+```
+
 ## Architecture
 
 The SDK mirrors the PHP SDK structure:
