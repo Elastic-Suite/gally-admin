@@ -20,6 +20,7 @@ import {
   IndexOperation,
   StructureSynchronizer,
   SearchManager,
+  TrackingEventManager,
 } from '@gally/sdk'
 
 const config = new Configuration({
@@ -147,6 +148,89 @@ for (const product of response.getCollection()) {
 }
 ```
 
+### Track Events
+
+Track user interactions such as product views, searches, add-to-cart, and orders:
+
+```typescript
+import { TrackingEventManager, TrackingEventType } from '@gally/sdk'
+
+const trackingManager = new TrackingEventManager(config)
+
+// Track a product view
+const viewResult = await trackingManager.pushViewEvent({
+  metadataCode: 'product',
+  localizedCatalogCode: 'my_shop_fr',
+  entityCode: 'PROD-001',
+  sessionUid: 'user-session-id',
+  sessionVid: 'visitor-id',
+})
+
+// Track a search
+const searchResult = await trackingManager.pushSearchEvent({
+  metadataCode: 'product',
+  localizedCatalogCode: 'my_shop_fr',
+  sessionUid: 'user-session-id',
+  sessionVid: 'visitor-id',
+  payload: JSON.stringify({ query: 'shoes', results: 42 }),
+})
+
+// Track add to cart
+const cartResult = await trackingManager.pushAddToCartEvent({
+  metadataCode: 'product',
+  localizedCatalogCode: 'my_shop_fr',
+  entityCode: 'PROD-001',
+  sessionUid: 'user-session-id',
+  sessionVid: 'visitor-id',
+})
+
+// Track an order
+const orderResult = await trackingManager.pushOrderEvent({
+  metadataCode: 'product',
+  localizedCatalogCode: 'my_shop_fr',
+  sessionUid: 'user-session-id',
+  sessionVid: 'visitor-id',
+  payload: JSON.stringify({ orderId: 'ORD-12345', total: 99.99 }),
+})
+
+console.log(`Event tracked with ID: ${viewResult.id}`)
+```
+
+#### Tracking Event Types
+
+| Event Type    | Description                                      |
+| ------------- | ------------------------------------------------ |
+| `view`        | Product page view                                |
+| `display`     | Product displayed in search results or listing   |
+| `search`      | Search query performed                           |
+| `add_to_cart` | Product added to shopping cart                   |
+| `order`       | Order completed                                  |
+
+#### Tracking Event Result
+
+Each tracking event returns a `TrackingEventResult` with the following properties:
+
+```typescript
+interface TrackingEventResult {
+  id: string                          // Unique event identifier
+  eventType: TrackingEventType         // Type of event
+  metadataCode: string                // Entity metadata code
+  localizedCatalogCode: string        // Catalog code
+  entityCode?: string                 // Entity identifier (e.g., product SKU)
+  sourceEventType?: TrackingEventType // Source event type
+  sourceMetadataCode?: string         // Source metadata code
+  contextType?: string                // Context type (e.g., 'search')
+  contextCode?: string                // Context code
+  sessionUid: string                  // User session identifier
+  sessionVid: string                  // Visitor identifier
+  payload?: string                    // Custom event payload (JSON string)
+  createdAt: string                   // Server timestamp (ISO 8601)
+  '@context': string                  // JSON-LD context
+  '@id': string                       // JSON-LD identifier
+  '@type': string                     // JSON-LD type
+}
+```
+
 ## Architecture
 
 The SDK mirrors the PHP SDK structure:
@@ -198,6 +282,7 @@ const tokenCache: TokenCacheManager = {
 }
 
 const indexOp = new IndexOperation(config, tokenCache)
+const trackingManager = new TrackingEventManager(config, tokenCache)
 ```
 
 ## Requirements
@@ -207,7 +292,7 @@ const indexOp = new IndexOperation(config, tokenCache)
 
 ## Integration Tests
 
-The SDK includes integration tests that run against a real Gally instance. They test the complete lifecycle: catalog sync → indexation → search.
+The SDK includes integration tests that run against a real Gally instance. They test the complete lifecycle: catalog sync → indexation → search → tracking.
 
 ### Setup
 
@@ -247,7 +332,8 @@ npm run test:watch
 | `tests/integration/01-structure-sync.test.ts`   | Catalog & source field synchronization       |
 | `tests/integration/02-index-operations.test.ts` | Index creation, bulk indexing, installation  |
 | `tests/integration/03-search.test.ts`           | Search queries, pagination, aggregations     |
-| `tests/integration/04-full-lifecycle.test.ts`   | Complete end-to-end lifecycle in one test    |
+| `tests/integration/04-tracking.test.ts`         | Event tracking (view, search, add-to-cart, order) |
+| `tests/integration/05-full-lifecycle.test.ts`   | Complete end-to-end lifecycle in one test    |
 
 Tests are automatically **skipped** if the Gally instance is not reachable.
 

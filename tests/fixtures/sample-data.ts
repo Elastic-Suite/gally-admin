@@ -13,7 +13,7 @@ import {
   SourceField,
   SourceFieldType,
   SourceFieldOption,
-} from '../../src/index'
+} from '@gally/sdk'
 
 // ---------------------------------------------------------------------------
 // Catalogs
