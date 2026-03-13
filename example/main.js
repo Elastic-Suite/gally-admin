@@ -1,10 +1,26 @@
-import { Catalog, Configuration, LocalizedCatalog, Metadata, Request, SearchManager } from '@gally/sdk/browser'
+import {
+  Catalog,
+  Configuration,
+  LocalizedCatalog,
+  Metadata,
+  Request,
+  SearchManager,
+  TrackingEventManager,
+  TrackingEventType
+} from '@gally/sdk/browser'
 
 const configuration = new Configuration({
   baseUri: 'http://gally.localhost/api',
   checkSSL: false,
 })
 const searchManager = new SearchManager(configuration);
+
+// Initialize TrackingEventManager with large debounce to queue events
+const trackingManager = new TrackingEventManager(configuration, {
+  debounceMs: 5000,
+  throttleMs: 5000,
+  batchSize: 10,
+});
 
 // Get DOM elements
 const searchInput = document.getElementById('searchInput');
@@ -29,6 +45,10 @@ const sampleLocalizedCatalogFr = new LocalizedCatalog(
   'fr_FR',
   'EUR',
 );
+
+// Generate session identifiers for tracking
+const sessionUid = `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+const sessionVid = `visitor_${Math.random().toString(36).substr(2, 9)}`;
 
 // Fetch autocomplete suggestions
 async function fetchSuggestions(query) {
@@ -92,14 +112,55 @@ function displaySuggestions(results) {
   output.innerHTML = `<p>Found ${results.collection.length} results</p>`;
 }
 
-// Handle suggestion selection
+// Push product view tracking event
+async function trackProductView(item) {
+  try {
+    const trackingPromise = trackingManager.pushViewEvent({
+      metadataCode: 'product',
+      localizedCatalogCode: sampleLocalizedCatalogFr.getCode(),
+      entityCode: item.sku || item.id,
+      sourceEventType: TrackingEventType.SEARCH,
+      sourceMetadataCode: 'product',
+      contextType: 'search',
+      contextCode: searchInput.value,
+      sessionUid,
+      sessionVid,
+    });
+
+    // Show tracking status
+    trackingPromise
+      .then((result) => {
+        console.log('Tracking event sent:', result);
+        const statusEl = output.querySelector('em');
+        if (statusEl) {
+          statusEl.textContent = `✓ Tracking event sent (ID: ${result.id})`;
+          statusEl.style.color = 'green';
+        }
+      })
+      .catch((error) => {
+        console.error('Error sending tracking event:', error);
+        const statusEl = output.querySelector('em');
+        if (statusEl) {
+          statusEl.textContent = `✗ Tracking event failed: ${error.message}`;
+          statusEl.style.color = 'red';
+        }
+      });
+  } catch (error) {
+    console.error('Error queuing tracking event:', error);
+  }
+}
+
+// Handle suggestion selection and push tracking event
 function selectSuggestion(item) {
   searchInput.value = item.name || item.title || '';
   suggestionsContainer.style.display = 'none';
   output.innerHTML = `
     <h3>Selected Item:</h3>
     <pre>${JSON.stringify(item, null, 2)}</pre>
+    <p><em>Tracking event queued...</em></p>
   `;
+
+  trackProductView(item);
 }
 
 // Add input listener with debounce
@@ -119,4 +180,9 @@ searchInput.addEventListener('focus', () => {
   if (searchInput.value && suggestionsContainer.children.length > 0) {
     suggestionsContainer.style.display = 'block';
   }
+});
+
+// Flush pending tracking events before page unload
+window.addEventListener('beforeunload', async () => {
+  await trackingManager.flushPending();
 });

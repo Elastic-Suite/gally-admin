@@ -150,4 +150,48 @@ describe('Tracking Events', () => {
       manager.pushOrderEvent(invalidOrderMissingOrder),
     ).rejects.toThrow('payload.order is required')
   })
+
+  // =========================================================================
+  // Batching tests
+  // =========================================================================
+
+  it('should batch multiple events into a single request', async ({ skip }) => {
+    if (!isAvailable) skip()
+
+    const promises = [
+      manager.pushViewEvent(productViewEvent),
+      manager.pushDisplayEvent(searchProductDisplayEvent),
+      manager.pushAddToCartEvent(addToCartProductEvent),
+    ]
+
+    const results = await Promise.all(promises)
+
+    expect(results).toHaveLength(3)
+    results.forEach((result) => {
+      expect(result.id).toBeDefined()
+    })
+  })
+
+  it('should handle batch size limits', async ({ skip }) => {
+    if (!isAvailable) skip()
+
+    // Create a manager with small batch size to test splitting
+    const smallBatchManager = new TrackingEventManager(config, {
+      batchSize: 2,
+      debounceMs: 100,
+    })
+
+    const promises = [
+      smallBatchManager.pushViewEvent(productViewEvent),
+      smallBatchManager.pushDisplayEvent(searchProductDisplayEvent),
+      smallBatchManager.pushAddToCartEvent(addToCartProductEvent),
+    ]
+
+    const results = await Promise.all(promises)
+
+    expect(results).toHaveLength(3)
+    results.forEach((result) => {
+      expect(result.id).toBeDefined()
+    })
+  })
 })

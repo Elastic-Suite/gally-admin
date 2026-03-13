@@ -9,7 +9,15 @@
  * @license   Open Software License v. 3.0 (OSL-3.0)
  */
 
-import { TrackingEventInput, TrackingEventType } from '@gally/sdk'
+import { TrackingEventInput } from '../service'
+
+export enum TrackingEventType {
+  VIEW = 'view',
+  DISPLAY = 'display',
+  SEARCH = 'search',
+  ADD_TO_CART = 'add_to_cart',
+  ORDER = 'order',
+}
 
 /**
  * Validation rules config for each event type.
