@@ -64,7 +64,11 @@ export {
 } from './repository'
 
 // Services
-export { IndexOperation, SearchManager, StructureSynchronizer } from './service'
+export {
+  IndexOperation, SearchManager, StructureSynchronizer, TrackingEventManager, TrackingEventType
+} from './service'
+export type { TrackingEventInput, TrackingEventResponse } from './service'
+export { TrackingEventValidator } from './validators'
 
 // Check if running in browser
 const isBrowser = typeof window !== 'undefined'

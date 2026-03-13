@@ -12,3 +12,6 @@
 export { IndexOperation } from './IndexOperation'
 export { SearchManager } from './SearchManager'
 export { StructureSynchronizer } from './StructureSynchronizer'
+export { TrackingEventManager, TrackingEventType } from './TrackingEventManager'
+export type { TrackingEventInput, TrackingEventResponse } from './TrackingEventManager'
+

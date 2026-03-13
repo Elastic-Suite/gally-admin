@@ -6,6 +6,9 @@
  */
 
 export { SearchManager } from './service/SearchManager'
+export { TrackingEventManager, TrackingEventType } from './service/TrackingEventManager'
+export { TrackingEventValidator } from './validators'
+export type { TrackingEventInput, TrackingEventResponse } from './service/TrackingEventManager'
 export type { BrowserConfigurationOptions as ConfigurationOptions } from './client/Configuration'
 export { BrowserConfiguration as Configuration } from './client/Configuration'
 export { Client } from './client/Client'
