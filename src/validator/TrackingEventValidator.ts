@@ -391,8 +391,20 @@ export class TrackingEventValidator {
       'non-empty-array': (v) => Array.isArray(v) && v.length > 0,
     }
 
+    const typeNames: Record<PayloadFieldRule['type'], string> = {
+      string: 'string',
+      numeric: 'numeric',
+      integer: 'integer',
+      boolean: 'boolean',
+      object: 'object',
+      array: 'array',
+      'non-empty-array': 'a non-empty array',
+    }
+
     if (!validators[type](value)) {
-      throw new Error(`${path} must be of type ${type} for ${eventType} event`)
+      const typeName = typeNames[type] || type
+      const article = typeName.startsWith('a ') ? '' : 'of type '
+      throw new Error(`${path} must be ${article}${typeName} for ${eventType} event`)
     }
   }
 }
