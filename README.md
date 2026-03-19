@@ -160,8 +160,6 @@ cp .env.test.example .env.test
 npm run test:integration
 ```
 
-See [Integration Tests README](./tests/integration/README.md) for details.
-
 ## License
 
 [OSL-3.0](https://opensource.org/license/osl-3-0-php)
