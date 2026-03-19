@@ -10,7 +10,7 @@
  */
 
 import { Client, Configuration } from '../client'
-import { TrackingEventValidator, TrackingEventType } from '../validators'
+import { TrackingEventValidator, TrackingEventType } from '../validator'
 
 /**
  * Manages debouncing and throttling for event flushing.

@@ -67,14 +67,14 @@ export {
 export {
   IndexOperation, SearchManager, StructureSynchronizer, TrackingEventManager
 } from './service'
-export { TrackingEventValidator, TrackingEventType } from './validators'
+export { TrackingEventValidator, TrackingEventType } from './validator'
 export type { TrackingEventInput, TrackingEventResponse } from './service'
 
 // Check if running in browser
 const isBrowser = typeof window !== 'undefined'
 
 if (isBrowser) {
-  console.warn(
+  console.error(
     'You are importing the full @gally/sdk in a browser environment. ' +
     'Consider using @gally/sdk/browser instead to reduce bundle size and prevent errors.'
   )
