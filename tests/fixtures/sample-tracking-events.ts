@@ -183,6 +183,82 @@ export const orderProductEvent: Omit<TrackingEventInput, 'eventType'> = {
 }
 
 // ---------------------------------------------------------------------------
+// English catalog events — to differentiate from French catalog tests
+// ---------------------------------------------------------------------------
+
+/** Product view event for English catalog */
+export const productViewEventEN: Omit<TrackingEventInput, 'eventType'> = {
+  metadataCode: 'product',
+  localizedCatalogCode: LOCALIZED_CATALOG_CODE_EN,
+  entityCode: 'SDK-SHOE-001',
+  sourceEventType: TrackingEventType.SEARCH,
+  sourceMetadataCode: 'product',
+  contextType: 'search',
+  contextCode: 'shoes',
+  sessionUid: SESSION_UID,
+  sessionVid: SESSION_VID,
+}
+
+/** Search result view event for English catalog */
+export const searchResultViewEventEN: Omit<TrackingEventInput, 'eventType'> = {
+  metadataCode: 'product',
+  localizedCatalogCode: LOCALIZED_CATALOG_CODE_EN,
+  sessionUid: SESSION_UID,
+  sessionVid: SESSION_VID,
+  payload: JSON.stringify({
+    search_query: {
+      is_spellchecked: false,
+      query_text: 'shoes',
+    },
+    product_list: {
+      item_count: 3,
+      current_page: 1,
+      page_count: 1,
+      sort_order: 'relevance',
+      sort_direction: 'desc',
+      filters: [],
+    },
+  }),
+}
+
+/** Add to cart event for English catalog */
+export const addToCartProductEventEN: Omit<TrackingEventInput, 'eventType'> = {
+  metadataCode: 'product',
+  localizedCatalogCode: LOCALIZED_CATALOG_CODE_EN,
+  entityCode: 'SDK-SHOE-002',
+  sourceEventType: TrackingEventType.VIEW,
+  sourceMetadataCode: 'product',
+  contextType: 'category',
+  contextCode: 'cat_shoes',
+  sessionUid: SESSION_UID,
+  sessionVid: SESSION_VID,
+  payload: JSON.stringify({
+    cart: { qty: 1 },
+  }),
+}
+
+/** Search product display event for English catalog */
+export const searchProductDisplayEventEN: Omit<
+  TrackingEventInput,
+  'eventType'
+> = {
+  metadataCode: 'product',
+  localizedCatalogCode: LOCALIZED_CATALOG_CODE_EN,
+  sourceEventType: TrackingEventType.SEARCH,
+  sourceMetadataCode: 'product',
+  contextType: 'search',
+  contextCode: 'shoes',
+  sessionUid: SESSION_UID,
+  sessionVid: SESSION_VID,
+  payload: JSON.stringify({
+    items: [
+      { entityCode: 'SDK-SHOE-001', display: { position: 1 } },
+      { entityCode: 'SDK-SHOE-002', display: { position: 2 } },
+    ],
+  }),
+}
+
+// ---------------------------------------------------------------------------
 // Invalid inputs — for validation rejection tests
 // ---------------------------------------------------------------------------
 
