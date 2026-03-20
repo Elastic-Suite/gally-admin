@@ -22,6 +22,11 @@ import {
   productViewEvent,
   addToCartProductEvent,
   orderProductEvent,
+  // English catalog event fixtures
+  productViewEventEN,
+  searchResultViewEventEN,
+  addToCartProductEventEN,
+  searchProductDisplayEventEN,
   // Invalid event fixtures
   invalidViewMissingEntityCode,
   invalidCategoryViewMissingProductList,
@@ -95,6 +100,46 @@ describe('Tracking Events', () => {
     if (!isAvailable) skip()
 
     const result = await manager.pushOrderEvent(orderProductEvent)
+    expect(result.id).toBeDefined()
+  })
+
+  // =========================================================================
+  // English catalog tests — positive cases to differentiate from French
+  // =========================================================================
+
+  it('should push a product view event for English catalog', async ({
+    skip,
+  }) => {
+    if (!isAvailable) skip()
+
+    const result = await manager.pushViewEvent(productViewEventEN)
+    expect(result.id).toBeDefined()
+  })
+
+  it('should push a search result view event for English catalog', async ({
+    skip,
+  }) => {
+    if (!isAvailable) skip()
+
+    const result = await manager.pushSearchEvent(searchResultViewEventEN)
+    expect(result.id).toBeDefined()
+  })
+
+  it('should push an add to cart event for English catalog', async ({
+    skip,
+  }) => {
+    if (!isAvailable) skip()
+
+    const result = await manager.pushAddToCartEvent(addToCartProductEventEN)
+    expect(result.id).toBeDefined()
+  })
+
+  it('should push a search product display event for English catalog', async ({
+    skip,
+  }) => {
+    if (!isAvailable) skip()
+
+    const result = await manager.pushDisplayEvent(searchProductDisplayEventEN)
     expect(result.id).toBeDefined()
   })
 
