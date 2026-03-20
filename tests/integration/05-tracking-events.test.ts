@@ -109,7 +109,9 @@ describe('Tracking Events', () => {
     ).rejects.toThrow('entityCode is required')
   })
 
-  it('should reject a category view event missing payload.product_list', async ({ skip }) => {
+  it('should reject a category view event missing payload.product_list', async ({
+    skip,
+  }) => {
     if (!isAvailable) skip()
     await expect(
       manager.pushViewEvent(invalidCategoryViewMissingProductList),
@@ -123,21 +125,27 @@ describe('Tracking Events', () => {
     ).rejects.toThrow('contextType is required')
   })
 
-  it('should reject a display event with empty items array', async ({ skip }) => {
+  it('should reject a display event with empty items array', async ({
+    skip,
+  }) => {
     if (!isAvailable) skip()
     await expect(
       manager.pushDisplayEvent(invalidDisplayEmptyItems),
     ).rejects.toThrow('payload.items must be a non-empty array')
   })
 
-  it('should reject a search event missing payload.search_query', async ({ skip }) => {
+  it('should reject a search event missing payload.search_query', async ({
+    skip,
+  }) => {
     if (!isAvailable) skip()
     await expect(
       manager.pushSearchEvent(invalidSearchMissingSearchQuery),
     ).rejects.toThrow('payload.search_query is required')
   })
 
-  it('should reject an add_to_cart event missing entityCode', async ({ skip }) => {
+  it('should reject an add_to_cart event missing entityCode', async ({
+    skip,
+  }) => {
     if (!isAvailable) skip()
     await expect(
       manager.pushAddToCartEvent(invalidAddToCartMissingEntityCode),

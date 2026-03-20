@@ -9,5 +9,7 @@
  * @license   Open Software License v. 3.0 (OSL-3.0)
  */
 
-export { TrackingEventValidator, TrackingEventType } from './TrackingEventValidator'
-
+export {
+  TrackingEventValidator,
+  TrackingEventType,
+} from './TrackingEventValidator'

@@ -268,8 +268,6 @@ class TrackingEventManager {
     }
   }
 
-
-
   /**
    * Flush any pending events immediately.
    * Useful for cleanup before page unload.
@@ -299,7 +297,10 @@ class TrackingEventManager {
   async pushAddToCartEvent(
     params: Omit<TrackingEventInput, 'eventType'>,
   ): Promise<TrackingEventResponse> {
-    return this.pushEvent({ ...params, eventType: TrackingEventType.ADD_TO_CART })
+    return this.pushEvent({
+      ...params,
+      eventType: TrackingEventType.ADD_TO_CART,
+    })
   }
 
   async pushOrderEvent(

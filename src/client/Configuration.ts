@@ -16,7 +16,10 @@ export interface ConfigurationOptions {
   password: string
 }
 
-export type BrowserConfigurationOptions = Omit<ConfigurationOptions, 'user' | 'password'> & {
+export type BrowserConfigurationOptions = Omit<
+  ConfigurationOptions,
+  'user' | 'password'
+> & {
   user?: null
   password?: null
 }

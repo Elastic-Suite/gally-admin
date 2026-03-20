@@ -50,7 +50,13 @@ import { StructureSynchronizer, Catalog, LocalizedCatalog } from '@gally/sdk'
 
 const synchronizer = new StructureSynchronizer(config)
 const catalog = new Catalog('my_shop', 'My Shop')
-const localizedCatalogFr = new LocalizedCatalog(catalog, 'my_shop_fr', 'My Shop FR', 'fr_FR', 'EUR')
+const localizedCatalogFr = new LocalizedCatalog(
+  catalog,
+  'my_shop_fr',
+  'My Shop FR',
+  'fr_FR',
+  'EUR',
+)
 
 await synchronizer.syncAllLocalizedCatalogs([localizedCatalogFr])
 ```
@@ -63,7 +69,10 @@ await synchronizer.syncAllLocalizedCatalogs([localizedCatalogFr])
 import { IndexOperation, Metadata } from '@gally/sdk'
 
 const indexOp = new IndexOperation(config)
-const index = await indexOp.createIndex(new Metadata('product'), localizedCatalogFr)
+const index = await indexOp.createIndex(
+  new Metadata('product'),
+  localizedCatalogFr,
+)
 await indexOp.executeBulk(index, documents)
 await indexOp.installIndex(index)
 ```
@@ -123,8 +132,13 @@ await trackingManager.pushViewEvent({
 ## Browser vs Node Usage
 
 **Browser** (search and tracking, smaller bundle):
+
 ```typescript
-import { SearchManager, TrackingEventManager, Configuration } from '@gally/sdk/browser'
+import {
+  SearchManager,
+  TrackingEventManager,
+  Configuration,
+} from '@gally/sdk/browser'
 
 // No credentials required - search and tracking are public APIs
 const config = new Configuration({
@@ -133,8 +147,13 @@ const config = new Configuration({
 ```
 
 **Node.js** (full SDK including catalog sync and indexing):
+
 ```typescript
-import { StructureSynchronizer, IndexOperation, Configuration } from '@gally/sdk'
+import {
+  StructureSynchronizer,
+  IndexOperation,
+  Configuration,
+} from '@gally/sdk'
 
 // Credentials required for backend operations
 const config = new Configuration({

@@ -24,7 +24,14 @@ export enum TrackingEventType {
 // ---------------------------------------------------------------------------
 
 interface PayloadFieldRule {
-  type: 'string' | 'numeric' | 'integer' | 'boolean' | 'object' | 'array' | 'non-empty-array'
+  type:
+    | 'string'
+    | 'numeric'
+    | 'integer'
+    | 'boolean'
+    | 'object'
+    | 'array'
+    | 'non-empty-array'
   required?: boolean
   fields?: Record<string, PayloadFieldRule>
   items?: Record<string, PayloadFieldRule>
@@ -64,7 +71,7 @@ const SOURCE_CONTEXT_FIELDS: string[] = [
  * Format for filter items in product_list.filters array.
  */
 const FILTER_ITEM_FORMAT: Record<string, PayloadFieldRule> = {
-  name:  { type: 'string', required: true },
+  name: { type: 'string', required: true },
   value: { type: 'string', required: true },
 }
 
@@ -76,12 +83,12 @@ const PRODUCT_LIST_FORMAT: Record<string, PayloadFieldRule> = {
     type: 'object',
     required: true,
     fields: {
-      item_count:     { type: 'integer', required: true },
-      current_page:   { type: 'integer', required: true },
-      page_count:     { type: 'integer', required: true },
-      sort_order:     { type: 'string',  required: true },
-      sort_direction: { type: 'string',  required: true },
-      filters:        { type: 'array',   required: true, items: FILTER_ITEM_FORMAT },
+      item_count: { type: 'integer', required: true },
+      current_page: { type: 'integer', required: true },
+      page_count: { type: 'integer', required: true },
+      sort_order: { type: 'string', required: true },
+      sort_direction: { type: 'string', required: true },
+      filters: { type: 'array', required: true, items: FILTER_ITEM_FORMAT },
     },
   },
 }
@@ -95,7 +102,7 @@ const SEARCH_QUERY_FORMAT: Record<string, PayloadFieldRule> = {
     required: true,
     fields: {
       is_spellchecked: { type: 'boolean', required: true },
-      query_text:      { type: 'string',  required: true },
+      query_text: { type: 'string', required: true },
     },
   },
 }
@@ -140,8 +147,8 @@ const ORDER_OBJECT_FORMAT: Record<string, PayloadFieldRule> = {
     type: 'object',
     required: true,
     fields: {
-      order_id: { type: 'string',  required: true },
-      total:    { type: 'numeric', required: true },
+      order_id: { type: 'string', required: true },
+      total: { type: 'numeric', required: true },
     },
   },
 }
@@ -150,8 +157,8 @@ const ORDER_OBJECT_FORMAT: Record<string, PayloadFieldRule> = {
  * Format for order details nested in items array for order events.
  */
 const ORDER_ITEM_ORDER_FORMAT: Record<string, PayloadFieldRule> = {
-  price:     { type: 'numeric', required: true },
-  qty:       { type: 'numeric', required: true },
+  price: { type: 'numeric', required: true },
+  qty: { type: 'numeric', required: true },
   row_total: { type: 'numeric', required: true },
 }
 
@@ -175,7 +182,7 @@ const VALIDATION_RULES: Record<TrackingEventType, EventValidationRule> = {
   [TrackingEventType.VIEW]: {
     extraFields: ['entityCode'],
     payloadShapeByMetadata: {
-      category: PRODUCT_LIST_FORMAT
+      category: PRODUCT_LIST_FORMAT,
     },
   },
   [TrackingEventType.DISPLAY]: {
@@ -294,13 +301,20 @@ export class TrackingEventValidator {
     rule: EventValidationRule,
     input: TrackingEventInput,
   ): void {
-    const formatRules = rule.payloadShapeByMetadata?.[input.metadataCode]
-                     ?? rule.payloadShapeByMetadata?.['*']
+    const formatRules =
+      rule.payloadShapeByMetadata?.[input.metadataCode] ??
+      rule.payloadShapeByMetadata?.['*']
 
     if (!formatRules) return
 
     for (const [field, fieldRule] of Object.entries(formatRules)) {
-      TrackingEventValidator.validateField(payloadObj, field, fieldRule, `payload.${field}`, input.eventType)
+      TrackingEventValidator.validateField(
+        payloadObj,
+        field,
+        fieldRule,
+        `payload.${field}`,
+        input.eventType,
+      )
     }
   }
 
@@ -338,12 +352,25 @@ export class TrackingEventValidator {
   ): void {
     TrackingEventValidator.assertFieldType(value, rule.type, path, eventType)
 
-    if (rule.fields && ['object', 'array', 'non-empty-array'].includes(rule.type)) {
-      TrackingEventValidator.validateNestedFields(value, rule.fields, path, eventType)
+    if (
+      rule.fields &&
+      ['object', 'array', 'non-empty-array'].includes(rule.type)
+    ) {
+      TrackingEventValidator.validateNestedFields(
+        value,
+        rule.fields,
+        path,
+        eventType,
+      )
     }
 
     if (rule.items && ['array', 'non-empty-array'].includes(rule.type)) {
-      TrackingEventValidator.validateArrayItems(value, rule.items, path, eventType)
+      TrackingEventValidator.validateArrayItems(
+        value,
+        rule.items,
+        path,
+        eventType,
+      )
     }
   }
 
@@ -359,7 +386,13 @@ export class TrackingEventValidator {
     const obj = value as Record<string, unknown>
 
     for (const [fieldName, fieldRule] of Object.entries(fields)) {
-      TrackingEventValidator.validateField(obj, fieldName, fieldRule, `${path}.${fieldName}`, eventType)
+      TrackingEventValidator.validateField(
+        obj,
+        fieldName,
+        fieldRule,
+        `${path}.${fieldName}`,
+        eventType,
+      )
     }
   }
 
@@ -378,7 +411,13 @@ export class TrackingEventValidator {
       const element = arr[i] as Record<string, unknown>
 
       for (const [fieldName, fieldRule] of Object.entries(itemSchema)) {
-        TrackingEventValidator.validateField(element, fieldName, fieldRule, `${path}[${i}].${fieldName}`, eventType)
+        TrackingEventValidator.validateField(
+          element,
+          fieldName,
+          fieldRule,
+          `${path}[${i}].${fieldName}`,
+          eventType,
+        )
       }
     }
   }
@@ -389,7 +428,10 @@ export class TrackingEventValidator {
     path: string,
     eventType: TrackingEventType,
   ): void {
-    const validators: Record<PayloadFieldRule['type'], (v: unknown) => boolean> = {
+    const validators: Record<
+      PayloadFieldRule['type'],
+      (v: unknown) => boolean
+    > = {
       string: (v) => typeof v === 'string',
       numeric: (v) => typeof v === 'number' && !isNaN(v),
       integer: (v) => typeof v === 'number' && Number.isInteger(v),
@@ -412,7 +454,9 @@ export class TrackingEventValidator {
     if (!validators[type](value)) {
       const typeName = typeNames[type] || type
       const article = typeName.startsWith('a ') ? '' : 'of type '
-      throw new Error(`${path} must be ${article}${typeName} for ${eventType} event`)
+      throw new Error(
+        `${path} must be ${article}${typeName} for ${eventType} event`,
+      )
     }
   }
 }
