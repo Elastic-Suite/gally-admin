@@ -103,7 +103,7 @@ describe('TrackingEventValidator', () => {
       eventType: TrackingEventType.VIEW,
     }
     expect(() => TrackingEventValidator.validate(event)).toThrow(
-      'entityCode is required for view event'
+      'entityCode is required for view event',
     )
   })
 
@@ -113,7 +113,7 @@ describe('TrackingEventValidator', () => {
       eventType: TrackingEventType.VIEW,
     }
     expect(() => TrackingEventValidator.validate(event)).toThrow(
-      'payload.product_list is required for view event'
+      'payload.product_list is required for view event',
     )
   })
 
@@ -123,7 +123,7 @@ describe('TrackingEventValidator', () => {
       eventType: TrackingEventType.DISPLAY,
     }
     expect(() => TrackingEventValidator.validate(event)).toThrow(
-      'contextType is required for display event'
+      'contextType is required for display event',
     )
   })
 
@@ -133,7 +133,7 @@ describe('TrackingEventValidator', () => {
       eventType: TrackingEventType.DISPLAY,
     }
     expect(() => TrackingEventValidator.validate(event)).toThrow(
-      'payload.items must be a non-empty array for display event'
+      'payload.items must be a non-empty array for display event',
     )
   })
 
@@ -143,7 +143,7 @@ describe('TrackingEventValidator', () => {
       eventType: TrackingEventType.SEARCH,
     }
     expect(() => TrackingEventValidator.validate(event)).toThrow(
-      'payload.search_query is required for search event'
+      'payload.search_query is required for search event',
     )
   })
 
@@ -153,7 +153,7 @@ describe('TrackingEventValidator', () => {
       eventType: TrackingEventType.ADD_TO_CART,
     }
     expect(() => TrackingEventValidator.validate(event)).toThrow(
-      'entityCode is required for add_to_cart event'
+      'entityCode is required for add_to_cart event',
     )
   })
 
@@ -163,7 +163,7 @@ describe('TrackingEventValidator', () => {
       eventType: TrackingEventType.ORDER,
     }
     expect(() => TrackingEventValidator.validate(event)).toThrow(
-      'payload.order is required for order event'
+      'payload.order is required for order event',
     )
   })
 
@@ -183,7 +183,7 @@ describe('TrackingEventValidator', () => {
       }),
     }
     expect(() => TrackingEventValidator.validate(event)).toThrow(
-      'payload.product_list.filters[0].name is required for view event'
+      'payload.product_list.filters[0].name is required for view event',
     )
   })
 
@@ -207,7 +207,7 @@ describe('TrackingEventValidator', () => {
       }),
     }
     expect(() => TrackingEventValidator.validate(event)).toThrow(
-      'payload.product_list.filters[0].value must be of type string for search event'
+      'payload.product_list.filters[0].value must be of type string for search event',
     )
   })
 
@@ -221,7 +221,7 @@ describe('TrackingEventValidator', () => {
       eventType: 'invalid_type' as any,
     }
     expect(() => TrackingEventValidator.validate(event)).toThrow(
-      'Unsupported event type: invalid_type'
+      'Unsupported event type: invalid_type',
     )
   })
 
@@ -232,7 +232,7 @@ describe('TrackingEventValidator', () => {
       payload: '{invalid json}',
     }
     expect(() => TrackingEventValidator.validate(event)).toThrow(
-      'payload must be a valid JSON string'
+      'payload must be a valid JSON string',
     )
   })
 })

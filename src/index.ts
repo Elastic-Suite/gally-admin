@@ -65,7 +65,10 @@ export {
 
 // Services
 export {
-  IndexOperation, SearchManager, StructureSynchronizer, TrackingEventManager
+  IndexOperation,
+  SearchManager,
+  StructureSynchronizer,
+  TrackingEventManager,
 } from './service'
 export { TrackingEventValidator, TrackingEventType } from './validator'
 export type { TrackingEventInput, TrackingEventResponse } from './service'
@@ -76,6 +79,6 @@ const isBrowser = typeof window !== 'undefined'
 if (isBrowser) {
   console.error(
     'You are importing the full @gally/sdk in a browser environment. ' +
-    'Consider using @gally/sdk/browser instead to reduce bundle size and prevent errors.'
+      'Consider using @gally/sdk/browser instead to reduce bundle size and prevent errors.',
   )
 }
