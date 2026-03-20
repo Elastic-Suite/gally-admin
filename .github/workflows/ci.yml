@@ -21,40 +21,29 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
-      - name: Get yarn cache directory path
-        id: yarn-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn cache dir)"
-      - name: Cache Yarn dependencies
-        uses: actions/cache@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
-      - name: Yarn Install dependencies
-        run: yarn --frozen-lockfile
+          node-version: '20'
+          cache: 'npm'
 
-      - name: Jest
-        run: yarn test:ci
+      - name: Install dependencies
+        run: npm ci --legacy-peer-deps
 
-      - name: Frontend Shared Coverage Report
-        uses: 5monkeys/cobertura-action@v12
+      - name: Build
+        run: npm run build
+
+      - name: Vitest (Unit Tests)
+        run: npm run test -- --coverage --reporter=verbose tests/unit
+
+      - name: Coverage Report
+        uses: 5monkeys/cobertura-action@v13
         if: ${{ github.event_name == 'pull_request' }}
         with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          report_name: "Frontend Shared Coverage of this branch"
-          path: packages/shared/coverage/cobertura-coverage.xml
-          minimum_coverage: 1
-          fail_below_threshold: false
-
-      - name: Frontend Components Coverage Report
-        uses: 5monkeys/cobertura-action@v12
-        if: ${{ github.event_name == 'pull_request' }}
-        with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          report_name: "Frontend Components Coverage of this branch"
-          path: packages/components/coverage/cobertura-coverage.xml
+          repo_token: '${{ secrets.GITHUB_TOKEN }}'
+          report_name: 'SDK Coverage Report'
+          path: coverage/cobertura-coverage.xml
           minimum_coverage: 1
           fail_below_threshold: false
