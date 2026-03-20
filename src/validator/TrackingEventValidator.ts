@@ -61,6 +61,14 @@ const SOURCE_CONTEXT_FIELDS: string[] = [
 // ---------------------------------------------------------------------------
 
 /**
+ * Format for filter items in product_list.filters array.
+ */
+const FILTER_ITEM_FORMAT: Record<string, PayloadFieldRule> = {
+  name:  { type: 'string', required: true },
+  value: { type: 'string', required: true },
+}
+
+/**
  * Format for product_list object in category view and search result events.
  */
 const PRODUCT_LIST_FORMAT: Record<string, PayloadFieldRule> = {
@@ -73,7 +81,7 @@ const PRODUCT_LIST_FORMAT: Record<string, PayloadFieldRule> = {
       page_count:     { type: 'integer', required: true },
       sort_order:     { type: 'string',  required: true },
       sort_direction: { type: 'string',  required: true },
-      filters:        { type: 'array',   required: true },
+      filters:        { type: 'array',   required: true, items: FILTER_ITEM_FORMAT },
     },
   },
 }
