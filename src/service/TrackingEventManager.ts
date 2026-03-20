@@ -10,7 +10,7 @@
  */
 
 import { Client, Configuration } from '../client'
-import { TrackingEventValidator, TrackingEventType } from '../validator'
+import { TrackingEventType, TrackingEventValidator } from '../validator'
 
 /**
  * Manages debouncing and throttling for event flushing.
@@ -129,6 +129,39 @@ interface QueuedEvent {
   reject: (reason?: unknown) => void
 }
 
+type TrackingEventContext = Pick<
+  TrackingEventInput,
+  'contextType' | 'contextCode' | 'sourceEventType' | 'sourceMetadataCode'
+>
+
+abstract class TrackingEventContextStorage {
+  abstract setTrackingContext(context: TrackingEventContext | null): void
+  abstract getTrackingContext(): TrackingEventContext | null
+
+  isContextEvent(input: TrackingEventInput) {
+    return input.eventType === TrackingEventType.VIEW
+  }
+}
+
+const TRACKING_CONTEXT_KEY = 'gally-tracking-context'
+// TODO: what about a NodeJS alternative ?
+class TrackingEventContextSessionStorage extends TrackingEventContextStorage {
+  setTrackingContext(context: TrackingEventContext | null) {
+    sessionStorage.setItem(TRACKING_CONTEXT_KEY, JSON.stringify(context))
+  }
+
+  getTrackingContext(): TrackingEventContext | null {
+    let currentContext = null
+    try {
+      currentContext = JSON.parse(
+        sessionStorage.getItem(TRACKING_CONTEXT_KEY) ?? '',
+      )
+    } finally {
+    }
+    return currentContext ? (currentContext as TrackingEventContext) : null
+  }
+}
+
 /**
  * Tracking event manager service.
  *
@@ -145,6 +178,7 @@ class TrackingEventManager {
   private eventQueue: QueuedEvent[] = []
   private readonly throttledManager: ThrottledEventManager
   private readonly batchSize: number
+  private trackingEventContextStorage: TrackingEventContextStorage
 
   constructor(
     configuration: Configuration,
@@ -152,6 +186,7 @@ class TrackingEventManager {
       debounceMs?: number
       throttleMs?: number
       batchSize?: number
+      trackingEventContextStorage?: TrackingEventContextStorage
     },
   ) {
     this.client = new Client(configuration)
@@ -161,6 +196,9 @@ class TrackingEventManager {
     )
     this.batchSize = options?.batchSize ?? 10
     this.throttledManager.setFlushCallback(() => this.flush())
+    this.trackingEventContextStorage =
+      options?.trackingEventContextStorage ??
+      new TrackingEventContextSessionStorage()
   }
 
   /**
@@ -169,6 +207,29 @@ class TrackingEventManager {
    */
   async pushEvent(input: TrackingEventInput): Promise<TrackingEventResponse> {
     TrackingEventValidator.validate(input)
+
+    // TODO: some event (like search or category view) should set a context in session storage
+    // this context should be used for subsequent events needing a context to feed these field if they are not provided
+    //   'contextType',
+    //   'contextCode',
+    //   'sourceEventType',
+    //   'sourceMetadataCode',
+    if (this.trackingEventContextStorage.isContextEvent(input)) {
+      this.trackingEventContextStorage.setTrackingContext({
+        sourceEventType: TrackingEventType.VIEW,
+        sourceMetadataCode: 'product',
+        contextType: 'category',
+        contextCode: 'cat_shoes',
+      })
+    } else {
+      // put existing context in event
+      const existingContext =
+        this.trackingEventContextStorage.getTrackingContext()
+      if (existingContext) {
+        // TODO: what about an input that already has a context ?
+        input = { ...input, ...existingContext }
+      }
+    }
 
     return new Promise((resolve, reject) => {
       this.eventQueue.push({ input, resolve, reject })
