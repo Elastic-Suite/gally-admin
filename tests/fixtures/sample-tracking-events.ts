@@ -38,7 +38,9 @@ export const categoryViewEvent: Omit<TrackingEventInput, 'eventType'> = {
       page_count: 1,
       sort_order: 'position',
       sort_direction: 'asc',
-      filters: [],
+      filters: [
+        { name: 'fashion_material__value', value: '47' },
+      ],
     },
   }),
 }
@@ -85,7 +87,9 @@ export const searchResultViewEvent: Omit<TrackingEventInput, 'eventType'> = {
       page_count: 1,
       sort_order: 'position',
       sort_direction: 'asc',
-      filters: [],
+      filters: [
+        { name: 'fashion_material__value', value: '47' },
+      ],
     },
   }),
 }

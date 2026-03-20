@@ -11,8 +11,8 @@
  */
 
 import { describe, it, expect } from 'vitest'
-import { TrackingEventValidator, TrackingEventType } from '@gally/sdk'
-import { TrackingEventInput } from '@gally/sdk'
+import { TrackingEventValidator, TrackingEventType } from '../../src/validator'
+import { TrackingEventInput } from '../../src/service'
 import {
   // Valid event fixtures
   categoryViewEvent,
@@ -164,6 +164,75 @@ describe('TrackingEventValidator', () => {
     }
     expect(() => TrackingEventValidator.validate(event)).toThrow(
       'payload.order is required for order event'
+    )
+  })
+
+  it('should reject a category view with filter missing name', () => {
+    const event: TrackingEventInput = {
+      ...categoryViewEvent,
+      eventType: TrackingEventType.VIEW,
+      payload: JSON.stringify({
+        product_list: {
+          item_count: 5,
+          current_page: 1,
+          page_count: 1,
+          sort_order: 'position',
+          sort_direction: 'asc',
+          filters: [{ value: '47' }],
+        },
+      }),
+    }
+    expect(() => TrackingEventValidator.validate(event)).toThrow(
+      'payload.product_list.filters[0].name is required for view event'
+    )
+  })
+
+  it('should reject a search result with filter having non-string value', () => {
+    const event: TrackingEventInput = {
+      ...searchResultViewEvent,
+      eventType: TrackingEventType.SEARCH,
+      payload: JSON.stringify({
+        search_query: {
+          is_spellchecked: false,
+          query_text: 'shoe',
+        },
+        product_list: {
+          item_count: 5,
+          current_page: 1,
+          page_count: 1,
+          sort_order: 'position',
+          sort_direction: 'asc',
+          filters: [{ name: 'fashion_material__value', value: 47 }],
+        },
+      }),
+    }
+    expect(() => TrackingEventValidator.validate(event)).toThrow(
+      'payload.product_list.filters[0].value must be of type string for search event'
+    )
+  })
+
+  // =========================================================================
+  // Additional coverage tests to reach 100%
+  // =========================================================================
+
+  it('should reject unsupported event type', () => {
+    const event: TrackingEventInput = {
+      ...categoryViewEvent,
+      eventType: 'invalid_type' as any,
+    }
+    expect(() => TrackingEventValidator.validate(event)).toThrow(
+      'Unsupported event type: invalid_type'
+    )
+  })
+
+  it('should reject event with invalid JSON payload', () => {
+    const event: TrackingEventInput = {
+      ...categoryViewEvent,
+      eventType: TrackingEventType.VIEW,
+      payload: '{invalid json}',
+    }
+    expect(() => TrackingEventValidator.validate(event)).toThrow(
+      'payload must be a valid JSON string'
     )
   })
 })
