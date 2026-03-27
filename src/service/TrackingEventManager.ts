@@ -11,82 +11,18 @@
 
 import { Client, Configuration } from '../client'
 import { TrackingEventType, TrackingEventValidator } from '../validator'
+import { ThrottledEventManager } from './tracking/ThrottledEventManager'
+import {
+  SessionInformationStorage,
+  SessionInformationCookieStorage, SESSION_UID_COOKIE_NAME, SESSION_VID_COOKIE_NAME,
+} from './tracking/SessionInformationStorage'
+import {
+  TrackingEventContextStorage,
+  TrackingEventContextSessionStorage,
+} from './tracking/TrackingEventContextStorage'
 
 /**
- * Manages debouncing and throttling for event flushing.
- */
-class ThrottledEventManager {
-  private debounceTimer: NodeJS.Timeout | null = null
-  private lastFlushTime: number = 0
-  private readonly debounceMs: number
-  private readonly throttleMs: number
-  private flushCallback: (() => Promise<void>) | null = null
-
-  constructor(debounceMs: number = 300, throttleMs: number = 1000) {
-    this.debounceMs = debounceMs
-    this.throttleMs = throttleMs
-  }
-
-  /**
-   * Set the callback to be executed when flushing.
-   */
-  setFlushCallback(callback: () => Promise<void>): void {
-    this.flushCallback = callback
-  }
-
-  /**
-   * Schedule a flush with debouncing and throttling.
-   */
-  schedule(): void {
-    // Clear existing debounce timer
-    if (this.debounceTimer) {
-      clearTimeout(this.debounceTimer)
-    }
-
-    // Check if we should flush immediately due to throttle
-    const timeSinceLastFlush = Date.now() - this.lastFlushTime
-    const shouldFlushImmediately = timeSinceLastFlush >= this.throttleMs
-
-    if (shouldFlushImmediately) {
-      this.executeFlush()
-    } else {
-      // Schedule debounced flush
-      this.debounceTimer = setTimeout(() => {
-        this.executeFlush()
-      }, this.debounceMs)
-    }
-  }
-
-  /**
-   * Execute the flush callback and update last flush time.
-   */
-  private async executeFlush(): Promise<void> {
-    if (this.debounceTimer) {
-      clearTimeout(this.debounceTimer)
-      this.debounceTimer = null
-    }
-
-    this.lastFlushTime = Date.now()
-
-    if (this.flushCallback) {
-      await this.flushCallback()
-    }
-  }
-
-  /**
-   * Clear any pending timers.
-   */
-  clear(): void {
-    if (this.debounceTimer) {
-      clearTimeout(this.debounceTimer)
-      this.debounceTimer = null
-    }
-  }
-}
-
-/**
- * Common tracking event properties.
- * Shared between input and API response.
+ * Common tracking event properties shared between API response fields.
  */
 interface TrackingEventBase {
   eventType: TrackingEventType
@@ -105,8 +41,13 @@ interface TrackingEventBase {
 /**
  * TrackingEvent input type.
  * Matches the Gally createTrackingEvent GraphQL mutation input.
+ * sessionUid and sessionVid are optional here as they can be
+ * automatically populated from session storage.
  */
-type TrackingEventInput = TrackingEventBase
+type TrackingEventInput = Omit<TrackingEventBase, 'sessionUid' | 'sessionVid'> & {
+  sessionUid?: string
+  sessionVid?: string
+}
 
 /**
  * TrackingEvent result type.
@@ -129,42 +70,9 @@ interface QueuedEvent {
   reject: (reason?: unknown) => void
 }
 
-type TrackingEventContext = Pick<
-  TrackingEventInput,
-  'contextType' | 'contextCode' | 'sourceEventType' | 'sourceMetadataCode'
->
-
-abstract class TrackingEventContextStorage {
-  abstract setTrackingContext(context: TrackingEventContext | null): void
-  abstract getTrackingContext(): TrackingEventContext | null
-
-  isContextEvent(input: TrackingEventInput) {
-    return input.eventType === TrackingEventType.VIEW
-  }
-}
-
-const TRACKING_CONTEXT_KEY = 'gally-tracking-context'
-// TODO: what about a NodeJS alternative ?
-class TrackingEventContextSessionStorage extends TrackingEventContextStorage {
-  setTrackingContext(context: TrackingEventContext | null) {
-    sessionStorage.setItem(TRACKING_CONTEXT_KEY, JSON.stringify(context))
-  }
-
-  getTrackingContext(): TrackingEventContext | null {
-    let currentContext = null
-    try {
-      currentContext = JSON.parse(
-        sessionStorage.getItem(TRACKING_CONTEXT_KEY) ?? '',
-      )
-    } finally {
-    }
-    return currentContext ? (currentContext as TrackingEventContext) : null
-  }
-}
-
 /**
- * Tracking event manager service.
- *
+
+  * Tracking event manager service. *
  * Provides methods to push tracking events (view, display, search,
  * add_to_cart, order) to the Gally API via GraphQL mutations.
  *
@@ -179,6 +87,7 @@ class TrackingEventManager {
   private readonly throttledManager: ThrottledEventManager
   private readonly batchSize: number
   private trackingEventContextStorage: TrackingEventContextStorage
+  private sessionInformationStorage: SessionInformationStorage
 
   constructor(
     configuration: Configuration,
@@ -186,7 +95,10 @@ class TrackingEventManager {
       debounceMs?: number
       throttleMs?: number
       batchSize?: number
+      uidCookieMaxAge?: number
+      vidCookieMaxAge ?: number
       trackingEventContextStorage?: TrackingEventContextStorage
+      sessionInformationStorage?: SessionInformationStorage
     },
   ) {
     this.client = new Client(configuration)
@@ -199,6 +111,14 @@ class TrackingEventManager {
     this.trackingEventContextStorage =
       options?.trackingEventContextStorage ??
       new TrackingEventContextSessionStorage()
+    this.sessionInformationStorage =
+      options?.sessionInformationStorage ??
+      new SessionInformationCookieStorage(
+        SESSION_UID_COOKIE_NAME,
+        SESSION_VID_COOKIE_NAME,
+        options?.uidCookieMaxAge,
+        options?.vidCookieMaxAge
+      )
   }
 
   /**
@@ -206,30 +126,27 @@ class TrackingEventManager {
    * Events are queued and batched for efficient processing.
    */
   async pushEvent(input: TrackingEventInput): Promise<TrackingEventResponse> {
-    TrackingEventValidator.validate(input)
-
-    // TODO: some event (like search or category view) should set a context in session storage
-    // this context should be used for subsequent events needing a context to feed these field if they are not provided
-    //   'contextType',
-    //   'contextCode',
-    //   'sourceEventType',
-    //   'sourceMetadataCode',
-    if (this.trackingEventContextStorage.isContextEvent(input)) {
-      this.trackingEventContextStorage.setTrackingContext({
-        sourceEventType: TrackingEventType.VIEW,
-        sourceMetadataCode: 'product',
-        contextType: 'category',
-        contextCode: 'cat_shoes',
-      })
-    } else {
-      // put existing context in event
-      const existingContext =
-        this.trackingEventContextStorage.getTrackingContext()
-      if (existingContext) {
-        // TODO: what about an input that already has a context ?
-        input = { ...input, ...existingContext }
-      }
+    // Populate session information if not already provided
+    const { sessionUid, sessionVid } =
+      this.sessionInformationStorage.getSessionInformation()
+    if (!input.sessionUid) {
+      input.sessionUid = sessionUid
     }
+    if (!input.sessionVid) {
+      input.sessionVid = sessionVid
+    }
+
+    const existingContext =
+      this.trackingEventContextStorage.getTrackingContext()
+    if (existingContext) {
+      // We don't override an existing context,
+      // But use the global one if no context was given in input
+      input = { ...existingContext, ...input }
+    }
+    // Validate the event now that we have a complete event
+    TrackingEventValidator.validate(input)
+    // Update the context if the event should change it
+    this.trackingEventContextStorage.checkAndUpdateContext(input)
 
     return new Promise((resolve, reject) => {
       this.eventQueue.push({ input, resolve, reject })
@@ -371,5 +288,15 @@ class TrackingEventManager {
   }
 }
 
-export { TrackingEventType, TrackingEventManager, ThrottledEventManager }
+export { TrackingEventType, TrackingEventManager }
 export type { TrackingEventInput, TrackingEventResponse }
+export { ThrottledEventManager } from './tracking/ThrottledEventManager'
+export {
+  SessionInformationStorage,
+  SessionInformationCookieStorage,
+} from './tracking/SessionInformationStorage'
+export type { SessionInformation } from './tracking/SessionInformationStorage'
+export {
+  TrackingEventContextStorage,
+  TrackingEventContextSessionStorage,
+} from './tracking/TrackingEventContextStorage'
