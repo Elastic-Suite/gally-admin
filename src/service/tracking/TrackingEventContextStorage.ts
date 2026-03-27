@@ -27,9 +27,11 @@ abstract class TrackingEventContextStorage {
 
 const TRACKING_CONTEXT_KEY = 'gally-tracking-context'
 class TrackingEventContextSessionStorage extends TrackingEventContextStorage {
-
   isCategoryViewEvent(input: TrackingEventInput) {
-    return input?.eventType === TrackingEventType.VIEW && ['category'].includes(input?.metadataCode)
+    return (
+      input?.eventType === TrackingEventType.VIEW &&
+      ['category'].includes(input?.metadataCode)
+    )
   }
 
   isSearchEvent(input: TrackingEventInput) {
@@ -41,7 +43,9 @@ class TrackingEventContextSessionStorage extends TrackingEventContextStorage {
   }
 
   isUpdateContextSourceEvent(input: TrackingEventInput) {
-    return ![TrackingEventType.DISPLAY, TrackingEventType.ADD_TO_CART].includes(input?.eventType)
+    return ![TrackingEventType.DISPLAY, TrackingEventType.ADD_TO_CART].includes(
+      input?.eventType,
+    )
   }
 
   checkAndUpdateContext(input: TrackingEventInput | null): boolean {
@@ -50,11 +54,14 @@ class TrackingEventContextSessionStorage extends TrackingEventContextStorage {
     }
 
     const existingContext = this.getTrackingContext()
-    const newContext: TrackingEventContext = JSON.parse(JSON.stringify(existingContext)) ?? {}
+    const newContext: TrackingEventContext =
+      JSON.parse(JSON.stringify(existingContext)) ?? {}
     if (this.isUpdateContextEvent(input)) {
       newContext.contextType = this.isSearchEvent(input) ? 'search' : 'category'
-      newContext.contextCode = this.isSearchEvent(input) ?
-        (JSON.parse(<string>input?.payload) as SearchPayload).search_query?.query_text : input.entityCode
+      newContext.contextCode = this.isSearchEvent(input)
+        ? (JSON.parse(<string>input?.payload) as SearchPayload).search_query
+            ?.query_text
+        : input.entityCode
     }
 
     if (this.isUpdateContextSourceEvent(input)) {
@@ -62,7 +69,9 @@ class TrackingEventContextSessionStorage extends TrackingEventContextStorage {
       newContext.sourceMetadataCode = input.metadataCode
     }
 
-    const hasUpdatedContext = JSON.parse(JSON.stringify(existingContext)) !== JSON.parse(JSON.stringify(newContext))
+    const hasUpdatedContext =
+      JSON.parse(JSON.stringify(existingContext)) !==
+      JSON.parse(JSON.stringify(newContext))
     if (hasUpdatedContext) {
       sessionStorage.setItem(TRACKING_CONTEXT_KEY, JSON.stringify(newContext))
     }
@@ -82,8 +91,5 @@ class TrackingEventContextSessionStorage extends TrackingEventContextStorage {
   }
 }
 
-export {
-  TrackingEventContextStorage,
-  TrackingEventContextSessionStorage,
-}
+export { TrackingEventContextStorage, TrackingEventContextSessionStorage }
 export type { TrackingEventContext }
