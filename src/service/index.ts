@@ -17,3 +17,6 @@ export type {
   TrackingEventInput,
   TrackingEventResponse,
 } from './TrackingEventManager'
+export { SessionInformationStorage } from './tracking/SessionInformationStorage'
+export { TrackingEventContextStorage } from './tracking/TrackingEventContextStorage'
+export { EventQueueStorage } from './tracking/EventQueueStorage'

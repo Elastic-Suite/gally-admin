@@ -8,7 +8,13 @@
 export { SearchManager } from './service/SearchManager'
 export { TrackingEventManager } from './service'
 export { TrackingEventValidator, TrackingEventType } from './validator'
-export type { TrackingEventInput, TrackingEventResponse } from './service'
+export type {
+  TrackingEventInput,
+  TrackingEventResponse,
+  SessionInformationStorage,
+  TrackingEventContextStorage,
+  EventQueueStorage,
+} from './service'
 export type { BrowserConfigurationOptions as ConfigurationOptions } from './client/Configuration'
 export { BrowserConfiguration as Configuration } from './client/Configuration'
 export { Client } from './client/Client'

@@ -16,8 +16,6 @@ import { TrackingEventType, TrackingEventInput } from '@gally/sdk'
 // Shared constants (aligned with sample-data.ts)
 // ---------------------------------------------------------------------------
 
-const SESSION_UID = '2a9c9f2d-0aff-5c1c-b0a8-98cb6460a1d2'
-const SESSION_VID = '55779ebd-9f1f-3ca8-dabf-0d2d83306f32'
 const LOCALIZED_CATALOG_CODE_FR = 'sdk_test_shop_fr'
 const LOCALIZED_CATALOG_CODE_EN = 'sdk_test_shop_en'
 
@@ -25,12 +23,11 @@ const LOCALIZED_CATALOG_CODE_EN = 'sdk_test_shop_en'
 // categoryView — view event on a category page with product_list payload
 // ---------------------------------------------------------------------------
 
-export const categoryViewEvent: Omit<TrackingEventInput, 'eventType'> = {
+export const categoryViewEvent: TrackingEventInput = {
+  eventType: TrackingEventType.VIEW,
   metadataCode: 'category',
   localizedCatalogCode: LOCALIZED_CATALOG_CODE_FR,
   entityCode: 'cat_shoes',
-  sessionUid: SESSION_UID,
-  sessionVid: SESSION_VID,
   payload: JSON.stringify({
     product_list: {
       item_count: 5,
@@ -47,23 +44,19 @@ export const categoryViewEvent: Omit<TrackingEventInput, 'eventType'> = {
 // categoryProductDisplay — display event for products in a category context
 // ---------------------------------------------------------------------------
 
-export const categoryProductDisplayEvent: Omit<
-  TrackingEventInput,
-  'eventType'
-> = {
+export const categoryProductDisplayEvent: TrackingEventInput = {
+  eventType: TrackingEventType.DISPLAY,
   metadataCode: 'product',
   localizedCatalogCode: LOCALIZED_CATALOG_CODE_FR,
   sourceEventType: TrackingEventType.VIEW,
   sourceMetadataCode: 'category',
   contextType: 'category',
   contextCode: 'cat_shoes',
-  sessionUid: SESSION_UID,
-  sessionVid: SESSION_VID,
   payload: JSON.stringify({
     items: [
-      { entityCode: 'SDK-SHOE-001', display: { position: 1 } },
-      { entityCode: 'SDK-SHOE-002', display: { position: 2 } },
-      { entityCode: 'SDK-SHOE-003', display: { position: 3 } },
+      { entityCode: 'SDK-SHOE-001', display: { position: 0 } },
+      { entityCode: 'SDK-SHOE-002', display: { position: 1 } },
+      { entityCode: 'SDK-SHOE-003', display: { position: 2 } },
     ],
   }),
 }
@@ -72,11 +65,10 @@ export const categoryProductDisplayEvent: Omit<
 // searchResultView — search event with search_query and product_list payload
 // ---------------------------------------------------------------------------
 
-export const searchResultViewEvent: Omit<TrackingEventInput, 'eventType'> = {
+export const searchResultViewEvent: TrackingEventInput = {
+  eventType: TrackingEventType.SEARCH,
   metadataCode: 'product',
   localizedCatalogCode: LOCALIZED_CATALOG_CODE_FR,
-  sessionUid: SESSION_UID,
-  sessionVid: SESSION_VID,
   payload: JSON.stringify({
     search_query: {
       is_spellchecked: false,
@@ -97,30 +89,29 @@ export const searchResultViewEvent: Omit<TrackingEventInput, 'eventType'> = {
 // searchProductDisplay — display event for products in a search context
 // ---------------------------------------------------------------------------
 
-export const searchProductDisplayEvent: Omit<TrackingEventInput, 'eventType'> =
-  {
-    metadataCode: 'product',
-    localizedCatalogCode: LOCALIZED_CATALOG_CODE_FR,
-    sourceEventType: TrackingEventType.SEARCH,
-    sourceMetadataCode: 'product',
-    contextType: 'search',
-    contextCode: 'shoe',
-    sessionUid: SESSION_UID,
-    sessionVid: SESSION_VID,
-    payload: JSON.stringify({
-      items: [
-        { entityCode: 'SDK-SHOE-001', display: { position: 1 } },
-        { entityCode: 'SDK-SHOE-002', display: { position: 2 } },
-        { entityCode: 'SDK-SHOE-003', display: { position: 3 } },
-      ],
-    }),
-  }
+export const searchProductDisplayEvent: TrackingEventInput = {
+  eventType: TrackingEventType.DISPLAY,
+  metadataCode: 'product',
+  localizedCatalogCode: LOCALIZED_CATALOG_CODE_FR,
+  sourceEventType: TrackingEventType.SEARCH,
+  sourceMetadataCode: 'product',
+  contextType: 'search',
+  contextCode: 'shoe',
+  payload: JSON.stringify({
+    items: [
+      { entityCode: 'SDK-SHOE-001', display: { position: 0 } },
+      { entityCode: 'SDK-SHOE-002', display: { position: 1 } },
+      { entityCode: 'SDK-SHOE-003', display: { position: 2 } },
+    ],
+  }),
+}
 
 // ---------------------------------------------------------------------------
 // productView — view event on a product page with source/context info
 // ---------------------------------------------------------------------------
 
-export const productViewEvent: Omit<TrackingEventInput, 'eventType'> = {
+export const productViewEvent: TrackingEventInput = {
+  eventType: TrackingEventType.VIEW,
   metadataCode: 'product',
   localizedCatalogCode: LOCALIZED_CATALOG_CODE_FR,
   entityCode: 'SDK-SHOE-001',
@@ -128,15 +119,14 @@ export const productViewEvent: Omit<TrackingEventInput, 'eventType'> = {
   sourceMetadataCode: 'product',
   contextType: 'search',
   contextCode: 'shoe',
-  sessionUid: SESSION_UID,
-  sessionVid: SESSION_VID,
 }
 
 // ---------------------------------------------------------------------------
 // addToCartProduct — add_to_cart event with cart qty payload
 // ---------------------------------------------------------------------------
 
-export const addToCartProductEvent: Omit<TrackingEventInput, 'eventType'> = {
+export const addToCartProductEvent: TrackingEventInput = {
+  eventType: TrackingEventType.ADD_TO_CART,
   metadataCode: 'product',
   localizedCatalogCode: LOCALIZED_CATALOG_CODE_FR,
   entityCode: 'SDK-SHOE-001',
@@ -144,8 +134,6 @@ export const addToCartProductEvent: Omit<TrackingEventInput, 'eventType'> = {
   sourceMetadataCode: 'product',
   contextType: 'search',
   contextCode: 'shoe',
-  sessionUid: SESSION_UID,
-  sessionVid: SESSION_VID,
   payload: JSON.stringify({
     cart: { qty: 2 },
   }),
@@ -155,15 +143,14 @@ export const addToCartProductEvent: Omit<TrackingEventInput, 'eventType'> = {
 // orderProduct — order event with order details and items array
 // ---------------------------------------------------------------------------
 
-export const orderProductEvent: Omit<TrackingEventInput, 'eventType'> = {
+export const orderProductEvent: TrackingEventInput = {
+  eventType: TrackingEventType.ORDER,
   metadataCode: 'product',
   localizedCatalogCode: LOCALIZED_CATALOG_CODE_FR,
   sourceEventType: TrackingEventType.VIEW,
   sourceMetadataCode: 'product',
   contextType: 'search',
   contextCode: 'shoe',
-  sessionUid: SESSION_UID,
-  sessionVid: SESSION_VID,
   payload: JSON.stringify({
     order: {
       order_id: '125',
@@ -187,7 +174,8 @@ export const orderProductEvent: Omit<TrackingEventInput, 'eventType'> = {
 // ---------------------------------------------------------------------------
 
 /** Product view event for English catalog */
-export const productViewEventEN: Omit<TrackingEventInput, 'eventType'> = {
+export const productViewEventEN: TrackingEventInput = {
+  eventType: TrackingEventType.VIEW,
   metadataCode: 'product',
   localizedCatalogCode: LOCALIZED_CATALOG_CODE_EN,
   entityCode: 'SDK-SHOE-001',
@@ -195,16 +183,13 @@ export const productViewEventEN: Omit<TrackingEventInput, 'eventType'> = {
   sourceMetadataCode: 'product',
   contextType: 'search',
   contextCode: 'shoes',
-  sessionUid: SESSION_UID,
-  sessionVid: SESSION_VID,
 }
 
 /** Search result view event for English catalog */
-export const searchResultViewEventEN: Omit<TrackingEventInput, 'eventType'> = {
+export const searchResultViewEventEN: TrackingEventInput = {
+  eventType: TrackingEventType.SEARCH,
   metadataCode: 'product',
   localizedCatalogCode: LOCALIZED_CATALOG_CODE_EN,
-  sessionUid: SESSION_UID,
-  sessionVid: SESSION_VID,
   payload: JSON.stringify({
     search_query: {
       is_spellchecked: false,
@@ -222,7 +207,8 @@ export const searchResultViewEventEN: Omit<TrackingEventInput, 'eventType'> = {
 }
 
 /** Add to cart event for English catalog */
-export const addToCartProductEventEN: Omit<TrackingEventInput, 'eventType'> = {
+export const addToCartProductEventEN: TrackingEventInput = {
+  eventType: TrackingEventType.ADD_TO_CART,
   metadataCode: 'product',
   localizedCatalogCode: LOCALIZED_CATALOG_CODE_EN,
   entityCode: 'SDK-SHOE-002',
@@ -230,30 +216,24 @@ export const addToCartProductEventEN: Omit<TrackingEventInput, 'eventType'> = {
   sourceMetadataCode: 'product',
   contextType: 'category',
   contextCode: 'cat_shoes',
-  sessionUid: SESSION_UID,
-  sessionVid: SESSION_VID,
   payload: JSON.stringify({
     cart: { qty: 1 },
   }),
 }
 
 /** Search product display event for English catalog */
-export const searchProductDisplayEventEN: Omit<
-  TrackingEventInput,
-  'eventType'
-> = {
+export const searchProductDisplayEventEN: TrackingEventInput = {
+  eventType: TrackingEventType.DISPLAY,
   metadataCode: 'product',
   localizedCatalogCode: LOCALIZED_CATALOG_CODE_EN,
   sourceEventType: TrackingEventType.SEARCH,
   sourceMetadataCode: 'product',
   contextType: 'search',
   contextCode: 'shoes',
-  sessionUid: SESSION_UID,
-  sessionVid: SESSION_VID,
   payload: JSON.stringify({
     items: [
-      { entityCode: 'SDK-SHOE-001', display: { position: 1 } },
-      { entityCode: 'SDK-SHOE-002', display: { position: 2 } },
+      { entityCode: 'SDK-SHOE-001', display: { position: 0 } },
+      { entityCode: 'SDK-SHOE-002', display: { position: 1 } },
     ],
   }),
 }
@@ -263,96 +243,74 @@ export const searchProductDisplayEventEN: Omit<
 // ---------------------------------------------------------------------------
 
 /** View event missing entityCode */
-export const invalidViewMissingEntityCode: Omit<
-  TrackingEventInput,
-  'eventType'
-> = {
+export const invalidViewMissingEntityCode: TrackingEventInput = {
+  eventType: TrackingEventType.VIEW,
   metadataCode: 'category',
   localizedCatalogCode: LOCALIZED_CATALOG_CODE_FR,
-  sessionUid: SESSION_UID,
-  sessionVid: SESSION_VID,
 }
 
 /** Category view event with payload missing product_list */
-export const invalidCategoryViewMissingProductList: Omit<
-  TrackingEventInput,
-  'eventType'
-> = {
+export const invalidCategoryViewMissingProductList: TrackingEventInput = {
+  eventType: TrackingEventType.VIEW,
   metadataCode: 'category',
   localizedCatalogCode: LOCALIZED_CATALOG_CODE_FR,
   entityCode: 'cat_shoes',
-  sessionUid: SESSION_UID,
-  sessionVid: SESSION_VID,
   payload: JSON.stringify({}),
 }
 
 /** Display event missing context info */
-export const invalidDisplayMissingContext: Omit<
-  TrackingEventInput,
-  'eventType'
-> = {
+export const invalidDisplayMissingContext: TrackingEventInput = {
+  eventType: TrackingEventType.DISPLAY,
   metadataCode: 'product',
   localizedCatalogCode: LOCALIZED_CATALOG_CODE_FR,
-  sessionUid: SESSION_UID,
-  sessionVid: SESSION_VID,
   payload: JSON.stringify({
-    items: [{ entityCode: 'SDK-SHOE-001', display: { position: 1 } }],
+    items: [{ entityCode: 'SDK-SHOE-001', display: { position: 0 } }],
   }),
 }
 
 /** Display event with empty items array */
-export const invalidDisplayEmptyItems: Omit<TrackingEventInput, 'eventType'> = {
+export const invalidDisplayEmptyItems: TrackingEventInput = {
+  eventType: TrackingEventType.DISPLAY,
   metadataCode: 'product',
   localizedCatalogCode: LOCALIZED_CATALOG_CODE_FR,
   sourceEventType: TrackingEventType.VIEW,
   sourceMetadataCode: 'category',
   contextType: 'category',
   contextCode: 'cat_shoes',
-  sessionUid: SESSION_UID,
-  sessionVid: SESSION_VID,
   payload: JSON.stringify({ items: [] }),
 }
 
 /** Search event missing payload.search_query */
-export const invalidSearchMissingSearchQuery: Omit<
-  TrackingEventInput,
-  'eventType'
-> = {
+export const invalidSearchMissingSearchQuery: TrackingEventInput = {
+  eventType: TrackingEventType.SEARCH,
   metadataCode: 'product',
   localizedCatalogCode: LOCALIZED_CATALOG_CODE_FR,
-  sessionUid: SESSION_UID,
-  sessionVid: SESSION_VID,
   payload: JSON.stringify({
     product_list: { item_count: 1 },
   }),
 }
 
 /** Add to cart event missing entityCode */
-export const invalidAddToCartMissingEntityCode: Omit<
-  TrackingEventInput,
-  'eventType'
-> = {
+export const invalidAddToCartMissingEntityCode: TrackingEventInput = {
+  eventType: TrackingEventType.ADD_TO_CART,
   metadataCode: 'product',
   localizedCatalogCode: LOCALIZED_CATALOG_CODE_FR,
   sourceEventType: TrackingEventType.VIEW,
   sourceMetadataCode: 'product',
   contextType: 'search',
   contextCode: 'shoe',
-  sessionUid: SESSION_UID,
-  sessionVid: SESSION_VID,
   payload: JSON.stringify({ cart: { qty: 2 } }),
 }
 
 /** Order event missing payload.order */
-export const invalidOrderMissingOrder: Omit<TrackingEventInput, 'eventType'> = {
+export const invalidOrderMissingOrder: TrackingEventInput = {
+  eventType: TrackingEventType.ORDER,
   metadataCode: 'product',
   localizedCatalogCode: LOCALIZED_CATALOG_CODE_FR,
   sourceEventType: TrackingEventType.VIEW,
   sourceMetadataCode: 'product',
   contextType: 'search',
   contextCode: 'shoe',
-  sessionUid: SESSION_UID,
-  sessionVid: SESSION_VID,
   payload: JSON.stringify({
     items: [{ entityCode: 'SDK-SHOE-001', order: { price: 129.99 } }],
   }),
