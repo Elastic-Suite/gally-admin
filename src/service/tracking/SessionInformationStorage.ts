@@ -199,8 +199,5 @@ class SessionInformationCookieStorage extends SessionInformationStorage {
   }
 }
 
-export {
-  SessionInformationStorage,
-  SessionInformationCookieStorage,
-}
+export { SessionInformationStorage, SessionInformationCookieStorage }
 export type { SessionInformation }

@@ -14,12 +14,51 @@ import { TrackingEventType, TrackingEventValidator } from '../validator'
 import { ThrottledEventManager } from './tracking/ThrottledEventManager'
 import {
   SessionInformationStorage,
-  SessionInformationCookieStorage, SESSION_UID_COOKIE_NAME, SESSION_VID_COOKIE_NAME,
+  SessionInformationCookieStorage,
+  SESSION_UID_COOKIE_NAME,
+  SESSION_VID_COOKIE_NAME,
 } from './tracking/SessionInformationStorage'
 import {
   TrackingEventContextStorage,
   TrackingEventContextSessionStorage,
 } from './tracking/TrackingEventContextStorage'
+import {
+  EventQueueStorage,
+  EventQueueLocalStorage,
+} from './tracking/EventQueueStorage'
+
+declare global {
+  interface Window {
+    gallyEvent: TrackingEventManager & {
+      init: typeof TrackingEventManager.init
+    }
+  }
+}
+
+/**
+ * Module-level reference to the real instance, captured by the Proxy closure.
+ * Kept separate from window.gallyEvent so the Proxy can safely reference it.
+ */
+let instance: TrackingEventManager | null = null
+
+if (typeof window !== 'undefined') {
+  window.gallyEvent = new Proxy(
+    {} as TrackingEventManager & { init: typeof TrackingEventManager.init },
+    {
+      get(_target, prop: string | symbol) {
+        if (prop === 'init') {
+          return TrackingEventManager.init.bind(TrackingEventManager)
+        }
+        if (instance) {
+          return (instance as unknown as Record<string | symbol, unknown>)[prop]
+        }
+        throw new Error(
+          `TrackingEventManager: tracker not initialized — call TrackingEventManager.init() first`,
+        )
+      },
+    },
+  )
+}
 
 /**
  * Common tracking event properties shared between API response fields.
@@ -44,7 +83,10 @@ interface TrackingEventBase {
  * sessionUid and sessionVid are optional here as they can be
  * automatically populated from session storage.
  */
-type TrackingEventInput = Omit<TrackingEventBase, 'sessionUid' | 'sessionVid'> & {
+type TrackingEventInput = Omit<
+  TrackingEventBase,
+  'sessionUid' | 'sessionVid'
+> & {
   sessionUid?: string
   sessionVid?: string
 }
@@ -70,6 +112,18 @@ interface QueuedEvent {
   reject: (reason?: unknown) => void
 }
 
+interface TrackingEventManagerOptions {
+  baseUri: string
+  debounceMs?: number
+  throttleMs?: number
+  batchSize?: number
+  uidCookieMaxAge?: number
+  vidCookieMaxAge?: number
+  trackingEventContextStorage?: TrackingEventContextStorage
+  sessionInformationStorage?: SessionInformationStorage
+  eventQueueStorage?: EventQueueStorage
+}
+
 /**
 
   * Tracking event manager service. *
@@ -88,17 +142,28 @@ class TrackingEventManager {
   private readonly batchSize: number
   private trackingEventContextStorage: TrackingEventContextStorage
   private sessionInformationStorage: SessionInformationStorage
+  private readonly eventQueueStorage: EventQueueStorage
 
-  constructor(
+  static init(options: TrackingEventManagerOptions): TrackingEventManager {
+    if (instance) {
+      return instance
+    }
+    const { baseUri, ...optionsRest } = options
+    const config = new Configuration({ baseUri })
+    return new TrackingEventManager(config, optionsRest)
+  }
+
+  private constructor(
     configuration: Configuration,
     options?: {
       debounceMs?: number
       throttleMs?: number
       batchSize?: number
       uidCookieMaxAge?: number
-      vidCookieMaxAge ?: number
+      vidCookieMaxAge?: number
       trackingEventContextStorage?: TrackingEventContextStorage
       sessionInformationStorage?: SessionInformationStorage
+      eventQueueStorage?: EventQueueStorage
     },
   ) {
     this.client = new Client(configuration)
@@ -117,15 +182,22 @@ class TrackingEventManager {
         SESSION_UID_COOKIE_NAME,
         SESSION_VID_COOKIE_NAME,
         options?.uidCookieMaxAge,
-        options?.vidCookieMaxAge
+        options?.vidCookieMaxAge,
       )
+    this.eventQueueStorage =
+      options?.eventQueueStorage ?? new EventQueueLocalStorage()
+
+    this.register()
+
+    // Replay any events that were persisted but not sent before the last page unload
+    this.replayPersistedEvents()
   }
 
   /**
    * Push a tracking event to the Gally API.
    * Events are queued and batched for efficient processing.
    */
-  async pushEvent(input: TrackingEventInput): Promise<TrackingEventResponse> {
+  async push(input: TrackingEventInput): Promise<TrackingEventResponse> {
     // Populate session information if not already provided
     const { sessionUid, sessionVid } =
       this.sessionInformationStorage.getSessionInformation()
@@ -148,10 +220,45 @@ class TrackingEventManager {
     // Update the context if the event should change it
     this.trackingEventContextStorage.checkAndUpdateContext(input)
 
+    // Persist the event so it can be replayed if the page unloads before flush
+    this.eventQueueStorage.enqueue(input)
+
     return new Promise((resolve, reject) => {
       this.eventQueue.push({ input, resolve, reject })
       this.scheduleFlush()
     })
+  }
+
+  /**
+   * Register this instance as the active tracker.
+   */
+  private register(): void {
+    // eslint-disable-next-line @typescript-eslint/no-this-alias
+    instance = this
+  }
+
+  /**
+   * Replay events that were persisted in storage but never sent
+   * (e.g. due to a page reload before the queue was flushed).
+   * These events are fire-and-forget: no promise is returned to the caller.
+   */
+  private replayPersistedEvents(): void {
+    const pending = this.eventQueueStorage.dequeueAll()
+    if (pending.length === 0) {
+      return
+    }
+
+    for (const input of pending) {
+      this.eventQueue.push({
+        input,
+        resolve: () => {},
+        reject: (err) => {
+          console.warn('[Gally] Failed to replay persisted event:', err)
+        },
+      })
+    }
+
+    this.scheduleFlush()
   }
 
   /**
@@ -175,6 +282,9 @@ class TrackingEventManager {
       const batch = this.eventQueue.splice(0, this.batchSize)
       await this.processBatch(batch)
     }
+
+    // All events have been sent — clear the persistent queue
+    this.eventQueueStorage.clear()
   }
 
   /**
@@ -253,39 +363,6 @@ class TrackingEventManager {
   async flushPending(): Promise<void> {
     await this.flush()
   }
-
-  async pushViewEvent(
-    params: Omit<TrackingEventInput, 'eventType'>,
-  ): Promise<TrackingEventResponse> {
-    return this.pushEvent({ ...params, eventType: TrackingEventType.VIEW })
-  }
-
-  async pushDisplayEvent(
-    params: Omit<TrackingEventInput, 'eventType'>,
-  ): Promise<TrackingEventResponse> {
-    return this.pushEvent({ ...params, eventType: TrackingEventType.DISPLAY })
-  }
-
-  async pushSearchEvent(
-    params: Omit<TrackingEventInput, 'eventType'>,
-  ): Promise<TrackingEventResponse> {
-    return this.pushEvent({ ...params, eventType: TrackingEventType.SEARCH })
-  }
-
-  async pushAddToCartEvent(
-    params: Omit<TrackingEventInput, 'eventType'>,
-  ): Promise<TrackingEventResponse> {
-    return this.pushEvent({
-      ...params,
-      eventType: TrackingEventType.ADD_TO_CART,
-    })
-  }
-
-  async pushOrderEvent(
-    params: Omit<TrackingEventInput, 'eventType'>,
-  ): Promise<TrackingEventResponse> {
-    return this.pushEvent({ ...params, eventType: TrackingEventType.ORDER })
-  }
 }
 
 export { TrackingEventType, TrackingEventManager }
@@ -300,3 +377,7 @@ export {
   TrackingEventContextStorage,
   TrackingEventContextSessionStorage,
 } from './tracking/TrackingEventContextStorage'
+export {
+  EventQueueStorage,
+  EventQueueLocalStorage,
+} from './tracking/EventQueueStorage'
