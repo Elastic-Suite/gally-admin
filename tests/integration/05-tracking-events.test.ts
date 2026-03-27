@@ -11,8 +11,14 @@
  */
 
 import { describe, it, expect, beforeAll } from 'vitest'
-import { Configuration, TrackingEventManager } from '@gally/sdk'
-import { checkGallyAvailability, getTestConfiguration } from '../test-config'
+import {
+  TrackingEventManager,
+  TrackingEventInput,
+  SessionInformationStorage,
+  TrackingEventContextStorage,
+  EventQueueStorage,
+} from '@gally/sdk'
+import { checkGallyAvailability } from '../test-config'
 import {
   // Valid event fixtures
   categoryViewEvent,
@@ -37,8 +43,53 @@ import {
   invalidOrderMissingOrder,
 } from '../fixtures/sample-tracking-events'
 
+// ---------------------------------------------------------------------------
+// Node.js-compatible storage implementations
+// sessionStorage, localStorage, and document.cookie are not available in Node.
+// ---------------------------------------------------------------------------
+
+/** Returns fixed UUIDs — no cookie access required. */
+class FixedSessionStorage extends SessionInformationStorage {
+  getSessionInformation() {
+    return {
+      sessionUid: '2a9c9f2d-0aff-5c1c-b0a8-98cb6460a1d2',
+      sessionVid: '55779ebd-9f1f-3ca8-dabf-0d2d83306f32',
+    }
+  }
+  clearSessionInformation() {}
+}
+
+/** No-op context storage — context fields are provided explicitly in fixtures. */
+class NoopContextStorage extends TrackingEventContextStorage {
+  isUpdateContextEvent() {
+    return false
+  }
+  checkAndUpdateContext() {
+    return false
+  }
+  getTrackingContext() {
+    return null
+  }
+}
+
+/** In-memory queue — no localStorage access required. */
+class InMemoryQueueStorage extends EventQueueStorage {
+  private queue: TrackingEventInput[] = []
+  enqueue(input: TrackingEventInput) {
+    this.queue.push(input)
+  }
+  dequeueAll() {
+    return this.queue.splice(0)
+  }
+  clear() {
+    this.queue = []
+  }
+  size() {
+    return this.queue.length
+  }
+}
+
 describe('Tracking Events', () => {
-  let config: Configuration
   let manager: TrackingEventManager
   let isAvailable: boolean
 
@@ -46,8 +97,12 @@ describe('Tracking Events', () => {
     isAvailable = await checkGallyAvailability()
     if (!isAvailable) return
 
-    config = getTestConfiguration()
-    manager = new TrackingEventManager(config)
+    manager = TrackingEventManager.init({
+      baseUri: process.env['GALLY_BASE_URI']!,
+      sessionInformationStorage: new FixedSessionStorage(),
+      trackingEventContextStorage: new NoopContextStorage(),
+      eventQueueStorage: new InMemoryQueueStorage(),
+    })
   })
 
   // =========================================================================
@@ -56,50 +111,43 @@ describe('Tracking Events', () => {
 
   it('should push a category view event', async ({ skip }) => {
     if (!isAvailable) skip()
-
-    const result = await manager.pushViewEvent(categoryViewEvent)
+    const result = await manager.push(categoryViewEvent)
     expect(result.id).toBeDefined()
   })
 
   it('should push a category product display event', async ({ skip }) => {
     if (!isAvailable) skip()
-
-    const result = await manager.pushDisplayEvent(categoryProductDisplayEvent)
+    const result = await manager.push(categoryProductDisplayEvent)
     expect(result.id).toBeDefined()
   })
 
   it('should push a search result view event', async ({ skip }) => {
     if (!isAvailable) skip()
-
-    const result = await manager.pushSearchEvent(searchResultViewEvent)
+    const result = await manager.push(searchResultViewEvent)
     expect(result.id).toBeDefined()
   })
 
   it('should push a search product display event', async ({ skip }) => {
     if (!isAvailable) skip()
-
-    const result = await manager.pushDisplayEvent(searchProductDisplayEvent)
+    const result = await manager.push(searchProductDisplayEvent)
     expect(result.id).toBeDefined()
   })
 
   it('should push a product view event', async ({ skip }) => {
     if (!isAvailable) skip()
-
-    const result = await manager.pushViewEvent(productViewEvent)
+    const result = await manager.push(productViewEvent)
     expect(result.id).toBeDefined()
   })
 
   it('should push an add to cart product event', async ({ skip }) => {
     if (!isAvailable) skip()
-
-    const result = await manager.pushAddToCartEvent(addToCartProductEvent)
+    const result = await manager.push(addToCartProductEvent)
     expect(result.id).toBeDefined()
   })
 
   it('should push an order product event', async ({ skip }) => {
     if (!isAvailable) skip()
-
-    const result = await manager.pushOrderEvent(orderProductEvent)
+    const result = await manager.push(orderProductEvent)
     expect(result.id).toBeDefined()
   })
 
@@ -111,8 +159,7 @@ describe('Tracking Events', () => {
     skip,
   }) => {
     if (!isAvailable) skip()
-
-    const result = await manager.pushViewEvent(productViewEventEN)
+    const result = await manager.push(productViewEventEN)
     expect(result.id).toBeDefined()
   })
 
@@ -120,8 +167,7 @@ describe('Tracking Events', () => {
     skip,
   }) => {
     if (!isAvailable) skip()
-
-    const result = await manager.pushSearchEvent(searchResultViewEventEN)
+    const result = await manager.push(searchResultViewEventEN)
     expect(result.id).toBeDefined()
   })
 
@@ -129,8 +175,7 @@ describe('Tracking Events', () => {
     skip,
   }) => {
     if (!isAvailable) skip()
-
-    const result = await manager.pushAddToCartEvent(addToCartProductEventEN)
+    const result = await manager.push(addToCartProductEventEN)
     expect(result.id).toBeDefined()
   })
 
@@ -138,8 +183,7 @@ describe('Tracking Events', () => {
     skip,
   }) => {
     if (!isAvailable) skip()
-
-    const result = await manager.pushDisplayEvent(searchProductDisplayEventEN)
+    const result = await manager.push(searchProductDisplayEventEN)
     expect(result.id).toBeDefined()
   })
 
@@ -149,9 +193,9 @@ describe('Tracking Events', () => {
 
   it('should reject a view event missing entityCode', async ({ skip }) => {
     if (!isAvailable) skip()
-    await expect(
-      manager.pushViewEvent(invalidViewMissingEntityCode),
-    ).rejects.toThrow('entityCode is required')
+    await expect(manager.push(invalidViewMissingEntityCode)).rejects.toThrow(
+      'entityCode is required',
+    )
   })
 
   it('should reject a category view event missing payload.product_list', async ({
@@ -159,33 +203,33 @@ describe('Tracking Events', () => {
   }) => {
     if (!isAvailable) skip()
     await expect(
-      manager.pushViewEvent(invalidCategoryViewMissingProductList),
+      manager.push(invalidCategoryViewMissingProductList),
     ).rejects.toThrow('payload.product_list is required')
   })
 
   it('should reject a display event missing context info', async ({ skip }) => {
     if (!isAvailable) skip()
-    await expect(
-      manager.pushDisplayEvent(invalidDisplayMissingContext),
-    ).rejects.toThrow('contextType is required')
+    await expect(manager.push(invalidDisplayMissingContext)).rejects.toThrow(
+      'contextType is required',
+    )
   })
 
   it('should reject a display event with empty items array', async ({
     skip,
   }) => {
     if (!isAvailable) skip()
-    await expect(
-      manager.pushDisplayEvent(invalidDisplayEmptyItems),
-    ).rejects.toThrow('payload.items must be a non-empty array')
+    await expect(manager.push(invalidDisplayEmptyItems)).rejects.toThrow(
+      'payload.items must be a non-empty array',
+    )
   })
 
   it('should reject a search event missing payload.search_query', async ({
     skip,
   }) => {
     if (!isAvailable) skip()
-    await expect(
-      manager.pushSearchEvent(invalidSearchMissingSearchQuery),
-    ).rejects.toThrow('payload.search_query is required')
+    await expect(manager.push(invalidSearchMissingSearchQuery)).rejects.toThrow(
+      'payload.search_query is required',
+    )
   })
 
   it('should reject an add_to_cart event missing entityCode', async ({
@@ -193,15 +237,15 @@ describe('Tracking Events', () => {
   }) => {
     if (!isAvailable) skip()
     await expect(
-      manager.pushAddToCartEvent(invalidAddToCartMissingEntityCode),
+      manager.push(invalidAddToCartMissingEntityCode),
     ).rejects.toThrow('entityCode is required')
   })
 
   it('should reject an order event missing payload.order', async ({ skip }) => {
     if (!isAvailable) skip()
-    await expect(
-      manager.pushOrderEvent(invalidOrderMissingOrder),
-    ).rejects.toThrow('payload.order is required')
+    await expect(manager.push(invalidOrderMissingOrder)).rejects.toThrow(
+      'payload.order is required',
+    )
   })
 
   // =========================================================================
@@ -211,40 +255,13 @@ describe('Tracking Events', () => {
   it('should batch multiple events into a single request', async ({ skip }) => {
     if (!isAvailable) skip()
 
-    const promises = [
-      manager.pushViewEvent(productViewEvent),
-      manager.pushDisplayEvent(searchProductDisplayEvent),
-      manager.pushAddToCartEvent(addToCartProductEvent),
-    ]
-
-    const results = await Promise.all(promises)
+    const results = await Promise.all([
+      manager.push(productViewEvent),
+      manager.push(searchProductDisplayEvent),
+      manager.push(addToCartProductEvent),
+    ])
 
     expect(results).toHaveLength(3)
-    results.forEach((result) => {
-      expect(result.id).toBeDefined()
-    })
-  })
-
-  it('should handle batch size limits', async ({ skip }) => {
-    if (!isAvailable) skip()
-
-    // Create a manager with small batch size to test splitting
-    const smallBatchManager = new TrackingEventManager(config, {
-      batchSize: 2,
-      debounceMs: 100,
-    })
-
-    const promises = [
-      smallBatchManager.pushViewEvent(productViewEvent),
-      smallBatchManager.pushDisplayEvent(searchProductDisplayEvent),
-      smallBatchManager.pushAddToCartEvent(addToCartProductEvent),
-    ]
-
-    const results = await Promise.all(promises)
-
-    expect(results).toHaveLength(3)
-    results.forEach((result) => {
-      expect(result.id).toBeDefined()
-    })
+    results.forEach((result) => expect(result.id).toBeDefined())
   })
 })

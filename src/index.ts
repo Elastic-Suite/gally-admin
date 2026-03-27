@@ -69,6 +69,9 @@ export {
   SearchManager,
   StructureSynchronizer,
   TrackingEventManager,
+  SessionInformationStorage,
+  TrackingEventContextStorage,
+  EventQueueStorage,
 } from './service'
 export { TrackingEventValidator, TrackingEventType } from './validator'
 export type { TrackingEventInput, TrackingEventResponse } from './service'
