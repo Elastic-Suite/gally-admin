@@ -106,12 +106,11 @@ import { TrackingEventManager } from '@gally/sdk'
 
 const trackingManager = new TrackingEventManager(config)
 
-await trackingManager.pushViewEvent({
+await tracker.push({
+  eventType: TrackingEventType.VIEW,
   metadataCode: 'product',
   localizedCatalogCode: 'my_shop_fr',
   entityCode: 'PROD-001',
-  sessionUid: 'user-session-id',
-  sessionVid: 'visitor-id',
 })
 ```
 
