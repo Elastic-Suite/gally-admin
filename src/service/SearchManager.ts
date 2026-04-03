@@ -52,17 +52,19 @@ export class SearchManager {
     )
   }
 
-  normalizeConfiguration(configuration: SearchConfiguration): Configuration {
+  protected normalizeConfiguration(
+    configuration: SearchConfiguration,
+  ): Configuration {
     return configuration instanceof Configuration
       ? configuration
       : new Configuration(configuration)
   }
 
-  normalizeMetadata(metadata: SearchRequestMetadata): Metadata {
+  protected normalizeMetadata(metadata: SearchRequestMetadata): Metadata {
     return metadata instanceof Metadata ? metadata : new Metadata(metadata)
   }
 
-  normalizeRequest(request: SearchRequest): Request {
+  protected normalizeRequest(request: SearchRequest): Request {
     if (request instanceof Request) {
       return request
     }
@@ -120,7 +122,7 @@ export class SearchManager {
     metadata = this.normalizeMetadata(metadata)
     return this.sourceFieldRepository.findBy({
       'metadata.entity': metadata.getEntity(),
-      type: SourceField.ENTITY_CODE === 'source_fields' ? 'select' : 'select',
+      type: 'select',
     })
   }
 
