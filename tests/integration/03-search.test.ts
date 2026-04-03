@@ -250,4 +250,112 @@ describe('Search', () => {
       )
     }
   })
+
+  describe('Metadata Normalization Feature', () => {
+    it('should accept Metadata object in getFilterableSourceField (backward compatibility)', async ({
+      skip,
+    }) => {
+      if (!isAvailable) skip()
+
+      const sourceFields =
+        await searchManager.getFilterableSourceField(productMetadata)
+
+      expect(sourceFields).toBeInstanceOf(Map)
+      console.log(
+        `  Filterable fields (Metadata object): ${sourceFields.size} fields`,
+      )
+    })
+
+    it('should accept string in getFilterableSourceField (new feature)', async ({
+      skip,
+    }) => {
+      if (!isAvailable) skip()
+
+      const sourceFields =
+        await searchManager.getFilterableSourceField('product')
+
+      expect(sourceFields).toBeInstanceOf(Map)
+      console.log(`  Filterable fields (string): ${sourceFields.size} fields`)
+    })
+
+    it('should accept Metadata object in getSelectSourceField (backward compatibility)', async ({
+      skip,
+    }) => {
+      if (!isAvailable) skip()
+
+      const sourceFields =
+        await searchManager.getSelectSourceField(productMetadata)
+
+      expect(sourceFields).toBeInstanceOf(Map)
+      console.log(
+        `  Select fields (Metadata object): ${sourceFields.size} fields`,
+      )
+    })
+
+    it('should accept string in getSelectSourceField (new feature)', async ({
+      skip,
+    }) => {
+      if (!isAvailable) skip()
+
+      const sourceFields = await searchManager.getSelectSourceField('product')
+
+      expect(sourceFields).toBeInstanceOf(Map)
+      console.log(`  Select fields (string): ${sourceFields.size} fields`)
+    })
+
+    it('should accept string in search with options (new feature)', async ({
+      skip,
+    }) => {
+      if (!isAvailable) skip()
+
+      const response = await searchManager.search({
+        localizedCatalog: sampleLocalizedCatalogFr,
+        metadata: 'product', // String
+        isAutocomplete: false,
+        selectedFields: ['id', 'sku', 'name'],
+        currentPage: 1,
+        pageSize: 5,
+        filters: [],
+      })
+
+      expect(response.getTotalCount()).toBeGreaterThanOrEqual(1)
+      expect(response.getCollection().length).toBeGreaterThanOrEqual(1)
+
+      console.log(`  search() with string: ${response.getTotalCount()} results`)
+    })
+
+    it('should work with category metadata as string', async ({ skip }) => {
+      if (!isAvailable) skip()
+
+      const sourceFields =
+        await searchManager.getFilterableSourceField('category')
+
+      expect(sourceFields).toBeInstanceOf(Map)
+      console.log(
+        `  Category filterable fields (string): ${sourceFields.size} fields`,
+      )
+    })
+
+    it('should handle search with filters using string metadata', async ({
+      skip,
+    }) => {
+      if (!isAvailable) skip()
+
+      const response = await searchManager.search({
+        localizedCatalog: sampleLocalizedCatalogFr,
+        metadata: 'product', // String metadata
+        isAutocomplete: false,
+        selectedFields: ['id', 'sku', 'name'],
+        currentPage: 1,
+        pageSize: 10,
+        searchQuery: 'Nike',
+        filters: [],
+      })
+
+      expect(response.getTotalCount()).toBeGreaterThanOrEqual(0)
+      console.log(
+        `  Search with string metadata and filters: ${response.getTotalCount()} results`,
+      )
+    })
+  })
 })

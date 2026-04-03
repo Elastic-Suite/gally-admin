@@ -159,6 +159,7 @@ class TrackingEventManager {
       debounceMs?: number
       throttleMs?: number
       batchSize?: number
+      // TODO: change snippet to reflect cookie params
       uidCookieMaxAge?: number
       vidCookieMaxAge?: number
       trackingEventContextStorage?: TrackingEventContextStorage

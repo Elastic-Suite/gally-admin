@@ -32,64 +32,78 @@ import {
   invalidOrderMissingOrder,
 } from '../fixtures/sample-tracking-events'
 
+// Session identifiers required for all tracking events
+const SESSION_UID = 'test-uid-123'
+const SESSION_VID = 'test-vid-456'
+
+/**
+ * Helper function to add session information to tracking events.
+ * Makes test code cleaner and more maintainable.
+ */
+const withSessionInfos = <T extends Record<string, any>>(event: T): T => ({
+  ...event,
+  sessionUid: SESSION_UID,
+  sessionVid: SESSION_VID,
+})
+
 describe('TrackingEventValidator', () => {
   // =========================================================================
   // Happy-path tests — one per integration test case
   // =========================================================================
 
   it('should validate a category view event', () => {
-    const event: TrackingEventInput = {
+    const event: TrackingEventInput = withSessionInfos({
       ...categoryViewEvent,
       eventType: TrackingEventType.VIEW,
-    }
+    })
     expect(() => TrackingEventValidator.validate(event)).not.toThrow()
   })
 
   it('should validate a category product display event', () => {
-    const event: TrackingEventInput = {
+    const event: TrackingEventInput = withSessionInfos({
       ...categoryProductDisplayEvent,
       eventType: TrackingEventType.DISPLAY,
-    }
+    })
     expect(() => TrackingEventValidator.validate(event)).not.toThrow()
   })
 
   it('should validate a search result view event', () => {
-    const event: TrackingEventInput = {
+    const event: TrackingEventInput = withSessionInfos({
       ...searchResultViewEvent,
       eventType: TrackingEventType.SEARCH,
-    }
+    })
     expect(() => TrackingEventValidator.validate(event)).not.toThrow()
   })
 
   it('should validate a search product display event', () => {
-    const event: TrackingEventInput = {
+    const event: TrackingEventInput = withSessionInfos({
       ...searchProductDisplayEvent,
       eventType: TrackingEventType.DISPLAY,
-    }
+    })
     expect(() => TrackingEventValidator.validate(event)).not.toThrow()
   })
 
   it('should validate a product view event', () => {
-    const event: TrackingEventInput = {
+    const event: TrackingEventInput = withSessionInfos({
       ...productViewEvent,
       eventType: TrackingEventType.VIEW,
-    }
+    })
     expect(() => TrackingEventValidator.validate(event)).not.toThrow()
   })
 
   it('should validate an add to cart product event', () => {
-    const event: TrackingEventInput = {
+    const event: TrackingEventInput = withSessionInfos({
       ...addToCartProductEvent,
       eventType: TrackingEventType.ADD_TO_CART,
-    }
+    })
     expect(() => TrackingEventValidator.validate(event)).not.toThrow()
   })
 
   it('should validate an order product event', () => {
-    const event: TrackingEventInput = {
+    const event: TrackingEventInput = withSessionInfos({
       ...orderProductEvent,
       eventType: TrackingEventType.ORDER,
-    }
+    })
     expect(() => TrackingEventValidator.validate(event)).not.toThrow()
   })
 
@@ -98,77 +112,77 @@ describe('TrackingEventValidator', () => {
   // =========================================================================
 
   it('should reject a view event missing entityCode', () => {
-    const event: TrackingEventInput = {
+    const event: TrackingEventInput = withSessionInfos({
       ...invalidViewMissingEntityCode,
       eventType: TrackingEventType.VIEW,
-    }
+    })
     expect(() => TrackingEventValidator.validate(event)).toThrow(
       'entityCode is required for view event',
     )
   })
 
   it('should reject a category view event missing payload.product_list', () => {
-    const event: TrackingEventInput = {
+    const event: TrackingEventInput = withSessionInfos({
       ...invalidCategoryViewMissingProductList,
       eventType: TrackingEventType.VIEW,
-    }
+    })
     expect(() => TrackingEventValidator.validate(event)).toThrow(
       'payload.product_list is required for view event',
     )
   })
 
   it('should reject a display event missing context info', () => {
-    const event: TrackingEventInput = {
+    const event: TrackingEventInput = withSessionInfos({
       ...invalidDisplayMissingContext,
       eventType: TrackingEventType.DISPLAY,
-    }
+    })
     expect(() => TrackingEventValidator.validate(event)).toThrow(
       'contextType is required for display event',
     )
   })
 
   it('should reject a display event with empty items array', () => {
-    const event: TrackingEventInput = {
+    const event: TrackingEventInput = withSessionInfos({
       ...invalidDisplayEmptyItems,
       eventType: TrackingEventType.DISPLAY,
-    }
+    })
     expect(() => TrackingEventValidator.validate(event)).toThrow(
       'payload.items must be a non-empty array for display event',
     )
   })
 
   it('should reject a search event missing payload.search_query', () => {
-    const event: TrackingEventInput = {
+    const event: TrackingEventInput = withSessionInfos({
       ...invalidSearchMissingSearchQuery,
       eventType: TrackingEventType.SEARCH,
-    }
+    })
     expect(() => TrackingEventValidator.validate(event)).toThrow(
       'payload.search_query is required for search event',
     )
   })
 
   it('should reject an add_to_cart event missing entityCode', () => {
-    const event: TrackingEventInput = {
+    const event: TrackingEventInput = withSessionInfos({
       ...invalidAddToCartMissingEntityCode,
       eventType: TrackingEventType.ADD_TO_CART,
-    }
+    })
     expect(() => TrackingEventValidator.validate(event)).toThrow(
       'entityCode is required for add_to_cart event',
     )
   })
 
   it('should reject an order event missing payload.order', () => {
-    const event: TrackingEventInput = {
+    const event: TrackingEventInput = withSessionInfos({
       ...invalidOrderMissingOrder,
       eventType: TrackingEventType.ORDER,
-    }
+    })
     expect(() => TrackingEventValidator.validate(event)).toThrow(
       'payload.order is required for order event',
     )
   })
 
   it('should reject a category view with filter missing name', () => {
-    const event: TrackingEventInput = {
+    const event: TrackingEventInput = withSessionInfos({
       ...categoryViewEvent,
       eventType: TrackingEventType.VIEW,
       payload: JSON.stringify({
@@ -181,14 +195,14 @@ describe('TrackingEventValidator', () => {
           filters: [{ value: '47' }],
         },
       }),
-    }
+    })
     expect(() => TrackingEventValidator.validate(event)).toThrow(
       'payload.product_list.filters[0].name is required for view event',
     )
   })
 
   it('should reject a search result with filter having non-string value', () => {
-    const event: TrackingEventInput = {
+    const event: TrackingEventInput = withSessionInfos({
       ...searchResultViewEvent,
       eventType: TrackingEventType.SEARCH,
       payload: JSON.stringify({
@@ -205,7 +219,7 @@ describe('TrackingEventValidator', () => {
           filters: [{ name: 'fashion_material__value', value: 47 }],
         },
       }),
-    }
+    })
     expect(() => TrackingEventValidator.validate(event)).toThrow(
       'payload.product_list.filters[0].value must be of type string for search event',
     )
@@ -216,21 +230,21 @@ describe('TrackingEventValidator', () => {
   // =========================================================================
 
   it('should reject unsupported event type', () => {
-    const event: TrackingEventInput = {
+    const event: TrackingEventInput = withSessionInfos({
       ...categoryViewEvent,
       eventType: 'invalid_type' as any,
-    }
+    })
     expect(() => TrackingEventValidator.validate(event)).toThrow(
       'Unsupported event type: invalid_type',
     )
   })
 
   it('should reject event with invalid JSON payload', () => {
-    const event: TrackingEventInput = {
+    const event: TrackingEventInput = withSessionInfos({
       ...categoryViewEvent,
       eventType: TrackingEventType.VIEW,
       payload: '{invalid json}',
-    }
+    })
     expect(() => TrackingEventValidator.validate(event)).toThrow(
       'payload must be a valid JSON string',
     )
