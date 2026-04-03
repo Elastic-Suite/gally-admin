@@ -5,6 +5,8 @@ dist/
 .env.test
 .DS_Store
 coverage/
+example/
+.idea
 
 # Generated test files
 tests/**/*.test.js

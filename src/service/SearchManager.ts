@@ -12,14 +12,24 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { Client } from '../client/Client'
-import { Configuration } from '../client/Configuration'
+import {
+  BrowserConfigurationOptions,
+  Configuration,
+} from '../client/Configuration'
 import { TokenCacheManager } from '../client/TokenCacheManager'
 import { Metadata } from '../entity/Metadata'
 import { SourceField } from '../entity/SourceField'
-import { Request } from '../graphql/Request'
+import { Request, RequestOptions } from '../graphql/Request'
 import { Response } from '../graphql/Response'
 import { MetadataRepository } from '../repository/MetadataRepository'
 import { SourceFieldRepository } from '../repository/SourceFieldRepository'
+
+type SearchConfiguration = Configuration | BrowserConfigurationOptions
+type SearchRequestMetadata = string | Metadata
+type SearchRequestOptions = Omit<RequestOptions, 'metadata'> & {
+  metadata: SearchRequestMetadata
+}
+type SearchRequest = Request | SearchRequestOptions
 
 /**
  * Search manager service.
@@ -30,15 +40,36 @@ export class SearchManager {
   protected readonly sourceFieldRepository: SourceFieldRepository
 
   constructor(
-    configuration: Configuration,
+    configuration: SearchConfiguration,
     tokenCacheManager?: TokenCacheManager,
   ) {
+    configuration = this.normalizeConfiguration(configuration)
     const client = new Client(configuration, tokenCacheManager)
     this.client = client
     this.sourceFieldRepository = new SourceFieldRepository(
       client,
       new MetadataRepository(client),
     )
+  }
+
+  normalizeConfiguration(configuration: SearchConfiguration): Configuration {
+    return configuration instanceof Configuration
+      ? configuration
+      : new Configuration(configuration)
+  }
+
+  normalizeMetadata(metadata: SearchRequestMetadata): Metadata {
+    return metadata instanceof Metadata ? metadata : new Metadata(metadata)
+  }
+
+  normalizeRequest(request: SearchRequest): Request {
+    if (request instanceof Request) {
+      return request
+    }
+    return new Request({
+      ...request,
+      metadata: this.normalizeMetadata(request.metadata),
+    })
   }
 
   async getProductSortingOptions(): Promise<SourceField[]> {
@@ -74,8 +105,9 @@ export class SearchManager {
   }
 
   async getFilterableSourceField(
-    metadata: Metadata,
+    metadata: SearchRequestMetadata,
   ): Promise<Map<string, SourceField>> {
+    metadata = this.normalizeMetadata(metadata)
     return this.sourceFieldRepository.findBy({
       'metadata.entity': metadata.getEntity(),
       isFilterable: true,
@@ -83,17 +115,18 @@ export class SearchManager {
   }
 
   async getSelectSourceField(
-    metadata: Metadata,
+    metadata: SearchRequestMetadata,
   ): Promise<Map<string, SourceField>> {
+    metadata = this.normalizeMetadata(metadata)
     return this.sourceFieldRepository.findBy({
       'metadata.entity': metadata.getEntity(),
       type: SourceField.ENTITY_CODE === 'source_fields' ? 'select' : 'select',
     })
   }
 
-  async search(request: Request): Promise<Response> {
+  async search(request: SearchRequest): Promise<Response> {
+    request = this.normalizeRequest(request)
     const priceGroup = request.getPriceGroupId()
-
     const response = await this.client.graphql(
       request.buildSearchQuery(),
       request.getVariables(),
@@ -105,9 +138,10 @@ export class SearchManager {
   }
 
   async viewMoreProductFilterOption(
-    request: Request,
+    request: SearchRequest,
     aggregationField: string,
   ): Promise<any[]> {
+    request = this.normalizeRequest(request)
     const query = `
       query viewMoreProductFacetOptions (
         $localizedCatalog: String!,
