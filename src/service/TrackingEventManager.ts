@@ -249,13 +249,7 @@ class TrackingEventManager {
     }
 
     for (const input of pending) {
-      this.eventQueue.push({
-        input,
-        resolve: () => {},
-        reject: (err) => {
-          console.warn('[Gally] Failed to replay persisted event:', err)
-        },
-      })
+      this.push(input)
     }
 
     this.scheduleFlush()
