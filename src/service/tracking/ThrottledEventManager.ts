@@ -13,7 +13,7 @@
  * Manages debouncing and throttling for event flushing.
  */
 class ThrottledEventManager {
-  private debounceTimer: NodeJS.Timeout | null = null
+  private debounceTimer: number | null = null
   private lastFlushTime: number = 0
   private readonly debounceMs: number
   private readonly throttleMs: number
@@ -48,7 +48,7 @@ class ThrottledEventManager {
       this.executeFlush()
     } else {
       // Schedule debounced flush
-      this.debounceTimer = setTimeout(() => {
+      this.debounceTimer = +setTimeout(() => {
         this.executeFlush()
       }, this.debounceMs)
     }

@@ -12,10 +12,18 @@
 import { TrackingEventType } from '../../validator'
 import type { TrackingEventInput } from '../TrackingEventManager'
 
-type TrackingEventContext = Pick<
+type PartialTrackingEventContext = Pick<
   TrackingEventInput,
-  'contextType' | 'contextCode' | 'sourceEventType' | 'sourceMetadataCode'
+  'contextType' | 'contextCode'
 >
+
+type PartialTrackingEventSource = Pick<
+  TrackingEventInput,
+  'sourceEventType' | 'sourceMetadataCode'
+>
+
+type TrackingEventContext = PartialTrackingEventContext &
+  PartialTrackingEventSource
 
 type SearchPayload = Record<'search_query', { query_text: string }>
 
@@ -23,6 +31,9 @@ abstract class TrackingEventContextStorage {
   abstract isUpdateContextEvent(input: TrackingEventInput | null): boolean
   abstract checkAndUpdateContext(input: TrackingEventInput | null): boolean
   abstract getTrackingContext(): TrackingEventContext | null
+  abstract getSelfContext(
+    input: TrackingEventInput | null,
+  ): PartialTrackingEventContext | null
 }
 
 const TRACKING_CONTEXT_KEY = 'gally-tracking-context'
@@ -42,6 +53,25 @@ class TrackingEventContextSessionStorage extends TrackingEventContextStorage {
     return this.isCategoryViewEvent(input) || this.isSearchEvent(input)
   }
 
+  getUpdatedEventContext(input: TrackingEventInput) {
+    return {
+      contextType: this.isSearchEvent(input) ? 'search' : 'category',
+      contextCode: this.isSearchEvent(input)
+        ? (JSON.parse(<string>input?.payload) as SearchPayload).search_query
+            ?.query_text
+        : input.entityCode,
+    }
+  }
+
+  getSelfContext(
+    input: TrackingEventInput,
+  ): PartialTrackingEventContext | null {
+    if (this.isUpdateContextEvent(input)) {
+      return this.getUpdatedEventContext(input)
+    }
+    return null
+  }
+
   isUpdateContextSourceEvent(input: TrackingEventInput) {
     return ![TrackingEventType.DISPLAY, TrackingEventType.ADD_TO_CART].includes(
       input?.eventType,
@@ -54,14 +84,10 @@ class TrackingEventContextSessionStorage extends TrackingEventContextStorage {
     }
 
     const existingContext = this.getTrackingContext()
-    const newContext: TrackingEventContext =
+    let newContext: TrackingEventContext =
       JSON.parse(JSON.stringify(existingContext)) ?? {}
     if (this.isUpdateContextEvent(input)) {
-      newContext.contextType = this.isSearchEvent(input) ? 'search' : 'category'
-      newContext.contextCode = this.isSearchEvent(input)
-        ? (JSON.parse(<string>input?.payload) as SearchPayload).search_query
-            ?.query_text
-        : input.entityCode
+      newContext = { ...newContext, ...this.getUpdatedEventContext(input) }
     }
 
     if (this.isUpdateContextSourceEvent(input)) {
@@ -80,14 +106,19 @@ class TrackingEventContextSessionStorage extends TrackingEventContextStorage {
   }
 
   getTrackingContext(): TrackingEventContext | null {
-    let currentContext = null
-    try {
-      currentContext = JSON.parse(
-        sessionStorage.getItem(TRACKING_CONTEXT_KEY) ?? '{}',
-      )
-    } finally {
+    const rawContext = sessionStorage.getItem(TRACKING_CONTEXT_KEY)
+    if (!rawContext) {
+      return null
     }
-    return currentContext ? (currentContext as TrackingEventContext) : null
+
+    try {
+      const currentContext = JSON.parse(rawContext)
+      return currentContext && Object.keys(currentContext).length > 0
+        ? (currentContext as TrackingEventContext)
+        : null
+    } catch {
+      return null
+    }
   }
 }
 

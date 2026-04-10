@@ -16,8 +16,11 @@ import {
   TrackingEventInput,
   SessionInformationStorage,
   TrackingEventContextStorage,
+  TrackingEventContextSessionStorage,
   EventQueueStorage,
+  TrackingEventType,
 } from '@gally/sdk'
+import { vi } from 'vitest'
 import { checkGallyAvailability } from '../test-config'
 import {
   // Valid event fixtures
@@ -59,6 +62,27 @@ class FixedSessionStorage extends SessionInformationStorage {
   clearSessionInformation() {}
 }
 
+// ---------------------------------------------------------------------------
+// Mock sessionStorage for Node.js
+// to persist context in some tests for context auto injection
+// ---------------------------------------------------------------------------
+
+const storage: Record<string, string> = {}
+global.sessionStorage = {
+  getItem: (key: string) => storage[key] || null,
+  setItem: (key: string, value: string) => {
+    storage[key] = value
+  },
+  removeItem: (key: string) => {
+    delete storage[key]
+  },
+  clear: () => {
+    Object.keys(storage).forEach((k) => delete storage[k])
+  },
+  length: 0, // Not fully accurate but enough for our needs
+  key: (index: number) => Object.keys(storage)[index] || null,
+} as unknown as Storage
+
 /** No-op context storage — context fields are provided explicitly in fixtures. */
 class NoopContextStorage extends TrackingEventContextStorage {
   isUpdateContextEvent() {
@@ -68,6 +92,9 @@ class NoopContextStorage extends TrackingEventContextStorage {
     return false
   }
   getTrackingContext() {
+    return null
+  }
+  getSelfContext() {
     return null
   }
 }
@@ -263,5 +290,126 @@ describe('Tracking Events', () => {
 
     expect(results).toHaveLength(3)
     results.forEach((result) => expect(result.id).toBeDefined())
+  })
+
+  // =========================================================================
+  // Context Injection tests
+  // =========================================================================
+
+  describe('Context Injection', () => {
+    beforeAll(() => {
+      // Re-initialize manager with real context storage for these tests
+      TrackingEventManager.resetInstance()
+      manager = TrackingEventManager.init({
+        baseUri: process.env['GALLY_BASE_URI']!,
+        sessionInformationStorage: new FixedSessionStorage(),
+        trackingEventContextStorage: new TrackingEventContextSessionStorage(),
+        eventQueueStorage: new InMemoryQueueStorage(),
+      })
+    })
+
+    it('should inject category context into subsequent display events', async ({
+      skip,
+    }) => {
+      if (!isAvailable) skip()
+
+      sessionStorage.clear()
+
+      // 1. Push category view (updates context)
+      await manager.push({
+        ...categoryViewEvent,
+        entityCode: 'cat_shoes_test',
+      })
+
+      // 2. Push display WITHOUT context
+      const displayInputWithoutContext: TrackingEventInput = {
+        eventType: TrackingEventType.DISPLAY,
+        metadataCode: 'product',
+        localizedCatalogCode: 'fr_FR',
+        payload: JSON.stringify({
+          items: [{ entityCode: 'p1', display: { position: 1 } }],
+        }),
+      }
+
+      // We spy on the client to see what is actually sent
+      const spy = vi.spyOn((manager as any).client, 'graphql')
+
+      await manager.push(displayInputWithoutContext)
+
+      // The actual input sent to GraphQL should have context injected
+      const lastCall = spy.mock.calls[spy.mock.calls.length - 1]
+      const variables = lastCall![1] as any
+      const sentInput = variables.input0
+
+      expect(sentInput.contextType).toBe('category')
+      expect(sentInput.contextCode).toBe('cat_shoes_test')
+      expect(sentInput.sourceEventType).toBe(TrackingEventType.VIEW)
+      expect(sentInput.sourceMetadataCode).toBe('category')
+
+      spy.mockRestore()
+    })
+
+    it('should inject search context into subsequent display events', async ({
+      skip,
+    }) => {
+      if (!isAvailable) skip()
+
+      sessionStorage.clear()
+
+      // 1. Push search event (updates context with query)
+      await manager.push(searchResultViewEvent)
+
+      // 2. Push display WITHOUT context
+      const displayInputWithoutContext: TrackingEventInput = {
+        eventType: TrackingEventType.DISPLAY,
+        metadataCode: 'product',
+        localizedCatalogCode: 'fr_FR',
+        payload: JSON.stringify({
+          items: [{ entityCode: 'p2', display: { position: 1 } }],
+        }),
+      }
+
+      const spy = vi.spyOn((manager as any).client, 'graphql')
+      await manager.push(displayInputWithoutContext)
+
+      const lastCall = spy.mock.calls[spy.mock.calls.length - 1]
+      const variables = lastCall![1] as any
+      const sentInput = variables.input0
+
+      expect(sentInput.contextType).toBe('search')
+      expect(sentInput.contextCode).toBe('shoe') // From fixture
+      expect(sentInput.sourceEventType).toBe(TrackingEventType.SEARCH)
+      expect(sentInput.sourceMetadataCode).toBe('product')
+
+      spy.mockRestore()
+    })
+
+    it('should self-inject search context and override existing category context', async ({
+      skip,
+    }) => {
+      if (!isAvailable) skip()
+
+      sessionStorage.clear()
+
+      // 1. Start with a category context
+      await manager.push({
+        ...categoryViewEvent,
+        entityCode: 'cat_prev',
+      })
+
+      // 2. Push a search event (should use its own context)
+      const spy = vi.spyOn((manager as any).client, 'graphql')
+      await manager.push(searchResultViewEvent)
+
+      const lastCall = spy.mock.calls[spy.mock.calls.length - 1]
+      const variables = lastCall![1] as any
+      const sentInput = variables.input0
+
+      // Verification: The search event itself should have 'search' context, not the stale 'category' one
+      expect(sentInput.contextType).toBe('search')
+      expect(sentInput.contextCode).toBe('shoe')
+
+      spy.mockRestore()
+    })
   })
 })

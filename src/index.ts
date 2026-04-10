@@ -71,6 +71,7 @@ export {
   TrackingEventManager,
   SessionInformationStorage,
   TrackingEventContextStorage,
+  TrackingEventContextSessionStorage,
   EventQueueStorage,
 } from './service'
 export { TrackingEventValidator, TrackingEventType } from './validator'

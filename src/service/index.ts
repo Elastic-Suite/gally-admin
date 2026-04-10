@@ -18,5 +18,8 @@ export type {
   TrackingEventResponse,
 } from './TrackingEventManager'
 export { SessionInformationStorage } from './tracking/SessionInformationStorage'
-export { TrackingEventContextStorage } from './tracking/TrackingEventContextStorage'
+export {
+  TrackingEventContextStorage,
+  TrackingEventContextSessionStorage,
+} from './tracking/TrackingEventContextStorage'
 export { EventQueueStorage } from './tracking/EventQueueStorage'
