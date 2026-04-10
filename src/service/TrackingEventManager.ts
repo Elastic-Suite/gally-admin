@@ -153,6 +153,13 @@ class TrackingEventManager {
     return new TrackingEventManager(config, optionsRest)
   }
 
+  /**
+   * Reset the global instance. Internal use only (primarily for tests).
+   */
+  static resetInstance(): void {
+    instance = null
+  }
+
   private constructor(
     configuration: Configuration,
     options?: {
@@ -207,6 +214,12 @@ class TrackingEventManager {
     }
     if (!input.sessionVid) {
       input.sessionVid = sessionVid
+    }
+
+    // Some events can self inject their own context (this avoids that a search gets a context category for example)
+    const selfContext = this.trackingEventContextStorage.getSelfContext(input)
+    if (selfContext) {
+      input = { ...input, ...selfContext }
     }
 
     const existingContext =
