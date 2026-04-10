@@ -102,9 +102,11 @@ console.log(`Found ${response.getTotalCount()} products`)
 ### 5. Track Events
 
 ```typescript
-import { TrackingEventManager } from '@gally/sdk'
+import { TrackingEventManager, TrackingEventType } from '@gally/sdk/browser'
 
-const trackingManager = new TrackingEventManager(config)
+const tracker = TrackingEventManager.init({
+  baseUri: 'https://your-gally-instance.com/api',
+})
 
 await tracker.push({
   eventType: TrackingEventType.VIEW,
@@ -175,7 +177,7 @@ The SDK includes integration tests that run against a real Gally instance.
 ```bash
 cp .env.test.example .env.test
 # Edit .env.test with your Gally instance settings
-npm run test:integration
+npm run test
 ```
 
 ## License
