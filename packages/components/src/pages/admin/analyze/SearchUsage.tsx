@@ -23,7 +23,7 @@ import {
   createUTCDateSafe,
 } from '@elastic-suite/gally-admin-shared'
 import { DoubleDatePicker, PageTitle } from '../../../components'
-import { useTranslation } from 'next-i18next'
+import { Trans, useTranslation } from 'next-i18next'
 import KPIGroup from '../../../components/molecules/KPIGroup/KPIGroup'
 import CatalogSwitcher from '../../../components/stateful/CatalogSwitcher/CatalogSwitcher'
 import { Paper, styled } from '@mui/material'
@@ -33,6 +33,7 @@ import {
 } from '../../../components/atoms/form/DoubleDatePickerWithoutError'
 import Button from '../../../components/atoms/buttons/Button'
 import IonIcon from '../../../components/atoms/IonIcon/IonIcon'
+import Alert from '../../../components/atoms/Alert/Alert'
 import { TestId, generateTestId } from '../../../utils/testIds'
 import { isValid } from 'date-fns'
 
@@ -103,6 +104,7 @@ function AdminAnalyzeSearchUsage(): JSX.Element {
   })
   const [showError, setShowError] = useState(false)
   const [filtersHaveError, setFiltersHaveError] = useState(false)
+  const [showWarning, setShowWarning] = useState(true)
   const localizedCatalogContext = useContext(catalogContext)
 
   const filtersForUrl = useMemo(() => {
@@ -229,9 +231,38 @@ function AdminAnalyzeSearchUsage(): JSX.Element {
     }))
   }, [kpiData, t])
 
+  const isKpiValuesEmpty: boolean = useMemo(() => {
+    return kpiGroups.every((group) =>
+      group.kpis.every((kpi) => kpi.value === 0 || kpi.value === '')
+    )
+  }, [kpiGroups])
+
   return (
     <>
       <PageTitle title={t('searchUsage')} sx={{ marginBottom: '32px' }} />
+      {showWarning && isKpiValuesEmpty ? (
+        <Alert
+          variant="warning"
+          style={{ marginBottom: 0 }}
+          onShut={(): void => setShowWarning(false)}
+        >
+          <Trans
+            i18nKey="kpiValuesEmpty.warning"
+            ns="searchUsage"
+            components={{
+              lnk: (
+                <a
+                  href="https://github.com/Elastic-Suite/gally-ts-sdk/wiki"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {/* content injected by Trans */}
+                </a>
+              ),
+            }}
+          />
+        </Alert>
+      ) : null}
       <StyledPaper>
         <StyledForm
           ref={formRef}

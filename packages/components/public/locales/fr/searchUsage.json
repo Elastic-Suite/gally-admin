@@ -13,6 +13,7 @@
   "productViewCount": "Produits vus",
   "addToCartCount": "Produits ajoutés au panier",
   "orderCount": "Commandes",
-  "sessionCount": "Pages vues",
-  "visitorCount": "Visiteurs"
+  "sessionCount": "Sessions",
+  "visitorCount": "Visiteurs uniques",
+  "kpiValuesEmpty.warning": "Configuration requise : Les compteurs affichent 0 car aucun flux de données n'a été détecté. Consultez la <lnk>documentation</lnk> pour finaliser l'installation du tracking."
 }
