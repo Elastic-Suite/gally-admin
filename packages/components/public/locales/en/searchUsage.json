@@ -9,6 +9,7 @@
   "productViewCount": "Product views",
   "addToCartCount": "Products added to cart",
   "orderCount": "Sales",
-  "sessionCount": "Page views",
-  "visitorCount": "Visitors"
+  "sessionCount": "Sessions",
+  "visitorCount": "Unique visitors",
+  "kpiValuesEmpty.warning": "Configuration required: Counters are showing 0 because no data flow has been detected. Check the <lnk>documentation</lnk> to finalize the tracking installation."
 }
