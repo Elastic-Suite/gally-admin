@@ -135,7 +135,10 @@ export const addToCartProductEvent: TrackingEventInput = {
   contextType: 'search',
   contextCode: 'shoe',
   payload: JSON.stringify({
-    cart: { qty: 2 },
+    cart: {
+      child_sku: 'SDK-SHOE-001-RED',
+      qty: 2,
+    },
   }),
 }
 
@@ -159,11 +162,21 @@ export const orderProductEvent: TrackingEventInput = {
     items: [
       {
         entityCode: 'SDK-SHOE-001',
-        order: { price: 129.99, qty: 1, row_total: 129.99 },
+        order: {
+          child_sku: 'SDK-SHOE-001-RED',
+          price: 129.99,
+          qty: 1,
+          row_total: 129.99,
+        },
       },
       {
         entityCode: 'SDK-SHOE-002',
-        order: { price: 179.99, qty: 1, row_total: 179.99 },
+        order: {
+          child_sku: 'SDK-SHOE-002-BLUE',
+          price: 179.99,
+          qty: 1,
+          row_total: 179.99,
+        },
       },
     ],
   }),
@@ -217,7 +230,10 @@ export const addToCartProductEventEN: TrackingEventInput = {
   contextType: 'category',
   contextCode: 'cat_shoes',
   payload: JSON.stringify({
-    cart: { qty: 1 },
+    cart: {
+      child_sku: 'SDK-SHOE-002-BLUE',
+      qty: 1,
+    },
   }),
 }
 
@@ -313,5 +329,40 @@ export const invalidOrderMissingOrder: TrackingEventInput = {
   contextCode: 'shoe',
   payload: JSON.stringify({
     items: [{ entityCode: 'SDK-SHOE-001', order: { price: 129.99 } }],
+  }),
+}
+
+/** Add to cart event missing child_sku */
+export const invalidAddToCartMissingChildSku: TrackingEventInput = {
+  eventType: TrackingEventType.ADD_TO_CART,
+  metadataCode: 'product',
+  localizedCatalogCode: LOCALIZED_CATALOG_CODE_FR,
+  entityCode: 'SDK-SHOE-001',
+  sourceEventType: TrackingEventType.VIEW,
+  sourceMetadataCode: 'product',
+  contextType: 'search',
+  contextCode: 'shoe',
+  payload: JSON.stringify({
+    cart: { qty: 2 },
+  }),
+}
+
+/** Order event missing child_sku in items */
+export const invalidOrderMissingChildSku: TrackingEventInput = {
+  eventType: TrackingEventType.ORDER,
+  metadataCode: 'product',
+  localizedCatalogCode: LOCALIZED_CATALOG_CODE_FR,
+  sourceEventType: TrackingEventType.VIEW,
+  sourceMetadataCode: 'product',
+  contextType: 'search',
+  contextCode: 'shoe',
+  payload: JSON.stringify({
+    order: { order_id: '123', total: 100 },
+    items: [
+      {
+        entityCode: 'SDK-SHOE-001',
+        order: { price: 100, qty: 1, row_total: 100 },
+      },
+    ],
   }),
 }
