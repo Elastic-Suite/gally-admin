@@ -27,17 +27,11 @@ type TrackingEventContext = PartialTrackingEventContext &
 
 type SearchPayload = Record<'search_query', { query_text: string }>
 
-abstract class TrackingEventContextStorage {
-  abstract isUpdateContextEvent(input: TrackingEventInput | null): boolean
-  abstract checkAndUpdateContext(input: TrackingEventInput | null): boolean
-  abstract getTrackingContext(): TrackingEventContext | null
-  abstract getSelfContext(
-    input: TrackingEventInput | null,
-  ): PartialTrackingEventContext | null
-}
-
 const TRACKING_CONTEXT_KEY = 'gally-tracking-context'
-class TrackingEventContextSessionStorage extends TrackingEventContextStorage {
+
+abstract class TrackingEventContextStorage {
+  protected abstract get storage(): Storage
+
   isCategoryViewEvent(input: TrackingEventInput) {
     return (
       input?.eventType === TrackingEventType.VIEW &&
@@ -99,14 +93,14 @@ class TrackingEventContextSessionStorage extends TrackingEventContextStorage {
       JSON.parse(JSON.stringify(existingContext)) !==
       JSON.parse(JSON.stringify(newContext))
     if (hasUpdatedContext) {
-      sessionStorage.setItem(TRACKING_CONTEXT_KEY, JSON.stringify(newContext))
+      this.storage.setItem(TRACKING_CONTEXT_KEY, JSON.stringify(newContext))
     }
 
     return hasUpdatedContext
   }
 
   getTrackingContext(): TrackingEventContext | null {
-    const rawContext = sessionStorage.getItem(TRACKING_CONTEXT_KEY)
+    const rawContext = this.storage.getItem(TRACKING_CONTEXT_KEY)
     if (!rawContext) {
       return null
     }
@@ -122,5 +116,21 @@ class TrackingEventContextSessionStorage extends TrackingEventContextStorage {
   }
 }
 
-export { TrackingEventContextStorage, TrackingEventContextSessionStorage }
+class TrackingEventContextSessionStorage extends TrackingEventContextStorage {
+  protected get storage(): Storage {
+    return sessionStorage
+  }
+}
+
+class TrackingEventContextLocalStorage extends TrackingEventContextStorage {
+  protected get storage(): Storage {
+    return localStorage
+  }
+}
+
+export {
+  TrackingEventContextStorage,
+  TrackingEventContextSessionStorage,
+  TrackingEventContextLocalStorage,
+}
 export type { TrackingEventContext }

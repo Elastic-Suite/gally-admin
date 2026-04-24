@@ -20,7 +20,7 @@ import {
 } from './tracking/SessionInformationStorage'
 import {
   TrackingEventContextStorage,
-  TrackingEventContextSessionStorage,
+  TrackingEventContextLocalStorage,
 } from './tracking/TrackingEventContextStorage'
 import {
   EventQueueStorage,
@@ -183,7 +183,7 @@ class TrackingEventManager {
     this.throttledManager.setFlushCallback(() => this.flush())
     this.trackingEventContextStorage =
       options?.trackingEventContextStorage ??
-      new TrackingEventContextSessionStorage()
+      new TrackingEventContextLocalStorage()
     this.sessionInformationStorage =
       options?.sessionInformationStorage ??
       new SessionInformationCookieStorage(
@@ -384,6 +384,7 @@ export type { SessionInformation } from './tracking/SessionInformationStorage'
 export {
   TrackingEventContextStorage,
   TrackingEventContextSessionStorage,
+  TrackingEventContextLocalStorage,
 } from './tracking/TrackingEventContextStorage'
 export {
   EventQueueStorage,
