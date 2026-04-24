@@ -135,8 +135,8 @@ export const addToCartProductEvent: TrackingEventInput = {
   contextType: 'search',
   contextCode: 'shoe',
   payload: JSON.stringify({
+    child_sku: 'SDK-SHOE-001-RED',
     cart: {
-      child_sku: 'SDK-SHOE-001-RED',
       qty: 2,
     },
   }),
@@ -162,8 +162,8 @@ export const orderProductEvent: TrackingEventInput = {
     items: [
       {
         entityCode: 'SDK-SHOE-001',
+        child_sku: 'SDK-SHOE-001-RED',
         order: {
-          child_sku: 'SDK-SHOE-001-RED',
           price: 129.99,
           qty: 1,
           row_total: 129.99,
@@ -171,8 +171,8 @@ export const orderProductEvent: TrackingEventInput = {
       },
       {
         entityCode: 'SDK-SHOE-002',
+        child_sku: 'SDK-SHOE-002-BLUE',
         order: {
-          child_sku: 'SDK-SHOE-002-BLUE',
           price: 179.99,
           qty: 1,
           row_total: 179.99,
@@ -230,8 +230,8 @@ export const addToCartProductEventEN: TrackingEventInput = {
   contextType: 'category',
   contextCode: 'cat_shoes',
   payload: JSON.stringify({
+    child_sku: 'SDK-SHOE-002-BLUE',
     cart: {
-      child_sku: 'SDK-SHOE-002-BLUE',
       qty: 1,
     },
   }),

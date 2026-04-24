@@ -183,23 +183,23 @@ describe('TrackingEventValidator', () => {
     )
   })
 
-  it('should reject an add_to_cart event missing payload.cart.child_sku', () => {
+  it('should reject an add_to_cart event missing payload.child_sku', () => {
     const event: TrackingEventInput = withSessionInfos({
       ...invalidAddToCartMissingChildSku,
       eventType: TrackingEventType.ADD_TO_CART,
     })
     expect(() => TrackingEventValidator.validate(event)).toThrow(
-      'payload.cart.child_sku is required for add_to_cart event',
+      'payload.child_sku is required for add_to_cart event',
     )
   })
 
-  it('should reject an order event missing payload.items[0].order.child_sku', () => {
+  it('should reject an order event missing payload.items[0].child_sku', () => {
     const event: TrackingEventInput = withSessionInfos({
       ...invalidOrderMissingChildSku,
       eventType: TrackingEventType.ORDER,
     })
     expect(() => TrackingEventValidator.validate(event)).toThrow(
-      'payload.items[0].order.child_sku is required for order event',
+      'payload.items[0].child_sku is required for order event',
     )
   })
 
