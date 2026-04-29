@@ -21,5 +21,6 @@ export { SessionInformationStorage } from './tracking/SessionInformationStorage'
 export {
   TrackingEventContextStorage,
   TrackingEventContextSessionStorage,
+  TrackingEventContextLocalStorage,
 } from './tracking/TrackingEventContextStorage'
 export { EventQueueStorage } from './tracking/EventQueueStorage'

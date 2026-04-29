@@ -71,6 +71,7 @@ export {
   TrackingEventManager,
   SessionInformationStorage,
   TrackingEventContextStorage,
+  TrackingEventContextLocalStorage,
   TrackingEventContextSessionStorage,
   EventQueueStorage,
 } from './service'
