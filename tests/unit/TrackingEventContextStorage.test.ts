@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach, vi } from 'vitest'
+import { describe, it, expect, vi } from 'vitest'
 import {
   TrackingEventContextSessionStorage,
   TrackingEventContextLocalStorage,
@@ -65,6 +65,29 @@ describe('TrackingEventContextStorage', () => {
         'gally-tracking-context',
         expect.stringContaining('phone'),
       )
+    })
+
+    it('should not update storage if context is identical', () => {
+      const storageMock = mockStorage()
+      vi.stubGlobal('localStorage', storageMock)
+      const service = new TrackingEventContextLocalStorage()
+
+      const input = {
+        eventType: TrackingEventType.VIEW,
+        metadataCode: 'category',
+        entityCode: 'cat-1',
+        localizedCatalogCode: 'fr',
+      }
+
+      // First call: should set item
+      const firstResult = service.checkAndUpdateContext(input)
+      expect(firstResult).toBe(true)
+      expect(storageMock.setItem).toHaveBeenCalledTimes(1)
+
+      // Second call with same input: should NOT set item again
+      const secondResult = service.checkAndUpdateContext(input)
+      expect(secondResult).toBe(false)
+      expect(storageMock.setItem).toHaveBeenCalledTimes(1) // Still 1
     })
   })
 })

@@ -13,6 +13,8 @@ export type {
   TrackingEventResponse,
   SessionInformationStorage,
   TrackingEventContextStorage,
+  TrackingEventContextSessionStorage,
+  TrackingEventContextLocalStorage,
   EventQueueStorage,
 } from './service'
 export type { BrowserConfigurationOptions as ConfigurationOptions } from './client/Configuration'

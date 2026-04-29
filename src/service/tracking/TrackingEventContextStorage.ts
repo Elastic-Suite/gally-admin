@@ -89,11 +89,17 @@ abstract class TrackingEventContextStorage {
       newContext.sourceMetadataCode = input.metadataCode
     }
 
-    const hasUpdatedContext =
-      JSON.parse(JSON.stringify(existingContext)) !==
-      JSON.parse(JSON.stringify(newContext))
+    const newContextJSON = JSON.stringify(newContext)
+    const hasUpdatedContext = JSON.stringify(existingContext) !== newContextJSON
     if (hasUpdatedContext) {
-      this.storage.setItem(TRACKING_CONTEXT_KEY, JSON.stringify(newContext))
+      try {
+        this.storage.setItem(TRACKING_CONTEXT_KEY, newContextJSON)
+      } catch (e) {
+        console.error(
+          'TrackingEventContextStorage: could not save context to storage.',
+          e,
+        )
+      }
     }
 
     return hasUpdatedContext
