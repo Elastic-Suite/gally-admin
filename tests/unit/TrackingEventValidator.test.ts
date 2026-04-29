@@ -22,10 +22,10 @@ import {
   productViewEvent,
   addToCartProductEvent,
   orderProductEvent,
+  displayEventWithoutContext,
   // Invalid event fixtures
   invalidViewMissingEntityCode,
   invalidCategoryViewMissingProductList,
-  invalidDisplayMissingContext,
   invalidDisplayEmptyItems,
   invalidSearchMissingSearchQuery,
   invalidAddToCartMissingEntityCode,
@@ -109,6 +109,50 @@ describe('TrackingEventValidator', () => {
     expect(() => TrackingEventValidator.validate(event)).not.toThrow()
   })
 
+  it('should validate an add to cart event without context', () => {
+    const event: TrackingEventInput = withSessionInfos({
+      ...addToCartProductEvent,
+      eventType: TrackingEventType.ADD_TO_CART,
+    })
+    delete event.contextType
+    delete event.contextCode
+    delete event.sourceEventType
+    delete event.sourceMetadataCode
+    expect(() => TrackingEventValidator.validate(event)).not.toThrow()
+  })
+
+  it('should validate an order event without context', () => {
+    const event: TrackingEventInput = withSessionInfos({
+      ...orderProductEvent,
+      eventType: TrackingEventType.ORDER,
+    })
+    delete event.contextType
+    delete event.contextCode
+    delete event.sourceEventType
+    delete event.sourceMetadataCode
+    expect(() => TrackingEventValidator.validate(event)).not.toThrow()
+  })
+
+  it('should validate an event with partial context (source info only)', () => {
+    const event: TrackingEventInput = withSessionInfos({
+      ...addToCartProductEvent,
+      eventType: TrackingEventType.ADD_TO_CART,
+    })
+    delete event.contextType
+    delete event.contextCode
+    expect(() => TrackingEventValidator.validate(event)).not.toThrow()
+  })
+
+  it('should validate an event with partial context (context info only)', () => {
+    const event: TrackingEventInput = withSessionInfos({
+      ...addToCartProductEvent,
+      eventType: TrackingEventType.ADD_TO_CART,
+    })
+    delete event.sourceEventType
+    delete event.sourceMetadataCode
+    expect(() => TrackingEventValidator.validate(event)).not.toThrow()
+  })
+
   // =========================================================================
   // Validation rejection tests — one per constraint
   // =========================================================================
@@ -133,14 +177,12 @@ describe('TrackingEventValidator', () => {
     )
   })
 
-  it('should reject a display event missing context info', () => {
+  it('should validate a display event missing context info', () => {
     const event: TrackingEventInput = withSessionInfos({
-      ...invalidDisplayMissingContext,
+      ...displayEventWithoutContext,
       eventType: TrackingEventType.DISPLAY,
     })
-    expect(() => TrackingEventValidator.validate(event)).toThrow(
-      'contextType is required for display event',
-    )
+    expect(() => TrackingEventValidator.validate(event)).not.toThrow()
   })
 
   it('should reject a display event with empty items array', () => {

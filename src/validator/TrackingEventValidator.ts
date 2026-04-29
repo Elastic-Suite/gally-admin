@@ -56,13 +56,6 @@ const COMMON_REQUIRED_FIELDS: string[] = [
   'sessionVid',
 ]
 
-const SOURCE_CONTEXT_FIELDS: string[] = [
-  'contextType',
-  'contextCode',
-  'sourceEventType',
-  'sourceMetadataCode',
-]
-
 // ---------------------------------------------------------------------------
 // Shared payload format rules
 // ---------------------------------------------------------------------------
@@ -194,7 +187,7 @@ const VALIDATION_RULES: Record<TrackingEventType, EventValidationRule> = {
     },
   },
   [TrackingEventType.DISPLAY]: {
-    extraFields: ['payload', ...SOURCE_CONTEXT_FIELDS],
+    extraFields: ['payload'],
     payloadShapeByMetadata: {
       '*': {
         items: {
@@ -216,13 +209,13 @@ const VALIDATION_RULES: Record<TrackingEventType, EventValidationRule> = {
     },
   },
   [TrackingEventType.ADD_TO_CART]: {
-    extraFields: ['entityCode', 'payload', ...SOURCE_CONTEXT_FIELDS],
+    extraFields: ['entityCode', 'payload'],
     payloadShapeByMetadata: {
       '*': CART_FORMAT,
     },
   },
   [TrackingEventType.ORDER]: {
-    extraFields: ['payload', ...SOURCE_CONTEXT_FIELDS],
+    extraFields: ['payload'],
     payloadShapeByMetadata: {
       '*': {
         ...ORDER_OBJECT_FORMAT,

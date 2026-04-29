@@ -107,6 +107,20 @@ export const searchProductDisplayEvent: TrackingEventInput = {
 }
 
 // ---------------------------------------------------------------------------
+// displayEventWithoutContext — display event without source/context info
+// ---------------------------------------------------------------------------
+
+/** Display event without context info */
+export const displayEventWithoutContext: TrackingEventInput = {
+  eventType: TrackingEventType.DISPLAY,
+  metadataCode: 'product',
+  localizedCatalogCode: LOCALIZED_CATALOG_CODE_FR,
+  payload: JSON.stringify({
+    items: [{ entityCode: 'SDK-SHOE-001', display: { position: 0 } }],
+  }),
+}
+
+// ---------------------------------------------------------------------------
 // productView — view event on a product page with source/context info
 // ---------------------------------------------------------------------------
 
@@ -272,16 +286,6 @@ export const invalidCategoryViewMissingProductList: TrackingEventInput = {
   localizedCatalogCode: LOCALIZED_CATALOG_CODE_FR,
   entityCode: 'cat_shoes',
   payload: JSON.stringify({}),
-}
-
-/** Display event missing context info */
-export const invalidDisplayMissingContext: TrackingEventInput = {
-  eventType: TrackingEventType.DISPLAY,
-  metadataCode: 'product',
-  localizedCatalogCode: LOCALIZED_CATALOG_CODE_FR,
-  payload: JSON.stringify({
-    items: [{ entityCode: 'SDK-SHOE-001', display: { position: 0 } }],
-  }),
 }
 
 /** Display event with empty items array */

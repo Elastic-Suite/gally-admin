@@ -31,6 +31,7 @@ import {
   productViewEvent,
   addToCartProductEvent,
   orderProductEvent,
+  displayEventWithoutContext,
   // English catalog event fixtures
   productViewEventEN,
   searchResultViewEventEN,
@@ -39,7 +40,6 @@ import {
   // Invalid event fixtures
   invalidViewMissingEntityCode,
   invalidCategoryViewMissingProductList,
-  invalidDisplayMissingContext,
   invalidDisplayEmptyItems,
   invalidSearchMissingSearchQuery,
   invalidAddToCartMissingEntityCode,
@@ -178,6 +178,28 @@ describe('Tracking Events', () => {
     expect(result.id).toBeDefined()
   })
 
+  it('should push an add to cart event without context', async ({ skip }) => {
+    if (!isAvailable) skip()
+    const event = { ...addToCartProductEvent }
+    delete event.contextType
+    delete event.contextCode
+    delete event.sourceEventType
+    delete event.sourceMetadataCode
+    const result = await manager.push(event)
+    expect(result.id).toBeDefined()
+  })
+
+  it('should push an order event without context', async ({ skip }) => {
+    if (!isAvailable) skip()
+    const event = { ...orderProductEvent }
+    delete event.contextType
+    delete event.contextCode
+    delete event.sourceEventType
+    delete event.sourceMetadataCode
+    const result = await manager.push(event)
+    expect(result.id).toBeDefined()
+  })
+
   // =========================================================================
   // English catalog tests — positive cases to differentiate from French
   // =========================================================================
@@ -234,11 +256,10 @@ describe('Tracking Events', () => {
     ).rejects.toThrow('payload.product_list is required')
   })
 
-  it('should reject a display event missing context info', async ({ skip }) => {
+  it('should push a display event missing context info', async ({ skip }) => {
     if (!isAvailable) skip()
-    await expect(manager.push(invalidDisplayMissingContext)).rejects.toThrow(
-      'contextType is required',
-    )
+    const result = await manager.push(displayEventWithoutContext)
+    expect(result.id).toBeDefined()
   })
 
   it('should reject a display event with empty items array', async ({
