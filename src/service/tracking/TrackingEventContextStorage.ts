@@ -52,7 +52,7 @@ abstract class TrackingEventContextStorage {
       contextType: this.isSearchEvent(input) ? 'search' : 'category',
       contextCode: this.isSearchEvent(input)
         ? (JSON.parse(<string>input?.payload) as SearchPayload).search_query
-          ?.query_text
+            ?.query_text
         : input.entityCode,
     }
   }
