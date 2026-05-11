@@ -65,7 +65,7 @@ export function getFilterTypeByOperator(operator: string): FilterTypeType {
 }
 
 export interface RequestOptions {
-  localizedCatalog: LocalizedCatalog
+  localizedCatalog: LocalizedCatalog | string
   metadata: Metadata
   isAutocomplete: boolean
   selectedFields: string[]
@@ -80,7 +80,7 @@ export interface RequestOptions {
 }
 
 export class Request {
-  private readonly localizedCatalog: LocalizedCatalog
+  private readonly localizedCatalog: LocalizedCatalog | string
   private readonly metadata: Metadata
   private readonly isAutocomplete: boolean
   private readonly selectedFields: string[]
@@ -127,7 +127,7 @@ export class Request {
     return undefined
   }
 
-  getLocalizedCatalog(): LocalizedCatalog {
+  getLocalizedCatalog(): LocalizedCatalog | string {
     return this.localizedCatalog
   }
 
@@ -235,7 +235,10 @@ export class Request {
     const isProductQuery = this.metadata.getEntity() === 'product'
     const variables: Record<string, any> = {
       requestType: this.getRequestType(),
-      localizedCatalog: this.getLocalizedCatalog().getCode(),
+      localizedCatalog:
+        typeof this.localizedCatalog === 'string'
+          ? this.localizedCatalog
+          : this.localizedCatalog.getCode(),
       currentCategoryId: this.getCategoryId(),
       search: this.getSearchQuery(),
       currentPage: this.getCurrentPage(),
