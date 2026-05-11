@@ -150,7 +150,7 @@ class TrackingEventManager {
     if (nonBrowserEnvWarning) {
       console.warn(
         '[Gally SDK] You are instantating the TrackingEventManager in a non-browser environment ' +
-        'tracking outside browser context may lead to duplicate events or unexpected behavior',
+          'tracking outside browser context may lead to duplicate events or unexpected behavior',
       )
     }
 
@@ -280,7 +280,7 @@ class TrackingEventManager {
     } catch (e) {
       console.error(
         '[Gally SDK] TrackingEventManager: could not replay persisted events',
-        e
+        e,
       )
     }
   }
