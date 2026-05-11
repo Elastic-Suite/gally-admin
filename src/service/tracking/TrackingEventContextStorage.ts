@@ -52,7 +52,7 @@ abstract class TrackingEventContextStorage {
       contextType: this.isSearchEvent(input) ? 'search' : 'category',
       contextCode: this.isSearchEvent(input)
         ? (JSON.parse(<string>input?.payload) as SearchPayload).search_query
-            ?.query_text
+          ?.query_text
         : input.entityCode,
     }
   }
@@ -96,7 +96,7 @@ abstract class TrackingEventContextStorage {
         this.storage.setItem(TRACKING_CONTEXT_KEY, newContextJSON)
       } catch (e) {
         console.error(
-          'TrackingEventContextStorage: could not save context to storage.',
+          '[Gally SDK] TrackingEventContextStorage: could not save context to storage.',
           e,
         )
       }
