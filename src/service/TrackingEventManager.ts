@@ -146,7 +146,7 @@ class TrackingEventManager {
 
   static init(options: TrackingEventManagerOptions): TrackingEventManager {
     const nonBrowserEnvWarning =
-      process?.env?.NODE_ENV !== 'test' && typeof window === 'undefined'
+      typeof window === 'undefined' && process?.env?.NODE_ENV !== 'test'
     if (nonBrowserEnvWarning) {
       console.warn(
         '[Gally SDK] You are instantating the TrackingEventManager in a non-browser environment ' +
@@ -175,7 +175,6 @@ class TrackingEventManager {
       debounceMs?: number
       throttleMs?: number
       batchSize?: number
-      // TODO: change snippet to reflect cookie params
       uidCookieMaxAge?: number
       vidCookieMaxAge?: number
       trackingEventContextStorage?: TrackingEventContextStorage
