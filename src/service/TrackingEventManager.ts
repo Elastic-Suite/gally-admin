@@ -145,11 +145,13 @@ class TrackingEventManager {
   private readonly eventQueueStorage: EventQueueStorage
 
   static init(options: TrackingEventManagerOptions): TrackingEventManager {
-
-    const nonBrowserEnvWarning = process?.env?.NODE_ENV !== 'test' && typeof window === 'undefined'
+    const nonBrowserEnvWarning =
+      process?.env?.NODE_ENV !== 'test' && typeof window === 'undefined'
     if (nonBrowserEnvWarning) {
-      console.warn('[Gally SDK]: You are instantating the TrackingEventManager in a non-browser environment ' +
-        'tracking outside browser context may lead to duplicate events or unexpected behavior')
+      console.warn(
+        '[Gally SDK] You are instantating the TrackingEventManager in a non-browser environment ' +
+        'tracking outside browser context may lead to duplicate events or unexpected behavior',
+      )
     }
 
     if (instance) {
@@ -275,8 +277,11 @@ class TrackingEventManager {
       }
 
       this.scheduleFlush()
-    } catch {
-      console.error('[Gally SDK]: TrackingEventManager: could not replay persisted events')
+    } catch (e) {
+      console.error(
+        '[Gally SDK] TrackingEventManager: could not replay persisted events',
+        e
+      )
     }
   }
 
@@ -305,10 +310,9 @@ class TrackingEventManager {
     try {
       // All events have been sent — clear the persistent queue
       this.eventQueueStorage.clear()
-    } catch (e) {
+    } catch {
       // Ignore queue clear errors
     }
-
   }
 
   /**
