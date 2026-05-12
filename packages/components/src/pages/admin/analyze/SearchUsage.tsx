@@ -20,6 +20,7 @@ import {
   IHydraMember,
   IHydraResponse,
   ISearchParameters,
+  LoadStatus,
   createUTCDateSafe,
 } from '@elastic-suite/gally-admin-shared'
 import { DoubleDatePicker, PageTitle } from '../../../components'
@@ -204,10 +205,9 @@ function AdminAnalyzeSearchUsage(): JSX.Element {
     }
   }
 
-  const [{ data: kpiData }] = useFetchApi<IHydraResponse<IKPI>>(
-    resource,
-    filtersForApi
-  )
+  const [{ data: kpiData, status: kpiStatus }] = useFetchApi<
+    IHydraResponse<IKPI>
+  >(resource, filtersForApi)
 
   const resourcePrefix = useMemo(
     () => resource?.title?.toLowerCase(),
@@ -232,10 +232,13 @@ function AdminAnalyzeSearchUsage(): JSX.Element {
   }, [kpiData, t])
 
   const isKpiValuesEmpty: boolean = useMemo(() => {
-    return kpiGroups.every((group) =>
-      group.kpis.every((kpi) => kpi.value === 0 || kpi.value === '')
+    return (
+      kpiStatus === LoadStatus.SUCCEEDED &&
+      kpiGroups.every((group) =>
+        group.kpis.every((kpi) => kpi.value === 0 || kpi.value === '')
+      )
     )
-  }, [kpiGroups])
+  }, [kpiGroups, kpiStatus])
 
   return (
     <>
