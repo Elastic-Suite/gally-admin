@@ -1,0 +1,61 @@
+{
+  "name": "@gally/sdk",
+  "version": "1.0.0",
+  "description": "TypeScript SDK for Gally connectors",
+  "homepage": "https://meetgally.com",
+  "license": "OSL-3.0",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "browser": "./dist/browser/index.mjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    },
+    "./browser": {
+      "types": "./dist/browser/index.d.ts",
+      "import": "./dist/browser/index.mjs",
+      "require": "./dist/browser/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "lint": "eslint src/",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:integration": "vitest run --reporter=verbose",
+    "prepare": "husky && npm run build",
+    "prepublishOnly": "npm run build",
+    "prettier": "prettier --check .",
+    "prettier:fix": "prettier --write ."
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "@vitest/coverage-v8": "^2.1.9",
+    "dotenv": "^17.3.1",
+    "eslint": "^9.0.0",
+    "happy-dom": "^14.12.3",
+    "husky": "^9.1.7",
+    "lint-staged": "^12.5.0",
+    "tsup": "^8.0.0",
+    "typescript": "^5.3.0",
+    "typescript-eslint": "^8.0.0",
+    "vitest": "^2.1.9"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "prettier": "^3.8.1"
+  },
+  "lint-staged": {
+    "**/*": "prettier --write --ignore-unknown"
+  }
+}

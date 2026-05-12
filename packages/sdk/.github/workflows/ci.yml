@@ -1,0 +1,39 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+      - '[1-9].[0-9]+.x'
+      - 'feature-[a-z]+'
+  pull_request:
+    branches:
+      - main
+      - '[1-9].[0-9]+.x'
+      - 'feature-[a-z]+'
+    types: [review_requested, ready_for_review, synchronize]
+  workflow_dispatch: ~
+
+jobs:
+  tests:
+    if: github.event.pull_request.draft == false
+    name: Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci --legacy-peer-deps
+
+      - name: Build
+        run: npm run build
+
+      - name: Vitest (Unit Tests)
+        run: npm run test -- --coverage --reporter=verbose tests/unit

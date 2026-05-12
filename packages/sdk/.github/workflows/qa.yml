@@ -1,0 +1,29 @@
+name: QA
+
+on:
+  push:
+    branches:
+      - main
+      - '[1-9].[0-9]+.x'
+      - 'feature-[a-z]+'
+  pull_request: ~
+
+jobs:
+  qa:
+    name: Code-Quality-Checks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - name: Install dependencies
+        run: npm ci --legacy-peer-deps
+      - name: TypeScript
+        run: npm run typecheck
+      - name: ESLint
+        run: npm run lint
+      - name: Prettier
+        run: npx prettier --check .
