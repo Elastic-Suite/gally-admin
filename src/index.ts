@@ -76,7 +76,10 @@ export {
   EventQueueStorage,
 } from './service'
 export { TrackingEventValidator, TrackingEventType } from './validator'
-export type { TrackingEventInput, TrackingEventResponse } from './service'
+export type {
+  TrackingEventInput,
+  ITrackingEventResponse as TrackingEventResponse,
+} from './service'
 
 // Check if running in browser
 const isBrowser = typeof window !== 'undefined'
@@ -84,6 +87,6 @@ const isBrowser = typeof window !== 'undefined'
 if (isBrowser) {
   console.error(
     '[Gally SDK] You are importing the full @elastic-suite/gally-sdk in a browser environment. ' +
-      'Consider using @elastic-suite/gally-sdk/browser instead to reduce bundle size and prevent errors.',
+      'Consider using @elastic-suite/gally-sdk/browser instead to reduce bundle size and prevent errors.'
   )
 }

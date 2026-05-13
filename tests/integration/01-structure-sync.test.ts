@@ -8,22 +8,22 @@
  * Run: npm run test:integration
  */
 
-import { describe, it, expect, beforeAll } from 'vitest'
+import { beforeAll, describe, expect, it } from 'vitest'
 import {
-  StructureSynchronizer,
-  Configuration,
-  Client,
   CatalogRepository,
+  Client,
+  Configuration,
   LocalizedCatalogRepository,
   MetadataRepository,
   SourceFieldRepository,
+  StructureSynchronizer,
 } from '../../src'
 import {
   allLocalizedCatalogs,
-  createSampleSourceFields,
   createSampleSourceFieldOptions,
-  sampleLocalizedCatalogFr,
+  createSampleSourceFields,
   sampleLocalizedCatalogEn,
+  sampleLocalizedCatalogFr,
 } from '../fixtures/sample-data'
 import { checkGallyAvailability, getTestConfiguration } from '../test-config'
 
@@ -50,7 +50,7 @@ describe('Structure Synchronization', () => {
     const catalogRepo = new CatalogRepository(client)
     const localizedCatalogRepo = new LocalizedCatalogRepository(
       client,
-      catalogRepo,
+      catalogRepo
     )
 
     const catalogs = await catalogRepo.findAll()
@@ -93,7 +93,7 @@ describe('Structure Synchronization', () => {
 
     const nameField = existingFields.get('product_name')!
     expect(nameField.getType()).toBe('text')
-    expect(nameField.getDefaultLabel()).toBe('Name')
+    expect(nameField.getDefaultLabel()).toBe('Product Name')
   })
 
   it('should sync source field options for select fields', async ({ skip }) => {
@@ -139,7 +139,7 @@ describe('Structure Synchronization', () => {
     if (!isAvailable) skip()
 
     const result = await synchronizer.syncLocalizedCatalog(
-      sampleLocalizedCatalogFr,
+      sampleLocalizedCatalogFr
     )
 
     expect(result).toBeDefined()
@@ -153,7 +153,7 @@ describe('Structure Synchronization', () => {
     if (!isAvailable) skip()
 
     const result = await synchronizer.syncLocalizedCatalog(
-      sampleLocalizedCatalogEn,
+      sampleLocalizedCatalogEn
     )
 
     expect(result).toBeDefined()

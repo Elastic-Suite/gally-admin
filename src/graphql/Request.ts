@@ -26,7 +26,7 @@ export const FilterOperator = {
 } as const
 
 export type FilterOperatorType =
-  (typeof FilterOperator)[keyof typeof FilterOperator]
+  typeof FilterOperator[keyof typeof FilterOperator]
 
 export const FilterType = {
   BOOLEAN: 'boolFilter',
@@ -36,15 +36,14 @@ export const FilterType = {
   EXIST: 'existFilter',
 } as const
 
-export type FilterTypeType = (typeof FilterType)[keyof typeof FilterType]
+export type FilterTypeType = typeof FilterType[keyof typeof FilterType]
 
 export const SortDirection = {
   ASC: 'asc',
   DESC: 'desc',
 } as const
 
-export type SortDirectionType =
-  (typeof SortDirection)[keyof typeof SortDirection]
+export type SortDirectionType = typeof SortDirection[keyof typeof SortDirection]
 
 export const SORT_RELEVANCE_FIELD = '_score'
 
@@ -64,7 +63,7 @@ export function getFilterTypeByOperator(operator: string): FilterTypeType {
   }
 }
 
-export interface RequestOptions {
+export interface IRequestOptions {
   localizedCatalog: LocalizedCatalog | string
   metadata: Metadata
   isAutocomplete: boolean
@@ -93,7 +92,7 @@ export class Request {
   private readonly sortDirection?: string
   private readonly priceGroupId?: string
 
-  constructor(options: RequestOptions) {
+  constructor(options: IRequestOptions) {
     this.localizedCatalog = options.localizedCatalog
     this.metadata = options.metadata
     this.isAutocomplete = options.isAutocomplete
@@ -121,8 +120,8 @@ export class Request {
       return this.isAutocomplete
         ? 'product_autocomplete'
         : this.searchQuery
-          ? 'product_search'
-          : 'product_catalog'
+        ? 'product_search'
+        : 'product_catalog'
     }
     return undefined
   }
@@ -247,16 +246,14 @@ export class Request {
     }
 
     if (this.sortField) {
-      variables['sort'] = isProductQuery
+      variables.sort = isProductQuery
         ? { [this.getSortField()!]: this.getSortDirection() }
         : { field: this.getSortField(), direction: this.getSortDirection() }
     }
 
     // Filter out undefined/null values
     return Object.fromEntries(
-      Object.entries(variables).filter(
-        ([, v]) => v !== undefined && v !== null,
-      ),
+      Object.entries(variables).filter(([, v]) => v !== undefined && v !== null)
     )
   }
 }

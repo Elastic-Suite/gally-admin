@@ -10,15 +10,15 @@ export { TrackingEventManager } from './service'
 export { TrackingEventValidator, TrackingEventType } from './validator'
 export type {
   TrackingEventInput,
-  TrackingEventResponse,
+  ITrackingEventResponse as TrackingEventResponse,
   SessionInformationStorage,
   TrackingEventContextStorage,
   TrackingEventContextSessionStorage,
   TrackingEventContextLocalStorage,
   EventQueueStorage,
 } from './service'
-export type { BrowserConfigurationOptions as ConfigurationOptions } from './client/Configuration'
-export { BrowserConfiguration as Configuration } from './client/Configuration'
+export type { IBrowserConfigurationOptions as ConfigurationOptions } from './client/Configuration'
+export { BrowserConfiguration as Configuration } from './client/BrowserConfiguration'
 export { Client } from './client/Client'
 export { Request } from './graphql/Request'
 export { Response } from './graphql/Response'

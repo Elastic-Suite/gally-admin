@@ -30,7 +30,7 @@ export class SourceFieldOption extends AbstractEntity {
     position: number,
     defaultLabel: string,
     labels: Label[],
-    uri?: string,
+    uri?: string
   ) {
     super()
     this.sourceField = sourceField

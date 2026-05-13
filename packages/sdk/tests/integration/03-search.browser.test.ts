@@ -9,25 +9,25 @@
  * Run: npm run test:integration
  */
 
-import { describe, it, expect, beforeAll } from 'vitest'
+import { beforeAll, describe, expect, it } from 'vitest'
 import {
+  Configuration,
+  IndexOperation,
+  Request,
   SearchManager,
   StructureSynchronizer,
-  IndexOperation,
-  Configuration,
-  Request,
 } from '../../src'
 import {
   allLocalizedCatalogs,
-  createSampleSourceFields,
   categoryMetadata,
+  createSampleSourceFields,
   productMetadata,
-  sampleLocalizedCatalogFr,
-  sampleLocalizedCatalogEn,
-  sampleCategoriesFr,
   sampleCategoriesEn,
-  sampleProductsFr,
+  sampleCategoriesFr,
+  sampleLocalizedCatalogEn,
+  sampleLocalizedCatalogFr,
   sampleProductsEn,
+  sampleProductsFr,
 } from '../fixtures/sample-data'
 import { checkGallyAvailability, getTestConfiguration } from '../test-config'
 
@@ -53,7 +53,7 @@ describe('Search', () => {
     // Create + index + install categories FR
     const catIndexFr = await indexOp.createIndex(
       categoryMetadata,
-      sampleLocalizedCatalogFr,
+      sampleLocalizedCatalogFr
     )
     await indexOp.executeBulk(catIndexFr, sampleCategoriesFr)
     await indexOp.refreshIndex(catIndexFr)
@@ -62,7 +62,7 @@ describe('Search', () => {
     // Create + index + install categories EN
     const catIndexEn = await indexOp.createIndex(
       categoryMetadata,
-      sampleLocalizedCatalogEn,
+      sampleLocalizedCatalogEn
     )
     await indexOp.executeBulk(catIndexEn, sampleCategoriesEn)
     await indexOp.refreshIndex(catIndexEn)
@@ -71,7 +71,7 @@ describe('Search', () => {
     // Create + index + install FR products
     const indexFr = await indexOp.createIndex(
       productMetadata,
-      sampleLocalizedCatalogFr,
+      sampleLocalizedCatalogFr
     )
     await indexOp.executeBulk(indexFr, sampleProductsFr)
     await indexOp.refreshIndex(indexFr)
@@ -80,13 +80,14 @@ describe('Search', () => {
     // Create + index + install EN products
     const indexEn = await indexOp.createIndex(
       productMetadata,
-      sampleLocalizedCatalogEn,
+      sampleLocalizedCatalogEn
     )
     await indexOp.executeBulk(indexEn, sampleProductsEn)
     await indexOp.refreshIndex(indexEn)
     await indexOp.installIndex(indexEn)
 
     // Give Elasticsearch a moment to make data searchable
+    // eslint-disable-next-line no-promise-executor-return
     await new Promise((resolve) => setTimeout(resolve, 3000))
   })
 
@@ -176,14 +177,11 @@ describe('Search', () => {
 
     expect(response.getItemsPerPage()).toBe(2)
     expect(response.getCollection().length).toBeLessThanOrEqual(2)
-
-    if (response.getTotalCount() > 2) {
-      expect(response.getLastPage()).toBeGreaterThan(1)
-    }
+    expect(response.getLastPage()).toBeGreaterThan(1)
 
     console.log(
       `  Pagination: page 1, ${response.getCollection().length} items, ` +
-        `${response.getLastPage()} total pages`,
+        `${response.getLastPage()} total pages`
     )
   })
 
@@ -229,7 +227,7 @@ describe('Search', () => {
     const response = await searchManager.search(request)
 
     console.log(
-      `  Autocomplete "chaussure": ${response.getTotalCount()} results`,
+      `  Autocomplete "chaussure": ${response.getTotalCount()} results`
     )
 
     // Autocomplete should work without errors
@@ -246,7 +244,7 @@ describe('Search', () => {
     console.log(`  Sorting options: ${sortingOptions.length}`)
     for (const option of sortingOptions) {
       console.log(
-        `    - ${option.getCode()} (${option.getType()}): ${option.getDefaultLabel()}`,
+        `    - ${option.getCode()} (${option.getType()}): ${option.getDefaultLabel()}`
       )
     }
   })
@@ -257,12 +255,13 @@ describe('Search', () => {
     }) => {
       if (!isAvailable) skip()
 
-      const sourceFields =
-        await searchManager.getFilterableSourceField(productMetadata)
+      const sourceFields = await searchManager.getFilterableSourceField(
+        productMetadata
+      )
 
       expect(sourceFields).toBeInstanceOf(Map)
       console.log(
-        `  Filterable fields (Metadata object): ${sourceFields.size} fields`,
+        `  Filterable fields (Metadata object): ${sourceFields.size} fields`
       )
     })
 
@@ -271,8 +270,9 @@ describe('Search', () => {
     }) => {
       if (!isAvailable) skip()
 
-      const sourceFields =
-        await searchManager.getFilterableSourceField('product')
+      const sourceFields = await searchManager.getFilterableSourceField(
+        'product'
+      )
 
       expect(sourceFields).toBeInstanceOf(Map)
       console.log(`  Filterable fields (string): ${sourceFields.size} fields`)
@@ -283,12 +283,13 @@ describe('Search', () => {
     }) => {
       if (!isAvailable) skip()
 
-      const sourceFields =
-        await searchManager.getSelectSourceField(productMetadata)
+      const sourceFields = await searchManager.getSelectSourceField(
+        productMetadata
+      )
 
       expect(sourceFields).toBeInstanceOf(Map)
       console.log(
-        `  Select fields (Metadata object): ${sourceFields.size} fields`,
+        `  Select fields (Metadata object): ${sourceFields.size} fields`
       )
     })
 
@@ -327,12 +328,13 @@ describe('Search', () => {
     it('should work with category metadata as string', async ({ skip }) => {
       if (!isAvailable) skip()
 
-      const sourceFields =
-        await searchManager.getFilterableSourceField('category')
+      const sourceFields = await searchManager.getFilterableSourceField(
+        'category'
+      )
 
       expect(sourceFields).toBeInstanceOf(Map)
       console.log(
-        `  Category filterable fields (string): ${sourceFields.size} fields`,
+        `  Category filterable fields (string): ${sourceFields.size} fields`
       )
     })
 
@@ -354,7 +356,7 @@ describe('Search', () => {
 
       expect(response.getTotalCount()).toBeGreaterThanOrEqual(0)
       console.log(
-        `  Search with string metadata and filters: ${response.getTotalCount()} results`,
+        `  Search with string metadata and filters: ${response.getTotalCount()} results`
       )
     })
   })

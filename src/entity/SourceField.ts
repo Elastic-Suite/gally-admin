@@ -49,7 +49,7 @@ export class SourceField extends AbstractEntity {
     defaultLabel: string,
     labels: Label[],
     isSystem = false,
-    uri?: string,
+    uri?: string
   ) {
     super()
     this.metadata = metadata
@@ -99,8 +99,8 @@ export class SourceField extends AbstractEntity {
     }
 
     if (this.isSystemField) {
-      data['isUsedForRules'] = true
-      data['isSystem'] = true
+      data.isUsedForRules = true
+      data.isSystem = true
     }
 
     if (this.getUri()) {

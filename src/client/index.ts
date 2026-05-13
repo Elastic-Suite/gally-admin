@@ -11,9 +11,10 @@
 
 export { Client } from './Client'
 export type { HttpMethod } from './Client'
-export { BrowserConfiguration, Configuration } from './Configuration'
+export { Configuration } from './Configuration'
+export { BrowserConfiguration } from './BrowserConfiguration'
 export type {
-  BrowserConfigurationOptions,
-  ConfigurationOptions,
+  IBrowserConfigurationOptions as BrowserConfigurationOptions,
+  IConfigurationOptions as ConfigurationOptions,
 } from './Configuration'
-export type { TokenCacheManager } from './TokenCacheManager'
+export type { ITokenCacheManager as TokenCacheManager } from './TokenCacheManager'

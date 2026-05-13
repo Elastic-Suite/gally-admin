@@ -32,33 +32,35 @@ const TRACKING_CONTEXT_KEY = 'gally-tracking-context'
 abstract class TrackingEventContextStorage {
   protected abstract get storage(): Storage
 
-  isCategoryViewEvent(input: TrackingEventInput) {
+  isCategoryViewEvent(input: TrackingEventInput): boolean {
     return (
       input?.eventType === TrackingEventType.VIEW &&
       ['category'].includes(input?.metadataCode)
     )
   }
 
-  isSearchEvent(input: TrackingEventInput) {
+  isSearchEvent(input: TrackingEventInput): boolean {
     return input?.eventType === TrackingEventType.SEARCH
   }
 
-  isUpdateContextEvent(input: TrackingEventInput) {
+  isUpdateContextEvent(input: TrackingEventInput): boolean {
     return this.isCategoryViewEvent(input) || this.isSearchEvent(input)
   }
 
-  getUpdatedEventContext(input: TrackingEventInput) {
+  getUpdatedEventContext(
+    input: TrackingEventInput
+  ): PartialTrackingEventContext {
     return {
       contextType: this.isSearchEvent(input) ? 'search' : 'category',
       contextCode: this.isSearchEvent(input)
-        ? (JSON.parse(<string>input?.payload) as SearchPayload).search_query
+        ? (JSON.parse(input?.payload as string) as SearchPayload).search_query
             ?.query_text
         : input.entityCode,
     }
   }
 
   getSelfContext(
-    input: TrackingEventInput,
+    input: TrackingEventInput
   ): PartialTrackingEventContext | null {
     if (this.isUpdateContextEvent(input)) {
       return this.getUpdatedEventContext(input)
@@ -66,9 +68,9 @@ abstract class TrackingEventContextStorage {
     return null
   }
 
-  isUpdateContextSourceEvent(input: TrackingEventInput) {
+  isUpdateContextSourceEvent(input: TrackingEventInput): boolean {
     return ![TrackingEventType.DISPLAY, TrackingEventType.ADD_TO_CART].includes(
-      input?.eventType,
+      input?.eventType
     )
   }
 
@@ -97,7 +99,7 @@ abstract class TrackingEventContextStorage {
       } catch (e) {
         console.error(
           '[Gally SDK] TrackingEventContextStorage: could not save context to storage.',
-          e,
+          e
         )
       }
     }
@@ -122,21 +124,5 @@ abstract class TrackingEventContextStorage {
   }
 }
 
-class TrackingEventContextSessionStorage extends TrackingEventContextStorage {
-  protected get storage(): Storage {
-    return sessionStorage
-  }
-}
-
-class TrackingEventContextLocalStorage extends TrackingEventContextStorage {
-  protected get storage(): Storage {
-    return localStorage
-  }
-}
-
-export {
-  TrackingEventContextStorage,
-  TrackingEventContextSessionStorage,
-  TrackingEventContextLocalStorage,
-}
+export { TrackingEventContextStorage }
 export type { TrackingEventContext }

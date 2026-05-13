@@ -13,7 +13,7 @@
 
 import { Client } from '../client/Client'
 import { Configuration } from '../client/Configuration'
-import { TokenCacheManager } from '../client/TokenCacheManager'
+import { ITokenCacheManager } from '../client/TokenCacheManager'
 import { Index } from '../entity/GallyIndex'
 import { LocalizedCatalog } from '../entity/LocalizedCatalog'
 import { Metadata } from '../entity/Metadata'
@@ -31,34 +31,34 @@ export class IndexOperation {
 
   constructor(
     configuration: Configuration,
-    tokenCacheManager?: TokenCacheManager,
+    tokenCacheManager?: ITokenCacheManager
   ) {
     this.client = new Client(configuration, tokenCacheManager)
     const catalogRepository = new CatalogRepository(this.client)
     this.localizedCatalogRepository = new LocalizedCatalogRepository(
       this.client,
-      catalogRepository,
+      catalogRepository
     )
   }
 
   async createIndex(
     metadata: Metadata,
-    localizedCatalog: LocalizedCatalog,
+    localizedCatalog: LocalizedCatalog
   ): Promise<Index> {
     const index = new Index(metadata, localizedCatalog)
 
     const indexRawData = await this.client.post(
       Index.ENTITY_CODE,
-      index.toJson(),
+      index.toJson()
     )
-    index.setName(indexRawData['name'] as string)
+    index.setName(indexRawData.name as string)
 
     return index
   }
 
   async getIndexByName(
     metadata: Metadata,
-    localizedCatalog: LocalizedCatalog,
+    localizedCatalog: LocalizedCatalog
   ): Promise<Index> {
     const rawIndicesList = await this.client.get(Index.ENTITY_CODE)
 
@@ -69,7 +69,7 @@ export class IndexOperation {
         })
       if (existingLocalizedCatalogs.size !== 1) {
         throw new Error(
-          `Can't find localized catalog with code '${localizedCatalog.getCode()}', make sure your catalog structure has been synced with Gally.`,
+          `Can't find localized catalog with code '${localizedCatalog.getCode()}', make sure your catalog structure has been synced with Gally.`
         )
       }
       const firstEntry = existingLocalizedCatalogs.values().next().value
@@ -81,18 +81,18 @@ export class IndexOperation {
     const members = (rawIndicesList['hydra:member'] as any[]) ?? []
     for (const rawIndex of members) {
       if (
-        rawIndex['entityType'] === metadata.getEntity() &&
-        rawIndex['localizedCatalog'] === localizedCatalog.getUri() &&
-        rawIndex['status'] === 'live'
+        rawIndex.entityType === metadata.getEntity() &&
+        rawIndex.localizedCatalog === localizedCatalog.getUri() &&
+        rawIndex.status === 'live'
       ) {
         const index = new Index(metadata, localizedCatalog)
-        index.setName(rawIndex['name'] as string)
+        index.setName(rawIndex.name as string)
         return index
       }
     }
 
     throw new Error(
-      `Index for entity ${metadata.getEntity()} and localizedCatalog ${localizedCatalog.getCode()} does not exist yet. Make sure everything is reindexed.`,
+      `Index for entity ${metadata.getEntity()} and localizedCatalog ${localizedCatalog.getCode()} does not exist yet. Make sure everything is reindexed.`
     )
   }
 
@@ -108,7 +108,7 @@ export class IndexOperation {
 
   async executeBulk(
     index: Index | string,
-    documents: Record<string, any>[],
+    documents: Record<string, any>[]
   ): Promise<void> {
     const indexName = typeof index === 'string' ? index : index.getName()
     await this.client.post(IndexOperation.INDEX_DOCUMENT_ENTITY_CODE, {
@@ -119,14 +119,14 @@ export class IndexOperation {
 
   async deleteBulk(
     index: Index | string,
-    documentIds: (string | number)[],
+    documentIds: (string | number)[]
   ): Promise<void> {
     const indexName = typeof index === 'string' ? index : index.getName()
     const stringIds = documentIds.map(String)
 
     await this.client.delete(
       `${IndexOperation.INDEX_DOCUMENT_ENTITY_CODE}/${indexName}`,
-      { document_ids: stringIds },
+      { document_ids: stringIds }
     )
   }
 }
