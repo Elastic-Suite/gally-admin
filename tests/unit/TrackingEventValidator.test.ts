@@ -7,22 +7,24 @@
  * Each test case mirrors the integration test from
  * tests/integration/05-tracking-events.test.ts
  *
- * Run: npx vitest run tests/unit/TrackingEventValidator.test.ts
+ * Run: npx vitest run tests/unit/trackingEventValidator.test.ts
  */
 
-import { describe, it, expect } from 'vitest'
-import { TrackingEventValidator, TrackingEventType } from '../../src/validator'
+/* eslint-disable sort-imports */
+
+import { describe, expect, it } from 'vitest'
+import { TrackingEventType, TrackingEventValidator } from '../../src/validator'
 import { TrackingEventInput } from '../../src/service'
 import {
   // Valid event fixtures
-  categoryViewEvent,
+  addToCartProductEvent,
   categoryProductDisplayEvent,
+  categoryViewEvent,
+  displayEventWithoutContext,
   searchResultViewEvent,
   searchProductDisplayEvent,
-  productViewEvent,
-  addToCartProductEvent,
   orderProductEvent,
-  displayEventWithoutContext,
+  productViewEvent,
   // Invalid event fixtures
   invalidViewMissingEntityCode,
   invalidCategoryViewMissingProductList,
@@ -49,6 +51,7 @@ const withSessionInfos = <T extends Record<string, any>>(event: T): T => ({
 })
 
 describe('TrackingEventValidator', () => {
+  const trackingEventValidator = new TrackingEventValidator()
   // =========================================================================
   // Happy-path tests — one per integration test case
   // =========================================================================
@@ -58,7 +61,7 @@ describe('TrackingEventValidator', () => {
       ...categoryViewEvent,
       eventType: TrackingEventType.VIEW,
     })
-    expect(() => TrackingEventValidator.validate(event)).not.toThrow()
+    expect(() => trackingEventValidator.validate(event)).not.toThrow()
   })
 
   it('should validate a category product display event', () => {
@@ -66,7 +69,7 @@ describe('TrackingEventValidator', () => {
       ...categoryProductDisplayEvent,
       eventType: TrackingEventType.DISPLAY,
     })
-    expect(() => TrackingEventValidator.validate(event)).not.toThrow()
+    expect(() => trackingEventValidator.validate(event)).not.toThrow()
   })
 
   it('should validate a search result view event', () => {
@@ -74,7 +77,7 @@ describe('TrackingEventValidator', () => {
       ...searchResultViewEvent,
       eventType: TrackingEventType.SEARCH,
     })
-    expect(() => TrackingEventValidator.validate(event)).not.toThrow()
+    expect(() => trackingEventValidator.validate(event)).not.toThrow()
   })
 
   it('should validate a search product display event', () => {
@@ -82,7 +85,7 @@ describe('TrackingEventValidator', () => {
       ...searchProductDisplayEvent,
       eventType: TrackingEventType.DISPLAY,
     })
-    expect(() => TrackingEventValidator.validate(event)).not.toThrow()
+    expect(() => trackingEventValidator.validate(event)).not.toThrow()
   })
 
   it('should validate a product view event', () => {
@@ -90,7 +93,7 @@ describe('TrackingEventValidator', () => {
       ...productViewEvent,
       eventType: TrackingEventType.VIEW,
     })
-    expect(() => TrackingEventValidator.validate(event)).not.toThrow()
+    expect(() => trackingEventValidator.validate(event)).not.toThrow()
   })
 
   it('should validate an add to cart product event', () => {
@@ -98,7 +101,7 @@ describe('TrackingEventValidator', () => {
       ...addToCartProductEvent,
       eventType: TrackingEventType.ADD_TO_CART,
     })
-    expect(() => TrackingEventValidator.validate(event)).not.toThrow()
+    expect(() => trackingEventValidator.validate(event)).not.toThrow()
   })
 
   it('should validate an order product event', () => {
@@ -106,7 +109,7 @@ describe('TrackingEventValidator', () => {
       ...orderProductEvent,
       eventType: TrackingEventType.ORDER,
     })
-    expect(() => TrackingEventValidator.validate(event)).not.toThrow()
+    expect(() => trackingEventValidator.validate(event)).not.toThrow()
   })
 
   it('should validate an add to cart event without context', () => {
@@ -118,7 +121,7 @@ describe('TrackingEventValidator', () => {
     delete event.contextCode
     delete event.sourceEventType
     delete event.sourceMetadataCode
-    expect(() => TrackingEventValidator.validate(event)).not.toThrow()
+    expect(() => trackingEventValidator.validate(event)).not.toThrow()
   })
 
   it('should validate an order event without context', () => {
@@ -130,7 +133,7 @@ describe('TrackingEventValidator', () => {
     delete event.contextCode
     delete event.sourceEventType
     delete event.sourceMetadataCode
-    expect(() => TrackingEventValidator.validate(event)).not.toThrow()
+    expect(() => trackingEventValidator.validate(event)).not.toThrow()
   })
 
   it('should validate an event with partial context (source info only)', () => {
@@ -140,7 +143,7 @@ describe('TrackingEventValidator', () => {
     })
     delete event.contextType
     delete event.contextCode
-    expect(() => TrackingEventValidator.validate(event)).not.toThrow()
+    expect(() => trackingEventValidator.validate(event)).not.toThrow()
   })
 
   it('should validate an event with partial context (context info only)', () => {
@@ -150,7 +153,7 @@ describe('TrackingEventValidator', () => {
     })
     delete event.sourceEventType
     delete event.sourceMetadataCode
-    expect(() => TrackingEventValidator.validate(event)).not.toThrow()
+    expect(() => trackingEventValidator.validate(event)).not.toThrow()
   })
 
   // =========================================================================
@@ -162,8 +165,8 @@ describe('TrackingEventValidator', () => {
       ...invalidViewMissingEntityCode,
       eventType: TrackingEventType.VIEW,
     })
-    expect(() => TrackingEventValidator.validate(event)).toThrow(
-      'entityCode is required for view event',
+    expect(() => trackingEventValidator.validate(event)).toThrow(
+      'entityCode is required for view event'
     )
   })
 
@@ -172,8 +175,8 @@ describe('TrackingEventValidator', () => {
       ...invalidCategoryViewMissingProductList,
       eventType: TrackingEventType.VIEW,
     })
-    expect(() => TrackingEventValidator.validate(event)).toThrow(
-      'payload.product_list is required for view event',
+    expect(() => trackingEventValidator.validate(event)).toThrow(
+      'payload.product_list is required for view event'
     )
   })
 
@@ -182,7 +185,7 @@ describe('TrackingEventValidator', () => {
       ...displayEventWithoutContext,
       eventType: TrackingEventType.DISPLAY,
     })
-    expect(() => TrackingEventValidator.validate(event)).not.toThrow()
+    expect(() => trackingEventValidator.validate(event)).not.toThrow()
   })
 
   it('should reject a display event with empty items array', () => {
@@ -190,8 +193,8 @@ describe('TrackingEventValidator', () => {
       ...invalidDisplayEmptyItems,
       eventType: TrackingEventType.DISPLAY,
     })
-    expect(() => TrackingEventValidator.validate(event)).toThrow(
-      'payload.items must be a non-empty array for display event',
+    expect(() => trackingEventValidator.validate(event)).toThrow(
+      'payload.items must be a non-empty array for display event'
     )
   })
 
@@ -200,8 +203,8 @@ describe('TrackingEventValidator', () => {
       ...invalidSearchMissingSearchQuery,
       eventType: TrackingEventType.SEARCH,
     })
-    expect(() => TrackingEventValidator.validate(event)).toThrow(
-      'payload.search_query is required for search event',
+    expect(() => trackingEventValidator.validate(event)).toThrow(
+      'payload.search_query is required for search event'
     )
   })
 
@@ -210,8 +213,8 @@ describe('TrackingEventValidator', () => {
       ...invalidAddToCartMissingEntityCode,
       eventType: TrackingEventType.ADD_TO_CART,
     })
-    expect(() => TrackingEventValidator.validate(event)).toThrow(
-      'entityCode is required for add_to_cart event',
+    expect(() => trackingEventValidator.validate(event)).toThrow(
+      'entityCode is required for add_to_cart event'
     )
   })
 
@@ -220,8 +223,8 @@ describe('TrackingEventValidator', () => {
       ...invalidOrderMissingOrder,
       eventType: TrackingEventType.ORDER,
     })
-    expect(() => TrackingEventValidator.validate(event)).toThrow(
-      'payload.order is required for order event',
+    expect(() => trackingEventValidator.validate(event)).toThrow(
+      'payload.order is required for order event'
     )
   })
 
@@ -230,8 +233,8 @@ describe('TrackingEventValidator', () => {
       ...invalidAddToCartMissingChildSku,
       eventType: TrackingEventType.ADD_TO_CART,
     })
-    expect(() => TrackingEventValidator.validate(event)).toThrow(
-      'payload.child_sku is required for add_to_cart event',
+    expect(() => trackingEventValidator.validate(event)).toThrow(
+      'payload.child_sku is required for add_to_cart event'
     )
   })
 
@@ -240,8 +243,8 @@ describe('TrackingEventValidator', () => {
       ...invalidOrderMissingChildSku,
       eventType: TrackingEventType.ORDER,
     })
-    expect(() => TrackingEventValidator.validate(event)).toThrow(
-      'payload.items[0].child_sku is required for order event',
+    expect(() => trackingEventValidator.validate(event)).toThrow(
+      'payload.items[0].child_sku is required for order event'
     )
   })
 
@@ -260,8 +263,8 @@ describe('TrackingEventValidator', () => {
         },
       }),
     })
-    expect(() => TrackingEventValidator.validate(event)).toThrow(
-      'payload.product_list.filters[0].name is required for view event',
+    expect(() => trackingEventValidator.validate(event)).toThrow(
+      'payload.product_list.filters[0].name is required for view event'
     )
   })
 
@@ -284,8 +287,8 @@ describe('TrackingEventValidator', () => {
         },
       }),
     })
-    expect(() => TrackingEventValidator.validate(event)).toThrow(
-      'payload.product_list.filters[0].value must be of type string for search event',
+    expect(() => trackingEventValidator.validate(event)).toThrow(
+      'payload.product_list.filters[0].value must be of type string for search event'
     )
   })
 
@@ -298,8 +301,8 @@ describe('TrackingEventValidator', () => {
       ...categoryViewEvent,
       eventType: 'invalid_type' as any,
     })
-    expect(() => TrackingEventValidator.validate(event)).toThrow(
-      'Unsupported event type: invalid_type',
+    expect(() => trackingEventValidator.validate(event)).toThrow(
+      'Unsupported event type: invalid_type'
     )
   })
 
@@ -309,8 +312,8 @@ describe('TrackingEventValidator', () => {
       eventType: TrackingEventType.VIEW,
       payload: '{invalid json}',
     })
-    expect(() => TrackingEventValidator.validate(event)).toThrow(
-      'payload must be a valid JSON string',
+    expect(() => trackingEventValidator.validate(event)).toThrow(
+      'payload must be a valid JSON string'
     )
   })
 })

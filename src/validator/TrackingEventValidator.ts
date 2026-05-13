@@ -23,7 +23,7 @@ export enum TrackingEventType {
 // Payload shape descriptors
 // ---------------------------------------------------------------------------
 
-interface PayloadFieldRule {
+interface IPayloadFieldRule {
   type:
     | 'string'
     | 'numeric'
@@ -33,8 +33,8 @@ interface PayloadFieldRule {
     | 'array'
     | 'non-empty-array'
   required?: boolean
-  fields?: Record<string, PayloadFieldRule>
-  items?: Record<string, PayloadFieldRule>
+  fields?: Record<string, IPayloadFieldRule>
+  items?: Record<string, IPayloadFieldRule>
 }
 
 /**
@@ -44,9 +44,9 @@ interface PayloadFieldRule {
  * - payloadShapeByMetadata: deep format validation rules (presence + type + structure)
  *                           that depend on `metadataCode`
  */
-interface EventValidationRule {
+interface IEventValidationRule {
   extraFields?: string[]
-  payloadShapeByMetadata?: Record<string, Record<string, PayloadFieldRule>>
+  payloadShapeByMetadata?: Record<string, Record<string, IPayloadFieldRule>>
 }
 
 const COMMON_REQUIRED_FIELDS: string[] = [
@@ -63,7 +63,7 @@ const COMMON_REQUIRED_FIELDS: string[] = [
 /**
  * Format for filter items in product_list.filters array.
  */
-const FILTER_ITEM_FORMAT: Record<string, PayloadFieldRule> = {
+const FILTER_ITEM_FORMAT: Record<string, IPayloadFieldRule> = {
   name: { type: 'string', required: true },
   value: { type: 'string', required: true },
 }
@@ -71,7 +71,7 @@ const FILTER_ITEM_FORMAT: Record<string, PayloadFieldRule> = {
 /**
  * Format for product_list object in category view and search result events.
  */
-const PRODUCT_LIST_FORMAT: Record<string, PayloadFieldRule> = {
+const PRODUCT_LIST_FORMAT: Record<string, IPayloadFieldRule> = {
   product_list: {
     type: 'object',
     required: true,
@@ -89,7 +89,7 @@ const PRODUCT_LIST_FORMAT: Record<string, PayloadFieldRule> = {
 /**
  * Format for search_query object in search events.
  */
-const SEARCH_QUERY_FORMAT: Record<string, PayloadFieldRule> = {
+const SEARCH_QUERY_FORMAT: Record<string, IPayloadFieldRule> = {
   search_query: {
     type: 'object',
     required: true,
@@ -103,14 +103,14 @@ const SEARCH_QUERY_FORMAT: Record<string, PayloadFieldRule> = {
 /**
  * Format for display.position nested in items array for display events.
  */
-const DISPLAY_POSITION_FORMAT: Record<string, PayloadFieldRule> = {
+const DISPLAY_POSITION_FORMAT: Record<string, IPayloadFieldRule> = {
   position: { type: 'integer', required: true },
 }
 
 /**
  * Format for items in display events (product impressions).
  */
-const DISPLAY_ITEM_FORMAT: Record<string, PayloadFieldRule> = {
+const DISPLAY_ITEM_FORMAT: Record<string, IPayloadFieldRule> = {
   entityCode: { type: 'string', required: true },
   display: {
     type: 'object',
@@ -122,7 +122,7 @@ const DISPLAY_ITEM_FORMAT: Record<string, PayloadFieldRule> = {
 /**
  * Format for cart object in add_to_cart events.
  */
-const CART_FORMAT: Record<string, PayloadFieldRule> = {
+const CART_FORMAT: Record<string, IPayloadFieldRule> = {
   cart: {
     type: 'object',
     required: true,
@@ -139,7 +139,7 @@ const CART_FORMAT: Record<string, PayloadFieldRule> = {
 /**
  * Format for top-level order object in order events.
  */
-const ORDER_OBJECT_FORMAT: Record<string, PayloadFieldRule> = {
+const ORDER_OBJECT_FORMAT: Record<string, IPayloadFieldRule> = {
   order: {
     type: 'object',
     required: true,
@@ -153,7 +153,7 @@ const ORDER_OBJECT_FORMAT: Record<string, PayloadFieldRule> = {
 /**
  * Format for order details nested in items array for order events.
  */
-const ORDER_ITEM_ORDER_FORMAT: Record<string, PayloadFieldRule> = {
+const ORDER_ITEM_ORDER_FORMAT: Record<string, IPayloadFieldRule> = {
   price: { type: 'numeric', required: true },
   qty: { type: 'numeric', required: true },
   row_total: { type: 'numeric', required: true },
@@ -162,7 +162,7 @@ const ORDER_ITEM_ORDER_FORMAT: Record<string, PayloadFieldRule> = {
 /**
  * Format for items in order events (purchased products).
  */
-const ORDER_ITEM_FORMAT: Record<string, PayloadFieldRule> = {
+const ORDER_ITEM_FORMAT: Record<string, IPayloadFieldRule> = {
   child_sku: {
     type: 'string',
     required: true,
@@ -179,7 +179,7 @@ const ORDER_ITEM_FORMAT: Record<string, PayloadFieldRule> = {
 // Validation rules per event type
 // ---------------------------------------------------------------------------
 
-const VALIDATION_RULES: Record<TrackingEventType, EventValidationRule> = {
+const VALIDATION_RULES: Record<TrackingEventType, IEventValidationRule> = {
   [TrackingEventType.VIEW]: {
     extraFields: ['entityCode'],
     payloadShapeByMetadata: {
@@ -233,14 +233,14 @@ export class TrackingEventValidator {
   /**
    * Validate a tracking event input against the rules for its event type.
    */
-  static validate(input: TrackingEventInput): void {
-    const rule = TrackingEventValidator.getRule(input.eventType)
+  validate(input: TrackingEventInput): void {
+    const rule = this.getRule(input.eventType)
 
-    TrackingEventValidator.assertRequiredFields(input, rule)
+    this.assertRequiredFields(input, rule)
 
     if (input.payload) {
-      const payloadObj = TrackingEventValidator.parsePayload(input.payload)
-      TrackingEventValidator.assertPayloadFormat(payloadObj, rule, input)
+      const payloadObj = this.parsePayload(input.payload)
+      this.assertPayloadFormat(payloadObj, rule, input)
     }
   }
 
@@ -248,7 +248,7 @@ export class TrackingEventValidator {
   // Rule resolution
   // ---------------------------------------------------------------------------
 
-  private static getRule(eventType: TrackingEventType): EventValidationRule {
+  private getRule(eventType: TrackingEventType): IEventValidationRule {
     const rule = VALIDATION_RULES[eventType]
     if (!rule) {
       throw new Error(`Unsupported event type: ${eventType}`)
@@ -260,9 +260,9 @@ export class TrackingEventValidator {
   // Top-level field validation
   // ---------------------------------------------------------------------------
 
-  private static assertRequiredFields(
+  private assertRequiredFields(
     input: TrackingEventInput,
-    rule: EventValidationRule,
+    rule: IEventValidationRule
   ): void {
     const allFields = [...COMMON_REQUIRED_FIELDS, ...(rule.extraFields ?? [])]
 
@@ -278,7 +278,7 @@ export class TrackingEventValidator {
   // Payload parsing
   // ---------------------------------------------------------------------------
 
-  private static parsePayload(payload: string): Record<string, unknown> {
+  private parsePayload(payload: string): Record<string, unknown> {
     try {
       return JSON.parse(payload)
     } catch {
@@ -290,10 +290,10 @@ export class TrackingEventValidator {
   // Deep payload format validation (presence + type + structure, metadata-dependent)
   // ---------------------------------------------------------------------------
 
-  private static assertPayloadFormat(
+  private assertPayloadFormat(
     payloadObj: Record<string, unknown>,
-    rule: EventValidationRule,
-    input: TrackingEventInput,
+    rule: IEventValidationRule,
+    input: TrackingEventInput
   ): void {
     const formatRules =
       rule.payloadShapeByMetadata?.[input.metadataCode] ??
@@ -302,12 +302,12 @@ export class TrackingEventValidator {
     if (!formatRules) return
 
     for (const [field, fieldRule] of Object.entries(formatRules)) {
-      TrackingEventValidator.validateField(
+      this.validateField(
         payloadObj,
         field,
         fieldRule,
         `payload.${field}`,
-        input.eventType,
+        input.eventType
       )
     }
   }
@@ -315,12 +315,12 @@ export class TrackingEventValidator {
   /**
    * Validate a single field: check if required, then validate its format recursively.
    */
-  private static validateField(
+  private validateField(
     parent: Record<string, unknown>,
     fieldName: string,
-    rule: PayloadFieldRule,
+    rule: IPayloadFieldRule,
     path: string,
-    eventType: TrackingEventType,
+    eventType: TrackingEventType
   ): void {
     const value = parent[fieldName]
 
@@ -331,61 +331,51 @@ export class TrackingEventValidator {
       return
     }
 
-    TrackingEventValidator.assertFieldFormat(value, rule, path, eventType)
+    this.assertFieldFormat(value, rule, path, eventType)
   }
 
   /**
    * Recursively validate the format of a field value.
    * Checks type, nested fields, and array items.
    */
-  private static assertFieldFormat(
+  private assertFieldFormat(
     value: unknown,
-    rule: PayloadFieldRule,
+    rule: IPayloadFieldRule,
     path: string,
-    eventType: TrackingEventType,
+    eventType: TrackingEventType
   ): void {
-    TrackingEventValidator.assertFieldType(value, rule.type, path, eventType)
+    this.assertFieldType(value, rule.type, path, eventType)
 
     if (
       rule.fields &&
       ['object', 'array', 'non-empty-array'].includes(rule.type)
     ) {
-      TrackingEventValidator.validateNestedFields(
-        value,
-        rule.fields,
-        path,
-        eventType,
-      )
+      this.validateNestedFields(value, rule.fields, path, eventType)
     }
 
     if (rule.items && ['array', 'non-empty-array'].includes(rule.type)) {
-      TrackingEventValidator.validateArrayItems(
-        value,
-        rule.items,
-        path,
-        eventType,
-      )
+      this.validateArrayItems(value, rule.items, path, eventType)
     }
   }
 
   /**
    * Validate nested object fields.
    */
-  private static validateNestedFields(
+  private validateNestedFields(
     value: unknown,
-    fields: Record<string, PayloadFieldRule>,
+    fields: Record<string, IPayloadFieldRule>,
     path: string,
-    eventType: TrackingEventType,
+    eventType: TrackingEventType
   ): void {
     const obj = value as Record<string, unknown>
 
     for (const [fieldName, fieldRule] of Object.entries(fields)) {
-      TrackingEventValidator.validateField(
+      this.validateField(
         obj,
         fieldName,
         fieldRule,
         `${path}.${fieldName}`,
-        eventType,
+        eventType
       )
     }
   }
@@ -393,11 +383,11 @@ export class TrackingEventValidator {
   /**
    * Validate array items against a schema.
    */
-  private static validateArrayItems(
+  private validateArrayItems(
     value: unknown,
-    itemSchema: Record<string, PayloadFieldRule>,
+    itemSchema: Record<string, IPayloadFieldRule>,
     path: string,
-    eventType: TrackingEventType,
+    eventType: TrackingEventType
   ): void {
     const arr = value as unknown[]
 
@@ -405,25 +395,25 @@ export class TrackingEventValidator {
       const element = arr[i] as Record<string, unknown>
 
       for (const [fieldName, fieldRule] of Object.entries(itemSchema)) {
-        TrackingEventValidator.validateField(
+        this.validateField(
           element,
           fieldName,
           fieldRule,
           `${path}[${i}].${fieldName}`,
-          eventType,
+          eventType
         )
       }
     }
   }
 
-  private static assertFieldType(
+  private assertFieldType(
     value: unknown,
-    type: PayloadFieldRule['type'],
+    type: IPayloadFieldRule['type'],
     path: string,
-    eventType: TrackingEventType,
+    eventType: TrackingEventType
   ): void {
     const validators: Record<
-      PayloadFieldRule['type'],
+      IPayloadFieldRule['type'],
       (v: unknown) => boolean
     > = {
       string: (v) => typeof v === 'string',
@@ -435,7 +425,7 @@ export class TrackingEventValidator {
       'non-empty-array': (v) => Array.isArray(v) && v.length > 0,
     }
 
-    const typeNames: Record<PayloadFieldRule['type'], string> = {
+    const typeNames: Record<IPayloadFieldRule['type'], string> = {
       string: 'string',
       numeric: 'numeric',
       integer: 'integer',
@@ -449,7 +439,7 @@ export class TrackingEventValidator {
       const typeName = typeNames[type] || type
       const article = typeName.startsWith('a ') ? '' : 'of type '
       throw new Error(
-        `${path} must be ${article}${typeName} for ${eventType} event`,
+        `${path} must be ${article}${typeName} for ${eventType} event`
       )
     }
   }

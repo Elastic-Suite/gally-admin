@@ -37,16 +37,16 @@ export class LocalizedCatalogRepository extends AbstractRepository<LocalizedCata
   }
 
   protected buildEntityObject(
-    rawEntity: Record<string, any>,
+    rawEntity: Record<string, any>
   ): LocalizedCatalog {
     // catalogRepository.findByUri is async, but buildEntityObject is sync in the
     // abstract class. We store a placeholder and resolve later.
     // For consistency, we use a sync approach: the catalog should already be cached.
-    const catalogUri = rawEntity['catalog'] as string
+    const catalogUri = rawEntity.catalog as string
     let catalog: Catalog | undefined
 
     // Try to find it in the catalog repository cache
-    const cachedCatalog = this.catalogRepository['entityByUri'].get(catalogUri)
+    const cachedCatalog = this.catalogRepository.entityByUri.get(catalogUri)
     if (cachedCatalog) {
       catalog = cachedCatalog
     } else {
@@ -56,11 +56,11 @@ export class LocalizedCatalogRepository extends AbstractRepository<LocalizedCata
 
     return new LocalizedCatalog(
       catalog,
-      rawEntity['code'] as string,
-      rawEntity['name'] as string,
-      rawEntity['locale'] as string,
-      rawEntity['currency'] as string,
-      rawEntity['@id'] as string | undefined,
+      rawEntity.code as string,
+      rawEntity.name as string,
+      rawEntity.locale as string,
+      rawEntity.currency as string,
+      rawEntity['@id'] as string | undefined
     )
   }
 
@@ -75,16 +75,16 @@ export class LocalizedCatalogRepository extends AbstractRepository<LocalizedCata
 
     const rawEntity = await this.client.get(uri)
     const catalog = await this.catalogRepository.findByUri(
-      rawEntity['catalog'] as string,
+      rawEntity.catalog as string
     )
 
     const entity = new LocalizedCatalog(
       catalog,
-      rawEntity['code'] as string,
-      rawEntity['name'] as string,
-      rawEntity['locale'] as string,
-      rawEntity['currency'] as string,
-      rawEntity['@id'] as string | undefined,
+      rawEntity.code as string,
+      rawEntity.name as string,
+      rawEntity.locale as string,
+      rawEntity.currency as string,
+      rawEntity['@id'] as string | undefined
     )
 
     this.saveInCache(entity)
@@ -96,13 +96,14 @@ export class LocalizedCatalogRepository extends AbstractRepository<LocalizedCata
    */
   override async findBy(
     criteria: Record<string, any> = {},
-    saveInCache = false,
+    saveInCache = false
   ): Promise<Map<string, LocalizedCatalog>> {
     let currentPage = 1
     const entities = new Map<string, LocalizedCatalog>()
 
     let rawEntitiesArray: any[]
     do {
+      // eslint-disable-next-line no-await-in-loop
       const rawEntities = await this.client.get(this.getEntityCode(), {
         ...criteria,
         currentPage,
@@ -111,16 +112,17 @@ export class LocalizedCatalogRepository extends AbstractRepository<LocalizedCata
 
       rawEntitiesArray = (rawEntities['hydra:member'] as any[]) ?? []
       for (const rawEntity of rawEntitiesArray) {
+        // eslint-disable-next-line no-await-in-loop
         const catalog = await this.catalogRepository.findByUri(
-          rawEntity['catalog'] as string,
+          rawEntity.catalog as string
         )
         const entity = new LocalizedCatalog(
           catalog,
-          rawEntity['code'] as string,
-          rawEntity['name'] as string,
-          rawEntity['locale'] as string,
-          rawEntity['currency'] as string,
-          rawEntity['@id'] as string | undefined,
+          rawEntity.code as string,
+          rawEntity.name as string,
+          rawEntity.locale as string,
+          rawEntity.currency as string,
+          rawEntity['@id'] as string | undefined
         )
         entities.set(this.getIdentity(entity), entity)
         if (saveInCache) {

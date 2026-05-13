@@ -10,7 +10,7 @@
  */
 
 import { Configuration } from './Configuration'
-import { TokenCacheManager } from './TokenCacheManager'
+import { ITokenCacheManager } from './TokenCacheManager'
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
@@ -18,16 +18,16 @@ export type HttpMethod = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH'
 
 export class Client {
   private readonly configuration: Configuration
-  private readonly tokenCacheManager?: TokenCacheManager
+  private readonly tokenCacheManager?: ITokenCacheManager
   private baseUrl: string
 
   constructor(
     configuration: Configuration,
-    tokenCacheManager?: TokenCacheManager,
+    tokenCacheManager?: ITokenCacheManager
   ) {
     this.configuration = configuration
     this.tokenCacheManager = tokenCacheManager
-    this.baseUrl = configuration.getBaseUri().replace(/\/+$/, '') + '/'
+    this.baseUrl = `${configuration.getBaseUri().replace(/\/+$/, '')}/`
 
     // Disable SSL certificate verification when checkSSL is false.
     // This is necessary for self-signed certificates (e.g. local dev environments).
@@ -36,30 +36,30 @@ export class Client {
       typeof process !== 'undefined' &&
       process.env
     ) {
-      process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0'
+      process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0'
     }
   }
 
-  async get(
+  get(
     endpoint: string,
     data: Record<string, any> = {},
-    isPrivate = true,
+    isPrivate = true
   ): Promise<Record<string, any>> {
     return this.query('GET', endpoint, data, {}, isPrivate)
   }
 
-  async post(
+  post(
     endpoint: string,
     data: any = {},
-    isPrivate = true,
+    isPrivate = true
   ): Promise<Record<string, any>> {
     return this.query('POST', endpoint, data, {}, isPrivate)
   }
 
-  async put(
+  put(
     endpoint: string,
     data: Record<string, any> = {},
-    isPrivate = true,
+    isPrivate = true
   ): Promise<Record<string, any>> {
     return this.query('PUT', endpoint, data, {}, isPrivate)
   }
@@ -67,15 +67,15 @@ export class Client {
   async delete(
     endpoint: string,
     data: Record<string, any> = {},
-    isPrivate = true,
+    isPrivate = true
   ): Promise<void> {
     await this.query('DELETE', endpoint, data, {}, isPrivate)
   }
 
-  async patch(
+  patch(
     endpoint: string,
     data: Record<string, any> = {},
-    isPrivate = true,
+    isPrivate = true
   ): Promise<Record<string, any>> {
     return this.query('PATCH', endpoint, data, {}, isPrivate)
   }
@@ -84,7 +84,7 @@ export class Client {
     query: string,
     variables: Record<string, any> = {},
     headers: Record<string, string> = {},
-    isPrivate = true,
+    isPrivate = true
   ): Promise<Record<string, any>> {
     const response = await this.query(
       'POST',
@@ -95,17 +95,17 @@ export class Client {
         'Content-Type': 'application/json',
         ...headers,
       },
-      isPrivate,
+      isPrivate
     )
 
-    if (response['errors']) {
-      const errors = response['errors'] as Array<{
+    if (response.errors) {
+      const errors = response.errors as Array<{
         message: string
         extensions?: { debugMessage?: string }
       }>
-      const error = errors[0]
+      const [error] = errors
       throw new Error(
-        error?.extensions?.debugMessage ?? error?.message ?? 'GraphQL error',
+        error?.extensions?.debugMessage ?? error?.message ?? 'GraphQL error'
       )
     }
 
@@ -117,7 +117,7 @@ export class Client {
     endpoint: string,
     data: any = {},
     headers: Record<string, string> = {},
-    isPrivate = true,
+    isPrivate = true
   ): Promise<Record<string, any>> {
     const mergedHeaders: Record<string, string> = {
       Accept: 'application/ld+json',
@@ -128,10 +128,10 @@ export class Client {
     if (isPrivate) {
       const token = this.tokenCacheManager
         ? await this.tokenCacheManager.getToken(() =>
-          this.getAuthorizationToken(),
-        )
+            this.getAuthorizationToken()
+          )
         : await this.getAuthorizationToken()
-      mergedHeaders['Authorization'] = `Bearer ${token}`
+      mergedHeaders.Authorization = `Bearer ${token}`
     }
 
     try {
@@ -141,17 +141,17 @@ export class Client {
       if (isPrivate && error?.status === 401) {
         const token = this.tokenCacheManager
           ? await this.tokenCacheManager.getToken(
-            () => this.getAuthorizationToken(),
-            false,
-          )
+              () => this.getAuthorizationToken(),
+              false
+            )
           : await this.getAuthorizationToken()
-        mergedHeaders['Authorization'] = `Bearer ${token}`
+        mergedHeaders.Authorization = `Bearer ${token}`
 
         return this.executeRequest(method, endpoint, data, mergedHeaders)
       }
       throw new Error(
         `An error happened when fetching the "${endpoint}" API endpoint with ${method} method.`,
-        { cause: error },
+        { cause: error }
       )
     }
   }
@@ -180,7 +180,7 @@ export class Client {
     } catch (error) {
       throw new Error(
         'An error happened when fetching the authentication token.',
-        { cause: error },
+        { cause: error }
       )
     }
   }
@@ -189,18 +189,22 @@ export class Client {
     method: HttpMethod,
     endpoint: string,
     data: any,
-    headers: Record<string, string>,
+    headers: Record<string, string>
   ): Promise<Record<string, any>> {
     let url: string
-    const fetchOptions: RequestInit = { method, headers, credentials: 'include' }
+    const fetchOptions: RequestInit = {
+      method,
+      headers,
+      credentials: 'include',
+    }
 
     if (method === 'GET') {
       const queryString = new URLSearchParams(
-        this.flattenParams(data),
+        this.flattenParams(data)
       ).toString()
       url = new URL(
         queryString ? `${endpoint}?${queryString}` : endpoint,
-        this.baseUrl,
+        this.baseUrl
       ).toString()
     } else {
       url = new URL(endpoint, this.baseUrl).toString()
@@ -219,7 +223,7 @@ export class Client {
         ? `HTTP ${response.status}: ${response.statusText} — ${errorBody}`
         : `HTTP ${response.status}: ${response.statusText}`
       const error = new Error(errorMessage)
-        ; (error as any).status = response.status
+      ;(error as any).status = response.status
       throw error
     }
 
@@ -233,7 +237,7 @@ export class Client {
 
   private flattenParams(
     data: Record<string, any>,
-    prefix = '',
+    prefix = ''
   ): Record<string, string> {
     const result: Record<string, string> = {}
     for (const [key, value] of Object.entries(data)) {
@@ -249,7 +253,7 @@ export class Client {
           if (typeof item === 'object' && item !== null) {
             Object.assign(
               result,
-              this.flattenParams(item, `${paramKey}[${index}]`),
+              this.flattenParams(item, `${paramKey}[${index}]`)
             )
           } else {
             result[`${paramKey}[${index}]`] = String(item)

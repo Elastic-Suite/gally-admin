@@ -20,9 +20,10 @@ import { AbstractEntity } from '../entity'
 export abstract class AbstractRepository<T extends AbstractEntity> {
   protected static readonly FETCH_PAGE_SIZE = 50
 
-  protected entityByIdentity: Map<string, T> = new Map()
-  protected entityByUri: Map<string, T> = new Map()
+  entityByIdentity = new Map<string, T>()
+  entityByUri = new Map<string, T>()
 
+  // eslint-disable-next-line no-empty-function, @typescript-eslint/no-empty-function
   constructor(protected readonly client: Client) {}
 
   abstract getEntityCode(): string
@@ -49,13 +50,14 @@ export abstract class AbstractRepository<T extends AbstractEntity> {
 
   async findBy(
     criteria: Record<string, any> = {},
-    saveInCache = false,
+    saveInCache = false
   ): Promise<Map<string, T>> {
     let currentPage = 1
     const entities = new Map<string, T>()
 
     let rawEntitiesArray: any[]
     do {
+      // eslint-disable-next-line no-await-in-loop
       const rawEntities = await this.client.get(this.getEntityCode(), {
         ...criteria,
         currentPage,
@@ -76,7 +78,7 @@ export abstract class AbstractRepository<T extends AbstractEntity> {
     return entities
   }
 
-  async findAll(): Promise<Map<string, T>> {
+  findAll(): Promise<Map<string, T>> {
     return this.findBy({}, true)
   }
 

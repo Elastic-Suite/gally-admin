@@ -11,8 +11,8 @@ import {
   LocalizedCatalog,
   Metadata,
   SourceField,
-  SourceFieldType,
   SourceFieldOption,
+  SourceFieldType,
 } from '@elastic-suite/gally-sdk'
 
 // ---------------------------------------------------------------------------
@@ -26,7 +26,7 @@ export const sampleLocalizedCatalogFr = new LocalizedCatalog(
   'sdk_test_shop_fr',
   'SDK Test Shop FR',
   'fr_FR',
-  'EUR',
+  'EUR'
 )
 
 export const sampleLocalizedCatalogEn = new LocalizedCatalog(
@@ -34,7 +34,7 @@ export const sampleLocalizedCatalogEn = new LocalizedCatalog(
   'sdk_test_shop_en',
   'SDK Test Shop EN',
   'en_US',
-  'USD',
+  'USD'
 )
 
 export const allLocalizedCatalogs = [
@@ -56,8 +56,8 @@ export const categoryMetadata = new Metadata('category')
 export function createSampleSourceFields(): SourceField[] {
   return [
     new SourceField(productMetadata, 'name', SourceFieldType.TEXT, 'Name', [
-      new Label(sampleLocalizedCatalogFr, 'Nom'),
-      new Label(sampleLocalizedCatalogEn, 'Name'),
+      new Label(sampleLocalizedCatalogFr, 'Nom du produit'),
+      new Label(sampleLocalizedCatalogEn, 'Product Name'),
     ]),
     new SourceField(
       productMetadata,
@@ -67,7 +67,7 @@ export function createSampleSourceFields(): SourceField[] {
       [
         new Label(sampleLocalizedCatalogFr, 'Description'),
         new Label(sampleLocalizedCatalogEn, 'Description'),
-      ],
+      ]
     ),
     new SourceField(productMetadata, 'sku', SourceFieldType.REFERENCE, 'SKU', [
       new Label(sampleLocalizedCatalogFr, 'SKU'),
@@ -93,7 +93,7 @@ export function createSampleSourceFields(): SourceField[] {
       [
         new Label(sampleLocalizedCatalogFr, 'Actif'),
         new Label(sampleLocalizedCatalogEn, 'Active'),
-      ],
+      ]
     ),
     new SourceField(
       productMetadata,
@@ -103,7 +103,7 @@ export function createSampleSourceFields(): SourceField[] {
       [
         new Label(sampleLocalizedCatalogFr, 'Poids'),
         new Label(sampleLocalizedCatalogEn, 'Weight'),
-      ],
+      ]
     ),
     new SourceField(productMetadata, 'image', SourceFieldType.IMAGE, 'Image', [
       new Label(sampleLocalizedCatalogFr, 'Image'),
@@ -118,7 +118,7 @@ export function createSampleSourceFields(): SourceField[] {
 
 export function createSampleSourceFieldOptions(
   brandField: SourceField,
-  colorField: SourceField,
+  colorField: SourceField
 ): SourceFieldOption[] {
   return [
     // Brand options

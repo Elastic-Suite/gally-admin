@@ -11,7 +11,6 @@
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { Client } from '../client/Client'
 import { Catalog } from '../entity/Catalog'
 import { AbstractRepository } from './AbstractRepository'
 
@@ -19,10 +18,6 @@ import { AbstractRepository } from './AbstractRepository'
  * Catalog repository.
  */
 export class CatalogRepository extends AbstractRepository<Catalog> {
-  constructor(client: Client) {
-    super(client)
-  }
-
   getEntityCode(): string {
     return Catalog.ENTITY_CODE
   }
@@ -33,9 +28,9 @@ export class CatalogRepository extends AbstractRepository<Catalog> {
 
   protected buildEntityObject(rawEntity: Record<string, any>): Catalog {
     return new Catalog(
-      rawEntity['code'] as string,
-      rawEntity['name'] as string,
-      rawEntity['@id'] as string | undefined,
+      rawEntity.code as string,
+      rawEntity.name as string,
+      rawEntity['@id'] as string | undefined
     )
   }
 }

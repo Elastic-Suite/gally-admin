@@ -22,7 +22,7 @@ export class Index {
   constructor(
     metadata: Metadata,
     localizedCatalog: LocalizedCatalog,
-    name?: string,
+    name?: string
   ) {
     this.metadata = metadata
     this.localizedCatalog = localizedCatalog
@@ -56,7 +56,7 @@ export class Index {
     }
 
     if (this.getName()) {
-      jsonFields['name'] = this.getName()!
+      jsonFields.name = this.getName()!
     }
 
     return jsonFields

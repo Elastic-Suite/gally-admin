@@ -11,7 +11,6 @@
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { Client } from '../client/Client'
 import { Metadata } from '../entity/Metadata'
 import { AbstractRepository } from './AbstractRepository'
 
@@ -19,10 +18,6 @@ import { AbstractRepository } from './AbstractRepository'
  * Metadata repository.
  */
 export class MetadataRepository extends AbstractRepository<Metadata> {
-  constructor(client: Client) {
-    super(client)
-  }
-
   getEntityCode(): string {
     return Metadata.ENTITY_CODE
   }
@@ -33,8 +28,8 @@ export class MetadataRepository extends AbstractRepository<Metadata> {
 
   protected buildEntityObject(rawEntity: Record<string, any>): Metadata {
     return new Metadata(
-      rawEntity['entity'] as string,
-      rawEntity['@id'] as string | undefined,
+      rawEntity.entity as string,
+      rawEntity['@id'] as string | undefined
     )
   }
 }

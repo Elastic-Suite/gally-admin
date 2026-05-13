@@ -38,11 +38,10 @@ export class SourceFieldRepository extends AbstractBulkRepository<SourceField> {
 
   protected buildEntityObject(rawEntity: Record<string, any>): SourceField {
     // Try to get metadata from cache
-    const metadataUri = rawEntity['metadata'] as string
+    const metadataUri = rawEntity.metadata as string
     let metadata: Metadata | undefined
 
-    const cachedMetadata =
-      this.metadataRepository['entityByUri'].get(metadataUri)
+    const cachedMetadata = this.metadataRepository.entityByUri.get(metadataUri)
     if (cachedMetadata) {
       metadata = cachedMetadata
     } else {
@@ -51,12 +50,12 @@ export class SourceFieldRepository extends AbstractBulkRepository<SourceField> {
 
     return new SourceField(
       metadata,
-      rawEntity['code'] as string,
-      rawEntity['type'] as string,
-      rawEntity['defaultLabel'] as string,
-      rawEntity['labels'] ?? [],
-      (rawEntity['isSystem'] as boolean) ?? false,
-      rawEntity['@id'] as string | undefined,
+      rawEntity.code as string,
+      rawEntity.type as string,
+      rawEntity.defaultLabel as string,
+      rawEntity.labels ?? [],
+      (rawEntity.isSystem as boolean) ?? false,
+      rawEntity['@id'] as string | undefined
     )
   }
 
@@ -71,17 +70,17 @@ export class SourceFieldRepository extends AbstractBulkRepository<SourceField> {
 
     const rawEntity = await this.client.get(uri)
     const metadata = await this.metadataRepository.findByUri(
-      rawEntity['metadata'] as string,
+      rawEntity.metadata as string
     )
 
     const entity = new SourceField(
       metadata,
-      rawEntity['code'] as string,
-      rawEntity['type'] as string,
-      rawEntity['defaultLabel'] as string,
-      rawEntity['labels'] ?? [],
-      (rawEntity['isSystem'] as boolean) ?? false,
-      rawEntity['@id'] as string | undefined,
+      rawEntity.code as string,
+      rawEntity.type as string,
+      rawEntity.defaultLabel as string,
+      rawEntity.labels ?? [],
+      (rawEntity.isSystem as boolean) ?? false,
+      rawEntity['@id'] as string | undefined
     )
 
     this.saveInCache(entity)
@@ -93,13 +92,14 @@ export class SourceFieldRepository extends AbstractBulkRepository<SourceField> {
    */
   override async findBy(
     criteria: Record<string, any> = {},
-    saveInCache = false,
+    saveInCache = false
   ): Promise<Map<string, SourceField>> {
     let currentPage = 1
     const entities = new Map<string, SourceField>()
 
     let rawEntitiesArray: any[]
     do {
+      // eslint-disable-next-line no-await-in-loop
       const rawEntities = await this.client.get(this.getEntityCode(), {
         ...criteria,
         currentPage,
@@ -108,17 +108,18 @@ export class SourceFieldRepository extends AbstractBulkRepository<SourceField> {
 
       rawEntitiesArray = (rawEntities['hydra:member'] as any[]) ?? []
       for (const rawEntity of rawEntitiesArray) {
+        // eslint-disable-next-line no-await-in-loop
         const metadata = await this.metadataRepository.findByUri(
-          rawEntity['metadata'] as string,
+          rawEntity.metadata as string
         )
         const entity = new SourceField(
           metadata,
-          rawEntity['code'] as string,
-          rawEntity['type'] as string,
-          rawEntity['defaultLabel'] as string,
-          rawEntity['labels'] ?? [],
-          (rawEntity['isSystem'] as boolean) ?? false,
-          rawEntity['@id'] as string | undefined,
+          rawEntity.code as string,
+          rawEntity.type as string,
+          rawEntity.defaultLabel as string,
+          rawEntity.labels ?? [],
+          (rawEntity.isSystem as boolean) ?? false,
+          rawEntity['@id'] as string | undefined
         )
         entities.set(this.getIdentity(entity), entity)
         if (saveInCache) {

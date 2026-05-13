@@ -13,21 +13,18 @@ import { Client, Configuration } from '../client'
 import { TrackingEventType, TrackingEventValidator } from '../validator'
 import { ThrottledEventManager } from './tracking/ThrottledEventManager'
 import {
-  SessionInformationStorage,
-  SessionInformationCookieStorage,
   SESSION_UID_COOKIE_NAME,
   SESSION_VID_COOKIE_NAME,
+  SessionInformationStorage,
 } from './tracking/SessionInformationStorage'
-import {
-  TrackingEventContextStorage,
-  TrackingEventContextLocalStorage,
-} from './tracking/TrackingEventContextStorage'
-import {
-  EventQueueStorage,
-  EventQueueLocalStorage,
-} from './tracking/EventQueueStorage'
+import { TrackingEventContextStorage } from './tracking/TrackingEventContextStorage'
+import { EventQueueStorage } from './tracking/EventQueueStorage'
+import { EventQueueLocalStorage } from './tracking/EventQueueLocalStorage'
+import { TrackingEventContextLocalStorage } from '.'
+import { SessionInformationCookieStorage } from './TrackingEventManager'
 
 declare global {
+  // eslint-disable-next-line @typescript-eslint/naming-convention
   interface Window {
     gallyEvent: TrackingEventManager & {
       init: typeof TrackingEventManager.init
@@ -53,17 +50,17 @@ if (typeof window !== 'undefined') {
           return (instance as unknown as Record<string | symbol, unknown>)[prop]
         }
         throw new Error(
-          `TrackingEventManager: tracker not initialized — call TrackingEventManager.init() first`,
+          `TrackingEventManager: tracker not initialized — call TrackingEventManager.init() first`
         )
       },
-    },
+    }
   )
 }
 
 /**
  * Common tracking event properties shared between API response fields.
  */
-interface TrackingEventBase {
+interface ITrackingEventBase {
   eventType: TrackingEventType
   metadataCode: string
   localizedCatalogCode: string
@@ -84,7 +81,7 @@ interface TrackingEventBase {
  * automatically populated from session storage.
  */
 type TrackingEventInput = Omit<
-  TrackingEventBase,
+  ITrackingEventBase,
   'sessionUid' | 'sessionVid'
 > & {
   sessionUid?: string
@@ -95,7 +92,7 @@ type TrackingEventInput = Omit<
  * TrackingEvent result type.
  * Returned by the Gally API after creating a tracking event.
  */
-interface TrackingEventResponse extends TrackingEventBase {
+interface ITrackingEventResponse extends ITrackingEventBase {
   id: string
   '@context': string
   '@id': string
@@ -106,13 +103,13 @@ interface TrackingEventResponse extends TrackingEventBase {
 /**
  * Internal queue item for batched event processing.
  */
-interface QueuedEvent {
+interface IQueuedEvent {
   input: TrackingEventInput
-  resolve: (value: TrackingEventResponse) => void
+  resolve: (value: ITrackingEventResponse) => void
   reject: (reason?: unknown) => void
 }
 
-interface TrackingEventManagerOptions {
+interface ITrackingEventManagerOptions {
   baseUri: string
   debounceMs?: number
   throttleMs?: number
@@ -137,20 +134,21 @@ interface TrackingEventManagerOptions {
  */
 class TrackingEventManager {
   protected readonly client: Client
-  private eventQueue: QueuedEvent[] = []
+  private eventQueue: IQueuedEvent[] = []
   private readonly throttledManager: ThrottledEventManager
   private readonly batchSize: number
   private trackingEventContextStorage: TrackingEventContextStorage
+  private trackingEventValidator: TrackingEventValidator
   private sessionInformationStorage: SessionInformationStorage
   private readonly eventQueueStorage: EventQueueStorage
 
-  static init(options: TrackingEventManagerOptions): TrackingEventManager {
+  static init(options: ITrackingEventManagerOptions): TrackingEventManager {
     const nonBrowserEnvWarning =
       typeof window === 'undefined' && process?.env?.NODE_ENV !== 'test'
     if (nonBrowserEnvWarning) {
       console.warn(
         '[Gally SDK] You are instantating the TrackingEventManager in a non-browser environment ' +
-          'tracking outside browser context may lead to duplicate events or unexpected behavior',
+          'tracking outside browser context may lead to duplicate events or unexpected behavior'
       )
     }
 
@@ -180,25 +178,26 @@ class TrackingEventManager {
       trackingEventContextStorage?: TrackingEventContextStorage
       sessionInformationStorage?: SessionInformationStorage
       eventQueueStorage?: EventQueueStorage
-    },
+    }
   ) {
     this.client = new Client(configuration)
     this.throttledManager = new ThrottledEventManager(
       options?.debounceMs ?? 300,
-      options?.throttleMs ?? 1000,
+      options?.throttleMs ?? 1000
     )
     this.batchSize = options?.batchSize ?? 10
     this.throttledManager.setFlushCallback(() => this.flush())
     this.trackingEventContextStorage =
       options?.trackingEventContextStorage ??
       new TrackingEventContextLocalStorage()
+    this.trackingEventValidator = new TrackingEventValidator()
     this.sessionInformationStorage =
       options?.sessionInformationStorage ??
       new SessionInformationCookieStorage(
         SESSION_UID_COOKIE_NAME,
         SESSION_VID_COOKIE_NAME,
         options?.uidCookieMaxAge,
-        options?.vidCookieMaxAge,
+        options?.vidCookieMaxAge
       )
     this.eventQueueStorage =
       options?.eventQueueStorage ?? new EventQueueLocalStorage()
@@ -213,7 +212,7 @@ class TrackingEventManager {
    * Push a tracking event to the Gally API.
    * Events are queued and batched for efficient processing.
    */
-  async push(input: TrackingEventInput): Promise<TrackingEventResponse> {
+  push(input: TrackingEventInput): Promise<ITrackingEventResponse> {
     // Populate session information if not already provided
     const { sessionUid, sessionVid } =
       this.sessionInformationStorage.getSessionInformation()
@@ -238,7 +237,12 @@ class TrackingEventManager {
       input = { ...existingContext, ...input }
     }
     // Validate the event now that we have a complete event
-    TrackingEventValidator.validate(input)
+    try {
+      this.trackingEventValidator.validate(input)
+    } catch (e) {
+      return Promise.reject(e)
+    }
+
     // Update the context if the event should change it
     this.trackingEventContextStorage.checkAndUpdateContext(input)
 
@@ -279,7 +283,7 @@ class TrackingEventManager {
     } catch (e) {
       console.error(
         '[Gally SDK] TrackingEventManager: could not replay persisted events',
-        e,
+        e
       )
     }
   }
@@ -303,7 +307,7 @@ class TrackingEventManager {
     // Process events in batches
     while (this.eventQueue.length > 0) {
       const batch = this.eventQueue.splice(0, this.batchSize)
-      await this.processBatch(batch)
+      await this.processBatch(batch) // eslint-disable-line no-await-in-loop
     }
 
     try {
@@ -327,7 +331,7 @@ class TrackingEventManager {
    *     event1: createTrackingEvent(input: $input1) { trackingEvent { id } }
    *   }
    */
-  private buildBatchMutation(batch: QueuedEvent[]): {
+  private buildBatchMutation(batch: IQueuedEvent[]): {
     query: string
     variables: Record<string, TrackingEventInput>
   } {
@@ -338,7 +342,7 @@ class TrackingEventManager {
     const mutationFields = batch
       .map(
         (_, i) =>
-          `event${i}: createTrackingEvent(input: $input${i}) { trackingEvent { id } }`,
+          `event${i}: createTrackingEvent(input: $input${i}) { trackingEvent { id } }`
       )
       .join('\n        ')
 
@@ -349,7 +353,7 @@ class TrackingEventManager {
     `
 
     const variables = Object.fromEntries(
-      batch.map((item, i) => [`input${i}`, item.input]),
+      batch.map((item, i) => [`input${i}`, item.input])
     )
 
     return { query, variables }
@@ -358,7 +362,7 @@ class TrackingEventManager {
   /**
    * Process a batch of events with a single GraphQL request.
    */
-  private async processBatch(batch: QueuedEvent[]): Promise<void> {
+  private async processBatch(batch: IQueuedEvent[]): Promise<void> {
     try {
       const { query, variables } = this.buildBatchMutation(batch)
       const response = await this.client.graphql(query, variables, {}, false)
@@ -368,10 +372,10 @@ class TrackingEventManager {
         const trackingEvent = response.data?.[`event${index}`]?.trackingEvent
 
         if (trackingEvent) {
-          item.resolve(trackingEvent as TrackingEventResponse)
+          item.resolve(trackingEvent as ITrackingEventResponse)
         } else {
           item.reject(
-            new Error('Failed to create tracking event: no data returned'),
+            new Error('Failed to create tracking event: no data returned')
           )
         }
       })
@@ -393,19 +397,13 @@ class TrackingEventManager {
 }
 
 export { TrackingEventType, TrackingEventManager }
-export type { TrackingEventInput, TrackingEventResponse }
+export type { TrackingEventInput, ITrackingEventResponse }
 export { ThrottledEventManager } from './tracking/ThrottledEventManager'
-export {
-  SessionInformationStorage,
-  SessionInformationCookieStorage,
-} from './tracking/SessionInformationStorage'
-export type { SessionInformation } from './tracking/SessionInformationStorage'
-export {
-  TrackingEventContextStorage,
-  TrackingEventContextSessionStorage,
-  TrackingEventContextLocalStorage,
-} from './tracking/TrackingEventContextStorage'
-export {
-  EventQueueStorage,
-  EventQueueLocalStorage,
-} from './tracking/EventQueueStorage'
+export { SessionInformationStorage } from './tracking/SessionInformationStorage'
+export { SessionInformationCookieStorage } from './tracking/SessionInformationCookieStorage'
+export type { ISessionInformation } from './tracking/SessionInformationStorage'
+export { TrackingEventContextStorage } from './tracking/TrackingEventContextStorage'
+export { TrackingEventContextLocalStorage } from './tracking/TrackingEventContextLocalStorage'
+export { TrackingEventContextSessionStorage } from './tracking/TrackingEventContextSessionStorage'
+export { EventQueueStorage } from './tracking/EventQueueStorage'
+export { EventQueueLocalStorage } from './tracking/EventQueueLocalStorage'

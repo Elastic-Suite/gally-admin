@@ -14,21 +14,21 @@
  * Run: npx vitest run tests/integration/04-full-lifecycle.test.ts
  */
 
-import { describe, it, expect, beforeAll } from 'vitest'
+import { beforeAll, describe, expect, it } from 'vitest'
 import {
   Configuration,
-  StructureSynchronizer,
   IndexOperation,
-  SearchManager,
   Request,
+  SearchManager,
+  StructureSynchronizer,
 } from '../../src'
 import {
   allLocalizedCatalogs,
-  createSampleSourceFields,
   categoryMetadata,
+  createSampleSourceFields,
   productMetadata,
-  sampleLocalizedCatalogFr,
   sampleCategoriesFr,
+  sampleLocalizedCatalogFr,
   sampleProductsFr,
 } from '../fixtures/sample-data'
 import { checkGallyAvailability, getTestConfiguration } from '../test-config'
@@ -71,14 +71,16 @@ describe('Full E2E Lifecycle', () => {
     const indexOp = new IndexOperation(config)
     const catIndex = await indexOp.createIndex(
       categoryMetadata,
-      sampleLocalizedCatalogFr,
+      sampleLocalizedCatalogFr
     )
     expect(catIndex.getName()).toBeTruthy()
     await indexOp.executeBulk(catIndex, sampleCategoriesFr)
     await indexOp.refreshIndex(catIndex)
     await indexOp.installIndex(catIndex)
     console.log(
-      `  ✓ ${sampleCategoriesFr.length} categories indexed and installed: ${catIndex.getName()}`,
+      `  ✓ ${
+        sampleCategoriesFr.length
+      } categories indexed and installed: ${catIndex.getName()}`
     )
 
     // -----------------------------------------------------------------------
@@ -87,7 +89,7 @@ describe('Full E2E Lifecycle', () => {
     console.log('\n  === Step 4: Creating product index ===')
     const index = await indexOp.createIndex(
       productMetadata,
-      sampleLocalizedCatalogFr,
+      sampleLocalizedCatalogFr
     )
     expect(index.getName()).toBeTruthy()
     console.log(`  ✓ Index created: ${index.getName()}`)
@@ -108,6 +110,7 @@ describe('Full E2E Lifecycle', () => {
     console.log(`  ✓ Index installed (live): ${index.getName()}`)
 
     // Wait for Elasticsearch to make data searchable
+    // eslint-disable-next-line no-promise-executor-return
     await new Promise((resolve) => setTimeout(resolve, 3000))
 
     // -----------------------------------------------------------------------
@@ -130,7 +133,7 @@ describe('Full E2E Lifecycle', () => {
     const allProductsResponse = await searchManager.search(allProductsRequest)
     expect(allProductsResponse.getTotalCount()).toBeGreaterThanOrEqual(1)
     console.log(
-      `  ✓ Broad search: ${allProductsResponse.getTotalCount()} products found`,
+      `  ✓ Broad search: ${allProductsResponse.getTotalCount()} products found`
     )
 
     // 6b. Text search
@@ -148,7 +151,7 @@ describe('Full E2E Lifecycle', () => {
     const nikeResponse = await searchManager.search(nikeRequest)
     expect(nikeResponse.getTotalCount()).toBeGreaterThanOrEqual(1)
     console.log(
-      `  ✓ Text search "Nike": ${nikeResponse.getTotalCount()} products found`,
+      `  ✓ Text search "Nike": ${nikeResponse.getTotalCount()} products found`
     )
 
     // 6c. Pagination
@@ -165,9 +168,10 @@ describe('Full E2E Lifecycle', () => {
     const pageResponse = await searchManager.search(pageRequest)
     expect(pageResponse.getItemsPerPage()).toBe(2)
     expect(pageResponse.getCollection().length).toBeLessThanOrEqual(2)
+    const { length } = pageResponse.getCollection()
+    const totalPages = pageResponse.getLastPage()
     console.log(
-      `  ✓ Pagination: ${pageResponse.getCollection().length} items per page, ` +
-        `${pageResponse.getLastPage()} total pages`,
+      `  ✓ Pagination: ${length} items per page, ${totalPages} total pages`
     )
 
     console.log('\n  === All steps completed successfully! ===\n')

@@ -37,13 +37,13 @@ export class SourceFieldOptionRepository extends AbstractBulkRepository<SourceFi
   }
 
   protected buildEntityObject(
-    rawEntity: Record<string, any>,
+    rawEntity: Record<string, any>
   ): SourceFieldOption {
-    const sourceFieldUri = rawEntity['sourceField'] as string
+    const sourceFieldUri = rawEntity.sourceField as string
     let sourceField: SourceField | undefined
 
     const cachedSourceField =
-      this.sourceFieldRepository['entityByUri'].get(sourceFieldUri)
+      this.sourceFieldRepository.entityByUri.get(sourceFieldUri)
     if (cachedSourceField) {
       sourceField = cachedSourceField
     } else {
@@ -54,17 +54,17 @@ export class SourceFieldOptionRepository extends AbstractBulkRepository<SourceFi
         'unknown',
         [],
         false,
-        sourceFieldUri,
+        sourceFieldUri
       )
     }
 
     return new SourceFieldOption(
       sourceField,
-      rawEntity['code'] as string,
-      (rawEntity['position'] as number) ?? 0,
-      rawEntity['defaultLabel'] as string,
-      rawEntity['labels'] ?? [],
-      rawEntity['@id'] as string | undefined,
+      rawEntity.code as string,
+      (rawEntity.position as number) ?? 0,
+      rawEntity.defaultLabel as string,
+      rawEntity.labels ?? [],
+      rawEntity['@id'] as string | undefined
     )
   }
 
@@ -79,16 +79,16 @@ export class SourceFieldOptionRepository extends AbstractBulkRepository<SourceFi
 
     const rawEntity = await this.client.get(uri)
     const sourceField = await this.sourceFieldRepository.findByUri(
-      rawEntity['sourceField'] as string,
+      rawEntity.sourceField as string
     )
 
     const entity = new SourceFieldOption(
       sourceField,
-      rawEntity['code'] as string,
-      (rawEntity['position'] as number) ?? 0,
-      rawEntity['defaultLabel'] as string,
-      rawEntity['labels'] ?? [],
-      rawEntity['@id'] as string | undefined,
+      rawEntity.code as string,
+      (rawEntity.position as number) ?? 0,
+      rawEntity.defaultLabel as string,
+      rawEntity.labels ?? [],
+      rawEntity['@id'] as string | undefined
     )
 
     this.saveInCache(entity)
