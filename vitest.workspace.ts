@@ -14,7 +14,7 @@ export default defineWorkspace([
     test: {
       name: 'browser',
       environment: 'happy-dom',
-      include: ['tests/**/*.test.ts'],
+      include: ['tests/**/*.browser.test.ts'],
     },
   },
 ])

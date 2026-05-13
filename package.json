@@ -24,17 +24,32 @@
     }
   },
   "scripts": {
-    "build": "tsup",
-    "dev": "tsup --watch",
-    "lint": "eslint src/",
-    "typecheck": "tsc --noEmit",
-    "test": "vitest run",
-    "test:watch": "vitest",
-    "test:integration": "vitest run --reporter=verbose",
-    "prepare": "husky && npm run build",
-    "prepublishOnly": "npm run build",
-    "prettier": "prettier --check .",
-    "prettier:fix": "prettier --write ."
+    "start": "concurrently \"yarn start:components\" \"yarn start:shared\"",
+    "start:components": "yarn --cwd ./packages/components start",
+    "start:shared": "yarn --cwd ./packages/shared start",
+    "start:storybook": "yarn --cwd ./packages/components storybook",
+    "start:sdk": "yarn --cwd ./packages/sdk dev",
+    "build": "yarn build:shared && yarn build:components",
+    "build:components": "yarn --cwd ./packages/components build",
+    "build:shared": "yarn --cwd ./packages/shared build",
+    "build:storybook": "yarn --cwd ./packages/components build-storybook",
+    "build:sdk": "yarn --cwd ./packages/sdk build",
+    "test": "yarn --cwd ./packages/shared test && yarn --cwd ./packages/components test",
+    "test:sdk": "yarn --cwd ./packages/sdk test",
+    "test:ci": "yarn --cwd ./packages/shared test:ci && yarn --cwd ./packages/components test:ci",
+    "test:sdk:ci": "yarn --cwd ./packages/sdk test:ci",
+    "eslint": "yarn --cwd ./packages/shared eslint && yarn --cwd ./packages/components eslint && yarn --cwd ./packages/sdk eslint",
+    "eslint:ci": "yarn --cwd ./packages/shared eslint:ci && yarn --cwd ./packages/components eslint:ci && yarn --cwd ./packages/sdk eslint:ci",
+    "prettier": "yarn --cwd ./packages/shared prettier && yarn --cwd ./packages/components prettier && yarn --cwd ./packages/sdk prettier",
+    "prettier:ci": "yarn --cwd ./packages/shared prettier:ci && yarn --cwd ./packages/components prettier:ci && yarn --cwd ./packages/sdk prettier:ci",
+    "typescript": "yarn --cwd ./packages/shared typescript && yarn --cwd ./packages/components typescript && yarn --cwd ./packages/sdk typescript",
+    "typescript:ci": "yarn --cwd ./packages/shared typescript:ci && yarn --cwd ./packages/components typescript:ci && yarn --cwd ./packages/sdk typescript:ci",
+    "prepare": "yarn --cwd ./packages/shared prepare && yarn --cwd ./packages/components prepare && yarn husky:install && yarn --cwd ./packages/sdk prepare && yarn husky:install",
+    "release:major": "yarn --cwd ./packages/shared changelog -- -M && yarn --cwd ./packages/components changelog -- -M && yarn --cwd ./packages/sdk changelog -- -M && yarn bumpAndPublish",
+    "release:minor": "yarn --cwd ./packages/shared changelog -- -m && yarn --cwd ./packages/components changelog -- -m && yarn --cwd ./packages/sdk changelog -- -m && yarn bumpAndPublish",
+    "release:patch": "yarn --cwd ./packages/shared changelog -- -p && yarn --cwd ./packages/components changelog -- -p && yarn --cwd ./packages/sdk changelog -- -p && yarn bumpAndPublish",
+    "bumpAndPublish": "yarn prettier && git add . && git commit -m 'docs: update CHANGELOG files' && lerna publish --no-private",
+    "husky:install": "husky install .husky"
   },
   "devDependencies": {
     "@types/node": "^20.11.0",
@@ -55,7 +70,5 @@
   "dependencies": {
     "prettier": "^3.8.1"
   },
-  "lint-staged": {
-    "**/*": "prettier --write --ignore-unknown"
-  }
+  "dependencies": {}
 }

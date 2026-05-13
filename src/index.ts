@@ -83,7 +83,7 @@ const isBrowser = typeof window !== 'undefined'
 
 if (isBrowser) {
   console.error(
-    '[Gally SDK] You are importing the full @gally/sdk in a browser environment. ' +
-      'Consider using @gally/sdk/browser instead to reduce bundle size and prevent errors.',
+    '[Gally SDK] You are importing the full @elastic-suite/gally-sdk in a browser environment. ' +
+      'Consider using @elastic-suite/gally-sdk/browser instead to reduce bundle size and prevent errors.',
   )
 }
