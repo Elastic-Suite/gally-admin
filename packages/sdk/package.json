@@ -1,5 +1,5 @@
 {
-  "name": "@gally/sdk",
+  "name": "@elastic-suite/gally-sdk",
   "version": "1.0.0",
   "description": "TypeScript SDK for Gally connectors",
   "homepage": "https://meetgally.com",
@@ -26,35 +26,36 @@
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
-    "lint": "eslint src/",
-    "typecheck": "tsc --noEmit",
+    "eslint": "eslint --fix --ignore-path .gitignore .",
+    "eslint:ci": "eslint --ignore-path .gitignore .",
+    "typescript": "tsc --noEmit",
+    "typescript:ci": "tsc --noEmit",
     "test": "vitest run",
+    "test:ci": "vitest run",
     "test:watch": "vitest",
     "test:integration": "vitest run --reporter=verbose",
-    "prepare": "husky && npm run build",
-    "prepublishOnly": "npm run build",
+    "prepare": "husky && yarn run build",
+    "prepublishOnly": "yarn run build",
     "prettier": "prettier --check .",
+    "prettier:ci": "prettier --check .",
     "prettier:fix": "prettier --write ."
   },
   "devDependencies": {
-    "@types/node": "^20.11.0",
+    "@types/node": "18.7.18",
+    "@typescript-eslint/eslint-plugin": "5.37.0",
+    "@typescript-eslint/parser": "5.37.0",
     "@vitest/coverage-v8": "^2.1.9",
     "dotenv": "^17.3.1",
-    "eslint": "^9.0.0",
-    "happy-dom": "^14.12.3",
-    "husky": "^9.1.7",
-    "lint-staged": "^12.5.0",
-    "tsup": "^8.0.0",
-    "typescript": "^5.3.0",
-    "typescript-eslint": "^8.0.0",
+    "eslint": "8.23.1",
+    "happy-dom": "^17.6.1",
+    "husky": "8.0.1",
+    "lint-staged": "13.0.3",
+    "prettier": "2.7.1",
+    "tsup": "6.5.0",
+    "typescript": "4.8.3",
     "vitest": "^2.1.9"
   },
-  "engines": {
-    "node": ">=18.0.0"
-  },
-  "dependencies": {
-    "prettier": "^3.8.1"
-  },
+  "dependencies": {},
   "lint-staged": {
     "**/*": "prettier --write --ignore-unknown"
   }

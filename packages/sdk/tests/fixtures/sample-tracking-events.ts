@@ -10,7 +10,7 @@
  *   - One named export grouping invalid inputs for validation tests
  */
 
-import { TrackingEventType, TrackingEventInput } from '@gally/sdk'
+import { TrackingEventType, TrackingEventInput } from '@elastic-suite/gally-sdk'
 
 // ---------------------------------------------------------------------------
 // Shared constants (aligned with sample-data.ts)

@@ -13,7 +13,7 @@ import {
   SourceField,
   SourceFieldType,
   SourceFieldOption,
-} from '@gally/sdk'
+} from '@elastic-suite/gally-sdk'
 
 // ---------------------------------------------------------------------------
 // Catalogs

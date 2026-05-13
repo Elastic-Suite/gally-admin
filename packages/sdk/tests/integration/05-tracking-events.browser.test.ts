@@ -19,7 +19,7 @@ import {
   TrackingEventContextSessionStorage,
   EventQueueStorage,
   TrackingEventType,
-} from '@gally/sdk'
+} from '@elastic-suite/gally-sdk'
 import { vi } from 'vitest'
 import { checkGallyAvailability } from '../test-config'
 import {
@@ -59,7 +59,7 @@ class FixedSessionStorage extends SessionInformationStorage {
       sessionVid: '55779ebd-9f1f-3ca8-dabf-0d2d83306f32',
     }
   }
-  clearSessionInformation() {}
+  clearSessionInformation() { }
 }
 
 // ---------------------------------------------------------------------------
@@ -125,7 +125,7 @@ describe('Tracking Events', () => {
     if (!isAvailable) return
 
     manager = TrackingEventManager.init({
-      baseUri: process.env['GALLY_BASE_URI']!,
+      baseUri: process.env['API_URL']!,
       sessionInformationStorage: new FixedSessionStorage(),
       trackingEventContextStorage: new NoopContextStorage(),
       eventQueueStorage: new InMemoryQueueStorage(),
@@ -322,7 +322,7 @@ describe('Tracking Events', () => {
       // Re-initialize manager with real context storage for these tests
       TrackingEventManager.resetInstance()
       manager = TrackingEventManager.init({
-        baseUri: process.env['GALLY_BASE_URI']!,
+        baseUri: process.env['API_URL']!,
         sessionInformationStorage: new FixedSessionStorage(),
         trackingEventContextStorage: new TrackingEventContextSessionStorage(),
         eventQueueStorage: new InMemoryQueueStorage(),

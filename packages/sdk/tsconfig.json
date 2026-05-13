@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
     "target": "ES2022",
-    "module": "ESNext",
-    "moduleResolution": "bundler",
+    "module": "nodenext",
+    "moduleResolution": "node16",
     "lib": ["ES2022", "DOM"],
     "declaration": true,
     "declarationMap": true,
@@ -19,8 +19,8 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "paths": {
-      "@gally/sdk": ["./src/index.ts"],
-      "@gally/sdk/browser": ["./src/browser.ts"]
+      "@elastic-suite/gally-sdk": ["./src/index.ts"],
+      "@elastic-suite/gally-sdk/browser": ["./src/browser.ts"]
     }
   },
   "include": ["src"],

@@ -1,8 +1,8 @@
-# @gally/sdk
+# @elastic-suite/gally-sdk
 
 TypeScript SDK for [Gally](https://meetgally.com) - a powerful searchandising solution for e-commerce.
 
-[![npm version](https://img.shields.io/npm/v/@gally/sdk.svg)](https://www.npmjs.com/package/@gally/sdk)
+[![npm version](https://img.shields.io/npm/v/@elastic-suite/gally-sdk.svg)](https://www.npmjs.com/package/@elastic-suite/gally-sdk)
 [![License: OSL-3.0](https://img.shields.io/badge/License-OSL--3.0-blue.svg)](https://opensource.org/license/osl-3-0-php)
 
 ## Features
@@ -23,7 +23,7 @@ TypeScript SDK for [Gally](https://meetgally.com) - a powerful searchandising so
 ## Installation
 
 ```bash
-npm install @gally/sdk
+npm install @elastic-suite/gally-sdk
 ```
 
 ## Quick Start

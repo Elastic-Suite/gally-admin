@@ -21,7 +21,15 @@ export default defineConfig({
     sequence: {
       concurrent: false,
     },
-
-    include: ['tests/**/*.test.ts'],
+    environmentOptions: {
+      happyDOM: {
+        settings: {
+          fetch: {
+            disableSameOriginPolicy: true,
+            disableStrictSSL: true,
+          },
+        },
+      },
+    },
   },
 })

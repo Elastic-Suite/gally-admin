@@ -128,8 +128,8 @@ export class Client {
     if (isPrivate) {
       const token = this.tokenCacheManager
         ? await this.tokenCacheManager.getToken(() =>
-            this.getAuthorizationToken(),
-          )
+          this.getAuthorizationToken(),
+        )
         : await this.getAuthorizationToken()
       mergedHeaders['Authorization'] = `Bearer ${token}`
     }
@@ -141,9 +141,9 @@ export class Client {
       if (isPrivate && error?.status === 401) {
         const token = this.tokenCacheManager
           ? await this.tokenCacheManager.getToken(
-              () => this.getAuthorizationToken(),
-              false,
-            )
+            () => this.getAuthorizationToken(),
+            false,
+          )
           : await this.getAuthorizationToken()
         mergedHeaders['Authorization'] = `Bearer ${token}`
 
@@ -192,7 +192,7 @@ export class Client {
     headers: Record<string, string>,
   ): Promise<Record<string, any>> {
     let url: string
-    const fetchOptions: RequestInit = { method, headers }
+    const fetchOptions: RequestInit = { method, headers, credentials: 'include' }
 
     if (method === 'GET') {
       const queryString = new URLSearchParams(
@@ -208,7 +208,6 @@ export class Client {
     }
 
     const response = await fetch(url, fetchOptions)
-
     if (!response.ok) {
       let errorBody = ''
       try {
@@ -220,7 +219,7 @@ export class Client {
         ? `HTTP ${response.status}: ${response.statusText} — ${errorBody}`
         : `HTTP ${response.status}: ${response.statusText}`
       const error = new Error(errorMessage)
-      ;(error as any).status = response.status
+        ; (error as any).status = response.status
       throw error
     }
 
