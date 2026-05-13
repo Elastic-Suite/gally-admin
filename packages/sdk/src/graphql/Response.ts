@@ -20,35 +20,35 @@ export const ResponseFilterType = {
   SLIDER: 'slider',
 } as const
 
-export interface AggregationOption {
+export interface IAggregationOption {
   count: number
   label: string
   value: string
 }
 
-export interface Aggregation {
+export interface IAggregation {
   type: string
   field: string
   label: string
   count: number
   hasMore: boolean
-  options: AggregationOption[]
+  options: IAggregationOption[]
 }
 
-export interface PaginationInfo {
+export interface IPaginationInfo {
   totalCount: number
   lastPage: number
   itemsPerPage: number
 }
 
-export interface SortInfo {
+export interface ISortInfo {
   field: string
   direction: string
 }
 
 export class Response {
   private readonly collection: Record<string, any>[]
-  private readonly aggregations: Aggregation[]
+  private readonly aggregations: IAggregation[]
   private readonly totalCount: number
   private readonly lastPage: number
   private readonly itemsPerPage: number
@@ -59,13 +59,14 @@ export class Response {
     const endpointData =
       (rawResponse[request.getEndpoint()] as Record<string, any>) ?? {}
 
-    const rawCollection = (endpointData['collection'] ?? []) as Record<
+    const rawCollection = (endpointData.collection ?? []) as Record<
       string,
       any
     >[]
     this.collection = rawCollection.map((item) => {
       if ('data' in item) {
-        const source = (item['data'] as Record<string, any>)?.['_source'] as
+        // eslint-disable-next-line no-underscore-dangle
+        const source = (item.data as Record<string, any>)._source as
           | Record<string, any>
           | undefined
         if (source) {
@@ -82,28 +83,24 @@ export class Response {
       return item
     })
 
-    this.aggregations = (endpointData['aggregations'] as Aggregation[]) ?? []
+    this.aggregations = (endpointData.aggregations as IAggregation[]) ?? []
 
-    const paginationInfo = endpointData['paginationInfo'] as Record<
-      string,
-      number
-    >
-    this.totalCount = paginationInfo['totalCount'] ?? 0
-    this.lastPage = paginationInfo['lastPage'] ?? 0
-    this.itemsPerPage = paginationInfo['itemsPerPage'] ?? 0
+    const paginationInfo = endpointData.paginationInfo as Record<string, number>
+    this.totalCount = paginationInfo.totalCount ?? 0
+    this.lastPage = paginationInfo.lastPage ?? 0
+    this.itemsPerPage = paginationInfo.itemsPerPage ?? 0
 
-    const sortInfo = endpointData['sortInfo'] as Record<string, any>
-    const currentSort = ((sortInfo?.['current'] as Record<string, string>[]) ??
-      [])[0]
-    this.sortField = currentSort?.['field'] ?? ''
-    this.sortDirection = currentSort?.['direction'] ?? ''
+    const sortInfo = endpointData.sortInfo as Record<string, any>
+    const [currentSort] = (sortInfo?.current as Record<string, string>[]) ?? []
+    this.sortField = currentSort?.field ?? ''
+    this.sortDirection = currentSort?.direction ?? ''
   }
 
   getCollection(): Record<string, any>[] {
     return this.collection
   }
 
-  getAggregations(): Aggregation[] {
+  getAggregations(): IAggregation[] {
     return this.aggregations
   }
 

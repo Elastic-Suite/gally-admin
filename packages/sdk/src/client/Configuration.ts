@@ -9,15 +9,15 @@
  * @license   Open Software License v. 3.0 (OSL-3.0)
  */
 
-export interface ConfigurationOptions {
+export interface IConfigurationOptions {
   baseUri: string
   checkSSL?: boolean
   user: string
   password: string
 }
 
-export type BrowserConfigurationOptions = Omit<
-  ConfigurationOptions,
+export type IBrowserConfigurationOptions = Omit<
+  IConfigurationOptions,
   'user' | 'password'
 > & {
   user?: null
@@ -30,7 +30,7 @@ export class Configuration {
   private readonly user: string
   private readonly password: string
 
-  constructor(options: ConfigurationOptions | BrowserConfigurationOptions) {
+  constructor(options: IConfigurationOptions | IBrowserConfigurationOptions) {
     this.baseUri = options.baseUri
     this.checkSSL = options.checkSSL ?? true
     this.user = options.user ?? ''
@@ -51,11 +51,5 @@ export class Configuration {
 
   getPassword(): string {
     return this.password
-  }
-}
-
-export class BrowserConfiguration extends Configuration {
-  constructor(options: BrowserConfigurationOptions) {
-    super(options)
   }
 }

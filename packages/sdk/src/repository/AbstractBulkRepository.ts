@@ -18,7 +18,7 @@ import { AbstractRepository } from './AbstractRepository'
  * Abstract bulk entity repository.
  */
 export abstract class AbstractBulkRepository<
-  T extends AbstractEntity,
+  T extends AbstractEntity
 > extends AbstractRepository<T> {
   protected static readonly BATCH_SIZE = 100
 
@@ -37,7 +37,7 @@ export abstract class AbstractBulkRepository<
     if (this.currentBatchSize > 0) {
       const rawEntities = await this.client.post(
         `${this.getEntityCode()}/bulk`,
-        this.currentBatch,
+        this.currentBatch
       )
 
       const rawEntitiesArray = (rawEntities['hydra:member'] as any[]) ?? []

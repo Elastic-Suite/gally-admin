@@ -10,22 +10,24 @@
  * Run: npx vitest run tests/integration/05-tracking-events.test.ts
  */
 
-import { describe, it, expect, beforeAll } from 'vitest'
+/* eslint-disable max-classes-per-file */
+/* eslint-disable sort-imports */
+
+import { beforeAll, describe, expect, it, vi } from 'vitest'
 import {
-  TrackingEventManager,
-  TrackingEventInput,
-  SessionInformationStorage,
-  TrackingEventContextStorage,
-  TrackingEventContextSessionStorage,
   EventQueueStorage,
+  SessionInformationStorage,
+  TrackingEventContextSessionStorage,
+  TrackingEventContextStorage,
+  TrackingEventInput,
+  TrackingEventManager,
   TrackingEventType,
 } from '@elastic-suite/gally-sdk'
-import { vi } from 'vitest'
 import { checkGallyAvailability } from '../test-config'
 import {
   // Valid event fixtures
-  categoryViewEvent,
   categoryProductDisplayEvent,
+  categoryViewEvent,
   searchResultViewEvent,
   searchProductDisplayEvent,
   productViewEvent,
@@ -59,7 +61,9 @@ class FixedSessionStorage extends SessionInformationStorage {
       sessionVid: '55779ebd-9f1f-3ca8-dabf-0d2d83306f32',
     }
   }
-  clearSessionInformation() { }
+  clearSessionInformation() {
+    // This implementation does nothing on purpose
+  }
 }
 
 // ---------------------------------------------------------------------------
@@ -85,16 +89,18 @@ global.sessionStorage = {
 
 /** No-op context storage — context fields are provided explicitly in fixtures. */
 class NoopContextStorage extends TrackingEventContextStorage {
+  storage: undefined
+
   isUpdateContextEvent() {
     return false
   }
   checkAndUpdateContext() {
     return false
   }
-  getTrackingContext() {
+  getTrackingContext(): null {
     return null
   }
-  getSelfContext() {
+  getSelfContext(): null {
     return null
   }
 }
@@ -125,7 +131,7 @@ describe('Tracking Events', () => {
     if (!isAvailable) return
 
     manager = TrackingEventManager.init({
-      baseUri: process.env['API_URL']!,
+      baseUri: process.env.API_URL!,
       sessionInformationStorage: new FixedSessionStorage(),
       trackingEventContextStorage: new NoopContextStorage(),
       eventQueueStorage: new InMemoryQueueStorage(),
@@ -243,7 +249,7 @@ describe('Tracking Events', () => {
   it('should reject a view event missing entityCode', async ({ skip }) => {
     if (!isAvailable) skip()
     await expect(manager.push(invalidViewMissingEntityCode)).rejects.toThrow(
-      'entityCode is required',
+      'entityCode is required for view event'
     )
   })
 
@@ -252,8 +258,8 @@ describe('Tracking Events', () => {
   }) => {
     if (!isAvailable) skip()
     await expect(
-      manager.push(invalidCategoryViewMissingProductList),
-    ).rejects.toThrow('payload.product_list is required')
+      manager.push(invalidCategoryViewMissingProductList)
+    ).rejects.toThrow('payload.product_list is required for view event')
   })
 
   it('should push a display event missing context info', async ({ skip }) => {
@@ -267,7 +273,7 @@ describe('Tracking Events', () => {
   }) => {
     if (!isAvailable) skip()
     await expect(manager.push(invalidDisplayEmptyItems)).rejects.toThrow(
-      'payload.items must be a non-empty array',
+      'payload.items must be a non-empty array for display event'
     )
   })
 
@@ -276,7 +282,7 @@ describe('Tracking Events', () => {
   }) => {
     if (!isAvailable) skip()
     await expect(manager.push(invalidSearchMissingSearchQuery)).rejects.toThrow(
-      'payload.search_query is required',
+      'payload.search_query is required for search event'
     )
   })
 
@@ -285,14 +291,14 @@ describe('Tracking Events', () => {
   }) => {
     if (!isAvailable) skip()
     await expect(
-      manager.push(invalidAddToCartMissingEntityCode),
-    ).rejects.toThrow('entityCode is required')
+      manager.push(invalidAddToCartMissingEntityCode)
+    ).rejects.toThrow('entityCode is required for add_to_cart event')
   })
 
   it('should reject an order event missing payload.order', async ({ skip }) => {
     if (!isAvailable) skip()
     await expect(manager.push(invalidOrderMissingOrder)).rejects.toThrow(
-      'payload.order is required',
+      'payload.order is required for order event'
     )
   })
 
@@ -322,7 +328,7 @@ describe('Tracking Events', () => {
       // Re-initialize manager with real context storage for these tests
       TrackingEventManager.resetInstance()
       manager = TrackingEventManager.init({
-        baseUri: process.env['API_URL']!,
+        baseUri: process.env.API_URL!,
         sessionInformationStorage: new FixedSessionStorage(),
         trackingEventContextStorage: new TrackingEventContextSessionStorage(),
         eventQueueStorage: new InMemoryQueueStorage(),

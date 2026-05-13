@@ -10,10 +10,11 @@
  */
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable no-await-in-loop */
 
 import { Client } from '../client/Client'
 import { Configuration } from '../client/Configuration'
-import { TokenCacheManager } from '../client/TokenCacheManager'
+import { ITokenCacheManager } from '../client/TokenCacheManager'
 import { AbstractEntity } from '../entity/AbstractEntity'
 import { LocalizedCatalog } from '../entity/LocalizedCatalog'
 import { Metadata } from '../entity/Metadata'
@@ -38,22 +39,22 @@ export class StructureSynchronizer {
 
   constructor(
     configuration: Configuration,
-    tokenCacheManager?: TokenCacheManager,
+    tokenCacheManager?: ITokenCacheManager
   ) {
     const client = new Client(configuration, tokenCacheManager)
     this.catalogRepository = new CatalogRepository(client)
     this.localizedCatalogRepository = new LocalizedCatalogRepository(
       client,
-      this.catalogRepository,
+      this.catalogRepository
     )
     this.metadataRepository = new MetadataRepository(client)
     this.sourceFieldRepository = new SourceFieldRepository(
       client,
-      this.metadataRepository,
+      this.metadataRepository
     )
     this.sourceFieldOptionRepository = new SourceFieldOptionRepository(
       client,
-      this.sourceFieldRepository,
+      this.sourceFieldRepository
     )
   }
 
@@ -63,20 +64,20 @@ export class StructureSynchronizer {
   async syncAllLocalizedCatalogs(
     localizedCatalogs: Iterable<LocalizedCatalog>,
     clean = false,
-    dryRun = true,
+    dryRun = true
   ): Promise<void> {
     const existingCatalogs = new Map(await this.catalogRepository.findAll())
     const existingLocalizedCatalogs = new Map(
-      await this.localizedCatalogRepository.findAll(),
+      await this.localizedCatalogRepository.findAll()
     )
 
     for (const localizedCatalog of localizedCatalogs) {
       await this.syncLocalizedCatalog(localizedCatalog, true)
       existingLocalizedCatalogs.delete(
-        this.localizedCatalogRepository.getIdentity(localizedCatalog),
+        this.localizedCatalogRepository.getIdentity(localizedCatalog)
       )
       existingCatalogs.delete(
-        this.catalogRepository.getIdentity(localizedCatalog.getCatalog()),
+        this.catalogRepository.getIdentity(localizedCatalog.getCatalog())
       )
     }
 
@@ -94,7 +95,7 @@ export class StructureSynchronizer {
       }
 
       console.log(
-        `  Delete ${existingLocalizedCatalogs.size} localized catalog(s)`,
+        `  Delete ${existingLocalizedCatalogs.size} localized catalog(s)`
       )
       console.log(`  Delete ${existingCatalogs.size} catalog(s)`)
       console.log('')
@@ -106,20 +107,20 @@ export class StructureSynchronizer {
    */
   async syncLocalizedCatalog(
     localizedCatalog: LocalizedCatalog,
-    isFullContext = false,
+    isFullContext = false
   ): Promise<LocalizedCatalog> {
     if (!isFullContext) {
       await this.fetchEntityUri(
         localizedCatalog.getCatalog(),
         this.catalogRepository,
-        { code: localizedCatalog.getCatalog().getCode() },
+        { code: localizedCatalog.getCatalog().getCode() }
       )
       await this.catalogRepository.createOrUpdate(localizedCatalog.getCatalog())
 
       await this.fetchEntityUri(
         localizedCatalog,
         this.localizedCatalogRepository,
-        { code: localizedCatalog.getCode() },
+        { code: localizedCatalog.getCode() }
       )
     }
 
@@ -136,11 +137,11 @@ export class StructureSynchronizer {
   async syncAllSourceFields(
     sourceFields: Iterable<SourceField>,
     clean = false,
-    dryRun = true,
+    dryRun = true
   ): Promise<void> {
     const existingMetadatas = new Map(await this.metadataRepository.findAll())
     const existingSourceFields = new Map(
-      await this.sourceFieldRepository.findAll(),
+      await this.sourceFieldRepository.findAll()
     )
     await this.localizedCatalogRepository.findAll()
 
@@ -152,7 +153,7 @@ export class StructureSynchronizer {
       }
       existingSourceFields.delete(identity)
       existingMetadatas.delete(
-        this.metadataRepository.getIdentity(sourceField.getMetadata()),
+        this.metadataRepository.getIdentity(sourceField.getMetadata())
       )
     }
 
@@ -193,13 +194,13 @@ export class StructureSynchronizer {
    */
   async syncSourceField(
     sourceField: SourceField,
-    isFullContext = false,
+    isFullContext = false
   ): Promise<void> {
     if (!isFullContext) {
       await this.fetchEntityUri(
         sourceField.getMetadata(),
         this.metadataRepository,
-        { entity: sourceField.getMetadata().getEntity() },
+        { entity: sourceField.getMetadata().getEntity() }
       )
 
       await this.fetchEntityUri(sourceField, this.sourceFieldRepository, {
@@ -215,7 +216,7 @@ export class StructureSynchronizer {
     // Replace localized catalog by an instance with id.
     for (const label of sourceField.getLabels()) {
       const resolved = this.localizedCatalogRepository.findByIdentity(
-        label.getLocalizedCatalog(),
+        label.getLocalizedCatalog()
       )
       if (resolved) {
         label.setLocalizedCatalog(resolved)
@@ -235,7 +236,7 @@ export class StructureSynchronizer {
   async syncAllSourceFieldOptions(
     sourceFieldOptions: Iterable<SourceFieldOption>,
     clean = false,
-    dryRun = true,
+    dryRun = true
   ): Promise<void> {
     await this.metadataRepository.findAll()
     await this.sourceFieldRepository.findAll()
@@ -247,7 +248,7 @@ export class StructureSynchronizer {
     for (const sourceFieldOption of sourceFieldOptions) {
       await this.syncSourceFieldOption(sourceFieldOption, true)
       existingSourceFieldOptions.delete(
-        this.sourceFieldOptionRepository.getIdentity(sourceFieldOption),
+        this.sourceFieldOptionRepository.getIdentity(sourceFieldOption)
       )
     }
 
@@ -261,7 +262,7 @@ export class StructureSynchronizer {
       }
 
       console.log(
-        `  Delete ${existingSourceFieldOptions.size} source field option(s)`,
+        `  Delete ${existingSourceFieldOptions.size} source field option(s)`
       )
       console.log('')
     }
@@ -272,7 +273,7 @@ export class StructureSynchronizer {
    */
   async syncSourceFieldOption(
     sourceFieldOption: SourceFieldOption,
-    isFullContext = false,
+    isFullContext = false
   ): Promise<void> {
     if (!isFullContext) {
       await this.fetchEntityUri(
@@ -281,7 +282,7 @@ export class StructureSynchronizer {
         {
           entity: sourceFieldOption.getSourceField().getMetadata().getEntity(),
           code: sourceFieldOption.getSourceField().getCode(),
-        },
+        }
       )
 
       await this.fetchEntityUri(
@@ -290,12 +291,12 @@ export class StructureSynchronizer {
         {
           sourceField: sourceFieldOption.getSourceField().getUri(),
           code: sourceFieldOption.getCode(),
-        },
+        }
       )
     }
 
     const resolvedSourceField = this.sourceFieldRepository.findByIdentity(
-      sourceFieldOption.getSourceField(),
+      sourceFieldOption.getSourceField()
     )
     if (resolvedSourceField) {
       sourceFieldOption.setSourceField(resolvedSourceField)
@@ -304,7 +305,7 @@ export class StructureSynchronizer {
     // Replace localized catalog by an instance with id.
     for (const label of sourceFieldOption.getLabels()) {
       const resolved = this.localizedCatalogRepository.findByIdentity(
-        label.getLocalizedCatalog(),
+        label.getLocalizedCatalog()
       )
       if (resolved) {
         label.setLocalizedCatalog(resolved)
@@ -324,18 +325,18 @@ export class StructureSynchronizer {
   private async fetchEntityUri(
     entity: AbstractEntity,
     repository: AbstractRepository<any>,
-    criteria: Record<string, any>,
+    criteria: Record<string, any>
   ): Promise<void> {
     let code: string | undefined
     let entityCode: string | undefined
 
     if (entity instanceof SourceFieldOption) {
-      code = criteria['code'] as string
-      delete criteria['code']
+      code = criteria.code as string
+      delete criteria.code
     }
     if (entity instanceof Metadata) {
-      entityCode = criteria['entity'] as string
-      delete criteria['entity']
+      entityCode = criteria.entity as string
+      delete criteria.entity
     }
 
     const existingEntities = await repository.findBy(criteria)

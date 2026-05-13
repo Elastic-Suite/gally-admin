@@ -36,9 +36,8 @@
     "test:integration": "vitest run --reporter=verbose",
     "prepare": "husky && yarn run build",
     "prepublishOnly": "yarn run build",
-    "prettier": "prettier --check .",
-    "prettier:ci": "prettier --check .",
-    "prettier:fix": "prettier --write ."
+    "prettier": "prettier --write --ignore-unknown --ignore-path .gitignore .",
+    "prettier:ci": "prettier --check --ignore-unknown --ignore-path .gitignore ."
   },
   "devDependencies": {
     "@types/node": "18.7.18",

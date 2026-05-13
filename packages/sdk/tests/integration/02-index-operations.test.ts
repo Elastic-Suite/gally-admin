@@ -9,17 +9,17 @@
  * Run: npm run test:integration
  */
 
-import { describe, it, expect, beforeAll } from 'vitest'
+import { beforeAll, describe, expect, it } from 'vitest'
 import {
-  IndexOperation,
-  StructureSynchronizer,
   Configuration,
   Index,
+  IndexOperation,
+  StructureSynchronizer,
 } from '../../src'
 import {
   allLocalizedCatalogs,
-  createSampleSourceFields,
   categoryMetadata,
+  createSampleSourceFields,
   productMetadata,
   sampleCategoriesEn,
   sampleCategoriesFr,
@@ -63,7 +63,7 @@ describe('Index Operations', () => {
 
     catIndexFr = await indexOp.createIndex(
       categoryMetadata,
-      sampleLocalizedCatalogFr,
+      sampleLocalizedCatalogFr
     )
 
     expect(catIndexFr).toBeDefined()
@@ -80,7 +80,7 @@ describe('Index Operations', () => {
 
     catIndexEn = await indexOp.createIndex(
       categoryMetadata,
-      sampleLocalizedCatalogEn,
+      sampleLocalizedCatalogEn
     )
 
     expect(catIndexEn).toBeDefined()
@@ -134,7 +134,7 @@ describe('Index Operations', () => {
 
     indexFr = await indexOp.createIndex(
       productMetadata,
-      sampleLocalizedCatalogFr,
+      sampleLocalizedCatalogFr
     )
 
     expect(indexFr).toBeDefined()
@@ -149,7 +149,7 @@ describe('Index Operations', () => {
 
     indexEn = await indexOp.createIndex(
       productMetadata,
-      sampleLocalizedCatalogEn,
+      sampleLocalizedCatalogEn
     )
 
     expect(indexEn).toBeDefined()
@@ -211,11 +211,12 @@ describe('Index Operations', () => {
     if (!isAvailable) skip()
 
     // Wait a moment for the index to be fully installed
+    // eslint-disable-next-line no-promise-executor-return
     await new Promise((resolve) => setTimeout(resolve, 2000))
 
     const liveIndex = await indexOp.getIndexByName(
       productMetadata,
-      sampleLocalizedCatalogFr,
+      sampleLocalizedCatalogFr
     )
 
     expect(liveIndex).toBeDefined()

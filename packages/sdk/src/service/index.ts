@@ -15,12 +15,10 @@ export { StructureSynchronizer } from './StructureSynchronizer'
 export { TrackingEventManager } from './TrackingEventManager'
 export type {
   TrackingEventInput,
-  TrackingEventResponse,
+  ITrackingEventResponse,
 } from './TrackingEventManager'
 export { SessionInformationStorage } from './tracking/SessionInformationStorage'
-export {
-  TrackingEventContextStorage,
-  TrackingEventContextSessionStorage,
-  TrackingEventContextLocalStorage,
-} from './tracking/TrackingEventContextStorage'
+export { TrackingEventContextStorage } from './tracking/TrackingEventContextStorage'
+export { TrackingEventContextLocalStorage } from './tracking/TrackingEventContextLocalStorage'
+export { TrackingEventContextSessionStorage } from './tracking/TrackingEventContextSessionStorage'
 export { EventQueueStorage } from './tracking/EventQueueStorage'

@@ -1,4 +1,4 @@
-import { describe, it, expect, vi } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 import { SearchManager } from '../../src/service/SearchManager'
 import { Request } from '../../src/graphql/Request'
 import { Metadata } from '../../src/entity/Metadata'
@@ -12,8 +12,8 @@ describe('SearchManager Normalization', () => {
     const searchManager = new SearchManager(config)
 
     // Mock client.graphql to intercept the request and variables
-    // @ts-ignore
     const mockGraphql = vi
+      // @ts-expect-error we spy on an object here so property is accessible
       .spyOn(searchManager.client, 'graphql')
       .mockResolvedValue({
         data: {
@@ -36,15 +36,15 @@ describe('SearchManager Normalization', () => {
     })
 
     expect(mockGraphql).toHaveBeenCalled()
-    const variables = mockGraphql.mock.calls[0][1]
+    const [[, variables]] = mockGraphql.mock.calls
     expect(variables.localizedCatalog).toBe('my_shop_en')
   })
 
   it('should normalize string metadata to Metadata object', async () => {
     const searchManager = new SearchManager(config)
 
-    // @ts-ignore
     const mockGraphql = vi
+      // @ts-expect-error we spy on an object here so property is accessible
       .spyOn(searchManager.client, 'graphql')
       .mockResolvedValue({
         data: {
@@ -84,8 +84,8 @@ describe('SearchManager Normalization', () => {
       filters: [],
     })
 
-    // @ts-ignore
     const mockGraphql = vi
+      // @ts-expect-error we spy on an object here so property is accessible
       .spyOn(searchManager.client, 'graphql')
       .mockResolvedValue({
         data: {
@@ -100,7 +100,7 @@ describe('SearchManager Normalization', () => {
     await searchManager.search(request)
 
     expect(mockGraphql).toHaveBeenCalled()
-    const variables = mockGraphql.mock.calls[0][1]
+    const [[, variables]] = mockGraphql.mock.calls
     expect(variables.localizedCatalog).toBe('my_shop_fr')
   })
 })

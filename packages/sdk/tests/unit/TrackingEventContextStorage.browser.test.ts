@@ -1,8 +1,7 @@
-import { describe, it, expect, vi } from 'vitest'
-import {
-  TrackingEventContextSessionStorage,
-  TrackingEventContextLocalStorage,
-} from '../../src/service/tracking/TrackingEventContextStorage'
+import { describe, expect, it, vi } from 'vitest'
+import {} from '../../src/service/tracking/TrackingEventContextStorage'
+import { TrackingEventContextLocalStorage } from '../../src/service/tracking/TrackingEventContextLocalStorage'
+import { TrackingEventContextSessionStorage } from '../../src/service/tracking/TrackingEventContextSessionStorage'
 import { TrackingEventType } from '../../src/validator'
 
 describe('TrackingEventContextStorage', () => {
@@ -40,7 +39,7 @@ describe('TrackingEventContextStorage', () => {
       service.checkAndUpdateContext(input)
       expect(storageMock.setItem).toHaveBeenCalledWith(
         'gally-tracking-context',
-        expect.stringContaining('cat-1'),
+        expect.stringContaining('cat-1')
       )
     })
   })
@@ -63,7 +62,7 @@ describe('TrackingEventContextStorage', () => {
       service.checkAndUpdateContext(input)
       expect(storageMock.setItem).toHaveBeenCalledWith(
         'gally-tracking-context',
-        expect.stringContaining('phone'),
+        expect.stringContaining('phone')
       )
     })
 

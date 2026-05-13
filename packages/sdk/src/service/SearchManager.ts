@@ -13,20 +13,20 @@
 
 import { Client } from '../client/Client'
 import {
-  BrowserConfigurationOptions,
   Configuration,
+  IBrowserConfigurationOptions,
 } from '../client/Configuration'
-import { TokenCacheManager } from '../client/TokenCacheManager'
+import { ITokenCacheManager } from '../client/TokenCacheManager'
 import { Metadata } from '../entity/Metadata'
 import { SourceField } from '../entity/SourceField'
-import { Request, RequestOptions } from '../graphql/Request'
+import { IRequestOptions, Request } from '../graphql/Request'
 import { Response } from '../graphql/Response'
 import { MetadataRepository } from '../repository/MetadataRepository'
 import { SourceFieldRepository } from '../repository/SourceFieldRepository'
 
-type SearchConfiguration = Configuration | BrowserConfigurationOptions
+type SearchConfiguration = Configuration | IBrowserConfigurationOptions
 type SearchRequestMetadata = string | Metadata
-type SearchRequestOptions = Omit<RequestOptions, 'metadata'> & {
+type SearchRequestOptions = Omit<IRequestOptions, 'metadata'> & {
   metadata: SearchRequestMetadata
 }
 type SearchRequest = Request | SearchRequestOptions
@@ -41,19 +41,19 @@ export class SearchManager {
 
   constructor(
     configuration: SearchConfiguration,
-    tokenCacheManager?: TokenCacheManager,
+    tokenCacheManager?: ITokenCacheManager
   ) {
     configuration = this.normalizeConfiguration(configuration)
     const client = new Client(configuration, tokenCacheManager)
     this.client = client
     this.sourceFieldRepository = new SourceFieldRepository(
       client,
-      new MetadataRepository(client),
+      new MetadataRepository(client)
     )
   }
 
   protected normalizeConfiguration(
-    configuration: SearchConfiguration,
+    configuration: SearchConfiguration
   ): Configuration {
     return configuration instanceof Configuration
       ? configuration
@@ -88,26 +88,26 @@ export class SearchManager {
       const response = await this.client.graphql(query, {}, {}, false)
       const metadata = new Metadata('product')
 
-      const data = response['data'] as Record<string, any>
-      const options = (data['productSortingOptions'] as any[]) ?? []
+      const data = response.data as Record<string, any>
+      const options = (data.productSortingOptions as any[]) ?? []
 
       this.productSortingOptions = options.map(
         (option: any) =>
           new SourceField(
             metadata,
-            option['code'] as string,
-            option['type'] as string,
-            option['label'] as string,
-            [],
-          ),
+            option.code as string,
+            option.type as string,
+            option.label as string,
+            []
+          )
       )
     }
 
     return this.productSortingOptions
   }
 
-  async getFilterableSourceField(
-    metadata: SearchRequestMetadata,
+  getFilterableSourceField(
+    metadata: SearchRequestMetadata
   ): Promise<Map<string, SourceField>> {
     metadata = this.normalizeMetadata(metadata)
     return this.sourceFieldRepository.findBy({
@@ -116,8 +116,8 @@ export class SearchManager {
     })
   }
 
-  async getSelectSourceField(
-    metadata: SearchRequestMetadata,
+  getSelectSourceField(
+    metadata: SearchRequestMetadata
   ): Promise<Map<string, SourceField>> {
     metadata = this.normalizeMetadata(metadata)
     return this.sourceFieldRepository.findBy({
@@ -133,15 +133,15 @@ export class SearchManager {
       request.buildSearchQuery(),
       request.getVariables(),
       priceGroup ? { 'price-group-id': priceGroup } : {},
-      false,
+      false
     )
 
-    return new Response(request, response['data'] as Record<string, any>)
+    return new Response(request, response.data as Record<string, any>)
   }
 
   async viewMoreProductFilterOption(
     request: SearchRequest,
-    aggregationField: string,
+    aggregationField: string
   ): Promise<any[]> {
     request = this.normalizeRequest(request)
     const query = `
@@ -169,27 +169,27 @@ export class SearchManager {
     const variables = request.getVariables()
     const filteredVariables: Record<string, any> = {
       aggregation: aggregationField,
-      localizedCatalog: variables['localizedCatalog'],
+      localizedCatalog: variables.localizedCatalog,
     }
 
-    if (variables['search']) {
-      filteredVariables['search'] = variables['search']
+    if (variables.search) {
+      filteredVariables.search = variables.search
     }
-    if (variables['filter']) {
-      filteredVariables['filter'] = variables['filter']
+    if (variables.filter) {
+      filteredVariables.filter = variables.filter
     }
-    if (variables['currentCategoryId']) {
-      filteredVariables['currentCategoryId'] = variables['currentCategoryId']
+    if (variables.currentCategoryId) {
+      filteredVariables.currentCategoryId = variables.currentCategoryId
     }
 
     const response = await this.client.graphql(
       query,
       filteredVariables,
       {},
-      false,
+      false
     )
 
-    const data = response['data'] as Record<string, any>
-    return (data['viewMoreProductFacetOptions'] as any[]) ?? []
+    const data = response.data as Record<string, any>
+    return (data.viewMoreProductFacetOptions as any[]) ?? []
   }
 }

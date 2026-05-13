@@ -18,15 +18,15 @@ export {
   getFilterTypeByOperator,
 } from './Request'
 export type {
-  RequestOptions,
+  IRequestOptions as RequestOptions,
   FilterOperatorType,
   FilterTypeType,
   SortDirectionType,
 } from './Request'
 export { Response, ResponseFilterType } from './Response'
 export type {
-  Aggregation,
-  AggregationOption,
-  PaginationInfo,
-  SortInfo,
+  IAggregation as Aggregation,
+  IAggregationOption as AggregationOption,
+  IPaginationInfo as PaginationInfo,
+  ISortInfo as SortInfo,
 } from './Response'

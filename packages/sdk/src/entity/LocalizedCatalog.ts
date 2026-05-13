@@ -27,7 +27,7 @@ export class LocalizedCatalog extends AbstractEntity {
     name: string,
     locale: string,
     currency: string,
-    uri?: string,
+    uri?: string
   ) {
     super()
     this.catalog = catalog

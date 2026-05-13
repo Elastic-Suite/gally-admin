@@ -9,9 +9,6 @@
  * @license   Open Software License v. 3.0 (OSL-3.0)
  */
 
-export interface ITokenCacheManager {
-  getToken: (
-    getToken: () => Promise<string>,
-    useCache?: boolean
-  ) => Promise<string>
-}
+import { Configuration } from './Configuration'
+
+export class BrowserConfiguration extends Configuration {}
