@@ -1,0 +1,61 @@
+{
+  "name": "@elastic-suite/gally-sdk",
+  "version": "1.0.0",
+  "description": "TypeScript SDK for Gally connectors",
+  "homepage": "https://meetgally.com",
+  "license": "OSL-3.0",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "browser": "./dist/browser/index.mjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    },
+    "./browser": {
+      "types": "./dist/browser/index.d.ts",
+      "import": "./dist/browser/index.mjs",
+      "require": "./dist/browser/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "eslint": "eslint --fix --ignore-path .gitignore .",
+    "eslint:ci": "eslint --ignore-path .gitignore .",
+    "typescript": "tsc --noEmit",
+    "typescript:ci": "tsc --noEmit",
+    "test": "vitest run",
+    "test:ci": "vitest run",
+    "test:watch": "vitest",
+    "test:integration": "vitest run --reporter=verbose",
+    "prepare": "husky && yarn run build",
+    "prepublishOnly": "yarn run build",
+    "prettier": "prettier --write --ignore-unknown --ignore-path .gitignore .",
+    "prettier:ci": "prettier --check --ignore-unknown --ignore-path .gitignore ."
+  },
+  "devDependencies": {
+    "@types/node": "18.7.18",
+    "@typescript-eslint/eslint-plugin": "5.37.0",
+    "@typescript-eslint/parser": "5.37.0",
+    "@vitest/coverage-v8": "^2.1.9",
+    "dotenv": "^17.3.1",
+    "eslint": "8.23.1",
+    "happy-dom": "^17.6.1",
+    "husky": "8.0.1",
+    "lint-staged": "13.0.3",
+    "prettier": "2.7.1",
+    "tsup": "6.5.0",
+    "typescript": "4.8.3",
+    "vitest": "^2.1.9"
+  },
+  "dependencies": {},
+  "lint-staged": {
+    "**/*": "prettier --write --ignore-unknown"
+  }
+}
