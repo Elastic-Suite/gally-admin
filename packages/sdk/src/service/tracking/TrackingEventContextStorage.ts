@@ -1,0 +1,128 @@
+/**
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Gally to newer versions in the future.
+ *
+ * @package   Gally
+ * @author    Gally Team <elasticsuite@smile.fr>
+ * @copyright 2024-present Smile
+ * @license   Open Software License v. 3.0 (OSL-3.0)
+ */
+
+import { TrackingEventType } from '../../validator'
+import type { TrackingEventInput } from '../TrackingEventManager'
+
+type PartialTrackingEventContext = Pick<
+  TrackingEventInput,
+  'contextType' | 'contextCode'
+>
+
+type PartialTrackingEventSource = Pick<
+  TrackingEventInput,
+  'sourceEventType' | 'sourceMetadataCode'
+>
+
+type TrackingEventContext = PartialTrackingEventContext &
+  PartialTrackingEventSource
+
+type SearchPayload = Record<'search_query', { query_text: string }>
+
+const TRACKING_CONTEXT_KEY = 'gally-tracking-context'
+
+abstract class TrackingEventContextStorage {
+  protected abstract get storage(): Storage
+
+  isCategoryViewEvent(input: TrackingEventInput): boolean {
+    return (
+      input?.eventType === TrackingEventType.VIEW &&
+      ['category'].includes(input?.metadataCode)
+    )
+  }
+
+  isSearchEvent(input: TrackingEventInput): boolean {
+    return input?.eventType === TrackingEventType.SEARCH
+  }
+
+  isUpdateContextEvent(input: TrackingEventInput): boolean {
+    return this.isCategoryViewEvent(input) || this.isSearchEvent(input)
+  }
+
+  getUpdatedEventContext(
+    input: TrackingEventInput
+  ): PartialTrackingEventContext {
+    return {
+      contextType: this.isSearchEvent(input) ? 'search' : 'category',
+      contextCode: this.isSearchEvent(input)
+        ? (JSON.parse(input?.payload as string) as SearchPayload).search_query
+            ?.query_text
+        : input.entityCode,
+    }
+  }
+
+  getSelfContext(
+    input: TrackingEventInput
+  ): PartialTrackingEventContext | null {
+    if (this.isUpdateContextEvent(input)) {
+      return this.getUpdatedEventContext(input)
+    }
+    return null
+  }
+
+  isUpdateContextSourceEvent(input: TrackingEventInput): boolean {
+    return ![TrackingEventType.DISPLAY, TrackingEventType.ADD_TO_CART].includes(
+      input?.eventType
+    )
+  }
+
+  checkAndUpdateContext(input: TrackingEventInput | null): boolean {
+    if (!input) {
+      return false
+    }
+
+    const existingContext = this.getTrackingContext()
+    let newContext: TrackingEventContext =
+      JSON.parse(JSON.stringify(existingContext)) ?? {}
+    if (this.isUpdateContextEvent(input)) {
+      newContext = { ...newContext, ...this.getUpdatedEventContext(input) }
+    }
+
+    if (this.isUpdateContextSourceEvent(input)) {
+      newContext.sourceEventType = input.eventType
+      newContext.sourceMetadataCode = input.metadataCode
+    }
+
+    const newContextJSON = JSON.stringify(newContext)
+    const hasUpdatedContext = JSON.stringify(existingContext) !== newContextJSON
+    if (hasUpdatedContext) {
+      try {
+        this.storage.setItem(TRACKING_CONTEXT_KEY, newContextJSON)
+      } catch (e) {
+        console.error(
+          '[Gally SDK] TrackingEventContextStorage: could not save context to storage.',
+          e
+        )
+      }
+    }
+
+    return hasUpdatedContext
+  }
+
+  getTrackingContext(): TrackingEventContext | null {
+    const rawContext = this.storage.getItem(TRACKING_CONTEXT_KEY)
+    if (!rawContext) {
+      return null
+    }
+
+    try {
+      const currentContext = JSON.parse(rawContext)
+      return currentContext && Object.keys(currentContext).length > 0
+        ? (currentContext as TrackingEventContext)
+        : null
+    } catch {
+      return null
+    }
+  }
+}
+
+export { TrackingEventContextStorage }
+export type { TrackingEventContext }
