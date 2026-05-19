@@ -1,4 +1,18 @@
-node_modules
-lerna-debug.log
-yarn-error.log
-.idea/
+node_modules/
+dist/
+*.tsbuildinfo
+.env
+.env.test
+.DS_Store
+coverage/
+example/
+.idea
+
+# Generated test files
+tests/**/*.test.js
+tests/**/*.test.js.map
+tests/**/*.test.d.ts
+tests/**/*.test.d.ts.map
+
+# Generated tsconfig
+tsconfig.test.json
