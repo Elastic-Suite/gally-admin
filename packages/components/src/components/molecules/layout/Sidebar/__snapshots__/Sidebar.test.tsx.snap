@@ -285,6 +285,7 @@ exports[`SideBar match snapshot SideBarStateFalse 1`] = `
                         >
                           <button
                             class="css-i4yvhb"
+                            data-collapsed="true"
                             data-testid="menuItemChildrenCollapsingButton"
                             style="transition: all 500ms; position: relative;"
                           >
@@ -477,6 +478,7 @@ exports[`SideBar match snapshot SideBarStateFalse 1`] = `
                         >
                           <button
                             class="css-i4yvhb"
+                            data-collapsed="true"
                             data-testid="menuItemChildrenCollapsingButton"
                             style="transition: all 500ms; position: relative;"
                           >
@@ -975,6 +977,7 @@ exports[`SideBar match snapshot SideBarStateTrue 1`] = `
                         >
                           <button
                             class="css-i4yvhb"
+                            data-collapsed="true"
                             data-testid="menuItemChildrenCollapsingButton"
                             style="transition: all 500ms; position: relative;"
                           >
@@ -1167,6 +1170,7 @@ exports[`SideBar match snapshot SideBarStateTrue 1`] = `
                         >
                           <button
                             class="css-i4yvhb"
+                            data-collapsed="true"
                             data-testid="menuItemChildrenCollapsingButton"
                             style="transition: all 500ms; position: relative;"
                           >
