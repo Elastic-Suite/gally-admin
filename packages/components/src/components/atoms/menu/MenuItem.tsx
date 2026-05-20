@@ -231,6 +231,7 @@ function MenuItem(props: IProps): JSX.Element {
               data-testid={generateTestId(
                 TestId.MENU_ITEM_CHILDREN_COLLAPSING_BUTTON
               )}
+              data-collapsed={!childState}
             >
               {label}
               <IonIcon
