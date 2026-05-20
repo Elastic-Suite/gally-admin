@@ -12,16 +12,16 @@ import { Configuration } from '../src'
 config({ path: resolve(__dirname, '..', '.env.test') })
 
 export function getTestConfiguration(): Configuration {
-  const baseUri = process.env.API_URL
+  const baseUri = process.env.SDK_API_URL
   const user = process.env.GALLY_USER
   const password = process.env.GALLY_PASSWORD
   const checkSSL = process.env.GALLY_CHECK_SSL !== 'false'
 
   if (!baseUri || !user || !password) {
     throw new Error(
-      'Missing Gally test configuration. ' +
-        'Please create a .env.test file from .env.test.example with your Gally instance settings.\n' +
-        'Required: API_URL, GALLY_USER, GALLY_PASSWORD'
+      'Missing Gally test configuration. \n' +
+      'Please check the .env.test file and the following variables: GALLY_USER, GALLY_PASSWORD.\n' +
+      'Also make sure that the SDK_API_URL env var is available to your test environment'
     )
   }
 
