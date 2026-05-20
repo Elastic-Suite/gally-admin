@@ -131,7 +131,7 @@ describe('Tracking Events', () => {
     if (!isAvailable) return
 
     manager = TrackingEventManager.init({
-      baseUri: process.env.API_URL!,
+      baseUri: process.env.SDK_API_URL!,
       sessionInformationStorage: new FixedSessionStorage(),
       trackingEventContextStorage: new NoopContextStorage(),
       eventQueueStorage: new InMemoryQueueStorage(),
@@ -328,7 +328,7 @@ describe('Tracking Events', () => {
       // Re-initialize manager with real context storage for these tests
       TrackingEventManager.resetInstance()
       manager = TrackingEventManager.init({
-        baseUri: process.env.API_URL!,
+        baseUri: process.env.SDK_API_URL!,
         sessionInformationStorage: new FixedSessionStorage(),
         trackingEventContextStorage: new TrackingEventContextSessionStorage(),
         eventQueueStorage: new InMemoryQueueStorage(),
