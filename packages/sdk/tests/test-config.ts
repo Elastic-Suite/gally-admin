@@ -20,8 +20,8 @@ export function getTestConfiguration(): Configuration {
   if (!baseUri || !user || !password) {
     throw new Error(
       'Missing Gally test configuration. \n' +
-      'Please check the .env.test file and the following variables: GALLY_USER, GALLY_PASSWORD.\n' +
-      'Also make sure that the SDK_API_URL env var is available to your test environment'
+        'Please check the .env.test file and the following variables: GALLY_USER, GALLY_PASSWORD.\n' +
+        'Also make sure that the SDK_API_URL env var is available to your test environment'
     )
   }
 
