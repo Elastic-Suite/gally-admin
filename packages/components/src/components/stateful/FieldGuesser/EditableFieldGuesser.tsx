@@ -124,6 +124,7 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
     case DataContentType.STRING: {
       return (
         <InputText
+          className="GallyInputBase-root"
           infoTooltip={infoTooltip}
           dirty={dirty}
           disabled={disabled}

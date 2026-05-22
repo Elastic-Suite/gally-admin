@@ -6,9 +6,13 @@ export const MainSectionFieldSet = styled('div')(({ theme }) => ({
   gap: theme.spacing(4),
   '.MuiAutocomplete-inputRoot:not(.combinationRules .MuiAutocomplete-inputRoot, .textFieldTagsMultiple .MuiAutocomplete-inputRoot)':
     {
+      minWidth: 300,
       width: 300,
       maxWidth: 300,
     },
+  '.GallyInputBase-root': {
+    minWidth: 300,
+  },
 }))
 
 export const SectionFieldSet = styled('div')(({ theme }) => ({
