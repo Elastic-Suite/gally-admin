@@ -1,6 +1,6 @@
 {
-  "title.update": "Updating of an auto recommender",
-  "title.create": "Creating of an auto recommender",
+  "title.update": "Update of an auto recommender",
+  "title.create": "Creation of an auto recommender",
   "recommender.none": "No auto recommender has been created",
   "recommender.none.btn": "Create an auto recommender",
   "recommender.title": "Auto recommender",

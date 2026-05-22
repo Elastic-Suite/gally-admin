@@ -1,4 +1,6 @@
 {
+  "title.create": "Creation d'un élément {{entity}}",
+  "title.update": "Mise à jour d'un élément {{entity}}",
   "alert.update": "Mise à jour de l'élément {{entity}} avec succès",
   "alert.create": "Création de l'élément {{entity}} avec succès",
   "alert.remove": "L'élément {{entity}} a été supprimé avec succès",
