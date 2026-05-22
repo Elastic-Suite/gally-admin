@@ -10,3 +10,7 @@ cd ../..
 cd packages/components
 yarn lint-staged
 cd ../..
+
+cd packages/sdk
+yarn lint-staged
+cd ../..
