@@ -1,6 +1,8 @@
 {
   "save": "Save",
   "create": "Create",
+  "title.create": "Create {{entity}}",
+  "title.update": "Update {{entity}}",
   "alert.update": "Updating of the {{entity}} with success",
   "alert.create": "Creating of the {{entity}} with success",
   "alert.remove": "{{entity}} has been deleted with success",

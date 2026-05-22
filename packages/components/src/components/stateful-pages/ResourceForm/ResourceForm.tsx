@@ -58,6 +58,9 @@ function ResourceForm(props: IProps): JSX.Element {
     id ? {} : initResourceData(resource)
   )
 
+  const normalizedTitle =
+    title ?? t(`title.${id ? 'update' : 'create'}`, { entity })
+
   const fetchApi = useApiFetch()
   const log = useLog()
 
@@ -145,8 +148,12 @@ function ResourceForm(props: IProps): JSX.Element {
           flexDirection: 'column',
         }}
       >
-        {title ? (
-          <PageTitle title={title} sx={{ marginBottom: '32px' }} sticky>
+        {normalizedTitle ? (
+          <PageTitle
+            title={normalizedTitle}
+            sx={{ marginBottom: '32px' }}
+            sticky
+          >
             <CustomDoubleButtonSticky>
               <BackToLastPage urlRedirection="./grid" />
               {id ? (
