@@ -40,5 +40,11 @@
     "husky": "8.0.1",
     "lerna": "6.3.0"
   },
-  "dependencies": {}
+  "dependencies": {},
+  "resolutions": {
+    "pbkdf2": "3.1.5",
+    "sha.js": "2.4.12",
+    "cipher-base": "1.0.5",
+    "elliptic": "6.6.1"
+  }
 }
