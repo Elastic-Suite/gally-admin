@@ -53,7 +53,7 @@
     "i18next": "22.4.6",
     "inflection": "1.13.4",
     "json-to-graphql-query": "2.2.4",
-    "jsonld": "8.1.0",
+    "jsonld": "9.0.0",
     "jwt-decode": "3.1.2",
     "next-i18next": "13.0.2",
     "react-i18next": "12.1.1"
