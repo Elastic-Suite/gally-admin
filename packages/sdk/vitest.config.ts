@@ -31,5 +31,23 @@ export default defineConfig({
         },
       },
     },
+    projects: [
+      {
+        extends: true,
+        test: {
+          name: 'node',
+          environment: 'node',
+          include: ['tests/**/*.test.ts'],
+        },
+      },
+      {
+        extends: true,
+        test: {
+          name: 'browser',
+          environment: 'happy-dom',
+          include: ['tests/**/*.browser.test.ts'],
+        },
+      },
+    ],
   },
 })
