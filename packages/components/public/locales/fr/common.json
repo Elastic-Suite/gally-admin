@@ -62,6 +62,7 @@
   "log.out": "Déconnexion",
   "entity": "Entité",
   "create": "Créer",
+  "create.entity": "Créer {{ entity }}",
   "date.placeholder": "JJ/MM/AAAA",
   "error.format": "Format incorrect ou incomplet",
   "placeholder.requestType.search": "Selection des catégories",
