@@ -13,6 +13,7 @@ import { useRouter } from 'next/router'
 
 interface IProps
   extends Omit<IResourceTable, 'activeFilters' | 'setActiveFilters'> {
+  entityLabel?: string
   title?: string
   hasNewLink?: boolean
   newLink?: string
@@ -40,6 +41,7 @@ export const CustomAHref = styled('a', {
 
 function Grid(props: IProps): JSX.Element {
   const {
+    entityLabel,
     resourceName,
     title,
     newLink,
@@ -53,12 +55,15 @@ function Grid(props: IProps): JSX.Element {
 
   const { t } = useTranslation('common')
   const resource = useResource(resourceName)
+  const entity = (entityLabel ?? resourceName).toLowerCase()
   const [activeFilters, setActiveFilters] = useFilters(resource)
   const router = useRouter()
 
   const handleCreateClick = async (): Promise<void> => {
     await router.push(newLink ?? './create')
   }
+
+  const normalizedCreateButtonLabel = t('create.entity', { entity })
 
   return (
     <>
@@ -83,7 +88,7 @@ function Grid(props: IProps): JSX.Element {
             )}
             onClick={handleCreateClick}
           >
-            {t('create')} {title ?? t(resourceName)}
+            {normalizedCreateButtonLabel}
           </Button>
         ) : null}
       </PageTitle>

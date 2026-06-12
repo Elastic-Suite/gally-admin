@@ -33,6 +33,7 @@ function AdminRecommenderTypeGrid(): JSX.Element {
         btnHref: './create',
         absoluteLink: false,
       }}
+      entityLabel={t('entity.label')}
       title={t('recommender_type.title')}
     />
   )
