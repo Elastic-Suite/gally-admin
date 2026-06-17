@@ -50,7 +50,7 @@ export const CustomContainer = styled('div')({
   display: 'flex',
   alignItems: 'center',
   gap: '4px',
-  height: '24px',
+  minHeight: '24px',
 })
 
 export const SmallCustomContainer = styled(CustomContainer)({
