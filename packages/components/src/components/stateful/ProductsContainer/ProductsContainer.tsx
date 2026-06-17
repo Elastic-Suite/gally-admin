@@ -38,7 +38,7 @@ const Layout = styled('div')(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
   gap: theme.spacing(4),
-  marginLeft: '32px',
+  marginLeft: '0px',
   marginRight: '28px',
 }))
 

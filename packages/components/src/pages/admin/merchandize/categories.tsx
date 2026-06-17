@@ -205,6 +205,7 @@ function AdminMerchandizeCategories(): JSX.Element {
             />
           </TitleBlock>
         }
+        leftWidth={280}
       >
         {Boolean(selectedCategoryItem?.id && localizedCatalogIdWithDefault) && (
           <Placeholder placeholder={t('placeholder')}>
