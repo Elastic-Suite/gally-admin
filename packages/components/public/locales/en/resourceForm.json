@@ -8,7 +8,7 @@
   "save": "Save",
   "create": "Create",
   "delete": "Delete",
-  "confirmation.message.delete": "Are you sure you wish to delete this {{entity}} ?",
+  "confirmation.message.delete": "Are you sure you wish to delete this {{entity}}?",
   "cancel": "Cancel",
   "confirm": "Confirm",
   "error.form": "Error of form"

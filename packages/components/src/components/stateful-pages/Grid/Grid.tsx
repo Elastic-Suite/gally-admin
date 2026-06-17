@@ -55,7 +55,7 @@ function Grid(props: IProps): JSX.Element {
 
   const { t } = useTranslation('common')
   const resource = useResource(resourceName)
-  const entity = (entityLabel ?? resourceName).toLowerCase()
+  const entity = (entityLabel ?? t(resourceName)).toLowerCase()
   const [activeFilters, setActiveFilters] = useFilters(resource)
   const router = useRouter()
 
