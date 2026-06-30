@@ -1,6 +1,6 @@
 {
   "name": "@elastic-suite/gally-sdk",
-  "version": "2.3.0-alpha-0",
+  "version": "2.3.0-alpha-1",
   "description": "TypeScript SDK for Gally connectors",
   "homepage": "https://meetgally.com",
   "license": "OSL-3.0",
