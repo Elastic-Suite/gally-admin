@@ -17,6 +17,7 @@
     "build:storybook": "yarn --cwd ./packages/components build-storybook",
     "build:sdk": "yarn --cwd ./packages/sdk build",
     "test": "yarn --cwd ./packages/shared test && yarn --cwd ./packages/components test",
+    "test:update": "yarn --cwd ./packages/shared test:update && yarn --cwd ./packages/components test:update",
     "test:sdk": "yarn --cwd ./packages/sdk test",
     "test:ci": "yarn --cwd ./packages/shared test:ci && yarn --cwd ./packages/components test:ci",
     "test:sdk:ci": "yarn --cwd ./packages/sdk test:ci",

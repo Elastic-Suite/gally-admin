@@ -46,7 +46,7 @@ const PaddingBox = styled('div')(({ theme }) => ({
   '&:empty': {
     padding: 0,
   },
-  width: `calc(100% - 2*${theme.spacing(2)})`,
+  width: `calc(100% - ${theme.spacing(4)})`,
 }))
 
 interface IProps {
