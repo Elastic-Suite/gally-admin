@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useCallback, useMemo, useState } from 'react'
 import {
   IJobProfileInfos,
   IJobProfiles,
@@ -49,11 +49,23 @@ function ProfileRunner(props: IProps): JSX.Element {
   const [currentProfile, setCurrentProfile] =
     useState<IJobProfileInfos>(defaultProfile)
 
-  const profileOptions = Object.values(profiles)?.map(
-    (item: IJobProfileInfos) => ({
-      label: item.label,
-      value: item.profile,
-    })
+  const profileOptions = useMemo(
+    () =>
+      Object.values(profiles)?.map((item: IJobProfileInfos) => ({
+        label: item.label,
+        value: item.profile,
+      })),
+    [profiles]
+  )
+
+  const handleProfileChange = useCallback(
+    (value: string) => {
+      const selected = Object.values(profiles).find((p) => p.profile === value)
+      if (selected) {
+        setCurrentProfile(selected)
+      }
+    },
+    [profiles]
   )
 
   return (
@@ -62,7 +74,7 @@ function ProfileRunner(props: IProps): JSX.Element {
       <DropDownWithoutError
         options={profileOptions}
         value={currentProfile.profile}
-        onChange={setCurrentProfile}
+        onChange={handleProfileChange}
         componentId={generateTestId(TestId.JOBPROFILE, componentId)}
         required
       />
