@@ -15,5 +15,7 @@
   "orderCount": "Commandes",
   "sessionCount": "Sessions",
   "visitorCount": "Visiteurs uniques",
+  "sessionsWithSearchPercentage": "Sessions avec recherche",
+  "averageSearchesPerSession": "Recherches par session",
   "kpiValuesEmpty.warning": "Configuration requise : Les compteurs affichent 0 car aucun flux de données n'a été détecté. Consultez la <lnk>documentation</lnk> pour finaliser l'installation du tracking."
 }
