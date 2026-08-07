@@ -40,6 +40,7 @@ import { isValid } from 'date-fns'
 
 type IKPI = IHydraMember & {
   id: string | number
+  valueFormat?: Record<string, string>
 }
 
 const pagesSlug = ['analyze', 'search_usage']
@@ -83,6 +84,7 @@ const excludedKeys = [
   'localizedCatalog',
   'startDate',
   'endDate',
+  'valueFormat',
 ]
 
 function AdminAnalyzeSearchUsage(): JSX.Element {
@@ -227,6 +229,7 @@ function AdminAnalyzeSearchUsage(): JSX.Element {
           componentId: label,
           label: t(label),
           value: value ?? '',
+          isPercentage: kpi?.valueFormat?.[label] === 'percentage',
         })),
     }))
   }, [kpiData, t])

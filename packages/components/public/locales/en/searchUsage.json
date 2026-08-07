@@ -11,5 +11,7 @@
   "orderCount": "Sales",
   "sessionCount": "Sessions",
   "visitorCount": "Unique visitors",
+  "sessionsWithSearchPercentage": "Sessions with search",
+  "averageSearchesPerSession": "Searches per session",
   "kpiValuesEmpty.warning": "Configuration required: Counters are showing 0 because no data flow has been detected. Check the <lnk>documentation</lnk> to finalize the tracking installation."
 }
