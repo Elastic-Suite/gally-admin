@@ -9,8 +9,16 @@ import DropDownWithoutError from '../../atoms/form/DropDownWithoutError'
 
 const SwitchersContainer = styled('div')({
   display: 'flex',
-  columnGap: '8px',
+  flexWrap: 'wrap',
+  gap: '8px',
   marginBottom: '8px',
+  // A dropdown needs 180px. Without a real width the boxes shrink below that
+  // while the field inside keeps its size, so in a narrow container the second
+  // dropdown ends up on top of the first one and covers its arrow.
+  '& > *': {
+    flex: '0 0 180px',
+    minWidth: '180px',
+  },
 })
 
 function CatalogSwitcher(): JSX.Element {
