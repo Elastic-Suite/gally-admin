@@ -225,6 +225,10 @@ export class Request {
             hasMore
             options { count label value }
           }
+          termSuggestions {
+            entityType
+            terms
+          },
         }
       }
     `
