@@ -255,7 +255,7 @@ function AdminAnalyzeSearchUsage(): JSX.Element {
             components={{
               lnk: (
                 <a
-                  href="https://github.com/Elastic-Suite/gally-ts-sdk/wiki"
+                  href="https://github.com/Elastic-Suite/gally-admin/wiki/Getting-started-with-the-JS-SDK"
                   target="_blank"
                   rel="noreferrer"
                 >
