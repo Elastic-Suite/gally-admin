@@ -35,6 +35,9 @@ type SearchRequest = Request | SearchRequestOptions
  * Search manager service.
  */
 export class SearchManager {
+  static readonly TERM_SUGGESTION_BUNDLE_NAME = 'GallyTermSuggestionBundle'
+
+  protected readonly configuration: Configuration
   protected readonly client: Client
   protected productSortingOptions?: SourceField[]
   protected readonly sourceFieldRepository: SourceFieldRepository
@@ -43,8 +46,8 @@ export class SearchManager {
     configuration: SearchConfiguration,
     tokenCacheManager?: ITokenCacheManager
   ) {
-    configuration = this.normalizeConfiguration(configuration)
-    const client = new Client(configuration, tokenCacheManager)
+    this.configuration = this.normalizeConfiguration(configuration)
+    const client = new Client(this.configuration, tokenCacheManager)
     this.client = client
     this.sourceFieldRepository = new SourceFieldRepository(
       client,
@@ -129,8 +132,11 @@ export class SearchManager {
   async search(request: SearchRequest): Promise<Response> {
     request = this.normalizeRequest(request)
     const priceGroup = request.getPriceGroupId()
+    const withTermSuggestions = this.configuration.hasBundle(
+      SearchManager.TERM_SUGGESTION_BUNDLE_NAME
+    )
     const response = await this.client.graphql(
-      request.buildSearchQuery(),
+      request.buildSearchQuery(withTermSuggestions),
       request.getVariables(),
       priceGroup ? { 'price-group-id': priceGroup } : {},
       false

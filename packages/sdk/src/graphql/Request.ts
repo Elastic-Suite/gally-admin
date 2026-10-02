@@ -166,7 +166,7 @@ export class Request {
     return this.priceGroupId
   }
 
-  buildSearchQuery(): string {
+  buildSearchQuery(withTermSuggestions = false): string {
     const isProductQuery = this.metadata.getEntity() === 'product'
     const hasSelectedFields = this.selectedFields.length > 0
     const endpoint = this.getEndpoint()
@@ -193,6 +193,10 @@ export class Request {
     const collection = hasSelectedFields
       ? `collection { ${selectedFieldsStr} }`
       : ''
+    const termSuggestions =
+      this.isAutocomplete && withTermSuggestions
+        ? 'termSuggestions { entityType terms }'
+        : ''
 
     return `
       query searchQuery (
@@ -225,10 +229,7 @@ export class Request {
             hasMore
             options { count label value }
           }
-          termSuggestions {
-            entityType
-            terms
-          },
+          ${termSuggestions}
         }
       }
     `
