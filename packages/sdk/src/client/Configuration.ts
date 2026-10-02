@@ -14,6 +14,7 @@ export interface IConfigurationOptions {
   checkSSL?: boolean
   user: string
   password: string
+  bundles?: string[]
 }
 
 export type IBrowserConfigurationOptions = Omit<
@@ -29,12 +30,14 @@ export class Configuration {
   private readonly checkSSL: boolean
   private readonly user: string
   private readonly password: string
+  private readonly bundles: string[]
 
   constructor(options: IConfigurationOptions | IBrowserConfigurationOptions) {
     this.baseUri = options.baseUri
     this.checkSSL = options.checkSSL ?? true
     this.user = options.user ?? ''
     this.password = options.password ?? ''
+    this.bundles = options.bundles ?? []
   }
 
   getBaseUri(): string {
@@ -51,5 +54,13 @@ export class Configuration {
 
   getPassword(): string {
     return this.password
+  }
+
+  getBundles(): string[] {
+    return this.bundles
+  }
+
+  hasBundle(bundle: string): boolean {
+    return this.bundles.includes(bundle)
   }
 }
