@@ -101,7 +101,7 @@ export class Response {
     const [currentSort] = (sortInfo?.current as Record<string, string>[]) ?? []
     this.sortField = currentSort?.field ?? ''
     this.sortDirection = currentSort?.direction ?? ''
-    this.termSuggestions = endpointData?.termSuggestions.terms ?? []
+    this.termSuggestions = endpointData?.termSuggestions?.terms ?? []
   }
 
   getCollection(): Record<string, any>[] {
