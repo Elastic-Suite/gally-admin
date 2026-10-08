@@ -19,6 +19,7 @@ import PageTitle from '../../../components/atoms/PageTitle/PageTitle'
 import Alert from '../../../components/atoms/Alert/Alert'
 import { TestId, generateTestId } from '../../../utils/testIds'
 import { Box } from '@mui/material'
+import JobButtons from '../../../components/molecules/JobButtons/JobButtons'
 
 const ButtonSetting = styled('div')(({ theme }) => ({
   color: theme.palette.colors.neutral[900],
@@ -59,6 +60,14 @@ const StyledCategoriesTree = styled('div')({
       height: 'unset',
       minHeight: '24px',
     },
+  },
+})
+
+const StyledPageTitleWithJobButtons = styled('div')({
+  display: 'flex',
+  flexDirection: 'row',
+  '& > :first-child': {
+    flex: 1,
   },
 })
 
@@ -131,11 +140,22 @@ function AdminSearchFacets(): JSX.Element {
         ]}
         leftWidth={280}
       >
-        <PageTitle
-          data-testid={generateTestId(TestId.FACETS_PAGE_TITLE)}
-          title={contentTitle ? contentTitle : t('facets')}
-          sx={{ marginBottom: '32px' }}
-        />
+        <StyledPageTitleWithJobButtons>
+          <PageTitle
+            data-testid={generateTestId(TestId.FACETS_PAGE_TITLE)}
+            title={contentTitle ? contentTitle : t('facets')}
+            sx={{ marginBottom: '32px' }}
+          />
+          {resource?.gally?.jobs ? (
+            <div>
+              <JobButtons
+                resourceName="FacetConfiguration"
+                jobButtons={resource.gally.jobs}
+              />
+            </div>
+          ) : null}
+        </StyledPageTitleWithJobButtons>
+
         {Boolean(isVisibleAlertFacets) && (
           <Alert
             message={t('facet.alert')}
