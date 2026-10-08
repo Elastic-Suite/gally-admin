@@ -11,8 +11,19 @@ import Alert from '../../../../components/atoms/Alert/Alert'
 import PageTitle from '../../../../components/atoms/PageTitle/PageTitle'
 import ResourceTable from '../../../../components/stateful-pages/ResourceTable/ResourceTable'
 import Metadata from '../../../../components/atoms/metadata/Metadata'
+import JobButtons from '../../../../components/molecules/JobButtons/JobButtons'
+import { styled } from '@mui/material'
 
 const pagesSlug = ['search', 'configuration', 'attributes']
+const importableExportableMetadata = ['product']
+
+const StyledPageTitleWithJobButtons = styled('div')({
+  display: 'flex',
+  flexDirection: 'row',
+  '& > :first-of-type': {
+    flex: 1,
+  },
+})
 
 function AdminSearchFacetsConfigurationAttributes(): JSX.Element {
   const [isVisibleAlertAttributes, setIsVisibleAlertAttributes] = useState(true)
@@ -24,6 +35,9 @@ function AdminSearchFacetsConfigurationAttributes(): JSX.Element {
   const [fixedFilters, setFixedFilters] = useState<Record<string, string>>({
     'metadata.entity': 'product',
   })
+  const isImportableExportableMetadata = importableExportableMetadata.includes(
+    fixedFilters['metadata.entity']
+  )
 
   useEffect(() => {
     setBreadcrumb(pagesSlug)
@@ -40,7 +54,17 @@ function AdminSearchFacetsConfigurationAttributes(): JSX.Element {
 
   return (
     <>
-      <PageTitle title={t(pagesSlug.at(-1))} sx={{ marginBottom: '32px' }} />
+      <StyledPageTitleWithJobButtons>
+        <PageTitle title={t(pagesSlug.at(-1))} sx={{ marginBottom: '32px' }} />
+        {isImportableExportableMetadata && resource?.gally?.jobs ? (
+          <div>
+            <JobButtons
+              resourceName="SourceField"
+              jobButtons={resource.gally.jobs}
+            />
+          </div>
+        ) : null}
+      </StyledPageTitleWithJobButtons>
       {Boolean(isVisibleAlertAttributes) && (
         <Alert
           message={t('attributes.alert')}
