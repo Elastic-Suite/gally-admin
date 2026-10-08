@@ -14,6 +14,27 @@ import ResourceTable from '../ResourceTable/ResourceTable'
 
 import Metadata from '../../atoms/metadata/Metadata'
 import { metadataContext } from '../../../contexts'
+import JobButtons from '../../molecules/JobButtons/JobButtons'
+import { styled } from '@mui/material'
+
+const StyledAlertWithJobButtonsContainer = styled('div')(({ theme }) => ({
+  display: 'flex',
+  flexDirection: 'row',
+  alignItems: 'stretch',
+  gap: theme.spacing(2),
+  marginBottom: theme.spacing(2),
+  minHeight: '50px',
+}))
+
+const StyledJobButtonsContainer = styled('div')(({ theme }) => ({
+  display: 'flex',
+  alignItems: 'center',
+  gap: theme.spacing(1),
+  marginLeft: 'auto',
+  flexShrink: 0,
+}))
+
+const importableExportableMetadata = ['product']
 
 function SettingsAttributes(props: ITabContentProps): JSX.Element {
   const { active } = props
@@ -21,6 +42,9 @@ function SettingsAttributes(props: ITabContentProps): JSX.Element {
   const [fixedFilters, setFixedFilters] = useState<Record<string, string>>({
     'metadata.entity': 'product',
   })
+  const isImportableExportableMetadata = importableExportableMetadata.includes(
+    fixedFilters['metadata.entity']
+  )
 
   const [
     isVisibleAlertSettingsAttributes,
@@ -31,6 +55,9 @@ function SettingsAttributes(props: ITabContentProps): JSX.Element {
 
   const resource = useResource('SourceField')
   const [activeFilters, setActiveFilters] = useFilters(resource)
+  const hasJobButtons = Boolean(
+    isImportableExportableMetadata && resource?.gally?.jobs
+  )
 
   function getTableConfigs(rows: ITableRow[]): ITableConfig[] {
     return rows.map((row) => ({
@@ -51,11 +78,24 @@ function SettingsAttributes(props: ITabContentProps): JSX.Element {
 
   return (
     <>
-      {Boolean(isVisibleAlertSettingsAttributes) && (
-        <Alert
-          message={t('settingsAttributes.alert')}
-          onShut={(): void => setIsVisibleAlertSettingsAttributes(false)}
-        />
+      {Boolean(isVisibleAlertSettingsAttributes || hasJobButtons) && (
+        <StyledAlertWithJobButtonsContainer>
+          {Boolean(isVisibleAlertSettingsAttributes) && (
+            <Alert
+              message={t('settingsAttributes.alert')}
+              onShut={(): void => setIsVisibleAlertSettingsAttributes(false)}
+              mb={0}
+            />
+          )}
+          {hasJobButtons ? (
+            <StyledJobButtonsContainer>
+              <JobButtons
+                resourceName="SourceField"
+                jobButtons={resource.gally.jobs}
+              />
+            </StyledJobButtonsContainer>
+          ) : null}
+        </StyledAlertWithJobButtonsContainer>
       )}
       <Metadata
         setFixedFilters={setFixedFilters}
