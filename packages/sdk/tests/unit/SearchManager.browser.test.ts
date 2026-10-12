@@ -212,3 +212,71 @@ describe('SearchManager Term Suggestions', () => {
     expect(response.getTermSuggestions()).toEqual(terms)
   })
 })
+
+describe('SearchManager Sorting Options', () => {
+  function mockSortingOptions(searchManager: SearchManager) {
+    return (
+      vi
+        // @ts-expect-error we spy on an object here so property is accessible
+        .spyOn(searchManager.client, 'graphql')
+        .mockResolvedValue({
+          data: {
+            productSortingOptions: [
+              { code: 'size', label: 'Taille', type: 'int' },
+            ],
+          },
+        })
+    )
+  }
+
+  it('should send the localized catalog and map options to source fields', async () => {
+    const searchManager = new SearchManager(
+      new Configuration({ baseUri: 'http://localhost' })
+    )
+    const mockGraphql = mockSortingOptions(searchManager)
+
+    const options = await searchManager.getProductSortingOptions('b2c_fr')
+
+    const [[query, variables]] = mockGraphql.mock.calls
+    expect(query).toContain(
+      'productSortingOptions(localizedCatalog: $localizedCatalog)'
+    )
+    expect(variables).toEqual({ localizedCatalog: 'b2c_fr' })
+    expect(options[0].getCode()).toBe('size')
+    expect(options[0].getDefaultLabel()).toBe('Taille')
+    expect(options[0].getType()).toBe('int')
+  })
+
+  it('should cache options per localized catalog', async () => {
+    const searchManager = new SearchManager(
+      new Configuration({ baseUri: 'http://localhost' })
+    )
+    const mockGraphql = mockSortingOptions(searchManager)
+
+    await Promise.all([
+      searchManager.getProductSortingOptions('b2c_fr'),
+      searchManager.getProductSortingOptions('b2c_fr'),
+    ])
+    await searchManager.getProductSortingOptions('b2c_en')
+    await searchManager.getProductSortingOptions()
+
+    expect(mockGraphql).toHaveBeenCalledTimes(3)
+    expect(mockGraphql.mock.calls[2][1]).toEqual({})
+  })
+
+  it('should not cache a failed request', async () => {
+    const searchManager = new SearchManager(
+      new Configuration({ baseUri: 'http://localhost' })
+    )
+    const mockGraphql = mockSortingOptions(searchManager)
+    mockGraphql.mockRejectedValueOnce(new Error('network'))
+
+    await expect(
+      searchManager.getProductSortingOptions('b2c_fr')
+    ).rejects.toThrow('network')
+    const options = await searchManager.getProductSortingOptions('b2c_fr')
+
+    expect(options).toHaveLength(1)
+    expect(mockGraphql).toHaveBeenCalledTimes(2)
+  })
+})

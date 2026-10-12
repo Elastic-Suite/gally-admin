@@ -39,7 +39,8 @@ export class SearchManager {
 
   protected readonly configuration: Configuration
   protected readonly client: Client
-  protected productSortingOptions?: SourceField[]
+  // One entry per localized catalog code ('' when none is given): the labels are localized.
+  protected productSortingOptions = new Map<string, Promise<SourceField[]>>()
   protected readonly sourceFieldRepository: SourceFieldRepository
 
   constructor(
@@ -77,36 +78,51 @@ export class SearchManager {
     })
   }
 
-  async getProductSortingOptions(): Promise<SourceField[]> {
-    if (!this.productSortingOptions) {
-      const query = `
-        {
-          productSortingOptions {
-            code
-            label
-            type
-          }
-        }
-      `
-      const response = await this.client.graphql(query, {}, {}, false)
-      const metadata = new Metadata('product')
-
-      const data = response.data as Record<string, any>
-      const options = (data.productSortingOptions as any[]) ?? []
-
-      this.productSortingOptions = options.map(
-        (option: any) =>
-          new SourceField(
-            metadata,
-            option.code as string,
-            option.type as string,
-            option.label as string,
-            []
-          )
-      )
+  /**
+   * Sortable product fields. Pass a localized catalog code to get labels in its language.
+   */
+  getProductSortingOptions(localizedCatalog?: string): Promise<SourceField[]> {
+    const key = localizedCatalog ?? ''
+    let options = this.productSortingOptions.get(key)
+    if (!options) {
+      options = this.fetchProductSortingOptions(localizedCatalog)
+      this.productSortingOptions.set(key, options)
+      // A failed request is not cached, so the next call tries again.
+      options.catch(() => this.productSortingOptions.delete(key))
     }
 
-    return this.productSortingOptions
+    return options
+  }
+
+  protected async fetchProductSortingOptions(
+    localizedCatalog?: string
+  ): Promise<SourceField[]> {
+    const query = `
+      query getProductSortingOptions($localizedCatalog: String) {
+        productSortingOptions(localizedCatalog: $localizedCatalog) {
+          code
+          label
+          type
+        }
+      }
+    `
+    const variables = localizedCatalog ? { localizedCatalog } : {}
+    const response = await this.client.graphql(query, variables, {}, false)
+    const metadata = new Metadata('product')
+
+    const data = response.data as Record<string, any>
+    const options = (data.productSortingOptions as any[]) ?? []
+
+    return options.map(
+      (option: any) =>
+        new SourceField(
+          metadata,
+          option.code as string,
+          option.type as string,
+          option.label as string,
+          []
+        )
+    )
   }
 
   getFilterableSourceField(
