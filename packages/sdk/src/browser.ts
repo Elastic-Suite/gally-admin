@@ -5,6 +5,7 @@
  * For server-side usage, import from the main entry point instead.
  */
 
+export { RecommenderManager } from './service/RecommenderManager'
 export { SearchManager } from './service/SearchManager'
 export { TrackingEventManager } from './service'
 export { TrackingEventValidator, TrackingEventType } from './validator'

@@ -18,12 +18,14 @@ import { ITokenCacheManager } from '../client/TokenCacheManager'
 import { AbstractEntity } from '../entity/AbstractEntity'
 import { LocalizedCatalog } from '../entity/LocalizedCatalog'
 import { Metadata } from '../entity/Metadata'
+import { RecommenderType } from '../entity/RecommenderType'
 import { SourceField } from '../entity/SourceField'
 import { SourceFieldOption } from '../entity/SourceFieldOption'
 import { AbstractRepository } from '../repository/AbstractRepository'
 import { CatalogRepository } from '../repository/CatalogRepository'
 import { LocalizedCatalogRepository } from '../repository/LocalizedCatalogRepository'
 import { MetadataRepository } from '../repository/MetadataRepository'
+import { RecommenderTypeRepository } from '../repository/RecommenderTypeRepository'
 import { SourceFieldOptionRepository } from '../repository/SourceFieldOptionRepository'
 import { SourceFieldRepository } from '../repository/SourceFieldRepository'
 
@@ -36,6 +38,7 @@ export class StructureSynchronizer {
   private readonly metadataRepository: MetadataRepository
   private readonly sourceFieldRepository: SourceFieldRepository
   private readonly sourceFieldOptionRepository: SourceFieldOptionRepository
+  private readonly recommenderTypeRepository: RecommenderTypeRepository
 
   constructor(
     configuration: Configuration,
@@ -56,6 +59,7 @@ export class StructureSynchronizer {
       client,
       this.sourceFieldRepository
     )
+    this.recommenderTypeRepository = new RecommenderTypeRepository(client)
   }
 
   /**
@@ -317,6 +321,57 @@ export class StructureSynchronizer {
     } else {
       await this.sourceFieldOptionRepository.createOrUpdate(sourceFieldOption)
     }
+  }
+
+  /**
+   * Sync all recommender types.
+   */
+  async syncAllRecommenderTypes(
+    recommenderTypes: Iterable<RecommenderType>,
+    clean = false,
+    dryRun = true
+  ): Promise<void> {
+    const existingRecommenderTypes = new Map(
+      await this.recommenderTypeRepository.findAll()
+    )
+
+    for (const recommenderType of recommenderTypes) {
+      await this.syncRecommenderType(recommenderType, true)
+      existingRecommenderTypes.delete(
+        this.recommenderTypeRepository.getIdentity(recommenderType)
+      )
+    }
+
+    if (clean) {
+      for (const recommenderType of existingRecommenderTypes.values()) {
+        if (!dryRun) {
+          await this.recommenderTypeRepository.delete(recommenderType)
+        }
+      }
+
+      console.log(
+        `  Delete ${existingRecommenderTypes.size} recommender type(s)`
+      )
+      console.log('')
+    }
+  }
+
+  /**
+   * Sync a single recommender type.
+   */
+  async syncRecommenderType(
+    recommenderType: RecommenderType,
+    isFullContext = false
+  ): Promise<RecommenderType> {
+    if (!isFullContext) {
+      await this.fetchEntityUri(
+        recommenderType,
+        this.recommenderTypeRepository,
+        { code: recommenderType.getCode() }
+      )
+    }
+
+    return this.recommenderTypeRepository.createOrUpdate(recommenderType)
   }
 
   /**
