@@ -27,6 +27,7 @@ import {
   categoryMetadata,
   createSampleSourceFields,
   productMetadata,
+  rootCategoryId,
   sampleCategoriesFr,
   sampleLocalizedCatalogFr,
   sampleProductsFr,
@@ -123,6 +124,7 @@ describe('Full E2E Lifecycle', () => {
     const allProductsRequest = new Request({
       localizedCatalog: sampleLocalizedCatalogFr,
       metadata: productMetadata,
+      categoryId: rootCategoryId,
       isAutocomplete: false,
       selectedFields: ['id', 'sku', 'name'],
       currentPage: 1,
@@ -137,27 +139,28 @@ describe('Full E2E Lifecycle', () => {
     )
 
     // 6b. Text search
-    const nikeRequest = new Request({
+    const textRequest = new Request({
       localizedCatalog: sampleLocalizedCatalogFr,
       metadata: productMetadata,
       isAutocomplete: false,
       selectedFields: ['id', 'sku', 'name'],
       currentPage: 1,
       pageSize: 10,
-      searchQuery: 'Nike',
+      searchQuery: 'course',
       filters: [],
     })
 
-    const nikeResponse = await searchManager.search(nikeRequest)
-    expect(nikeResponse.getTotalCount()).toBeGreaterThanOrEqual(1)
+    const textResponse = await searchManager.search(textRequest)
+    expect(textResponse.getTotalCount()).toBeGreaterThanOrEqual(1)
     console.log(
-      `  ✓ Text search "Nike": ${nikeResponse.getTotalCount()} products found`
+      `  ✓ Text search "course": ${textResponse.getTotalCount()} products found`
     )
 
     // 6c. Pagination
     const pageRequest = new Request({
       localizedCatalog: sampleLocalizedCatalogFr,
       metadata: productMetadata,
+      categoryId: rootCategoryId,
       isAutocomplete: false,
       selectedFields: ['id', 'sku', 'name'],
       currentPage: 1,

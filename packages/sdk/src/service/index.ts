@@ -10,6 +10,7 @@
  */
 
 export { IndexOperation } from './IndexOperation'
+export { RecommenderManager } from './RecommenderManager'
 export { SearchManager } from './SearchManager'
 export { StructureSynchronizer } from './StructureSynchronizer'
 export { TrackingEventManager } from './TrackingEventManager'

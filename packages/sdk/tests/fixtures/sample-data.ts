@@ -53,6 +53,10 @@ export const categoryMetadata = new Metadata('category')
 // Source Fields
 // ---------------------------------------------------------------------------
 
+// Source fields belong to the metadata, not to a catalog, so these are shared with any demo data on
+// the instance. The custom ones carry an `sdk_test_` prefix: with plain codes such as `size` or
+// `color`, the sync would rewrite the demo's fields (a demo `select` became a `keyword`, and indexing
+// then failed on the stale mapping).
 export function createSampleSourceFields(): SourceField[] {
   return [
     new SourceField(productMetadata, 'name', SourceFieldType.TEXT, 'Name', [
@@ -73,21 +77,39 @@ export function createSampleSourceFields(): SourceField[] {
       new Label(sampleLocalizedCatalogFr, 'SKU'),
       new Label(sampleLocalizedCatalogEn, 'SKU'),
     ]),
-    new SourceField(productMetadata, 'brand', SourceFieldType.SELECT, 'Brand', [
-      new Label(sampleLocalizedCatalogFr, 'Marque'),
-      new Label(sampleLocalizedCatalogEn, 'Brand'),
-    ]),
-    new SourceField(productMetadata, 'color', SourceFieldType.SELECT, 'Color', [
-      new Label(sampleLocalizedCatalogFr, 'Couleur'),
-      new Label(sampleLocalizedCatalogEn, 'Color'),
-    ]),
-    new SourceField(productMetadata, 'size', SourceFieldType.KEYWORD, 'Size', [
-      new Label(sampleLocalizedCatalogFr, 'Taille'),
-      new Label(sampleLocalizedCatalogEn, 'Size'),
-    ]),
     new SourceField(
       productMetadata,
-      'is_active',
+      'sdk_test_brand',
+      SourceFieldType.SELECT,
+      'Brand',
+      [
+        new Label(sampleLocalizedCatalogFr, 'Marque'),
+        new Label(sampleLocalizedCatalogEn, 'Brand'),
+      ]
+    ),
+    new SourceField(
+      productMetadata,
+      'sdk_test_color',
+      SourceFieldType.SELECT,
+      'Color',
+      [
+        new Label(sampleLocalizedCatalogFr, 'Couleur'),
+        new Label(sampleLocalizedCatalogEn, 'Color'),
+      ]
+    ),
+    new SourceField(
+      productMetadata,
+      'sdk_test_size',
+      SourceFieldType.KEYWORD,
+      'Size',
+      [
+        new Label(sampleLocalizedCatalogFr, 'Taille'),
+        new Label(sampleLocalizedCatalogEn, 'Size'),
+      ]
+    ),
+    new SourceField(
+      productMetadata,
+      'sdk_test_is_active',
       SourceFieldType.BOOLEAN,
       'Active',
       [
@@ -97,7 +119,7 @@ export function createSampleSourceFields(): SourceField[] {
     ),
     new SourceField(
       productMetadata,
-      'weight',
+      'sdk_test_weight',
       SourceFieldType.FLOAT,
       'Weight',
       [
@@ -113,7 +135,7 @@ export function createSampleSourceFields(): SourceField[] {
 }
 
 // ---------------------------------------------------------------------------
-// Source Field Options (for select fields like brand, color)
+// Source Field Options (for the select fields sdk_test_brand, sdk_test_color)
 // ---------------------------------------------------------------------------
 
 export function createSampleSourceFieldOptions(
@@ -122,17 +144,17 @@ export function createSampleSourceFieldOptions(
 ): SourceFieldOption[] {
   return [
     // Brand options
-    new SourceFieldOption(brandField, 'nike', 1, 'Nike', [
-      new Label(sampleLocalizedCatalogFr, 'Nike'),
-      new Label(sampleLocalizedCatalogEn, 'Nike'),
+    new SourceFieldOption(brandField, 'brand_a', 1, 'Brand A', [
+      new Label(sampleLocalizedCatalogFr, 'Marque A'),
+      new Label(sampleLocalizedCatalogEn, 'Brand A'),
     ]),
-    new SourceFieldOption(brandField, 'adidas', 2, 'Adidas', [
-      new Label(sampleLocalizedCatalogFr, 'Adidas'),
-      new Label(sampleLocalizedCatalogEn, 'Adidas'),
+    new SourceFieldOption(brandField, 'brand_b', 2, 'Brand B', [
+      new Label(sampleLocalizedCatalogFr, 'Marque B'),
+      new Label(sampleLocalizedCatalogEn, 'Brand B'),
     ]),
-    new SourceFieldOption(brandField, 'puma', 3, 'Puma', [
-      new Label(sampleLocalizedCatalogFr, 'Puma'),
-      new Label(sampleLocalizedCatalogEn, 'Puma'),
+    new SourceFieldOption(brandField, 'brand_c', 3, 'Brand C', [
+      new Label(sampleLocalizedCatalogFr, 'Marque C'),
+      new Label(sampleLocalizedCatalogEn, 'Brand C'),
     ]),
 
     // Color options
@@ -169,6 +191,11 @@ export function createSampleSourceFieldOptions(
  *   │   ├── cat_sneakers (Sneakers / Baskets)
  *   │   └── cat_lifestyle (Lifestyle)
  */
+
+// Browsing products needs a category: the API refuses a product_catalog request without one. Every
+// product is also assigned to the root, as a connector indexes all parent categories, so a browse of
+// the root returns the whole catalog.
+export const rootCategoryId = 'cat_root'
 
 export const sampleCategoriesFr: Record<string, any>[] = [
   {
@@ -254,18 +281,19 @@ export const sampleProductsFr: Record<string, any>[] = [
   {
     id: '1',
     sku: 'SDK-SHOE-001',
-    name: 'Chaussure de course Nike Air',
+    name: 'Chaussure de course légère',
     description:
       'Chaussure de course légère et performante avec semelle en mousse.',
-    brand: [{ value: 'nike', label: 'Nike' }],
-    color: [{ value: 'red', label: 'Rouge' }],
-    size: '42',
-    is_active: true,
-    weight: 0.35,
-    image: 'https://example.com/images/nike-air.jpg',
+    sdk_test_brand: [{ value: 'brand_a', label: 'Brand A' }],
+    sdk_test_color: [{ value: 'red', label: 'Rouge' }],
+    sdk_test_size: '42',
+    sdk_test_is_active: true,
+    sdk_test_weight: 0.35,
+    image: 'https://example.com/images/running-shoe.jpg',
     price: [{ price: 129.99, group_id: 0 }],
     stock: { status: true, qty: 50 },
     category: [
+      { id: rootCategoryId, name: 'Catégorie racine' },
       { id: 'cat_running', name: 'Running' },
       { id: 'cat_shoes', name: 'Chaussures' },
     ],
@@ -273,17 +301,18 @@ export const sampleProductsFr: Record<string, any>[] = [
   {
     id: '2',
     sku: 'SDK-SHOE-002',
-    name: 'Basket Adidas Ultraboost',
-    description: 'Basket avec technologie Boost pour un confort optimal.',
-    brand: [{ value: 'adidas', label: 'Adidas' }],
-    color: [{ value: 'black', label: 'Noir' }],
-    size: '43',
-    is_active: true,
-    weight: 0.38,
-    image: 'https://example.com/images/adidas-ultraboost.jpg',
+    name: 'Basket confort',
+    description: 'Basket avec semelle amortissante pour un confort optimal.',
+    sdk_test_brand: [{ value: 'brand_b', label: 'Brand B' }],
+    sdk_test_color: [{ value: 'black', label: 'Noir' }],
+    sdk_test_size: '43',
+    sdk_test_is_active: true,
+    sdk_test_weight: 0.38,
+    image: 'https://example.com/images/comfort-sneaker.jpg',
     price: [{ price: 179.99, group_id: 0 }],
     stock: { status: true, qty: 30 },
     category: [
+      { id: rootCategoryId, name: 'Catégorie racine' },
       { id: 'cat_running', name: 'Running' },
       { id: 'cat_shoes', name: 'Chaussures' },
     ],
@@ -291,17 +320,18 @@ export const sampleProductsFr: Record<string, any>[] = [
   {
     id: '3',
     sku: 'SDK-SHOE-003',
-    name: 'Puma RS-X Blanc',
+    name: 'Basket rétro blanche',
     description: 'Sneaker rétro avec un design audacieux et semelle épaisse.',
-    brand: [{ value: 'puma', label: 'Puma' }],
-    color: [{ value: 'white', label: 'Blanc' }],
-    size: '41',
-    is_active: true,
-    weight: 0.42,
-    image: 'https://example.com/images/puma-rsx.jpg',
+    sdk_test_brand: [{ value: 'brand_c', label: 'Brand C' }],
+    sdk_test_color: [{ value: 'white', label: 'Blanc' }],
+    sdk_test_size: '41',
+    sdk_test_is_active: true,
+    sdk_test_weight: 0.42,
+    image: 'https://example.com/images/retro-sneaker.jpg',
     price: [{ price: 109.99, group_id: 0 }],
     stock: { status: true, qty: 15 },
     category: [
+      { id: rootCategoryId, name: 'Catégorie racine' },
       { id: 'cat_sneakers', name: 'Baskets' },
       { id: 'cat_shoes', name: 'Chaussures' },
     ],
@@ -309,17 +339,18 @@ export const sampleProductsFr: Record<string, any>[] = [
   {
     id: '4',
     sku: 'SDK-SHOE-004',
-    name: 'Nike Air Max Bleu',
-    description: 'Chaussure lifestyle avec unité Air visible et style urbain.',
-    brand: [{ value: 'nike', label: 'Nike' }],
-    color: [{ value: 'blue', label: 'Bleu' }],
-    size: '44',
-    is_active: true,
-    weight: 0.4,
-    image: 'https://example.com/images/nike-airmax.jpg',
+    name: 'Chaussure lifestyle bleue',
+    description: 'Chaussure lifestyle avec talon transparent et style urbain.',
+    sdk_test_brand: [{ value: 'brand_a', label: 'Brand A' }],
+    sdk_test_color: [{ value: 'blue', label: 'Bleu' }],
+    sdk_test_size: '44',
+    sdk_test_is_active: true,
+    sdk_test_weight: 0.4,
+    image: 'https://example.com/images/lifestyle-shoe.jpg',
     price: [{ price: 159.99, group_id: 0 }],
     stock: { status: true, qty: 25 },
     category: [
+      { id: rootCategoryId, name: 'Catégorie racine' },
       { id: 'cat_lifestyle', name: 'Lifestyle' },
       { id: 'cat_shoes', name: 'Chaussures' },
     ],
@@ -327,17 +358,18 @@ export const sampleProductsFr: Record<string, any>[] = [
   {
     id: '5',
     sku: 'SDK-SHOE-005',
-    name: 'Adidas Stan Smith Classique',
-    description: 'La chaussure iconique en cuir blanc avec détails verts.',
-    brand: [{ value: 'adidas', label: 'Adidas' }],
-    color: [{ value: 'white', label: 'Blanc' }],
-    size: '42',
-    is_active: true,
-    weight: 0.32,
-    image: 'https://example.com/images/adidas-stansmith.jpg',
+    name: 'Basket classique en cuir',
+    description: 'Basket classique en cuir blanc avec talon contrasté.',
+    sdk_test_brand: [{ value: 'brand_b', label: 'Brand B' }],
+    sdk_test_color: [{ value: 'white', label: 'Blanc' }],
+    sdk_test_size: '42',
+    sdk_test_is_active: true,
+    sdk_test_weight: 0.32,
+    image: 'https://example.com/images/leather-sneaker.jpg',
     price: [{ price: 99.99, group_id: 0 }],
     stock: { status: true, qty: 100 },
     category: [
+      { id: rootCategoryId, name: 'Catégorie racine' },
       { id: 'cat_sneakers', name: 'Baskets' },
       { id: 'cat_shoes', name: 'Chaussures' },
     ],
@@ -348,18 +380,19 @@ export const sampleProductsEn: Record<string, any>[] = [
   {
     id: '1',
     sku: 'SDK-SHOE-001',
-    name: 'Nike Air Running Shoe',
+    name: 'Lightweight Running Shoe',
     description:
       'Lightweight and high-performance running shoe with foam sole.',
-    brand: [{ value: 'nike', label: 'Nike' }],
-    color: [{ value: 'red', label: 'Red' }],
-    size: '42',
-    is_active: true,
-    weight: 0.35,
-    image: 'https://example.com/images/nike-air.jpg',
+    sdk_test_brand: [{ value: 'brand_a', label: 'Brand A' }],
+    sdk_test_color: [{ value: 'red', label: 'Red' }],
+    sdk_test_size: '42',
+    sdk_test_is_active: true,
+    sdk_test_weight: 0.35,
+    image: 'https://example.com/images/running-shoe.jpg',
     price: [{ price: 139.99, group_id: 0 }],
     stock: { status: true, qty: 50 },
     category: [
+      { id: rootCategoryId, name: 'Root Category' },
       { id: 'cat_running', name: 'Running' },
       { id: 'cat_shoes', name: 'Shoes' },
     ],
@@ -367,17 +400,18 @@ export const sampleProductsEn: Record<string, any>[] = [
   {
     id: '2',
     sku: 'SDK-SHOE-002',
-    name: 'Adidas Ultraboost Sneaker',
-    description: 'Sneaker with Boost technology for optimal comfort.',
-    brand: [{ value: 'adidas', label: 'Adidas' }],
-    color: [{ value: 'black', label: 'Black' }],
-    size: '43',
-    is_active: true,
-    weight: 0.38,
-    image: 'https://example.com/images/adidas-ultraboost.jpg',
+    name: 'Comfort Sneaker',
+    description: 'Sneaker with a cushioned sole for optimal comfort.',
+    sdk_test_brand: [{ value: 'brand_b', label: 'Brand B' }],
+    sdk_test_color: [{ value: 'black', label: 'Black' }],
+    sdk_test_size: '43',
+    sdk_test_is_active: true,
+    sdk_test_weight: 0.38,
+    image: 'https://example.com/images/comfort-sneaker.jpg',
     price: [{ price: 189.99, group_id: 0 }],
     stock: { status: true, qty: 30 },
     category: [
+      { id: rootCategoryId, name: 'Root Category' },
       { id: 'cat_running', name: 'Running' },
       { id: 'cat_shoes', name: 'Shoes' },
     ],
@@ -385,17 +419,18 @@ export const sampleProductsEn: Record<string, any>[] = [
   {
     id: '3',
     sku: 'SDK-SHOE-003',
-    name: 'Puma RS-X White',
+    name: 'White Retro Sneaker',
     description: 'Retro sneaker with bold design and thick sole.',
-    brand: [{ value: 'puma', label: 'Puma' }],
-    color: [{ value: 'white', label: 'White' }],
-    size: '41',
-    is_active: true,
-    weight: 0.42,
-    image: 'https://example.com/images/puma-rsx.jpg',
+    sdk_test_brand: [{ value: 'brand_c', label: 'Brand C' }],
+    sdk_test_color: [{ value: 'white', label: 'White' }],
+    sdk_test_size: '41',
+    sdk_test_is_active: true,
+    sdk_test_weight: 0.42,
+    image: 'https://example.com/images/retro-sneaker.jpg',
     price: [{ price: 119.99, group_id: 0 }],
     stock: { status: true, qty: 15 },
     category: [
+      { id: rootCategoryId, name: 'Root Category' },
       { id: 'cat_sneakers', name: 'Sneakers' },
       { id: 'cat_shoes', name: 'Shoes' },
     ],
@@ -403,17 +438,18 @@ export const sampleProductsEn: Record<string, any>[] = [
   {
     id: '4',
     sku: 'SDK-SHOE-004',
-    name: 'Nike Air Max Blue',
-    description: 'Lifestyle shoe with visible Air unit and urban style.',
-    brand: [{ value: 'nike', label: 'Nike' }],
-    color: [{ value: 'blue', label: 'Blue' }],
-    size: '44',
-    is_active: true,
-    weight: 0.4,
-    image: 'https://example.com/images/nike-airmax.jpg',
+    name: 'Blue Lifestyle Shoe',
+    description: 'Lifestyle shoe with a transparent heel and urban style.',
+    sdk_test_brand: [{ value: 'brand_a', label: 'Brand A' }],
+    sdk_test_color: [{ value: 'blue', label: 'Blue' }],
+    sdk_test_size: '44',
+    sdk_test_is_active: true,
+    sdk_test_weight: 0.4,
+    image: 'https://example.com/images/lifestyle-shoe.jpg',
     price: [{ price: 169.99, group_id: 0 }],
     stock: { status: true, qty: 25 },
     category: [
+      { id: rootCategoryId, name: 'Root Category' },
       { id: 'cat_lifestyle', name: 'Lifestyle' },
       { id: 'cat_shoes', name: 'Shoes' },
     ],
@@ -421,17 +457,18 @@ export const sampleProductsEn: Record<string, any>[] = [
   {
     id: '5',
     sku: 'SDK-SHOE-005',
-    name: 'Adidas Stan Smith Classic',
-    description: 'The iconic white leather shoe with green details.',
-    brand: [{ value: 'adidas', label: 'Adidas' }],
-    color: [{ value: 'white', label: 'White' }],
-    size: '42',
-    is_active: true,
-    weight: 0.32,
-    image: 'https://example.com/images/adidas-stansmith.jpg',
+    name: 'Classic Leather Sneaker',
+    description: 'Classic white leather sneaker with a contrasting heel.',
+    sdk_test_brand: [{ value: 'brand_b', label: 'Brand B' }],
+    sdk_test_color: [{ value: 'white', label: 'White' }],
+    sdk_test_size: '42',
+    sdk_test_is_active: true,
+    sdk_test_weight: 0.32,
+    image: 'https://example.com/images/leather-sneaker.jpg',
     price: [{ price: 109.99, group_id: 0 }],
     stock: { status: true, qty: 100 },
     category: [
+      { id: rootCategoryId, name: 'Root Category' },
       { id: 'cat_sneakers', name: 'Sneakers' },
       { id: 'cat_shoes', name: 'Shoes' },
     ],
