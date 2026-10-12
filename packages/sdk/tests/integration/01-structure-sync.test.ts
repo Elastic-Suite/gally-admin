@@ -87,8 +87,8 @@ describe('Structure Synchronization', () => {
     // Our sample fields should exist
     expect(existingFields.has('product_name')).toBe(true)
     expect(existingFields.has('product_sku')).toBe(true)
-    expect(existingFields.has('product_brand')).toBe(true)
-    expect(existingFields.has('product_color')).toBe(true)
+    expect(existingFields.has('product_sdk_test_brand')).toBe(true)
+    expect(existingFields.has('product_sdk_test_color')).toBe(true)
     expect(existingFields.has('product_description')).toBe(true)
 
     const nameField = existingFields.get('product_name')!
@@ -108,8 +108,8 @@ describe('Structure Synchronization', () => {
       'metadata.entity': 'product',
     })
 
-    const brandField = existingFields.get('product_brand')
-    const colorField = existingFields.get('product_color')
+    const brandField = existingFields.get('product_sdk_test_brand')
+    const colorField = existingFields.get('product_sdk_test_color')
 
     expect(brandField).toBeDefined()
     expect(colorField).toBeDefined()

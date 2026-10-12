@@ -147,7 +147,8 @@ export class SearchManager {
 
   async viewMoreProductFilterOption(
     request: SearchRequest,
-    aggregationField: string
+    aggregationField: string,
+    optionSearch?: string
   ): Promise<any[]> {
     request = this.normalizeRequest(request)
     const query = `
@@ -157,6 +158,7 @@ export class SearchManager {
         $currentCategoryId: String,
         $filter: [ProductFieldFilterInput],
         $aggregation: String!,
+        $optionSearch: String,
       ) {
         viewMoreProductFacetOptions (
           localizedCatalog: $localizedCatalog,
@@ -164,6 +166,7 @@ export class SearchManager {
           currentCategoryId: $currentCategoryId,
           filter: $filter,
           aggregation: $aggregation,
+          optionSearch: $optionSearch,
         ) {
           value
           label
@@ -186,6 +189,9 @@ export class SearchManager {
     }
     if (variables.currentCategoryId) {
       filteredVariables.currentCategoryId = variables.currentCategoryId
+    }
+    if (optionSearch) {
+      filteredVariables.optionSearch = optionSearch
     }
 
     const response = await this.client.graphql(
