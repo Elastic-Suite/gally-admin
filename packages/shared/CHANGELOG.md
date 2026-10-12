@@ -1,3 +1,9 @@
+#### 2.3.1 (2026-10-12)
+
+##### Bug Fixes
+
+- **#1412077:** fix obsolete link to tracking documentation ([40b55768](https://github.com/Elastic-Suite/gally-admin/commit/40b557688201c5f874137dcd64140c6c3cdea689))
+
 #### 2.3.1 (2026-07-27)
 
 #### 2.2.1 (2025-11-18)
