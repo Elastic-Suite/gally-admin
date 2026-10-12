@@ -25,6 +25,7 @@ export {
   Label,
   LocalizedCatalog,
   Metadata,
+  RecommenderType,
   SourceField,
   SourceFieldType,
   SourceFieldOption,
@@ -59,6 +60,7 @@ export {
   CatalogRepository,
   LocalizedCatalogRepository,
   MetadataRepository,
+  RecommenderTypeRepository,
   SourceFieldRepository,
   SourceFieldOptionRepository,
 } from './repository'
@@ -66,6 +68,7 @@ export {
 // Services
 export {
   IndexOperation,
+  RecommenderManager,
   SearchManager,
   StructureSynchronizer,
   TrackingEventManager,

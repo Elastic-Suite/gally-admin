@@ -46,6 +46,12 @@ export interface ISortInfo {
   direction: string
 }
 
+export interface ITermSuggestion {
+  term: string
+  resultCount: number
+  popularity: number
+}
+
 export class Response {
   private readonly collection: Record<string, any>[]
   private readonly aggregations: IAggregation[]
@@ -54,6 +60,7 @@ export class Response {
   private readonly itemsPerPage: number
   private readonly sortField: string
   private readonly sortDirection: string
+  private readonly termSuggestions: ITermSuggestion[]
 
   constructor(request: Request, rawResponse: Record<string, any>) {
     const endpointData =
@@ -94,6 +101,7 @@ export class Response {
     const [currentSort] = (sortInfo?.current as Record<string, string>[]) ?? []
     this.sortField = currentSort?.field ?? ''
     this.sortDirection = currentSort?.direction ?? ''
+    this.termSuggestions = endpointData?.termSuggestions?.terms ?? []
   }
 
   getCollection(): Record<string, any>[] {
@@ -122,5 +130,9 @@ export class Response {
 
   getSortDirection(): string {
     return this.sortDirection
+  }
+
+  getTermSuggestions(): ITermSuggestion[] {
+    return this.termSuggestions
   }
 }

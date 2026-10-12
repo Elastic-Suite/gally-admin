@@ -22,6 +22,7 @@ import {
   categoryMetadata,
   createSampleSourceFields,
   productMetadata,
+  rootCategoryId,
   sampleCategoriesEn,
   sampleCategoriesFr,
   sampleLocalizedCatalogEn,
@@ -97,6 +98,7 @@ describe('Search', () => {
     const request = new Request({
       localizedCatalog: sampleLocalizedCatalogFr,
       metadata: productMetadata,
+      categoryId: rootCategoryId,
       isAutocomplete: false,
       selectedFields: ['id', 'sku', 'name'],
       currentPage: 1,
@@ -125,7 +127,7 @@ describe('Search', () => {
       selectedFields: ['id', 'sku', 'name'],
       currentPage: 1,
       pageSize: 10,
-      searchQuery: 'Nike',
+      searchQuery: 'course',
       filters: [],
     })
 
@@ -134,7 +136,7 @@ describe('Search', () => {
     expect(response.getTotalCount()).toBeGreaterThanOrEqual(1)
 
     const collection = response.getCollection()
-    console.log(`  FR search "Nike": ${response.getTotalCount()} results`)
+    console.log(`  FR search "course": ${response.getTotalCount()} results`)
     for (const product of collection) {
       console.log(`    - ${JSON.stringify(product)}`)
     }
@@ -146,6 +148,7 @@ describe('Search', () => {
     const request = new Request({
       localizedCatalog: sampleLocalizedCatalogEn,
       metadata: productMetadata,
+      categoryId: rootCategoryId,
       isAutocomplete: false,
       selectedFields: ['id', 'sku', 'name'],
       currentPage: 1,
@@ -166,6 +169,7 @@ describe('Search', () => {
     const request = new Request({
       localizedCatalog: sampleLocalizedCatalogFr,
       metadata: productMetadata,
+      categoryId: rootCategoryId,
       isAutocomplete: false,
       selectedFields: ['id', 'sku', 'name'],
       currentPage: 1,
@@ -191,6 +195,7 @@ describe('Search', () => {
     const request = new Request({
       localizedCatalog: sampleLocalizedCatalogFr,
       metadata: productMetadata,
+      categoryId: rootCategoryId,
       isAutocomplete: false,
       selectedFields: ['id', 'sku', 'name'],
       currentPage: 1,
@@ -312,6 +317,7 @@ describe('Search', () => {
       const response = await searchManager.search({
         localizedCatalog: sampleLocalizedCatalogFr,
         metadata: 'product', // String
+        categoryId: rootCategoryId,
         isAutocomplete: false,
         selectedFields: ['id', 'sku', 'name'],
         currentPage: 1,
@@ -350,7 +356,7 @@ describe('Search', () => {
         selectedFields: ['id', 'sku', 'name'],
         currentPage: 1,
         pageSize: 10,
-        searchQuery: 'Nike',
+        searchQuery: 'course',
         filters: [],
       })
 
