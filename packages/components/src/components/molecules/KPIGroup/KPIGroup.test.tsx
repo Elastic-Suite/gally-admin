@@ -1,8 +1,10 @@
 import React from 'react'
+import { TFunction } from 'next-i18next'
 
 import { renderWithProviders } from '../../../utils/tests'
 
-import KPIGroup from './KPIGroup'
+import KPIGroup, { getKpiGroupItems } from './KPIGroup'
+import { IKPI } from '../KpiLoader/KpiLoader'
 
 describe('KPIGroup match snapshot', () => {
   beforeAll(() => {
@@ -36,5 +38,40 @@ describe('KPIGroup match snapshot', () => {
       />
     )
     expect(container).toMatchSnapshot()
+  })
+})
+
+describe('getKpiGroupItems', () => {
+  it('maps a KPI to group items', () => {
+    const t = ((key: string): string => `t_${key}`) as unknown as TFunction
+    expect(
+      getKpiGroupItems(
+        {
+          '@id': '/kpis/1',
+          '@type': 'Kpi',
+          id: 1,
+          localizedCatalog: 'com_fr',
+          searchCount: 12,
+          sessionsWithSearchPercentage: 40.5,
+          valueFormat: { sessionsWithSearchPercentage: 'percentage' },
+        } as IKPI,
+        t
+      )
+    ).toEqual([
+      {
+        id: '1_0',
+        componentId: 'searchCount',
+        label: 't_searchCount',
+        value: 12,
+        isPercentage: false,
+      },
+      {
+        id: '1_1',
+        componentId: 'sessionsWithSearchPercentage',
+        label: 't_sessionsWithSearchPercentage',
+        value: 40.5,
+        isPercentage: true,
+      },
+    ])
   })
 })

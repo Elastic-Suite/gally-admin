@@ -24,7 +24,12 @@ import {
 
 import { breadcrumbContext, catalogContext } from '../../../contexts'
 import { withAuth, withOptions } from '../../../hocs'
-import { useApiList, useFetchApi, useResource } from '../../../hooks'
+import {
+  useApiList,
+  useFetchApi,
+  useRefreshCooldown,
+  useResource,
+} from '../../../hooks'
 import { selectConfiguration, useAppSelector } from '../../../store'
 
 import Button from '../../../components/atoms/buttons/Button'
@@ -69,6 +74,14 @@ function AdminAnalyzeResults(): JSX.Element {
   const [nbResults, setNbResults] = useState(0)
   const [nbTopProducts, setNbTopProducts] = useState(0)
   const [showAllErrors, setShowAllErrors] = useState(false)
+  // A copy of the variables, made on each click on Explain. A new object, even
+  // with the same values, loads the explain again: boosts may have changed in
+  // another tab meanwhile.
+  const [explainedVariables, setExplainedVariables] =
+    useState<IExplainVariables>({})
+  const [isExplainLoading, setIsExplainLoading] = useState(false)
+  const [isExplainCoolingDown, startExplainCooldown] = useRefreshCooldown()
+  const isExplainDisabled = isExplainLoading || isExplainCoolingDown
 
   const configuration = useAppSelector(selectConfiguration)
   const { t } = useTranslation(['api', 'categories'])
@@ -135,11 +148,16 @@ function AdminAnalyzeResults(): JSX.Element {
     formIsValid: boolean
   ): void {
     event.preventDefault()
+    if (isExplainDisabled) {
+      return
+    }
     if (formIsValid) {
       if (isGraphQLValidVariables(variables, limitationType)) {
         setNbResults(0)
         setNbTopProducts(0)
         setVariableValid(true)
+        setExplainedVariables({ ...variables })
+        startExplainCooldown()
       } else {
         setVariableValid(false)
       }
@@ -257,6 +275,7 @@ function AdminAnalyzeResults(): JSX.Element {
                 <Button
                   sx={{ marginTop: '24px', height: 40 }}
                   type="submit"
+                  disabled={isExplainDisabled}
                   componentId="explain"
                 >
                   {t('Explain')}
@@ -280,9 +299,10 @@ function AdminAnalyzeResults(): JSX.Element {
         >
           <PreviewArea>{t('previewArea', { ns: 'categories' })}</PreviewArea>
           <ProductsPreviewBottom
-            variables={variables}
+            variables={explainedVariables}
             configuration={configuration}
             onProductsLoaded={setProductCounts}
+            onLoadingChange={setIsExplainLoading}
             limitationType={limitationType}
           />
         </Paper>

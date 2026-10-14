@@ -17,5 +17,21 @@
   "visitorCount": "Visiteurs uniques",
   "sessionsWithSearchPercentage": "Sessions avec recherche",
   "averageSearchesPerSession": "Recherches par session",
-  "kpiValuesEmpty.warning": "Configuration requise : Les compteurs affichent 0 car aucun flux de données n'a été détecté. Consultez la <lnk>documentation</lnk> pour finaliser l'installation du tracking."
+  "kpiValuesEmpty.warning": "Configuration requise : Les compteurs affichent 0 car aucun flux de données n'a été détecté. Consultez la <lnk>documentation</lnk> pour finaliser l'installation du tracking.",
+  "sessionsChart": "Sessions avec et sans recherche",
+  "sessionsWithSearch": "Sessions avec recherche",
+  "sessionsWithoutSearch": "Sessions sans recherche",
+  "conversionRateChart": "Taux de conversion",
+  "globalConversionRate": "Global",
+  "conversionRateWithSearch": "Avec recherche",
+  "conversionRateWithoutSearch": "Sans recherche",
+  "zeroResultTable": "Recherches sans résultat",
+  "popularSearchTermsTable": "Recherches populaires",
+  "term": "Terme",
+  "averageResultCount": "Nb résultats (moy.)",
+  "conversionRate": "Taux de conv.",
+  "createThesaurus": "Créer un thésaurus",
+  "seeAllZeroResultTerms": "Voir toutes les recherches sans résultat",
+  "seeAllPopularSearchTerms": "Voir toutes les recherches populaires",
+  "noData": "Pas encore de données pour ces filtres."
 }
