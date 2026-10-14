@@ -124,6 +124,15 @@ export enum TestId {
   KPI = 'kpi',
   KPI_GROUP = 'kpiGroup',
   KPI_FILTERS = 'kpiFilters',
+  KPI_LAYOUT_CARD = 'kpiLayoutCard',
+  KPI_LAYOUT_CELL = 'kpiLayoutCell',
+  KPI_TERMS_TABLE = 'kpiTermsTable',
+  KPI_SEE_ALL_BUTTON = 'kpiSeeAllButton',
+  KPI_CREATE_THESAURUS_BUTTON = 'kpiCreateThesaurusButton',
+  KPI_ALL_TERMS_LOADER = 'kpiAllTermsLoader',
+  CHART = 'chart',
+  NO_DATA = 'noData',
+  INFO_TOOLTIP = 'infoTooltip',
 }
 
 export const TEST_ID_SEPARATOR = '|'
@@ -132,11 +141,15 @@ type ItemIds = (TestId | string)[]
 type ItemId = `${typeof TEST_ID_SEPARATOR}${TestId | string}` | ''
 export type FullTestId = `${TestId}${ItemId}`
 
+// Joins id parts with the test id separator, skipping empty ones. For an id
+// built in steps, such as a layout path, before it reaches generateTestId.
+export function joinItemIds(...itemIds: ItemIds): string {
+  return itemIds.filter((itemId) => itemId).join(TEST_ID_SEPARATOR)
+}
+
 function normalizeItemId(itemIds: ItemIds): ItemId {
-  const filtered = itemIds.filter((itemId) => itemId)
-  return filtered.length > 0
-    ? (`${TEST_ID_SEPARATOR}${filtered.join(TEST_ID_SEPARATOR)}` as ItemId)
-    : ''
+  const joined = joinItemIds(...itemIds)
+  return joined ? (`${TEST_ID_SEPARATOR}${joined}` as ItemId) : ''
 }
 
 export function generateTestId(

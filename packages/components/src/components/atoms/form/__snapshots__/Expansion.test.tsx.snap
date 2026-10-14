@@ -19,7 +19,7 @@ exports[`Expansion match snapshot Expansion Full 1`] = `
         <ion-icon
           data-testid="ionicon"
           src="/images/ionicons/information-circle-outline.svg"
-          style="color: rgb(129, 135, 185); width: 20px; height: 20px; display: flex;"
+          style="color: rgb(129, 135, 185); width: 20px; height: 20px; display: flex; pointer-events: none;"
         />
       </span>
       <span

@@ -63,7 +63,7 @@ exports[`Button match snapshot SecondaryButtonDisabledTrue 1`] = `
 exports[`Button match snapshot TertiaryButton 1`] = `
 <div>
   <button
-    class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium css-d5lrpc-MuiButtonBase-root-MuiButton-root"
+    class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium css-1dj902u-MuiButtonBase-root-MuiButton-root"
     data-testid="button"
     tabindex="0"
     type="button"
@@ -79,7 +79,7 @@ exports[`Button match snapshot TertiaryButton 1`] = `
 exports[`Button match snapshot TertiaryButtonDisabledTrue 1`] = `
 <div>
   <button
-    class="MuiButtonBase-root Mui-disabled MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium css-d5lrpc-MuiButtonBase-root-MuiButton-root"
+    class="MuiButtonBase-root Mui-disabled MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium css-1dj902u-MuiButtonBase-root-MuiButton-root"
     data-testid="button"
     disabled=""
     tabindex="-1"

@@ -29,7 +29,7 @@ export const StyledTable = styled('table')(({ theme }) => ({
   borderSpacing: theme.spacing(0),
   borderCollapse: 'separate',
   border: '1px solid #E2E6F3',
-  fontFamily: 'Inter',
+  fontFamily: 'var(--gally-font)',
   fontSize: '14px',
   fontStyle: 'normal',
   fontWeight: 500,
