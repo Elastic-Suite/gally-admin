@@ -13,5 +13,21 @@
   "visitorCount": "Unique visitors",
   "sessionsWithSearchPercentage": "Sessions with search",
   "averageSearchesPerSession": "Searches per session",
-  "kpiValuesEmpty.warning": "Configuration required: Counters are showing 0 because no data flow has been detected. Check the <lnk>documentation</lnk> to finalize the tracking installation."
+  "kpiValuesEmpty.warning": "Configuration required: Counters are showing 0 because no data flow has been detected. Check the <lnk>documentation</lnk> to finalize the tracking installation.",
+  "sessionsChart": "Sessions with and without search",
+  "sessionsWithSearch": "Sessions with search",
+  "sessionsWithoutSearch": "Sessions without search",
+  "conversionRateChart": "Conversion rate",
+  "globalConversionRate": "Global",
+  "conversionRateWithSearch": "With search",
+  "conversionRateWithoutSearch": "Without search",
+  "zeroResultTable": "0 result search terms",
+  "popularSearchTermsTable": "Popular search terms",
+  "term": "Term",
+  "averageResultCount": "Nb results (avg.)",
+  "conversionRate": "Conv. rate",
+  "createThesaurus": "Create thesaurus",
+  "seeAllZeroResultTerms": "See all 0 result search terms",
+  "seeAllPopularSearchTerms": "See all popular search terms",
+  "noData": "No data yet for these filters."
 }

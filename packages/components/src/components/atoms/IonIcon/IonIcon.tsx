@@ -74,6 +74,11 @@ function IonIcon(props: IProps): JSX.Element {
         width: '20px',
         height: '20px',
         display: 'flex',
+        // The icon's SVG has a <title> that the browser shows as a native
+        // tooltip over the real one. The hover goes to the wrapping span.
+        // An icon with its own title is the tooltip itself, so it keeps
+        // the hover.
+        ...(other.title ? {} : { pointerEvents: 'none' as const }),
       }
     : {}
   const iconProps = { ...other, style: { ...style, ...other.style } }

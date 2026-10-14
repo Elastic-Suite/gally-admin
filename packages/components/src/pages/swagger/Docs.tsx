@@ -14,7 +14,7 @@ function SwaggerDocs(): JSX.Element {
               </div>
               <div className="other__content">
                 <h3>
-                  <a href="/docs">API</a>
+                  <a href="/api">API</a>
                 </h3>
               </div>
             </div>

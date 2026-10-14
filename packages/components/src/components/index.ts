@@ -100,5 +100,6 @@ export { default as CatalogProvider } from './stateful-providers/CatalogProvider
 export { default as MetadataProvider } from './stateful-providers/MetadataProvider/MetadataProvider'
 export { default as DataProvider } from './stateful-providers/DataProvider/DataProvider'
 export { default as I18nProvider } from './stateful-providers/I18nProvider/I18nProvider'
+export { default as KpiFiltersProvider } from './stateful-providers/KpiFiltersProvider/KpiFiltersProvider'
 export { default as OptionsProvider } from './stateful-providers/OptionsProvider/OptionsProvider'
 export { default as RuleOptionsProvider } from './stateful-providers/RuleOptionsProvider/RuleOptionsProvider'
