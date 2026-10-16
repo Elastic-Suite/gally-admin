@@ -1,10 +1,10 @@
 import React from 'react'
-import { PieChart as MuiPieChart, legendClasses } from '@mui/x-charts'
 import {
   ChartContainer,
   CustomItemTooltipContent,
   IChartContainerProps,
 } from './chart'
+import { MuiPieChart, legendMarkClass } from './muiCharts'
 
 interface IPieChartProps extends Omit<IChartContainerProps, 'children'> {
   data: {
@@ -44,7 +44,7 @@ function PieChart({ data, ...containerProps }: IPieChartProps): JSX.Element {
         sx={{
           marginLeft: 0,
           fontFamily: 'var(--gally-font)',
-          [`& .${legendClasses.mark}`]: {
+          [`& .${legendMarkClass}`]: {
             ry: 10,
           },
         }}

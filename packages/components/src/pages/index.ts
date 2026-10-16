@@ -1,12 +1,5 @@
-import dynamic from 'next/dynamic'
-
 export { default as AdminAnalyzeResults } from './admin/analyze/Results'
-// Client only: the charts use @mui/x-charts, whose ESM build cannot be
-// required by Node, and next.config.js requires this whole bundle.
-export const AdminAnalyzeSearchUsage = dynamic(
-  () => import('./admin/analyze/SearchUsage'),
-  { ssr: false }
-)
+export { default as AdminAnalyzeSearchUsage } from './admin/analyze/SearchUsage'
 export { default as AdminImportExport } from './admin/ImportExport'
 export { default as AdminImportExportIndex } from './admin/importexport/Index'
 export { default as AdminMerchandizeCategories } from './admin/merchandize/categories'
