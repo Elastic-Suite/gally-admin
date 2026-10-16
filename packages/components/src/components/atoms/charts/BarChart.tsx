@@ -1,15 +1,15 @@
 import React, { useCallback, useMemo } from 'react'
-import {
-  ChartsAxisContentProps,
-  BarChart as MuiBarchart,
-  barElementClasses,
-  chartsTooltipClasses,
-} from '@mui/x-charts'
+import type { ChartsAxisContentProps } from '@mui/x-charts'
 import {
   ChartContainer,
   CustomAxisTooltipContent,
   IChartContainerProps,
 } from './chart'
+import {
+  MuiBarChart,
+  barElementRootClass,
+  tooltipLabelCellClass,
+} from './muiCharts'
 import { SxProps, Theme } from '@mui/material'
 
 interface IBarChartProps extends Omit<IChartContainerProps, 'children'> {
@@ -27,10 +27,9 @@ export default function BarChart({
   const barColorStyles = useMemo(() => {
     const style: Record<string, SxProps<Theme>> = {}
     data.forEach(({ color }, index) => {
-      style[`& .${barElementClasses.root}:nth-child(${index + 1})` as string] =
-        {
-          fill: color,
-        }
+      style[`& .${barElementRootClass}:nth-child(${index + 1})` as string] = {
+        fill: color,
+      }
     })
     return style
   }, [data])
@@ -50,7 +49,7 @@ export default function BarChart({
 
   return (
     <ChartContainer {...containerProps}>
-      <MuiBarchart
+      <MuiBarChart
         margin={{
           left: 30,
           right: 10,
@@ -76,7 +75,7 @@ export default function BarChart({
         }}
         sx={{
           ...barColorStyles,
-          [`.MuiChartsAxis-tickLabel, .${chartsTooltipClasses.labelCell}`]: {
+          [`.MuiChartsAxis-tickLabel, .${tooltipLabelCellClass}`]: {
             fontFamily: 'var(--gally-font)',
           },
         }}

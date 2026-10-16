@@ -1,10 +1,10 @@
 import React from 'react'
-import { LineChart as MuiLineChart } from '@mui/x-charts'
 import {
   ChartContainer,
   CustomAxisTooltipContent,
   IChartContainerProps,
 } from './chart'
+import { MuiLineChart } from './muiCharts'
 
 interface ILineChartProps extends Omit<IChartContainerProps, 'children'> {
   data: {

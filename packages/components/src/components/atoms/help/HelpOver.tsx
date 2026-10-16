@@ -39,7 +39,7 @@ function HelpOver(): JSX.Element {
       </Link>
 
       {process.env.NODE_ENV === 'development' && (
-        <CustomA href="/docs">API documentation</CustomA>
+        <CustomA href="/api">API documentation</CustomA>
       )}
     </CustomRoot>
   )

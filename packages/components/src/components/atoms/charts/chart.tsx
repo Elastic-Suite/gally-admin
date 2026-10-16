@@ -1,25 +1,55 @@
-import React, { PropsWithChildren } from 'react'
-import { Container, CustomPaper, IChartSize, Marked } from './chart.styled'
-import { ChartsAxisContentProps, ChartsItemContentProps } from '@mui/x-charts'
+import React, { PropsWithChildren, ReactNode } from 'react'
+import {
+  Container,
+  CustomPaper,
+  EmptyMessage,
+  IChartSize,
+  Marked,
+} from './chart.styled'
+import type {
+  ChartsAxisContentProps,
+  ChartsItemContentProps,
+} from '@mui/x-charts'
 import InfoTooltip from '../form/InfoTooltip'
+import { TestId, generateTestId } from '../../../utils/testIds'
 
 export interface IChartContainerProps extends IChartSize, PropsWithChildren {
   label: string
-  infoTooltip?: string
+  infoTooltip?: ReactNode
+  componentId?: string
+  emptyMessage?: string
 }
 
 export function ChartContainer({
   label,
   infoTooltip,
+  componentId,
+  emptyMessage,
   children,
   ...chartContainerSize
 }: IChartContainerProps): JSX.Element {
   return (
-    <Container {...chartContainerSize}>
+    <Container
+      data-testid={generateTestId(TestId.CHART, componentId)}
+      {...chartContainerSize}
+    >
       <h6>
-        {label} {infoTooltip ? <InfoTooltip title={infoTooltip} /> : null}
+        {label}{' '}
+        {infoTooltip ? (
+          <InfoTooltip title={infoTooltip} componentId={componentId} />
+        ) : null}
       </h6>
-      <div>{children}</div>
+      <div>
+        {emptyMessage ? (
+          <EmptyMessage
+            data-testid={generateTestId(TestId.NO_DATA, componentId)}
+          >
+            {emptyMessage}
+          </EmptyMessage>
+        ) : (
+          children
+        )}
+      </div>
     </Container>
   )
 }

@@ -22,5 +22,4 @@ PieChart.args = {
     { label: 'Spellcheck searches', value: 33.5, color: '#2C19CD' },
   ],
   width: 600,
-  height: 250,
 }

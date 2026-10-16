@@ -93,4 +93,7 @@ export const TertiaryButton = styled(PrimaryButton)(({ theme }) => ({
   '&& .MuiTouchRipple-child': {
     backgroundColor: theme.palette.colors.neutral['300'],
   },
+  '&.Mui-disabled': {
+    background: 'none',
+  },
 }))

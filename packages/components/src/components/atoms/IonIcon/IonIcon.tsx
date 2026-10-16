@@ -74,6 +74,8 @@ function IonIcon(props: IProps): JSX.Element {
         width: '20px',
         height: '20px',
         display: 'flex',
+        // Stops the SVG's native <title> tooltip from showing over the real one.
+        ...(other.title ? {} : { pointerEvents: 'none' as const }),
       }
     : {}
   const iconProps = { ...other, style: { ...style, ...other.style } }

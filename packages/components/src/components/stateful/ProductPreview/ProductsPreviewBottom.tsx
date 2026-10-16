@@ -27,10 +27,17 @@ interface IProps {
   configuration: IConfigurations
   limitationType: string
   onProductsLoaded?: (nbResults: number, nbTopProducts: number) => void
+  onLoadingChange?: (isLoading: boolean) => void
 }
 
 function ProductsPreviewBottom(props: IProps): JSX.Element {
-  const { variables, configuration, limitationType, onProductsLoaded } = props
+  const {
+    variables,
+    configuration,
+    limitationType,
+    onProductsLoaded,
+    onLoadingChange,
+  } = props
   const [currentPage, setCurrentPage] = useState<number>(1)
   const [rowsPerPage, setRowsPerPage] = useState<number>(defaultPageSize)
   const { t } = useTranslation('categories')
@@ -110,6 +117,15 @@ function ProductsPreviewBottom(props: IProps): JSX.Element {
       )
     }
   }, [explain, onProductsLoaded])
+
+  const isLoading = explain.status === LoadStatus.LOADING
+  useEffect(() => {
+    if (!isLoading || !onLoadingChange) {
+      return undefined
+    }
+    onLoadingChange(true)
+    return () => onLoadingChange(false)
+  }, [isLoading, onLoadingChange])
 
   const onRowsPerPageChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>

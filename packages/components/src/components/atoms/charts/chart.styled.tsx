@@ -24,6 +24,16 @@ export const Container = styled('div')<IChartSize>(
   })
 )
 
+export const EmptyMessage = styled('p')({
+  margin: 0,
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  height: '100%',
+  fontSize: '14px',
+  fontFamily: 'var(--gally-font)',
+})
+
 export const Marked = styled('span')<{ color: string }>(({ theme, color }) => ({
   width: theme.spacing(1),
   height: theme.spacing(1),

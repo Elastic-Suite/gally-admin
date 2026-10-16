@@ -1,10 +1,10 @@
 import React from 'react'
-import { PieChart as MuiPieChart, legendClasses } from '@mui/x-charts'
 import {
   ChartContainer,
   CustomItemTooltipContent,
   IChartContainerProps,
 } from './chart'
+import { MuiPieChart, legendMarkClass } from './muiCharts'
 
 interface IPieChartProps extends Omit<IChartContainerProps, 'children'> {
   data: {
@@ -14,28 +14,37 @@ interface IPieChartProps extends Omit<IChartContainerProps, 'children'> {
   }[]
 }
 
+const innerRadius = 80
+const outerRadius = 100
+const arcLabelRadius = 145
+// Room so arc labels such as "42.86 %" are not cut off at the edges.
+const labelSpace = { horizontal: 55, vertical: 20 }
+
+export const pieChartHeight = 2 * (arcLabelRadius + labelSpace.vertical)
+
 function PieChart({ data, ...containerProps }: IPieChartProps): JSX.Element {
   return (
-    <ChartContainer {...containerProps}>
+    <ChartContainer height={pieChartHeight} {...containerProps}>
       <MuiPieChart
+        margin={{ top: 0, bottom: 0, left: 0, right: 0 }}
         series={[
           {
             data,
-            innerRadius: 80,
-            outerRadius: 100,
+            innerRadius,
+            outerRadius,
             arcLabel: ({ value }) => `${value} %`,
-            arcLabelRadius: 140,
+            arcLabelRadius,
             highlightScope: { faded: 'global', highlighted: 'item' },
             valueFormatter: ({ value }) => `${value}%`,
 
-            cx: 150,
-            cy: 100,
+            cx: arcLabelRadius + labelSpace.horizontal,
+            cy: arcLabelRadius + labelSpace.vertical,
           },
         ]}
         sx={{
           marginLeft: 0,
           fontFamily: 'var(--gally-font)',
-          [`& .${legendClasses.mark}`]: {
+          [`& .${legendMarkClass}`]: {
             ry: 10,
           },
         }}
