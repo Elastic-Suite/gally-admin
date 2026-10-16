@@ -6,7 +6,10 @@ import {
   IChartSize,
   Marked,
 } from './chart.styled'
-import { ChartsAxisContentProps, ChartsItemContentProps } from '@mui/x-charts'
+import type {
+  ChartsAxisContentProps,
+  ChartsItemContentProps,
+} from '@mui/x-charts'
 import InfoTooltip from '../form/InfoTooltip'
 import { TestId, generateTestId } from '../../../utils/testIds'
 
