@@ -74,9 +74,7 @@ function AdminAnalyzeResults(): JSX.Element {
   const [nbResults, setNbResults] = useState(0)
   const [nbTopProducts, setNbTopProducts] = useState(0)
   const [showAllErrors, setShowAllErrors] = useState(false)
-  // A copy of the variables, made on each click on Explain. A new object, even
-  // with the same values, loads the explain again: boosts may have changed in
-  // another tab meanwhile.
+  // A new copy on each click on Explain reloads it, even with the same values.
   const [explainedVariables, setExplainedVariables] =
     useState<IExplainVariables>({})
   const [isExplainLoading, setIsExplainLoading] = useState(false)

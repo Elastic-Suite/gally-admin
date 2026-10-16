@@ -1,12 +1,6 @@
 import React from 'react'
 import { waitFor } from '@testing-library/react'
-import {
-  Bundle,
-  IResource,
-  LoadStatus,
-  api,
-  fetchApi,
-} from '@elastic-suite/gally-admin-shared'
+import { LoadStatus, fetchApi } from '@elastic-suite/gally-admin-shared'
 
 import { renderWithProviders } from '../../../utils/tests'
 import { IKpiFiltersContext, kpiFiltersContext } from '../../../contexts'
@@ -20,22 +14,6 @@ import KpiLoader, {
 
 const apiFilters = { localizedCatalog: 'com_fr', startDate: '2025-01-10' }
 const kpis = [{ '@id': '/kpis/1', '@type': 'Kpi', id: 1, searchCount: 12 }]
-
-// The mocked API docs do not declare Kpi, so the tests add it.
-const kpiResource = {
-  '@id': 'https://localhost/docs.jsonld#Kpi',
-  title: 'Kpi',
-  url: 'https://localhost/kpis',
-  supportedProperty: [],
-} as unknown as IResource
-const stateWithKpi = {
-  data: {
-    api: [...api, kpiResource],
-    bundles: [] as Bundle[],
-    configurations: {},
-  },
-  user: { requestedPath: '' },
-}
 
 describe('KpiLoader', () => {
   beforeEach(() => {
@@ -61,8 +39,7 @@ describe('KpiLoader', () => {
         <KpiLoader resourceName="Kpi" onLoad={onLoad}>
           {children}
         </KpiLoader>
-      </kpiFiltersContext.Provider>,
-      { preloadedState: stateWithKpi }
+      </kpiFiltersContext.Provider>
     )
 
     await waitFor(() =>
@@ -107,7 +84,6 @@ describe('KpiLoader', () => {
 })
 
 describe('readTermList', () => {
-  // hydra:member of GET /kpi/zero_result, as the API returns it.
   const zeroResult: IKpiTermList<IKpiZeroResultTerm>[] = [
     {
       id: 'kpi_zero_result_terms_1',

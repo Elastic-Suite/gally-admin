@@ -52,9 +52,8 @@ import { formatHelpText } from '../../../utils/helpText'
 
 const pagesSlug = ['analyze', 'search_usage']
 
-// The path of the layout node a widget is rendered in, such as
-// "charts|sessions". Unique on the page, so the same widget
-// placed twice gets different test ids.
+// Layout path of the current widget, e.g. "charts|sessions". Keeps test ids
+// unique when the same widget appears twice.
 const indicatorInstanceContext = createContext('')
 
 function useWidgetId(kind: string): string {
@@ -96,7 +95,6 @@ const StyledForm = styled('form')(({ theme }) => ({
 
 type IndicatorSize = 'full' | 'twoThirds' | 'half' | 'third'
 
-// Every level of the layout is a 6-column grid, so halves and thirds can mix.
 const indicatorColumns: Record<IndicatorSize, number> = {
   full: 6,
   twoThirds: 4,
@@ -104,9 +102,6 @@ const indicatorColumns: Record<IndicatorSize, number> = {
   third: 2,
 }
 
-// Nodes wrap in their list order. On small screens, every level is a single
-// column. Cards are spaced the same at every level; nodes inside a card are
-// spaced wider.
 const StyledIndicatorGrid = styled('div', {
   shouldForwardProp: (prop) => prop !== 'level',
 })<{ level: 'top' | 'cards' | 'inCard' }>(({ theme, level }) => ({
@@ -132,8 +127,6 @@ function getIndicatorSpan(
   }
 }
 
-// The table title is an h3 with the browser's top margin. Without it, its top
-// lines up with the chart titles, which have none.
 const StyledTermsTableTitle = styled(Title)({ marginTop: 0 })
 
 // A nested node: it only takes its place in the parent's grid.
@@ -141,7 +134,6 @@ const StyledIndicatorCell = styled('div', {
   shouldForwardProp: (prop) => prop !== 'size',
 })<{ size: IndicatorSize }>(({ theme, size }) => getIndicatorSpan(theme, size))
 
-// A top-level node: a card.
 const StyledIndicatorCard = styled(Paper, {
   shouldForwardProp: (prop) => prop !== 'size',
 })<{ size: IndicatorSize }>(({ theme, size }) => ({
@@ -151,13 +143,9 @@ const StyledIndicatorCard = styled(Paper, {
   padding: theme.spacing(2),
 }))
 
-// Heights measured on the loaded widgets. They reserve the space while the
-// first load runs, so the page does not jump when the data arrives. A best
-// effort: the real height still follows the data.
 const kpiCountersHeight = 373 // three rows of counters
 const termsTableHeight = 69 + 10 * 49 // header on two lines, 10 rows
-// A table on the right of the page has no room on the right: open below or
-// above the help icon rather than over the table title.
+// Right-side tables: open below or above, not over the table title.
 const termsTableTooltipFallbacks: TooltipProps['placement'][] = [
   'bottom',
   'top',
@@ -170,7 +158,6 @@ function isFirstLoad({ kpis, status }: IKpiLoaderResult): boolean {
   )
 }
 
-// Loaded, and the API had nothing for these filters.
 function hasNoData({ kpis, status }: IKpiLoaderResult): boolean {
   return status === LoadStatus.SUCCEEDED && kpis.length === 0
 }
@@ -219,11 +206,8 @@ const StyledNoData = styled('p')(({ theme }) => ({
 
 const thesaurusGridUrl = '/admin/search/thesaurus/grid'
 
-// Stable object: a new one on each render would refetch the popup table.
 const allTermsParameters = { pageSize: 1000 }
 
-// Fixed popup size, so it keeps the same frame while the table loads and
-// once it is filled. The table scrolls inside it.
 const allTermsPopinStyles = {
   paper: { width: 760, maxWidth: '90vw', height: '80vh' },
 }
@@ -371,8 +355,7 @@ function SearchUsageConversionRateChart(): JSX.Element {
     <KpiLoader<IKpiConversionRate> endpoint="kpi/conversion_rate">
       {(result): JSX.Element => {
         const [kpi] = result.kpis
-        // The API sends no session count here: all three rates at 0 means
-        // nothing to compare.
+        // No session count in this response: all rates at 0 means no data.
         const isEmpty =
           hasNoData(result) ||
           (kpi &&
@@ -448,7 +431,6 @@ function KpiTermsTable<T extends IKpiTermItem>({
 }
 
 interface IKpiAllTermsPopInProps<T extends IKpiTermItem> {
-  // The widget's id: the button, loader and table ids end with it.
   componentId: string
   endpoint: string
   title: string
@@ -463,7 +445,6 @@ function KpiAllTermsPopIn<T extends IKpiTermItem>({
   buttonLabel,
   columns,
 }: IKpiAllTermsPopInProps<T>): JSX.Element {
-  // The popup's own table, distinct from the widget's first rows.
   const allTermsId = joinItemIds(componentId, 'all')
 
   return (
@@ -509,17 +490,14 @@ function KpiAllTermsPopIn<T extends IKpiTermItem>({
 }
 
 interface ISearchUsageTermsTableProps<T extends IKpiTermItem> {
-  // The widget's id, from useWidgetId.
   componentId: string
   endpoint: string
   title: string
   seeAllLabel: string
   columns: (keyof T & string)[]
-  // Extra actions, shown after the "see all" button.
   children?: ReactNode
 }
 
-// A terms table: its first rows, a pop-in with all of them, and actions.
 function SearchUsageTermsTable<T extends IKpiTermItem>({
   componentId,
   endpoint,
@@ -569,7 +547,6 @@ function SearchUsageTermsTable<T extends IKpiTermItem>({
                 )}
               </ReservedSpace>
               <StyledTableActions>
-                {/* Nothing more to see in the popup. */}
                 {!isEmpty && (
                   <KpiAllTermsPopIn<T>
                     componentId={componentId}
@@ -649,8 +626,6 @@ function SearchUsagePopularSearchTermsTable(): JSX.Element {
   )
 }
 
-// A layout node is an indicator, or a group of nodes laid out the same way.
-// Its size is its share of the parent's width.
 interface IIndicatorLeaf {
   id: string
   size: IndicatorSize
@@ -661,16 +636,11 @@ interface IIndicatorGroup {
   id: string
   size: IndicatorSize
   children: IIndicatorNode[]
-  // At the top level only: the group has no card of its own, and each child
-  // is a card. Without it, the group is one card holding its children.
   cards?: boolean
 }
 
 type IIndicatorNode = IIndicatorLeaf | IIndicatorGroup
 
-// Below the counters: one card per top-level node, in this order. Nested
-// groups only arrange their children, inside the card, unless the group is
-// marked as cards.
 const indicatorLayout: IIndicatorNode[] = [
   {
     id: 'popularSearchTerms',
@@ -695,8 +665,6 @@ const indicatorLayout: IIndicatorNode[] = [
 
 interface IIndicatorNodeContentProps {
   node: IIndicatorNode
-  // The node's ids from the top of the layout, joined with dots. Sibling ids
-  // are React keys, so they are unique and so is the path.
   path: string
 }
 
@@ -729,7 +697,6 @@ function IndicatorNodeContent({
   )
 }
 
-// A top-level node: a card, or a group whose children are cards.
 function IndicatorCard({
   node,
   path,

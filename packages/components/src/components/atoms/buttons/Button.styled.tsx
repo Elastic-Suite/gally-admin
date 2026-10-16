@@ -93,7 +93,6 @@ export const TertiaryButton = styled(PrimaryButton)(({ theme }) => ({
   '&& .MuiTouchRipple-child': {
     backgroundColor: theme.palette.colors.neutral['300'],
   },
-  // A link-like button: when disabled, only its text turns grey.
   '&.Mui-disabled': {
     background: 'none',
   },
