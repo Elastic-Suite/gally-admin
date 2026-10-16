@@ -141,8 +141,6 @@ type ItemIds = (TestId | string)[]
 type ItemId = `${typeof TEST_ID_SEPARATOR}${TestId | string}` | ''
 export type FullTestId = `${TestId}${ItemId}`
 
-// Joins id parts with the test id separator, skipping empty ones. For an id
-// built in steps, such as a layout path, before it reaches generateTestId.
 export function joinItemIds(...itemIds: ItemIds): string {
   return itemIds.filter((itemId) => itemId).join(TEST_ID_SEPARATOR)
 }

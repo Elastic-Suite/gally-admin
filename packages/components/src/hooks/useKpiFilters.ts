@@ -25,7 +25,6 @@ import { useResource } from './useResource'
 export function useKpiFilters(): IKpiFiltersContext {
   const formRef = useRef<HTMLFormElement>(null)
 
-  // The Kpi resource defines the accepted filters and the URL prefix.
   const resource = useResource('Kpi')
   const [activeFilters, setActiveFilters] = useFilters(resource)
   const [dateFilter, setDateFilter] = useState<IDoubleDatePickerValues>({
@@ -35,13 +34,9 @@ export function useKpiFilters(): IKpiFiltersContext {
   const [showError, setShowError] = useState(false)
   const [filtersHaveError, setFiltersHaveError] = useState(false)
   const localizedCatalogContext = useContext(catalogContext)
-  // Number of KPI requests running, reported by each KpiLoader.
   const [loadingCount, setLoadingCount] = useState(0)
-  // Apply and Clear all wait a moment after each click.
   const [isRefreshCoolingDown, startRefreshCooldown] = useRefreshCooldown()
 
-  // Called when a request starts. The function it returns is called when the
-  // request ends.
   const trackLoading = useCallback((): (() => void) => {
     setLoadingCount((count) => count + 1)
     return () => setLoadingCount((count) => count - 1)
@@ -117,8 +112,6 @@ export function useKpiFilters(): IKpiFiltersContext {
       return
     }
 
-    // Apply filters if validation passes. A new object, even with the same
-    // values, makes every KPI load again.
     setActiveFilters({ ...pendingFilters })
     startRefreshCooldown()
   }

@@ -27,8 +27,6 @@ interface IProps {
   configuration: IConfigurations
   limitationType: string
   onProductsLoaded?: (nbResults: number, nbTopProducts: number) => void
-  // Called with true when the explain request starts, and with false when it
-  // ends or the preview is removed.
   onLoadingChange?: (isLoading: boolean) => void
 }
 

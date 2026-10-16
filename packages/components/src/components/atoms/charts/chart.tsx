@@ -13,9 +13,7 @@ import { TestId, generateTestId } from '../../../utils/testIds'
 export interface IChartContainerProps extends IChartSize, PropsWithChildren {
   label: string
   infoTooltip?: ReactNode
-  // Suffix of the chart's test id, and of its help icon's.
   componentId?: string
-  // Shown instead of the chart when there is nothing to draw.
   emptyMessage?: string
 }
 

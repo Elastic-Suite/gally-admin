@@ -1,13 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
 
-// Minimum time between two clicks on a button that loads data again, so the
-// API is not called over and over.
 const defaultRefreshDelay = 1000
 
-/**
- * Returns whether the cooldown is running, and the function that starts it.
- * Call that function on each click that loads the data again.
- */
 export function useRefreshCooldown(
   delay = defaultRefreshDelay
 ): [boolean, () => void] {

@@ -17,11 +17,9 @@ interface IPieChartProps extends Omit<IChartContainerProps, 'children'> {
 const innerRadius = 80
 const outerRadius = 100
 const arcLabelRadius = 145
-// Room around the arc labels, so a label such as "42.86 %" on the left or at
-// the top is not cut off by the edge of the drawing area.
+// Room so arc labels such as "42.86 %" are not cut off at the edges.
 const labelSpace = { horizontal: 55, vertical: 20 }
 
-// Height that fits the pie and its labels.
 export const pieChartHeight = 2 * (arcLabelRadius + labelSpace.vertical)
 
 function PieChart({ data, ...containerProps }: IPieChartProps): JSX.Element {

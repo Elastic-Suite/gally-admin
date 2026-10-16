@@ -2527,6 +2527,12 @@ export const resources = [
     label: 'DeclarativeGreeting',
     url: 'https://localhost/declarative_greetings',
   },
+  {
+    '@id': 'https://localhost/docs.jsonld#Kpi',
+    title: 'Kpi',
+    url: 'https://localhost/kpis',
+    supportedProperty: [],
+  },
 ] as IResource[]
 
 export const [, , , resourceWithRef, , resource] = resources
