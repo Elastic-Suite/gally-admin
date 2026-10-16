@@ -8,12 +8,9 @@ import { TestId, generateTestId } from '../../../utils/testIds'
 interface IProps {
   title: string | NonNullable<React.ReactNode>
   children?: ReactNode
-  // Gives the icon a test id. Without it, the icon has none, as before.
   componentId?: string
   noStyle?: boolean
   withHTMLTitle?: boolean
-  // Where the tooltip goes when the right side has no room. Popper's default
-  // is the left side, which covers the label the icon follows.
   fallbackPlacements?: TooltipProps['placement'][]
 }
 

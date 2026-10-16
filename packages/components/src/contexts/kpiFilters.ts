@@ -21,11 +21,7 @@ export interface IKpiFiltersContext {
   apiFilters: ISearchParameters
   handleSubmit: (event: FormEvent<HTMLFormElement>) => void
   handleReset: () => void
-  // Called by each KPI loader when its request starts. The function it
-  // returns is called when the request ends.
   trackLoading: () => () => void
-  // True while a KPI request runs, or shortly after the last Apply or
-  // Clear all. Both buttons are disabled meanwhile.
   isRefreshDisabled: boolean
 }
 
