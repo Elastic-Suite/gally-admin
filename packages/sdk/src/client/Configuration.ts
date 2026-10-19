@@ -9,6 +9,8 @@
  * @license   Open Software License v. 3.0 (OSL-3.0)
  */
 
+import { Bundle } from './Bundle'
+
 export interface IConfigurationOptions {
   baseUri: string
   checkSSL?: boolean
@@ -60,7 +62,7 @@ export class Configuration {
     return this.bundles
   }
 
-  hasBundle(bundle: string): boolean {
+  hasBundle(bundle: Bundle | string): boolean {
     return this.bundles.includes(bundle)
   }
 }

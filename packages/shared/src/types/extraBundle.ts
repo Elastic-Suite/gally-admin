@@ -4,6 +4,7 @@ export enum Bundle {
   THESAURUS = 'GallyThesaurusBundle',
   VECTOR_SEARCH = 'GallyVectorSearchBundle',
   SEARCH_USAGE = 'GallySearchUsageBundle',
+  TERM_SUGGESTION = 'GallyTermSuggestionBundle',
 }
 
 export interface IExtraBundle {

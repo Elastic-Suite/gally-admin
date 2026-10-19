@@ -21,6 +21,7 @@ export type {
 export type { IBrowserConfigurationOptions as ConfigurationOptions } from './client/Configuration'
 export { BrowserConfiguration as Configuration } from './client/BrowserConfiguration'
 export { Client } from './client/Client'
+export { Bundle } from './client/Bundle'
 export { Request } from './graphql/Request'
 export { Response } from './graphql/Response'
 export { Metadata } from './entity/Metadata'
