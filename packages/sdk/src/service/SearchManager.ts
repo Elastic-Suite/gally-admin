@@ -11,6 +11,7 @@
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
+import { Bundle } from '../client/Bundle'
 import { Client } from '../client/Client'
 import {
   Configuration,
@@ -35,8 +36,6 @@ type SearchRequest = Request | SearchRequestOptions
  * Search manager service.
  */
 export class SearchManager {
-  static readonly TERM_SUGGESTION_BUNDLE_NAME = 'GallyTermSuggestionBundle'
-
   protected readonly configuration: Configuration
   protected readonly client: Client
   // One entry per localized catalog code ('' when none is given): the labels are localized.
@@ -149,7 +148,7 @@ export class SearchManager {
     request = this.normalizeRequest(request)
     const priceGroup = request.getPriceGroupId()
     const withTermSuggestions = this.configuration.hasBundle(
-      SearchManager.TERM_SUGGESTION_BUNDLE_NAME
+      Bundle.TERM_SUGGESTION
     )
     const response = await this.client.graphql(
       request.buildSearchQuery(withTermSuggestions),

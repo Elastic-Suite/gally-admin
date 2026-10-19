@@ -2,6 +2,7 @@ import { describe, expect, it, vi } from 'vitest'
 import { SearchManager } from '../../src/service/SearchManager'
 import { Request } from '../../src/graphql/Request'
 import { Metadata } from '../../src/entity/Metadata'
+import { Bundle } from '../../src/client/Bundle'
 import { Configuration } from '../../src/client/Configuration'
 
 describe('SearchManager Normalization', () => {
@@ -140,7 +141,7 @@ describe('SearchManager Term Suggestions', () => {
     const searchManager = new SearchManager(
       new Configuration({
         baseUri: 'http://localhost',
-        bundles: [SearchManager.TERM_SUGGESTION_BUNDLE_NAME],
+        bundles: [Bundle.TERM_SUGGESTION],
       })
     )
     const mockGraphql = mockSearch(searchManager)
@@ -167,7 +168,7 @@ describe('SearchManager Term Suggestions', () => {
     const searchManager = new SearchManager(
       new Configuration({
         baseUri: 'http://localhost',
-        bundles: [SearchManager.TERM_SUGGESTION_BUNDLE_NAME],
+        bundles: [Bundle.TERM_SUGGESTION],
       })
     )
     const mockGraphql = mockSearch(searchManager)
@@ -196,7 +197,7 @@ describe('SearchManager Term Suggestions', () => {
     const searchManager = new SearchManager(
       new Configuration({
         baseUri: 'http://localhost',
-        bundles: [SearchManager.TERM_SUGGESTION_BUNDLE_NAME],
+        bundles: [Bundle.TERM_SUGGESTION],
       })
     )
     const terms = [{ term: 'shirt', resultCount: 12, popularity: 3 }]

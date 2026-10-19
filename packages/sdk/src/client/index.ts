@@ -11,6 +11,7 @@
 
 export { Client } from './Client'
 export type { HttpMethod } from './Client'
+export { Bundle } from './Bundle'
 export { Configuration } from './Configuration'
 export { BrowserConfiguration } from './BrowserConfiguration'
 export type {

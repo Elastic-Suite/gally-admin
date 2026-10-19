@@ -10,7 +10,7 @@
  */
 
 // Client
-export { Client, Configuration } from './client'
+export { Bundle, Client, Configuration } from './client'
 export type {
   HttpMethod,
   ConfigurationOptions,
