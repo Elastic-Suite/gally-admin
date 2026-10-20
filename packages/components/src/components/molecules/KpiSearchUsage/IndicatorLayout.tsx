@@ -1,5 +1,6 @@
 import React from 'react'
 
+import { indicatorInstanceContext } from '../../../contexts'
 import { TestId, generateTestId, joinItemIds } from '../../../utils/testIds'
 
 import ConversionRateChart from './ConversionRateChart'
@@ -11,7 +12,6 @@ import {
 } from './KpiSearchUsage.styled'
 import PopularSearchTermsTable from './PopularSearchTermsTable'
 import SessionsChart from './SessionsChart'
-import { indicatorInstanceContext } from './widgetId'
 import ZeroResultTable from './ZeroResultTable'
 
 interface IIndicatorLeaf {

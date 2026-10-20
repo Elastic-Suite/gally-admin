@@ -1,6 +1,6 @@
 import { LoadStatus } from '@elastic-suite/gally-admin-shared'
 
-import { IKpiLoaderResult } from '../KpiLoader/KpiLoader'
+import type { IKpiLoaderResult } from '../components/molecules/KpiLoader/KpiLoader'
 
 export function isFirstLoad({ kpis, status }: IKpiLoaderResult): boolean {
   return (

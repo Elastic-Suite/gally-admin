@@ -1,13 +1,12 @@
 import React from 'react'
 import { useTranslation } from 'next-i18next'
 
+import { useWidgetId } from '../../../hooks'
+import { hasNoData } from '../../../services'
 import { formatHelpText } from '../../../utils/helpText'
 import BarChart from '../../atoms/charts/BarChart'
 import { pieChartHeight } from '../../atoms/charts/PieChart'
 import KpiLoader, { IKpiConversionRate } from '../KpiLoader/KpiLoader'
-
-import { hasNoData } from './loadState'
-import { useWidgetId } from './widgetId'
 
 const conversionRateChartColors = {
   global: '#E57373',

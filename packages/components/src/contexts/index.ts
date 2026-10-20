@@ -1,6 +1,7 @@
 export * from './breadcrumb'
 export * from './catalog'
 export * from './i18n'
+export * from './indicatorInstance'
 export * from './kpiFilters'
 export * from './metadata'
 export * from './options'
