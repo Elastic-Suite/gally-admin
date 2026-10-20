@@ -1,10 +1,10 @@
 import React from 'react'
 import { useTranslation } from 'next-i18next'
 
+import { useWidgetId } from '../../../hooks'
 import { IKpiPopularSearchTerm } from '../KpiLoader/KpiLoader'
 
 import TermsTable from './TermsTable'
-import { useWidgetId } from './widgetId'
 
 const popularSearchTermsColumns: (keyof IKpiPopularSearchTerm & string)[] = [
   'term',

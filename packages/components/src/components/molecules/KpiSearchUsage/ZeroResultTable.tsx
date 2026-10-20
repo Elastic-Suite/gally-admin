@@ -2,12 +2,12 @@ import React from 'react'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 
+import { useWidgetId } from '../../../hooks'
 import { TestId, generateTestId } from '../../../utils/testIds'
 import Button from '../../atoms/buttons/Button'
 import { IKpiZeroResultTerm } from '../KpiLoader/KpiLoader'
 
 import TermsTable from './TermsTable'
-import { useWidgetId } from './widgetId'
 
 const thesaurusGridUrl = '/admin/search/thesaurus/grid'
 

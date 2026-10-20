@@ -18,7 +18,7 @@ import IndicatorCard, {
   indicatorLayout,
 } from '../../../components/molecules/KpiSearchUsage/IndicatorLayout'
 import { StyledIndicatorGrid } from '../../../components/molecules/KpiSearchUsage/KpiSearchUsage.styled'
-import { isFirstLoad } from '../../../components/molecules/KpiSearchUsage/loadState'
+import { isFirstLoad } from '../../../services'
 import ReservedSpace from '../../../components/molecules/KpiSearchUsage/ReservedSpace'
 import KpiFiltersProvider from '../../../components/stateful-providers/KpiFiltersProvider/KpiFiltersProvider'
 

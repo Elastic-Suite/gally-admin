@@ -3,6 +3,7 @@ import { TooltipProps } from '@mui/material'
 import { useTranslation } from 'next-i18next'
 import { LoadStatus } from '@elastic-suite/gally-admin-shared'
 
+import { isFirstLoad } from '../../../services'
 import { formatHelpText } from '../../../utils/helpText'
 import { TestId, generateTestId } from '../../../utils/testIds'
 import InfoTooltip from '../../atoms/form/InfoTooltip'
@@ -18,7 +19,6 @@ import {
   StyledTableActions,
   StyledTermsTableTitle,
 } from './KpiSearchUsage.styled'
-import { isFirstLoad } from './loadState'
 import ReservedSpace from './ReservedSpace'
 import TermsGrid from './TermsGrid'
 

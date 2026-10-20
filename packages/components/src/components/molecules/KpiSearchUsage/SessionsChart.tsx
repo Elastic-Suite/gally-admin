@@ -1,12 +1,11 @@
 import React from 'react'
 import { useTranslation } from 'next-i18next'
 
+import { useWidgetId } from '../../../hooks'
+import { hasNoData } from '../../../services'
 import { formatHelpText } from '../../../utils/helpText'
 import PieChart from '../../atoms/charts/PieChart'
 import KpiLoader, { IKpiSessions } from '../KpiLoader/KpiLoader'
-
-import { hasNoData } from './loadState'
-import { useWidgetId } from './widgetId'
 
 const sessionsChartColors = {
   withSearch: '#2C19CD',
