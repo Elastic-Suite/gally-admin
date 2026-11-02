@@ -270,6 +270,7 @@ exports[`Should match snapshot Rule multiple id value (type: int, operator: !in)
     </div>
     <div
       class="css-1on137o"
+      data-testid="ruleRemoveButton"
     >
       <ion-icon
         data-testid="ionicon"
@@ -551,6 +552,7 @@ exports[`Should match snapshot Rule multiple id value (type: int, operator: in) 
     </div>
     <div
       class="css-1on137o"
+      data-testid="ruleRemoveButton"
     >
       <ion-icon
         data-testid="ionicon"
@@ -832,6 +834,7 @@ exports[`Should match snapshot Rule multiple price value (type: price, operator:
     </div>
     <div
       class="css-1on137o"
+      data-testid="ruleRemoveButton"
     >
       <ion-icon
         data-testid="ionicon"
@@ -1113,6 +1116,7 @@ exports[`Should match snapshot Rule multiple price value (type: price, operator:
     </div>
     <div
       class="css-1on137o"
+      data-testid="ruleRemoveButton"
     >
       <ion-icon
         data-testid="ionicon"
@@ -1420,6 +1424,7 @@ exports[`Should match snapshot Rule multiple sku value (type: text, operator: !i
     </div>
     <div
       class="css-1on137o"
+      data-testid="ruleRemoveButton"
     >
       <ion-icon
         data-testid="ionicon"
@@ -1727,6 +1732,7 @@ exports[`Should match snapshot Rule multiple sku value (type: text, operator: in
     </div>
     <div
       class="css-1on137o"
+      data-testid="ruleRemoveButton"
     >
       <ion-icon
         data-testid="ionicon"
