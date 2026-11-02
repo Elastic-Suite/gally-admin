@@ -38,6 +38,8 @@ interface IRulesManagerWrapperProps
   rule?: string | IRuleCombination
   onChange?: (value: string | IRuleCombination) => void
   ruleOperators?: IRuleEngineOperators
+  // Rule engine context adding its own operators (e.g. "recommender")
+  context?: string
   placeholder?: string
   label?: string
   infoTooltip?: string
@@ -52,9 +54,10 @@ interface IRulesManagerWrapperProps
 
 function RulesManagerWrapper({
   ruleOperators: defaultRuleOperators,
+  context,
   ...props
 }: IRulesManagerWrapperProps): JSX.Element {
-  const ruleOperators = useRuleOperators(defaultRuleOperators)
+  const ruleOperators = useRuleOperators(defaultRuleOperators, context)
 
   if (!ruleOperators) {
     return null
@@ -198,6 +201,7 @@ function RulesManager(props: IRulesManagerProps): JSX.Element {
           rule={rule}
           onChange={handleChange}
           small={small}
+          componentId={componentId}
         />
       )}
       {Boolean(helperText) && (

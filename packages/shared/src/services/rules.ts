@@ -34,6 +34,35 @@ export function isAttributeRuleValueMultiple(
   return valueType?.startsWith('[') && valueType?.endsWith(']')
 }
 
+export function isAttributeRuleValueOptional(
+  valueType: RuleValueType
+): boolean {
+  return Boolean(valueType?.startsWith('?'))
+}
+
+/**
+ * The value type without its optional marker ("?Float" => "Float").
+ */
+export function getAttributeRuleRequiredValueType(
+  valueType: RuleValueType
+): RuleValueType {
+  return isAttributeRuleValueOptional(valueType)
+    ? (valueType.slice(1) as RuleValueType)
+    : valueType
+}
+
+/**
+ * The empty value of a rule, depending on its value type.
+ */
+export function getAttributeRuleEmptyValue(
+  valueType: RuleValueType
+): IRule['value'] {
+  if (valueType === null || isAttributeRuleValueOptional(valueType)) {
+    return null
+  }
+  return isAttributeRuleValueMultiple(valueType) ? [] : ''
+}
+
 export function parseRule<R extends IRule>(rule: R): R {
   if (isCombinationRule(rule)) {
     return {
@@ -68,13 +97,20 @@ export function serializeRule<R extends IRule>(
       children: rule.children.map((rule) => serializeRule(rule, ruleOperators)),
     }
   } else if (isAttributeRule(rule)) {
-    let ruleValue: string | string[] | number | number[] | boolean | Date =
-      rule.value
-    const valueType = getAttributeRuleValueType(
+    let ruleValue: IRule['value'] = rule.value
+    const ruleValueType = getAttributeRuleValueType(
       rule,
       ruleOperators.operatorsValueType
     )
+    const valueType = getAttributeRuleRequiredValueType(ruleValueType)
     if (
+      ruleValueType === null ||
+      (isAttributeRuleValueOptional(ruleValueType) &&
+        (rule.value === '' || rule.value === null || rule.value === undefined))
+    ) {
+      // No value, or an empty optional value
+      ruleValue = null
+    } else if (
       isAttributeRuleValueMultiple(valueType) &&
       rule.value instanceof Array
     ) {

@@ -8,6 +8,8 @@ import { TestId, generateTestId } from '../../../utils/testIds'
 
 interface IFieldNumberProps {
   numberType?: 'integer' | 'float'
+  // Pass up a null value when the float field is emptied
+  nullable?: boolean
   value: string | number
 }
 
@@ -32,7 +34,7 @@ export const createAdditionalValidator = (isInteger: boolean) => {
 }
 
 function InputNumber(props: IInputTextNumberProps): JSX.Element {
-  const { numberType, value, componentId, ...inputProps } = props
+  const { numberType, nullable, value, componentId, ...inputProps } = props
 
   const [localValue, setLocalValue] = useState<string | number>(value)
 
@@ -76,6 +78,12 @@ function InputNumber(props: IInputTextNumberProps): JSX.Element {
     e: SyntheticEvent<Element, Event>
   ): void => {
     const stringValue = String(newValue)
+
+    if (nullable && stringValue.trim() === '') {
+      setLocalValue('')
+      inputProps.onChange?.(null, e)
+      return
+    }
 
     // Do not pass up the change if it ends with dot or comma
     // Allow also empty values

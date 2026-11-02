@@ -126,6 +126,7 @@ export interface IGallyProperty {
   rangeDateType?: string
   rangeDateId?: number | string
   requestTypeConfigurations?: Record<string, string>
+  ruleEngineContext?: string
   form?: IGallyProperty
   grid?: IGallyProperty
   infoTooltip?: string

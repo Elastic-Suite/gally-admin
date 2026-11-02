@@ -4,5 +4,14 @@
   "recommender.none": "Aucune recommandation automatique n'a été créé",
   "recommender.none.btn": "Créer une recommandation automatique",
   "recommender.title": "Recommandation automatique",
-  "entity.label": "recommandation automatique"
+  "entity.label": "recommandation automatique",
+  "preview.missingRequiredFields": "Sélectionnez au moins un catalogue localisé et un type de recommandation pour prévisualiser les recommandations.",
+  "preview.productSku": "SKU du produit source",
+  "preview.submit": "Prévisualiser",
+  "preview.noSourceProduct": "Sélectionnez un catalogue localisé et saisissez le SKU d'un produit source pour prévisualiser ses recommandations.",
+  "preview.noProduct": "Aucun produit n'est recommandé pour ce produit source.",
+  "preview.status.source_not_found": "Le produit source n'existe pas dans ce catalogue localisé.",
+  "preview.status.not_applicable": "La règle source ne sélectionne pas ce produit source.",
+  "preview.origin.co_occurrence": "Co-occurrence",
+  "preview.origin.rule": "Règle de similarité"
 }

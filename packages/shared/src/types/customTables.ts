@@ -32,6 +32,7 @@ export enum DataContentType {
   EXPANSION = 'expansion',
   PRODUCTINFO = 'productInfo',
   BOOSTPREVIEW = 'boostPreview',
+  RECOMMENDERPREVIEW = 'recommenderPreview',
   POSITIONEFFECT = 'positionEffect',
   PROPARTIONALTOATTRIBUTE = 'proportionalToAttribute',
   DATE = 'date',

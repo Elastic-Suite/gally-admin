@@ -4,13 +4,14 @@ exports[`Should match snapshot Rule multiple id value (type: int, operator: !in)
 <div>
   <div
     class="css-11ahytb"
+    data-testid="attributeRule"
   >
     <div
       class="MuiFormControl-root css-1girsym-MuiFormControl-root"
     >
       <div
         class="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-1qqsdnr-MuiAutocomplete-root"
-        data-testid="dropdown"
+        data-testid="dropdown|ruleField"
       >
         <div
           class="MuiFormControl-root css-hh3vi8-MuiFormControl-root"
@@ -28,7 +29,7 @@ exports[`Should match snapshot Rule multiple id value (type: int, operator: !in)
                 autocapitalize="none"
                 autocomplete="off"
                 class="MuiInputBase-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-ngazp5-MuiInputBase-input"
-                data-testid="inputText|dropdown"
+                data-testid="inputText|dropdown|ruleField"
                 id=":r6:"
                 role="combobox"
                 spellcheck="false"
@@ -46,7 +47,7 @@ exports[`Should match snapshot Rule multiple id value (type: int, operator: !in)
                   type="button"
                 >
                   <ion-icon
-                    data-testid="ionicon|dropdownCollapsingIcon|dropdown"
+                    data-testid="ionicon|dropdownCollapsingIcon|dropdown|ruleField"
                     src="/images/ionicons/chevron-down.svg"
                   />
                   <span
@@ -64,7 +65,7 @@ exports[`Should match snapshot Rule multiple id value (type: int, operator: !in)
     >
       <div
         class="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-1qqsdnr-MuiAutocomplete-root"
-        data-testid="dropdown"
+        data-testid="dropdown|ruleOperator"
       >
         <div
           class="MuiFormControl-root css-hh3vi8-MuiFormControl-root"
@@ -82,7 +83,7 @@ exports[`Should match snapshot Rule multiple id value (type: int, operator: !in)
                 autocapitalize="none"
                 autocomplete="off"
                 class="MuiInputBase-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-ngazp5-MuiInputBase-input"
-                data-testid="inputText|dropdown"
+                data-testid="inputText|dropdown|ruleOperator"
                 id=":r7:"
                 role="combobox"
                 spellcheck="false"
@@ -100,7 +101,7 @@ exports[`Should match snapshot Rule multiple id value (type: int, operator: !in)
                   type="button"
                 >
                   <ion-icon
-                    data-testid="ionicon|dropdownCollapsingIcon|dropdown"
+                    data-testid="ionicon|dropdownCollapsingIcon|dropdown|ruleOperator"
                     src="/images/ionicons/chevron-down.svg"
                   />
                   <span
@@ -269,6 +270,7 @@ exports[`Should match snapshot Rule multiple id value (type: int, operator: !in)
     </div>
     <div
       class="css-1on137o"
+      data-testid="ruleRemoveButton"
     >
       <ion-icon
         data-testid="ionicon"
@@ -284,13 +286,14 @@ exports[`Should match snapshot Rule multiple id value (type: int, operator: in) 
 <div>
   <div
     class="css-11ahytb"
+    data-testid="attributeRule"
   >
     <div
       class="MuiFormControl-root css-1girsym-MuiFormControl-root"
     >
       <div
         class="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-1qqsdnr-MuiAutocomplete-root"
-        data-testid="dropdown"
+        data-testid="dropdown|ruleField"
       >
         <div
           class="MuiFormControl-root css-hh3vi8-MuiFormControl-root"
@@ -308,7 +311,7 @@ exports[`Should match snapshot Rule multiple id value (type: int, operator: in) 
                 autocapitalize="none"
                 autocomplete="off"
                 class="MuiInputBase-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-ngazp5-MuiInputBase-input"
-                data-testid="inputText|dropdown"
+                data-testid="inputText|dropdown|ruleField"
                 id=":r4:"
                 role="combobox"
                 spellcheck="false"
@@ -326,7 +329,7 @@ exports[`Should match snapshot Rule multiple id value (type: int, operator: in) 
                   type="button"
                 >
                   <ion-icon
-                    data-testid="ionicon|dropdownCollapsingIcon|dropdown"
+                    data-testid="ionicon|dropdownCollapsingIcon|dropdown|ruleField"
                     src="/images/ionicons/chevron-down.svg"
                   />
                   <span
@@ -344,7 +347,7 @@ exports[`Should match snapshot Rule multiple id value (type: int, operator: in) 
     >
       <div
         class="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-1qqsdnr-MuiAutocomplete-root"
-        data-testid="dropdown"
+        data-testid="dropdown|ruleOperator"
       >
         <div
           class="MuiFormControl-root css-hh3vi8-MuiFormControl-root"
@@ -362,7 +365,7 @@ exports[`Should match snapshot Rule multiple id value (type: int, operator: in) 
                 autocapitalize="none"
                 autocomplete="off"
                 class="MuiInputBase-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-ngazp5-MuiInputBase-input"
-                data-testid="inputText|dropdown"
+                data-testid="inputText|dropdown|ruleOperator"
                 id=":r5:"
                 role="combobox"
                 spellcheck="false"
@@ -380,7 +383,7 @@ exports[`Should match snapshot Rule multiple id value (type: int, operator: in) 
                   type="button"
                 >
                   <ion-icon
-                    data-testid="ionicon|dropdownCollapsingIcon|dropdown"
+                    data-testid="ionicon|dropdownCollapsingIcon|dropdown|ruleOperator"
                     src="/images/ionicons/chevron-down.svg"
                   />
                   <span
@@ -549,6 +552,7 @@ exports[`Should match snapshot Rule multiple id value (type: int, operator: in) 
     </div>
     <div
       class="css-1on137o"
+      data-testid="ruleRemoveButton"
     >
       <ion-icon
         data-testid="ionicon"
@@ -564,13 +568,14 @@ exports[`Should match snapshot Rule multiple price value (type: price, operator:
 <div>
   <div
     class="css-11ahytb"
+    data-testid="attributeRule"
   >
     <div
       class="MuiFormControl-root css-1girsym-MuiFormControl-root"
     >
       <div
         class="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-1qqsdnr-MuiAutocomplete-root"
-        data-testid="dropdown"
+        data-testid="dropdown|ruleField"
       >
         <div
           class="MuiFormControl-root css-hh3vi8-MuiFormControl-root"
@@ -588,7 +593,7 @@ exports[`Should match snapshot Rule multiple price value (type: price, operator:
                 autocapitalize="none"
                 autocomplete="off"
                 class="MuiInputBase-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-ngazp5-MuiInputBase-input"
-                data-testid="inputText|dropdown"
+                data-testid="inputText|dropdown|ruleField"
                 id=":ra:"
                 role="combobox"
                 spellcheck="false"
@@ -606,7 +611,7 @@ exports[`Should match snapshot Rule multiple price value (type: price, operator:
                   type="button"
                 >
                   <ion-icon
-                    data-testid="ionicon|dropdownCollapsingIcon|dropdown"
+                    data-testid="ionicon|dropdownCollapsingIcon|dropdown|ruleField"
                     src="/images/ionicons/chevron-down.svg"
                   />
                   <span
@@ -624,7 +629,7 @@ exports[`Should match snapshot Rule multiple price value (type: price, operator:
     >
       <div
         class="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-1qqsdnr-MuiAutocomplete-root"
-        data-testid="dropdown"
+        data-testid="dropdown|ruleOperator"
       >
         <div
           class="MuiFormControl-root css-hh3vi8-MuiFormControl-root"
@@ -642,7 +647,7 @@ exports[`Should match snapshot Rule multiple price value (type: price, operator:
                 autocapitalize="none"
                 autocomplete="off"
                 class="MuiInputBase-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-ngazp5-MuiInputBase-input"
-                data-testid="inputText|dropdown"
+                data-testid="inputText|dropdown|ruleOperator"
                 id=":rb:"
                 role="combobox"
                 spellcheck="false"
@@ -660,7 +665,7 @@ exports[`Should match snapshot Rule multiple price value (type: price, operator:
                   type="button"
                 >
                   <ion-icon
-                    data-testid="ionicon|dropdownCollapsingIcon|dropdown"
+                    data-testid="ionicon|dropdownCollapsingIcon|dropdown|ruleOperator"
                     src="/images/ionicons/chevron-down.svg"
                   />
                   <span
@@ -829,6 +834,7 @@ exports[`Should match snapshot Rule multiple price value (type: price, operator:
     </div>
     <div
       class="css-1on137o"
+      data-testid="ruleRemoveButton"
     >
       <ion-icon
         data-testid="ionicon"
@@ -844,13 +850,14 @@ exports[`Should match snapshot Rule multiple price value (type: price, operator:
 <div>
   <div
     class="css-11ahytb"
+    data-testid="attributeRule"
   >
     <div
       class="MuiFormControl-root css-1girsym-MuiFormControl-root"
     >
       <div
         class="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-1qqsdnr-MuiAutocomplete-root"
-        data-testid="dropdown"
+        data-testid="dropdown|ruleField"
       >
         <div
           class="MuiFormControl-root css-hh3vi8-MuiFormControl-root"
@@ -868,7 +875,7 @@ exports[`Should match snapshot Rule multiple price value (type: price, operator:
                 autocapitalize="none"
                 autocomplete="off"
                 class="MuiInputBase-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-ngazp5-MuiInputBase-input"
-                data-testid="inputText|dropdown"
+                data-testid="inputText|dropdown|ruleField"
                 id=":r8:"
                 role="combobox"
                 spellcheck="false"
@@ -886,7 +893,7 @@ exports[`Should match snapshot Rule multiple price value (type: price, operator:
                   type="button"
                 >
                   <ion-icon
-                    data-testid="ionicon|dropdownCollapsingIcon|dropdown"
+                    data-testid="ionicon|dropdownCollapsingIcon|dropdown|ruleField"
                     src="/images/ionicons/chevron-down.svg"
                   />
                   <span
@@ -904,7 +911,7 @@ exports[`Should match snapshot Rule multiple price value (type: price, operator:
     >
       <div
         class="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-1qqsdnr-MuiAutocomplete-root"
-        data-testid="dropdown"
+        data-testid="dropdown|ruleOperator"
       >
         <div
           class="MuiFormControl-root css-hh3vi8-MuiFormControl-root"
@@ -922,7 +929,7 @@ exports[`Should match snapshot Rule multiple price value (type: price, operator:
                 autocapitalize="none"
                 autocomplete="off"
                 class="MuiInputBase-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-ngazp5-MuiInputBase-input"
-                data-testid="inputText|dropdown"
+                data-testid="inputText|dropdown|ruleOperator"
                 id=":r9:"
                 role="combobox"
                 spellcheck="false"
@@ -940,7 +947,7 @@ exports[`Should match snapshot Rule multiple price value (type: price, operator:
                   type="button"
                 >
                   <ion-icon
-                    data-testid="ionicon|dropdownCollapsingIcon|dropdown"
+                    data-testid="ionicon|dropdownCollapsingIcon|dropdown|ruleOperator"
                     src="/images/ionicons/chevron-down.svg"
                   />
                   <span
@@ -1109,6 +1116,7 @@ exports[`Should match snapshot Rule multiple price value (type: price, operator:
     </div>
     <div
       class="css-1on137o"
+      data-testid="ruleRemoveButton"
     >
       <ion-icon
         data-testid="ionicon"
@@ -1124,13 +1132,14 @@ exports[`Should match snapshot Rule multiple sku value (type: text, operator: !i
 <div>
   <div
     class="css-11ahytb"
+    data-testid="attributeRule"
   >
     <div
       class="MuiFormControl-root css-1girsym-MuiFormControl-root"
     >
       <div
         class="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-1qqsdnr-MuiAutocomplete-root"
-        data-testid="dropdown"
+        data-testid="dropdown|ruleField"
       >
         <div
           class="MuiFormControl-root css-hh3vi8-MuiFormControl-root"
@@ -1148,7 +1157,7 @@ exports[`Should match snapshot Rule multiple sku value (type: text, operator: !i
                 autocapitalize="none"
                 autocomplete="off"
                 class="MuiInputBase-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-ngazp5-MuiInputBase-input"
-                data-testid="inputText|dropdown"
+                data-testid="inputText|dropdown|ruleField"
                 id=":r2:"
                 role="combobox"
                 spellcheck="false"
@@ -1166,7 +1175,7 @@ exports[`Should match snapshot Rule multiple sku value (type: text, operator: !i
                   type="button"
                 >
                   <ion-icon
-                    data-testid="ionicon|dropdownCollapsingIcon|dropdown"
+                    data-testid="ionicon|dropdownCollapsingIcon|dropdown|ruleField"
                     src="/images/ionicons/chevron-down.svg"
                   />
                   <span
@@ -1184,7 +1193,7 @@ exports[`Should match snapshot Rule multiple sku value (type: text, operator: !i
     >
       <div
         class="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-1qqsdnr-MuiAutocomplete-root"
-        data-testid="dropdown"
+        data-testid="dropdown|ruleOperator"
       >
         <div
           class="MuiFormControl-root css-hh3vi8-MuiFormControl-root"
@@ -1202,7 +1211,7 @@ exports[`Should match snapshot Rule multiple sku value (type: text, operator: !i
                 autocapitalize="none"
                 autocomplete="off"
                 class="MuiInputBase-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-ngazp5-MuiInputBase-input"
-                data-testid="inputText|dropdown"
+                data-testid="inputText|dropdown|ruleOperator"
                 id=":r3:"
                 role="combobox"
                 spellcheck="false"
@@ -1220,7 +1229,7 @@ exports[`Should match snapshot Rule multiple sku value (type: text, operator: !i
                   type="button"
                 >
                   <ion-icon
-                    data-testid="ionicon|dropdownCollapsingIcon|dropdown"
+                    data-testid="ionicon|dropdownCollapsingIcon|dropdown|ruleOperator"
                     src="/images/ionicons/chevron-down.svg"
                   />
                   <span
@@ -1415,6 +1424,7 @@ exports[`Should match snapshot Rule multiple sku value (type: text, operator: !i
     </div>
     <div
       class="css-1on137o"
+      data-testid="ruleRemoveButton"
     >
       <ion-icon
         data-testid="ionicon"
@@ -1430,13 +1440,14 @@ exports[`Should match snapshot Rule multiple sku value (type: text, operator: in
 <div>
   <div
     class="css-11ahytb"
+    data-testid="attributeRule"
   >
     <div
       class="MuiFormControl-root css-1girsym-MuiFormControl-root"
     >
       <div
         class="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-1qqsdnr-MuiAutocomplete-root"
-        data-testid="dropdown"
+        data-testid="dropdown|ruleField"
       >
         <div
           class="MuiFormControl-root css-hh3vi8-MuiFormControl-root"
@@ -1454,7 +1465,7 @@ exports[`Should match snapshot Rule multiple sku value (type: text, operator: in
                 autocapitalize="none"
                 autocomplete="off"
                 class="MuiInputBase-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-ngazp5-MuiInputBase-input"
-                data-testid="inputText|dropdown"
+                data-testid="inputText|dropdown|ruleField"
                 id=":r0:"
                 role="combobox"
                 spellcheck="false"
@@ -1472,7 +1483,7 @@ exports[`Should match snapshot Rule multiple sku value (type: text, operator: in
                   type="button"
                 >
                   <ion-icon
-                    data-testid="ionicon|dropdownCollapsingIcon|dropdown"
+                    data-testid="ionicon|dropdownCollapsingIcon|dropdown|ruleField"
                     src="/images/ionicons/chevron-down.svg"
                   />
                   <span
@@ -1490,7 +1501,7 @@ exports[`Should match snapshot Rule multiple sku value (type: text, operator: in
     >
       <div
         class="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-1qqsdnr-MuiAutocomplete-root"
-        data-testid="dropdown"
+        data-testid="dropdown|ruleOperator"
       >
         <div
           class="MuiFormControl-root css-hh3vi8-MuiFormControl-root"
@@ -1508,7 +1519,7 @@ exports[`Should match snapshot Rule multiple sku value (type: text, operator: in
                 autocapitalize="none"
                 autocomplete="off"
                 class="MuiInputBase-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-ngazp5-MuiInputBase-input"
-                data-testid="inputText|dropdown"
+                data-testid="inputText|dropdown|ruleOperator"
                 id=":r1:"
                 role="combobox"
                 spellcheck="false"
@@ -1526,7 +1537,7 @@ exports[`Should match snapshot Rule multiple sku value (type: text, operator: in
                   type="button"
                 >
                   <ion-icon
-                    data-testid="ionicon|dropdownCollapsingIcon|dropdown"
+                    data-testid="ionicon|dropdownCollapsingIcon|dropdown|ruleOperator"
                     src="/images/ionicons/chevron-down.svg"
                   />
                   <span
@@ -1721,312 +1732,7 @@ exports[`Should match snapshot Rule multiple sku value (type: text, operator: in
     </div>
     <div
       class="css-1on137o"
-    >
-      <ion-icon
-        data-testid="ionicon"
-        src="/images/ionicons/close.svg"
-        style="font-size: 17.85px;"
-      />
-    </div>
-  </div>
-</div>
-`;
-
-exports[`Should match snapshot Rule multiple sku value (type: text, operator: in) 1`] = `
-<div>
-  <div
-    class="css-11ahytb"
-  >
-    <div
-      class="MuiFormControl-root css-1girsym-MuiFormControl-root"
-    >
-      <div
-        class="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-1qqsdnr-MuiAutocomplete-root"
-        data-testid="dropdown"
-      >
-        <div
-          class="MuiFormControl-root css-hh3vi8-MuiFormControl-root"
-        >
-          <div
-            class="InputText__Wrapper css-17fp4jk"
-          >
-            <div
-              class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-33c5sc-MuiInputBase-root"
-            >
-              <input
-                aria-autocomplete="list"
-                aria-expanded="false"
-                aria-invalid="false"
-                autocapitalize="none"
-                autocomplete="off"
-                class="MuiInputBase-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-ngazp5-MuiInputBase-input"
-                data-testid="inputText|dropdown"
-                id=":r0:"
-                role="combobox"
-                spellcheck="false"
-                type="text"
-                value="Sku"
-              />
-              <div
-                class="MuiAutocomplete-endAdornment css-1q60rmi-MuiAutocomplete-endAdornment"
-              >
-                <button
-                  aria-label="form.open"
-                  class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiAutocomplete-popupIndicator css-qzbt6i-MuiButtonBase-root-MuiIconButton-root-MuiAutocomplete-popupIndicator"
-                  tabindex="-1"
-                  title="form.open"
-                  type="button"
-                >
-                  <ion-icon
-                    data-testid="ionicon|dropdownCollapsingIcon|dropdown"
-                    src="/images/ionicons/chevron-down.svg"
-                  />
-                  <span
-                    class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                  />
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div
-      class="MuiFormControl-root css-1girsym-MuiFormControl-root"
-    >
-      <div
-        class="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-1qqsdnr-MuiAutocomplete-root"
-        data-testid="dropdown"
-      >
-        <div
-          class="MuiFormControl-root css-hh3vi8-MuiFormControl-root"
-        >
-          <div
-            class="InputText__Wrapper css-17fp4jk"
-          >
-            <div
-              class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-8j6zha-MuiInputBase-root"
-            >
-              <input
-                aria-autocomplete="list"
-                aria-expanded="false"
-                aria-invalid="false"
-                autocapitalize="none"
-                autocomplete="off"
-                class="MuiInputBase-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-ngazp5-MuiInputBase-input"
-                data-testid="inputText|dropdown"
-                id=":r1:"
-                role="combobox"
-                spellcheck="false"
-                type="text"
-                value="is one of"
-              />
-              <div
-                class="MuiAutocomplete-endAdornment css-1q60rmi-MuiAutocomplete-endAdornment"
-              >
-                <button
-                  aria-label="form.open"
-                  class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiAutocomplete-popupIndicator css-qzbt6i-MuiButtonBase-root-MuiIconButton-root-MuiAutocomplete-popupIndicator"
-                  tabindex="-1"
-                  title="form.open"
-                  type="button"
-                >
-                  <ion-icon
-                    data-testid="ionicon|dropdownCollapsingIcon|dropdown"
-                    src="/images/ionicons/chevron-down.svg"
-                  />
-                  <span
-                    class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                  />
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div
-      style="position: relative;"
-    >
-      <div
-        class="css-1r61l91"
-        data-testid="textFieldTagsCleanButton"
-      >
-        <ion-icon
-          data-testid="ionicon"
-          src="/images/ionicons/close.svg"
-          style="font-size: 14px; padding: 0px;"
-        />
-      </div>
-      <div
-        class="css-vaijrj"
-      >
-        <div
-          class="css-1mxyr7i"
-        >
-          <div
-            class="css-r1vopi"
-          >
-            <div
-              class="MuiButtonBase-root MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-deletable MuiChip-deletableColorDefault MuiChip-filledDefault css-69f6vo-MuiButtonBase-root-MuiChip-root"
-              data-testid="chip"
-              role="button"
-              style="opacity: 1;"
-              tabindex="0"
-            >
-              <span
-                class="MuiChip-label MuiChip-labelMedium css-6od3lo-MuiChip-label"
-              >
-                VP11
-              </span>
-              <button
-                class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiChip-deleteIcon MuiChip-deleteIconMedium MuiChip-deleteIconColorDefault MuiChip-deleteIconFilledColorDefault css-78trlr-MuiButtonBase-root-MuiIconButton-root"
-                tabindex="0"
-                type="button"
-              >
-                <ion-icon
-                  data-testid="ionicon|chipDeleteIcon|chip"
-                  src="/images/ionicons/close.svg"
-                />
-                <span
-                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                />
-              </button>
-            </div>
-            <div
-              class="MuiButtonBase-root MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-deletable MuiChip-deletableColorDefault MuiChip-filledDefault css-69f6vo-MuiButtonBase-root-MuiChip-root"
-              data-testid="chip"
-              role="button"
-              style="opacity: 1;"
-              tabindex="0"
-            >
-              <span
-                class="MuiChip-label MuiChip-labelMedium css-6od3lo-MuiChip-label"
-              >
-                VP12
-              </span>
-              <button
-                class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiChip-deleteIcon MuiChip-deleteIconMedium MuiChip-deleteIconColorDefault MuiChip-deleteIconFilledColorDefault css-78trlr-MuiButtonBase-root-MuiIconButton-root"
-                tabindex="0"
-                type="button"
-              >
-                <ion-icon
-                  data-testid="ionicon|chipDeleteIcon|chip"
-                  src="/images/ionicons/close.svg"
-                />
-                <span
-                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                />
-              </button>
-            </div>
-            <div
-              class="MuiButtonBase-root MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-deletable MuiChip-deletableColorDefault MuiChip-filledDefault css-69f6vo-MuiButtonBase-root-MuiChip-root"
-              data-testid="chip"
-              role="button"
-              style="opacity: 1;"
-              tabindex="0"
-            >
-              <span
-                class="MuiChip-label MuiChip-labelMedium css-6od3lo-MuiChip-label"
-              >
-                12.3
-              </span>
-              <button
-                class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiChip-deleteIcon MuiChip-deleteIconMedium MuiChip-deleteIconColorDefault MuiChip-deleteIconFilledColorDefault css-78trlr-MuiButtonBase-root-MuiIconButton-root"
-                tabindex="0"
-                type="button"
-              >
-                <ion-icon
-                  data-testid="ionicon|chipDeleteIcon|chip"
-                  src="/images/ionicons/close.svg"
-                />
-                <span
-                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                />
-              </button>
-            </div>
-            <div
-              class="MuiButtonBase-root MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-deletable MuiChip-deletableColorDefault MuiChip-filledDefault css-69f6vo-MuiButtonBase-root-MuiChip-root"
-              data-testid="chip"
-              role="button"
-              style="opacity: 1;"
-              tabindex="0"
-            >
-              <span
-                class="MuiChip-label MuiChip-labelMedium css-6od3lo-MuiChip-label"
-              >
-                15,8
-              </span>
-              <button
-                class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiChip-deleteIcon MuiChip-deleteIconMedium MuiChip-deleteIconColorDefault MuiChip-deleteIconFilledColorDefault css-78trlr-MuiButtonBase-root-MuiIconButton-root"
-                tabindex="0"
-                type="button"
-              >
-                <ion-icon
-                  data-testid="ionicon|chipDeleteIcon|chip"
-                  src="/images/ionicons/close.svg"
-                />
-                <span
-                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                />
-              </button>
-            </div>
-            <div
-              class="MuiButtonBase-root MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-deletable MuiChip-deletableColorDefault MuiChip-filledDefault css-69f6vo-MuiButtonBase-root-MuiChip-root"
-              data-testid="chip"
-              role="button"
-              style="opacity: 1;"
-              tabindex="0"
-            >
-              <span
-                class="MuiChip-label MuiChip-labelMedium css-6od3lo-MuiChip-label"
-              >
-                74
-              </span>
-              <button
-                class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiChip-deleteIcon MuiChip-deleteIconMedium MuiChip-deleteIconColorDefault MuiChip-deleteIconFilledColorDefault css-78trlr-MuiButtonBase-root-MuiIconButton-root"
-                tabindex="0"
-                type="button"
-              >
-                <ion-icon
-                  data-testid="ionicon|chipDeleteIcon|chip"
-                  src="/images/ionicons/close.svg"
-                />
-                <span
-                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                />
-              </button>
-            </div>
-            <div
-              class="css-u4p24i"
-            >
-              <div
-                class="MuiFormControl-root css-hh3vi8-MuiFormControl-root"
-              >
-                <div
-                  class="InputText__Wrapper css-17fp4jk"
-                >
-                  <div
-                    class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-z54rnl-MuiInputBase-root"
-                  >
-                    <input
-                      aria-invalid="false"
-                      class="MuiInputBase-input css-ngazp5-MuiInputBase-input"
-                      data-testid="inputText|textFieldTags"
-                      placeholder="placeholder.default.textFieldTags"
-                      type="text"
-                      value=""
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div
-      class="css-1on137o"
+      data-testid="ruleRemoveButton"
     >
       <ion-icon
         data-testid="ionicon"
