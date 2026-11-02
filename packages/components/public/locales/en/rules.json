@@ -16,6 +16,10 @@
   "operator.is": "is equal",
   "operator.is not": "is not equal",
   "operator.exist": "exist",
+  "operator.same as": "is the same as the source product",
+  "operator.not same as": "is different from the source product",
+  "operator.higher than": "is higher than the source product, by at most (optional %)",
+  "operator.lower than": "is lower than the source product, by at most (optional %)",
   "attributeRule": "Attribute condition",
   "combinationRule": "Combination condition"
 }

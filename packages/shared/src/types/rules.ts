@@ -29,6 +29,8 @@ export enum RuleValueType {
   INT_MULTIPLE = '[Int]',
   STRING_MULTIPLE = '[String]',
   STRING_REQUIRED = 'String!',
+  // The "?" prefix marks an optional value
+  FLOAT_OPTIONAL = '?Float',
 }
 
 export enum RuleCombinationOperator {
@@ -38,7 +40,7 @@ export enum RuleCombinationOperator {
 
 export interface IRule {
   type: RuleType
-  value: string | string[] | number | number[] | boolean | Date
+  value: string | string[] | number | number[] | boolean | Date | null
 }
 
 export interface IRuleAttribute extends IRule {

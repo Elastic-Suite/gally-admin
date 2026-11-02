@@ -270,6 +270,7 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
       return (
         <RulesManager
           label={label}
+          context={field.gally?.ruleEngineContext}
           rule={value as string | IRuleCombination}
           active
           onChange={handleChange}

@@ -4,7 +4,8 @@ import { RuleValueType } from './rules'
 
 export type IOperatorsValueType<O extends string = string> = Record<
   string,
-  Record<O, RuleValueType>
+  // A null value type means the operator has no value
+  Record<O, RuleValueType | null>
 >
 
 export interface IRuleEngineOperators<O extends string = string>

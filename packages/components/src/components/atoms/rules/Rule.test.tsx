@@ -1,4 +1,5 @@
 import React from 'react'
+import { screen } from '@testing-library/react'
 
 import { renderWithProviders } from '../../../utils/tests'
 import { ruleOptionsContext } from '../../../contexts'
@@ -264,5 +265,55 @@ describe('Should match snapshot Rule', () => {
       value: ['48.00', '52,32', 'fake_float', '12.3test', '32'],
     } as IRule)
     expect(container).toMatchSnapshot()
+  })
+})
+
+describe('Rule with context operators', () => {
+  const contextOperatorsValueType = {
+    category: { eq: 'String!', same_as: null },
+    price: { gte: 'Float', higher_than: '?Float' },
+  } as IOperatorsValueType
+
+  it('does not render a value input for an operator without value', () => {
+    const categoryRule = {
+      type: RuleType.ATTRIBUTE,
+      field: 'category',
+      attribute_type: 'category',
+      value: null as IRule['value'],
+    }
+    const view = renderRuleWithContext(
+      { ...categoryRule, operator: 'eq' } as IRule,
+      { operatorsValueType: contextOperatorsValueType }
+    )
+    const inputCountWithValue = screen.getAllByRole('combobox').length
+    view.unmount()
+
+    renderRuleWithContext({ ...categoryRule, operator: 'same_as' } as IRule, {
+      operatorsValueType: contextOperatorsValueType,
+    })
+    expect(screen.getAllByRole('combobox')).toHaveLength(
+      inputCountWithValue - 1
+    )
+  })
+
+  it('renders an optional number input for an optional value', () => {
+    const priceRule = {
+      type: RuleType.ATTRIBUTE,
+      field: 'price',
+      attribute_type: 'price',
+    }
+    const view = renderRuleWithContext(
+      { ...priceRule, operator: 'gte', value: '' } as IRule,
+      { operatorsValueType: contextOperatorsValueType }
+    )
+    expect(screen.getByRole('textbox')).toBeRequired()
+    view.unmount()
+
+    renderRuleWithContext(
+      { ...priceRule, operator: 'higher_than', value: null } as IRule,
+      { operatorsValueType: contextOperatorsValueType }
+    )
+    expect(screen.getByRole('textbox')).not.toBeRequired()
+    expect(screen.getByRole('textbox')).toHaveValue('')
   })
 })

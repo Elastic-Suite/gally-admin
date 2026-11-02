@@ -11,9 +11,12 @@ import {
   flatTree,
   formatFloatValue,
   formatIntegerValue,
+  getAttributeRuleEmptyValue,
+  getAttributeRuleRequiredValueType,
   getAttributeRuleValueType,
   isAttributeRule,
   isAttributeRuleValueMultiple,
+  isAttributeRuleValueOptional,
   isCombinationRule,
   ruleArrayValueSeparator,
   ruleValueNumberMultipleTypes,
@@ -30,6 +33,7 @@ import InputText from '../form/InputText'
 import DatePickerError from '../form/DatePicker'
 import InputNumber, { createAdditionalValidator } from '../form/InputNumber'
 import TextFieldTags from '../form/TextFieldTags'
+import { TestId, generateTestId } from '../../../utils/testIds'
 
 interface IProps {
   catalogId: number
@@ -152,11 +156,7 @@ function Rule(props: IProps): JSX.Element {
     onChange({
       ...newRule,
       value:
-        prevType === newType
-          ? rule.value
-          : isAttributeRuleValueMultiple(newType)
-          ? []
-          : '',
+        prevType === newType ? rule.value : getAttributeRuleEmptyValue(newType),
     })
   }
 
@@ -169,7 +169,13 @@ function Rule(props: IProps): JSX.Element {
 
   function getAttributeValueComponent(rule: IRuleAttribute): JSX.Element {
     const { attribute_type, field, value } = rule
-    const valueType = getAttributeRuleValueType(rule, operatorsValueType)
+    const ruleValueType = getAttributeRuleValueType(rule, operatorsValueType)
+    if (ruleValueType === null) {
+      // The operator has no value (e.g. "same as" the source product)
+      return null
+    }
+    const optional = isAttributeRuleValueOptional(ruleValueType)
+    const valueType = getAttributeRuleRequiredValueType(ruleValueType)
     const multiple = isAttributeRuleValueMultiple(valueType)
 
     if (valueType === RuleValueType.BOOLEAN) {
@@ -241,10 +247,12 @@ function Rule(props: IProps): JSX.Element {
         <InputNumber
           showError={showError}
           onChange={handleInputChange(false, valueType)}
-          required
+          required={!optional}
+          nullable={optional}
+          componentId={TestId.RULE_VALUE}
           small={small}
           numberType={valueType === RuleValueType.INT ? 'integer' : 'float'}
-          value={value as string}
+          value={(value ?? '') as string}
         />
       )
     } else if (multiple) {
@@ -286,10 +294,10 @@ function Rule(props: IProps): JSX.Element {
       <InputText
         showError={showError}
         onChange={handleInputChange(false, valueType)}
-        required
+        required={!optional}
         small={small}
         type="text"
-        value={value as string}
+        value={(value ?? '') as string}
       />
     )
   }
@@ -338,11 +346,13 @@ function Rule(props: IProps): JSX.Element {
           required
           value={field}
           small={small}
+          componentId={TestId.RULE_FIELD}
         />
         <DropDown
           showError={showError}
           onChange={handleOperatorChange}
           options={getAttributeOperatorOptions(field)}
+          componentId={TestId.RULE_OPERATOR}
           required
           small={small}
           transparent
@@ -354,9 +364,18 @@ function Rule(props: IProps): JSX.Element {
   }
 
   return (
-    <Root>
+    <Root
+      data-testid={
+        isAttributeRule(rule)
+          ? generateTestId(TestId.ATTRIBUTE_RULE)
+          : undefined
+      }
+    >
       {content}
-      <Close onClick={onDelete}>
+      <Close
+        onClick={onDelete}
+        data-testid={generateTestId(TestId.RULE_REMOVE_BUTTON)}
+      >
         <IonIcon name="close" style={{ fontSize: '17.85px' }} />
       </Close>
     </Root>

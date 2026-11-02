@@ -6,11 +6,15 @@ import {
   IRuleEngineOperators,
   RuleAttributeType,
   RuleType,
+  RuleValueType,
 } from '../types'
 
 import {
   cleanBeforeSaveCatConf,
+  getAttributeRuleEmptyValue,
+  getAttributeRuleRequiredValueType,
   isAttributeRule,
+  isAttributeRuleValueOptional,
   isCombinationRule,
   isRuleValid,
   parseCatConf,
@@ -193,6 +197,81 @@ describe('Rules service', () => {
         ],
       })
     })
+
+    it('should serialize the rules without value or with an optional value', () => {
+      const operators = ruleEngineOperators as IRuleEngineOperators
+      const contextOperators = {
+        ...operators,
+        operatorsValueType: {
+          ...operators.operatorsValueType,
+          category: {
+            ...operators.operatorsValueType.category,
+            same_as: null,
+          },
+          price: {
+            ...operators.operatorsValueType.price,
+            higher_than: RuleValueType.FLOAT_OPTIONAL,
+          },
+        },
+      } as IRuleEngineOperators
+      const getRule = (
+        field: string,
+        operator: string,
+        attributeType: RuleAttributeType,
+        value: IRuleAttribute['value']
+      ): IRuleAttribute => ({
+        type: RuleType.ATTRIBUTE,
+        field,
+        operator,
+        attribute_type: attributeType,
+        value,
+      })
+
+      expect(
+        serializeRule(
+          getRule('category', 'same_as', RuleAttributeType.CATEGORY, ''),
+          contextOperators
+        ).value
+      ).toBeNull()
+      expect(
+        serializeRule(
+          getRule('price', 'higher_than', 'price' as RuleAttributeType, ''),
+          contextOperators
+        ).value
+      ).toBeNull()
+      expect(
+        serializeRule(
+          getRule('price', 'higher_than', 'price' as RuleAttributeType, '20.5'),
+          contextOperators
+        ).value
+      ).toEqual(20.5)
+    })
+  })
+
+  describe('rule value types', () => {
+    it('should handle the optional value types', () => {
+      expect(
+        isAttributeRuleValueOptional(RuleValueType.FLOAT_OPTIONAL)
+      ).toEqual(true)
+      expect(isAttributeRuleValueOptional(RuleValueType.FLOAT)).toEqual(false)
+      expect(isAttributeRuleValueOptional(null)).toEqual(false)
+      expect(
+        getAttributeRuleRequiredValueType(RuleValueType.FLOAT_OPTIONAL)
+      ).toEqual(RuleValueType.FLOAT)
+      expect(getAttributeRuleRequiredValueType(RuleValueType.INT)).toEqual(
+        RuleValueType.INT
+      )
+    })
+
+    it('should get the empty value of a rule', () => {
+      expect(getAttributeRuleEmptyValue(null)).toBeNull()
+      expect(
+        getAttributeRuleEmptyValue(RuleValueType.FLOAT_OPTIONAL)
+      ).toBeNull()
+      expect(getAttributeRuleEmptyValue(RuleValueType.INT_MULTIPLE)).toEqual([])
+      expect(getAttributeRuleEmptyValue(RuleValueType.STRING)).toEqual('')
+      expect(getAttributeRuleEmptyValue(undefined)).toEqual('')
+    })
   })
 
   describe('serializeCatConf', () => {
@@ -244,6 +323,18 @@ describe('Rules service', () => {
           ] as IRuleAttribute[],
         } as IRuleCombination)
       ).toEqual(false)
+    })
+
+    it('should validate a rule without value', () => {
+      expect(
+        isRuleValid({
+          type: RuleType.ATTRIBUTE,
+          field: 'category',
+          operator: 'same_as',
+          attribute_type: RuleAttributeType.CATEGORY,
+          value: null,
+        } as IRuleAttribute)
+      ).toEqual(true)
     })
 
     it('should validate a rule with a date field as string', () => {

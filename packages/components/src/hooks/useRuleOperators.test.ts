@@ -22,4 +22,26 @@ describe('useRuleOperators', () => {
     renderHookWithProviders(() => useRuleOperators())
     expect(fetchApi).not.toHaveBeenCalled()
   })
+
+  it('should load the rule operators of a context', async () => {
+    ;(fetchApi as jest.Mock).mockClear()
+    const { result } = renderHookWithProviders(() =>
+      useRuleOperators(undefined, 'recommender')
+    )
+    await waitFor(() => expect(result.current).toEqual(expect.any(Object)))
+    expect(fetchApi).toHaveBeenCalledWith(
+      expect.anything(),
+      'rule_engine_operators',
+      { context: 'recommender' },
+      undefined,
+      true
+    )
+  })
+
+  it('should load the rule operators of a context even if virtual category bundle is not enabled', async () => {
+    ;(fetchApi as jest.Mock).mockClear()
+    ;(isVirtualCategoryEnabled as jest.Mock).mockImplementationOnce(() => false)
+    renderHookWithProviders(() => useRuleOperators(undefined, 'recommender'))
+    await waitFor(() => expect(fetchApi).toHaveBeenCalled())
+  })
 })

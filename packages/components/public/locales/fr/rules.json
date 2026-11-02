@@ -16,6 +16,10 @@
   "operator.is": "est égal",
   "operator.is not": "n'est pas égal",
   "operator.exist": "existe",
+  "operator.same as": "est identique au produit source",
+  "operator.not same as": "est différent du produit source",
+  "operator.higher than": "est supérieur au produit source, d'au plus (% facultatif)",
+  "operator.lower than": "est inférieur au produit source, d'au plus (% facultatif)",
   "attributeRule": "Condition attribut",
   "combinationRule": "Condition combinaison"
 }
