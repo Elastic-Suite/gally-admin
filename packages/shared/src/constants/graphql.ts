@@ -50,6 +50,28 @@ export function getPreviewBoostQuery(): string {
   })
 }
 
+export function getRecommenderPreviewQuery(): string {
+  return jsonToGraphQLQuery({
+    query: {
+      __name: 'getRecommenderPreview',
+      __variables: {
+        localizedCatalog: 'String!',
+        productSku: 'String!',
+        currentRecommender: 'String!',
+      },
+      getRecommenderPreview: {
+        __args: {
+          localizedCatalog: new VariableType('localizedCatalog'),
+          productSku: new VariableType('productSku'),
+          currentRecommender: new VariableType('currentRecommender'),
+        },
+        status: true,
+        products: true,
+      },
+    },
+  })
+}
+
 export function getSearchProductsQuery(
   filter: IProductFieldFilterInput | IProductFieldFilterInput[] = null,
   withAggregations = false

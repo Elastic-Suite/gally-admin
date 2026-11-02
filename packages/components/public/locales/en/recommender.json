@@ -4,5 +4,14 @@
   "recommender.none": "No auto recommender has been created",
   "recommender.none.btn": "Create an auto recommender",
   "recommender.title": "Auto recommender",
-  "entity.label": "auto recommender"
+  "entity.label": "auto recommender",
+  "preview.missingRequiredFields": "Select at least one localized catalog and one recommender type to preview the recommendations.",
+  "preview.productSku": "Source product SKU",
+  "preview.submit": "Preview",
+  "preview.noSourceProduct": "Select a localized catalog and enter a source product SKU to preview its recommendations.",
+  "preview.noProduct": "No product is recommended for this source product.",
+  "preview.status.source_not_found": "The source product does not exist in this localized catalog.",
+  "preview.status.not_applicable": "The source rule does not select this source product.",
+  "preview.origin.co_occurrence": "Co-occurrence",
+  "preview.origin.rule": "Similarity rule"
 }

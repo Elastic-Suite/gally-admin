@@ -25,6 +25,7 @@ import ReadableDropDownGuesser from './ReadableDropDownGuesser'
 import FormatRowArray from '../../molecules/format/FormatRowArray'
 
 import PreviewGridBoostConfiguration from '../../atoms/form/PreviewGridBoostConfiguration/PreviewGridBoostConfiguration'
+import PreviewRecommender from '../../atoms/form/PreviewRecommender/PreviewRecommender'
 import Image from '../../atoms/image/Image'
 import PositionEffect from '../../atoms/positionEffect/PositionEffect'
 import { TestId, generateTestId } from '../../../utils/testIds'
@@ -155,6 +156,10 @@ function ReadableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
 
     case DataContentType.BOOSTPREVIEW: {
       return <PreviewGridBoostConfiguration currentBoost={data} />
+    }
+
+    case DataContentType.RECOMMENDERPREVIEW: {
+      return <PreviewRecommender currentRecommender={data} />
     }
 
     case DataContentType.POSITIONEFFECT: {
