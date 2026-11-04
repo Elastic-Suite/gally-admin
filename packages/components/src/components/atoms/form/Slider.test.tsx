@@ -9,6 +9,8 @@ describe('Slider match snapshot', () => {
     const { container } = renderWithProviders(
       <Slider
         value={9}
+        min={-99}
+        max={100}
         label="Boost value (%)"
         infoTooltip="boost value ..."
         fullWidth={false}
@@ -22,7 +24,9 @@ describe('Slider match snapshot', () => {
     expect(container).toMatchSnapshot()
   })
   it('Slider Min', () => {
-    const { container } = renderWithProviders(<Slider value={9} />)
+    const { container } = renderWithProviders(
+      <Slider value={9} min={-99} max={100} />
+    )
     expect(container).toMatchSnapshot()
   })
 })
