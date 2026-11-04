@@ -29,6 +29,8 @@ import Synonym from '../../atoms/form/Synonym'
 import Expansion from '../../atoms/form/Expansion'
 import { IProportionalToAttributesValue } from '../../molecules/ProportionalToAttributes/ProportionalToAttributes'
 import ProportionalToAttributesManager from '../../molecules/ProportionalToAttributes/ProportionalToAttributesManager'
+import { IBasedOnBehavioralDataValue } from '../../molecules/BasedOnBehavioralData/BasedOnBehavioralData'
+import BasedOnBehavioralDataManager from '../../molecules/BasedOnBehavioralData/BasedOnBehavioralDataManager'
 
 function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
   const {
@@ -419,12 +421,24 @@ function EditableFieldGuesser(props: IFieldGuesserProps): JSX.Element {
       )
     }
 
-    case DataContentType.PROPARTIONALTOATTRIBUTE: {
+    case DataContentType.PROPORTIONALTOATTRIBUTE: {
       return (
         <ProportionalToAttributesManager
           value={value as IProportionalToAttributesValue}
           onChange={handleChange}
           showError={showError}
+          required={required}
+        />
+      )
+    }
+
+    case DataContentType.BASEDONBEHAVIORALDATA: {
+      return (
+        <BasedOnBehavioralDataManager
+          value={value as IBasedOnBehavioralDataValue}
+          onChange={handleChange}
+          showError={showError}
+          required={required}
         />
       )
     }

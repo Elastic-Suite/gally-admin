@@ -1,14 +1,9 @@
 import React from 'react'
-import { useApiList, useResource } from '../../../hooks'
+import { useResourceOptions } from '../../../hooks'
+import { boostModels } from '../../../services/boostModel'
 import ProportionalToAttributes, {
   IProportionalToAttributesProps,
 } from './ProportionalToAttributes'
-import { IOption } from '@elastic-suite/gally-admin-shared'
-
-const rowsPerPage = 200
-const sourceFieldFixedFilters = {
-  'metadata.entity': 'product',
-}
 
 function ProportionalToAttributesManager(
   props: Omit<
@@ -16,44 +11,21 @@ function ProportionalToAttributesManager(
     'sourceFields' | 'boostImpactOptions'
   >
 ): JSX.Element {
-  const boostImpactOptionResource = useResource('BoostImpactOption')
-  const boostAttributeValueFieldOptionsResource = useResource(
-    'BoostAttributeValueFieldOption'
-  )
+  const boostImpactOptions = useResourceOptions('BoostImpactOption', {
+    model: boostModels.attributeValue,
+  })
+  const sourceFields = useResourceOptions('BoostAttributeValueFieldOption', {
+    'metadata.entity': 'product',
+  })
 
-  const [boostImpactOptionsResponse] = useApiList<IOption<string>>(
-    boostImpactOptionResource,
-    false,
-    rowsPerPage,
-    undefined,
-    undefined,
-    false,
-    true
-  )
-
-  const [boostAttributeValueFieldOptionsResponse] = useApiList<IOption<string>>(
-    boostAttributeValueFieldOptionsResource,
-    false,
-    rowsPerPage,
-    sourceFieldFixedFilters,
-    undefined,
-    false,
-    true
-  )
-
-  if (
-    !boostImpactOptionsResponse?.data ||
-    !boostAttributeValueFieldOptionsResponse?.data
-  ) {
+  if (!boostImpactOptions || !sourceFields) {
     return null
   }
 
   return (
     <ProportionalToAttributes
-      sourceFields={
-        boostAttributeValueFieldOptionsResponse.data['hydra:member']
-      }
-      boostImpactOptions={boostImpactOptionsResponse.data['hydra:member']}
+      sourceFields={sourceFields}
+      boostImpactOptions={boostImpactOptions}
       {...props}
     />
   )

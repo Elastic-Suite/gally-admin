@@ -17,6 +17,7 @@ const Template: ComponentStory<typeof ProportionalToAttributesComponent> = (
     source_field_code: undefined,
     boost_impact: undefined,
     scale_factor: 1,
+    allow_negative_boost: false,
   })
   return (
     <ProportionalToAttributesComponent
@@ -30,6 +31,7 @@ const Template: ComponentStory<typeof ProportionalToAttributesComponent> = (
 export const ProportionalToAttributes = Template.bind({})
 
 ProportionalToAttributes.args = {
+  required: true,
   boostImpactOptions: boostImpactOptionsMock['hydra:member'],
   sourceFields: [
     {

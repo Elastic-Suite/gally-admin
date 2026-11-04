@@ -1,7 +1,7 @@
 import { MutableRefObject } from 'react'
 
-import { IField } from './api'
-import { LoadStatus } from './fetch'
+import { IField, IResource } from './api'
+import { ISearchParameters, LoadStatus } from './fetch'
 
 export interface IOption<T> {
   disabled?: boolean
@@ -22,6 +22,11 @@ export type ILoadStatuses = Map<string, LoadStatus>
 
 export interface IOptionsContext {
   load: (field: IField) => void
+  loadOptions: (
+    id: string,
+    resource: IResource | string,
+    searchParameters?: ISearchParameters
+  ) => void
   fieldOptions: IFieldOptions
   statuses: MutableRefObject<ILoadStatuses>
 }

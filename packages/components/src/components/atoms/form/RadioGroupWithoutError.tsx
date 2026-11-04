@@ -19,7 +19,7 @@ export interface IRadioGroupProps extends Omit<RadioGroupProps, 'onChange'> {
   helperText?: ReactNode
   helperIcon?: string
   label?: string
-  infoTooltip?: string
+  infoTooltip?: ReactNode
   required?: boolean
 }
 
@@ -46,7 +46,11 @@ function RadioGroupWithoutError(props: IRadioGroupProps): JSX.Element {
           required={radioGroupProps.required}
         >
           {label}
-          {Boolean(infoTooltip) && <InfoTooltip title={infoTooltip} />}
+          {typeof infoTooltip === 'string' ? (
+            <InfoTooltip title={infoTooltip} />
+          ) : (
+            infoTooltip
+          )}
         </InputLabel>
       )}
       <RadioGrp

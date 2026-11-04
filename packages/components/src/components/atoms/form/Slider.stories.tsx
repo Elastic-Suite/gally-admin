@@ -26,6 +26,8 @@ const Template: ComponentStory<typeof SliderComponent> = (args) => {
 export const Slider = Template.bind({})
 
 Slider.args = {
+  min: -100,
+  max: 100,
   error: false,
   helperText: '',
   helperIcon: '',

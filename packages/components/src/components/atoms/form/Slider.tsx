@@ -25,8 +25,6 @@ export interface ISliderProps
   componentId?: string
 }
 
-const indicatorNumber = [-99, 0, 100]
-
 function Slider(props: ISliderProps): JSX.Element {
   const {
     error,
@@ -41,7 +39,15 @@ function Slider(props: ISliderProps): JSX.Element {
     value,
     width,
     componentId,
+    min = 0,
+    max = 100,
   } = props
+
+  const indicatorNumber = min < 0 && max > 0 ? [min, 0, max] : [min, max]
+  const toPercent = (number: number): number =>
+    ((number - min) / (max - min)) * 100
+  const origin = toPercent(Math.min(Math.max(0, min), max))
+  const current = toPercent(value)
 
   function handleChange(_: Event, value: number): void {
     if (onChange) {
@@ -72,18 +78,16 @@ function Slider(props: ISliderProps): JSX.Element {
         </CustomIndicatorsNumber>
         <Slide
           valueLabelDisplay="on"
-          max={100}
+          max={max}
           value={value}
-          min={-99}
+          min={min}
           onChange={handleChange}
-          sx={{
-            '.MuiSlider-rail': {
-              '::after': {
-                left: value < 0 ? `calc(50% - ${-value / 2}%)` : '50%',
-                width: `${Math.abs(value) / 2}%`,
-              },
-            },
-          }}
+          style={
+            {
+              '--fill-left': `${Math.min(origin, current)}%`,
+              '--fill-width': `${Math.abs(current - origin)}%`,
+            } as React.CSSProperties
+          }
           data-testid={generateTestId(TestId.SLIDER, componentId)}
         />
       </Box>
