@@ -68,4 +68,64 @@ describe('useOptions', () => {
     ])
     expect(fetchApi).toHaveBeenCalledTimes(1)
   })
+
+  describe('loadOptions', () => {
+    const url = '/product_sorting_options'
+    const expectedOptions = [
+      { value: 'position', label: 'Position' },
+      { value: 'id', label: 'Id' },
+      { value: 'stock.status', label: 'Stock status' },
+      { value: 'sku', label: 'Sku' },
+      { value: 'price', label: 'Price' },
+    ]
+
+    it('should load options from an api url under the given id', async () => {
+      ;(fetchApi as jest.Mock).mockClear()
+      const { result } = renderHookWithProviders(() => useOptions())
+      expect(result.current.fieldOptions).toEqual(new Map())
+      await act(() => result.current.loadOptions('sortingOptions', url))
+      expect(result.current.fieldOptions.get('sortingOptions')).toEqual(
+        expectedOptions
+      )
+      expect(fetchApi).toHaveBeenCalledTimes(1)
+      expect((fetchApi as jest.Mock).mock.calls[0]).toContain(url)
+    })
+
+    it('should not load the same id twice', async () => {
+      ;(fetchApi as jest.Mock).mockClear()
+      const { result } = renderHookWithProviders(() => useOptions())
+      await act(() =>
+        Promise.all([
+          result.current.loadOptions('sortingOptions', url),
+          result.current.loadOptions('sortingOptions', url),
+        ]).then(() => undefined)
+      )
+      expect(result.current.fieldOptions.get('sortingOptions')).toEqual(
+        expectedOptions
+      )
+      expect(fetchApi).toHaveBeenCalledTimes(1)
+    })
+
+    it('should pass the search parameters to fetchApi', async () => {
+      ;(fetchApi as jest.Mock).mockClear()
+      const { result } = renderHookWithProviders(() => useOptions())
+      await act(() =>
+        result.current.loadOptions('sortingOptions', url, { field: 'metric' })
+      )
+      expect((fetchApi as jest.Mock).mock.calls[0]).toContain(url)
+      expect((fetchApi as jest.Mock).mock.calls[0]).toContainEqual({
+        field: 'metric',
+      })
+    })
+
+    it('should share its cache with load for fields with api options', async () => {
+      ;(fetchApi as jest.Mock).mockClear()
+      const { result } = renderHookWithProviders(() => useOptions())
+      const fieldId = fieldDropdownWithApiOptions.property['@id']
+      await act(() => result.current.loadOptions(fieldId, url))
+      await act(() => result.current.load(fieldDropdownWithApiOptions))
+      expect(result.current.fieldOptions.get(fieldId)).toEqual(expectedOptions)
+      expect(fetchApi).toHaveBeenCalledTimes(1)
+    })
+  })
 })
