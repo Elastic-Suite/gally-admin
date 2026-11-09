@@ -49,10 +49,19 @@ interface IProps extends Partial<CustomContentProps> {
   onShut?: (id: SnackbarKey) => void
   mb?: number
   children?: ReactNode
+  closable?: boolean
 }
 
 function Alert(props: IProps, ref: ForwardedRef<HTMLDivElement>): JSX.Element {
-  const { id, message, onShut, variant = 'info', mb = 2, children } = props
+  const {
+    id,
+    message,
+    onShut,
+    variant = 'info',
+    mb = 2,
+    children,
+    closable = true,
+  } = props
   const { t } = useTranslation('alert')
 
   function handleClick(): void {
@@ -64,14 +73,16 @@ function Alert(props: IProps, ref: ForwardedRef<HTMLDivElement>): JSX.Element {
   return (
     <StyledAlert
       action={
-        <IconButton
-          aria-label="close"
-          color="inherit"
-          size="small"
-          onClick={handleClick}
-        >
-          <IonIcon name="close" style={{ fontSize: 18, padding: '0px' }} />
-        </IconButton>
+        closable ? (
+          <IconButton
+            aria-label="close"
+            color="inherit"
+            size="small"
+            onClick={handleClick}
+          >
+            <IonIcon name="close" style={{ fontSize: 18, padding: '0px' }} />
+          </IconButton>
+        ) : null
       }
       ref={ref}
       severity={variant as 'success' | 'info' | 'warning' | 'error'}

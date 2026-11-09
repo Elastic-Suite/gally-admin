@@ -1,10 +1,15 @@
 import React from 'react'
-import RadioGroup from '../../atoms/form/RadioGroup'
 import InputText from '../../atoms/form/InputText'
 import DropDown from '../../atoms/form/DropDown'
 import Switch from '../../atoms/form/Switch'
 import { IOptions } from '@elastic-suite/gally-admin-shared'
 import { useTranslation } from 'next-i18next'
+import BoostImpactField from '../BoostImpact/BoostImpactField'
+import {
+  boostModels,
+  getScaleFactorError,
+  isBoostModelFieldRequired,
+} from '../../../services/boostModel'
 import { ProportionalToAttributesContainer } from './ProportionalToAttributes.styled'
 export interface IProportionalToAttributesValue {
   source_field_code?: string
@@ -18,6 +23,7 @@ export interface IProportionalToAttributesProps {
   boostImpactOptions: IOptions<string>
   value: IProportionalToAttributesValue
   showError?: boolean
+  required?: boolean
   onChange?: (value: IProportionalToAttributesValue) => void
 }
 
@@ -26,6 +32,7 @@ function ProportionalToAttributes({
   sourceFields,
   boostImpactOptions,
   showError,
+  required,
   onChange,
 }: IProportionalToAttributesProps): JSX.Element {
   const {
@@ -35,6 +42,13 @@ function ProportionalToAttributes({
     allow_negative_boost: allowNegativeBoost,
   } = value
   const { t } = useTranslation('boost')
+
+  function isRequired(field: string): boolean {
+    return (
+      Boolean(required) &&
+      isBoostModelFieldRequired(boostModels.attributeValue, field)
+    )
+  }
 
   function handleChange(
     name: keyof IProportionalToAttributesValue,
@@ -56,36 +70,31 @@ function ProportionalToAttributes({
         onChange={(value: string): void =>
           handleChange('source_field_code', value)
         }
-        required
+        required={isRequired('source_field_code')}
         showError={showError}
         sx={{ minWidth: '230px' }}
         placeholder={t('boostConfig.sourceField.placeholder')}
         fullWidth
       />
 
-      <RadioGroup
+      <BoostImpactField
         options={boostImpactOptions}
-        value={boostImpact || null}
+        value={boostImpact}
+        helpTextKey="boostConfig.boostImpactHelp.attributeValue.text"
         onChange={(value: string): void => handleChange('boost_impact', value)}
-        label={t('boostConfig.boostImpact')}
-        required
         showError={showError}
+        required={isRequired('boost_impact')}
       />
 
       <InputText
         type="number"
         label={t('boostConfig.scaleFactor')}
-        required
+        required={isRequired('scale_factor')}
         inputProps={{
           step: 'any',
           min: 0,
         }}
-        additionalValidator={(value: number): string => {
-          if (value <= 0) {
-            return 'scaleFactorWrongFormat'
-          }
-          return ''
-        }}
+        additionalValidator={getScaleFactorError}
         value={scaleFactor}
         onChange={(value: number): void => handleChange('scale_factor', value)}
         showError={showError}
@@ -94,7 +103,6 @@ function ProportionalToAttributes({
 
       <Switch
         label={t('boostConfig.allowNegativeBoost')}
-        required
         checked={allowNegativeBoost}
         onChange={(value: boolean): void =>
           handleChange('allow_negative_boost', value)
