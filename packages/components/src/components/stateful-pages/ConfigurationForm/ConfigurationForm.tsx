@@ -5,6 +5,7 @@ import { useApiFetch, useApiList } from '../../../hooks'
 import CustomForm from '../../organisms/CustomForm/CustomForm'
 import Button from '../../atoms/buttons/Button'
 import {
+  ConfigurationScopeType,
   DataContentType,
   IConfiguration,
   IConfigurationData,
@@ -77,7 +78,7 @@ const FormWithWiderInputs = styled(Form)(() => ({
 interface IProps extends ITabContentProps {
   configurationResource: IResource
   configurationGroup: IConfigurationTreeGroupFormatted
-  configurationScope: IConfigurationTreeScope
+  configurationScope?: IConfigurationTreeScope
   configurationList: string[]
 }
 
@@ -102,6 +103,13 @@ function ConfigurationForm(props: IProps): JSX.Element {
   const [showAllErrors, setShowAllErrors] = useState(false)
   const fetchApi = useApiFetch()
 
+  // A group scoped on general only cannot be set per scope:
+  // its values are always read and saved as general.
+  const isGeneralScopeOnly =
+    configurationGroup.scopeType === ConfigurationScopeType.SCOPE_GENERAL ||
+    !configurationScope
+  const showScopeSelector = !isGeneralScopeOnly
+
   const dirtyFields = useMemo(() => {
     if (!originalConfigurationData) {
       return configurationData
@@ -121,9 +129,11 @@ function ConfigurationForm(props: IProps): JSX.Element {
   const filters = useMemo(
     () => ({
       'path[]': configurationList,
-      [configurationScope.filterName]: scopeCode,
+      ...(!isGeneralScopeOnly && {
+        [configurationScope.filterName]: scopeCode,
+      }),
     }),
-    [configurationList, configurationScope, scopeCode]
+    [configurationList, configurationScope, scopeCode, isGeneralScopeOnly]
   )
 
   const [configurations] = useApiList<IConfiguration>(
@@ -286,24 +296,26 @@ function ConfigurationForm(props: IProps): JSX.Element {
           <StickyRoot>
             <ScopeAndSaveToolbar>
               <FlexBox>
-                <EditableDropDownGuesser
-                  componentId="configurationScopeType"
-                  onChange={handleScopeChange}
-                  value={scopeCode}
-                  data={{}}
-                  label={t('configurationAppliesTo.label', {
-                    ns: 'configurations',
-                  })}
-                  id="configurationScopeType"
-                  name="configurationScopeType"
-                  useGroups={
-                    configurationScope.input === DataContentType.OPTGROUP
-                  }
-                  field={formatConfigurationScopeField(
-                    configurationGroup,
-                    configurationScope
-                  )}
-                />
+                {Boolean(showScopeSelector) && (
+                  <EditableDropDownGuesser
+                    componentId="configurationScopeType"
+                    onChange={handleScopeChange}
+                    value={scopeCode}
+                    data={{}}
+                    label={t('configurationAppliesTo.label', {
+                      ns: 'configurations',
+                    })}
+                    id="configurationScopeType"
+                    name="configurationScopeType"
+                    useGroups={
+                      configurationScope.input === DataContentType.OPTGROUP
+                    }
+                    field={formatConfigurationScopeField(
+                      configurationGroup,
+                      configurationScope
+                    )}
+                  />
+                )}
               </FlexBox>
               <RightAlignedButton>
                 <Button
