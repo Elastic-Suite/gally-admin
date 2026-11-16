@@ -28,6 +28,7 @@ describe('ProportionalToAttributes', () => {
           },
         ]}
         boostImpactOptions={boostImpactOptionsMock['hydra:member']}
+        required
       />
     )
     expect(container).toMatchSnapshot()

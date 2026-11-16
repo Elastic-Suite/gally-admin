@@ -8,6 +8,8 @@ import {
   IHydraResponse,
   IOptions,
   IOptionsContext,
+  IResource,
+  ISearchParameters,
   getOptionsFromApiSchema,
   getOptionsFromResource,
   getReferencedResource,
@@ -27,27 +29,44 @@ export function useOptions(): IOptionsContext {
   const api = useAppSelector(selectApi)
   const { t } = useTranslation('options')
 
+  const loadOptions = useCallback(
+    (
+      id: string,
+      resource: IResource | string,
+      searchParameters?: ISearchParameters
+    ) =>
+      fetch(id, async (fetchApi: IFetchApi) => {
+        const response = await fetchApi(resource, searchParameters)
+        if (!isError(response)) {
+          return getOptionsFromApiSchema(
+            response as IHydraResponse<IApiSchemaOptions>
+          )
+        }
+        throw new Error('error')
+      }),
+    [fetch]
+  )
+
   const load = useCallback(
     (field: IField) => {
       const id = field.property['@id']
+      if (
+        hasFieldOptions(field) &&
+        !isDropdownStaticOptions(field.gally?.options)
+      ) {
+        // options from api
+        return loadOptions(id, field.gally.options.api_rest)
+      }
       return fetch(id, async (fetchApi: IFetchApi) => {
-        if (hasFieldOptions(field)) {
-          // get options from the schema
-          if (isDropdownStaticOptions(field.gally?.options)) {
-            // static options
-            return field.gally.options.values.map((option) => ({
-              ...option,
-              label: option?.label,
-            }))
-          }
-          // options from api
-          const response = await fetchApi(field.gally.options.api_rest)
-          if (!isError(response)) {
-            return getOptionsFromApiSchema(
-              response as IHydraResponse<IApiSchemaOptions>
-            )
-          }
-          throw new Error('error')
+        if (
+          hasFieldOptions(field) &&
+          isDropdownStaticOptions(field.gally.options)
+        ) {
+          // static options from the schema
+          return field.gally.options.values.map((option) => ({
+            ...option,
+            label: option?.label,
+          }))
         } else if (isReferenceField(field)) {
           // get options by loading all items of the referenced field
           const response = await fetchApi(
@@ -62,7 +81,7 @@ export function useOptions(): IOptionsContext {
         }
       })
     },
-    [api, fetch]
+    [api, fetch, loadOptions]
   )
 
   return useMemo(() => {
@@ -73,6 +92,6 @@ export function useOptions(): IOptionsContext {
       })
     )
 
-    return { fieldOptions: mapTranslated, load, statuses }
-  }, [load, map, statuses, t])
+    return { fieldOptions: mapTranslated, load, loadOptions, statuses }
+  }, [load, loadOptions, map, statuses, t])
 }

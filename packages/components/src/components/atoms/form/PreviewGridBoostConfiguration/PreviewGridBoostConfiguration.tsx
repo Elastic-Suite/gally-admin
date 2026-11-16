@@ -16,6 +16,7 @@ import PreviewBoostingTableManager from '../../../organisms/PreviewBoostingTable
 import { styled } from '@mui/material'
 import { useTranslation } from 'next-i18next'
 import { TestId, generateTestId } from '../../../../utils/testIds'
+import { isBoostModelConfigJsonValid } from '../../../../services/boostModel'
 
 const RequiredMessage = styled('p')(() => ({
   color: 'var(--neutral-900, #151A47)',
@@ -102,14 +103,9 @@ export default function PreviewGridBoostConfiguration({
       Boolean((currentBoost?.requestTypes as [])?.length > 0) &&
       Boolean((currentBoost?.localizedCatalogs as [])?.length > 0) &&
       Boolean(currentBoost.model) &&
-      Boolean(
-        currentBoost.model !== 'attribute_value' ||
-          (currentBoost.model === 'attribute_value' &&
-            currentBoost.modelConfig &&
-            Number(
-              JSON.parse(currentBoost.modelConfig as string)
-                ?.attribute_value_config?.scale_factor
-            ) > 0)
+      isBoostModelConfigJsonValid(
+        currentBoost.model as string,
+        currentBoost.modelConfig as string
       ),
     [
       currentBoost.localizedCatalogs,

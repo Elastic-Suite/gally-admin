@@ -2,6 +2,7 @@ import React from 'react'
 import { styled } from '@mui/system'
 import Link from 'next/link'
 import { TestId, generateTestId } from '../../../utils/testIds'
+import { helpdeskUrl, userGuideUrl } from '../../../constants/help'
 
 const CustomRoot = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -26,15 +27,11 @@ const CustomA = styled('a')({
 function HelpOver(): JSX.Element {
   return (
     <CustomRoot data-testid={generateTestId(TestId.HELP_OVER)}>
-      <Link href="https://elasticsuite.zendesk.com" legacyBehavior passHref>
+      <Link href={helpdeskUrl} legacyBehavior passHref>
         <CustomA>Helpdesk</CustomA>
       </Link>
 
-      <Link
-        href="https://elastic-suite.github.io/documentation/"
-        legacyBehavior
-        passHref
-      >
+      <Link href={userGuideUrl} legacyBehavior passHref>
         <CustomA>User guide</CustomA>
       </Link>
 

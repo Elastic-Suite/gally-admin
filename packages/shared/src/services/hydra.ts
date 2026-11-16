@@ -250,6 +250,17 @@ export function inputInitializer(input: string): unknown {
         scale_factor: 1,
       }
 
+    case 'basedOnBehavioralData':
+      return {
+        data_type: {
+          metric: undefined,
+          timeframe: undefined,
+          calculation: undefined,
+        },
+        boost_impact: undefined,
+        scale_factor: 1,
+      }
+
     default:
       return ''
   }

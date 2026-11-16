@@ -15,6 +15,8 @@ export const Slide = styled(SliderMui)(({ theme }) => ({
       content: "''",
       position: 'absolute',
       top: -1,
+      left: 'var(--fill-left)',
+      width: 'var(--fill-width)',
       height: '100%',
       background: theme.palette.colors.primary[400],
       borderRadius: theme.spacing(1),
